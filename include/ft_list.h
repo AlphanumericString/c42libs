@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:33:38 by iron              #+#    #+#             */
-/*   Updated: 2023/12/07 10:40:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:47:20 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int						ft_list_dl_delete_self(t_dlist *node);
 size_t					ft_list_dl_delete_range(t_dlist *start,
 							t_dlist *target);
 size_t					ft_list_dl_delete(t_dlist **head);
-size_t					ft_list_dl_delete_dup(t_dlist **src);
+// size_t					ft_list_dl_delete_dup(t_dlist **src);
 void					**ft_list_dl_get_datas(const t_dlist *src);
 t_dlist					**ft_list_dl_get_nodes(const t_dlist *src);
 t_dlist					*ft_list_dl_at(t_dlist *head, size_t index);
