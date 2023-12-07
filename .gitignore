@@ -54,3 +54,4 @@ dkms.conf
 # Personal Setups
 Todo
 *.log
+./build/
