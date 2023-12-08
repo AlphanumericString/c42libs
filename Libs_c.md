@@ -65,7 +65,7 @@ Library for c projects at 42.
 - [ ]  ? Tree structure/functions ?
 - [ ]  ? Circular support ?
 
-[Linked list lib](Libs%20-%20c%208cf9363b8e554e019656177ac6919a3a/Linked%20list%20lib%20f0cc9f1725be465dba9794570d169cf0.md)
+[Linked list lib](Libs_c_md/Linked_list_lib.md)
 
 # Strings
 
@@ -99,7 +99,7 @@ Library for c projects at 42.
     - [ ]  Add more re-link in-between function lib cf. Don't add a loc_strlen nor do a basic while loop to get char name but use ft_strlen; don't loop to add char in str but use ft_strlcat…
     - [ ]  Add ft_strreplace
 
-[String lib](Libs%20-%20c%208cf9363b8e554e019656177ac6919a3a/String%20lib%2077ef7599668a4efebf6b732aa9830e64.md)
+[String lib](Libs_c_md/String_lib.md)
 
 # Config
 
@@ -129,4 +129,4 @@ Dependencies
 - [ ]  YAML
 - [ ]  Custom
 
-[Config lib](Libs%20-%20c%208cf9363b8e554e019656177ac6919a3a/Config%20lib%20080a581a15e948d9ac65f80ab094da2c.md)
+[Config lib](Libs_c_md/Config_lib.md)

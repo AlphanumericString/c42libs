@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/07 13:51:12 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/08 10:16:19 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ BUILD_DIR	=	./build
 INC_DIR		=	./include
 CPPFLAGS	=	-I$(INC_DIR)
 CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color
+TARGET		?=	"ALL"
 
 FT_LIST_DIR	=	ft_list
 FT_LIST_SRC	=	\
@@ -114,8 +115,11 @@ CONF_SRC	=	\
 SRC_FILES	=	\
 			$(FT_LIST_SRC)		\
 			$(VEC_SRC)			\
-			$(FT_STRING_SRC)	\
+			$(FT_STRING_SRC)
+ifeq ($(TARGET),"ALL")
+SRC_FILES   += \
 			$(CONF_SRC)
+endif
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(SRC_FILES)))
