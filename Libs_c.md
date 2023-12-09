@@ -97,7 +97,8 @@ Library for c projects at 42.
     - [ ]  printf
 - [ ]  Optimise functions from ft_lib
     - [ ]  Add more re-link in-between function lib cf. Don't add a loc_strlen nor do a basic while loop to get char name but use ft_strlen; don't loop to add char in str but use ft_strlcat…
-    - [ ]  Add ft_strreplace
+      - [x]  kinda started but MOAR.
+    - [x]  Add ft_strreplace
 
 [String lib](Libs_c_md/String_lib.md)
 
