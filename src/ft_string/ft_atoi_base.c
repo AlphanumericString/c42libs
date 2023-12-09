@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:52:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 19:27:59 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:40:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static int	ft_is_valid(const char *base)
 
 int	ft_atoi_base(const char *str, const char *base)
 {
-	const int base_len = ft_strlen(base);
-	int	i;
-	int	nb;
-	int	sign;
+	const int	base_len = ft_strlen(base);
+	int			i;
+	int			nb;
+	int			sign;
 
 	i = 0;
 	nb = 0;
