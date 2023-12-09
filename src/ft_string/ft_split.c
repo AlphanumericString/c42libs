@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:48:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/04 15:31:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:15:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static size_t	loc_get_nbwords(const char *str, char delim)
 		return (0);
 	while (str[i])
 	{
-		if (str[i] == delim)
+		if (str[i++] == delim)
 		{
 			if (inword == 1)
 				ret++;
@@ -34,7 +34,6 @@ static size_t	loc_get_nbwords(const char *str, char delim)
 		}
 		else
 			inword = 1;
-		i++;
 	}
 	if (inword == 1)
 		ret++;

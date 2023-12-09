@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:33:24 by iron              #+#    #+#             */
-/*   Updated: 2023/12/06 16:27:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:22:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,7 @@
 
 size_t	ft_list_dl_apply(t_dlist *start, t_data_apply applied)
 {
-	size_t	i;
-	t_dlist	*it;
-
-	it = start;
-	i = 0;
-	while (it)
-	{
-		applied(it->data);
-		it = it->next;
-		i++;
-	}
-	return (i);
+	return (ft_list_dl_apply_range(start, NULL, applied));
 }
 
 size_t	ft_list_dl_apply_range(t_dlist *start, const t_dlist *end,

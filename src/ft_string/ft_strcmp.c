@@ -1,41 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_log.c                                           :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 10:09:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 15:35:21 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/08 11:05:16 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/08 11:06:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_ullogof(unsigned long long nbr, int base)
-{
-	int	pow;
+#include "ft_string.h"
 
-	pow = 0;
-	while (nbr)
-	{
-		nbr /= base;
-		pow++;
-	}
-	return (pow);
-}
-
-int	ft_llogof(long long nbr, int base)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	if (nbr <= 0)
-		return (-1);
-	return (ft_ullogof((unsigned long long)nbr, base));
-}
-
-int	ft_logof(int nbr, int base)
-{
-	return (ft_llogof((long long)nbr, base));
-}
-
-int	ft_log(int nbr)
-{
-	return (ft_logof(nbr, 10));
+	return (ft_strncmp(s1, s2, ft_max(ft_strlen(s1), ft_strlen(s2))));
 }

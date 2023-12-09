@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_log.c                                           :+:      :+:    :+:   */
+/*   ft_strtok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 10:09:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 15:35:21 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/08 13:19:26 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/08 14:22:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_ullogof(unsigned long long nbr, int base)
-{
-	int	pow;
+#include "ft_string.h"
 
-	pow = 0;
-	while (nbr)
+char	*ft_strtok(char *str, char *token)
+{
+	static char	*ptr;
+	char		*ret;
+
+	if (str)
+		ptr = str;
+	while (ptr && ft_strchr(token, *ptr) && *ptr)
+		ptr++;
+	ret = ptr;
+	while (ptr && !ft_strchr(token, *ptr) && *ptr)
+		ptr++;
+	if (ptr && *ptr)
 	{
-		nbr /= base;
-		pow++;
+		*ptr = 0;
+		ptr++;
 	}
-	return (pow);
-}
-
-int	ft_llogof(long long nbr, int base)
-{
-	if (nbr <= 0)
-		return (-1);
-	return (ft_ullogof((unsigned long long)nbr, base));
-}
-
-int	ft_logof(int nbr, int base)
-{
-	return (ft_llogof((long long)nbr, base));
-}
-
-int	ft_log(int nbr)
-{
-	return (ft_logof(nbr, 10));
+	else
+		ptr = 0;
+	return (ret);
 }

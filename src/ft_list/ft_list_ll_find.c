@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_log.c                                           :+:      :+:    :+:   */
+/*   ft_list_ll_find.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 10:09:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 15:35:21 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/08 11:12:59 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/08 15:01:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_ullogof(unsigned long long nbr, int base)
-{
-	int	pow;
+#include "ft_list.h"
 
-	pow = 0;
-	while (nbr)
+void	*ft_listfind(t_list *list, void *data, int (*cmp)(void *, void *))
+{
+	while (list)
 	{
-		nbr /= base;
-		pow++;
+		if (cmp(list->content, data) == 0)
+			return (list->content);
 	}
-	return (pow);
-}
-
-int	ft_llogof(long long nbr, int base)
-{
-	if (nbr <= 0)
-		return (-1);
-	return (ft_ullogof((unsigned long long)nbr, base));
-}
-
-int	ft_logof(int nbr, int base)
-{
-	return (ft_llogof((long long)nbr, base));
-}
-
-int	ft_log(int nbr)
-{
-	return (ft_logof(nbr, 10));
+	return (NULL);
 }

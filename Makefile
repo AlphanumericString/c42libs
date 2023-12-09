@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/08 10:16:19 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/08 14:49:01 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ FT_LIST_SRC	=	\
 			$(FT_LIST_DIR)/ft_list_ll_add_front.c	\
 			$(FT_LIST_DIR)/ft_list_ll_clear.c		\
 			$(FT_LIST_DIR)/ft_list_ll_delone.c		\
+			$(FT_LIST_DIR)/ft_list_ll_find.c		\
 			$(FT_LIST_DIR)/ft_list_ll_iter.c		\
 			$(FT_LIST_DIR)/ft_list_ll_last.c		\
 			$(FT_LIST_DIR)/ft_list_ll_map.c			\
@@ -74,6 +75,7 @@ FT_STRING_SRC	=	\
 			$(FT_STRING_DIR)/ft_putnbr_fd.c		\
 			$(FT_STRING_DIR)/ft_putstr_fd.c		\
 			$(FT_STRING_DIR)/ft_split.c			\
+			$(FT_STRING_DIR)/ft_splits.c		\
 			$(FT_STRING_DIR)/ft_strchr.c		\
 			$(FT_STRING_DIR)/ft_strdup.c		\
 			$(FT_STRING_DIR)/ft_striteri.c		\
@@ -82,11 +84,13 @@ FT_STRING_SRC	=	\
 			$(FT_STRING_DIR)/ft_strlcpy.c		\
 			$(FT_STRING_DIR)/ft_strlen.c		\
 			$(FT_STRING_DIR)/ft_strmapi.c		\
+			$(FT_STRING_DIR)/ft_strcmp.c		\
 			$(FT_STRING_DIR)/ft_strncmp.c		\
 			$(FT_STRING_DIR)/ft_strndup.c		\
 			$(FT_STRING_DIR)/ft_strnstr.c		\
 			$(FT_STRING_DIR)/ft_strrchr.c		\
 			$(FT_STRING_DIR)/ft_strtrim.c		\
+			$(FT_STRING_DIR)/ft_strtok.c		\
 			$(FT_STRING_DIR)/ft_substr.c		\
 			$(FT_STRING_DIR)/ft_tolower.c		\
 			$(FT_STRING_DIR)/ft_toupper.c		\
@@ -112,13 +116,43 @@ CONF_SRC	=	\
 			$(CONF_DIR)/ftc_baseop.c		\
 			$(CONF_DIR)/ftc_get_parser.c
 
-SRC_FILES	=	\
+STABLE		=	\
 			$(FT_LIST_SRC)		\
 			$(VEC_SRC)			\
 			$(FT_STRING_SRC)
-ifeq ($(TARGET),"ALL")
-SRC_FILES   += \
+UNSTABLE	=	\
 			$(CONF_SRC)
+
+SRC_FILES	=
+
+ifeq (STRING, $(findstring STRING, $(TARGET)))
+SRC_FILES   += \
+			$(FT_STRING_SRC)
+endif
+ifeq (LIST, $(findstring LIST, $(TARGET)))
+SRC_FILES   += \
+			$(FT_LIST_SRC)
+endif
+ifeq (VECTOR, $(findstring VECTOR, $(TARGET)))
+SRC_FILES   += \
+			$(VEC_SRC)
+endif
+ifeq (CONFIG, $(findstring CONFIG, $(TARGET)))
+SRC_FILES   += \
+			$(FT_STRING_SRC)
+endif
+ifeq (STABLE, $(findstring STABLE, $(TARGET)))
+SRC_FILES   += \
+			$(STABLE)
+endif
+ifeq (UNSTABLE, $(findstring UNSTABLE, $(TARGET)))
+SRC_FILES   += \
+			$(UNSTABLE)
+endif
+ifeq (ALL, $(findstring ALL, $(TARGET)))
+SRC_FILES   += \
+			$(STABLE)	\
+			$(UNSTABLE)
 endif
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
