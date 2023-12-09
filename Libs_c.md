@@ -86,11 +86,11 @@ Library for c projects at 42.
 - [x]  Rename to ft_string
 - [ ]  cleanup header file
     - [ ]  Add // <file>.c to the header to indicate position of functions
-    - [ ]  Add new struct t_string to alloc by chunk and have len + size cached
-        - [ ]  Implement Struct
-        - [ ]  Implement basic functions to t_string
+    - [x]  Add new struct t_string to alloc by chunk and have len + size cached
+        - [x]  Implement Struct
+        - [x]  Implement basic functions to t_string
         - [ ]  Implement ‘hard’ function to t_string
-    - [ ]  Remove string’s struct to a sperate struct header.
+    - [x]  Remove string’s struct to a sperate struct header.
 - [ ]  Add gnl and printf
     - [x]  gnl
         - [ ]  update gnl
