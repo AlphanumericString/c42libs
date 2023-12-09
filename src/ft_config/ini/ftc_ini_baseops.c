@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:55:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/07 17:33:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:41:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,16 @@ int	ftc_ini_load(const char *file, void *content)
 	}
 	return (0);
 }
+int ftc_ini_savefiledump(int fd, t_inifile *params)
+{
+	return (1);
+}
 
-/* */
+int ftc_ini_savesmart(int fd, t_inifile *params)
+{
+	return (1);
+}
+
 int	ftc_ini_save(const char *file, void *control_struct)
 {
 	int fd;
@@ -110,7 +118,10 @@ int	ftc_ini_save(const char *file, void *control_struct)
 		return (ftc_ini_savesmart(fd, control_struct));
 	return (1);
 }
-
+// key can be of form 
+//  "section.key"
+//  "sectionParentN...sectionParentN - 1.section.key"
+//  "key" (can match "NotASection.key")
 void	*ftc_ini_get(const char *key, void *control_struct)
 {
 	return (ftc_ini_get_k(key, (t_inifile *)control_struct));

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:32:30 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/07 12:07:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:21:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ typedef struct s_ini_node
 
 typedef struct s_inifile
 {
-	bool					dup_crash;
 	char					equ_token;
 	char					com_token;
+	char					arr_token;
+	bool					dup_crash;
 	bool					com_inline;
 	bool					multi_line;
 	char					*section_default;

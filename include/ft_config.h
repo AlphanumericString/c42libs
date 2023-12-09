@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:35:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/07 12:06:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/08 10:57:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ typedef struct s_config
 	void					*content;
 	t_obj_parser_type		base_parser_f;
 }							t_config;
-//	int						fd; // dumb will handle fd inside load func to allow read only on local func
+//	int						fd;
+// dumb will handle fd inside load func to allow read only on local func
 
 // returns null config_type is invalid.
 t_config					*ft_init_config(const char *filepath,

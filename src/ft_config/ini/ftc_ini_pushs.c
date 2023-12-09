@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:21:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/07 11:37:24 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:43:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ftc_ini_push_secion(const char *parent, const char *s, t_inifile *file)
 	if (!section)
 		return (1);
 	section->name = s;
-	section->parent = ftc_ini_get_section(s, file);
+	section->parent = ftc_ini_get_section(parent, file);
 	section->kv_pairs = NULL;
 	elem = ft_listnew(section);
 	if (!elem)

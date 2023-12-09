@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:19:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/07 11:37:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:22:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	*ftc_ini_core_init(void)
 		return (ret);
 	ret->com_inline = false;
 	ret->com_token = '#';
-	ret->dup_crash = true;
+	ret->arr_token = '|';
 	ret->equ_token = '=';
+	ret->dup_crash = true;
 	ret->multi_line = false;
 	ret->section_default = "global";
 	ret->sections = NULL;
