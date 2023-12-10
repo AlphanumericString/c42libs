@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_find.c                                  :+:      :+:    :+:   */
+/*   ft_list_ll_delete.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:12:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 11:43:06 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/08 03:09:13 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/10 12:27:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include <stdlib.h>
 
-void	*ft_listfind(t_list *list, void *data, int (*cmp)(void *, void *))
+void	ft_listdelone(t_list *lst, t_data_apply del)
 {
-	while (list)
+	if (!lst || !del)
+		return ;
+	del(lst->data);
+	free(lst);
+}
+
+size_t	ft_listdelete_range(t_list *lst, const t_list *end, t_data_apply del)
+{
+	t_list	*tmp;
+	size_t	i;
+
+	i = 0;
+	if (!lst || !del)
+		return (i);
+	while (lst && lst != end)
 	{
-		if (cmp(list->data, data) == 0)
-			return (list->data);
+		i++;
+		tmp = lst->next;
+		del(lst->data);
+		free(lst);
+		lst = tmp;
 	}
-	return (NULL);
+	return (i);
 }

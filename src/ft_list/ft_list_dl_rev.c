@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_find.c                                  :+:      :+:    :+:   */
+/*   ft_list_dl_rev.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:12:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 11:43:06 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/10 12:20:27 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/10 12:27:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	*ft_listfind(t_list *list, void *data, int (*cmp)(void *, void *))
+void	ft_list_dl_rev(t_dlist **head)
 {
-	while (list)
+	t_dlist	*it;
+	t_dlist	*tmp;
+
+	if (!head || !*head)
+		return ;
+	it = *head;
+	while (it)
 	{
-		if (cmp(list->data, data) == 0)
-			return (list->data);
+		tmp = it->next;
+		it->next = it->prev;
+		it->prev = tmp;
+		it = tmp;
 	}
-	return (NULL);
+	*head = ft_list_dl_last(*head);
 }

@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:05 by iron              #+#    #+#             */
-/*   Updated: 2023/12/06 16:27:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:32:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include <stdlib.h>
 
-t_dlist	*ft_list_dl(void)
+t_dlist	*ft_list_dl_new(void)
 {
 	t_dlist	*ret;
 
@@ -37,7 +37,7 @@ t_dlist	*ft_list_dl_create(void *const data)
 	return (ret);
 }
 
-t_dlist	*ft_list_dl_copy(const t_dlist *const other)
+t_dlist	*ft_list_dl_copy_node(const t_dlist *const other)
 {
 	t_dlist	*ret;
 
@@ -63,7 +63,7 @@ t_dlist	*ft_list_dl_copy_list(const t_dlist *const other)
 	prev = NULL;
 	while (it)
 	{
-		node = ft_list_dl_copy(it);
+		node = ft_list_dl_copy_node(it);
 		if (!node)
 			return (ft_list_dl_delete(&head), head);
 		node->prev = prev;

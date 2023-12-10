@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 03:12:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/06 15:17:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/10 12:37:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ void	ft_listclear(t_list **lst, t_data_apply del)
 	t_list	*runner;
 	t_list	*next;
 
-	if (!lst || !del)
+	if (!lst)
 		return ;
 	runner = *lst;
 	while (runner)
 	{
 		next = runner->next;
-		del(runner->content);
+		if (del)
+			del(runner->data);
+		runner->data = NULL;
 		free(runner);
 		runner = next;
 	}

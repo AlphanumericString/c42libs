@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 10:37:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/07 10:38:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:41:30 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct s_list
 {
-	void				*content;
+	void				*data;
 	struct s_list		*next;
 }						t_list;
 

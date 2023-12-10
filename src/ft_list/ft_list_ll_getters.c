@@ -1,40 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_size.c                                  :+:      :+:    :+:   */
+/*   ft_list_ll_getters.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:38:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:26:44 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/10 11:54:40 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/10 12:28:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-size_t	ft_listsize(t_list *lst)
+void	**ft_list_ll_get_datas(const t_list *src)
 {
+	t_list	**datas;
 	size_t	i;
 
+	datas = ft_calloc(sizeof(void *), ft_listsize(src) + 1);
+	if (!datas)
+		return (NULL);
 	i = 0;
-	while (lst)
+	while (src)
 	{
-		lst = lst->next;
+		datas[i] = src->data;
+		src = src->next;
 		i++;
 	}
-	return (i);
+	return (datas);
 }
 
-size_t	ft_listsize_match(t_list *lst, t_data_is function)
+t_list	**ft_list_ll_get_nodes(const t_list *src)
 {
+	t_list	**nodes;
 	size_t	i;
 
+	nodes = ft_calloc(sizeof(t_list *), ft_listsize(src) + 1);
+	if (!nodes)
+		return (NULL);
 	i = 0;
-	while (lst)
+	while (src)
 	{
-		if (function(lst->data))
-			i++;
-		lst = lst->next;
+		nodes[i] = src;
+		src = src->next;
+		i++;
 	}
-	return (i);
+	return (nodes);
 }
