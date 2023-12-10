@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
+#    By: iron <iron@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/09 19:17:20 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/10 00:23:32 by iron             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -170,28 +170,28 @@ OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(SRC_FILES)))
 CLOG_FILE	=	./compilation.log
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo -n	$(GRAY)	"building from " $< "..." $(RESET)
+	@echo -ne	$(GRAY)	"building from " $< "..." $(RESET)
 	@mkdir -p $(dir $@)
 	@( $(CC) $(CFLAGS) -c $< -o $@ 2>> $(CLOG_FILE) && \
-	echo $(GREEN) "Success" $(RESET) ) || \
-	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	echo -e $(GREEN) "Success" $(RESET) ) || \
+	echo -e $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
 all:	lib$(NAME).a
 
 so: $(OBJ)
-	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).so" \
+	@echo -ne $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).so" \
 	$(RESET) $(GRAY) " ... " $(RESET)
 	@( $(CC)	-nostartfiles  -shared -o lib$(NAME).so	$(CFLAGS) $(OBJ) \
-	 2>> $(CLOG_FILE) && echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
-	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	 2>> $(CLOG_FILE) && echo -e $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
+	echo -e $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 	
 
 lib$(NAME).a:	$(OBJ)
-	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).a" \
+	@echo -ne $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).a" \
 	$(RESET)	$(GRAY) " ... " $(RESET)
 	@( $(AR) -rcs lib$(NAME).a $(OBJ) 2> /dev/null && \
-	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
-	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	echo -e $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
+	echo -e $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
 debug:
 	make -C ./ re CFLAGS="$(CFLAGS) -g2"
