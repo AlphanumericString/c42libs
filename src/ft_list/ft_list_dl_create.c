@@ -6,31 +6,17 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:05 by iron              #+#    #+#             */
-/*   Updated: 2023/12/10 11:32:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/10 12:43:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include <stdlib.h>
-
-t_dlist	*ft_list_dl_new(void)
-{
-	t_dlist	*ret;
-
-	ret = malloc(sizeof(t_dlist));
-	if (!ret)
-		return (ret);
-	ret->data = NULL;
-	ret->prev = NULL;
-	ret->next = NULL;
-	return (ret);
-}
 
 t_dlist	*ft_list_dl_create(void *const data)
 {
 	t_dlist	*ret;
 
-	ret = ft_list_dl();
+	ret = ft_list_dl_new();
 	if (!ret)
 		return (ret);
 	ret->data = (void *)data;
@@ -41,7 +27,7 @@ t_dlist	*ft_list_dl_copy_node(const t_dlist *const other)
 {
 	t_dlist	*ret;
 
-	ret = ft_list_dl();
+	ret = ft_list_dl_new();
 	if (!ret)
 		return (ret);
 	ret->data = (void *)other->data;

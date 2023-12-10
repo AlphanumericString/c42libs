@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:27 by iron              #+#    #+#             */
-/*   Updated: 2023/12/06 16:27:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/10 12:44:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,4 @@ t_dlist	*ft_list_dl_begin(const t_dlist *head)
 	while (it->prev)
 		it = it->prev;
 	return (it);
-}
-
-size_t	ft_list_dl_count(const t_dlist *head)
-{
-	size_t	count;
-	t_dlist	*it;
-
-	it = (t_dlist *)head;
-	count = 0;
-	while (it)
-	{
-		it = it->next;
-		count++;
-	}
-	return (count);
 }

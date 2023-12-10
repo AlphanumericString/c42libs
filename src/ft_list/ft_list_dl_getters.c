@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:21 by iron              #+#    #+#             */
-/*   Updated: 2023/12/06 16:27:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/10 12:44:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	**ft_list_dl_get_datas(const t_dlist *src)
 
 	if (!src)
 		return (NULL);
-	size = ft_list_dl_count(src);
+	size = ft_list_dl_size(src);
 	ret = malloc(sizeof(void *) * (size + 1));
 	if (!ret)
 		return (NULL);
@@ -39,7 +39,7 @@ t_dlist	**ft_list_dl_get_nodes(const t_dlist *src)
 	size_t	size;
 	t_dlist	**ret;
 
-	size = ft_list_dl_count(src);
+	size = ft_list_dl_size(src);
 	ret = NULL;
 	if (!src)
 		return (NULL);

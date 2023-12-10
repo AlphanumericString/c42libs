@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_add_back.c                              :+:      :+:    :+:   */
+/*   ft_list_dl_new.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:48:35 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/06 16:31:12 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/10 12:42:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/10 12:42:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "ft_string.h"
 
-void	ft_listadd_back(t_list **lst, t_list *new)
+t_dlist	*ft_list_dl_new(void)
 {
-	if (!*lst)
-		*lst = new;
-	else
-		ft_listlast(*lst)->next = new;
+	t_dlist	*ret;
+
+	ret = ft_calloc(1, sizeof(t_dlist));
+	if (!ret)
+		return (ret);
+	ret->data = NULL;
+	ret->prev = NULL;
+	ret->next = NULL;
+	return (ret);
 }
