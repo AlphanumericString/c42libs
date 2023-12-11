@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:02:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 15:36:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 18:26:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_list	*ft_listpush(t_list **lst, void *added)
 {
-	t_list  *new;
+	t_list	*new;
 
 	new = ft_listcreate(added);
 	if (!lst || !new)

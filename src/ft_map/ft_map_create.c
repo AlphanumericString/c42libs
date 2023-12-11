@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:11:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 18:21:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 18:26:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_map	*ft_map_create(size_t size)
 	map->size = 0;
 	map->nodes = ft_calloc(sizeof(map->nodes), size);
 	map->hash = &ft_map_hash;
-	map->cmp = (int (*)(void*, void*, size_t))&ft_strncmp;
+	map->cmp = (int (*)(void *, void *, size_t)) & ft_strncmp;
 	if (!map->nodes)
 		return (free(map), NULL);
 	return (map);
