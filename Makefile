@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/11 15:22:13 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/11 18:23:39 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,15 @@ INC_DIR		=	./include
 CPPFLAGS	=	-I$(INC_DIR)
 CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color
 TARGET		?=	"ALL"
+
+FT_MAP_DIR	=	ft_map
+FT_MAP_SRC	=	\
+			$(FT_MAP_DIR)/ft_map_create.c		\
+			$(FT_MAP_DIR)/ft_map_destroy.c		\
+			$(FT_MAP_DIR)/ft_map_get.c			\
+			$(FT_MAP_DIR)/ft_map_hash.c			\
+			$(FT_MAP_DIR)/ft_map_remove.c		\
+			$(FT_MAP_DIR)/ft_map_set.c
 
 FT_LIST_DIR	=	ft_list
 FT_LIST_SRC	=	\
@@ -153,10 +162,11 @@ FT_CONF_SRC	=	\
 STABLE		=	\
 			$(FT_LIST_SRC)		\
 			$(FT_VEC_SRC)		\
-			$(FT_STRING_SRC)
+			$(FT_STRING_SRC)	\
+			$(FT_MAP_SRC)		\
 
 UNSTABLE	=	\
-			$(CONF_SRC)
+			$(CONF_SRC)			\
 
 SRC_FILES	=
 
