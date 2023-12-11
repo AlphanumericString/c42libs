@@ -1,6 +1,4 @@
-#!/bin/sh
-
-#!/bin/bash
+#!/bin/zsh
 
 # Specify the directory to search for C files
 search_dir=${1:-./src}
@@ -33,35 +31,39 @@ extract_functions() {
         return 1
     fi
 
-
-	# check if the first char is a letter aka is this a function delc
-	# then check if the last char is a ')' aka is this a one-liner
-	#	print 
-	# else 
-	# 	print 2 lines
-	awk '{
-		if ( /^[a-zA-Z]/ && /)$/ )
+	awk \
+	'{
+		if ( /^[a-zA-Z]/ && !/^static/ )
 		{
-			print $0 ";"
-		}
-		else if ( /^[a-zA-Z]/ && !/)$/ )
-		{
-			print $0
-			getline
-			print $0 ";"
+			line = $0
+			while ( !/)$/ )
+			{
+				line =  line "\n"
+				getline
+				line =  line $0
+			}
+			print $line ";"
 		}
 	}' $1 >> $2
 }
 
+echo -e "\n" >> $output_file
+echo -e "#ifndef $output_file\n# define $output_file\n" >> $output_file
+
 # Loop through all C files in the specified directory
-for file in $(find $search_dir -depth -name "*.c" ); do
-
+for file in $(find $search_dir -depth -name "*.c" | sort ); do
     echo -e "// $file\n" >> "$output_file"
-
 	extract_functions $file "$output_file"
-    
     # Add an empty line between files
     echo -e "\n" >> "$output_file"
 done
 
+echo -e "#endif /* $output_file */" >> $output_file
+
 echo "Header file generated: $output_file"
+
+
+
+#ifndef test.h
+# define test.h
+

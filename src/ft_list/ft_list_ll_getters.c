@@ -6,15 +6,16 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 11:54:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:28:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 10:55:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "ft_string.h"
 
-void	**ft_list_ll_get_datas(const t_list *src)
+void	**ft_listget_datas(const t_list *src)
 {
-	t_list	**datas;
+	void	**datas;
 	size_t	i;
 
 	datas = ft_calloc(sizeof(void *), ft_listsize(src) + 1);
@@ -30,7 +31,7 @@ void	**ft_list_ll_get_datas(const t_list *src)
 	return (datas);
 }
 
-t_list	**ft_list_ll_get_nodes(const t_list *src)
+t_list	**ft_listget_nodes(const t_list *src)
 {
 	t_list	**nodes;
 	size_t	i;
@@ -41,7 +42,7 @@ t_list	**ft_list_ll_get_nodes(const t_list *src)
 	i = 0;
 	while (src)
 	{
-		nodes[i] = src;
+		nodes[i] = (t_list *)src;
 		src = src->next;
 		i++;
 	}

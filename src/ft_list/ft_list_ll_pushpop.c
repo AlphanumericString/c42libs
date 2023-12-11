@@ -6,25 +6,30 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:02:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:26:55 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:36:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "ft_string.h"
 
-t_list	*ft_listpush(t_list **lst, t_list *added)
+t_list	*ft_listpush(t_list **lst, void *added)
 {
-	if (!lst || !added)
+	t_list  *new;
+
+	new = ft_listcreate(added);
+	if (!lst || !new)
 		return (NULL);
-	added->next = *lst;
+	new->next = *lst;
 	*lst = added;
 	return (*lst);
 }
 
-t_list	*ft_listpush_back(t_list **lst, t_list *added)
+t_list	*ft_listpush_back(t_list **lst, void *data)
 {
-	t_list	*tmp;
+	t_list	*added;
 
+	added = ft_listcreate(data);
 	if (!lst || !added)
 		return (NULL);
 	if (!*lst)
@@ -44,7 +49,7 @@ void	*ft_listpop(t_list **lst)
 	tmp = *lst;
 	data = (*lst)->data;
 	*lst = (*lst)->next;
-	free(tmp);
+	ft_free((void **)&tmp);
 	return (data);
 }
 

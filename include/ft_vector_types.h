@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_struct.h                                   :+:      :+:    :+:   */
+/*   ft_vector_types.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 10:37:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 11:41:30 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/11 15:13:10 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/11 15:16:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIST_STRUCT_H
-# define FT_LIST_STRUCT_H
+#ifndef FT_VECTOR_TYPES_H
+# define FT_VECTOR_TYPES_H
 
-typedef struct s_list
+# define FT_VECTOR_BASE_LEN 4096
+
+# include <stdbool.h>
+# include <stddef.h>
+
+typedef struct s_vector
 {
-	void				*data;
-	struct s_list		*next;
-}						t_list;
+	void	**datas;
+	size_t	count;
+	size_t	cappacity;
+}			t_vector;
 
-typedef struct s_dl_list
-{
-	struct s_dl_list	*next;
-	struct s_dl_list	*prev;
-	void				*data;
-}						t_dlist;
-
-#endif
+#endif /* FT_VECTOR_TYPES_H */

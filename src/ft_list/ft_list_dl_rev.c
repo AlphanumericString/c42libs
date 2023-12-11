@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:20:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:27:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 10:57:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	ft_list_dl_rev(t_dlist **head)
 		it->prev = tmp;
 		it = tmp;
 	}
-	*head = ft_list_dl_last(*head);
+	*head = ft_list_dl_end(*head);
 }

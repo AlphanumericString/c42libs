@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_dl_manip.c                                 :+:      :+:    :+:   */
+/*   ft_list_dl_pushpop.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:38 by iron              #+#    #+#             */
-/*   Updated: 2023/12/06 16:27:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:37:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include <stdlib.h>
 
-t_dlist	*ft_list_dl_push(t_dlist **node, t_dlist *added)
+t_dlist	*ft_list_dl_push(t_dlist **node, void *data)
 {
+	t_dlist	*added;
+
+	added = ft_list_dl_create(data);
 	added->next = *node;
 	if (*node)
 		(*node)->prev = added;
@@ -22,10 +25,12 @@ t_dlist	*ft_list_dl_push(t_dlist **node, t_dlist *added)
 	return (added);
 }
 
-t_dlist	*ft_list_dl_push_back(t_dlist **node, t_dlist *added)
+t_dlist	*ft_list_dl_push_back(t_dlist **node, void *data)
 {
+	t_dlist	*added;
 	t_dlist	*it;
 
+	added = ft_list_dl_create(data);
 	it = *node;
 	if (!*node)
 	{

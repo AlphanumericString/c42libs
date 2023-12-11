@@ -6,35 +6,39 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:50 by iron              #+#    #+#             */
-/*   Updated: 2023/12/06 16:31:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 09:51:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-size_t	ft_list_dl_size(t_dlist *head)
+size_t	ft_list_dl_size(const t_dlist *head)
 {
+	t_dlist	*it;	
 	size_t	i;
 
 	i = 0;
-	while (head)
+	it = (t_dlist *)head;
+	while (it)
 	{
-		head = head->next;
+		it = it->next;
 		i++;
 	}
 	return (i);
 }
 
-size_t	ft_list_dl_size_of_data(t_dlist *head, t_data_is function)
+size_t	ft_list_dl_size_of_data(const t_dlist *head, t_data_is function)
 {
+	t_dlist	*it;
 	size_t	i;
 
+	it = (t_dlist *)head;
 	i = 0;
-	while (head)
+	while (it)
 	{
-		if (function(head->data))
+		if (function(it->data))
 			i++;
-		head = head->next;
+		it = it->next;
 	}
 	return (i);
 }

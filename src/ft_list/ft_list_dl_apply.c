@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:33:24 by iron              #+#    #+#             */
-/*   Updated: 2023/12/08 15:22:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 09:47:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	ft_list_dl_apply_range(t_dlist *start, const t_dlist *end,
 }
 
 size_t	ft_list_dl_apply_range_node(t_dlist *start, const t_dlist *end,
-		t_node_apply applied)
+		t_dnode_apply applied)
 {
 	size_t	i;
 	t_dlist	*it;

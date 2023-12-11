@@ -6,18 +6,20 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:38:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:26:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 10:52:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-size_t	ft_listsize(t_list *lst)
+size_t	ft_listsize(const t_list *lst)
 {
+	t_list	*it;
 	size_t	i;
 
 	i = 0;
-	while (lst)
+	it = (t_list *)lst;
+	while (it)
 	{
 		lst = lst->next;
 		i++;
@@ -25,16 +27,18 @@ size_t	ft_listsize(t_list *lst)
 	return (i);
 }
 
-size_t	ft_listsize_match(t_list *lst, t_data_is function)
+size_t	ft_listsize_match(const t_list *lst, t_data_is function)
 {
 	size_t	i;
+	t_list	*it;
 
 	i = 0;
-	while (lst)
+	it = (t_list *)lst;
+	while (it)
 	{
-		if (function(lst->data))
+		if (function(it->data))
 			i++;
-		lst = lst->next;
+		it = it->next;
 	}
 	return (i);
 }

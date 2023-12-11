@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:21:43 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:25:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 10:58:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_dlist	*ft_list_dl_map(t_dlist *lst, void *(*f)(void *), t_data_apply del)
 	{
 		tmp = ft_list_dl_create(f(lst->data));
 		if (!tmp)
-			return (ft_list_dl_clear(&ret, del), NULL);
+			return (ft_list_dl_clear(ret, del), NULL);
 		ft_list_dl_add_back(&ret, tmp);
 		lst = lst->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 19:24:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:17:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stddef.h>
 
+// gnl
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
 # endif
@@ -22,6 +24,7 @@
 # include "ft_string_struct.h"
 
 // malloc + free
+
 # include <stdlib.h>
 # include <unistd.h>
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iron <iron@student.42.fr>                  +#+  +:+       +#+         #
+#    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/10 00:23:32 by iron             ###   ########.fr        #
+#    Updated: 2023/12/11 15:22:13 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,26 +27,35 @@ TARGET		?=	"ALL"
 
 FT_LIST_DIR	=	ft_list
 FT_LIST_SRC	=	\
+			$(FT_LIST_DIR)/ft_list_ll_find.c		\
 			$(FT_LIST_DIR)/ft_list_dl_apply.c		\
 			$(FT_LIST_DIR)/ft_list_dl_clear.c		\
 			$(FT_LIST_DIR)/ft_list_dl_create.c		\
 			$(FT_LIST_DIR)/ft_list_dl_delete.c		\
-			$(FT_LIST_DIR)/ft_list_dl_get.c			\
+			$(FT_LIST_DIR)/ft_list_dl_getters.c		\
 			$(FT_LIST_DIR)/ft_list_dl_iterator.c	\
-			$(FT_LIST_DIR)/ft_list_dl_manip.c		\
+			$(FT_LIST_DIR)/ft_list_dl_pushpop.c		\
 			$(FT_LIST_DIR)/ft_list_dl_size.c		\
-			$(FT_LIST_DIR)/ft_list_dl_subrange.c	\
-			$(FT_LIST_DIR)/ft_list_ll_add_back.c	\
-			$(FT_LIST_DIR)/ft_list_ll_add_front.c	\
+			$(FT_LIST_DIR)/ft_list_dl_sub.c			\
+			$(FT_LIST_DIR)/ft_list_ll_add.c			\
 			$(FT_LIST_DIR)/ft_list_ll_clear.c		\
-			$(FT_LIST_DIR)/ft_list_ll_delone.c		\
-			$(FT_LIST_DIR)/ft_list_ll_find.c		\
-			$(FT_LIST_DIR)/ft_list_ll_iter.c		\
-			$(FT_LIST_DIR)/ft_list_ll_last.c		\
+			$(FT_LIST_DIR)/ft_list_ll_delete.c		\
+			$(FT_LIST_DIR)/ft_list_ll_apply.c		\
+			$(FT_LIST_DIR)/ft_list_ll_iterator.c	\
 			$(FT_LIST_DIR)/ft_list_ll_map.c			\
 			$(FT_LIST_DIR)/ft_list_ll_new.c			\
 			$(FT_LIST_DIR)/ft_list_ll_rev.c			\
-			$(FT_LIST_DIR)/ft_list_ll_size.c
+			$(FT_LIST_DIR)/ft_list_ll_size.c		\
+			$(FT_LIST_DIR)/ft_list_ll_create.c		\
+			$(FT_LIST_DIR)/ft_list_ll_getters.c		\
+			$(FT_LIST_DIR)/ft_list_ll_pushpop.c		\
+			$(FT_LIST_DIR)/ft_list_ll_sub.c			\
+			$(FT_LIST_DIR)/ft_list_dl_add.c			\
+			$(FT_LIST_DIR)/ft_list_dl_rev.c			\
+			$(FT_LIST_DIR)/ft_list_dl_map.c			\
+			$(FT_LIST_DIR)/ft_list_dl_new.c			\
+			$(FT_LIST_DIR)/ft_list_dl_find.c
+
 
 FT_STRING_DIR	=	ft_string
 FT_STRING_SRC	=	\
@@ -170,28 +179,30 @@ OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(SRC_FILES)))
 CLOG_FILE	=	./compilation.log
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo -ne	$(GRAY)	"building from " $< "..." $(RESET)
+	@echo -n	$(GRAY)	"building from " $< "..." $(RESET)
 	@mkdir -p $(dir $@)
 	@( $(CC) $(CFLAGS) -c $< -o $@ 2>> $(CLOG_FILE) && \
-	echo -e $(GREEN) "Success" $(RESET) ) || \
-	echo -e $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	echo $(GREEN) "Success" $(RESET) ) || \
+	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
 all:	lib$(NAME).a
 
-so: $(OBJ)
-	@echo -ne $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).so" \
-	$(RESET) $(GRAY) " ... " $(RESET)
-	@( $(CC)	-nostartfiles  -shared -o lib$(NAME).so	$(CFLAGS) $(OBJ) \
-	 2>> $(CLOG_FILE) && echo -e $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
-	echo -e $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+so: lib$(NAME).so
+
+lib$(NAME).so:	$(OBJ)
+	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).so" \
+	$(RESET)	$(GRAY) " ... " $(RESET)
+	@( $(CC) -shared -o lib$(NAME).so $(OBJ) 2> /dev/null && \
+	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
+	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 	
 
 lib$(NAME).a:	$(OBJ)
-	@echo -ne $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).a" \
+	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).a" \
 	$(RESET)	$(GRAY) " ... " $(RESET)
 	@( $(AR) -rcs lib$(NAME).a $(OBJ) 2> /dev/null && \
-	echo -e $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
-	echo -e $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
+	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
 debug:
 	make -C ./ re CFLAGS="$(CFLAGS) -g2"

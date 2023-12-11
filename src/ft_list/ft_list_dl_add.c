@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:17:48 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:27:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 10:56:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_list_dl_add_back(t_dlist **head, t_dlist *added)
 		return ;
 	if (!*head)
 		return (ft_list_dl_add_front(head, added));
-	last = ft_list_dl_last(*head);
+	last = ft_list_dl_end(*head);
 	last->next = added;
 	added->prev = last;
 }

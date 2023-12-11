@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:35:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/08 10:57:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:26:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_CONFIG_H
 # define FT_CONFIG_H
 
-# include "ft_list_struct.h"
+# include "ft_list_types.h"
 # include <stdbool.h>
 # include <stddef.h>
 
