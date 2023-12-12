@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 19:28:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:41:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	test_map_get(void)
 
 	str = strdup("value");
 	map = ft_map_create(10);
-	ft_map_set(map, "key", str, strlen(str) + 1);
+	ft_map_set(map, "key", str, strlen("key") + 1);
 	ret = ft_map_get(map, "key", strlen("key") + 1);
 	if (ret == NULL)
 		printf("ft_map_get: [FAIL] returned NULL\n");
@@ -170,7 +170,7 @@ void	test_map_remove(void)
 
 	str = strdup("value");
 	map = ft_map_create(10);
-	ft_map_set(map, "key", str, strlen(str) + 1);
+	ft_map_set(map, "key", str, strlen("key") + 1);
 	ft_map_remove(map, "key", strlen("key") + 1);
 	if (map->size != 0)
 		printf("ft_map_remove: [FAIL] map->size != 0\n");
