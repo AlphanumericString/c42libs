@@ -7,7 +7,23 @@ Library for c projects at 42.
 - [ ]  remove useless includes
 - [ ]  remove trailing comments
 - [ ]  Makefile rule to compile without certain system functions e.g. compile ft_string with only functions that don’t reference *ft_calloc* and *malloc* or *free*.
-- [ ]  Makefile add debug rule for “so” ? or run “so” in debug rule. idk idc will see…
+- [X]  Makefile add debug rule for “so” ? or run “so” in debug rule. idk idc will see…
+- [ ]  cleanup lib
+  - [ ]  tests for all libs
+    - [X]  ft_list
+      - [X]  ll
+      - [X]  dl
+    - [X]  ft_map
+    - [ ]  ft_string
+    - [ ]  ft_vector
+  - [ ]  doxygen for all libs
+    - [X]  ft_list
+      - [X]  ll
+      - [X]  dl
+    - [X]  ft_map
+    - [X]  ft_vector
+    - [ ]  ft_string
+    
 
 # Linked lists
 
@@ -31,31 +47,31 @@ Library for c projects at 42.
 - [x]  All dl nodes from personal stack lib
     
     
-    - [ ]  Compliance between dl and lst functions
-        - [ ]  dl
-            - [ ]  add_back
-            - [ ]  add_front
-            - [ ]  rev
-            - [ ]  map
-        - [ ]  lst
-            - [ ]  iter_range
-            - [ ]  iter_range_node
-            - [ ]  size_match
-            - [ ]  create
-            - [ ]  copy
-            - [ ]  copy_list
-            - [ ]  del_range
-            - [ ]  get_datas
-            - [ ]  get_nodes
-            - [ ]  at
-            - [ ]  push
-            - [ ]  push_back
-            - [ ]  pop
-            - [ ]  pop_front
-            - [ ]  subrange
+    - [x]  Compliance between dl and lst functions
+        - [x]  dl
+            - [x]  add_back
+            - [x]  add_front
+            - [x]  rev
+            - [x]  map
+        - [x]  lst
+            - [x]  iter_range
+            - [x]  iter_range_node
+            - [x]  size_match
+            - [x]  create
+            - [x]  copy
+            - [x]  copy_list
+            - [x]  del_range
+            - [x]  get_datas
+            - [x]  get_nodes
+            - [x]  at
+            - [x]  push
+            - [x]  push_back
+            - [x]  pop
+            - [x]  pop_front
+            - [x]  subrange
     - [ ]  Stack structure W/ functions (control for node + cached values/mem/whatever)
-    - [ ]  functions to add
-        - [ ]  find
+    - [x]  functions to add
+        - [x]  find
         - [ ]  rfind
         - [ ]  create_from_array
         - [ ]  ? create from vec ?
@@ -84,8 +100,8 @@ Library for c projects at 42.
 
 - [x]  All function from ft_lib (except lst- functions)
 - [x]  Rename to ft_string
-- [ ]  cleanup header file
-    - [ ]  Add // <file>.c to the header to indicate position of functions
+- [x]  cleanup header file
+    - [x]  Add // <file>.c to the header to indicate position of functions
     - [x]  Add new struct t_string to alloc by chunk and have len + size cached
         - [x]  Implement Struct
         - [x]  Implement basic functions to t_string
