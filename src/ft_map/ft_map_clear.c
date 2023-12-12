@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map_remove.c                                    :+:      :+:    :+:   */
+/*   ft_map_clear.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 18:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 18:54:34 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/11 18:29:23 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/11 18:29:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_map.h"
 
-void	ft_map_remove(t_map *map, void *key, size_t size)
+void	ft_map_clear(t_map *map)
 {
-	size_t	index[2];
+	size_t	i;
 
-	index[0] = map->hash(key, map->capacity, size);
-	index[1] = index[0];
-	while (map->nodes[index[0]].used)
+	i = 0;
+	while (i < map->capacity)
 	{
-		if (!map->cmp(map->nodes[index[0]].key, key))
-		{
-			map->nodes[index[0]].used = 0;
-			map->size--;
-			return ;
-		}
-		index[0] = (index[0] + 1) % map->capacity;
-		if (index[1] == index[0])
-			return ;
+		map->nodes[i].used = false;
+		i++;
 	}
+	map->size = 0;
 }

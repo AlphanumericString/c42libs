@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/11 18:23:39 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/11 19:01:13 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,10 @@ CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color
 TARGET		?=	"ALL"
 
 FT_MAP_DIR	=	ft_map
+#			$(FT_MAP_DIR)/ft_map_apply.c		\
+
 FT_MAP_SRC	=	\
+			$(FT_MAP_DIR)/ft_map_clear.c		\
 			$(FT_MAP_DIR)/ft_map_create.c		\
 			$(FT_MAP_DIR)/ft_map_destroy.c		\
 			$(FT_MAP_DIR)/ft_map_get.c			\
