@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:38:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 10:52:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:40:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_listsize(const t_list *lst)
 	it = (t_list *)lst;
 	while (it)
 	{
-		lst = lst->next;
+		it = it->next;
 		i++;
 	}
 	return (i);

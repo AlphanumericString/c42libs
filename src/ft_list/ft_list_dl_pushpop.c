@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:38 by iron              #+#    #+#             */
-/*   Updated: 2023/12/11 15:37:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:14:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,10 @@ t_dlist	*ft_list_dl_push_back(t_dlist **node, void *data)
 	t_dlist	*added;
 	t_dlist	*it;
 
-	added = ft_list_dl_create(data);
 	it = *node;
 	if (!*node)
-	{
-		*node = added;
-		return (*node);
-	}
+		return (ft_list_dl_push(node, data));
+	added = ft_list_dl_create(data);
 	while (it->next)
 		it = it->next;
 	it->next = added;
@@ -80,5 +77,6 @@ void	*ft_list_dl_pop_back(t_dlist **node)
 		prev->next = NULL;
 	else
 		*node = NULL;
+	free(it);
 	return (data);
 }

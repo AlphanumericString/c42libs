@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 15:17:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:39:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 void		*ft_memmove(void *dest, const void *src, size_t n);
 void		*ft_memset(void *s, int c, size_t n);
+void		ft_swap(void **a, void **b);
+void		ft_qsort(void *array, size_t nmb, size_t size,
+				int (*cmp)(void *, void *));
 
 /* ************************************************************************** */
 /* **                     FT_PUT SUB MODULE                                ** */

@@ -6,17 +6,19 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:10 by iron              #+#    #+#             */
-/*   Updated: 2023/12/06 16:27:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:03:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include <stdlib.h>
 
-int	ft_list_dl_delete_self(t_dlist *node)
+int	ft_list_dl_delete_self(t_dlist *node, t_data_apply del)
 {
 	if (!node)
 		return (FTLIST_FAILURE);
+	if (del)
+		del(node->data);
 	if (node->prev)
 		node->prev->next = node->next;
 	if (node->next)
@@ -25,28 +27,39 @@ int	ft_list_dl_delete_self(t_dlist *node)
 	return (FTLIST_SUCCESS);
 }
 
-size_t	ft_list_dl_delete_range(t_dlist *start, t_dlist *target)
+size_t	ft_list_dl_delete_range(t_dlist *start, t_dlist *target,
+		t_data_apply del)
 {
 	t_dlist	*next;
+	t_dlist	*prev;
 	size_t	i;
 
 	i = 0;
 	next = NULL;
+	prev = NULL;
+	if (start && start->prev)
+		prev = start->prev;
 	while (start != target)
 	{
 		next = start->next;
+		if (del)
+			del(start->data);
 		free(start);
 		start = next;
 		i++;
 	}
+	if (prev)
+		prev->next = next;
+	if (next)
+		next->prev = prev;
 	return (i);
 }
 
-size_t	ft_list_dl_delete(t_dlist **head)
+size_t	ft_list_dl_delete(t_dlist **head, t_data_apply del)
 {
 	size_t	i;
 
-	i = ft_list_dl_delete_range(*head, NULL);
+	i = ft_list_dl_delete_range(*head, NULL, del);
 	*head = NULL;
 	return (i);
 }

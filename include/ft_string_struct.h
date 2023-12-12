@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:54:48 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 16:56:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:43:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stddef.h>
 
+/// @brief Structure representing a string
+/// @param str The string
+/// @param length The length of the string
+/// @param capacity The capacity of the string
 typedef struct s_string
 {
 	char	*str;

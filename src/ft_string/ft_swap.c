@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_find.c                                  :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:12:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 14:28:54 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/12 11:34:29 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/12 11:39:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
-
-void	*ft_listfind(t_list *list, void *data, int (*cmp)(void *, void *))
+void	ft_swap(void **a, void **b)
 {
-	while (list)
-	{
-		if (data == list->data || (cmp && cmp(list->data, data) == 0))
-			return (list->data);
-		list = list->next;
-	}
-	return (NULL);
+	void	*tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

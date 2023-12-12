@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 03:09:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:27:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:09:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 void	ft_listdelone(t_list *lst, t_data_apply del)
 {
-	if (!lst || !del)
+	if (!lst)
 		return ;
-	del(lst->data);
+	if (del)
+		del(lst->data);
 	free(lst);
 }
 

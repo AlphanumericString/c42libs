@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 15:13:10 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 15:16:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:43:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <stdbool.h>
 # include <stddef.h>
 
+/// @brief vector structure
+/// @param datas array of pointers to the elements
+/// @param count number of elements in the vector
+/// @param cappacity number of elements that can be stored in the vector
 typedef struct s_vector
 {
 	void	**datas;

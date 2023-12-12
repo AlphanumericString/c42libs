@@ -6,22 +6,24 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:02:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 18:26:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:00:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include "ft_string.h"
 
-t_list	*ft_listpush(t_list **lst, void *added)
+t_list	*ft_listpush(t_list **lst, void *data)
 {
 	t_list	*new;
 
-	new = ft_listcreate(added);
-	if (!lst || !new)
+	if (!lst)
+		return (NULL);
+	new = ft_listcreate(data);
+	if (!new)
 		return (NULL);
 	new->next = *lst;
-	*lst = added;
+	*lst = new;
 	return (*lst);
 }
 

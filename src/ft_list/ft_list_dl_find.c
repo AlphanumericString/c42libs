@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 13:05:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 13:05:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:09:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_dlist	*ft_list_dl_find(t_dlist *head, void *data, int (*cmp)())
 	it = (t_dlist *)head;
 	while (it)
 	{
-		if (cmp(it->data, data) == 0)
+		if (data == it->data || (cmp && !cmp(it->data, data)))
 			return (it);
 		it = it->next;
 	}
