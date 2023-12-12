@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_dl_find.c                                  :+:      :+:    :+:   */
+/*   main_tests.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 13:05:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 20:44:18 by iron             ###   ########.fr       */
+/*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
+/*   Updated: 2023/12/12 21:22:06 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#include <stdio.h>
 
-t_dlist	*ft_list_dl_find(t_dlist *head, void *data, int (*cmp)(void *, void *))
+int		tests_map(void);
+int		tests_linked_list_all(void);
+int		tests_doubly_linked_list_all(void);
+
+int main()
 {
-	t_dlist	*it;
-
-	it = (t_dlist *)head;
-	while (it)
-	{
-		if (data == it->data || (cmp && !cmp(it->data, data)))
-			return (it);
-		it = it->next;
-	}
-	return (NULL);
+	printf("== lib all tests ==\n");
+	tests_linked_list_all();
+	tests_doubly_linked_list_all();
+	tests_map();
+	printf("== end ==\n");
 }

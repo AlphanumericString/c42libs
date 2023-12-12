@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tests.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 11:41:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/12 20:58:54 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@ void	test_map_set_hash(void)
 
 void	test_map_get(void)
 {
-	char	*str;
-	t_map	*map;
-	char	*ret;
+	char		*str;
+	t_map		*map;
+	t_map_node	*ret;
 
 	str = strdup("value");
 	map = ft_map_create(10);
@@ -120,7 +120,7 @@ void	test_map_get(void)
 	ret = ft_map_get(map, "key", strlen("key") + 1);
 	if (ret == NULL)
 		printf("ft_map_get: [FAIL] returned NULL\n");
-	else if (strcmp(ret, "value"))
+	else if (strcmp(ret->key, "value"))
 		printf("ft_map_get: [FAIL] strcmp(ret, \"value\")\n");
 	else
 		printf("ft_map_get: [OK]\n");
@@ -187,11 +187,14 @@ void	test_map_hash(void)
 	size_t	ret;
 
 	ret = ft_map_hash("key", 10, strlen("key") + 1);
+	if (ret >= 10)
+		printf("ft_map_hash: [FAIL] hash outside bounds\n");
 	printf("ft_map_hash: [OK]\n");
 }
 
-int		main(void)
+int		tests_map(void)
 {
+	printf("== ft_map ==\n");
 	test_map_create();
 	test_map_destroy();
 	test_map_destroy_free();
@@ -204,5 +207,6 @@ int		main(void)
 	test_map_capacity();
 	test_map_remove();
 	test_map_hash();
+	printf("== end ==\n");
 	return (0);
 }

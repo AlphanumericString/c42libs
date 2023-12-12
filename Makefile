@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
+#    By: iron <iron@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/12 16:01:51 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/12 22:14:41 by iron             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,6 +162,13 @@ FT_CONF_SRC	=	\
 			$(CONF_DIR)/ftc_baseop.c		\
 			$(CONF_DIR)/ftc_get_parser.c
 
+TESTS_DIR	=	./tests
+TESTS_SRC	=	\
+			$(TESTS_DIR)/ft_list/ll_list_tests.c	\
+			$(TESTS_DIR)/ft_list/dl_list_tests.c	\
+			$(TESTS_DIR)/ft_map/map_tests.c			\
+			$(TESTS_DIR)/main_tests.c
+
 STABLE		=	\
 			$(FT_LIST_SRC)		\
 			$(FT_VEC_SRC)		\
@@ -217,13 +224,18 @@ lib$(NAME).a:	$(OBJ)
 	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
 	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
+tests_run:
+	make -C ./ re CFLAGS="$(CFLAGS) -fprofile-arcs -ftest-coverage -g2"
+	$(CC) $(CFLAGS) $(OBJ) $(TESTS_SRC) -o tests_run -fprofile-arcs -ftest-coverage -g2
+	./tests_run
+
 debug:
 	make -C ./ re CFLAGS="$(CFLAGS) -g2"
 	make -C ./ so CFLAGS="$(CFLAGS) -g2"
 
 clean:
 	@echo -n $(GRAY) "Clean ... " $(RESET)
-	@( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) 2> /dev/null && \
+	@( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) tests_run *.gcno *.gcda 2> /dev/null && \
 	echo $(GREEN) "Success" $(RESET) ) || \
 	echo $(RED) "Failed" $(RESET)
 
@@ -236,4 +248,4 @@ fclean: clean
 
 re:	fclean all
 
-.PHONY: re fclean clean
+.PHONY: re fclean clean tests_run
