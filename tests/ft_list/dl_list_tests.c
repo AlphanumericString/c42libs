@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dl_list_tests.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:37:03 by iron              #+#    #+#             */
-/*   Updated: 2023/12/13 13:43:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/13 21:46:04 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,31 @@ void	test_dlistadd_front(void)
 	data2 = malloc(sizeof(int));
 	*data2 = 21;
 	list = ft_list_dl_create(data2);
-	ft_list_dl_add_front(&list, ft_list_dl_create(data));
+	ft_list_dl_add_front(&list, NULL);
 	if (list == NULL)
 		printf("ft_list_dl_add_front: [FAIL] returned NULL\n");
-	else if (list->data != data)
-		printf("ft_list_dl_add_front: [FAIL] data not set\n");
-	else if (list->next == NULL)
-		printf("ft_list_dl_add_front: [FAIL] next not set\n");
-	else if (list->next->data != data2)
-		printf("ft_list_dl_add_front: [FAIL] next->data not set\n");
-	else if (list->next->next != NULL)
-		printf("ft_list_dl_add_front: [FAIL] next->next not set\n");
-	else if (list->next->prev != list)
-		printf("ft_list_dl_add_front: [FAIL] next->prev not set\n");
+	else if (list->next)
+		printf("ft_list_dl_add_front: [FAIL] next is not NULL\n");
 	else
-		printf("ft_list_dl_add_front: [OK]\n");
+	{
+		ft_list_dl_add_front(&list, ft_list_dl_create(data));
+		if (list == NULL)
+			printf("ft_list_dl_add_front: [FAIL] returned NULL\n");
+		else if (list->data != data)
+			printf("ft_list_dl_add_front: [FAIL] data not set\n");
+		else if (list->next == NULL)
+			printf("ft_list_dl_add_front: [FAIL] next not set\n");
+		else if (list->next->data != data2)
+			printf("ft_list_dl_add_front: [FAIL] next->data not set\n");
+		else if (list->next->next != NULL)
+			printf("ft_list_dl_add_front: [FAIL] next->next not set\n");
+		else if (list->next->prev != list)
+			printf("ft_list_dl_add_front: [FAIL] next->prev not set\n");
+		else
+			printf("ft_list_dl_add_front: [OK]\n");
+	}
 	ft_list_dl_clear(&list, free);
+	ft_list_dl_add_front(NULL, NULL); // check for null resiliency
 }
 
 void	test_dlistadd_back(void)
@@ -83,23 +92,33 @@ void	test_dlistadd_back(void)
 	*data = 42;
 	data2 = malloc(sizeof(int));
 	*data2 = 21;
-	list = ft_list_dl_create(data);
-	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
+	list = NULL;
+	ft_list_dl_add_back(&list, ft_list_dl_create(data));
+	ft_list_dl_add_back(&list, NULL);
 	if (list == NULL)
 		printf("ft_list_dl_add_back: [FAIL] returned NULL\n");
-	else if (list->data != data)
-		printf("ft_list_dl_add_back: [FAIL] data not set\n");
-	else if (list->next == NULL)
-		printf("ft_list_dl_add_back: [FAIL] next not set\n");
-	else if (list->next->data != data2)
-		printf("ft_list_dl_add_back: [FAIL] next->data not set\n");
-	else if (list->next->next != NULL)
-		printf("ft_list_dl_add_back: [FAIL] next->next not set\n");
-	else if (list->next->prev != list)
-		printf("ft_list_dl_add_back: [FAIL] next->prev not set\n");
+	else if (list->next)
+		printf("ft_list_dl_add_back: [FAIL] next is not NULL\n");
 	else
-		printf("ft_list_dl_add_back: [OK]\n");
+	{
+		ft_list_dl_add_back(&list, ft_list_dl_create(data2));
+		if (list == NULL)
+			printf("ft_list_dl_add_back: [FAIL] returned NULL\n");
+		else if (list->data != data)
+			printf("ft_list_dl_add_back: [FAIL] data not set\n");
+		else if (list->next == NULL)
+			printf("ft_list_dl_add_back: [FAIL] next not set\n");
+		else if (list->next->data != data2)
+			printf("ft_list_dl_add_back: [FAIL] next->data not set\n");
+		else if (list->next->next != NULL)
+			printf("ft_list_dl_add_back: [FAIL] next->next not set\n");
+		else if (list->next->prev != list)
+			printf("ft_list_dl_add_back: [FAIL] next->prev not set\n");
+		else
+			printf("ft_list_dl_add_back: [OK]\n");
+	}
 	ft_list_dl_clear(&list, free);
+	ft_list_dl_add_front(NULL, NULL); // check for null resiliency
 }
 
 void	test_dlistapply(void)

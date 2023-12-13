@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
+#    By: iron <iron@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/13 17:16:45 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/13 21:41:51 by iron             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ BOLD		= "\\e[1m"
 
 CC			=	clang
 NAME		=	ft_personal
-COV			=	llvm-cov-12
+COV			=	llvm-cov
 
 SRC_DIR			=	./src
 BUILD_DIR		=	./build
@@ -247,12 +247,14 @@ coverage: tests_run
 	@echo -n $(GRAY) "Generating profraw ... " $(RESET)			&& \
 	./tests_run													&& \
 	echo -n $(GRAY) "Generating profdata ... " $(RESET)			&& \
-	llvm-profdata-12 merge -sparse default.profraw -o 			\
+	llvm-profdata merge -sparse default.profraw -o 				\
 	tests_run.profdata											&& \
 	echo -n $(GRAY) "Generating coverage in html ... "			\
 	$(RESET)													&& \
-	llvm-cov-12 show -format=html								\
+	$(COV) show -format=html									\
 	-instr-profile=tests_run.profdata							\
+	-ignore-filename-regex=tests*								\
+	-ignore-filename-regex=src/ft_string/*						\
 	./tests_run -output-dir=$(COVERAGE_DIR) > /dev/null			&& \
 	$(RM) *.profraw *.profdata									&& \
 	echo $(GREEN) "Success" $(RESET)							|| \
