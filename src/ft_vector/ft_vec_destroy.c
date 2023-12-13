@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:03:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/04 10:38:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:07:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@ bool	ft_vec_destroy(t_vector **vec)
 	(*vec)->count = 0;
 	(*vec)->cappacity = 0;
 	free((*vec)->datas);
+	free(*vec);
+	*vec = NULL;
 	return (true);
 }

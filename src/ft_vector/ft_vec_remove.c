@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:03:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 19:29:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:05:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	ft_vec_remove(t_vector *vector, size_t n, void (*del)(void *))
 {
 	if (n >= vector->count)
 		return ;
-	del(vector->datas[n]);
-	ft_vec_shift(vector, n, 1);
+	if (del)
+		del(vector->datas[n]);
 	vector->datas[n] = NULL;
+	ft_vec_shift(vector, n, 1);
 }
 
 void	ft_vec_remove_if(t_vector *vector, bool (*func)(void *),

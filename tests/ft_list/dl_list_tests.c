@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dl_list_tests.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:37:03 by iron              #+#    #+#             */
-/*   Updated: 2023/12/12 20:46:51 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/13 13:43:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,6 +288,7 @@ void	test_dlist_delete_self(void)
 	*data3 = 63;
 	list = ft_list_dl_create(data);
 	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
+	ft_list_dl_add_back(&list, ft_list_dl_create(data3));
 	ft_list_dl_delete_self(list->next, NULL);
 	if (list == NULL)
 		printf("ft_list_dl_delete_self: [FAIL] returned NULL\n");
@@ -303,8 +304,20 @@ void	test_dlist_delete_self(void)
 		printf("ft_list_dl_delete_self: [OK]\n");
 	ft_list_dl_clear(&list, free);
 	free(data2);
+	data3 = malloc(sizeof(int));
+	*data3 = 63;
+	data2 = malloc(sizeof(int));
+	*data2 = 21;
 	list = ft_list_dl_create(data3);
-	ft_list_dl_delete_self(list, free);
+	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
+	ft_list_dl_delete_self(list->next, free);
+	if (list->next != NULL)
+		printf("ft_list_dl_delete_self: [FAIL] next not NULL\n");
+	else if (list->data != data3)
+		printf("ft_list_dl_delete_self: [FAIL] data not set\n");
+	else
+		printf("ft_list_dl_delete_self: [OK]\n");
+	ft_list_dl_clear(&list, free);
 }
 
 void	test_dlistdelete_range(void)
@@ -325,7 +338,6 @@ void	test_dlistdelete_range(void)
 	list = ft_list_dl_create(data);
 	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
 	ft_list_dl_add_back(&list, ft_list_dl_create(data3));
-	// data-> data2-> data3
 	list2 = list->next;
 	nb_deleted = ft_list_dl_delete_range(list, list->next, NULL);
 	if (nb_deleted != 1)
@@ -412,8 +424,7 @@ void	test_dlistget_datas(void)
 	free(datas);
 }
 
-
-void test_dlistget_nodes(void)
+void	test_dlistget_nodes(void)
 {
 	t_dlist	*list;
 	int		*data;
@@ -439,7 +450,7 @@ void test_dlistget_nodes(void)
 	free(nodes);
 }
 
-void test_dlist_at(void)
+void	test_dlist_at(void)
 {
 	t_dlist	*list;
 	t_dlist	*at;
@@ -466,7 +477,7 @@ void test_dlist_at(void)
 	ft_list_dl_clear(&list, free);
 }
 
-void test_dlist_begin(void)
+void	test_dlist_begin(void)
 {
 	t_dlist	*list;
 	t_dlist	*begin;
@@ -495,7 +506,7 @@ void test_dlist_begin(void)
 	ft_list_dl_clear(&list, free);
 }
 
-void test_dlist_end(void)
+void	test_dlist_end(void)
 {
 	t_dlist	*list;
 	t_dlist	*end;
@@ -522,11 +533,11 @@ void test_dlist_end(void)
 	ft_list_dl_clear(&list, free);
 }
 
-void test_dlist_map(void)
+void	test_dlist_map(void)
 {
-	t_dlist *list;
-	t_dlist *map;
-	t_dlist *map2;
+	t_dlist	*list;
+	t_dlist	*map;
+	t_dlist	*map2;
 	int		*data1;
 	int		*data2;
 
@@ -556,10 +567,10 @@ void test_dlist_map(void)
 	ft_list_dl_clear(&map, free);
 }
 
-void test_dlist_new(void)
+void	test_dlist_new(void)
 {
-	t_dlist *list;
-	
+	t_dlist	*list;
+
 	list = ft_list_dl_new();
 	if (list == NULL)
 		printf("ft_list_dl_new: [FAIL] returned NULL\n");
@@ -569,9 +580,9 @@ void test_dlist_new(void)
 	return ;
 }
 
-void test_dlist_pop(void)
+void	test_dlist_pop(void)
 {
-	t_dlist *list;
+	t_dlist	*list;
 	int		*data1;
 	int		*data2;
 
@@ -589,9 +600,9 @@ void test_dlist_pop(void)
 	return ;
 }
 
-void test_dlist_pop_back(void)
+void	test_dlist_pop_back(void)
 {
-	t_dlist *list;
+	t_dlist	*list;
 	int		*data1;
 	int		*data2;
 	int		*data3;
@@ -614,9 +625,9 @@ void test_dlist_pop_back(void)
 	return ;
 }
 
-void test_dlist_push(void)
+void	test_dlist_push(void)
 {
-	t_dlist *list;
+	t_dlist	*list;
 	int		*data1;
 
 	data1 = malloc(sizeof(int));
@@ -633,9 +644,9 @@ void test_dlist_push(void)
 	return ;
 }
 
-void test_dlist_push_back(void)
+void	test_dlist_push_back(void)
 {
-	t_dlist *list;
+	t_dlist	*list;
 	int		*data1;
 	int		*data2;
 
@@ -660,9 +671,9 @@ void test_dlist_push_back(void)
 	return ;
 }
 
-void test_dlist_rev(void)
+void	test_dlist_rev(void)
 {
-	t_dlist *list;
+	t_dlist	*list;
 	int		*data1;
 	int		*data2;
 	int		*original_data1;
@@ -691,9 +702,9 @@ void test_dlist_rev(void)
 	return ;
 }
 
-void test_dlist_size(void)
+void	test_dlist_size(void)
 {
-	t_dlist *list;
+	t_dlist	*list;
 	int		*data1;
 	int		*data2;
 	size_t	size1;
@@ -721,9 +732,9 @@ void test_dlist_size(void)
 	ft_list_dl_clear(&list, free);
 }
 
-void test_dlist_size_of_data(void)
+void	test_dlist_size_of_data(void)
 {
-	t_dlist *list;
+	t_dlist	*list;
 	int		*data1;
 	int		*data2;
 	size_t	size1;
@@ -751,10 +762,10 @@ void test_dlist_size_of_data(void)
 	ft_list_dl_clear(&list, free);
 }
 
-void test_dlist_subrange(void)
+void	test_dlist_subrange(void)
 {
-	t_dlist *list;
-	t_dlist *sub;
+	t_dlist	*list;
+	t_dlist	*sub;
 	int		*data1;
 	int		*data2;
 	int		*data3;

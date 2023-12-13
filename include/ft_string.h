@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 18:03:30 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/13 08:09:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,15 +237,15 @@ int			ft_max(int a, int b);
 /* **                     FT_STR MAIN MODULE                               ** */
 /* ************************************************************************** */
 
-/// @brief 
-/// @param str 
-/// @return 
+/// @brief convert the string to an int
+/// @param str string to convert
+/// @return the int converted from the string
 int			ft_atoi(const char *str);
 
-/// @brief 
-/// @param str 
-/// @param base 
-/// @return 
+/// @brief convert the string to an int in the specified base
+/// @param str string to convert
+/// @param base base of the string
+/// @return the int converted from the string
 int			ft_atoi_base(const char *str, const char *base);
 
 /// @brief 

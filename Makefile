@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iron <iron@student.42.fr>                  +#+  +:+       +#+         #
+#    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/12 22:14:41 by iron             ###   ########.fr        #
+#    Updated: 2023/12/13 17:16:45 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,17 @@ BOLD		= "\\e[1m"
 
 CC			=	clang
 NAME		=	ft_personal
-SRC_DIR		=	./src
-BUILD_DIR	=	./build
-INC_DIR		=	./include
+COV			=	llvm-cov-12
+
+SRC_DIR			=	./src
+BUILD_DIR		=	./build
+INC_DIR			=	./include
+COVERAGE_DIR	=	./coverage
+
+LDFLAGS		=	
 CPPFLAGS	=	-I$(INC_DIR)
 CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color
+TEST_FLAGS	=	-g2 -fprofile-arcs -ftest-coverage -fprofile-instr-generate --coverage -fcoverage-mapping
 TARGET		?=	"ALL"
 
 FT_MAP_DIR	=	ft_map
@@ -154,6 +160,7 @@ FT_VEC_SRC		=	\
 			$(FT_VEC_DIR)/ft_vec_reserve.c	\
 			$(FT_VEC_DIR)/ft_vec_reverse.c	\
 			$(FT_VEC_DIR)/ft_vec_shift.c	\
+			$(FT_VEC_DIR)/ft_vec_shrink.c	\
 			$(FT_VEC_DIR)/ft_vec_sort.c		\
 			$(FT_VEC_DIR)/ft_vec_swap.c
 			
@@ -167,6 +174,7 @@ TESTS_SRC	=	\
 			$(TESTS_DIR)/ft_list/ll_list_tests.c	\
 			$(TESTS_DIR)/ft_list/dl_list_tests.c	\
 			$(TESTS_DIR)/ft_map/map_tests.c			\
+			$(TESTS_DIR)/ft_vector/vector_tests.c	\
 			$(TESTS_DIR)/main_tests.c
 
 STABLE		=	\
@@ -178,71 +186,99 @@ STABLE		=	\
 UNSTABLE	=	\
 			$(CONF_SRC)			\
 
-SRC_FILES	=
+SRC_DIR_DIR	=
 
-SRC_FILES   += \
+SRC_DIR_DIR   += \
 			$(STABLE)
 
 ifeq (UNSTABLE, $(findstring UNSTABLE, $(TARGET)))
-SRC_FILES   += \
+SRC_DIR_DIR   += \
 			$(UNSTABLE)
 endif
 ifeq (ALL, $(findstring ALL, $(TARGET)))
-SRC_FILES   = \
+SRC_DIR_DIR   = \
 			$(STABLE)	\
 			$(UNSTABLE)
 endif
 
-SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
-OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(SRC_FILES)))
+SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_DIR_DIR))
+OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(SRC_DIR_DIR)))
 
 CLOG_FILE	=	./compilation.log
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo -n	$(GRAY)	"building from " $< "..." $(RESET)
 	@mkdir -p $(dir $@)
-	@( $(CC) $(CFLAGS) -c $< -o $@ 2>> $(CLOG_FILE) && \
-	echo $(GREEN) "Success" $(RESET) ) || \
-	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	@( $(CC) $(CFLAGS) -c $< -o $@ 2>> $(CLOG_FILE) 	&& \
+	echo $(GREEN) "Success" $(RESET) )					|| \
+	echo $(RED) "Failed" $(RESET)					\
+	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
 
 all:	lib$(NAME).a
 
 so: lib$(NAME).so
 
 lib$(NAME).so:	$(OBJ)
-	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).so" \
-	$(RESET)	$(GRAY) " ... " $(RESET)
-	@( $(CC) -shared -o lib$(NAME).so $(OBJ) 2> /dev/null && \
-	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
+	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD) 			\
+	"lib$(NAME).so" $(RESET) $(GRAY) " ... " $(RESET)
+	@( $(CC) -shared -o lib$(NAME).so $(OBJ) 2> /dev/null		&& \
+	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) )	|| \
 	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 	
 
 lib$(NAME).a:	$(OBJ)
-	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD) "lib$(NAME).a" \
-	$(RESET)	$(GRAY) " ... " $(RESET)
-	@( $(AR) -rcs lib$(NAME).a $(OBJ) 2> /dev/null && \
-	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) || \
+	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD)				\
+	"lib$(NAME).a" $(RESET)	$(GRAY) " ... " $(RESET)
+	@( $(AR) -rcs lib$(NAME).a $(OBJ) 2> /dev/null				&& \
+	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) 	|| \
 	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
 tests_run:
-	make -C ./ re CFLAGS="$(CFLAGS) -fprofile-arcs -ftest-coverage -g2"
-	$(CC) $(CFLAGS) $(OBJ) $(TESTS_SRC) -o tests_run -fprofile-arcs -ftest-coverage -g2
-	./tests_run
+	@make -C ./ re CFLAGS="$(CFLAGS) $(TEST_FLAGS)" 			\
+	LDFLAGS="$(LDFLAGS) -lgcov" 								&& \
+	$(CC) $(CFLAGS) $(OBJ) $(TESTS_SRC) -o tests_run 			\
+	$(TEST_FLAGS) $(LDFLAGS)
+	@echo -n $(GRAY) "Running tests ... " $(RESET)				&& \
+	./tests_run 												&& \
+	echo $(GREEN) "Success" $(RESET)							|| \
+	echo $(RED) "Failed" $(RESET)
+
+coverage: tests_run
+	@echo -n $(GRAY) "Generating profraw ... " $(RESET)			&& \
+	./tests_run													&& \
+	echo -n $(GRAY) "Generating profdata ... " $(RESET)			&& \
+	llvm-profdata-12 merge -sparse default.profraw -o 			\
+	tests_run.profdata											&& \
+	echo -n $(GRAY) "Generating coverage in html ... "			\
+	$(RESET)													&& \
+	llvm-cov-12 show -format=html								\
+	-instr-profile=tests_run.profdata							\
+	./tests_run -output-dir=$(COVERAGE_DIR) > /dev/null			&& \
+	$(RM) *.profraw *.profdata									&& \
+	echo $(GREEN) "Success" $(RESET)							|| \
+	echo $(RED) "Failed" $(RESET)
+
 
 debug:
-	make -C ./ re CFLAGS="$(CFLAGS) -g2"
-	make -C ./ so CFLAGS="$(CFLAGS) -g2"
+	@echo -n $(GRAY) "Compiling debug, flags are" $(RESET) 		\
+	"$(CFLAGS) $(DEBUG_FLAGS)" $(GRAY) "..." $(RESET)			&& \
+	make -C ./ re CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"				&& \
+	make -C ./ so CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"				&& \
+	echo $(GREEN) "Success" $(RESET)							|| \
+	echo $(RED) "Failed" $(RESET)
 
 clean:
-	@echo -n $(GRAY) "Clean ... " $(RESET)
-	@( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) tests_run *.gcno *.gcda 2> /dev/null && \
-	echo $(GREEN) "Success" $(RESET) ) || \
+	@echo -n $(GRAY) "Clean ... " $(RESET)						&& \
+	( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) tests_run *.gcov		\
+	*.gcno *.gcda 2> /dev/null 									&& \
+	echo $(GREEN) "Success" $(RESET) )							|| \
 	echo $(RED) "Failed" $(RESET)
 
 fclean: clean
-	@echo -n $(GRAY) "FClean ... " $(RESET)
-	@( $(RM) lib$(NAME).a lib$(NAME).so 2> /dev/null && \
-	echo $(GREEN) "Success" $(RESET) ) || \
+	@echo -n $(GRAY) "FClean ... " $(RESET)						&& \
+	( $(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)		\
+	2> /dev/null 												&& \
+	echo $(GREEN) "Success" $(RESET) )							|| \
 	echo $(RED) "Failed" $(RESET)
 	
 

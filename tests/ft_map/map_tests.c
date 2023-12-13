@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tests.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 20:58:54 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/13 13:42:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ void	test_map_get(void)
 	ret = ft_map_get(map, "key", strlen("key") + 1);
 	if (ret == NULL)
 		printf("ft_map_get: [FAIL] returned NULL\n");
-	else if (strcmp(ret->key, "value"))
-		printf("ft_map_get: [FAIL] strcmp(ret, \"value\")\n");
+	else if (strcmp((char *)ret->data, "value"))
+		printf("ft_map_get: [FAIL] strcmp(ret->value, \"value\") got '%s'\n", (char *)ret->data);
 	else
 		printf("ft_map_get: [OK]\n");
 	ft_map_destroy(map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_tests.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2023/12/12 21:22:06 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/13 09:27:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		tests_map(void);
 int		tests_linked_list_all(void);
 int		tests_doubly_linked_list_all(void);
+int		tests_vector(void);
 
 int main()
 {
@@ -22,5 +23,6 @@ int main()
 	tests_linked_list_all();
 	tests_doubly_linked_list_all();
 	tests_map();
+	tests_vector();
 	printf("== end ==\n");
 }

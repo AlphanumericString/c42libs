@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:13:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/04 10:38:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:24:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include "ft_string.h"
 #include <stdlib.h>
 
 t_vector	*ft_vec_new(void)
@@ -22,10 +23,10 @@ t_vector	*ft_vec_from_size(size_t n)
 {
 	t_vector	*ret;
 
-	ret = malloc(sizeof(t_vector));
+	ret = ft_calloc(sizeof(t_vector), 1);
 	if (!ret)
 		return (ret);
-	ret->datas = malloc(sizeof(void *) * n);
+	ret->datas = ft_calloc(sizeof(void *), n);
 	if (!ret->datas)
 		return (free(ret), NULL);
 	ret->cappacity = n;
@@ -38,10 +39,17 @@ t_vector	*ft_vec_from_array(void **data, size_t count)
 	t_vector	*ret;
 	size_t		i;
 
-	ret = ft_vec_from_size(count);
+	if (count < FT_VECTOR_BASE_LEN)
+		ret = ft_vec_from_size(FT_VECTOR_BASE_LEN);
+	else
+		ret = ft_vec_from_size(count);
 	i = 0;
 	while (i < count)
-		ft_vec_add(&ret, data[i++]);
+	{
+		ret->datas[i] = data[i];
+		i++;
+	}
+	ret->count = i;
 	return (ret);
 }
 
@@ -49,7 +57,7 @@ t_vector	*ft_vec_convert_alloccarray(void **data, size_t count)
 {
 	t_vector	*ret;
 
-	ret = malloc(sizeof(t_vector));
+	ret = ft_calloc(sizeof(t_vector), 1);
 	ret->datas = data;
 	ret->count = count;
 	ret->cappacity = count;
