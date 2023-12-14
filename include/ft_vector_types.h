@@ -6,14 +6,20 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 15:13:10 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 12:43:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:53:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_VECTOR_TYPES_H
 # define FT_VECTOR_TYPES_H
 
-# define FT_VECTOR_BASE_LEN 4096
+# ifndef FT_VECTOR_BASE_LEN
+#  ifdef TEST
+#   define FT_VECTOR_BASE_LEN 5
+#  else
+#   define FT_VECTOR_BASE_LEN 4096
+#  endif
+# endif
 
 # include <stdbool.h>
 # include <stddef.h>

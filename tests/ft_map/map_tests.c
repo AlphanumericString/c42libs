@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/13 13:42:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:30:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,47 @@
 #include <string.h>
 #include <stdlib.h>
 
-void	test_map_create(void)
+int	test_map_create(void)
 {
 	t_map	*map;
 
 	map = ft_map_create(10);
 	if (map == NULL)
-		printf("ft_map_create: [FAIL] returned NULL\n");
-	else
-		printf("ft_map_create: [OK]\n");
+		return (1);	
 	ft_map_destroy(map);
+	return (0);
 }
 
-void	test_map_destroy(void)
+int	test_map_destroy(void)
 {
 	t_map	*map;
 
 	map = ft_map_create(10);
 	ft_map_destroy(map);
-	printf("ft_map_destroy: [OK]\n");
+	return (0);
 }
 
-void	test_map_destroy_free(void)
+int	test_map_destroy_free(void)
 {
 	t_map	*map;
 
 	map = ft_map_create(10);
 	ft_map_destroy_free(map, NULL);
-	printf("ft_map_destroy_free: [OK]\n");
+	return (0);
 }
 
-void	test_map_clear(void)
+int	test_map_clear(void)
 {
 	t_map	*map;
 
 	map = ft_map_create(10);
 	ft_map_clear(map);
-	printf("ft_map_clear: [OK]\n");
+	return (0);
 	ft_map_destroy(map);
+	return (0);
 }
 
-void	test_map_set(void)
+int	test_map_set(void)
 {
 	char	*str;
 	t_map	*map;
@@ -67,48 +67,74 @@ void	test_map_set(void)
 	key_size = strlen("key") + 1;
 	ret = ft_map_set(map, "key", str, key_size);
 	if (ret == 1)
-		printf("ft_map_set: [FAIL] returned 1\n");
+		return (1);
 	else if (map->size != 1)
-		printf("ft_map_set: [FAIL] map->size != 1\n");
+		return (1);
 	else if (map->nodes[map->hash("key", map->capacity, key_size)].used != true)
-		printf("ft_map_set: [FAIL] map->nodes[map->hash(\"key\", map->capacity, key_size)].used != true (%d != 1)\n", map->nodes[map->hash("key", map->capacity, key_size)].used);
+		return (1);
 	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].key, "key"))
-		printf("ft_map_set: [FAIL] map->nodes[map->hash(\"key\", map->capacity, key_size)].key != \"key\"\n");
+		return (1);
 	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].data, "value"))
-		printf("ft_map_set: [FAIL] strcmp(map->nodes[map->hash(\"key\", map->capacity, key_size)].data, \"value\")\n");
-	else
-		printf("ft_map_set: [OK]\n");
+		return (1);
+	ft_map_destroy(map);
+	// set a key in a full map
+	map = ft_map_create(1);
+	ft_map_set(map, "key", str, key_size);
+	ret = ft_map_set(map, "key2", str, key_size);
+	if (ret == 0)
+		return (1);
+	else if (map->size != 1)
+		return (1);
+	else if (map->nodes[map->hash("key", map->capacity, key_size)].used != true)
+		return (1);
+	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].key, "key"))
+		return (1);
+	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].data, "value"))
+		return (1);
+	// set a key already existing to a new value
+	ret = ft_map_set(map, "key", str, key_size);
+	if (ret == 1)
+		return (1);
+	else if (map->size != 1)
+		return (1);
+	else if (map->nodes[map->hash("key", map->capacity, key_size)].used != true)
+		return (1);
+	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].key, "key"))
+		return (1);
+	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].data, "value"))
+		return (1);
 	ft_map_destroy(map);
 	free(str);
+	return (0);
 }
 
-void	test_map_set_cmp(void)
+int	test_map_set_cmp(void)
 {
 	t_map	*map;
 
 	map = ft_map_create(10);
 	ft_map_set_cmp(map, NULL);
 	if (map->cmp != NULL)
-		printf("ft_map_set_cmp: [FAIL] cmp is not NULL\n");
-	else
-		printf("ft_map_set_cmp: [OK]\n");
+		return (1);
+	
 	ft_map_destroy(map);
+	return (0);
 }
 
-void	test_map_set_hash(void)
+int	test_map_set_hash(void)
 {
 	t_map	*map;
 
 	map = ft_map_create(10);
 	ft_map_set_hash(map, NULL);
 	if (map->hash != NULL)
-		printf("ft_map_set_hash: [FAIL] hash is not NULL\n");
-	else
-		printf("ft_map_set_hash: [OK]\n");
+		return (1);
+	
 	ft_map_destroy(map);
+	return (0);
 }
 
-void	test_map_get(void)
+int	test_map_get(void)
 {
 	char		*str;
 	t_map		*map;
@@ -119,16 +145,26 @@ void	test_map_get(void)
 	ft_map_set(map, "key", str, strlen("key") + 1);
 	ret = ft_map_get(map, "key", strlen("key") + 1);
 	if (ret == NULL)
-		printf("ft_map_get: [FAIL] returned NULL\n");
+		return (1);
 	else if (strcmp((char *)ret->data, "value"))
-		printf("ft_map_get: [FAIL] strcmp(ret->value, \"value\") got '%s'\n", (char *)ret->data);
-	else
-		printf("ft_map_get: [OK]\n");
+		return (1);
+	// search for a non existing key
+	ret = ft_map_get(map, "key2", strlen("key2") + 1);
+	if (ret != NULL)
+		return (1);
+	ft_map_destroy(map);
+	// search for a non existing key in a full map
+	map = ft_map_create(1);
+	ft_map_set(map, "key", str, strlen("key") + 1);
+	ret = ft_map_get(map, "key2", strlen("key2") + 1);
+	if (ret != NULL)
+		return (1);
 	ft_map_destroy(map);
 	free(str);
+	return (0);
 }
 
-void	test_map_size(void)
+int	test_map_size(void)
 {
 	char	*str;
 	t_map	*map;
@@ -139,14 +175,14 @@ void	test_map_size(void)
 	ft_map_set(map, "key", str, strlen(str) + 1);
 	ret = ft_map_size(map);
 	if (ret != 1)
-		printf("ft_map_size: [FAIL] ret != 1\n");
-	else
-		printf("ft_map_size: [OK]\n");
+		return (1);
+	
 	ft_map_destroy(map);
 	free(str);
+	return (0);
 }
 
-void	test_map_capacity(void)
+int	test_map_capacity(void)
 {
 	char	*str;
 	t_map	*map;
@@ -156,14 +192,14 @@ void	test_map_capacity(void)
 	map = ft_map_create(10);
 	ret = ft_map_capacity(map);
 	if (ret != 10)
-		printf("ft_map_capacity: [FAIL] ret != 10\n");
-	else
-		printf("ft_map_capacity: [OK]\n");
+		return (1);
+	
 	ft_map_destroy(map);
 	free(str);
+	return (0);
 }
 
-void	test_map_remove(void)
+int	test_map_remove(void)
 {
 	char	*str;
 	t_map	*map;
@@ -173,40 +209,98 @@ void	test_map_remove(void)
 	ft_map_set(map, "key", str, strlen("key") + 1);
 	ft_map_remove(map, "key", strlen("key") + 1);
 	if (map->size != 0)
-		printf("ft_map_remove: [FAIL] map->size != 0\n");
+		return (1);
 	else if (map->nodes[map->hash("key", map->capacity, 5)].used != false)
-		printf("ft_map_remove: [FAIL] map->nodes[map->hash(\"key\", map->capacity, 5)].used != false\n");
-	else
-		printf("ft_map_remove: [OK]\n");
+		return (1);
+	// remove a non existing key
+	ft_map_remove(map, "key", strlen("key") + 1);
+	if (map->size != 0)
+		return (1);
+	// remove a non existing key in a full map
 	ft_map_destroy(map);
+	map = ft_map_create(1);
+	ft_map_set(map, "key", str, strlen("key") + 1);
+	ft_map_remove(map, "key2", strlen("key2") + 1);
+	if (map->size != 1)
+		return (1);
 	free(str);
+	return (0);
 }
 
-void	test_map_hash(void)
+int	test_map_hash(void)
 {
 	size_t	ret;
 
 	ret = ft_map_hash("key", 10, strlen("key") + 1);
 	if (ret >= 10)
-		printf("ft_map_hash: [FAIL] hash outside bounds\n");
-	printf("ft_map_hash: [OK]\n");
+		return (1);
+	return (0);
 }
 
 int		tests_map(void)
 {
-	printf("== ft_map ==\n");
-	test_map_create();
-	test_map_destroy();
-	test_map_destroy_free();
-	test_map_clear();
-	test_map_set();
-	test_map_set_cmp();
-	test_map_set_hash();
-	test_map_get();
-	test_map_size();
-	test_map_capacity();
-	test_map_remove();
-	test_map_hash();
-	printf("== end ==\n");
-	return (0);
+	int	ret;
+
+	ret = 0;
+	if (test_map_create())
+	{
+		printf("test_map_create: [KO]\n");
+		ret++;
+	}
+	if (test_map_destroy())
+	{
+		printf("test_map_destroy: [KO]\n");
+		ret++;
+	}
+	if (test_map_destroy_free())
+	{
+		printf("test_map_destroy_free: [KO]\n");
+		ret++;
+	}
+	if (test_map_clear())
+	{
+		printf("test_map_clear: [KO]\n");
+		ret++;
+	}
+	if (test_map_set())
+	{
+		printf("test_map_set: [KO]\n");
+		ret++;
+	}
+	if (test_map_set_cmp())
+	{
+		printf("test_map_set_cmp: [KO]\n");
+		ret++;
+	}
+	if (test_map_set_hash())
+	{
+		printf("test_map_set_hash: [KO]\n");
+		ret++;
+	}
+	if (test_map_get())
+	{
+		printf("test_map_get: [KO]\n");
+		ret++;
+	}
+	if (test_map_size())
+	{
+		printf("test_map_size: [KO]\n");
+		ret++;
+	}
+	if (test_map_capacity())
+	{
+		printf("test_map_capacity: [KO]\n");
+		ret++;
+	}
+	if (test_map_remove())
+	{
+		printf("test_map_remove: [KO]\n");
+		ret++;
+	}
+	if (test_map_hash())
+	{
+		printf("test_map_hash: [KO]\n");
+		ret++;
+	}
+	return (ret);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iron <iron@student.42.fr>                  +#+  +:+       +#+         #
+#    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/13 21:41:51 by iron             ###   ########.fr        #
+#    Updated: 2023/12/14 17:13:29 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,16 @@ CC			=	clang
 NAME		=	ft_personal
 COV			=	llvm-cov
 
+# check if we found llvm-cov and llvm-profdata
+# if not, we try to find the version 12 (42 version)
+ifeq ($(shell wich $(COV) 2> /dev/null), )
+COV			=	llvm-cov-12
+endif
+PRD			=	llvm-profdata
+ifeq ($(shell wich $(PRD) 2> /dev/null), )
+PRD			=	llvm-profdata-12
+endif
+
 SRC_DIR			=	./src
 BUILD_DIR		=	./build
 INC_DIR			=	./include
@@ -28,7 +38,13 @@ COVERAGE_DIR	=	./coverage
 LDFLAGS		=	
 CPPFLAGS	=	-I$(INC_DIR)
 CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color
-TEST_FLAGS	=	-g2 -fprofile-arcs -ftest-coverage -fprofile-instr-generate --coverage -fcoverage-mapping
+TEST_FLAGS	=\
+			-g2											\
+			-DDEBUG	-DTEST								\
+			-fprofile-arcs	-ftest-coverage 			\
+			-fprofile-instr-generate --coverage 		\
+			-fcoverage-mapping
+
 TARGET		?=	"ALL"
 
 FT_MAP_DIR	=	ft_map
@@ -138,6 +154,7 @@ FT_STRING_SRC	=	\
 			$(FT_STRING_DIR)/ft_str_replace.c			\
 			$(FT_STRING_DIR)/ft_strtok.c				\
 			$(FT_STRING_DIR)/ft_strtrim.c				\
+			$(FT_STRING_DIR)/ft_shift_args.c			\
 			$(FT_STRING_DIR)/ft_substr.c				\
 			$(FT_STRING_DIR)/ft_tolower.c				\
 			$(FT_STRING_DIR)/ft_toupper.c				\
@@ -243,13 +260,29 @@ tests_run:
 	echo $(GREEN) "Success" $(RESET)							|| \
 	echo $(RED) "Failed" $(RESET)
 
+# test tp reduce ulimit -s stack size to force a malloc error
+# test to reduce ulimit -n file descriptor to force a open error
+# should check if the lib is checking for syscall error and add
+# the result to the coverage...
+# may need to add other tests src for this as current tests
+#  expect malloc, open, read, write, close, free to succeed...
+######### the line below is non implemented due to the reason stated above ############
+# 	ulimit -S -n 2048											\
+	./tests_run													&& \
+	$(PRD) merge -sparse default.profraw -o 					\
+	tests_run.profdata											&& \
+	ulimit -s 1000 												\
+	./tests_run													&& \
+	$(PRD) merge -sparse default.profraw -o 					\
+	tests_run.profdata											&& \
+
 coverage: tests_run
 	@echo -n $(GRAY) "Generating profraw ... " $(RESET)			&& \
 	./tests_run													&& \
-	echo -n $(GRAY) "Generating profdata ... " $(RESET)			&& \
-	llvm-profdata merge -sparse default.profraw -o 				\
+	echo -n $(GRAY) " profdata ... " $(RESET)					&& \
+	$(PRD) merge -sparse default.profraw -o 					\
 	tests_run.profdata											&& \
-	echo -n $(GRAY) "Generating coverage in html ... "			\
+	echo -n $(GRAY) "coverage in html ... "			\
 	$(RESET)													&& \
 	$(COV) show -format=html									\
 	-instr-profile=tests_run.profdata							\
@@ -279,7 +312,7 @@ clean:
 fclean: clean
 	@echo -n $(GRAY) "FClean ... " $(RESET)						&& \
 	( $(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)		\
-	2> /dev/null 												&& \
+	*.profraw *.profdata	2> /dev/null 						&& \
 	echo $(GREEN) "Success" $(RESET) )							|| \
 	echo $(RED) "Failed" $(RESET)
 	

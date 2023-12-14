@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_dl_subrange.c                              :+:      :+:    :+:   */
+/*   ft_list_dl_sub.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:45 by iron              #+#    #+#             */
-/*   Updated: 2023/12/06 16:31:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:17:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,4 @@ t_dlist	*ft_list_dl_subrange(t_dlist *src, t_dlist *to)
 		it = it->next;
 	}
 	return (ret);
-}
-
-t_dlist	*ft_list_dl_subrange_to(t_dlist *head, t_dlist *end)
-{
-	return (ft_list_dl_subrange(head, end));
 }

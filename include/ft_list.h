@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 16:18:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:17:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,12 +229,6 @@ size_t	ft_list_dl_size_of_data(const t_dlist *head, t_data_is function);
 /// @param to The node until which to get the sublist
 /// @return The sublist
 t_dlist	*ft_list_dl_subrange(t_dlist *src, t_dlist *to);
-
-/// @brief Get a sublist of a list
-/// @param head The head of the list
-/// @param end The end of the list
-/// @return The sublist
-t_dlist	*ft_list_dl_subrange_to(t_dlist *head, t_dlist *end);
 
 /* ************************************************************************** */
 /*                           SIMPLY LINKED LIST                               */

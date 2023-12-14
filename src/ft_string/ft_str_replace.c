@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:35:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 18:55:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:03:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,14 @@ char	*ft_str_replace(char *str, const char *to_replace,
 
 char	*ft_str_replace_chr(char *str, char to_replace, char replace_by)
 {
-	const char	new_str[2][2] = {{to_replace, 0}, {replace_by, 0}};
+	char		*ptr;
 
-	return (ft_str_replace(str, new_str[0], new_str[1]));
+	ptr = str;
+	while (*str)
+	{
+		str = ft_strchr(str, to_replace);
+		*str = replace_by;
+		str++;
+	}
+	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/13 08:09:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:39:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,20 @@
 
 // gnl
 
+# ifndef MAX_FD
+#  ifdef TEST
+#   define MAX_FD 5
+#  else
+#   define MAX_FD 1024
+#  endif
+# endif
+
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
+#  ifdef TEST
+#   define BUFFER_SIZE 5
+#  else
+#   define BUFFER_SIZE 4096
+#  endif
 # endif
 
 # include "ft_string_struct.h"
@@ -248,15 +260,17 @@ int			ft_atoi(const char *str);
 /// @return the int converted from the string
 int			ft_atoi_base(const char *str, const char *base);
 
-/// @brief 
-/// @param nbr 
-/// @return 
+/// @brief convert a string with the int converted in ascii chars
+/// @param nbr number to convert
+/// @return pointer to the string.
+/// @note You must free the returned string
 char		*ft_itoa(int nbr);
 
-/// @brief 
-/// @param nbr 
-/// @param base 
-/// @return 
+/// @brief convert the int to a string in the specified base
+/// @param nbr number to convert
+/// @param base base of the string to return.
+/// @return pointer to the string.
+/// @note You must free the returned string
 char		*ft_itoa_base(int nbr, char *base);
 
 /// @brief 
@@ -264,151 +278,189 @@ char		*ft_itoa_base(int nbr, char *base);
 /// @return 
 char		*ft_utoa(unsigned int nbr);
 
-/// @brief 
-/// @param str_init 
-/// @param delims 
-/// @return 
+/// @brief Return a pointer to the first occurrence of any character contained
+/// in the string delims in the string str
+/// @param str_init string to search into
+/// @param delims string of delimiters
+/// @return a pointer to the first occurrence of any character contained in the
+/// string delims in the string str otherwise NULL
+/// @note TODO: pass return as const and str_init as const and delims as const
 char		*ft_strtok(char *str_init, char *delims);
 
-/// @brief 
-/// @param str 
-/// @param delim 
-/// @return 
+/// @brief Split the string str with the specified delimiter
+/// @param str String to split
+/// @param delim Char to split the string
+/// @return A pointer to the array of string
+/// @note You must free the returned array of string and its content
 char		**ft_split(const char *str, char delim);
 
-/// @brief 
-/// @param str 
-/// @param c 
-/// @return 
+/// @brief Search for the first occurence of the char c in the string str
+/// @param str string to search into
+/// @param c char to search
+/// @return a pointer to the first occurence of c in the string str otherwise
+/// NULL
+/// @note TODO: pass return as const
 char		*ft_strchr(const char *str, int c);
 
-/// @brief 
-/// @param strsrc 
-/// @return 
+/// @brief duplicate the string src into a new allocated string
+/// @param strsrc string to copy from
+/// @return The copy of string src
+/// @note You must free the returned string
 char		*ft_strdup(const char *strsrc);
 
-/// @brief 
-/// @param s 
-/// @param f 
+/// @brief Iterate over the string s and execute the function f on each char
+/// @param s String to iterate over
+/// @param f Function to execute on each char
+/// @return void
+/// @note The first parameter of the function f is the index of the char in the
+/// string s.
 void		ft_striteri(char *s, void (*f)(unsigned int, char *));
 
-/// @brief 
-/// @param s1 
-/// @param s2 
-/// @return 
+/// @brief Add up two strings s1 and s2 and return the result
+/// @param s1 String to add
+/// @param s2 String to add
+/// @return The result of the addition of the two strings
+/// @note You must free the returned string
 char		*ft_strjoin(char const *s1, char const *s2);
 
-/// @brief 
-/// @param dst 
-/// @param src 
-/// @param size 
-/// @return 
+/// @brief copy up to size - 1 characters from the NUL-terminated string src
+/// to dst, NUL-terminating the result. 
+/// Puts the result after the characters already in dst.
+/// @param dst string to copy to
+/// @param src string to copy from
+/// @param size maximum number of characters in destination string, including
+/// the terminating null character.
+/// @return returns the total length of the string they tried to create.
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 
-/// @brief 
-/// @param dst 
-/// @param src 
-/// @param size 
-/// @return 
+/// @brief Copies up to size - 1 characters from the NUL-terminated string src
+/// to dst, NUL-terminating the result.
+/// Puts the result directly at dst.
+/// @param dst string to copy to
+/// @param src string to copy from
+/// @param size maximum number of characters in destination string, including
+/// the terminating null character.
+/// @return returns the total length of the string they tried to create.
+/// @note If the length of src is greater than or equal to size, the string
+/// will be truncated.
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 
-/// @brief 
-/// @param str 
-/// @return 
+/// @brief Get the length of the string str
+/// @param str String to get the length of
+/// @return the length of the string str
 size_t		ft_strlen(const char *str);
 
-/// @brief 
-/// @param s 
-/// @param f 
-/// @return 
+/// @brief Execute the function f on each char of the string s
+/// @param s String to iterate over
+/// @param f function to execute on each char
+/// @return an allocated string with the result of the function f on each char
+/// of the string s otherwise NULL
+/// @note You must free the returned string
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
-/// @brief 
-/// @param s1 
-/// @param s2 
-/// @return 
+/// @brief Compare the two strings s1 and s2
+/// @param s1 String to compare s1
+/// @param s2 String to compare s2
+/// @return 0 if the strings are identical, otherwise the difference between the
+/// first different char (s1 - s2)
 int			ft_strcmp(const char *s1, const char *s2);
 
-/// @brief 
-/// @param s1 
-/// @param s2 
-/// @param n 
-/// @return 
+/// @brief Compare the two strings s1 and s2 up to n characters or until a `\0'
+/// @param s1 String to compare s1
+/// @param s2 String to compare s2
+/// @param n number of chars to compare maximum
+/// @return 0 if the strings are identical, otherwise the difference between the
+/// first different char (s1 - s2)
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
-/// @brief 
-/// @param str 
-/// @param n 
-/// @return 
+/// @brief duplicate no more than n character of the string src into a new allocated string
+/// @param str string to copy from
+/// @param n number of chars to copy
+/// @return A copy of the string src
+/// @note You must free the returned string
 char		*ft_strndup(const char *str, size_t n);
 
-/// @brief 
-/// @param src 
-/// @return 
+/// @brief duplicate the string src into a new allocated string
+/// @param src string to copy from
+/// @return A copy of the string src
+/// @note You must free the returned string
 char		*ft_strdup(const char *src);
 
-/// @brief 
-/// @param big 
-/// @param small 
-/// @param n 
-/// @return 
+/// @brief search for the first occurence of the string small in the string big
+/// @param big string to search into
+/// @param small string to search
+/// @param n number of chars to search
+/// @return returns a pointer to the first occurrence of the string small in the
+/// string big, where not more than n characters are searched. Characters that
+/// appear after a `\0' character are not searched.
+/// @note TODO: pass return as const
 char		*ft_strnstr(const char *big, const char *small, size_t n);
 
-/// @brief 
-/// @param str 
-/// @param c 
-/// @return 
+/// @brief search for the last occurence of c in the string
+/// @param str string to search from
+/// @param c char to search
+/// @return pointer to the last occurence of c in the string otherwise NULL
+/// @note TODO: pass return as const
 char		*ft_strrchr(const char *str, int c);
 
-/// @brief 
-/// @param s1 
-/// @param set 
-/// @return 
+/// @brief remove the specified chars from the string s1
+/// @param s1 string to trim
+/// @param set characters to remove from s1
+/// @return allocated string without the specified chars otherwise NULL
+/// @note You must free the returned string
 char		*ft_strtrim(char const *s1, char const *set);
 
-/// @brief 
-/// @param s 
-/// @param start 
-/// @param len 
-/// @return 
+/// @brief return a substring of the string s from the specified position
+/// @param s string to get the substring
+/// @param start position of the substring
+/// @param len length of the substring
+/// @return allocated string with the substring otherwise NULL
+/// @note You must free the returned string
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 
-/// @brief 
-/// @param str 
-/// @param to_replace 
-/// @param replace_by 
-/// @return 
+/// @brief search and replace the string to_replace in the string str
+/// by the string replace_by
+/// @param str String to in which the string will be searched and replaced
+/// @param to_replace string to search and replace
+/// @param replace_by string to replace with
+/// @return the string with the modified chars otherwise NULL
+/// @note You must free the returned string
+/// @note TODO: pass str as const - clearer signal that it is not modified
 char		*ft_str_replace(char *str, const char *to_replace,
 				const char *replace_by);
 
-/// @brief 
-/// @param str 
-/// @param to_replace 
-/// @param replace_by 
-/// @return 
+/// @brief replace the chars to_replace in the string by the char replace_by
+/// @param str string to in which the char will be replaced
+/// @param to_replace char to replace
+/// @param replace_by char to replace by
+/// @return A pointer to the string str
 char		*ft_str_replace_chr(char *str, char to_replace, char replace_by);
 
 /* ************************************************************************** */
 /*                        FT_GNL SUB MODULE                                   */
 /* ************************************************************************** */
 
-/// @brief 
-/// @param fd 
-/// @return 
+/// @brief Read the next line from the file descriptor
+/// @param fd file descriptor to read from
+/// @return the next line from the file descriptor otherwise NULL
+/// @note You must free the returned string
+/// @note You can see the number of supported file descriptor in the macro
+/// MAX_FD
 char		*get_next_line(int fd);
 
-/// @brief 
-/// @param dst 
-/// @param from 
-/// @param pos 
-/// @param delim 
-/// @return 
+/// @brief Split the string from the specified position with the specified
+/// delimiter
+/// @param dst destination of string
+/// @param from string to split
+/// @param pos position to split from
+/// @param delim delimiter to split the string
+/// @return -1 if allocation failed, 0 otherwise
 int			split_from(char **dst, char *from, int pos, char delim);
 
-/// @brief 
-/// @param from 
-/// @param c 
-/// @return 
+/// @brief Search for the first occurence of c in the string
+/// @param from string to search from
+/// @param c char to search
+/// @return the index of the first occurence of c in the string otherwise -1
 int			ft_strchr_index(const char *from, char c);
 
 // printf

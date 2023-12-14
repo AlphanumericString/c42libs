@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:38 by iron              #+#    #+#             */
-/*   Updated: 2023/12/12 17:14:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:05:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	*ft_list_dl_pop(t_dlist **node)
 	t_dlist	*it;
 
 	data = NULL;
-	it = *node;
-	if (!*node)
+	if (!node || !*node)
 		return (NULL);
+	it = *node;
 	*node = (*node)->next;
 	data = it->data;
 	free(it);
@@ -65,12 +65,10 @@ void	*ft_list_dl_pop_back(t_dlist **node)
 	t_dlist	*prev;
 
 	data = NULL;
-	it = *node;
 	prev = NULL;
-	if (!*node)
+	if (!node || !*node)
 		return (NULL);
-	else if ((*node)->next)
-		it = ft_list_dl_end(it);
+	it = ft_list_dl_end(*node);
 	data = it->data;
 	prev = it->prev;
 	if (prev)

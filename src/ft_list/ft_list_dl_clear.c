@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:33:59 by iron              #+#    #+#             */
-/*   Updated: 2023/12/12 15:55:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:57:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ size_t	ft_list_dl_clear_range(t_dlist *start, t_dlist *end, t_data_apply del)
 	size_t	i;
 
 	i = 0;
+	if (start == NULL)
+		return (0);
+	if (start->prev)
+		start->prev->next = end;
+	if (end)
+		end->prev = start->prev;
 	while (start != end)
 	{
 		if (del)

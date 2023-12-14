@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 11:54:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 10:55:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:23:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	**ft_listget_datas(const t_list *src)
 	void	**datas;
 	size_t	i;
 
+	if (!src)
+		return (NULL);
 	datas = ft_calloc(sizeof(void *), ft_listsize(src) + 1);
 	if (!datas)
 		return (NULL);
@@ -36,6 +38,8 @@ t_list	**ft_listget_nodes(const t_list *src)
 	t_list	**nodes;
 	size_t	i;
 
+	if (!src)
+		return (NULL);
 	nodes = ft_calloc(sizeof(t_list *), ft_listsize(src) + 1);
 	if (!nodes)
 		return (NULL);
