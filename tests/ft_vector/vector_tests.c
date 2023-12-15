@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_tests.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:30:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/14 16:53:08 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/15 20:25:34 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,18 +308,27 @@ int	test_vec_from_size(void)
 // 		it's bigger than FT_VECTOR_BASE_LEN
 int	test_vec_from_array(void)
 {
-	int			a;
-	int			b;
-	int			c;
+	int			a, b, c, d, e, f;
 	void		*data[3];
+	void		*data2[6];
 	t_vector	*vec;
 
 	a = 42;
 	b = 43;
 	c = 44;
+	d = 45;
+	e = 46;
+	f = 47;
 	data[0] = (void *)&a;
 	data[1] = (void *)&b;
 	data[2] = (void *)&c;
+	//////// data2
+	data2[0] = (void *)&a;
+	data2[1] = (void *)&b;
+	data2[2] = (void *)&c;
+	data2[3] = (void *)&d;
+	data2[4] = (void *)&e;
+	data2[5] = (void *)&f;
 	vec = ft_vec_from_array(data, sizeof(data) / sizeof(data[0]));
 	if (vec->count != 3)
 		return (1);
@@ -332,6 +341,26 @@ int	test_vec_from_array(void)
 	else if (*(int *)ft_vec_at(vec, 1) != 43)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 2) != 44)
+		return (1);
+	ft_vec_destroy(&vec);
+	vec = ft_vec_from_array(data2, sizeof(data2) / sizeof(*data2));
+	if (vec->count != 6)
+		return (1);
+	else if (vec->cappacity != 6)
+		return (1);
+	else if (vec->datas == NULL)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 0) != 42)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 1) != 43)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 2) != 44)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 3) != 45)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 4) != 46)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 5) != 47)
 		return (1);
 	ft_vec_destroy(&vec);
 	return (0);
@@ -389,6 +418,10 @@ int	test_vec_remove(void)
 	else if (*(int *)ft_vec_at(vec, 0) != 42)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 1) != 44)
+		return (1);
+	// try to remoove outside of vector
+	ft_vec_remove(vec, 42, NULL);
+	if (vec->count != 2)
 		return (1);
 	ft_vec_destroy(&vec);
 	return (0);
@@ -547,6 +580,14 @@ int	test_vec_shrink(void)
 	else if (*(int *)ft_vec_at(vec, 1) != 43)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 2) != 44)
+		return (1);
+// try to shrink an already shrunk vector
+	ft_vec_shrink(vec);
+	if (!vec)
+		return (1);
+	else if (vec->count != vec->cappacity)
+		return (1);
+	else if (vec->count != 3)
 		return (1);
 	ft_vec_destroy(&vec);
 	return (0);
