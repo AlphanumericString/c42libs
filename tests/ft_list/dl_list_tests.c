@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dl_list_tests.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:37:03 by iron              #+#    #+#             */
-/*   Updated: 2023/12/14 17:24:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/15 19:59:35 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -422,7 +422,6 @@ int	test_dlistdelete_range(void)
 int test_dlistdelete(void)
 {
 	t_dlist	*list;
-	t_dlist	*list2;
 	int		*data;
 	int		*data2;
 	int		*data3;
@@ -437,7 +436,6 @@ int test_dlistdelete(void)
 	list = ft_list_dl_create(data);
 	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
 	ft_list_dl_add_back(&list, ft_list_dl_create(data3));
-	list2 = list->next;
 	nb_deleted = ft_list_dl_delete(&list, NULL);
 	if (nb_deleted != 3)
 		return (1);

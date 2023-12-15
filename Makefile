@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
+#    By: iron <iron@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/14 17:13:29 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/15 18:42:34 by iron             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,16 @@ BOLD		= "\\e[1m"
 CC			=	clang
 NAME		=	ft_personal
 COV			=	llvm-cov
+PRD			=	llvm-profdata
 
 # check if we found llvm-cov and llvm-profdata
 # if not, we try to find the version 12 (42 version)
-ifeq ($(shell wich $(COV) 2> /dev/null), )
-COV			=	llvm-cov-12
+ifeq (, $(shell which $(COV) 2> /dev/null))
+	COV			=	llvm-cov-12
 endif
-PRD			=	llvm-profdata
-ifeq ($(shell wich $(PRD) 2> /dev/null), )
-PRD			=	llvm-profdata-12
+
+ifeq (, $(shell which $(PRD) 2> /dev/null))
+	PRD			=	llvm-profdata-12
 endif
 
 SRC_DIR			=	./src

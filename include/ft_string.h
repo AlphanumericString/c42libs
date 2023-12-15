@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/14 16:39:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/15 19:43:47 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -462,6 +462,15 @@ int			split_from(char **dst, char *from, int pos, char delim);
 /// @param c char to search
 /// @return the index of the first occurence of c in the string otherwise -1
 int			ft_strchr_index(const char *from, char c);
+
+/// @brief Returns a pointer to the first string pointed to by args
+/// @param args Pointer to a list of const char pointer
+/// @param index Number of elements in Args
+/// @return if index is negative or the first string of args 
+/// is null fails and return null otherwise return the first 
+/// const char pointed to by args
+const char	*ft_shift_args(const char **args, int *index);
+
 
 // printf
 
