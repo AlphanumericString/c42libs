@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/28 16:03:04 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/28 16:46:05 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -327,7 +327,20 @@ Doxygen:
 re:	fclean all
 
 42ready: fclean
-	$(RM) -rf $(COVERAGE_DIR) $(TESTS_DIR) tools README.md		&& \
-	.vscode 
+	@echo -n $(GRAY) "42ready ... " $(RESET)					&& \
+	$(RM) -rf $(COVERAGE_DIR) $(TESTS_DIR) tools README.md		\
+	.vscode 													&& \
+	awk '														\
+	BEGIN {to_del=0}											\
+    (/^TEST*/ || /^test*/ || /^coverage*/ || /so:/ || /^#/ && 	\
+	$$NF > 11 || /^debug/ || /^Doxygen/ || /^42ready/ ) 		\
+		{to_del=1}												\
+    (to_del == 0) 												\
+		{print}													\
+    (to_del==1 && /^$$/)										\
+		{to_del=0}' Makefile > Makefile.tmp						&& \
+	mv Makefile.tmp Makefile									&& \
+	echo $(GREEN) "Success" $(RESET)							|| \
+	echo $(RED) "Failed" $(RESET)
 
 .PHONY: re fclean clean tests_run
