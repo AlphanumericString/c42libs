@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iron <iron@student.42.fr>                  +#+  +:+       +#+         #
+#    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/15 18:42:34 by iron             ###   ########.fr        #
+#    Updated: 2023/12/28 16:03:04 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -313,11 +313,21 @@ clean:
 fclean: clean
 	@echo -n $(GRAY) "FClean ... " $(RESET)						&& \
 	( $(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)		\
-	*.profraw *.profdata	2> /dev/null 						&& \
+	*.profraw *.profdata Doxygen 2> /dev/null 					&& \
+	echo $(GREEN) "Success" $(RESET) )							|| \
+	echo $(RED) "Failed" $(RESET)
+
+Doxygen:
+	@echo -n $(GRAY) "Generating Doxygen ... " $(RESET)			&& \
+	( doxygen tools/doxyfile 2> /dev/null						&& \
 	echo $(GREEN) "Success" $(RESET) )							|| \
 	echo $(RED) "Failed" $(RESET)
 	
 
 re:	fclean all
+
+42ready: fclean
+	$(RM) -rf $(COVERAGE_DIR) $(TESTS_DIR) tools README.md		&& \
+	.vscode 
 
 .PHONY: re fclean clean tests_run

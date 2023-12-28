@@ -61,3 +61,5 @@ Todo
 .vscode
 tests_run
 coverage
+Doxygen
+tools
