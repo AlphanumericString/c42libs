@@ -20,6 +20,7 @@ CC			=	clang
 NAME		=	ft_personal
 COV			=	llvm-cov
 PRD			=	llvm-profdata
+ECHO		=	echo -e
 
 # check if we found llvm-cov and llvm-profdata
 # if not, we try to find the version 12 (42 version)
@@ -225,11 +226,11 @@ OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(SRC_DIR_DIR)))
 CLOG_FILE	=	./compilation.log
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo -n	$(GRAY)	"building from " $< "..." $(RESET)
+	@$(ECHO) -n	$(GRAY)	"building from " $< "..." $(RESET)
 	@mkdir -p $(dir $@)
 	@( $(CC) $(CFLAGS) -c $< -o $@ 2>> $(CLOG_FILE) 	&& \
-	echo $(GREEN) "Success" $(RESET) )					|| \
-	echo $(RED) "Failed" $(RESET)					\
+	$(ECHO) $(GREEN) "Success" $(RESET) )					|| \
+	$(ECHO) $(RED) "Failed" $(RESET)					\
 	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
 
 all:	lib$(NAME).a
@@ -237,29 +238,29 @@ all:	lib$(NAME).a
 so: lib$(NAME).so
 
 lib$(NAME).so:	$(OBJ)
-	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD) 			\
+	@$(ECHO) -n $(GRAY) "Making ... " $(RESET) $(BOLD) 			\
 	"lib$(NAME).so" $(RESET) $(GRAY) " ... " $(RESET)
 	@( $(CC) -shared -o lib$(NAME).so $(OBJ) 2> /dev/null		&& \
-	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) )	|| \
-	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	$(ECHO) $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) )	|| \
+	$(ECHO) $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 	
 
 lib$(NAME).a:	$(OBJ)
-	@echo -n $(GRAY) "Making ... " $(RESET) $(BOLD)				\
+	@$(ECHO) -n $(GRAY) "Making ... " $(RESET) $(BOLD)				\
 	"lib$(NAME).a" $(RESET)	$(GRAY) " ... " $(RESET)
 	@( $(AR) -rcs lib$(NAME).a $(OBJ) 2> /dev/null				&& \
-	echo $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) 	|| \
-	echo $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	$(ECHO) $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) 	|| \
+	$(ECHO) $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
 tests_run:
 	@make -C ./ re CFLAGS="$(CFLAGS) $(TEST_FLAGS)" 			\
 	LDFLAGS="$(LDFLAGS) -lgcov" 								&& \
 	$(CC) $(CFLAGS) $(OBJ) $(TESTS_SRC) -o tests_run 			\
 	$(TEST_FLAGS) $(LDFLAGS)
-	@echo -n $(GRAY) "Running tests ... " $(RESET)				&& \
+	@$(ECHO) -n $(GRAY) "Running tests ... " $(RESET)				&& \
 	./tests_run 												&& \
-	echo $(GREEN) "Success" $(RESET)							|| \
-	echo $(RED) "Failed" $(RESET)
+	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
+	$(ECHO) $(RED) "Failed" $(RESET)
 
 # test tp reduce ulimit -s stack size to force a malloc error
 # test to reduce ulimit -n file descriptor to force a open error
@@ -278,12 +279,12 @@ tests_run:
 	tests_run.profdata											&& \
 
 coverage: tests_run
-	@echo -n $(GRAY) "Generating profraw ... " $(RESET)			&& \
+	@$(ECHO) -n $(GRAY) "Generating profraw ... " $(RESET)			&& \
 	./tests_run													&& \
-	echo -n $(GRAY) " profdata ... " $(RESET)					&& \
+	$(ECHO) -n $(GRAY) " profdata ... " $(RESET)					&& \
 	$(PRD) merge -sparse default.profraw -o 					\
 	tests_run.profdata											&& \
-	echo -n $(GRAY) "coverage in html ... "			\
+	$(ECHO) -n $(GRAY) "coverage in html ... "			\
 	$(RESET)													&& \
 	$(COV) show -format=html									\
 	-instr-profile=tests_run.profdata							\
@@ -291,43 +292,43 @@ coverage: tests_run
 	-ignore-filename-regex=src/ft_string/*						\
 	./tests_run -output-dir=$(COVERAGE_DIR) > /dev/null			&& \
 	$(RM) *.profraw *.profdata									&& \
-	echo $(GREEN) "Success" $(RESET)							|| \
-	echo $(RED) "Failed" $(RESET)
+	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
+	$(ECHO) $(RED) "Failed" $(RESET)
 
 
 debug:
-	@echo -n $(GRAY) "Compiling debug, flags are" $(RESET) 		\
+	@$(ECHO) -n $(GRAY) "Compiling debug, flags are" $(RESET) 		\
 	"$(CFLAGS) $(DEBUG_FLAGS)" $(GRAY) "..." $(RESET)			&& \
 	make -C ./ re CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"				&& \
 	make -C ./ so CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"				&& \
-	echo $(GREEN) "Success" $(RESET)							|| \
-	echo $(RED) "Failed" $(RESET)
+	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
+	$(ECHO) $(RED) "Failed" $(RESET)
 
 clean:
-	@echo -n $(GRAY) "Clean ... " $(RESET)						&& \
+	@$(ECHO) -n $(GRAY) "Clean ... " $(RESET)						&& \
 	( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) tests_run *.gcov		\
 	*.gcno *.gcda 2> /dev/null 									&& \
-	echo $(GREEN) "Success" $(RESET) )							|| \
-	echo $(RED) "Failed" $(RESET)
+	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
+	$(ECHO) $(RED) "Failed" $(RESET)
 
 fclean: clean
-	@echo -n $(GRAY) "FClean ... " $(RESET)						&& \
+	@$(ECHO) -n $(GRAY) "FClean ... " $(RESET)						&& \
 	( $(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)		\
 	*.profraw *.profdata Doxygen 2> /dev/null 					&& \
-	echo $(GREEN) "Success" $(RESET) )							|| \
-	echo $(RED) "Failed" $(RESET)
+	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
+	$(ECHO) $(RED) "Failed" $(RESET)
 
 Doxygen:
-	@echo -n $(GRAY) "Generating Doxygen ... " $(RESET)			&& \
+	@$(ECHO) -n $(GRAY) "Generating Doxygen ... " $(RESET)			&& \
 	( doxygen tools/doxyfile 2> /dev/null						&& \
-	echo $(GREEN) "Success" $(RESET) )							|| \
-	echo $(RED) "Failed" $(RESET)
+	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
+	$(ECHO) $(RED) "Failed" $(RESET)
 	
 
 re:	fclean all
 
 42ready: fclean
-	@echo -n $(GRAY) "42ready ... " $(RESET)					&& \
+	@$(ECHO) -n $(GRAY) "42ready ... " $(RESET)					&& \
 	$(RM) -rf $(COVERAGE_DIR) $(TESTS_DIR) tools README.md		\
 	.vscode 													&& \
 	awk '														\
@@ -340,7 +341,7 @@ re:	fclean all
     (to_del==1 && /^$$/)										\
 		{to_del=0}' Makefile > Makefile.tmp						&& \
 	mv Makefile.tmp Makefile									&& \
-	echo $(GREEN) "Success" $(RESET)							|| \
-	echo $(RED) "Failed" $(RESET)
+	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
+	$(ECHO) $(RED) "Failed" $(RESET)
 
 .PHONY: re fclean clean tests_run
