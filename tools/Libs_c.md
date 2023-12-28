@@ -27,6 +27,14 @@ Library for c projects at 42.
             - [ ]   t_string
             - [ ]   str
         - [X]  ft_vector
+    - [ ]   srcs
+        - [ ]   const nazi the sht of it. list of all pointer passed as non const '(grep "^[a-zA-Z]" include/*.h | grep -v "const .*\*.*,.*")'
+            - [ ]   vect
+            - [ ]   ll
+            - [ ]   dl
+            - [ ]   str
+            - [ ]   string
+            - [ ]   map
 - [ ]   Makefile
     - [X]   Makefile add debug rule for “so” ? or run “so” in debug rule. idk idc will see…
     - [X]   check if cmd exist for llvm suite

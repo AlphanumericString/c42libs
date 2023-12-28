@@ -6,7 +6,7 @@
 /*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:37:03 by iron              #+#    #+#             */
-/*   Updated: 2023/12/15 19:59:35 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/16 08:18:37 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -682,22 +682,32 @@ int	test_dlist_pop(void)
 	t_dlist	*list;
 	int		*data1;
 	int		*data2;
+	int		*ret;
 
 	data1 = malloc(sizeof(int));
+	data2 = malloc(sizeof(int));
 	*data1 = 42;
+	*data2 = 84;
 	list = ft_list_dl_create(data1);
-	data2 = ft_list_dl_pop(&list);
+	ft_list_dl_push(&list, data2);
+	ret = ft_list_dl_pop(&list);
+	if (list == NULL)
+		return (1);
+	else if (ret != data2)
+		return (1);
+	ret = ft_list_dl_pop(&list);
+	if (ret != data1)
+		return (1);
 	if (list != NULL)
 		return (1);
-	else if (data2 != data1)
+	ret = ft_list_dl_pop(&list);
+	if (ret != NULL)
 		return (1);
-	data2 = ft_list_dl_pop(&list);
-	if (data2 != NULL)
-		return (1);
-	data2 = ft_list_dl_pop(NULL);
-	if (data2 != NULL)
+	ret = ft_list_dl_pop(NULL);
+	if (ret != NULL)
 		return (1);
 	free(data1);
+	free(data2);
 	return (0);
 }
 
@@ -804,8 +814,12 @@ int	test_dlist_rev(void)
 		return (1);
 	else if (list->next->data != original_data1)
 		return (1);
-	
 	ft_list_dl_clear(&list, free);
+	if (ft_list_dl_rev(NULL) != NULL)
+		return (1);
+	list = NULL;
+	if (ft_list_dl_rev(&list) != NULL)
+		return (1);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list_dl_rev.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:20:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 17:10:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/15 22:24:49 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_dlist	*ft_list_dl_rev(t_dlist **head)
 	t_dlist	*it;
 	t_dlist	*tmp;
 
+	if (!head || !*head)
+		return (NULL);
 	it = *head;
 	while (it)
 	{

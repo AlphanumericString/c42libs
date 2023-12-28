@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ll_list_tests.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:17:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/14 17:26:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:19:37 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -572,26 +572,51 @@ int	test_listpop_back(void)
 	t_list	*list;
 	int		*data;
 	int		*data2;
+	int		*data3;
 	void	*pop;
 
 	data = malloc(sizeof(int));
 	*data = 42;
 	data2 = malloc(sizeof(int));
 	*data2 = 21;
+	data3 = malloc(sizeof(int));
+	*data3 = 63;
 	list = NULL;
-	ft_listpush(&list, data);
-	ft_listpush(&list, data2);
-	pop = ft_listpop_back(&list);
+	ft_listpush(&list, data); // (42)-> NULL
+	ft_listpush(&list, data2); // (21)-> (42)-> NULL
+	ft_listpush(&list, data3); // (63)-> (21)-> (42)-> NULL
+	pop = ft_listpop_back(&list); // 42 : (63)-> (21)-> NULL
+	if (list == NULL) // was list destroyed ?
+		return (1);
+	else if (list->data != data3) // is first elem of list 63
+		return (1);
+	else if (list->next == NULL) // is second elem present
+		return (1);
+	else if (list->next->data != data2) // is second elem 21
+		return (1);
+	else if (list->next->next != NULL) // was the end of the list ptr set to smth bad?
+		return (1);
+	else if (pop != data) // was elem pulled out 42 ?
+		return (1);
+	pop = ft_listpop_back(&list); // 21 : (63)->NULL
 	if (list == NULL)
 		return (1);
-	else if (list->data != data2)
+	else if (list->next != NULL) 
 		return (1);
-	else if (list->next != NULL)
+	else if (list->data != data3)
 		return (1);
-	else if (pop != data)
+	else if (pop != data2)
 		return (1);
-	ft_listclear(&list, free);
-	free(pop);
+	pop = ft_listpop_back(&list); // 63 : NULL
+	if (list != NULL)
+		return (1);
+	else if (pop != data3)
+		return (1);
+	if (ft_listpop_back(&list) != NULL)
+		return (1);
+	free(data);
+	free(data2);
+	free(data3);
 	return (0);
 }
 
@@ -621,6 +646,13 @@ int	test_listrev(void)
 	else if (rev->next->next != NULL)
 		return (1);
 	ft_listclear(&rev, free);
+	rev = NULL;
+	rev = ft_listrev(NULL);
+	if (rev != NULL)
+		return (1);
+	rev = ft_listrev(&rev);
+	if (rev != NULL)
+		return (1);
 	return (0);
 }
 

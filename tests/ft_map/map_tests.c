@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tests.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/14 15:30:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/15 22:19:48 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,18 @@ int	test_map_destroy(void)
 int	test_map_destroy_free(void)
 {
 	t_map	*map;
+	char	*key;
+	char	*value;
 
-	map = ft_map_create(10);
+	key		= strdup("keys");
+	value	= strdup("values");
+
+	map	= ft_map_create(10);
 	ft_map_destroy_free(map, NULL);
+	map = ft_map_create(15);
+	ft_map_set(map, key, value, strlen(key));
+	ft_map_destroy_free(map, free);
+	free(key);
 	return (0);
 }
 
