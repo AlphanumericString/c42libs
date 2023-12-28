@@ -6,7 +6,7 @@
 /*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:17:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/16 19:19:37 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/18 15:20:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	test_listadd_front(void)
 	*data = 42;
 	data2 = malloc(sizeof(int));
 	*data2 = 21;
-	list = ft_listcreate(data2);
+	list = NULL;
+	ft_listadd_front(&list, ft_listcreate(data2));
 	ft_listadd_front(&list, ft_listcreate(data));
 	if (list == NULL)
 		return (1);
@@ -116,6 +117,17 @@ int	test_listapply(void)
 		return (1);
 	else if (list->next->next != NULL)
 		return (1);
+	ft_listapply(list, NULL);
+	if (list == NULL)
+		return (1);
+	else if (*(int *)list->data != data4)
+		return (1);
+	else if (list->next == NULL)
+		return (1);
+	else if (*(int *)list->next->data != data3)
+		return (1);
+	else if (list->next->next != NULL)
+		return (1);
 	ft_listclear(&list, free);
 	return (0);
 }
@@ -142,6 +154,16 @@ int	test_listapply_range(void)
 		return (1);
 	else if (list->next->next != NULL)
 		return (1);
+	ft_listapply_range(list, list->next, NULL);
+	if (*(int *)list->data != data3)
+		return (1);
+	else if (list->next == NULL)
+		return (1);
+	else if (*(int *)list->next->data != 21)
+		return (1);
+	else if (list->next->next != NULL)
+		return (1);
+	ft_listapply_range(NULL, NULL, add42);
 	ft_listclear(&list, free);
 	return (0);
 }
@@ -168,6 +190,16 @@ int	test_listapply_range_node(void)
 		return (1);
 	else if (list->next->next != NULL)
 		return (1);
+	ft_listapply_range_node(list, list->next, NULL);
+	if (*(int *)list->data != data3)
+		return (1);
+	else if (list->next == NULL)
+		return (1);
+	else if (*(int *)list->next->data != 21)
+		return (1);
+	else if (list->next->next != NULL)
+		return (1);
+	ft_listapply_range_node(NULL, NULL, lnode_add42);
 	ft_listclear(&list, free);
 	return (0);
 }
@@ -183,6 +215,7 @@ int	test_listclear(void)
 	ft_listclear(&list, NULL);
 	list = ft_listcreate(data);
 	ft_listclear(&list, free);
+	ft_listclear(NULL, NULL);
 	return (0);
 }
 
