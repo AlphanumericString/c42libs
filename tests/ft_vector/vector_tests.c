@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vector_tests.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:30:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/15 20:25:34 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/29 13:40:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include "tests/tests.h"
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -125,8 +127,8 @@ int	test_vec_cat(void)
 	bool		ret;
 	t_vector	*vec_a;
 	t_vector	*vec_b;
-
 	int a, b, c, d, e, f;
+
 	vec_a = ft_vec_from_size(6);
 	vec_b = ft_vec_new();
 	a = 42;
@@ -135,12 +137,15 @@ int	test_vec_cat(void)
 	d = 45;
 	e = 46;
 	f = 47;
+	
 	ft_vec_add(&vec_a, &a); // 42
 	ft_vec_add(&vec_a, &b); // 42 43
 	ft_vec_add(&vec_a, &c); // 42 43 44
+	
 	ft_vec_add(&vec_b, &d); // 45
 	ft_vec_add(&vec_b, &e); // 45 46
 	ft_vec_add(&vec_b, &f); // 45 46 47
+	
 	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
 	if (ret != true)
 		return (1);
@@ -158,12 +163,14 @@ int	test_vec_cat(void)
 		return (1);
 	else if (*(int *)ft_vec_at(vec_a, 5) != 47)
 		return (1);
+	
 	ft_vec_destroy(&vec_a);
-
 	vec_a = ft_vec_new();	
+	
 	ft_vec_add(&vec_a, &a); // 42
 	ft_vec_add(&vec_a, &b); // 42 43
 	ft_vec_add(&vec_a, &c); // 42 43 44
+	
 	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
 	if (ret != false)
 		return (1);
@@ -175,6 +182,7 @@ int	test_vec_cat(void)
 		return (1);
 	else if (*(int *)ft_vec_at(vec_a, 2) != 44)
 		return (1);
+	ft_vec_destroy(&vec_a);
 	ft_vec_destroy(&vec_b);
 	return (0);
 }
@@ -670,107 +678,54 @@ int	tests_vector(void)
 {
 	int ret;
 
-	ret = 0;
+	ret = test_vec_add();
+	LOG_TESTS(ret, test_vec_add)
+
+	ret = test_vec_apply();
+	LOG_TESTS(ret, test_vec_apply)
 	
-	if (test_vec_add() != 0)
-	{
-		printf("test_vec_add: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_apply() != 0)
-	{
-		printf("test_vec_apply: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_at() != 0)
-	{
-		printf("test_vec_at: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_cat() != 0)
-	{
-		printf("test_vec_cat: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_clear() != 0)
-	{
-		printf("test_vec_clear: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_destroy() != 0)
-	{
-		printf("test_vec_destroy: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_filter() != 0)
-	{
-		printf("test_vec_filter: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_map() != 0)
-	{
-		printf("test_vec_map: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_new() != 0)
-	{
-		printf("test_vec_new: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_from_size() != 0)
-	{
-		printf("test_vec_from_size: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_from_array() != 0)
-	{
-		printf("test_vec_from_array: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_convert_alloc_array() != 0)
-	{
-		printf("test_vec_convert_alloc_array: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_remove() != 0)
-	{
-		printf("test_vec_remove: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_remove_if() != 0)
-	{
-		printf("test_vec_remove_if: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_reserve() != 0)
-	{
-		printf("test_vec_reserve: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_reverse() != 0)
-	{
-		printf("test_vec_reverse: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_shift() != 0)
-	{
-		printf("test_vec_shift: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_sort() != 0)
-	{
-		printf("test_vec_sort: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_shrink() != 0)
-	{
-		printf("test_vec_shrink: [FAIL]\n");
-		ret++;
-	}
-	if (test_vec_swap() != 0)
-	{
-		printf("test_vec_swap: [FAIL]\n");
-		ret++;
-	}
+	ret = test_vec_at();
+	LOG_TESTS(ret, test_vec_at)
+	
+	ret = test_vec_cat();
+	LOG_TESTS(ret, test_vec_cat)
+	
+	ret = test_vec_clear();
+	LOG_TESTS(ret, test_vec_clear)
+	
+	ret = test_vec_destroy();
+	LOG_TESTS(ret, test_vec_destroy)
+	
+	ret = test_vec_filter();
+	LOG_TESTS(ret, test_vec_filter)
+	
+	ret = test_vec_map();
+	LOG_TESTS(ret, test_vec_map)
+	
+	ret = test_vec_new();
+	LOG_TESTS(ret, test_vec_new)
+	
+	ret = test_vec_from_size();
+	LOG_TESTS(ret, test_vec_from_size)
+	ret = test_vec_from_array();
+	LOG_TESTS(ret, test_vec_from_array)
+	ret = test_vec_convert_alloc_array();
+	LOG_TESTS(ret, test_vec_convert_alloc_array)
+	ret = test_vec_remove();
+	LOG_TESTS(ret, test_vec_remove)
+	ret = test_vec_remove_if();
+	LOG_TESTS(ret, test_vec_remove_if)
+	ret = test_vec_reserve();
+	LOG_TESTS(ret, test_vec_reserve)
+	ret = test_vec_reverse();
+	LOG_TESTS(ret, test_vec_reverse)
+	ret = test_vec_shift();
+	LOG_TESTS(ret, test_vec_shift)
+	ret = test_vec_sort();
+	LOG_TESTS(ret, test_vec_sort)
+	ret = test_vec_shrink();
+	LOG_TESTS(ret, test_vec_shrink)
+	ret = test_vec_swap();
+	LOG_TESTS(ret, test_vec_swap)
 	return (ret);
 }

@@ -44,6 +44,8 @@
 *.gcno
 *.gcda
 *.gcov
+*.profraw
+*.profdata
 
 # Kernel Module Compile Results
 *.mod*
@@ -64,4 +66,3 @@ tests_run
 coverage
 Doxygen
 tools
-

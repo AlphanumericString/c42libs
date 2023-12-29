@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/28 16:46:05 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/29 14:35:40 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC			=	clang
 NAME		=	ft_personal
 COV			=	llvm-cov
 PRD			=	llvm-profdata
-ECHO		=	echo -e
+ECHO		=	$(shell which echo) -e
 
 # check if we found llvm-cov and llvm-profdata
 # if not, we try to find the version 12 (42 version)
@@ -32,10 +32,11 @@ ifeq (, $(shell which $(PRD) 2> /dev/null))
 	PRD			=	llvm-profdata-12
 endif
 
-SRC_DIR			=	./src
-BUILD_DIR		=	./build
-INC_DIR			=	./include
-COVERAGE_DIR	=	./coverage
+SRC_DIR			=	src
+BUILD_DIR		=	build
+TESTS_DIR		=	tests
+INC_DIR			=	include
+COVERAGE_DIR	=	coverage
 
 LDFLAGS		=	
 CPPFLAGS	=	-I$(INC_DIR)
@@ -44,13 +45,12 @@ TEST_FLAGS	=\
 			-g2											\
 			-DDEBUG	-DTEST								\
 			-fprofile-arcs	-ftest-coverage 			\
-			-fprofile-instr-generate --coverage 		\
+			-fprofile-instr-generate			 		\
 			-fcoverage-mapping
 
 TARGET		?=	"ALL"
 
 FT_MAP_DIR	=	ft_map
-#			$(FT_MAP_DIR)/ft_map_apply.c		\
 
 FT_MAP_SRC	=	\
 			$(FT_MAP_DIR)/ft_map_clear.c		\
@@ -188,7 +188,6 @@ FT_CONF_SRC	=	\
 			$(CONF_DIR)/ftc_baseop.c		\
 			$(CONF_DIR)/ftc_get_parser.c
 
-TESTS_DIR	=	./tests
 TESTS_SRC	=	\
 			$(TESTS_DIR)/ft_list/ll_list_tests.c	\
 			$(TESTS_DIR)/ft_list/dl_list_tests.c	\
@@ -205,23 +204,25 @@ STABLE		=	\
 UNSTABLE	=	\
 			$(CONF_SRC)			\
 
-SRC_DIR_DIR	=
+INNER_SRC	=
 
-SRC_DIR_DIR   += \
+INNER_SRC   += \
 			$(STABLE)
 
 ifeq (UNSTABLE, $(findstring UNSTABLE, $(TARGET)))
-SRC_DIR_DIR   += \
+INNER_SRC   += \
 			$(UNSTABLE)
 endif
 ifeq (ALL, $(findstring ALL, $(TARGET)))
-SRC_DIR_DIR   = \
+INNER_SRC   = \
 			$(STABLE)	\
 			$(UNSTABLE)
 endif
 
-SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_DIR_DIR))
-OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(SRC_DIR_DIR)))
+SRCS		=	$(addprefix $(SRC_DIR)/, $(INNER_SRC))
+OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(INNER_SRC)))
+TOBJ		=	$(patsubst %.c, %.test.o, $(addprefix $(BUILD_DIR)/$(TESTS_DIR)/,$(INNER_SRC)))
+TOBJ		+=	$(patsubst %.c, %.test.o, $(addprefix $(BUILD_DIR)/,$(TESTS_SRC)))
 
 CLOG_FILE	=	./compilation.log
 
@@ -229,7 +230,25 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(ECHO) -n	$(GRAY)	"building from " $< "..." $(RESET)
 	@mkdir -p $(dir $@)
 	@( $(CC) $(CFLAGS) -c $< -o $@ 2>> $(CLOG_FILE) 	&& \
-	$(ECHO) $(GREEN) "Success" $(RESET) )					|| \
+	$(ECHO) $(GREEN) "Success" $(RESET) )				|| \
+	$(ECHO) $(RED) "Failed" $(RESET)					\
+	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
+
+$(BUILD_DIR)/$(TESTS_DIR)/%.test.o: $(SRC_DIR)/%.c
+	@$(ECHO) -n	$(GRAY)	"building from " $< "..." $(RESET)
+	@mkdir -p $(dir $@)
+	@( $(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@		\
+	2>>	$(CLOG_FILE) 									&& \
+	$(ECHO) $(GREEN) "Success" $(RESET) )				|| \
+	$(ECHO) $(RED) "Failed" $(RESET)					\
+	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
+
+$(BUILD_DIR)/$(TESTS_DIR)/%.test.o: $(TESTS_DIR)/%.c
+	@$(ECHO) -n	$(GRAY)	"building from " $< "..." $(RESET)
+	@mkdir -p $(dir $@)
+	@( $(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@		\
+	2>>	$(CLOG_FILE) 									&& \
+	$(ECHO) $(GREEN) "Success" $(RESET) )				|| \
 	$(ECHO) $(RED) "Failed" $(RESET)					\
 	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
 
@@ -252,39 +271,24 @@ lib$(NAME).a:	$(OBJ)
 	$(ECHO) $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) 	|| \
 	$(ECHO) $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
-tests_run:
-	@make -C ./ re CFLAGS="$(CFLAGS) $(TEST_FLAGS)" 			\
-	LDFLAGS="$(LDFLAGS) -lgcov" 								&& \
-	$(CC) $(CFLAGS) $(OBJ) $(TESTS_SRC) -o tests_run 			\
-	$(TEST_FLAGS) $(LDFLAGS)
-	@$(ECHO) -n $(GRAY) "Running tests ... " $(RESET)				&& \
+tests_run: $(TOBJ)
+	@$(ECHO) -n $(GRAY) "Compiling tests ... " $(RESET)
+	@$(CC) $(CFLAGS) $(TOBJ) -o tests_run $(TEST_FLAGS)			\
+	$(LDFLAGS) -lgcov 2> /dev/null								&& \
+	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
+	$(ECHO) $(RED) "Failed" $(RESET)
+	@$(ECHO) -n $(GRAY) "Running tests ... " $(RESET)			&& \
 	./tests_run 												&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
-# test tp reduce ulimit -s stack size to force a malloc error
-# test to reduce ulimit -n file descriptor to force a open error
-# should check if the lib is checking for syscall error and add
-# the result to the coverage...
-# may need to add other tests src for this as current tests
-#  expect malloc, open, read, write, close, free to succeed...
-######### the line below is non implemented due to the reason stated above ############
-# 	ulimit -S -n 2048											\
-	./tests_run													&& \
-	$(PRD) merge -sparse default.profraw -o 					\
-	tests_run.profdata											&& \
-	ulimit -s 1000 												\
-	./tests_run													&& \
-	$(PRD) merge -sparse default.profraw -o 					\
-	tests_run.profdata											&& \
-
-coverage: tests_run
+$(COVERAGE_DIR): tests_run
 	@$(ECHO) -n $(GRAY) "Generating profraw ... " $(RESET)			&& \
 	./tests_run													&& \
 	$(ECHO) -n $(GRAY) " profdata ... " $(RESET)					&& \
 	$(PRD) merge -sparse default.profraw -o 					\
 	tests_run.profdata											&& \
-	$(ECHO) -n $(GRAY) "coverage in html ... "			\
+	$(ECHO) -n $(GRAY) "coverage in html ... "					\
 	$(RESET)													&& \
 	$(COV) show -format=html									\
 	-instr-profile=tests_run.profdata							\
@@ -297,8 +301,8 @@ coverage: tests_run
 
 
 debug:
-	@$(ECHO) -n $(GRAY) "Compiling debug, flags are" $(RESET) 		\
-	"$(CFLAGS) $(DEBUG_FLAGS)" $(GRAY) "..." $(RESET)			&& \
+	@$(ECHO) $(GRAY) "Compiling debug, flags are" $(RESET) 		\
+	"$(CFLAGS) $(DEBUG_FLAGS)" $(RESET)							&& \
 	make -C ./ re CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"				&& \
 	make -C ./ so CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"				&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
@@ -344,4 +348,4 @@ re:	fclean all
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
-.PHONY: re fclean clean tests_run
+.PHONY: re fclean clean

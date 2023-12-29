@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:45 by iron              #+#    #+#             */
-/*   Updated: 2023/12/14 15:17:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:16:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ t_dlist	*ft_list_dl_subrange(t_dlist *src, t_dlist *to)
 	if (!src)
 		return (ret);
 	ret = ft_list_dl_create(src->data);
-	prev = ret;
-	if (src == to || src->next == to)
+	if (src == to)
 		return (ret);
+	prev = ret;
 	it = src->next;
 	while (it != to)
 	{

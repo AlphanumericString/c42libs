@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_create.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:11:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 21:17:12 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/29 12:20:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_map	*ft_map_create(size_t size)
 	map->capacity = size;
 	map->size = 0;
 	map->nodes = ft_calloc(sizeof(map->nodes[0]), size);
-	map->hash = &ft_map_hash;
+	map->hash = &ft_hash_djb2;
 	map->cmp = (int (*)(void *, void *)) & ft_strcmp;
 	if (!map->nodes)
 		return (free(map), NULL);

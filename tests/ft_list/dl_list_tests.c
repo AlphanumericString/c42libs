@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   dl_list_tests.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:37:03 by iron              #+#    #+#             */
-/*   Updated: 2023/12/16 08:18:37 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/29 16:40:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "tests/tests.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -213,7 +214,6 @@ int	test_dlistclear(void)
 	list = ft_list_dl_create(data);
 	ft_list_dl_clear(&list, free);
 	return (0);
-	return (0);
 }
 
 int test_dlistclear_range(void)
@@ -232,32 +232,49 @@ int test_dlistclear_range(void)
 	list = NULL;
 	ft_list_dl_add_back(&list, ft_list_dl_create(data));
 	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
-	ft_list_dl_add_back(&list, ft_list_dl_create(data3));
-	ft_list_dl_clear_range(list->next, list->next->next, NULL);
+	ft_list_dl_add_back(&list, ft_list_dl_create(data3)); // data -> data2 -> data3
+	ft_list_dl_clear_range(list->next, list->next->next, NULL); // data -> NULL -> data3
 	if (list == NULL)
 		return (1);
 	else if (list->data != data)
 		return (1);
 	else if (list->next == NULL)
 		return (1);
-	else if (list->next->data != data3)
+	else if (list->next->data != NULL)
 		return (1);
-	else if (list->next->next != NULL)
+	else if (list->next->next == NULL)
 		return (1);
-	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
-	ft_list_dl_clear_range(list->next, list->next->next, free);
+	else if (list->next->next->data != data3)
+		return (1);
+	else if (list->next->next->next != NULL)
+		return (1);
+
+	ft_list_dl_add_back(&list, ft_list_dl_create(data2)); // data -> NULL -> data3 -> data2
+
+	ft_list_dl_clear_range(list->next->next, NULL, free); // data -> NULL -> NULL -> NULL
 	if (list == NULL)
 		return (1);
 	else if (list->data != data)
 		return (1);
 	else if (list->next == NULL)
 		return (1);
-	else if (list->next->data != data2)
+	else if (list->next->data != NULL)
 		return (1);
-	else if (list->next->next != NULL)
+	else if (list->next->next == NULL)
 		return (1);
+	else if (list->next->next->data != NULL)
+		return (1);
+	else if (list->next->next->next == NULL)
+		return (1);
+	else if (list->next->next->next->data != NULL)
+		return (1);
+	else if (list->next->next->next->next != NULL)
+		return (1);
+
 	ft_list_dl_clear_range(list, NULL, free);
 	ft_list_dl_clear_range(NULL, NULL, free);
+
+	ft_list_dl_delete_range(list, NULL, NULL); // delete nodes
 	return (0);
 }
 
@@ -400,9 +417,9 @@ int	test_dlistdelete_range(void)
 	*data3 = 63;
 	list = ft_list_dl_create(data);
 	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
-	ft_list_dl_add_back(&list, ft_list_dl_create(data3));
-	list2 = list->next;
-	nb_deleted = ft_list_dl_delete_range(list, list->next, NULL);
+	ft_list_dl_add_back(&list, ft_list_dl_create(data3)); // NULL <-(42)<=>(21)<=>(63)-> NULL
+	list2 = list->next; // 42 <-(21)<=>(63)-> NULL
+	nb_deleted = ft_list_dl_delete_range(list, list->next, NULL); // NULL <-(21)<=>(63)-> NULL
 	if (nb_deleted != 1)
 		return (1);
 	else if (*(int *)list2->data != *data2)
@@ -414,8 +431,22 @@ int	test_dlistdelete_range(void)
 	else if (list2->next->next != NULL)
 		return (1);
 	
+	ft_list_dl_add_front(&list2, ft_list_dl_create(data)); // NULL <-(42)<=>(21)<=>(63)-> NULL
+	list = list2;
+
+	nb_deleted = ft_list_dl_delete_range(list->next, list->next->next, free); // NULL <-(42)<=>(63)-> NULL
+	if (nb_deleted != 1)
+		return (1);
+	else if (*(int *)list2->data != *data)
+		return (1);
+	else if (list2->next == NULL)
+		return (1);
+	else if (*(int *)list2->next->data != *data3)
+		return (1);
+	else if (list2->next->next != NULL)
+		return (1);
+	
 	ft_list_dl_clear(&list2, free);
-	free(data);
 	return (0);
 }
 
@@ -768,14 +799,18 @@ int	test_dlist_push_back(void)
 	t_dlist	*list;
 	int		*data1;
 	int		*data2;
+	int 	*data3;
 
 	data1 = malloc(sizeof(int));
 	*data1 = 42;
 	list = NULL;
 	data2 = malloc(sizeof(int));
 	*data2 = 21;
-	ft_list_dl_push(&list, data1);
+	data3 = malloc(sizeof(int));
+	*data3 = 63;
+	ft_list_dl_push_back(&list, data1);
 	ft_list_dl_push_back(&list, data2);
+	ft_list_dl_push_back(&list, data3);
 	if (list == NULL)
 		return (1);
 	else if (list->data != data1)
@@ -784,7 +819,12 @@ int	test_dlist_push_back(void)
 		return (1);
 	else if (list->next->data != data2)
 		return (1);
-	
+	else if (list->next->next == NULL)
+		return (1);
+	else if (list->next->next->data != data3)
+		return (1);
+	else if (list->next->next->next != NULL)
+		return (1);
 	ft_list_dl_clear(&list, free);
 	return (0);
 }
@@ -899,6 +939,7 @@ int	test_dlist_subrange(void)
 	list = ft_list_dl_create(data1);
 	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
 	ft_list_dl_add_back(&list, ft_list_dl_create(data3));
+	
 	sub = ft_list_dl_subrange(list, list->next);
 	if (sub == NULL)
 		return (1);
@@ -907,6 +948,7 @@ int	test_dlist_subrange(void)
 	else if (sub->next != NULL)
 		return (1);
 	ft_list_dl_clear(&sub, NULL);
+
 	sub = ft_list_dl_subrange(list, list->next->next);
 	if (sub == NULL)
 		return (1);
@@ -918,10 +960,22 @@ int	test_dlist_subrange(void)
 		return (1);
 	else if (sub->next->next != NULL)
 		return (1);
-	ft_list_dl_clear(&list, free);
 	ft_list_dl_clear(&sub, NULL);
-	if (ft_list_dl_subrange(NULL, NULL) != NULL)
+	
+	sub = ft_list_dl_subrange(NULL, NULL);
+	if (sub != NULL)
 		return (1);
+
+	sub = ft_list_dl_subrange(list, list);
+	if (sub == NULL)
+		return (1);
+	else if (sub->data != data1)
+		return (1);
+	else if (sub->next != NULL)
+		return (1);
+	ft_list_dl_clear(&sub, NULL);
+
+	ft_list_dl_clear(&list, free);
 	return (0);
 }
 
@@ -929,180 +983,92 @@ int	tests_doubly_linked_list_all(void)
 {
 	int ret;
 
-	ret = 0;
-	if (test_dlistadd_front())
-	{
-		printf("test_dlistadd_front: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistadd_back())
-	{
-		printf("test_dlistadd_back: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistapply())
-	{
-		printf("test_dlistapply: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistapply_range())
-	{
-		printf("test_dlistapply_range: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistapply_range_node())
-	{
-		printf("test_dlistapply_range_node: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistclear())
-	{
-		printf("test_dlistclear: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistclear_range())
-	{
-		printf("test_dlistclear_range: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistcreate())
-	{
-		printf("test_dlistcreate: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistcopy_node())
-	{
-		printf("test_dlistcopy_node: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistcopy_list())
-	{
-		printf("test_dlistcopy_list: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_delete_self())
-	{
-		printf("test_dlist_delete_self: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistdelete_range())
-	{
-		printf("test_dlistdelete_range: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistdelete())
-	{
-		printf("test_dlistdelete: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistfind())
-	{
-		printf("test_dlistfind: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistget_datas())
-	{
-		printf("test_dlistget_datas: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlistget_nodes())
-	{
-		printf("test_dlistget_nodes: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_at())
-	{
-		printf("test_dlist_at: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_begin())
-	{
-		printf("test_dlist_begin: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_end())
-	{
-		printf("test_dlist_end: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_map())
-	{
-		printf("test_dlist_map: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_new())
-	{
-		printf("test_dlist_new: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_pop())
-	{
-		printf("test_dlist_pop: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_pop_back())
-	{
-		printf("test_dlist_pop_back: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_push())
-	{
-		printf("test_dlist_push: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_push_back())
-	{
-		printf("test_dlist_push_back: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_rev())
-	{
-		printf("test_dlist_rev: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_size())
-	{
-		printf("test_dlist_size: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_size_of_data())
-	{
-		printf("test_dlist_size_of_data: [FAIL]\n");
-		ret++;
-	}
-	if (test_dlist_subrange())
-	{
-		printf("test_dlist_subrange: [FAIL]\n");
-		ret++;
-	}
-	return (ret);
-	// ret += test_dlistadd_front();
-	// ret += test_dlistadd_back();
-	// ret += test_dlistapply();
-	// ret += test_dlistapply_range();
-	// ret += test_dlistapply_range_node();
-	// ret += test_dlistclear();
-	// ret += test_dlistclear_range();
-	// ret += test_dlistcreate();
-	// ret += test_dlistcopy_node();
-	// ret += test_dlistcopy_list();
-	// ret += test_dlist_delete_self();
-	// ret += test_dlistdelete_range();
-	// ret += test_dlistfind();
-	// ret += test_dlistget_datas();
-	// ret += test_dlistget_nodes();
-	// ret += test_dlist_at();
-	// ret += test_dlist_begin();
-	// ret += test_dlist_end();
-	// ret += test_dlist_map();
-	// ret += test_dlist_new();
-	// ret += test_dlist_pop();
-	// ret += test_dlist_pop_back();
-	// ret += test_dlist_push();
-	// ret += test_dlist_push_back();
-	// ret += test_dlist_rev();
-	// ret += test_dlist_size();
-	// ret += test_dlist_size_of_data();
-	// ret += test_dlist_subrange();
+	ret = test_dlistadd_front();
+	LOG_TESTS(ret, test_dlistadd_front);
+
+	ret = test_dlistadd_back();
+	LOG_TESTS(ret, test_dlistadd_back);
+
+	ret = test_dlistapply();
+	LOG_TESTS(ret, test_dlistapply)
+
+	ret = test_dlistapply_range();
+	LOG_TESTS(ret, test_dlistapply_range)
+
+	ret = test_dlistapply_range_node();
+	LOG_TESTS(ret, test_dlistapply_range_node)
+
+	ret = test_dlistclear();
+	LOG_TESTS(ret, test_dlistclear)
+	
+	ret = test_dlistclear_range();
+	LOG_TESTS(ret, test_dlistclear_range)
+	
+	ret = test_dlistcreate();
+	LOG_TESTS(ret, test_dlistcreate)
+	
+	ret = test_dlistcopy_node();
+	LOG_TESTS(ret, test_dlistcopy_node)
+	
+	ret = test_dlistcopy_list();
+	LOG_TESTS(ret, test_dlistcopy_list)
+	
+	ret = test_dlist_delete_self();
+	LOG_TESTS(ret, test_dlist_delete_self)
+
+	ret = test_dlistdelete();
+	LOG_TESTS(ret, test_dlistdelete)
+	
+	ret = test_dlistdelete_range();
+	LOG_TESTS(ret, test_dlistdelete_range)
+	
+	ret = test_dlistfind();
+	LOG_TESTS(ret, test_dlistfind)
+	
+	ret = test_dlistget_datas();
+	LOG_TESTS(ret, test_dlistget_datas)
+	
+	ret = test_dlistget_nodes();
+	LOG_TESTS(ret, test_dlistget_nodes)
+	
+	ret = test_dlist_at();
+	LOG_TESTS(ret, test_dlist_at)
+	
+	ret = test_dlist_begin();
+	LOG_TESTS(ret, test_dlist_begin)
+	
+	ret = test_dlist_end();
+	LOG_TESTS(ret, test_dlist_end)
+	
+	ret = test_dlist_map();
+	LOG_TESTS(ret, test_dlist_map)
+	
+	ret = test_dlist_new();
+	LOG_TESTS(ret, test_dlist_new)
+	
+	ret = test_dlist_pop();
+	LOG_TESTS(ret, test_dlist_pop)
+	
+	ret = test_dlist_pop_back();
+	LOG_TESTS(ret, test_dlist_pop_back)
+	
+	ret = test_dlist_push();
+	LOG_TESTS(ret, test_dlist_push)
+	
+	ret = test_dlist_push_back();
+	LOG_TESTS(ret, test_dlist_push_back)
+	
+	ret = test_dlist_rev();
+	LOG_TESTS(ret, test_dlist_rev)
+	
+	ret = test_dlist_size();
+	LOG_TESTS(ret, test_dlist_size)
+	
+	ret = test_dlist_size_of_data();
+	LOG_TESTS(ret, test_dlist_size_of_data)
+	
+	ret = test_dlist_subrange();
+	LOG_TESTS(ret, test_dlist_subrange)
+	
 	return (ret);
 }

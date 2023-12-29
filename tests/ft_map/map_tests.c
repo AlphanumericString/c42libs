@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_tests.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/15 22:19:48 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/29 16:24:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_map.h"
+#include "tests/tests.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -45,10 +47,16 @@ int	test_map_destroy_free(void)
 	value	= strdup("values");
 
 	map	= ft_map_create(10);
+	ft_map_set(map, key, value, strlen(key));
 	ft_map_destroy_free(map, NULL);
+	// check we can still access the data
+	key[0] = 'k';
+	value[0] = 'v';
+
 	map = ft_map_create(15);
 	ft_map_set(map, key, value, strlen(key));
-	ft_map_destroy_free(map, free);
+	ft_map_destroy_free(map, free); // free the data -> value
+	
 	free(key);
 	return (0);
 }
@@ -59,7 +67,6 @@ int	test_map_clear(void)
 
 	map = ft_map_create(10);
 	ft_map_clear(map);
-	return (0);
 	ft_map_destroy(map);
 	return (0);
 }
@@ -232,15 +239,27 @@ int	test_map_remove(void)
 	ft_map_remove(map, "key2", strlen("key2") + 1);
 	if (map->size != 1)
 		return (1);
+	ft_map_destroy(map);
 	free(str);
 	return (0);
 }
 
+// we dont really test the hash function, we just test that 
+// it doesn't overflow our map
 int	test_map_hash(void)
 {
 	size_t	ret;
 
-	ret = ft_map_hash("key", 10, strlen("key") + 1);
+	ret = ft_hash_djb2("key", 10, strlen("key") + 1);
+	if (ret >= 10)
+		return (1);
+	ret = ft_hash_sdbm("key", 10, strlen("key") + 1);
+	if (ret >= 10)
+		return (1);
+	ret = ft_hash_fnv1a("key", 10, strlen("key") + 1);
+	if (ret >= 10)
+		return (1);
+	ret = ft_hash_dummy("key", 10, strlen("key") + 1);
 	if (ret >= 10)
 		return (1);
 	return (0);
@@ -250,66 +269,41 @@ int		tests_map(void)
 {
 	int	ret;
 
-	ret = 0;
-	if (test_map_create())
-	{
-		printf("test_map_create: [KO]\n");
-		ret++;
-	}
-	if (test_map_destroy())
-	{
-		printf("test_map_destroy: [KO]\n");
-		ret++;
-	}
-	if (test_map_destroy_free())
-	{
-		printf("test_map_destroy_free: [KO]\n");
-		ret++;
-	}
-	if (test_map_clear())
-	{
-		printf("test_map_clear: [KO]\n");
-		ret++;
-	}
-	if (test_map_set())
-	{
-		printf("test_map_set: [KO]\n");
-		ret++;
-	}
-	if (test_map_set_cmp())
-	{
-		printf("test_map_set_cmp: [KO]\n");
-		ret++;
-	}
-	if (test_map_set_hash())
-	{
-		printf("test_map_set_hash: [KO]\n");
-		ret++;
-	}
-	if (test_map_get())
-	{
-		printf("test_map_get: [KO]\n");
-		ret++;
-	}
-	if (test_map_size())
-	{
-		printf("test_map_size: [KO]\n");
-		ret++;
-	}
-	if (test_map_capacity())
-	{
-		printf("test_map_capacity: [KO]\n");
-		ret++;
-	}
-	if (test_map_remove())
-	{
-		printf("test_map_remove: [KO]\n");
-		ret++;
-	}
-	if (test_map_hash())
-	{
-		printf("test_map_hash: [KO]\n");
-		ret++;
-	}
+	ret = test_map_create();
+	LOG_TESTS(ret, test_map_create)
+
+	ret = test_map_destroy();
+	LOG_TESTS(ret, test_map_destroy)
+	
+	ret = test_map_destroy_free();
+	LOG_TESTS(ret, test_map_destroy_free)
+	
+	ret = test_map_clear();
+	LOG_TESTS(ret, test_map_clear)
+	
+	ret = test_map_set();
+	LOG_TESTS(ret, test_map_set)
+	
+	ret = test_map_set_cmp();
+	LOG_TESTS(ret, test_map_set_cmp)
+	
+	ret = test_map_set_hash();
+	LOG_TESTS(ret, test_map_set_hash)
+	
+	ret = test_map_get();
+	LOG_TESTS(ret, test_map_get)
+	
+	ret = test_map_size();
+	LOG_TESTS(ret, test_map_size)
+	
+	ret = test_map_capacity();
+	LOG_TESTS(ret, test_map_capacity)
+	
+	ret = test_map_remove();
+	LOG_TESTS(ret, test_map_remove)
+	
+	ret = test_map_hash();
+	LOG_TESTS(ret, test_map_hash)
+	
 	return (ret);
 }
