@@ -59,7 +59,9 @@ Todo
 *.log
 ./build/
 .vscode
+.clangd
 tests_run
 coverage
 Doxygen
 tools
+

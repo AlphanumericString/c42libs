@@ -20,7 +20,7 @@ bool	ft_vec_add(t_vector **vec, void *data)
 	{
 		nw_size = (*vec)->cappacity + FT_VECTOR_BASE_LEN;
 		if (ft_vec_reserve(vec, nw_size) == false)
-			return (ft_vec_destroy(vec), false);
+			return (false);
 	}
 	(*vec)->datas[(*vec)->count++] = data;
 	return (true);

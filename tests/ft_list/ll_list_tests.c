@@ -597,6 +597,10 @@ int	test_listpop(void)
 		return (1);
 	ft_listclear(&list, free);
 	free(pop);
+	if (ft_listpop(&list) != NULL)
+		return (1);
+	if (ft_listpop(NULL) != NULL)
+		return (1);
 	return (0);
 }
 

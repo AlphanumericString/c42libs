@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -229,6 +230,7 @@ int	test_vec_filter(void)
 	int			a;
 	int			b;
 	int			c;
+	int			*pa, *pb, *pc;
 
 	a = 42;
 	b = 43;
@@ -242,6 +244,27 @@ int	test_vec_filter(void)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42)
 		return (1);
+	ft_vec_clear(vec);
+
+	pa = malloc(sizeof(int));
+	*pa = 21;
+	pb = malloc(sizeof(int));
+	*pb = 42;
+	pc = malloc(sizeof(int));
+	*pc = 63;
+	
+	ft_vec_add(&vec, pa);
+	ft_vec_add(&vec, pb);
+	ft_vec_add(&vec, pc);
+
+	ft_vec_filter(vec, is42, free);
+
+	if (vec->count != 1)
+		return (1);
+	else if (ft_vec_at(vec, 0) != pb)
+		return (1);
+
+	ft_vec_apply(vec, free);
 	ft_vec_destroy(&vec);
 	return (0);
 }
@@ -401,9 +424,8 @@ int	test_vec_convert_alloc_array(void)
 int	test_vec_remove(void)
 {
 	t_vector	*vec;
-	int			a;
-	int			b;
-	int			c;
+	int			a,  b,   c;
+	int			*pa, *pb, *pc;
 
 	a = 42;
 	b = 43;
@@ -423,6 +445,31 @@ int	test_vec_remove(void)
 	ft_vec_remove(vec, 42, NULL);
 	if (vec->count != 2)
 		return (1);
+	ft_vec_destroy(&vec);
+	// create vector of allocated ints
+	// and try to call free on it.
+	vec = ft_vec_new();
+	pa = malloc(sizeof(int));
+	pb = malloc(sizeof(int));
+	pc = malloc(sizeof(int));
+
+	*pa = a;
+	*pb = b;
+	*pc = c;
+	
+	ft_vec_add(&vec, pa);
+	ft_vec_add(&vec, pb);
+	ft_vec_add(&vec, pc);
+	if (vec->count != 3)
+		return (1);
+	ft_vec_remove(vec, 1, free);
+	if (vec->count != 2)
+		return (1);
+	if (ft_vec_at(vec, 0) != pa)
+		return (1);
+	if (ft_vec_at(vec, 1) != pc)
+		return (1);
+	ft_vec_apply(vec, free);
 	ft_vec_destroy(&vec);
 	return (0);
 }
