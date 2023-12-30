@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:17:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/29 16:15:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:26:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static bool	is42(void *data)
+static bool	is42(const void *data)
 {
 	return (*(int *)data == 42);
 }
@@ -26,7 +26,7 @@ static void	add42(void *data)
 	*(int *)data += 42;
 }
 
-static void	*add42_ret(void *data)
+static void	*add42_ret(const void *data)
 {
 	int	*ret;
 
@@ -35,7 +35,7 @@ static void	*add42_ret(void *data)
 	return (ret);
 }
 
-static int	cmp_int(void *data1, void *data2)
+static int	cmp_int(const void *data1, const void *data2)
 {
 	return (*(int *)data1 - *(int *)data2);
 }

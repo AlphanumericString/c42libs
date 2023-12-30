@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:37:03 by iron              #+#    #+#             */
-/*   Updated: 2023/12/29 16:40:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:28:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-static int	compare_int(void *data1, void *data2)
+static int	compare_int(const void *data1, const void *data2)
 {
 	return (*(int *)data1 - *(int *)data2);
 }
 
-static bool	is42(void *data)
+static bool	is42(const void *data)
 {
 	return (*(int *)data == 42);
 }
@@ -31,7 +31,7 @@ static void	add42(void *data)
 	*(int *)data += 42;
 }
 
-static void	*add42_ret(void *data)
+static void	*add42_ret(const void *data)
 {
 	int	*ret;
 
@@ -336,7 +336,7 @@ int	test_dlistcopy_list(void)
 	*data2 = 21;
 	list = ft_list_dl_create(data);
 	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
-	copy = ft_list_dl_copy_list(list, NULL);
+	copy = ft_list_dl_copy_list(list);
 	if (copy == NULL)
 		return (1);
 	else if (copy->data != list->data)
