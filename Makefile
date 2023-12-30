@@ -6,37 +6,47 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/30 11:17:10 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/30 13:18:13 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# Colors
 GRAY		= "\\e[90m"
 GREEN		= "\\e[42m"
 RED			= "\\e[41m"
 RESET		= "\\e[0m"
 BOLD		= "\\e[1m"
 
+# Commands
 CC			=	clang
 NAME		=	ft_personal
 COV			=	llvm-cov
 PRD			=	llvm-profdata
 ECHO		=	$(shell which echo) -e
 
-# check if we found llvm-cov and llvm-profdata
-# if not, we try to find the version 12 (42 version)
-ifeq (, $(shell which $(COV) 2> /dev/null))
-	COV			=	llvm-cov-12
-endif
-
-ifeq (, $(shell which $(PRD) 2> /dev/null))
-	PRD			=	llvm-profdata-12
-endif
+# Directories
 
 SRC_DIR			=	src
 BUILD_DIR		=	build
 TESTS_DIR		=	tests
 INC_DIR			=	include
 COVERAGE_DIR	=	coverage
+
+FT_MAP_DIR		=	ft_map
+FT_LIST_DIR		=	ft_list
+FT_STRING_DIR	=	ft_string
+FT_CONF_DIR		=	ft_config
+FT_VEC_DIR		=	ft_vector
+
+# Counpound directories
+
+FT_LIST_LL_DIR	=	$(FT_LIST_DIR)/ft_ll
+FT_LIST_DL_DIR	=	$(FT_LIST_DIR)/ft_dl
+FT_MEM_DIR		=	$(FT_STRING_DIR)/ft_mem
+FT_STR_DIR		=	$(FT_STRING_DIR)/ft_str
+FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
+
+# Compilation flags
 
 LDFLAGS		=	
 CPPFLAGS	=	-I$(INC_DIR)
@@ -48,21 +58,22 @@ TEST_FLAGS	=\
 			-fprofile-instr-generate			 		\
 			-fcoverage-mapping
 
+# Inner variables
+
 TARGET		?=	"ALL"
+CLOG_FILE	=	./compilation.log
 
-FT_MAP_DIR		=	ft_map
-FT_LIST_DIR		=	ft_list
-FT_STRING_DIR	=	ft_string
-FT_CONF_DIR		=	ft_config
-FT_VEC_DIR		=	ft_vector
+# Check for llvm-cov and llvm-profdata
+#   If not found, use the version 12 (default on 42 VMs)
+ifeq (, $(shell which $(COV) 2> /dev/null))
+	COV			=	llvm-cov-12
+endif
 
-FT_LIST_LL_DIR	=	$(FT_LIST_DIR)/ft_ll
-FT_LIST_DL_DIR	=	$(FT_LIST_DIR)/ft_dl
-FT_MEM_DIR		=	$(FT_STRING_DIR)/ft_mem
-FT_STR_DIR		=	$(FT_STRING_DIR)/ft_str
-FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
+ifeq (, $(shell which $(PRD) 2> /dev/null))
+	PRD			=	llvm-profdata-12
+endif
 
-
+# Sources
 FT_MAP_SRC	=	\
 			$(FT_MAP_DIR)/ft_map_clear.c		\
 			$(FT_MAP_DIR)/ft_map_create.c		\
@@ -143,7 +154,6 @@ FT_STR_SRC	=\
 			$(FT_STR_DIR)/ft_strtok.c		\
 			$(FT_STR_DIR)/ft_strtrim.c		\
 			$(FT_STR_DIR)/ft_substr.c		\
-			$(FT_STR_DIR)/ft_swap.c			\
 			$(FT_STR_DIR)/ft_tolower.c		\
 			$(FT_STR_DIR)/ft_toupper.c		\
 			$(FT_STR_DIR)/ft_utoa.c				\
@@ -178,7 +188,8 @@ FT_MEM_SRC	=	\
 			$(FT_MEM_DIR)/ft_memmove.c		\
 			$(FT_MEM_DIR)/ft_memset.c		\
 			$(FT_MEM_DIR)/ft_qsort.c		\
-			$(FT_MEM_DIR)/ft_realloc.c
+			$(FT_MEM_DIR)/ft_realloc.c		\
+			$(FT_MEM_DIR)/ft_swap.c
 
 FT_VEC_SRC		=	\
 			$(FT_VEC_DIR)/ft_vec_add.c		\
@@ -197,7 +208,9 @@ FT_VEC_SRC		=	\
 			$(FT_VEC_DIR)/ft_vec_shrink.c	\
 			$(FT_VEC_DIR)/ft_vec_sort.c		\
 			$(FT_VEC_DIR)/ft_vec_swap.c
-			
+
+# Counpound sources
+
 FT_CONF_SRC		=	\
 			$(CONF_DIR)/ftc_baseop.c		\
 			$(CONF_DIR)/ftc_get_parser.c
@@ -211,12 +224,16 @@ FT_STRING_SRC	=	\
 			$(FT_STR_SRC)		\
 			$(FT_T_STRING_SRC)
 
+# Tests sources
+
 TESTS_SRC	=	\
 			$(TESTS_DIR)/ft_list/ll_list_tests.c	\
 			$(TESTS_DIR)/ft_list/dl_list_tests.c	\
 			$(TESTS_DIR)/ft_map/map_tests.c			\
 			$(TESTS_DIR)/ft_vector/vector_tests.c	\
 			$(TESTS_DIR)/main_tests.c
+
+# Inner variables for targets
 
 STABLE		=	\
 			$(FT_LIST_SRC)		\
@@ -227,28 +244,37 @@ STABLE		=	\
 UNSTABLE	=	\
 			$(CONF_SRC)			\
 
-INNER_SRC	=
-
-INNER_SRC   += \
+INNER_SRC   = \
 			$(STABLE)
 
+# Check if user wants to compile unstable sources
+#   to compile unstable sources run make with TARGET=UNSTABLE
 ifeq (UNSTABLE, $(findstring UNSTABLE, $(TARGET)))
 INNER_SRC   += \
 			$(UNSTABLE)
 endif
+# Check if user wants to compile all sources
+#   to compile all sources run make with TARGET=ALL
 ifeq (ALL, $(findstring ALL, $(TARGET)))
 INNER_SRC   = \
 			$(STABLE)	\
 			$(UNSTABLE)
 endif
 
+# Objects creation
+
+#   add prefix to sources to specify the directory src/
 SRCS		=	$(addprefix $(SRC_DIR)/, $(INNER_SRC))
+#   add prefix to sources to specify the directory build/ for objects
 OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(INNER_SRC)))
-TOBJ		=	$(patsubst %.c, %.test.o, $(addprefix $(BUILD_DIR)/$(TESTS_DIR)/,$(INNER_SRC)))
-TOBJ		+=	$(patsubst %.c, %.test.o, $(addprefix $(BUILD_DIR)/,$(TESTS_SRC)))
+#   add prefix to sources to specify the directory build/tests/ for test objects
+TOBJ		=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/$(TESTS_DIR)/,$(INNER_SRC)))
+TOBJ		+=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(TESTS_SRC)))
 
-CLOG_FILE	=	./compilation.log
 
+# Rules
+
+# Default rule for objects imported from src/
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(ECHO) -n	$(GRAY)	"building from " $< "..." $(RESET)
 	@mkdir -p $(dir $@)
@@ -257,7 +283,8 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(ECHO) $(RED) "Failed" $(RESET)					\
 	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
 
-$(BUILD_DIR)/$(TESTS_DIR)/%.test.o: $(SRC_DIR)/%.c
+# Rule for tests objects imported from src/
+$(BUILD_DIR)/$(TESTS_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(ECHO) -n	$(GRAY)	"building from " $< "..." $(RESET)
 	@mkdir -p $(dir $@)
 	@( $(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@		\
@@ -266,7 +293,8 @@ $(BUILD_DIR)/$(TESTS_DIR)/%.test.o: $(SRC_DIR)/%.c
 	$(ECHO) $(RED) "Failed" $(RESET)					\
 	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
 
-$(BUILD_DIR)/$(TESTS_DIR)/%.test.o: $(TESTS_DIR)/%.c
+# Rule for tests objects imported from tests/
+$(BUILD_DIR)/$(TESTS_DIR)/%.o: $(TESTS_DIR)/%.c
 	@$(ECHO) -n	$(GRAY)	"building from " $< "..." $(RESET)
 	@mkdir -p $(dir $@)
 	@( $(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@		\
@@ -275,10 +303,12 @@ $(BUILD_DIR)/$(TESTS_DIR)/%.test.o: $(TESTS_DIR)/%.c
 	$(ECHO) $(RED) "Failed" $(RESET)					\
 	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
 
+# Default rule
 all:	lib$(NAME).a
 
 so: lib$(NAME).so
 
+# Rule for shared library
 lib$(NAME).so:	$(OBJ)
 	@$(ECHO) -n $(GRAY) "Making ... " $(RESET) $(BOLD) 			\
 	"lib$(NAME).so" $(RESET) $(GRAY) " ... " $(RESET)
@@ -286,14 +316,15 @@ lib$(NAME).so:	$(OBJ)
 	$(ECHO) $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) )	|| \
 	$(ECHO) $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 	
-
+# Rule for static library
 lib$(NAME).a:	$(OBJ)
 	@$(ECHO) -n $(GRAY) "Making ... " $(RESET) $(BOLD)				\
 	"lib$(NAME).a" $(RESET)	$(GRAY) " ... " $(RESET)
-	@( $(AR) -rcs lib$(NAME).a $(OBJ) 2> /dev/null				&& \
+	@( $(AR) -rcs lib$(NAME).a $(OBJ) 2> /dev/null					&& \
 	$(ECHO) $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) 	|| \
 	$(ECHO) $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
+# Rule to compile and run tests
 tests_run: $(TOBJ)
 	@$(ECHO) -n $(GRAY) "Compiling tests ... " $(RESET)
 	@$(CC) $(CFLAGS) $(TOBJ) -o tests_run $(TEST_FLAGS)			\
@@ -305,6 +336,7 @@ tests_run: $(TOBJ)
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
+# Rule to generate coverage using llvm
 $(COVERAGE_DIR): tests_run
 	@$(ECHO) -n $(GRAY) "Generating profraw ... " $(RESET)			&& \
 	./tests_run													&& \
@@ -322,7 +354,7 @@ $(COVERAGE_DIR): tests_run
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
-
+# Rule to compile using debug flags
 debug:
 	@$(ECHO) $(GRAY) "Compiling debug, flags are" $(RESET) 		\
 	"$(CFLAGS) $(DEBUG_FLAGS)" $(RESET)							&& \
@@ -331,29 +363,33 @@ debug:
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
+# Rule to clean objects
 clean:
 	@$(ECHO) -n $(GRAY) "Clean ... " $(RESET)						&& \
-	( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) tests_run *.gcov		\
-	*.gcno *.gcda 2> /dev/null 									&& \
+	( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) tests_run *.gcov			\
+	*.gcno *.gcda 2> /dev/null 										&& \
 	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
+# Rule to clean objects and libraries/compiled files
 fclean: clean
 	@$(ECHO) -n $(GRAY) "FClean ... " $(RESET)						&& \
-	( $(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)		\
-	*.profraw *.profdata Doxygen 2> /dev/null 					&& \
+	( $(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)			\
+	*.profraw *.profdata Doxygen 2> /dev/null 						&& \
 	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
+# Rule to generate Doxygen documentation
 Doxygen:
 	@$(ECHO) -n $(GRAY) "Generating Doxygen ... " $(RESET)			&& \
 	( doxygen tools/doxyfile 2> /dev/null						&& \
 	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
-	
 
+# Rule to recompile
 re:	fclean all
 
+# rule to clean everything and make the project ready for 42 norm
 42ready: fclean
 	@$(ECHO) -n $(GRAY) "42ready ... " $(RESET)					&& \
 	$(RM) -rf $(COVERAGE_DIR) $(TESTS_DIR) tools README.md		\
@@ -371,4 +407,5 @@ re:	fclean all
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
+# rule to force rules to be executed even if files exist
 .PHONY: re fclean clean

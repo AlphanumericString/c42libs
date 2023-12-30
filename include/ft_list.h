@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:05:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:03:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ t_dlist	*ft_list_dl_create(const void *data);
 /// @brief Copy a node
 /// @param other The node to copy
 /// @return The new node
-/// @note The node is a copy of the original node but does not copy the data in a
-/// new ptr
+/// @note The node is a copy of the original node but does not copy the data
+/// in a new ptr
 t_dlist	*ft_list_dl_copy_node(const t_dlist *const other);
 
 /// @brief Copy a node
 /// @param other The node to copy
 /// @return The new node
-/// @note The node is a copy of the original node but does not copy the data in a
-/// new ptr. This is wgy it doesn't need a delete function.
+/// @note The node is a copy of the original node but does not copy the data
+/// in a new ptr. This is wgy it doesn't need a delete function.
 t_dlist	*ft_list_dl_copy_list(const t_dlist *const other);
 
 // ft_list/ft_list_dl_delete.c
@@ -378,7 +378,8 @@ t_list	*ft_listat(const t_list *lst, size_t index);
 /// @param f The function to apply
 /// @param del The function to delete the data if allocation fails
 /// @return The new list
-t_list	*ft_listmap(const t_list *lst, void *(*f)(const void *), t_data_apply del);
+t_list	*ft_listmap(const t_list *lst, void *(*f)(const void *),
+			t_data_apply del);
 
 // ft_list/ft_list_ll_new.c
 

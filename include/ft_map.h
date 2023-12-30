@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:17:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:16:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,20 @@ void		ft_map_clear(t_map *map);
 /// @file ft_map/ft_map_set.c
 /// @return 0 if the value was set, 1 if the key doesn't exist and couldn't be
 /// created
-int			ft_map_set(t_map *map, const void *key, const void *value, size_t size);
+int			ft_map_set(t_map *map, const void *key, const void *value,
+				size_t size);
 /// @brief Set the compare function of a map
 /// @param map map to set the compare function
 /// @param cmp compare function newly set
 /// @file ft_map/ft_map_set.c
 /// @return void
-void		ft_map_set_cmp(t_map *map, int (*cmp)(const void *, const void *));
+void		ft_map_set_cmp(t_map *map, t_anycmp cmp);
 /// @brief Set the hash function of a map
 /// @param map map to set the hash function
 /// @param hash hash function newly set
 /// @file ft_map/ft_map_set.c
 /// @return void
-void		ft_map_set_hash(t_map *map, size_t (*hash)(const void *, size_t, size_t));
+void		ft_map_set_hash(t_map *map, t_memhash hash);
 
 /// @brief Get a value from a map
 /// @param map map to get the value from

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/15 19:43:47 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/30 13:05:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,12 @@ void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t weight);
 
 /// @brief allocate memory and copy the content of the source memory
-/// @param ptr pointer to the source memory
-/// @param size size of the source memory
+/// @param ptr pointer to the source memory.
+/// @param sizeNew size of the destination memory
+/// @param sizeOld size of the source memory
 /// @return pointer to a larger chunk of allocated memory otherwise NULL
-void		*ft_realloc(void *ptr, size_t size);
+/// @note WARNING: the pointer is FREE'ed after the copy in case of success
+void		*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld);
 
 /// @brief free the memory
 /// @param ptr pointer to the memory to free (set to NULL after)
@@ -170,7 +172,7 @@ void		ft_swap(void **a, void **b);
 /// @param cmp comparison function
 /// @return void
 void		ft_qsort(void *array, size_t nmb, size_t size,
-				int (*cmp)(void *, void *));
+				int (*cmp)(const void *, const void *));
 
 /* ************************************************************************** */
 /* **                     FT_PUT SUB MODULE                                ** */
@@ -273,10 +275,9 @@ char		*ft_itoa(int nbr);
 /// @note You must free the returned string
 char		*ft_itoa_base(int nbr, char *base);
 
-/// @brief 
-/// @param nbr 
-/// @return 
-char		*ft_utoa(unsigned int nbr);
+/// @brief
+/// @param nbr
+/// @return (char *ft_utoa(unsigned int nbr));
 
 /// @brief Return a pointer to the first occurrence of any character contained
 /// in the string delims in the string str
@@ -324,7 +325,7 @@ void		ft_striteri(char *s, void (*f)(unsigned int, char *));
 char		*ft_strjoin(char const *s1, char const *s2);
 
 /// @brief copy up to size - 1 characters from the NUL-terminated string src
-/// to dst, NUL-terminating the result. 
+/// to dst, NUL-terminating the result.
 /// Puts the result after the characters already in dst.
 /// @param dst string to copy to
 /// @param src string to copy from
@@ -373,7 +374,8 @@ int			ft_strcmp(const char *s1, const char *s2);
 /// first different char (s1 - s2)
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
-/// @brief duplicate no more than n character of the string src into a new allocated string
+/// @brief duplicate no more than n character of the string src into a 
+//  new allocated string
 /// @param str string to copy from
 /// @param n number of chars to copy
 /// @return A copy of the string src
@@ -466,11 +468,10 @@ int			ft_strchr_index(const char *from, char c);
 /// @brief Returns a pointer to the first string pointed to by args
 /// @param args Pointer to a list of const char pointer
 /// @param index Number of elements in Args
-/// @return if index is negative or the first string of args 
-/// is null fails and return null otherwise return the first 
+/// @return if index is negative or the first string of args
+/// is null fails and return null otherwise return the first
 /// const char pointed to by args
 const char	*ft_shift_args(const char **args, int *index);
-
 
 // printf
 
@@ -573,8 +574,26 @@ const char	*ft_string_get(t_string *str);
 /* ************************************************************************** */
 /* **                     ft_string_set                                    ** */
 /* ************************************************************************** */
+
+/// @brief replace the content of the string with the new string src
+/// @param str t_string to modify
+/// @param src string to copy from
+/// @return 1 if the string has been set otherwise 0
 int			ft_string_set(t_string *str, const char *src);
+
+/// @brief replace the content of the string with at most n chars of the new
+/// string src
+/// @param str t_string to modify
+/// @param src string to copy from
+/// @param n number of chars to set
+/// @return 1 if the string has been set otherwise 0
 int			ft_string_set_n(t_string *str, const char *src, size_t n);
+
+/// @brief replace the content of the string with the new string src
+/// @param str t_string to modify
+/// @param src string to set
+/// @return 1 if the string has been set otherwise 0
+/// @note This function takes ownership of the string src and does no alloc.
 int			ft_string_set_inplace(t_string *str, char *src);
 
 /* ************************************************************************** */

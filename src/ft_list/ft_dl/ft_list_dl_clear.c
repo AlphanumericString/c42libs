@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:33:59 by iron              #+#    #+#             */
-/*   Updated: 2023/12/29 16:48:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:58:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_list_dl_clear(t_dlist **head, t_data_apply del)
 {
-	size_t ret;
-	
+	size_t	ret;
+
 	ret = ft_list_dl_delete_range(*head, NULL, del);
 	*head = NULL;
 	return (ret);

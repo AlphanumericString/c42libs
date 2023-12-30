@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:23:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/13 09:41:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:58:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
 #include "ft_string.h"
+#include "ft_vector.h"
 
-bool ft_vec_shrink(t_vector *vec)
+bool	ft_vec_shrink(t_vector *vec)
 {
 	void	**new_datas;
 	size_t	i;

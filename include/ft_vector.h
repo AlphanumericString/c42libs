@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/13 11:07:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:05:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void		*ft_vec_at(t_vector *vec, size_t n);
 /// @param vec_a pointer to the first vector
 /// @param vec_b pointer to the second vector
 /// @return true if the vectors were concatenated, false otherwise
-/// @note the second vector is not modified therefore it is not cleared. be careful with double free.
+/// @note the second vector is not modified therefore it is not cleared.
+/// Be careful with double free.
 bool		ft_vec_cat(t_vector **vec_a, const t_vector *vec_b);
 
 // ft_vector/ft_vec_clear.c
@@ -138,7 +139,7 @@ void		ft_vec_remove_if(t_vector *vector, bool (*func)(void *),
 /// @brief Reserve a given size for the vector
 /// @param vec pointer to the vector
 /// @param size size to reserve
-/// @return true if the vector was reserved or size is smaller 
+/// @return true if the vector was reserved or size is smaller
 /// than the current cappacity, false otherwise
 bool		ft_vec_reserve(t_vector **vec, size_t size);
 

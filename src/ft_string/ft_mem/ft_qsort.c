@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:31:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 11:39:30 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:37:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-void		ft_qsort(void *array, size_t nmb, size_t size,
-				int (*cmp)(void *, void *))
+void	ft_qsort(void *array, size_t nmb, size_t size, \
+	int (*cmp)(const void *, const void *))
 {
 	size_t	i;
 	size_t	j;
@@ -33,10 +33,8 @@ void		ft_qsort(void *array, size_t nmb, size_t size,
 		if (i < j)
 		{
 			ft_swap(array + (i * size), array + (j * size));
-			if (i == pivot)
-				pivot = j;
-			else if (j == pivot)
-				pivot = i;
+			if (i == pivot || j == pivot)
+				pivot = (i == pivot) * i + (j == pivot) * j;
 		}
 	}
 	ft_qsort(array, pivot, size, cmp);

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:36:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:20:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:57:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_map_set(t_map *map, const void *key, const void *value, size_t size)
 {
-	size_t		index[2];
+	size_t	index[2];
 
 	index[0] = map->hash(key, map->capacity, size);
 	index[1] = index[0];
@@ -44,7 +44,8 @@ void	ft_map_set_cmp(t_map *map, int (*cmp)(const void *, const void *))
 	map->cmp = cmp;
 }
 
-void	ft_map_set_hash(t_map *map, size_t (*hash)(const void *, size_t, size_t))
+void	ft_map_set_hash(t_map *map, size_t (*hash)(const void *, size_t,
+			size_t))
 {
 	map->hash = hash;
 }

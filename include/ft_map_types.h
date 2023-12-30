@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:02:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:20:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:16:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct s_map_node
 	bool		used;
 }				t_map_node;
 
+typedef int		(*t_anycmp)(const void *, const void *);
+typedef size_t	(*t_memhash)(const void *, size_t, size_t);
+
 /// @brief Structure representing a map
 /// @param capacity The capacity of the map
 /// @param size The size of the map
@@ -38,8 +41,8 @@ typedef struct s_map
 	size_t		capacity;
 	size_t		size;
 	t_map_node	*nodes;
-	int			(*cmp)(const void *, const void *);
-	size_t		(*hash)(const void *, size_t, size_t);
+	t_anycmp	cmp;
+	t_memhash	hash;
 }				t_map;
 
 #endif /* FT_MAP_TYPES_H */
