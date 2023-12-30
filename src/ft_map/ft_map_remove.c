@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 18:54:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:18:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_map.h"
 
-void	ft_map_remove(t_map *map, void *key, size_t size)
+void	ft_map_remove(t_map *map, const void *key, size_t size)
 {
 	size_t	index[2];
 

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:07:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/29 13:31:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:18:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // Very fast, but not very good
 // see http://www.cse.yorku.ca/~oz/hash.html
 // See ft_hash_sdbm or ft_hash_fnv1a for less collisions prone hash functions
-size_t	ft_hash_djb2(void *key, size_t capacity, size_t size)
+size_t	ft_hash_djb2(const void *key, size_t capacity, size_t size)
 {
 	unsigned char	*str;
 	size_t			hash;
@@ -36,7 +36,7 @@ size_t	ft_hash_djb2(void *key, size_t capacity, size_t size)
 // see http://www.cse.yorku.ca/~oz/hash.html
 // overal better than djb2 but default hash function stays djb2 because it's
 // faster and easier to understand, plus it's not that bad... right ?
-size_t	ft_hash_sdbm(void *key, size_t capacity, size_t size)
+size_t	ft_hash_sdbm(const void *key, size_t capacity, size_t size)
 {
 	unsigned char	*str;
 	size_t			hash;
@@ -60,7 +60,7 @@ size_t	ft_hash_sdbm(void *key, size_t capacity, size_t size)
 //
 // note: djb2 and sdbm are 32 bits hash functions and are not impacted by
 // the size of size_t
-size_t	ft_hash_fnv1a(void *key, size_t capacity, size_t size)
+size_t	ft_hash_fnv1a(const void *key, size_t capacity, size_t size)
 {
 	unsigned char	*str;
 	size_t			hash;
@@ -80,7 +80,7 @@ size_t	ft_hash_fnv1a(void *key, size_t capacity, size_t size)
 // or when you want to test your map with a hash function that doesn't
 // overflow at all ever
 //
-size_t	ft_hash_dummy(void *key, size_t capacity, size_t size)
+size_t	ft_hash_dummy(const void *key, size_t capacity, size_t size)
 {
 	unsigned char	*str;
 	size_t			hash;

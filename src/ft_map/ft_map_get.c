@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:05:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 21:20:58 by iron             ###   ########.fr       */
+/*   Updated: 2023/12/30 12:17:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_map.h"
 
-t_map_node	*ft_map_get(t_map *map, void *key, size_t size)
+t_map_node	*ft_map_get(t_map *map, const void *key, size_t size)
 {
 	size_t	index[2];
 
@@ -30,12 +30,12 @@ t_map_node	*ft_map_get(t_map *map, void *key, size_t size)
 	return (NULL);
 }
 
-size_t	ft_map_size(t_map *map)
+size_t	ft_map_size(const t_map *map)
 {
 	return (map->size);
 }
 
-size_t	ft_map_capacity(t_map *map)
+size_t	ft_map_capacity(const t_map *map)
 {
 	return (map->capacity);
 }
