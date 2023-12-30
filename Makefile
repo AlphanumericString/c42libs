@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/29 14:35:40 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/30 11:17:10 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,18 @@ TEST_FLAGS	=\
 
 TARGET		?=	"ALL"
 
-FT_MAP_DIR	=	ft_map
+FT_MAP_DIR		=	ft_map
+FT_LIST_DIR		=	ft_list
+FT_STRING_DIR	=	ft_string
+FT_CONF_DIR		=	ft_config
+FT_VEC_DIR		=	ft_vector
+
+FT_LIST_LL_DIR	=	$(FT_LIST_DIR)/ft_ll
+FT_LIST_DL_DIR	=	$(FT_LIST_DIR)/ft_dl
+FT_MEM_DIR		=	$(FT_STRING_DIR)/ft_mem
+FT_STR_DIR		=	$(FT_STRING_DIR)/ft_str
+FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
+
 
 FT_MAP_SRC	=	\
 			$(FT_MAP_DIR)/ft_map_clear.c		\
@@ -60,10 +71,6 @@ FT_MAP_SRC	=	\
 			$(FT_MAP_DIR)/ft_map_hash.c			\
 			$(FT_MAP_DIR)/ft_map_remove.c		\
 			$(FT_MAP_DIR)/ft_map_set.c
-
-FT_LIST_DIR	=	ft_list
-FT_LIST_LL_DIR	=	$(FT_LIST_DIR)/ft_ll
-FT_LIST_DL_DIR	=	$(FT_LIST_DIR)/ft_dl
 
 FT_LIST_LL_SRC	=\
 			$(FT_LIST_LL_DIR)/ft_list_ll_find.c			\
@@ -97,82 +104,82 @@ FT_LIST_DL_SRC	=\
 			$(FT_LIST_DL_DIR)/ft_list_dl_new.c			\
 			$(FT_LIST_DL_DIR)/ft_list_dl_find.c			\
 
-FT_LIST_SRC	=\
-			$(FT_LIST_LL_SRC)	\
-			$(FT_LIST_DL_SRC)	\
+FT_STR_SRC	=\
+			$(FT_STR_DIR)/ft_atoi.c			\
+			$(FT_STR_DIR)/ft_atoi_base.c	\
+			$(FT_STR_DIR)/ft_isalnum.c		\
+			$(FT_STR_DIR)/ft_isalpha.c		\
+			$(FT_STR_DIR)/ft_isascii.c		\
+			$(FT_STR_DIR)/ft_isdigit.c		\
+			$(FT_STR_DIR)/ft_islower.c		\
+			$(FT_STR_DIR)/ft_isprint.c		\
+			$(FT_STR_DIR)/ft_isspace.c		\
+			$(FT_STR_DIR)/ft_isupper.c		\
+			$(FT_STR_DIR)/ft_itoa.c			\
+			$(FT_STR_DIR)/ft_itoa_base.c	\
+			$(FT_STR_DIR)/ft_log.c			\
+			$(FT_STR_DIR)/ft_minmax.c		\
+			$(FT_STR_DIR)/ft_putchar_fd.c	\
+			$(FT_STR_DIR)/ft_putendl_fd.c	\
+			$(FT_STR_DIR)/ft_putnbr_fd.c	\
+			$(FT_STR_DIR)/ft_putstr_fd.c	\
+			$(FT_STR_DIR)/ft_shift_args.c	\
+			$(FT_STR_DIR)/ft_split.c		\
+			$(FT_STR_DIR)/ft_splits.c		\
+			$(FT_STR_DIR)/ft_str_replace.c	\
+			$(FT_STR_DIR)/ft_strchr.c		\
+			$(FT_STR_DIR)/ft_strcmp.c		\
+			$(FT_STR_DIR)/ft_strdup.c		\
+			$(FT_STR_DIR)/ft_striteri.c		\
+			$(FT_STR_DIR)/ft_strjoin.c		\
+			$(FT_STR_DIR)/ft_strlcat.c		\
+			$(FT_STR_DIR)/ft_strlcpy.c		\
+			$(FT_STR_DIR)/ft_strlen.c		\
+			$(FT_STR_DIR)/ft_strmapi.c		\
+			$(FT_STR_DIR)/ft_strncmp.c		\
+			$(FT_STR_DIR)/ft_strndup.c		\
+			$(FT_STR_DIR)/ft_strnstr.c		\
+			$(FT_STR_DIR)/ft_strrchr.c		\
+			$(FT_STR_DIR)/ft_strtok.c		\
+			$(FT_STR_DIR)/ft_strtrim.c		\
+			$(FT_STR_DIR)/ft_substr.c		\
+			$(FT_STR_DIR)/ft_swap.c			\
+			$(FT_STR_DIR)/ft_tolower.c		\
+			$(FT_STR_DIR)/ft_toupper.c		\
+			$(FT_STR_DIR)/ft_utoa.c				\
+			$(FT_STR_DIR)/get_next_line.c		\
+			$(FT_STR_DIR)/get_next_line_utils.c
 
-FT_STRING_DIR	=	ft_string
-FT_STRING_SRC	=	\
-			$(FT_STRING_DIR)/ft_atoi_base.c				\
-			$(FT_STRING_DIR)/ft_atoi.c					\
-			$(FT_STRING_DIR)/ft_bzero.c					\
-			$(FT_STRING_DIR)/ft_calloc.c				\
-			$(FT_STRING_DIR)/ft_free.c					\
-			$(FT_STRING_DIR)/ft_isalnum.c				\
-			$(FT_STRING_DIR)/ft_isalpha.c				\
-			$(FT_STRING_DIR)/ft_isascii.c				\
-			$(FT_STRING_DIR)/ft_isdigit.c				\
-			$(FT_STRING_DIR)/ft_islower.c				\
-			$(FT_STRING_DIR)/ft_isprint.c				\
-			$(FT_STRING_DIR)/ft_isspace.c				\
-			$(FT_STRING_DIR)/ft_isupper.c				\
-			$(FT_STRING_DIR)/ft_itoa_base.c				\
-			$(FT_STRING_DIR)/ft_itoa.c					\
-			$(FT_STRING_DIR)/ft_log.c					\
-			$(FT_STRING_DIR)/ft_memchr.c				\
-			$(FT_STRING_DIR)/ft_memcmp.c				\
-			$(FT_STRING_DIR)/ft_memcpy.c				\
-			$(FT_STRING_DIR)/ft_memmove.c				\
-			$(FT_STRING_DIR)/ft_memset.c				\
-			$(FT_STRING_DIR)/ft_minmax.c				\
-			$(FT_STRING_DIR)/ft_putchar_fd.c			\
-			$(FT_STRING_DIR)/ft_putendl_fd.c			\
-			$(FT_STRING_DIR)/ft_putnbr_fd.c				\
-			$(FT_STRING_DIR)/ft_putstr_fd.c				\
-			$(FT_STRING_DIR)/ft_realloc.c				\
-			$(FT_STRING_DIR)/ft_split.c					\
-			$(FT_STRING_DIR)/ft_splits.c				\
-			$(FT_STRING_DIR)/ft_strchr.c				\
-			$(FT_STRING_DIR)/ft_strcmp.c				\
-			$(FT_STRING_DIR)/ft_strdup.c				\
-			$(FT_STRING_DIR)/ft_string_chr.c			\
-			$(FT_STRING_DIR)/ft_string_clear.c			\
-			$(FT_STRING_DIR)/ft_string_cmp.c			\
-			$(FT_STRING_DIR)/ft_string_destroy.c		\
-			$(FT_STRING_DIR)/ft_string_from.c			\
-			$(FT_STRING_DIR)/ft_string_get.c			\
-			$(FT_STRING_DIR)/ft_string_insert.c			\
-			$(FT_STRING_DIR)/ft_string_new.c			\
-			$(FT_STRING_DIR)/ft_string_replace.c		\
-			$(FT_STRING_DIR)/ft_string_reserve.c		\
-			$(FT_STRING_DIR)/ft_string_resize.c			\
-			$(FT_STRING_DIR)/ft_string_set.c			\
-			$(FT_STRING_DIR)/ft_string_shrink.c			\
-			$(FT_STRING_DIR)/ft_string_substr.c			\
-			$(FT_STRING_DIR)/ft_string_to_str.c			\
-			$(FT_STRING_DIR)/ft_string_trim.c			\
-			$(FT_STRING_DIR)/ft_striteri.c				\
-			$(FT_STRING_DIR)/ft_strjoin.c				\
-			$(FT_STRING_DIR)/ft_strlcat.c				\
-			$(FT_STRING_DIR)/ft_strlcpy.c				\
-			$(FT_STRING_DIR)/ft_strlen.c				\
-			$(FT_STRING_DIR)/ft_strmapi.c				\
-			$(FT_STRING_DIR)/ft_strncmp.c				\
-			$(FT_STRING_DIR)/ft_strndup.c				\
-			$(FT_STRING_DIR)/ft_strnstr.c				\
-			$(FT_STRING_DIR)/ft_strrchr.c				\
-			$(FT_STRING_DIR)/ft_str_replace.c			\
-			$(FT_STRING_DIR)/ft_strtok.c				\
-			$(FT_STRING_DIR)/ft_strtrim.c				\
-			$(FT_STRING_DIR)/ft_shift_args.c			\
-			$(FT_STRING_DIR)/ft_substr.c				\
-			$(FT_STRING_DIR)/ft_tolower.c				\
-			$(FT_STRING_DIR)/ft_toupper.c				\
-			$(FT_STRING_DIR)/ft_utoa.c					\
-			$(FT_STRING_DIR)/get_next_line.c			\
-			$(FT_STRING_DIR)/get_next_line_utils.c
+FT_T_STRING_SRC	=\
+			$(FT_T_STRING_DIR)/ft_string_new.c		\
+			$(FT_T_STRING_DIR)/ft_string_from.c		\
+			$(FT_T_STRING_DIR)/ft_string_clear.c	\
+			$(FT_T_STRING_DIR)/ft_string_destroy.c	\
+			$(FT_T_STRING_DIR)/ft_string_insert.c	\
+			$(FT_T_STRING_DIR)/ft_string_reserve.c	\
+			$(FT_T_STRING_DIR)/ft_string_resize.c	\
+			$(FT_T_STRING_DIR)/ft_string_shrink.c	\
+			$(FT_T_STRING_DIR)/ft_string_substr.c	\
+			$(FT_T_STRING_DIR)/ft_string_to_str.c	\
+			$(FT_T_STRING_DIR)/ft_string_trim.c		\
+			$(FT_T_STRING_DIR)/ft_string_cmp.c		\
+			$(FT_T_STRING_DIR)/ft_string_get.c		\
+			$(FT_T_STRING_DIR)/ft_string_chr.c		\
+			$(FT_T_STRING_DIR)/ft_string_replace.c	\
+			$(FT_T_STRING_DIR)/ft_string_set.c
 
-FT_VEC_DIR		=	ft_vector
+FT_MEM_SRC	=	\
+			$(FT_MEM_DIR)/ft_bzero.c		\
+			$(FT_MEM_DIR)/ft_calloc.c		\
+			$(FT_MEM_DIR)/ft_free.c			\
+			$(FT_MEM_DIR)/ft_memchr.c		\
+			$(FT_MEM_DIR)/ft_memcmp.c		\
+			$(FT_MEM_DIR)/ft_memcpy.c		\
+			$(FT_MEM_DIR)/ft_memmove.c		\
+			$(FT_MEM_DIR)/ft_memset.c		\
+			$(FT_MEM_DIR)/ft_qsort.c		\
+			$(FT_MEM_DIR)/ft_realloc.c
+
 FT_VEC_SRC		=	\
 			$(FT_VEC_DIR)/ft_vec_add.c		\
 			$(FT_VEC_DIR)/ft_vec_apply.c	\
@@ -191,10 +198,18 @@ FT_VEC_SRC		=	\
 			$(FT_VEC_DIR)/ft_vec_sort.c		\
 			$(FT_VEC_DIR)/ft_vec_swap.c
 			
-FT_CONF_DIR	=	ft_config
-FT_CONF_SRC	=	\
+FT_CONF_SRC		=	\
 			$(CONF_DIR)/ftc_baseop.c		\
 			$(CONF_DIR)/ftc_get_parser.c
+
+FT_LIST_SRC		=	\
+			$(FT_LIST_LL_SRC)	\
+			$(FT_LIST_DL_SRC)	\
+
+FT_STRING_SRC	=	\
+			$(FT_MEM_SRC)		\
+			$(FT_STR_SRC)		\
+			$(FT_T_STRING_SRC)
 
 TESTS_SRC	=	\
 			$(TESTS_DIR)/ft_list/ll_list_tests.c	\
@@ -300,8 +315,8 @@ $(COVERAGE_DIR): tests_run
 	$(RESET)													&& \
 	$(COV) show -format=html									\
 	-instr-profile=tests_run.profdata							\
-	-ignore-filename-regex=tests*								\
-	-ignore-filename-regex=src/ft_string/*						\
+	-ignore-filename-regex=$(TESTS_DIR)/*						\
+	-ignore-filename-regex=$(FT_STRING_DIR)/*					\
 	./tests_run -output-dir=$(COVERAGE_DIR) > /dev/null			&& \
 	$(RM) *.profraw *.profdata									&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
