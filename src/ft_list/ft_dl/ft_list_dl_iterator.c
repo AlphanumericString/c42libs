@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:27 by iron              #+#    #+#             */
-/*   Updated: 2023/12/10 12:44:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 11:34:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_dlist	*ft_list_dl_at(t_dlist *head, size_t index)
+t_dlist	*ft_list_dl_at(const t_dlist *head, size_t index)
 {
 	size_t	i;
 	t_dlist	*it;
@@ -27,7 +27,7 @@ t_dlist	*ft_list_dl_at(t_dlist *head, size_t index)
 	return (it);
 }
 
-t_dlist	*ft_list_dl_end(t_dlist *head)
+t_dlist	*ft_list_dl_end(const t_dlist *head)
 {
 	t_dlist	*it;
 

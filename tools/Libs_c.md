@@ -26,12 +26,13 @@ Library for c projects at 42.
         - [ ]  ft_string
             - [ ]   t_string
             - [ ]   str
+            - [ ]   mem
         - [X]  ft_vector
     - [ ]   srcs
         - [ ]   const nazi the sht of it. list of all pointer passed as non const '(grep "^[a-zA-Z]" include/*.h | grep -v "const .*\*.*,.*")'
             - [ ]   vect
-            - [ ]   ll
-            - [ ]   dl
+            - [x]   ll
+            - [x]   dl
             - [ ]   str
             - [ ]   string
             - [ ]   map

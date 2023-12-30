@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/14 15:17:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:05:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 /// @brief Add a node at the end of the list
 /// @param head The head of the list
 /// @param added The node to add
-void	ft_list_dl_add_back(t_dlist **head, t_dlist *added);
+void	ft_list_dl_add_back(t_dlist **head, t_dlist *const added);
 
 /// @brief Add a node at the beginning of the list
 /// @param head The head of the list
 /// @param added The node to add
-void	ft_list_dl_add_front(t_dlist **head, t_dlist *added);
+void	ft_list_dl_add_front(t_dlist **head, t_dlist *const added);
 
 // ft_list/ft_list_dl_apply.c
 
@@ -38,14 +38,14 @@ void	ft_list_dl_add_front(t_dlist **head, t_dlist *added);
 /// @param start The start of the list
 /// @param applied The function to apply
 /// @return The number of nodes applied
-size_t	ft_list_dl_apply(t_dlist *start, t_data_apply applied);
+size_t	ft_list_dl_apply(const t_dlist *start, t_data_apply applied);
 
 /// @brief Apply a function on every node of the list until the end
 /// @param start The start of the list
 /// @param end The end of the list
 /// @param applied The function to apply
 /// @return The number of nodes applied
-size_t	ft_list_dl_apply_range(t_dlist *start, const t_dlist *end,
+size_t	ft_list_dl_apply_range(const t_dlist *start, const t_dlist *end,
 			t_data_apply applied);
 
 /// @brief Apply a function on every node of the list until the end
@@ -53,7 +53,7 @@ size_t	ft_list_dl_apply_range(t_dlist *start, const t_dlist *end,
 /// @param end The end of the list
 /// @param applied The function to apply
 /// @return The number of nodes applied
-size_t	ft_list_dl_apply_range_node(t_dlist *start, const t_dlist *end,
+size_t	ft_list_dl_apply_range_node(const t_dlist *start, const t_dlist *end,
 			t_dnode_apply applied);
 
 // ft_list/ft_list_dl_clear.c
@@ -77,7 +77,7 @@ size_t	ft_list_dl_clear_range(t_dlist *start, t_dlist *end, t_data_apply del);
 /// @brief Create a new node
 /// @param data The data of the node
 /// @return The new node
-t_dlist	*ft_list_dl_create(void *const data);
+t_dlist	*ft_list_dl_create(const void *data);
 
 /// @brief Copy a node
 /// @param other The node to copy
@@ -88,11 +88,10 @@ t_dlist	*ft_list_dl_copy_node(const t_dlist *const other);
 
 /// @brief Copy a node
 /// @param other The node to copy
-/// @param del The function to delete the data if allocation fails
 /// @return The new node
 /// @note The node is a copy of the original node but does not copy the data in a
-/// new ptr
-t_dlist	*ft_list_dl_copy_list(const t_dlist *const other, t_data_apply del);
+/// new ptr. This is wgy it doesn't need a delete function.
+t_dlist	*ft_list_dl_copy_list(const t_dlist *const other);
 
 // ft_list/ft_list_dl_delete.c
 
@@ -106,18 +105,23 @@ int		ft_list_dl_delete_self(t_dlist *node, t_data_apply del);
 /// @param start The node from which to delete
 /// @param end The node until which to delete
 /// @return The number of nodes deleted
-size_t	ft_list_dl_delete_range(t_dlist *start, t_dlist *target, t_data_apply del);
+size_t	ft_list_dl_delete_range(t_dlist *start, const t_dlist *target,
+			t_data_apply del);
 
 /// @brief Delete a doubly linked list entirely
 /// @param head The head of the list
 /// @return The number of nodes deleted
 size_t	ft_list_dl_delete(t_dlist **head, t_data_apply del);
 
-// not currently implemented
+// TODO: implement delete dup for dl
+// not currently implemented - idea of the function:
 // /// @brief Delete duplicates node
 // /// @param head The head of the list
+// /// @param cmp The compare function
+// /// @param del The function to delete the data
 // /// @return The number of nodes deleted
-// size_t	ft_list_dl_delete_dup(t_dlist **src);
+// size_t	ft_list_dl_delete_dup(t_dlist **src, t_data_cmp cmp,
+//  			t_data_apply del);
 //
 
 // ft_list/ft_list_dl_find.c
@@ -127,14 +131,15 @@ size_t	ft_list_dl_delete(t_dlist **head, t_data_apply del);
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
-t_dlist	*ft_list_dl_find(t_dlist *head, void *data, int (*cmp)(void *, void *));
+t_dlist	*ft_list_dl_find(const t_dlist *head, const void *data,
+			int (*cmp)(const void *, const void *));
 
 // ft_list/ft_list_dl_getters.c
 
 /// @brief Get the datas of a list
 /// @param src The list
 /// @return The datas of the list
-/// @note The datas are in the same order as the nodes and the pointers to the 
+/// @note The datas are in the same order as the nodes and the pointers to the
 /// datas need to be freed
 void	**ft_list_dl_get_datas(const t_dlist *src);
 
@@ -151,12 +156,12 @@ t_dlist	**ft_list_dl_get_nodes(const t_dlist *src);
 /// @param head The head of the list
 /// @param index The index of the node
 /// @return The node at index or NULL
-t_dlist	*ft_list_dl_at(t_dlist *head, size_t index);
+t_dlist	*ft_list_dl_at(const t_dlist *head, size_t index);
 
 /// @brief Get the last node of a list
 /// @param head The head of the list
 /// @return The last node of the list
-t_dlist	*ft_list_dl_end(t_dlist *head);
+t_dlist	*ft_list_dl_end(const t_dlist *head);
 
 /// @brief Get the first node of a list
 /// @param head The head of the list
@@ -170,7 +175,8 @@ t_dlist	*ft_list_dl_begin(const t_dlist *head);
 /// @param f The function to apply
 /// @param del The function to delete the data if allocation fails
 /// @return The new list
-t_dlist	*ft_list_dl_map(t_dlist *lst, void *(*f)(void *), t_data_apply del);
+t_dlist	*ft_list_dl_map(const t_dlist *lst, void *(*f)(const void *),
+			t_data_apply del);
 
 // ft_list/ft_list_dl_new.c
 
@@ -184,13 +190,13 @@ t_dlist	*ft_list_dl_new(void);
 /// @param node The head of the list
 /// @param data The data of the node
 /// @return The new head of the list
-t_dlist	*ft_list_dl_push(t_dlist **node, void *data);
+t_dlist	*ft_list_dl_push(t_dlist **node, const void *data);
 
 /// @brief Push a node at the end of the list
 /// @param node The head of the list
 /// @param data The data of the node
 /// @return The new head of the list
-t_dlist	*ft_list_dl_push_back(t_dlist **node, void *data);
+t_dlist	*ft_list_dl_push_back(t_dlist **node, const void *data);
 
 /// @brief Pop a node at the beginning of the list
 /// @param node The head of the list
@@ -228,7 +234,9 @@ size_t	ft_list_dl_size_of_data(const t_dlist *head, t_data_is function);
 /// @param src The list
 /// @param to The node until which to get the sublist
 /// @return The sublist
-t_dlist	*ft_list_dl_subrange(t_dlist *src, t_dlist *to);
+/// @note The sublist is a copy of the original list but does not copy
+/// the data in a new ptr. This is why it doesn't need a delete function.
+t_dlist	*ft_list_dl_subrange(const t_dlist *src, const t_dlist *to);
 
 /* ************************************************************************** */
 /*                           SIMPLY LINKED LIST                               */
@@ -240,13 +248,13 @@ t_dlist	*ft_list_dl_subrange(t_dlist *src, t_dlist *to);
 /// @param head The head of the list
 /// @param added The node to add
 /// @return void
-void	ft_listadd_front(t_list **lst, t_list *new);
+void	ft_listadd_front(t_list **lst, t_list *const new);
 
 /// @brief Add a node at the end of the list
 /// @param head The head of the list
 /// @param added The node to add
 /// @return void
-void	ft_listadd_back(t_list **lst, t_list *new);
+void	ft_listadd_back(t_list **lst, t_list *const new);
 
 // ft_list/ft_list_ll_apply.c
 
@@ -254,21 +262,22 @@ void	ft_listadd_back(t_list **lst, t_list *new);
 /// @param lst The list
 /// @param f The function to apply
 /// @return void
-void	ft_listapply(t_list *lst, t_data_apply f);
+void	ft_listapply(const t_list *lst, t_data_apply f);
 
 /// @brief Apply a function on every node of the list until the element end
 /// @param lst The list
 /// @param end The end of the list
 /// @param f The function to apply
 /// @return void
-void	ft_listapply_range(t_list *lst, const t_list *end, t_data_apply f);
+void	ft_listapply_range(const t_list *lst, const t_list *end,
+			t_data_apply f);
 
 /// @brief Apply a function on every node of the list until the element end
 /// @param lst The list
 /// @param end The end of the list
 /// @param f The function to apply
 /// @return void
-void	ft_listapply_range_node(t_list *lst, const t_list *end,
+void	ft_listapply_range_node(const t_list *lst, const t_list *end,
 			t_lnode_apply f);
 
 // ft_list/ft_list_ll_clear.c
@@ -278,6 +287,8 @@ void	ft_listapply_range_node(t_list *lst, const t_list *end,
 /// @param del The function to delete the data
 /// @return void
 void	ft_listclear(t_list **lst, t_data_apply del);
+
+// TODO: implement clear range for ll
 
 // ft_list/ft_list_ll_create.c
 
@@ -311,6 +322,19 @@ void	ft_listdelone(t_list *lst, t_data_apply del);
 /// @return void
 size_t	ft_listdelete_range(t_list *lst, const t_list *end, t_data_apply del);
 
+// TODO: implement delete for ll
+// delete should delete the whole list
+
+// TODO: implement delete dup for ll
+// not currently implemented - idea of the function:
+// /// @brief Delete duplicates node
+// /// @param head The head of the list
+// /// @param cmp The compare function
+// /// @param del The function to delete the data
+// /// @return The number of nodes deleted
+// size_t	ft_listdelete_dup(t_list **src, t_data_cmp cmp,
+//  			t_data_apply del);
+
 // ft_list/ft_list_ll_find.c
 
 /// @brief Find a node in a list
@@ -318,7 +342,8 @@ size_t	ft_listdelete_range(t_list *lst, const t_list *end, t_data_apply del);
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
-void	*ft_listfind(t_list *list, void *data, int (*cmp)(void *, void *));
+void	*ft_listfind(const t_list *list, const void *data,
+			int (*cmp)(const void *, const void *));
 
 // ft_list/ft_list_ll_getters.c
 
@@ -334,16 +359,17 @@ t_list	**ft_listget_nodes(const t_list *src);
 
 // ft_list/ft_list_ll_iterator.c
 
+// TODO: implement rename last to end (match dl)
 /// @brief Get the last node of a list
 /// @param lst The list
 /// @return The last node of the list
-t_list	*ft_listlast(t_list *lst);
+t_list	*ft_listlast(const t_list *lst);
 
 /// @brief Get the node of a list at position index
 /// @param lst The list
 /// @param index The index of the node
 /// @return The node at index or NULL
-t_list	*ft_listat(t_list *lst, size_t index);
+t_list	*ft_listat(const t_list *lst, size_t index);
 
 // ft_list/ft_list_ll_map.c
 
@@ -352,7 +378,7 @@ t_list	*ft_listat(t_list *lst, size_t index);
 /// @param f The function to apply
 /// @param del The function to delete the data if allocation fails
 /// @return The new list
-t_list	*ft_listmap(t_list *lst, void *(*f)(void *), t_data_apply del);
+t_list	*ft_listmap(const t_list *lst, void *(*f)(const void *), t_data_apply del);
 
 // ft_list/ft_list_ll_new.c
 
@@ -366,13 +392,13 @@ t_list	*ft_listnew(void);
 /// @param lst The head of the list
 /// @param data The data of the node
 /// @return The new head of the list
-t_list	*ft_listpush(t_list **lst, void *data);
+t_list	*ft_listpush(t_list **lst, const void *data);
 
 /// @brief Push a node at the end of the list
 /// @param lst The head of the list
 /// @param data The data of the node
 /// @return The new head of the list
-t_list	*ft_listpush_back(t_list **lst, void *data);
+t_list	*ft_listpush_back(t_list **lst, const void *data);
 
 /// @brief Pop a node at the beginning of the list
 /// @param lst The head of the list
@@ -409,9 +435,9 @@ size_t	ft_listsize_match(const t_list *lst, t_data_is function);
 /// @brief Get a sublist of a list
 /// @param src The list
 /// @param to The node until which to get the sublist
-/// @note The sublist is a copy of the original list but does not copy 
-/// the data in a new ptr
+/// @note The sublist is a copy of the original list but does not copy
+/// the data in a new ptr. This is why it doesn't need a delete function.
 /// @return The sublist
-t_list	*ft_listsubrange(t_list *lst, const t_list *end);
+t_list	*ft_listsubrange(const t_list *lst, const t_list *end);
 
 #endif /* FT_LIST_H */

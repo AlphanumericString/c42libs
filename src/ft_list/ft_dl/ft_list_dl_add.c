@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:17:48 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/11 10:56:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 11:27:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	ft_list_dl_add_back(t_dlist **head, t_dlist *added)
+void	ft_list_dl_add_back(t_dlist **head, t_dlist *const added)
 {
 	t_dlist	*last;
 
@@ -25,7 +25,7 @@ void	ft_list_dl_add_back(t_dlist **head, t_dlist *added)
 	added->prev = last;
 }
 
-void	ft_list_dl_add_front(t_dlist **head, t_dlist *added)
+void	ft_list_dl_add_front(t_dlist **head, t_dlist *const added)
 {
 	if (!head || !added)
 		return ;

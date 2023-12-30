@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:04:38 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 11:45:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:04:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_list	*ft_listmap(t_list *lst, void *(*f)(void *), t_data_apply del)
+t_list	*ft_listmap(const t_list *lst, void *(*f)(const void *),
+		t_data_apply del)
 {
 	t_list	*ret;
 	t_list	*node;

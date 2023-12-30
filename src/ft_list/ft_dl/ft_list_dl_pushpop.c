@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:38 by iron              #+#    #+#             */
-/*   Updated: 2023/12/14 17:05:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 11:38:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include <stdlib.h>
 
-t_dlist	*ft_list_dl_push(t_dlist **node, void *data)
+t_dlist	*ft_list_dl_push(t_dlist **node, const void *data)
 {
 	t_dlist	*added;
 
@@ -25,7 +25,7 @@ t_dlist	*ft_list_dl_push(t_dlist **node, void *data)
 	return (added);
 }
 
-t_dlist	*ft_list_dl_push_back(t_dlist **node, void *data)
+t_dlist	*ft_list_dl_push_back(t_dlist **node, const void *data)
 {
 	t_dlist	*added;
 	t_dlist	*it;

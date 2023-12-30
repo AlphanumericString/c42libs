@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:05 by iron              #+#    #+#             */
-/*   Updated: 2023/12/12 15:53:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 11:45:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_dlist	*ft_list_dl_create(void *const data)
+t_dlist	*ft_list_dl_create(const void *data)
 {
 	t_dlist	*ret;
 
@@ -36,7 +36,7 @@ t_dlist	*ft_list_dl_copy_node(const t_dlist *const other)
 	return (ret);
 }
 
-t_dlist	*ft_list_dl_copy_list(const t_dlist *const other, t_data_apply del)
+t_dlist	*ft_list_dl_copy_list(const t_dlist *const other)
 {
 	t_dlist	*node;
 	t_dlist	*head;
@@ -51,7 +51,7 @@ t_dlist	*ft_list_dl_copy_list(const t_dlist *const other, t_data_apply del)
 	{
 		node = ft_list_dl_copy_node(it);
 		if (!node)
-			return (ft_list_dl_delete(&head, del), head);
+			return (ft_list_dl_delete(&head, NULL), head);
 		node->prev = prev;
 		if (prev)
 			prev->next = node;

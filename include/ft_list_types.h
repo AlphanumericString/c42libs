@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 10:37:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 12:45:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:09:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ typedef void			(*t_dnode_apply)(t_dlist *);
 typedef void			(*t_lnode_apply)(t_list *);
 
 /// @brief Type of function to see if a node data is something
-typedef bool			(*t_data_is)(void *);
+typedef bool			(*t_data_is)(const void *);
 
 #endif /* FT_LIST_TYPES_H */

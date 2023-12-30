@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:10:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/29 16:11:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:06:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_list	*ft_listsubrange(t_list *lst, const t_list *end)
+t_list	*ft_listsubrange(const t_list *lst, const t_list *end)
 {
 	t_list	*sub;
 

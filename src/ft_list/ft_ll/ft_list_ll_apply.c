@@ -6,46 +6,55 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:01:53 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:59:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:02:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	ft_listapply(t_list *lst, t_data_apply f)
+void	ft_listapply(const t_list *lst, t_data_apply f)
 {
+	t_list	*it;
+
 	if (!f)
 		return ;
-	while (lst)
+	it = (t_list *)lst;
+	while (it)
 	{
-		f(lst->data);
-		lst = lst->next;
+		f(it->data);
+		it = it->next;
 	}
 }
 
-void	ft_listapply_range(t_list *lst, const t_list *end, t_data_apply f)
+void	ft_listapply_range(const t_list *lst, const t_list *end, t_data_apply f)
 {
+	t_list	*it;
+
 	if (!f)
 		return ;
-	while (lst && lst != end)
+	it = (t_list *)lst;
+	while (it && it != end)
 	{
-		f(lst->data);
-		lst = lst->next;
+		f(it->data);
+		it = it->next;
 	}
 }
 
 // nxt = lst->next;
-// 		f may modify lst->next
-void	ft_listapply_range_node(t_list *lst, const t_list *end, t_lnode_apply f)
+// f may modify lst->next, we dont know
+void	ft_listapply_range_node(const t_list *lst, const t_list *end,
+		t_lnode_apply f)
 {
 	t_list	*nxt;
+	t_list	*it;
 
 	if (!f)
 		return ;
-	while (lst && lst != end)
+	it = (t_list *)lst;
+	while (it && it != end)
 	{
-		nxt = lst->next;
-		f(lst);
-		lst = nxt;
+		nxt = it->next;
+		f(it);
+		it = nxt;
 	}
 }

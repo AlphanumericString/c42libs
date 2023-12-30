@@ -6,19 +6,23 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:12:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 14:28:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:05:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	*ft_listfind(t_list *list, void *data, int (*cmp)(void *, void *))
+void	*ft_listfind(const t_list *list, const void *data,
+		int (*cmp)(const void *, const void *))
 {
-	while (list)
+	t_list	*it;
+
+	it = (t_list *)list;
+	while (it)
 	{
-		if (data == list->data || (cmp && cmp(list->data, data) == 0))
-			return (list->data);
-		list = list->next;
+		if (data == it->data || (cmp && cmp(it->data, data) == 0))
+			return (it->data);
+		it = it->next;
 	}
 	return (NULL);
 }

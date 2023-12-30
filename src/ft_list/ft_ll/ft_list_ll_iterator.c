@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_last.c                                  :+:      :+:    :+:   */
+/*   ft_list_ll_iterator.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:43:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:45:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:03:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_list	*ft_listlast(t_list *lst)
+t_list	*ft_listlast(const t_list *lst)
 {
 	if (!lst)
 		return (NULL);
 	while (lst->next)
 		lst = lst->next;
-	return (lst);
+	return ((t_list *)lst);
 }
 
-t_list	*ft_listat(t_list *lst, size_t index)
+t_list	*ft_listat(const t_list *lst, size_t index)
 {
 	size_t	i;
 
@@ -33,5 +33,5 @@ t_list	*ft_listat(t_list *lst, size_t index)
 	}
 	if (i != index)
 		return (NULL);
-	return (lst);
+	return ((t_list *)lst);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:10 by iron              #+#    #+#             */
-/*   Updated: 2023/12/12 16:03:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 11:56:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_list_dl_delete_self(t_dlist *node, t_data_apply del)
 	return (FTLIST_SUCCESS);
 }
 
-size_t	ft_list_dl_delete_range(t_dlist *start, t_dlist *target,
+size_t	ft_list_dl_delete_range(t_dlist *start, const t_dlist *target,
 		t_data_apply del)
 {
 	t_dlist	*next;
@@ -58,8 +58,12 @@ size_t	ft_list_dl_delete_range(t_dlist *start, t_dlist *target,
 size_t	ft_list_dl_delete(t_dlist **head, t_data_apply del)
 {
 	size_t	i;
+	t_dlist	*firs_elem;
 
-	i = ft_list_dl_delete_range(*head, NULL, del);
+	if (!head)
+		return (0);
+	firs_elem = ft_list_dl_begin(*head);
+	i = ft_list_dl_delete_range(firs_elem, NULL, del);
 	*head = NULL;
 	return (i);
 }
