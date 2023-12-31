@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:09:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 15:35:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 16:52:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int	ft_ullogof(unsigned long long nbr, int base)
 {
 	int	pow;
 
-	pow = 0;
+	pow = -1;
 	while (nbr)
 	{
 		nbr /= base;

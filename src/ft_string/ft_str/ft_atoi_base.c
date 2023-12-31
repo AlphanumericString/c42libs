@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:52:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 19:40:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/31 18:59:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_atoi_base(const char *str, const char *base)
 	while (str[i] == '+' || str[i] == '-')
 		if (str[i++] == '-')
 			sign *= -1;
-	while (ft_strchr(base, str[i]))
+	while (str[i] && ft_strchr(base, str[i]))
 		nb = nb * base_len + ft_strchr(base, str[i++]) - base;
 	return (nb * sign);
 }

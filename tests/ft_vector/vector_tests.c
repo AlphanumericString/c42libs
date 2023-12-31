@@ -6,13 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:30:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/29 13:40:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 15:32:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "tests/tests.h"
-
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -127,8 +126,8 @@ int	test_vec_cat(void)
 	bool		ret;
 	t_vector	*vec_a;
 	t_vector	*vec_b;
-	int a, b, c, d, e, f;
 
+	int a, b, c, d, e, f;
 	vec_a = ft_vec_from_size(6);
 	vec_b = ft_vec_new();
 	a = 42;
@@ -137,15 +136,12 @@ int	test_vec_cat(void)
 	d = 45;
 	e = 46;
 	f = 47;
-	
 	ft_vec_add(&vec_a, &a); // 42
 	ft_vec_add(&vec_a, &b); // 42 43
 	ft_vec_add(&vec_a, &c); // 42 43 44
-	
 	ft_vec_add(&vec_b, &d); // 45
 	ft_vec_add(&vec_b, &e); // 45 46
 	ft_vec_add(&vec_b, &f); // 45 46 47
-	
 	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
 	if (ret != true)
 		return (1);
@@ -163,14 +159,11 @@ int	test_vec_cat(void)
 		return (1);
 	else if (*(int *)ft_vec_at(vec_a, 5) != 47)
 		return (1);
-	
 	ft_vec_destroy(&vec_a);
-	vec_a = ft_vec_new();	
-	
+	vec_a = ft_vec_new();
 	ft_vec_add(&vec_a, &a); // 42
 	ft_vec_add(&vec_a, &b); // 42 43
 	ft_vec_add(&vec_a, &c); // 42 43 44
-	
 	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
 	if (ret != false)
 		return (1);
@@ -238,8 +231,8 @@ int	test_vec_filter(void)
 	int			a;
 	int			b;
 	int			c;
-	int			*pa, *pb, *pc;
 
+	int *pa, *pb, *pc;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -253,25 +246,20 @@ int	test_vec_filter(void)
 	else if (*(int *)ft_vec_at(vec, 0) != 42)
 		return (1);
 	ft_vec_clear(vec);
-
 	pa = malloc(sizeof(int));
 	*pa = 21;
 	pb = malloc(sizeof(int));
 	*pb = 42;
 	pc = malloc(sizeof(int));
 	*pc = 63;
-	
 	ft_vec_add(&vec, pa);
 	ft_vec_add(&vec, pb);
 	ft_vec_add(&vec, pc);
-
 	ft_vec_filter(vec, is42, free);
-
 	if (vec->count != 1)
 		return (1);
 	else if (ft_vec_at(vec, 0) != pb)
 		return (1);
-
 	ft_vec_apply(vec, free);
 	ft_vec_destroy(&vec);
 	return (0);
@@ -339,11 +327,11 @@ int	test_vec_from_size(void)
 // 		it's bigger than FT_VECTOR_BASE_LEN
 int	test_vec_from_array(void)
 {
-	int			a, b, c, d, e, f;
 	void		*data[3];
 	void		*data2[6];
 	t_vector	*vec;
 
+	int a, b, c, d, e, f;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -432,9 +420,9 @@ int	test_vec_convert_alloc_array(void)
 int	test_vec_remove(void)
 {
 	t_vector	*vec;
-	int			a,  b,   c;
-	int			*pa, *pb, *pc;
 
+	int a, b, c;
+	int *pa, *pb, *pc;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -460,11 +448,9 @@ int	test_vec_remove(void)
 	pa = malloc(sizeof(int));
 	pb = malloc(sizeof(int));
 	pc = malloc(sizeof(int));
-
 	*pa = a;
 	*pb = b;
 	*pc = c;
-	
 	ft_vec_add(&vec, pa);
 	ft_vec_add(&vec, pb);
 	ft_vec_add(&vec, pc);
@@ -636,7 +622,7 @@ int	test_vec_shrink(void)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 2) != 44)
 		return (1);
-// try to shrink an already shrunk vector
+	// try to shrink an already shrunk vector
 	ft_vec_shrink(vec);
 	if (!vec)
 		return (1);
@@ -676,56 +662,32 @@ int	test_vec_swap(void)
 
 int	tests_vector(void)
 {
-	int ret;
-
-	ret = test_vec_add();
-	LOG_TESTS(ret, test_vec_add)
-
-	ret = test_vec_apply();
-	LOG_TESTS(ret, test_vec_apply)
+	int	collect;
+	t_test tests[] = {
+		{"test_vec_add", test_vec_add},
+		{"test_vec_apply", test_vec_apply},
+		{"test_vec_at", test_vec_at},
+		{"test_vec_cat", test_vec_cat},
+		{"test_vec_clear", test_vec_clear},
+		{"test_vec_destroy", test_vec_destroy},
+		{"test_vec_filter", test_vec_filter},
+		{"test_vec_map", test_vec_map},
+		{"test_vec_new", test_vec_new},
+		{"test_vec_from_size", test_vec_from_size},
+		{"test_vec_from_array", test_vec_from_array},
+		{"test_vec_convert_alloc_array", test_vec_convert_alloc_array},
+		{"test_vec_remove", test_vec_remove},
+		{"test_vec_remove_if", test_vec_remove_if},
+		{"test_vec_reserve", test_vec_reserve},
+		{"test_vec_reverse", test_vec_reverse},
+		{"test_vec_shift", test_vec_shift},
+		{"test_vec_sort", test_vec_sort},
+		{"test_vec_shrink", test_vec_shrink},
+		{"test_vec_swap", test_vec_swap},
+		{NULL, NULL}
+	};
 	
-	ret = test_vec_at();
-	LOG_TESTS(ret, test_vec_at)
-	
-	ret = test_vec_cat();
-	LOG_TESTS(ret, test_vec_cat)
-	
-	ret = test_vec_clear();
-	LOG_TESTS(ret, test_vec_clear)
-	
-	ret = test_vec_destroy();
-	LOG_TESTS(ret, test_vec_destroy)
-	
-	ret = test_vec_filter();
-	LOG_TESTS(ret, test_vec_filter)
-	
-	ret = test_vec_map();
-	LOG_TESTS(ret, test_vec_map)
-	
-	ret = test_vec_new();
-	LOG_TESTS(ret, test_vec_new)
-	
-	ret = test_vec_from_size();
-	LOG_TESTS(ret, test_vec_from_size)
-	ret = test_vec_from_array();
-	LOG_TESTS(ret, test_vec_from_array)
-	ret = test_vec_convert_alloc_array();
-	LOG_TESTS(ret, test_vec_convert_alloc_array)
-	ret = test_vec_remove();
-	LOG_TESTS(ret, test_vec_remove)
-	ret = test_vec_remove_if();
-	LOG_TESTS(ret, test_vec_remove_if)
-	ret = test_vec_reserve();
-	LOG_TESTS(ret, test_vec_reserve)
-	ret = test_vec_reverse();
-	LOG_TESTS(ret, test_vec_reverse)
-	ret = test_vec_shift();
-	LOG_TESTS(ret, test_vec_shift)
-	ret = test_vec_sort();
-	LOG_TESTS(ret, test_vec_sort)
-	ret = test_vec_shrink();
-	LOG_TESTS(ret, test_vec_shrink)
-	ret = test_vec_swap();
-	LOG_TESTS(ret, test_vec_swap)
-	return (ret);
+	collect	= 0;
+	RUN_TEST(tests, collect);
+	return (collect);
 }

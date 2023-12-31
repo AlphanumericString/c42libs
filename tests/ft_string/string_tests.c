@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   string_tests.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 20:05:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/31 17:41:37 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/30 13:36:16 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/30 16:01:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "tests/tests.h"
 
-int	ft_atoi(const char *str)
+int		t_string_tests(void);
+int		mem_tests(void);
+int		str_tests(void);
+
+
+int tests_string()
 {
-	int		ret;
-	int		sign;
-	size_t	offset;
+	int collect;
+	t_test tests[] = {
+		{"mem", mem_tests},
+		{"str", str_tests},
+		{"t_string", t_string_tests},
+		{NULL, NULL}
+	};
 
-	ret = 0;
-	offset = 0;
-	sign = 0;
-	while (ft_isspace(str[offset]))
-		offset++;
-	while (str[offset] == '+' || str[offset] == '-')
-	{
-		if (str[offset] == '-')
-			sign++;
-		offset++;
-	}
-	while (ft_isdigit(str[offset]))
-		ret = ret * 10 + str[offset++] - '0';
-	if (sign % 2 == 1)
-		return (-ret);
-	return (ret);
+	collect = 0;
+	RUN_TEST(tests, collect);
+	return (collect);
 }

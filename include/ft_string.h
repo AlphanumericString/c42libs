@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 13:05:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/31 18:55:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,7 @@ char		*ft_itoa(int nbr);
 /// @param base base of the string to return.
 /// @return pointer to the string.
 /// @note You must free the returned string
-char		*ft_itoa_base(int nbr, char *base);
+char		*ft_itoa_base(int nbr, const char *base);
 
 /// @brief
 /// @param nbr
@@ -281,12 +281,12 @@ char		*ft_itoa_base(int nbr, char *base);
 
 /// @brief Return a pointer to the first occurrence of any character contained
 /// in the string delims in the string str
-/// @param str_init string to search into
+/// @param str_init string to search into WARNING: the string is modified by
+/// this function. DO NOT PASS A CONST STRING.
 /// @param delims string of delimiters
 /// @return a pointer to the first occurrence of any character contained in the
 /// string delims in the string str otherwise NULL
-/// @note TODO: pass return as const and str_init as const and delims as const
-char		*ft_strtok(char *str_init, char *delims);
+char		*ft_strtok(char *str_init, const char *delims);
 
 /// @brief Split the string str with the specified delimiter
 /// @param str String to split
@@ -324,8 +324,8 @@ void		ft_striteri(char *s, void (*f)(unsigned int, char *));
 /// @note You must free the returned string
 char		*ft_strjoin(char const *s1, char const *s2);
 
-/// @brief copy up to size - 1 characters from the NUL-terminated string src
-/// to dst, NUL-terminating the result.
+/// @brief copy up to size - 1 characters from the NULL-terminated string src
+/// to dst, NULL-terminating the result.
 /// Puts the result after the characters already in dst.
 /// @param dst string to copy to
 /// @param src string to copy from
@@ -334,8 +334,8 @@ char		*ft_strjoin(char const *s1, char const *s2);
 /// @return returns the total length of the string they tried to create.
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 
-/// @brief Copies up to size - 1 characters from the NUL-terminated string src
-/// to dst, NUL-terminating the result.
+/// @brief Copies up to size - 1 characters from the NULL-terminated string src
+/// to dst, NULL-terminating the result.
 /// Puts the result directly at dst.
 /// @param dst string to copy to
 /// @param src string to copy from

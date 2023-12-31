@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2023/12/29 16:31:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2023/12/30 16:55:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,17 @@
 
 int main(void)
 {
-	int ret;
-	int sum;
+	int collect;
+	t_test tests[] = {
+		{"string", tests_string},
+		{"vec", tests_vector},
+		{"map", tests_map},
+		{"simply linked lists", tests_linked_list_all},
+		{"doubly linked lists", tests_doubly_linked_list_all},
+		{NULL, NULL}
+	};
 
-	sum = 0;
-	
-	ret = tests_map();
-	sum += ret;
-	LOG_TESTS(ret, tests_map);
-
-	ret = tests_linked_list_all();
-	sum += ret;
-	LOG_TESTS(ret, tests_linked_list_all);
-
-	ret = tests_doubly_linked_list_all();
-	sum += ret;
-	LOG_TESTS(ret, tests_doubly_linked_list_all);
-
-	ret = tests_vector();
-	sum += ret;
-	LOG_TESTS(ret, tests_vector);
-
-	return (sum);
+	collect = 0;
+	RUN_TEST(tests, collect);
+	return (collect);
 }
