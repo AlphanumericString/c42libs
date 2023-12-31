@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/30 13:18:13 by bgoulard         ###   ########.fr        #
+#    Updated: 2023/12/31 17:29:53 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ BOLD		= "\\e[1m"
 # Commands
 CC			=	clang
 NAME		=	ft_personal
+TEST_NAME	=	tests_run
+AR			=	ar
 COV			=	llvm-cov
 PRD			=	llvm-profdata
 ECHO		=	$(shell which echo) -e
@@ -231,6 +233,10 @@ TESTS_SRC	=	\
 			$(TESTS_DIR)/ft_list/dl_list_tests.c	\
 			$(TESTS_DIR)/ft_map/map_tests.c			\
 			$(TESTS_DIR)/ft_vector/vector_tests.c	\
+			$(TESTS_DIR)/ft_string/mem_tests.c		\
+			$(TESTS_DIR)/ft_string/string_tests.c	\
+			$(TESTS_DIR)/ft_string/str_tests.c		\
+			$(TESTS_DIR)/ft_string/t_string_tests.c	\
 			$(TESTS_DIR)/main_tests.c
 
 # Inner variables for targets
@@ -325,31 +331,31 @@ lib$(NAME).a:	$(OBJ)
 	$(ECHO) $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
 
 # Rule to compile and run tests
-tests_run: $(TOBJ)
+$(TEST_NAME): $(TOBJ)
 	@$(ECHO) -n $(GRAY) "Compiling tests ... " $(RESET)
-	@$(CC) $(CFLAGS) $(TOBJ) -o tests_run $(TEST_FLAGS)			\
-	$(LDFLAGS) -lgcov 2> /dev/null								&& \
+	@$(CC) $(CFLAGS) $(TOBJ) -o $(TEST_NAME) $(TEST_FLAGS)		\
+	$(LDFLAGS) -lgcov 2>> $(CLOG_FILE)							&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 	@$(ECHO) -n $(GRAY) "Running tests ... " $(RESET)			&& \
-	./tests_run 												&& \
+	./$(TEST_NAME) 												&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
 # Rule to generate coverage using llvm
-$(COVERAGE_DIR): tests_run
-	@$(ECHO) -n $(GRAY) "Generating profraw ... " $(RESET)			&& \
-	./tests_run													&& \
-	$(ECHO) -n $(GRAY) " profdata ... " $(RESET)					&& \
+$(COVERAGE_DIR): $(TEST_NAME)
+	@$(ECHO) -n $(GRAY) "Generating profraw ... " $(RESET)		&& \
+	./$(TEST_NAME)												&& \
+	$(ECHO) -n $(GRAY) " profdata ... " $(RESET)				&& \
 	$(PRD) merge -sparse default.profraw -o 					\
-	tests_run.profdata											&& \
+	$(TEST_NAME).profdata										&& \
 	$(ECHO) -n $(GRAY) "coverage in html ... "					\
 	$(RESET)													&& \
 	$(COV) show -format=html									\
-	-instr-profile=tests_run.profdata							\
+	-instr-profile=$(TEST_NAME).profdata						\
 	-ignore-filename-regex=$(TESTS_DIR)/*						\
-	-ignore-filename-regex=$(FT_STRING_DIR)/*					\
-	./tests_run -output-dir=$(COVERAGE_DIR) > /dev/null			&& \
+	--show-branches=count										\
+	./$(TEST_NAME) -output-dir=$(COVERAGE_DIR) > /dev/null		&& \
 	$(RM) *.profraw *.profdata									&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
@@ -366,7 +372,7 @@ debug:
 # Rule to clean objects
 clean:
 	@$(ECHO) -n $(GRAY) "Clean ... " $(RESET)						&& \
-	( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) tests_run *.gcov			\
+	( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) $(TEST_NAME) *.gcov			\
 	*.gcno *.gcda 2> /dev/null 										&& \
 	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
@@ -375,6 +381,7 @@ clean:
 fclean: clean
 	@$(ECHO) -n $(GRAY) "FClean ... " $(RESET)						&& \
 	( $(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)			\
+	$(TEST_NAME)													\
 	*.profraw *.profdata Doxygen 2> /dev/null 						&& \
 	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
@@ -382,7 +389,7 @@ fclean: clean
 # Rule to generate Doxygen documentation
 Doxygen:
 	@$(ECHO) -n $(GRAY) "Generating Doxygen ... " $(RESET)			&& \
-	( doxygen tools/doxyfile 2> /dev/null						&& \
+	( doxygen tools/doxyfile 2> /dev/null							&& \
 	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
