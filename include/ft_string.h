@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/31 18:55:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/01 17:30:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,9 +275,11 @@ char		*ft_itoa(int nbr);
 /// @note You must free the returned string
 char		*ft_itoa_base(int nbr, const char *base);
 
-/// @brief
-/// @param nbr
-/// @return (char *ft_utoa(unsigned int nbr));
+/// @brief convert the unsigned int to a string
+/// @param nbr number to convert
+/// @return pointer to the string.
+/// @note You must free the returned string
+char		*ft_utoa(unsigned int nbr);
 
 /// @brief Return a pointer to the first occurrence of any character contained
 /// in the string delims in the string str
@@ -294,6 +296,13 @@ char		*ft_strtok(char *str_init, const char *delims);
 /// @return A pointer to the array of string
 /// @note You must free the returned array of string and its content
 char		**ft_split(const char *str, char delim);
+
+/// @brief Same as ft_split but with multiple delimiters
+/// @param str string to split
+/// @param delims delimiters to split the string
+/// @return a pointer to the array of string
+/// @note You must free the returned array of string and its content
+char		**ft_splits(const char *str, const char *delims);
 
 /// @brief Search for the first occurence of the char c in the string str
 /// @param str string to search into
@@ -391,7 +400,7 @@ char		*ft_strdup(const char *src);
 /// @brief search for the first occurence of the string small in the string big
 /// @param big string to search into
 /// @param small string to search
-/// @param n number of chars to search
+/// @param n minimum number of characters to search
 /// @return returns a pointer to the first occurrence of the string small in the
 /// string big, where not more than n characters are searched. Characters that
 /// appear after a `\0' character are not searched.
@@ -426,8 +435,10 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 /// @param to_replace string to search and replace
 /// @param replace_by string to replace with
 /// @return the string with the modified chars otherwise NULL
+/// @note to_replace and replace_by must not be NULL
 /// @note You must free the returned string
 /// @note TODO: pass str as const - clearer signal that it is not modified
+/// @note TODO: enable replacement of multiple occurences.
 char		*ft_str_replace(char *str, const char *to_replace,
 				const char *replace_by);
 
@@ -437,6 +448,14 @@ char		*ft_str_replace(char *str, const char *to_replace,
 /// @param replace_by char to replace by
 /// @return A pointer to the string str
 char		*ft_str_replace_chr(char *str, char to_replace, char replace_by);
+
+/// @brief Returns a pointer to the first string pointed to by args
+/// @param args Pointer to a list of const char pointer
+/// @param index Number of elements in Args
+/// @return if index is negative or the first string of args
+/// is null fails and return null otherwise return the first
+/// const char pointed to by args
+const char	*ft_shift_args(const char **args[], int *index);
 
 /* ************************************************************************** */
 /*                        FT_GNL SUB MODULE                                   */
@@ -464,14 +483,6 @@ int			split_from(char **dst, char *from, int pos, char delim);
 /// @param c char to search
 /// @return the index of the first occurence of c in the string otherwise -1
 int			ft_strchr_index(const char *from, char c);
-
-/// @brief Returns a pointer to the first string pointed to by args
-/// @param args Pointer to a list of const char pointer
-/// @param index Number of elements in Args
-/// @return if index is negative or the first string of args
-/// is null fails and return null otherwise return the first
-/// const char pointed to by args
-const char	*ft_shift_args(const char **args, int *index);
 
 // printf
 
