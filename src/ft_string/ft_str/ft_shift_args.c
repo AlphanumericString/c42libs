@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shift_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:10:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/15 19:44:59 by iron             ###   ########.fr       */
+/*   Updated: 2024/01/01 17:14:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-const char	*ft_shift_args(const char **args, int *index)
+const char	*ft_shift_args(const char **args[], int *index)
 {
-	if (*index < 0 || !args || !*args)
+	const char	*arg;
+
+	if (*index <= 0 || !*args || !**args)
 		return (NULL);
-	return (args++[(*index)--]);
+	(*index)--;
+	arg = **args;
+	(*args)++;
+	return (arg);
 }

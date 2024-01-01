@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/31 18:48:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/01 17:40:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,6 +325,24 @@ int	test_itoa(void)
 	return (0);
 }
 
+int	test_utoa(void)
+{
+	unsigned int	t_cases[] = {0, 123, 456, 7890, 12345};
+	char			*expected_results[] = {"0", "123", "456", "7890", "12345"};
+	char			*res;
+	size_t			i;
+
+	i = 0;
+	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
+	{
+		res = ft_utoa(t_cases[i]);
+		if (strcmp(res, expected_results[i]) != 0)
+			return (i + 1);
+		free(res);
+	}
+	return (0);
+}
+
 int	test_itoa_base(void)
 {
 	int		t_cases[] = {0, 123, -456, 7890, -12345};
@@ -613,21 +631,21 @@ int	test_atoi(void)
 			"-10000"};
 	size_t	i;
 
-//  normal cases
+	//  normal cases
 	i = 0;
 	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
 	{
 		if (ft_atoi(t_str[i]) != t_cases[i])
 			return (i + 1);
 	}
-//  sign cases
+	//  sign cases
 	if (ft_atoi(" --99") != 99)
 		return (21);
 	if (ft_atoi(" -0") != 0)
 		return (22);
 	if (ft_atoi(" -++--1") != -1)
 		return (23);
-//  error cases
+	//  error cases
 	if (ft_atoi("toto") != 0)
 		return (24);
 	if (ft_atoi("-toto") != 0)
@@ -641,18 +659,27 @@ int	test_atoi(void)
 	return (0);
 }
 
-int test_atoi_base(void)
+int	test_atoi_base(void)
 {
-	char *b10 = "0123456789";
-	char *b2 = "01";
-	char *b16 = "0123456789abcdef";
-	char *binvalid1 = "toto";
-	char *binvalid2 = "-0123456789";
-	char *binvalid3 = "0123456789-";
-	char *binvalid4 = "a";
-	char *binvalid5 = "01234\t56789";
-	char *binvalid6 = "+0123456789";
+	char	*b10;
+	char	*b2;
+	char	*b16;
+	char	*binvalid1;
+	char	*binvalid2;
+	char	*binvalid3;
+	char	*binvalid4;
+	char	*binvalid5;
+	char	*binvalid6;
 
+	b10 = "0123456789";
+	b2 = "01";
+	b16 = "0123456789abcdef";
+	binvalid1 = "toto";
+	binvalid2 = "-0123456789";
+	binvalid3 = "0123456789-";
+	binvalid4 = "a";
+	binvalid5 = "01234\t56789";
+	binvalid6 = "+0123456789";
 	if (ft_atoi_base("0", b10) != 0)
 		return (1);
 	if (ft_atoi_base("1", b10) != 1)
@@ -685,7 +712,7 @@ int test_atoi_base(void)
 		return (15);
 	if (ft_atoi_base("-0", b2) != 0)
 		return (16);
-	if (ft_atoi_base("-1", b2) != -1)	
+	if (ft_atoi_base("-1", b2) != -1)
 		return (17);
 	if (ft_atoi_base("-10", b2) != -2)
 		return (18);
@@ -734,7 +761,6 @@ int test_atoi_base(void)
 		return (39);
 	if (ft_atoi_base("23", binvalid6) != 0)
 		return (40);
-	
 	// space cases
 	if (ft_atoi_base(" 0", b10) != 0)
 		return (41);
@@ -744,7 +770,6 @@ int test_atoi_base(void)
 		return (43);
 	if (ft_atoi_base(" 10", b10) != 10)
 		return (44);
-
 	// multiple sign cases
 	if (ft_atoi_base(" --99", b10) != 99)
 		return (45);
@@ -755,11 +780,12 @@ int test_atoi_base(void)
 	return (0);
 }
 
-int test_strtok(void)
+int	test_strtok(void)
 {
-	char lorem[] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse";
-	char test[] = "path/to/file:another/path:yet/another/path";
+	char	test[] = "path/to/file:another/path:yet/another/path";
 
+	char lorem[] = "Lorem ipsum dolor sit amet, "
+					"consectetur adipiscing elit. Sed non risus. Suspendisse";
 	if (strcmp(ft_strtok(lorem, " "), "Lorem") != 0)
 		return (1);
 	if (strcmp(ft_strtok(NULL, " "), "ipsum") != 0)
@@ -795,19 +821,26 @@ int test_strtok(void)
 	return (0);
 }
 
-int test_split(void)
+int	test_split(void)
 {
-	char *str = "Hello World!";
-	char *str2 = "Hello World!  ";
-	char *str3 = "  Hello World!";
-	char *str4 = "  Hello World!  ";
+	char	*str;
+	char	*str2;
+	char	*str3;
+	char	*str4;
+	char	**res;
+	char	**res2;
+	char	**res3;
+	char	**res4;
+	size_t	i;
 
-	char **res = ft_split(str, ' ');
-	char **res2 = ft_split(str2, ' ');
-	char **res3 = ft_split(str3, ' ');
-	char **res4 = ft_split(str4, ' ');
-	size_t i;
-	
+	str = "Hello World!";
+	str2 = "Hello World!  ";
+	str3 = "  Hello World!";
+	str4 = "  Hello World!  ";
+	res = ft_split(str, ' ');
+	res2 = ft_split(str2, ' ');
+	res3 = ft_split(str3, ' ');
+	res4 = ft_split(str4, ' ');
 	if (strcmp(res[0], "Hello") != 0)
 		return (1);
 	if (strcmp(res[1], "World!") != 0)
@@ -847,13 +880,47 @@ int test_split(void)
 	return (0);
 }
 
-int test_strchr(void)
+int tests_splits(void)
 {
-	char *str = "Hello World!";
-	char s = 'o';
-	char s2 = 'z';
-	char *res;
+	char	*str = "path/to/file:another/path:yet/another/path";
+	char	**res;
+	size_t	i;
 
+	res = ft_splits(str, " /:");
+	if (strcmp(res[0], "path") != 0)
+		return (1);
+	if (strcmp(res[1], "to") != 0)
+		return (2);
+	if (strcmp(res[2], "file") != 0)
+		return (3);
+	if (strcmp(res[3], "another") != 0)
+		return (4);
+	if (strcmp(res[4], "path") != 0)
+		return (5);
+	if (strcmp(res[5], "yet") != 0)
+		return (6);
+	if (strcmp(res[6], "another") != 0)
+		return (7);
+	if (strcmp(res[7], "path") != 0)
+		return (8);
+	if (res[8] != NULL)
+		return (9);
+	for (i = 0; res[i] != NULL; i++)
+		free(res[i]);
+	free(res);
+	return (0);
+}
+
+int	test_strchr(void)
+{
+	char	*str;
+	char	s;
+	char	s2;
+	char	*res;
+
+	str = "Hello World!";
+	s = 'o';
+	s2 = 'z';
 	res = ft_strchr(str, s);
 	if (res != str + 4)
 		return (1);
@@ -863,14 +930,15 @@ int test_strchr(void)
 	res = ft_strchr(str, '\0');
 	if (res != str + strlen(str))
 		return (3);
-	return (0);	
+	return (0);
 }
 
-int test_strdup(void)
+int	test_strdup(void)
 {
-	char *str = "Hello World!";
-	char *res;
+	char	*str;
+	char	*res;
 
+	str = "Hello World!";
 	res = ft_strdup(str);
 	if (strcmp(res, str) != 0)
 		return (1);
@@ -878,63 +946,63 @@ int test_strdup(void)
 	return (0);
 }
 
-int test_striteri(void)
+int	test_striteri(void)
 {
-	char str[] = "Hello World!";
-	
+	char	str[] = "Hello World!";
+
 	ft_striteri(str, &local_iteri);
 	if (strcmp(str, "aaaaaaaaaaaa") != 0)
 		return (1);
 	return (0);
 }
 
-int test_strjoin(void)
+int	test_strjoin(void)
 {
-	char *str = "Hello World!";
-	char *str2 = "Hello World!";
-	char *res;
+	char	*str;
+	char	*str2;
+	char	*res;
 
+	str = "Hello World!";
+	str2 = "Hello World!";
 	res = ft_strjoin(str, str2);
 	if (strcmp(res, "Hello World!Hello World!") != 0)
 		return (1);
 	free(res);
-
 	str2 = "";
 	res = ft_strjoin(str, str2);
 	if (strcmp(res, "Hello World!") != 0)
 		return (2);
 	free(res);
-
 	str2 = NULL;
 	res = ft_strjoin(str, str2);
 	if (strcmp(res, "Hello World!") != 0)
 		return (3);
 	free(res);
-
 	str = "";
 	str2 = "Hello World!";
 	res = ft_strjoin(str, str2);
 	if (strcmp(res, "Hello World!") != 0)
 		return (4);
 	free(res);
-
 	str = NULL;
 	res = ft_strjoin(str, str2);
 	if (strcmp(res, "Hello World!") != 0)
 		return (5);
 	free(res);
-
 	return (0);
 }
 
-int test_strlcat(void)
+int	test_strlcat(void)
 {
-	char *str = "Hello";
-	char *str2 = " World!";
-	char *res;
-	size_t size = 15;
-	int ret;
+	char	*str;
+	char	*str2;
+	char	*res;
+	size_t	size;
+	int		ret;
 
+	str = "Hello";
+	str2 = " World!";
+	size = 15;
 	res = malloc(sizeof(char) * size);
 	bzero(res, size);
 	ret = ft_strlcat(res, str, size);
@@ -950,41 +1018,44 @@ int test_strlcat(void)
 	return (0);
 }
 
-int test_strlcpy(void)
+int	test_strlcpy(void)
 {
-	char *str = "Hello World!";
-	char *res;
-	size_t size = 15;
-	int ret;
+	char	*str;
+	char	*res;
+	size_t	size;
+	int		ret;
 
+	str = "Hello World!";
+	size = 15;
 	res = malloc(sizeof(char) * size);
 	bzero(res, size);
 	ret = ft_strlcpy(res, str, size);
 	if (strcmp(res, "Hello World!") != 0 || ret != 12)
 		return (1);
 	free(res);
-
-	res = malloc(sizeof(char) * size);	
+	res = malloc(sizeof(char) * size);
 	ret = ft_strlcpy(res, "This is zod!", size);
 	if (strcmp(res, "This is zod!") != 0 || ret != 12)
 		return (2);
 	free(res);
-
 	res = malloc(sizeof(char) * size);
 	ret = ft_strlcpy(res, "This is too large!", size);
-	if (strncmp(res, "This is too large!", size - 1) != 0 || ret != strlen("This is too large!"))
+	if (strncmp(res, "This is too large!", size - 1) != 0
+		|| ret != strlen("This is too large!"))
 		return (3);
 	free(res);
-	
 	return (0);
 }
 
-int test_strlen(void)
+int	test_strlen(void)
 {
-	char *str = "Hello World!";
-	char *str2 = "";
-	char *str3 = "Hello\0World!";
+	char	*str;
+	char	*str2;
+	char	*str3;
 
+	str = "Hello World!";
+	str2 = "";
+	str3 = "Hello\0World!";
 	if (ft_strlen(str) != 12)
 		return (1);
 	if (ft_strlen(str2) != 0)
@@ -994,11 +1065,12 @@ int test_strlen(void)
 	return (0);
 }
 
-int test_strmapi(void)
+int	test_strmapi(void)
 {
-	char *str = "Hello World!";
-	char *res;
+	char	*str;
+	char	*res;
 
+	str = "Hello World!";
 	res = ft_strmapi(str, &local_mapi);
 	if (strcmp(res, "Ifmmp!Xpsme\"") != 0)
 		return (1);
@@ -1006,15 +1078,21 @@ int test_strmapi(void)
 	return (0);
 }
 
-int test_strcmp(void)
+int	test_strcmp(void)
 {
-	char *str	= "none";
-	char *str2	= "some";
-	char *str3	= "nonethensome";
-	char *str4	= "nonethensome";
-	char *str5	= "!\0a";
-	char *str6	= "!\0b";
+	char	*str;
+	char	*str2;
+	char	*str3;
+	char	*str4;
+	char	*str5;
+	char	*str6;
 
+	str = "none";
+	str2 = "some";
+	str3 = "nonethensome";
+	str4 = "nonethensome";
+	str5 = "!\0a";
+	str6 = "!\0b";
 	if (ft_strcmp(str, str2) >= 0)
 		return (1);
 	if (ft_strcmp(str, str3) >= 0)
@@ -1026,15 +1104,21 @@ int test_strcmp(void)
 	return (0);
 }
 
-int test_strncmp(void)
+int	test_strncmp(void)
 {
-	char *str	= "none";
-	char *str2	= "some";
-	char *str3	= "nonethensome";
-	char *str4	= "nonethensome";
-	char *str5	= "!\0a";
-	char *str6	= "!\0b";
+	char	*str;
+	char	*str2;
+	char	*str3;
+	char	*str4;
+	char	*str5;
+	char	*str6;
 
+	str = "none";
+	str2 = "some";
+	str3 = "nonethensome";
+	str4 = "nonethensome";
+	str5 = "!\0a";
+	str6 = "!\0b";
 	if (ft_strncmp(str, str2, 4) >= 0)
 		return (1);
 	if (ft_strncmp(str, str3, 4) != 0)
@@ -1045,6 +1129,272 @@ int test_strncmp(void)
 		return (4);
 	if (ft_strncmp(str5, str, 0) != 0)
 		return (5);
+	return (0);
+}
+
+int	test_strndup(void)
+{
+	char	*str;
+	char	*res;
+
+	str = "Hello World!";
+	res = ft_strndup(str, 5);
+	if (strcmp(res, "Hello") != 0)
+		return (1);
+	free(res);
+	res = ft_strndup(str, 0);
+	if (strcmp(res, "") != 0)
+		return (2);
+	free(res);
+	res = ft_strndup(str, 12);
+	if (strcmp(res, "Hello World!") != 0)
+		return (3);
+	free(res);
+	res = ft_strndup(str, 15);
+	if (strcmp(res, "Hello World!") != 0)
+		return (4);
+	free(res);
+	return (0);
+}
+
+int	test_strnstr(void)
+{
+	char	*str;
+	char	*res;
+
+	str = "The cake is a lie !\0I'm hidden lol\n";
+	res = ft_strnstr(str, "The cake is a lie !", 100);
+	if (res != str)
+		return (1);
+	res = ft_strnstr(str, "The cake is a lie !", 20);
+	if (res != str)
+		return (2);
+	res = ft_strnstr(str, "The cake is a lie !", 19);
+	if (res == NULL)
+		return (3);
+	res = ft_strnstr(str, "The cake is a lie !", 0);
+	if (res != NULL)
+		return (4);
+	res = ft_strnstr(str, "hidden", 100);
+	if (res != NULL)
+		return (5);
+	return (0);
+}
+
+int	test_strrchr(void)
+{
+	char	*str;
+	char	s;
+	char	s2;
+	char	*res;
+
+	str = "Hello World!";
+	s = 'o';
+	s2 = 'z';
+	res = ft_strrchr(str, s);
+	if (res != str + 7)
+		return (1);
+	res = ft_strrchr(str, s2);
+	if (res != NULL)
+		return (2);
+	res = ft_strrchr(str, '\0');
+	if (res != str + strlen(str))
+		return (3);
+	return (0);
+}
+
+int	test_strtrim(void)
+{
+	char	*str;
+	char	*str2;
+	char	*str3;
+	char	*str4;
+	char	*res;
+
+	str = "Hello World!";
+	str2 = "  Hello World!";
+	str3 = "Hello World!  ";
+	str4 = "  Hello World!  ";
+	res = NULL;
+	res = ft_strtrim(str, " ");
+	if (strcmp(res, "Hello World!") != 0)
+		return (1);
+	free(res);
+	res = ft_strtrim(str2, " ");
+	if (strcmp(res, "Hello World!") != 0)
+		return (2);
+	free(res);
+	res = ft_strtrim(str3, " ");
+	if (strcmp(res, "Hello World!") != 0)
+		return (3);
+	free(res);
+	res = ft_strtrim(str4, " ");
+	if (strcmp(res, "Hello World!") != 0)
+		return (4);
+	free(res);
+	res = ft_strtrim(str4, " !W");
+	if (strcmp(res, "Hello World") != 0)
+		return (5);
+	free(res);
+	return (0);
+}
+
+int	test_substr(void)
+{
+	char	*str;
+	char	*res;
+
+	str = "Hello World!";
+	res = NULL;
+	res = ft_substr(str, 0, 5);
+	if (strcmp(res, "Hello") != 0)
+		return (1);
+	free(res);
+	res = ft_substr(str, 6, 6);
+	if (strcmp(res, "World!") != 0)
+		return (2);
+	free(res);
+	res = ft_substr(str, 6, 100);
+	if (strcmp(res, "World!") != 0)
+		return (3);
+	free(res);
+	res = ft_substr(str, 6, 0);
+	if (strcmp(res, "") != 0)
+		return (4);
+	free(res);
+	res = ft_substr(str, 12, 0);
+	if (strcmp(res, "") != 0)
+		return (5);
+	free(res);
+	res = ft_substr(str, 12, 100);
+	if (strcmp(res, "") != 0)
+		return (6);
+	free(res);
+	return (0);
+}
+
+int	test_str_replace(void)
+{
+	char	*str;
+	char	*res;
+
+	str = "Hello World!";
+	// char *str2 = "Hello World! World! World!";
+	res = NULL;
+	res = ft_str_replace(str, "World", "Zod");
+	if (strcmp(res, "Hello Zod!") != 0)
+		return (1);
+	free(res);
+	res = ft_str_replace(str, "World", "");
+	if (strcmp(res, "Hello !") != 0)
+		return (2);
+	free(res);
+	res = ft_str_replace(str, "World", NULL);
+	if (res != NULL)
+		return (3);
+	free(res);
+	// not implemented yet
+	// res = ft_str_replace(str2, "World", "Zod");
+	// if (strcmp(res, "Hello Zod! Zod! Zod!") != 0)
+	// 	return (4);
+	// free(res);
+	return (0);
+}
+
+int	test_str_replace_chr(void)
+{
+	char	*str;
+	char	*res;
+
+	str = ft_strdup("Hello World!");
+	res = NULL;
+	res = ft_str_replace_chr(str, 'o', 'a');
+	if (strcmp(res, "Hella Warld!") != 0)
+		return (1);
+	free(res);
+	str = ft_strdup("Hello World!");
+	res = ft_str_replace_chr(str, '!', '?');
+	if (strcmp(res, "Hello World?") != 0)
+		return (2);
+	free(res);
+	str = ft_strdup("Hello World!");
+	res = ft_str_replace_chr(str, '!', '\0');
+	if (strcmp(res, "Hello World") != 0)
+		return (3);
+	free(res);
+	str = ft_strdup("Hello World!");
+	res = ft_str_replace_chr(str, 'o', '\0');
+	if (strcmp(res, "Hell") != 0 || strcmp(res + 5, " W") != 0 || strcmp(res
+			+ 8, "rld!") != 0)
+		return (4);
+	free(res);
+	return (0);
+}
+
+int	test_shift_args(void)
+{
+	const char	*fake_args[] = (const char *[]){"test", "1", "2", "3", "4",
+			NULL};
+	const char	**test = fake_args;
+	int			fake_argc;
+	const char	*ret = NULL;
+
+	fake_argc = 5;
+	ret = ft_shift_args(&test, &fake_argc);
+	if (fake_argc != 4)
+		return (1);
+	if (strcmp(test[0], "1") != 0)
+		return (2);
+	if (strcmp(test[1], "2") != 0)
+		return (3);
+	if (strcmp(test[2], "3") != 0)
+		return (4);
+	if (strcmp(test[3], "4") != 0)
+		return (5);
+	if (strcmp(ret, "test") != 0)
+		return (6);
+	ret = ft_shift_args(&test, &fake_argc);
+	ret = ft_shift_args(&test, &fake_argc);
+	ret = ft_shift_args(&test, &fake_argc);
+	ret = ft_shift_args(&test, &fake_argc);
+	ret = ft_shift_args(&test, &fake_argc);
+	if (fake_argc != 0)
+		return (7);
+	if (ret != NULL)
+		return (8);
+	return (0);
+}
+
+int	test_gnl(void)
+{
+	int		fd;
+	char	*line;
+	size_t	i;
+
+	line = NULL;
+	char *test_lines[] = {
+		"Hello World!\n",
+		"This is Zod!\n",
+		"Zod shall henceforth be the new earth emperor. Prepare yourself earthilings to the terrible rule of zod the space warrior and self proclaimed emperor of the gallaxy. this is a really long line btw... i sure hop gnl will parse it............................\n",
+		"Goodbye World!\n",
+	};
+	fd = open(TESTS_FPREFIX "gnl.txt", O_RDWR | O_CREAT | O_TRUNC, 0666);
+	for (i = 0; i < sizeof(test_lines) / sizeof(test_lines[0]); i++)
+		write(fd, test_lines[i], strlen(test_lines[i]));
+	close(fd);
+	fd = open(TESTS_FPREFIX "gnl.txt", O_RDONLY);
+	for (i = 0; i < sizeof(test_lines) / sizeof(test_lines[0]); i++)
+	{
+		line = get_next_line(fd);
+		if (strcmp(line, test_lines[i]) != 0)
+			return (i + 1);
+		free(line);
+	}
+	line = get_next_line(fd);
+	if (line != NULL)
+		return (2);
+	free(line);
+	DESTROY_TEST_FILE(fd, TESTS_FPREFIX "gnl.txt");
 	return (0);
 }
 
@@ -1077,11 +1427,13 @@ int	str_tests(void)
 		{"putchar", test_putchar},
 // str main module
 		{"itoa", test_itoa},
+		{"utoa", test_utoa},
 		{"itoa_base", test_itoa_base},
 		{"atoi", test_atoi},
 		{"atoi_base", test_atoi_base},
 		{"strtok", test_strtok},
 		{"split", test_split},
+		{"splits", tests_splits},
 		{"strchr", test_strchr},
 		{"strdup", test_strdup},
 		{"striteri", test_striteri},
@@ -1092,18 +1444,15 @@ int	str_tests(void)
 		{"strmapi", test_strmapi},
 		{"strcmp", test_strcmp},
 		{"strncmp", test_strncmp},
-		
-		// {"strndup", test_strndup},
-		// {"strlcpy", test_strlcpy},
-		// {"strrchr", test_strrchr},
-		// {"strchrnul", test_strchrnul},
-		// {"strnchr", test_strnchr},
-		// {"strnstr", test_strnstr},
-		// {"strcoll", test_strcoll},
-		// split
-		// strjoin
-		// end
-
+		{"strndup", test_strndup},
+		{"strnstr", test_strnstr},
+		{"strrchr", test_strrchr},
+		{"strtrim", test_strtrim},
+		{"substr", test_substr},
+		{"str_replace", test_str_replace},
+		{"str_replace_chr", test_str_replace_chr},
+		{"shift_args", test_shift_args},
+		{"gnl", test_gnl},
 		{NULL, NULL}
 	};
 	RUN_TEST(tests, collect);

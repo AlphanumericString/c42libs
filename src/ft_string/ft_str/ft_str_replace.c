@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:35:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/14 16:03:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/01 16:54:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_str_replace(char *str, const char *to_replace,
 	size_t	replace_by_len;
 
 	ptr = ft_strnstr(str, to_replace, ft_strlen(str));
-	if (ptr == NULL)
+	if (ptr == NULL || to_replace == NULL || replace_by == NULL)
 		return (NULL);
 	to_replace_len = ft_strlen(to_replace);
 	replace_by_len = ft_strlen(replace_by);
@@ -42,11 +42,12 @@ char	*ft_str_replace_chr(char *str, char to_replace, char replace_by)
 	char		*ptr;
 
 	ptr = str;
-	while (*str)
+	str = ft_strchr(str, to_replace);
+	while (str && *str)
 	{
-		str = ft_strchr(str, to_replace);
 		*str = replace_by;
 		str++;
+		str = ft_strchr(str, to_replace);
 	}
 	return (ptr);
 }
