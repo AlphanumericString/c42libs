@@ -23,8 +23,7 @@ void	ft_map_remove(t_map *map, const void *key, size_t size)
 		if (!map->cmp(map->nodes[index[0]].key, key))
 		{
 			map->nodes[index[0]].used = 0;
-			map->size--;
-			return ;
+			return ((void)(map->size--));
 		}
 		index[0] = (index[0] + 1) % map->capacity;
 		if (index[1] == index[0])

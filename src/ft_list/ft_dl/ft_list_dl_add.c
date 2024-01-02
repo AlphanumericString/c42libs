@@ -30,10 +30,7 @@ void	ft_list_dl_add_front(t_dlist **head, t_dlist *const added)
 	if (!head || !added)
 		return ;
 	if (!*head)
-	{
-		*head = added;
-		return ;
-	}
+		return ((void) (*head = added));
 	added->next = *head;
 	(*head)->prev = added;
 	*head = added;

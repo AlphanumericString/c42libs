@@ -18,8 +18,6 @@ void	ft_vec_apply(t_vector *vec, void (*func)(void *))
 
 	i = 0;
 	while (i < vec->count)
-	{
 		func(vec->datas[i++]);
-	}
 	return ;
 }
