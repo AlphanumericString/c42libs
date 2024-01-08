@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/01/07 09:39:23 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/01/08 15:34:29 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 # Compilation flags
 
 LDFLAGS		=	
-CPPFLAGS	=	-I$(INC_DIR)
+CPPFLAGS	=	-I$(INC_DIR) -MMD
 CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC \
 				-fdiagnostics-color -g
 TEST_FLAGS	=	\
@@ -430,6 +430,8 @@ re:	fclean all
 	mv Makefile.tmp Makefile									&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
+
+-include $(OBJ:.o=.d)
 
 # rule to force rules to be executed even if files exist
 .PHONY: re fclean clean
