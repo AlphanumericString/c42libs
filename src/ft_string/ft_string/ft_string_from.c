@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:14:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/09 17:17:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/07 09:42:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
+// +1 for the null terminator
 t_string	*ft_string_from(char *str)
 {
 	t_string	*new;
@@ -33,6 +34,8 @@ t_string	*ft_string_from_n(char *str, size_t n)
 	new = ft_string_new(n);
 	if (new == NULL)
 		return (NULL);
+	if (n == 0)
+		return (new);
 	ft_memcpy(new->str, str, n);
 	new->length = n;
 	return (new);
@@ -73,3 +76,4 @@ t_string	*ft_string_from_s_n(t_string *str, size_t n)
 	new->length = n;
 	return (new);
 }
+

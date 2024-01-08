@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/01 17:30:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/07 09:46:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -497,89 +497,284 @@ int			ft_strchr_index(const char *from, char c);
 /* ************************************************************************** */
 /* **                     ft_string_new                                    ** */
 /* ************************************************************************** */
+
+/// @brief create a new t_string
+/// @param capacity initial capacity of the string
+/// @return a pointer to the new t_string
+/// @note You must free the returned string with ft_string_destroy
 t_string	*ft_string_new(size_t capacity);
 
 /* ************************************************************************** */
 /* **                     ft_string_from                                   ** */
 /* ************************************************************************** */
+
+/// @brief create a new t_string from the string
+/// @param str string to copy from
+/// @return a pointer to the new t_string
+/// @note You must free the returned string with ft_string_destroy
+/// @note This function does NOT take ownership of the passed string.
 t_string	*ft_string_from(char *str);
+
+/// @brief create a new t_string from the string with at most n chars
+/// @param str string to copy from
+/// @param n number of chars to copy (including the '\0') "1234" with n = 3 
+///  -> "123"
+/// @return a pointer to the new t_string
+/// @note You must free the returned string with ft_string_destroy
 t_string	*ft_string_from_n(char *str, size_t n);
+
+/// @brief create a new t_string from the char c
+/// @param c char to copy from
+/// @return a pointer to the new t_string
+/// @note You must free the returned string with ft_string_destroy
 t_string	*ft_string_from_c(char c);
+
+/* ************************************************************************** */
+/* **                     ft_string_put                                    ** */
+/* ************************************************************************** */
+
+/// @brief write the string on the specified file descriptor
+/// @param str t_string to write
+/// @param fd file descriptor to write on
+/// @return the return of write if the fd and str are valid otherwise -1
+int	ft_string_put(t_string *str, int fd);
+
+int ft_string_putdbg(t_string *str, int fd);
+
 
 /* ************************************************************************** */
 /* **                     ft_string_append                                 ** */
 /* ************************************************************************** */
+
+/// @brief append the string src to the string str
+/// @param str t_string to modify
+/// @param src string to append
+/// @return 1 if the string has been appended otherwise 0
 int			ft_string_append(t_string *str, char *src);
+
+/// @brief append at most n chars of the string src to the string str
+/// @param str t_string to modify
+/// @param src string to append
+/// @param n number of chars to append
+/// @return 1 if the string has been appended otherwise 0
 int			ft_string_append_n(t_string *str, char *src, size_t n);
+
+/// @brief append the char c to the string str
+/// @param str t_string to modify
+/// @param c char to append
+/// @return 1 if the string has been appended otherwise 0
 int			ft_string_append_c(t_string *str, char c);
+
+/// @brief append the string src to the string str
+/// @param str t_string to modify
+/// @param src string to append
+/// @return 1 if the string has been appended otherwise 0
 int			ft_string_append_s(t_string *str, t_string *src);
+
+/// @brief append at most n chars of the string src to the string str
+/// @param str t_string to modify
+/// @param src string to append
+/// @param n number of chars to append
+/// @return 1 if the string has been appended otherwise 0
 int			ft_string_append_s_n(t_string *str, t_string *src, size_t n);
 
 /* ************************************************************************** */
 /* **                     ft_string_clear                                  ** */
 /* ************************************************************************** */
+
+/// @brief clear the string
+/// @param str t_string to clear
+/// @return void
+/// @note the string is not freed but the content is cleared
 void		ft_string_clear(t_string *str);
 
 /* ************************************************************************** */
 /* **                     ft_string_destroy                                ** */
 /* ************************************************************************** */
+
+/// @brief free the string
+/// @param str pointer to the t_string to free
+/// @return void
 void		ft_string_destroy(t_string **str);
 
 /* ************************************************************************** */
 /* **                     ft_string_insert                                 ** */
 /* ************************************************************************** */
+
+/// @brief insert the string src in the string str at the specified position
+/// @param str t_string to modify
+/// @param src string to insert
+/// @param pos position to insert the string
+/// @return 1 if the string has been inserted otherwise 0
 int			ft_string_insert(t_string *str, char *src, size_t pos);
+
+/// @brief insert at most n chars of the string src in the string str at the
+/// specified position
+/// @param str t_string to modify
+/// @param src string to insert
+/// @param pos position to insert the string
+/// @param n number of chars to insert
+/// @return 1 if the string has been inserted otherwise 0
 int			ft_string_insert_n(t_string *str, char *src, size_t pos, size_t n);
+
+/// @brief insert the char c in the string str at the specified position
+/// @param str t_string to modify
+/// @param c char to insert
+/// @param pos position to insert the char
+/// @return 1 if the string has been inserted otherwise 0
 int			ft_string_insert_c(t_string *str, char c, size_t pos);
+
+/// @brief insert the string src in the string str at the specified position
+/// @param str t_string to modify
+/// @param src string to insert
+/// @param pos position to insert the string
+/// @return 1 if the string has been inserted otherwise 0
 int			ft_string_insert_s(t_string *str, t_string *src, size_t pos);
+
+/// @brief insert at most n chars of the string src in the string str at the
+/// specified position
+/// @param str t_string to modify
+/// @param src string to insert
+/// @param pos position to insert the string
+/// @param n number of chars to insert
+/// @return 1 if the string has been inserted otherwise 0
 int			ft_string_insert_s_n(t_string *str, t_string *src, size_t pos,
 				size_t n);
 
 /* ************************************************************************** */
 /* **						ft_string_reserve                              ** */
 /* ************************************************************************** */
+
+/// @brief reserve the specified capacity for the string
+/// @param str t_string to modify
+/// @param capacity capacity to reserve
+/// @return 1 if the string has been reserved otherwise 0
 int			ft_string_reserve(t_string *str, size_t capacity);
 
 /* ************************************************************************** */
 /* **                     ft_string_resize                                 ** */
 /* ************************************************************************** */
+
+/// @brief resize the string to the specified size
+/// @param str t_string to modify
+/// @param size size to resize
+/// @return 1 if the string has been resized otherwise 0
+/// @note if the size is smaller than the current size, the string is truncated
 int			ft_string_resize(t_string *str, size_t size);
 
 /* ************************************************************************** */
 /* **                     ft_string_shrink                                 ** */
 /* ************************************************************************** */
+
+/// @brief shrink the string to the minimum size
+/// @param str t_string to modify
+/// @return 1 if the string has been shrinked otherwise 0
 int			ft_string_shrink(t_string *str);
 
 /* ************************************************************************** */
 /* **                     ft_string_substr                                 ** */
 /* ************************************************************************** */
+
+/// @brief return a substring of the string str from the specified position
+/// @param str t_string to get the substring
+/// @param start position of the substring
+/// @param len length of the substring
+/// @return allocated string with the substring otherwise NULL
+/// @note You must free the returned string. use ft_string_destroy.
 t_string	*ft_string_substr(t_string *str, size_t start, size_t len);
 
 /* ************************************************************************** */
 /* **                     ft_string_to_str                                 ** */
 /* ************************************************************************** */
+
+/// @brief convert the t_string to a string
+/// @param str t_string to convert
+/// @return allocated string with the content of the t_string otherwise NULL
+/// @note You must free the returned string.
+/// @note The t_string is not freed or modified.
 char		*ft_string_to_str(t_string *str);
 
 /* ************************************************************************** */
 /* **                     ft_string_trim                                   ** */
 /* ************************************************************************** */
+
+/// @brief trim the characters ' ' from the string
+/// @param str t_string to trim
+/// @return void
+/// @note the inner string is not freed but the content modified.
 void		ft_string_trim(t_string *str);
+
+/// @brief trim the specified char from the string
+/// @param str t_string to trim
+/// @param c char to trim
+/// @return void
+/// @note the inner string is not freed but the content modified.
 void		ft_string_trim_chr(t_string *str, char c);
+
+/// @brief trim the specified chars from the string
+/// @param str t_string to trim
+/// @param to_trim chars to trim
+/// @return void
+/// @note the inner string is not freed but the content modified.
 void		ft_string_trimstr(t_string *str, char *to_trim);
 
 /* ************************************************************************** */
 /* **                     ft_string_cmp                                    ** */
 /* ************************************************************************** */
+
+/// @brief compare the string with the string cmp
+/// @param str t_string to compare
+/// @param cmp string to compare
+/// @return 0 if the strings are identical, otherwise the difference between the
+/// first different char (s1 - s2)
+/// @note TODO: pass str as const - clearer signal that it is not modified
 int			ft_string_cmp(t_string *str, const char *cmp);
+
+/// @brief compare the string with the string cmp up to n chars
+/// @param str t_string to compare
+/// @param cmp string to compare
+/// @param n number of chars to compare
+/// @return 0 if the strings are identical, otherwise the difference between the
+/// first different char (s1 - s2)
 int			ft_string_ncmp(t_string *str, const char *cmp, size_t n);
+
+/// @brief compare the string with the string cmp
+/// @param str t_string to compare
+/// @param cmp string to compare
+/// @return 0 if the strings are identical, otherwise the difference between the
+/// first different char (s1 - s2)
+/// @note TODO: pass str as const - clearer signal that it is not modified
 int			ft_string_cmpstr(t_string *str, t_string *cmp);
+
+/// @brief compare the string with the string cmp up to n chars
+/// @param str t_string to compare
+/// @param cmp string to compare
+/// @param n number of chars to compare
+/// @return 0 if the strings are identical, otherwise the difference between the
+/// first different char (s1 - s2)
+/// @note TODO: pass str as const - clearer signal that it is not modified
 int			ft_string_ncmpstr(t_string *str, t_string *cmp, size_t n);
 
 /* ************************************************************************** */
 /* **                     ft_string_get                                    ** */
 /* ************************************************************************** */
+
+/// @brief get the length of the string
+/// @param str t_string to get the length
+/// @return the length of the string
+/// @note TODO: pass str as const - clearer signal that it is not modified
 size_t		ft_string_len(t_string *str);
+
+/// @brief get the capacity of the string
+/// @param str t_string to get the capacity
+/// @return the capacity of the string
+/// @note TODO: pass str as const - clearer signal that it is not modified
 size_t		ft_string_cap(t_string *str);
+
+/// @brief get the content of the string
+/// @param str t_string to get the content
+/// @return the content of the string
+/// @note TODO: pass str as const - clearer signal that it is not modified
 const char	*ft_string_get(t_string *str);
 
 /* ************************************************************************** */

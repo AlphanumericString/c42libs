@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string_shrink.c                                 :+:      :+:    :+:   */
+/*   ft_optional_types.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 17:31:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/07 03:47:04 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/01/02 18:07:23 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/01/02 18:07:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#ifndef FT_OPTIONAL_TYPES_H
+# define FT_OPTIONAL_TYPES_H
 
-int	ft_string_shrink(t_string *str)
-{
-	char	*new;
+#include <stddef.h>
 
-	if (str->capacity <= str->length)
-		return (0);
-	new = ft_realloc(str->str, str->length + 1, str->capacity);
-	if (new == NULL)
-		return (-1);
-	str->str = new;
-	str->capacity = str->length + 1;
-	return (0);
-}
+typedef enum {
+	OPT_NONE,
+	OPT_SOME,
+} t_opt_type;
+
+typedef struct s_opt {
+	t_opt_type pres;
+	void *val;
+} t_optional;
+
+#endif /* FT_OPTIONAL_TYPES_H */

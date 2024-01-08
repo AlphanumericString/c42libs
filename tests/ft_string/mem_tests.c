@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 16:35:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:57:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int test_calloc(void)
 
 int test_realloc(void)
 {
-	char *prev;
 	char *str;
 	char *str2;
 
@@ -73,20 +72,19 @@ int test_realloc(void)
 	memset(str, 'a', 20);
 	memset(str2, 'a', 20);
 	if (memcmp(str, str2, 20) != 0)
-		return (1);
+		return (printf("got %s, expected %s\n", str, str2), 1);
 	free(str);
 	free(str2);
 	
 	str = ft_calloc(10, sizeof(char));
 	str2 = calloc(10, sizeof(char));
 
-	prev = str;
 	str = ft_realloc(str, 2, 10);
 	str2 = realloc(str2, 2);
 	memset(str, 'a', 2);
 	memset(str2, 'a', 2);
 	if (memcmp(str, str2, 2) != 0)
-		return (2);
+		return (printf("got %s, expected %s\n", str, str2), 2);
 	free(str);
 	free(str2);
 	return (0);
@@ -134,7 +132,10 @@ int test_memcmp(void)
 	if (ft_memcmp(str, str2, 10) != memcmp(str, str2, 10))
 		return (1);
 	if (ft_memcmp(str, str3, 10) != memcmp(str, str3, 10))
-		return (2);
+	{
+		if (!(ft_memcmp(str, str3, 10) < 0 && memcmp(str, str3, 10) < 0))
+			return (2);
+	}
 	if (ft_memcmp(str, str2, 0) != memcmp(str, str2, 0))
 		return (3);
 	if (ft_memcmp(str, str4, 10) != memcmp(str, str4, 10))
@@ -284,6 +285,6 @@ int mem_tests(void)
 	};
 
 	collect = 0;
-	RUN_TEST(tests, collect);
+	run_test(tests, &collect);
 	return (collect);
 }

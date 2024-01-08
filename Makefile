@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2023/12/31 17:29:53 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/01/07 09:39:23 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ AR			=	ar
 COV			=	llvm-cov
 PRD			=	llvm-profdata
 ECHO		=	$(shell which echo) -e
+PRINTF		=	$(shell which printf)
+MAX_FILE_LEN=	0
 
 # Directories
 
@@ -39,6 +41,7 @@ FT_LIST_DIR		=	ft_list
 FT_STRING_DIR	=	ft_string
 FT_CONF_DIR		=	ft_config
 FT_VEC_DIR		=	ft_vector
+FT_OPTIONAL_DIR	=	ft_optional
 
 # Counpound directories
 
@@ -52,13 +55,14 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 
 LDFLAGS		=	
 CPPFLAGS	=	-I$(INC_DIR)
-CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color
-TEST_FLAGS	=\
+CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC \
+				-fdiagnostics-color -g
+TEST_FLAGS	=	\
 			-g2											\
 			-DDEBUG	-DTEST								\
-			-fprofile-arcs	-ftest-coverage 			\
-			-fprofile-instr-generate			 		\
-			-fcoverage-mapping
+			-ftest-coverage 							\
+			-fprofile-instr-generate					\
+			-fcoverage-mapping							\
 
 # Inner variables
 
@@ -76,6 +80,7 @@ ifeq (, $(shell which $(PRD) 2> /dev/null))
 endif
 
 # Sources
+
 FT_MAP_SRC	=	\
 			$(FT_MAP_DIR)/ft_map_clear.c		\
 			$(FT_MAP_DIR)/ft_map_create.c		\
@@ -163,7 +168,9 @@ FT_STR_SRC	=\
 			$(FT_STR_DIR)/get_next_line_utils.c
 
 FT_T_STRING_SRC	=\
+			$(FT_T_STRING_DIR)/ft_string_append.c	\
 			$(FT_T_STRING_DIR)/ft_string_new.c		\
+			$(FT_T_STRING_DIR)/ft_string_put.c		\
 			$(FT_T_STRING_DIR)/ft_string_from.c		\
 			$(FT_T_STRING_DIR)/ft_string_clear.c	\
 			$(FT_T_STRING_DIR)/ft_string_destroy.c	\
@@ -211,6 +218,13 @@ FT_VEC_SRC		=	\
 			$(FT_VEC_DIR)/ft_vec_sort.c		\
 			$(FT_VEC_DIR)/ft_vec_swap.c
 
+FT_OPTIONAL_SRC	=	\
+			$(FT_OPTIONAL_DIR)/ft_optional_chain.c		\
+			$(FT_OPTIONAL_DIR)/ft_optional_copy.c		\
+			$(FT_OPTIONAL_DIR)/ft_optional_destroy.c	\
+			$(FT_OPTIONAL_DIR)/ft_optional_new.c		\
+			$(FT_OPTIONAL_DIR)/ft_optional_unwrap.c
+
 # Counpound sources
 
 FT_CONF_SRC		=	\
@@ -229,15 +243,17 @@ FT_STRING_SRC	=	\
 # Tests sources
 
 TESTS_SRC	=	\
-			$(TESTS_DIR)/ft_list/ll_list_tests.c	\
-			$(TESTS_DIR)/ft_list/dl_list_tests.c	\
-			$(TESTS_DIR)/ft_map/map_tests.c			\
-			$(TESTS_DIR)/ft_vector/vector_tests.c	\
-			$(TESTS_DIR)/ft_string/mem_tests.c		\
-			$(TESTS_DIR)/ft_string/string_tests.c	\
-			$(TESTS_DIR)/ft_string/str_tests.c		\
-			$(TESTS_DIR)/ft_string/t_string_tests.c	\
-			$(TESTS_DIR)/main_tests.c
+			$(TESTS_DIR)/ft_optional/optional_tests.c	\
+			$(TESTS_DIR)/ft_list/ll_list_tests.c		\
+			$(TESTS_DIR)/ft_list/dl_list_tests.c		\
+			$(TESTS_DIR)/ft_map/map_tests.c				\
+			$(TESTS_DIR)/ft_vector/vector_tests.c		\
+			$(TESTS_DIR)/ft_string/mem_tests.c			\
+			$(TESTS_DIR)/ft_string/string_tests.c		\
+			$(TESTS_DIR)/ft_string/str_tests.c			\
+			$(TESTS_DIR)/ft_string/t_string_tests.c		\
+			$(TESTS_DIR)/main_tests.c					\
+			$(TESTS_DIR)/tests_utils.c
 
 # Inner variables for targets
 
@@ -246,6 +262,7 @@ STABLE		=	\
 			$(FT_VEC_SRC)		\
 			$(FT_STRING_SRC)	\
 			$(FT_MAP_SRC)		\
+			$(FT_OPTIONAL_SRC)	\
 
 UNSTABLE	=	\
 			$(CONF_SRC)			\
@@ -276,7 +293,6 @@ OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(INNER_SRC)))
 #   add prefix to sources to specify the directory build/tests/ for test objects
 TOBJ		=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/$(TESTS_DIR)/,$(INNER_SRC)))
 TOBJ		+=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(TESTS_SRC)))
-
 
 # Rules
 
@@ -334,7 +350,8 @@ lib$(NAME).a:	$(OBJ)
 $(TEST_NAME): $(TOBJ)
 	@$(ECHO) -n $(GRAY) "Compiling tests ... " $(RESET)
 	@$(CC) $(CFLAGS) $(TOBJ) -o $(TEST_NAME) $(TEST_FLAGS)		\
-	$(LDFLAGS) -lgcov 2>> $(CLOG_FILE)							&& \
+	$(LDFLAGS) -lgcov								\
+	2>> $(CLOG_FILE)											&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 	@$(ECHO) -n $(GRAY) "Running tests ... " $(RESET)			&& \

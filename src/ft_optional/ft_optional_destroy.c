@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string_shrink.c                                 :+:      :+:    :+:   */
+/*   ft_optional_destroy.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 17:31:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/07 03:47:04 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/01/02 18:06:49 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/01/07 20:48:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_optional.h"
+#include <stdbool.h>
+#include <stdlib.h>
 
-int	ft_string_shrink(t_string *str)
+bool ft_optional_destroy(t_optional *opt)
 {
-	char	*new;
-
-	if (str->capacity <= str->length)
-		return (0);
-	new = ft_realloc(str->str, str->length + 1, str->capacity);
-	if (new == NULL)
-		return (-1);
-	str->str = new;
-	str->capacity = str->length + 1;
-	return (0);
+	if (!opt)
+		return (false);
+	if (opt->pres == OPT_NONE)
+		return (free(opt), true);
+	return (false);
 }

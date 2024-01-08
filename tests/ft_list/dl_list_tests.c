@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:37:03 by iron              #+#    #+#             */
-/*   Updated: 2023/12/30 13:28:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:50:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -981,94 +981,41 @@ int	test_dlist_subrange(void)
 
 int	tests_doubly_linked_list_all(void)
 {
-	int ret;
+	t_test test[] = {
+		{"test_dlistadd_front", test_dlistadd_front},
+		{"test_dlistadd_back", test_dlistadd_back},
+		{"test_dlistapply", test_dlistapply},
+		{"test_dlistapply_range", test_dlistapply_range},
+		{"test_dlistapply_range_node", test_dlistapply_range_node},
+		{"test_dlistclear", test_dlistclear},
+		{"test_dlistclear_range", test_dlistclear_range},
+		{"test_dlistcreate", test_dlistcreate},
+		{"test_dlistcopy_node", test_dlistcopy_node},
+		{"test_dlistcopy_list", test_dlistcopy_list},
+		{"test_dlist_delete_self", test_dlist_delete_self},
+		{"test_dlistdelete_range", test_dlistdelete_range},
+		{"test_dlistdelete", test_dlistdelete},
+		{"test_dlistfind", test_dlistfind},
+		{"test_dlistget_datas", test_dlistget_datas},
+		{"test_dlistget_nodes", test_dlistget_nodes},
+		{"test_dlist_at", test_dlist_at},
+		{"test_dlist_begin", test_dlist_begin},
+		{"test_dlist_end", test_dlist_end},
+		{"test_dlist_map", test_dlist_map},
+		{"test_dlist_new", test_dlist_new},
+		{"test_dlist_pop", test_dlist_pop},
+		{"test_dlist_pop_back", test_dlist_pop_back},
+		{"test_dlist_push", test_dlist_push},
+		{"test_dlist_push_back", test_dlist_push_back},
+		{"test_dlist_rev", test_dlist_rev},
+		{"test_dlist_size", test_dlist_size},
+		{"test_dlist_size_of_data", test_dlist_size_of_data},
+		{"test_dlist_subrange", test_dlist_subrange},
+		{NULL, NULL}
+	};
+	int collect;
 
-	ret = test_dlistadd_front();
-	LOG_TESTS(ret, test_dlistadd_front);
-
-	ret = test_dlistadd_back();
-	LOG_TESTS(ret, test_dlistadd_back);
-
-	ret = test_dlistapply();
-	LOG_TESTS(ret, test_dlistapply)
-
-	ret = test_dlistapply_range();
-	LOG_TESTS(ret, test_dlistapply_range)
-
-	ret = test_dlistapply_range_node();
-	LOG_TESTS(ret, test_dlistapply_range_node)
-
-	ret = test_dlistclear();
-	LOG_TESTS(ret, test_dlistclear)
-	
-	ret = test_dlistclear_range();
-	LOG_TESTS(ret, test_dlistclear_range)
-	
-	ret = test_dlistcreate();
-	LOG_TESTS(ret, test_dlistcreate)
-	
-	ret = test_dlistcopy_node();
-	LOG_TESTS(ret, test_dlistcopy_node)
-	
-	ret = test_dlistcopy_list();
-	LOG_TESTS(ret, test_dlistcopy_list)
-	
-	ret = test_dlist_delete_self();
-	LOG_TESTS(ret, test_dlist_delete_self)
-
-	ret = test_dlistdelete();
-	LOG_TESTS(ret, test_dlistdelete)
-	
-	ret = test_dlistdelete_range();
-	LOG_TESTS(ret, test_dlistdelete_range)
-	
-	ret = test_dlistfind();
-	LOG_TESTS(ret, test_dlistfind)
-	
-	ret = test_dlistget_datas();
-	LOG_TESTS(ret, test_dlistget_datas)
-	
-	ret = test_dlistget_nodes();
-	LOG_TESTS(ret, test_dlistget_nodes)
-	
-	ret = test_dlist_at();
-	LOG_TESTS(ret, test_dlist_at)
-	
-	ret = test_dlist_begin();
-	LOG_TESTS(ret, test_dlist_begin)
-	
-	ret = test_dlist_end();
-	LOG_TESTS(ret, test_dlist_end)
-	
-	ret = test_dlist_map();
-	LOG_TESTS(ret, test_dlist_map)
-	
-	ret = test_dlist_new();
-	LOG_TESTS(ret, test_dlist_new)
-	
-	ret = test_dlist_pop();
-	LOG_TESTS(ret, test_dlist_pop)
-	
-	ret = test_dlist_pop_back();
-	LOG_TESTS(ret, test_dlist_pop_back)
-	
-	ret = test_dlist_push();
-	LOG_TESTS(ret, test_dlist_push)
-	
-	ret = test_dlist_push_back();
-	LOG_TESTS(ret, test_dlist_push_back)
-	
-	ret = test_dlist_rev();
-	LOG_TESTS(ret, test_dlist_rev)
-	
-	ret = test_dlist_size();
-	LOG_TESTS(ret, test_dlist_size)
-	
-	ret = test_dlist_size_of_data();
-	LOG_TESTS(ret, test_dlist_size_of_data)
-	
-	ret = test_dlist_subrange();
-	LOG_TESTS(ret, test_dlist_subrange)
-	
-	return (ret);
+	collect = 0;
+	run_test(test, &collect);
+	return (collect);
 }

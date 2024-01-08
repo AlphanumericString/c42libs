@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string_shrink.c                                 :+:      :+:    :+:   */
+/*   ft_optional_unwrap.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 17:31:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/07 03:47:04 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/01/02 18:07:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/01/07 14:06:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_optional.h"
 
-int	ft_string_shrink(t_string *str)
+void *ft_optional_unwrap(t_optional opt)
 {
-	char	*new;
+	char *explose;
 
-	if (str->capacity <= str->length)
-		return (0);
-	new = ft_realloc(str->str, str->length + 1, str->capacity);
-	if (new == NULL)
-		return (-1);
-	str->str = new;
-	str->capacity = str->length + 1;
-	return (0);
+	explose = NULL;
+	if (opt.pres != OPT_NONE)
+		return (opt.val);
+	explose[42] = explose[0];
+	return (opt.val);
 }
+

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:30:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 15:32:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:51:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -688,6 +688,6 @@ int	tests_vector(void)
 	};
 	
 	collect	= 0;
-	RUN_TEST(tests, collect);
+	run_test(tests, &collect);
 	return (collect);
 }

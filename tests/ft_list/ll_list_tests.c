@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:17:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 13:26:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:46:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -868,85 +868,38 @@ int	test_listsubrange(void)
 
 int	tests_linked_list_all(void)
 {
-	int	ret;
+	t_test test[] = {
+		{"test_listadd_front", test_listadd_front},
+		{"test_listadd_back", test_listadd_back},
+		{"test_listapply", test_listapply},
+		{"test_listapply_range", test_listapply_range},
+		{"test_listapply_range_node", test_listapply_range_node},
+		{"test_listclear", test_listclear},
+		{"test_listcreate", test_listcreate},
+		{"test_listcopy_node", test_listcopy_node},
+		{"test_listcopy_list", test_listcopy_list},
+		{"test_listdelone", test_listdelone},
+		{"test_listdelete_range", test_listdelete_range},
+		{"test_listfind", test_listfind},
+		{"test_listget_datas", test_listget_datas},
+		{"test_listget_nodes", test_listget_nodes},
+		{"test_listlast", test_listlast},
+		{"test_listat", test_listat},
+		{"test_listmap", test_listmap},
+		{"test_listnew", test_listnew},
+		{"test_listpush", test_listpush},
+		{"test_listpush_back", test_listpush_back},
+		{"test_listpop", test_listpop},
+		{"test_listpop_back", test_listpop_back},
+		{"test_listrev", test_listrev},
+		{"test_listsize", test_listsize},
+		{"test_listsize_match", test_listsize_match},
+		{"test_listsubrange", test_listsubrange},
+		{NULL, NULL}
+	};
+	int	collect;
 
-	ret = test_listadd_front();
-	LOG_TESTS(ret, test_listadd_front);
-
-	ret = test_listadd_back();
-	LOG_TESTS(ret, test_listadd_back);
-	
-	ret = test_listapply();
-	LOG_TESTS(ret, test_listapply);
-	
-	ret = test_listapply_range();
-	LOG_TESTS(ret, test_listapply_range);
-	
-	ret = test_listapply_range_node();
-	LOG_TESTS(ret, test_listapply_range_node);
-	
-	ret = test_listclear();
-	LOG_TESTS(ret, test_listclear);
-	
-	ret = test_listcreate();
-	LOG_TESTS(ret, test_listcreate);
-	
-	ret = test_listcopy_node();
-	LOG_TESTS(ret, test_listcopy_node);
-	
-	ret = test_listcopy_list();
-	LOG_TESTS(ret, test_listcopy_list);
-	
-	ret = test_listdelone();
-	LOG_TESTS(ret, test_listdelone);
-	
-	ret = test_listdelete_range();
-	LOG_TESTS(ret, test_listdelete_range);
-	
-	ret = test_listfind();
-	LOG_TESTS(ret, test_listfind);
-	
-	ret = test_listget_datas();
-	LOG_TESTS(ret, test_listget_datas);
-	
-	ret = test_listget_nodes();
-	LOG_TESTS(ret, test_listget_nodes);
-	
-	ret = test_listlast();
-	LOG_TESTS(ret, test_listlast);
-	
-	ret = test_listat();
-	LOG_TESTS(ret, test_listat);
-	
-	ret = test_listmap();
-	LOG_TESTS(ret, test_listmap);
-	
-	ret = test_listnew();
-	LOG_TESTS(ret, test_listnew);
-	
-	ret = test_listpush();
-	LOG_TESTS(ret, test_listpush);
-	
-	ret = test_listpush_back();
-	LOG_TESTS(ret, test_listpush_back);
-	
-	ret = test_listpop();
-	LOG_TESTS(ret, test_listpop);
-	
-	ret = test_listpop_back();
-	LOG_TESTS(ret, test_listpop_back);
-	
-	ret = test_listrev();
-	LOG_TESTS(ret, test_listrev);
-	
-	ret = test_listsize();
-	LOG_TESTS(ret, test_listsize);
-	
-	ret = test_listsize_match();
-	LOG_TESTS(ret, test_listsize_match);
-	
-	ret = test_listsubrange();
-	LOG_TESTS(ret, test_listsubrange);
-	
-	return (ret);
+	collect = 0;
+	run_test(test, &collect);
+	return (collect);
 }

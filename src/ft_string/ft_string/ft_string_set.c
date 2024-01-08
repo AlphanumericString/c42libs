@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:17:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:31:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/07 10:38:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ int	ft_string_set_n(t_string *str, const char *new_str, size_t n)
 		new_len = n;
 	if (new_len > str->capacity)
 	{
-		str->str = ft_realloc(str->str, str->capacity, new_len + 1);
+		str->str = ft_realloc(str->str, str->capacity, new_len);
 		if (str->str == NULL)
 			return (0);
-		str->capacity = new_len + 1;
+		str->capacity = new_len;
 	}
 	ft_memcpy(str->str, new_str, new_len);
-	str->str[new_len] = '\0';
 	str->length = new_len;
 	return (1);
 }

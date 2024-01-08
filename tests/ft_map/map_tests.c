@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/29 16:24:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:52:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,43 +267,24 @@ int	test_map_hash(void)
 
 int		tests_map(void)
 {
-	int	ret;
+	t_test test[] = {
+		{"test_map_create", test_map_create},
+		{"test_map_destroy", test_map_destroy},
+		{"test_map_destroy_free", test_map_destroy_free},
+		{"test_map_clear", test_map_clear},
+		{"test_map_set", test_map_set},
+		{"test_map_set_cmp", test_map_set_cmp},
+		{"test_map_set_hash", test_map_set_hash},
+		{"test_map_get", test_map_get},
+		{"test_map_size", test_map_size},
+		{"test_map_capacity", test_map_capacity},
+		{"test_map_remove", test_map_remove},
+		{"test_map_hash", test_map_hash},
+		{NULL, NULL}
+	};
+	int	collect;
 
-	ret = test_map_create();
-	LOG_TESTS(ret, test_map_create)
-
-	ret = test_map_destroy();
-	LOG_TESTS(ret, test_map_destroy)
-	
-	ret = test_map_destroy_free();
-	LOG_TESTS(ret, test_map_destroy_free)
-	
-	ret = test_map_clear();
-	LOG_TESTS(ret, test_map_clear)
-	
-	ret = test_map_set();
-	LOG_TESTS(ret, test_map_set)
-	
-	ret = test_map_set_cmp();
-	LOG_TESTS(ret, test_map_set_cmp)
-	
-	ret = test_map_set_hash();
-	LOG_TESTS(ret, test_map_set_hash)
-	
-	ret = test_map_get();
-	LOG_TESTS(ret, test_map_get)
-	
-	ret = test_map_size();
-	LOG_TESTS(ret, test_map_size)
-	
-	ret = test_map_capacity();
-	LOG_TESTS(ret, test_map_capacity)
-	
-	ret = test_map_remove();
-	LOG_TESTS(ret, test_map_remove)
-	
-	ret = test_map_hash();
-	LOG_TESTS(ret, test_map_hash)
-	
-	return (ret);
+	collect = 0;
+	run_test(test, &collect);
+	return (collect);
 }

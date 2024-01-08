@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/01 17:40:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:51:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1455,7 +1455,8 @@ int	str_tests(void)
 		{"gnl", test_gnl},
 		{NULL, NULL}
 	};
-	RUN_TEST(tests, collect);
 
+	collect = 0;
+	run_test(tests, &collect);
 	return (collect);
 }
