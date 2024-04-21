@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 11:15:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/07 03:37:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/04/21 10:01:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int	tests_doubly_linked_list_all(void);
 int	tests_vector(void);
 int	tests_string(void);
 int tests_optional(void);
+int tests_args(void);
 
 #endif /* TEST_H */

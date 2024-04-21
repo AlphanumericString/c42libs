@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2024/01/07 04:03:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/04/21 10:01:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main(void)
 		{"simply linked lists", tests_linked_list_all},
 		{"doubly linked lists", tests_doubly_linked_list_all},
 		{"optional", tests_optional},
+		{"args", tests_args},
 		{NULL, NULL}
 	};
 

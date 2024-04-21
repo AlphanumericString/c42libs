@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:35:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/02 18:23:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/01/08 02:19:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_CONFIG_H
 
 # include "ft_list_types.h"
-# include <stdbool.h>
 # include <stddef.h>
 
 typedef enum e_type
@@ -33,14 +32,13 @@ typedef struct s_suffix_table
 
 typedef struct s_obj_parser_type
 {
-	t_ctype					type;
-	void					*(*init)(void);
-	int						(*load)(const char *file, void *control_struct);
-	int						(*save)(const char *file, void *control_struct);
-	void					*(*get)(const char *key, void *control_struct);
-	int						(*set)(const char *key, void *value, void
-			*control_struct);
-}							t_obj_parser_type;
+	t_ctype	type;
+	void	*(*init)(void);
+	int		(*load)(const char *file, void *control_struct);
+	int		(*save)(const char *file, void *control_struct);
+	void	*(*get)(const char *key, void *control_struct);
+	int		(*set)(const char *key, void *value, void *control_struct);
+}			t_obj_parser_type;
 
 // takes -> content;
 //	char	*(*strerror)() translate errors of module ? idk
