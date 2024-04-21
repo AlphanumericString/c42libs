@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:05:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:17:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:18:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 t_map_node	*ft_map_get(t_map *map, const void *key, size_t size)
 {
-	size_t	index[2];
+	size_t		index;
+	t_list		*node;
+	t_map_node	*map_node;
 
-	index[0] = map->hash(key, map->capacity, size);
-	index[1] = index[0];
-	while (map->nodes[index[0]].used)
+	index = map->hash(key, map->capacity, size);
+	node = &map->nodes[index];
+	while (node && node->data)
 	{
-		if (!map->cmp(map->nodes[index[0]].key, key))
-			return (&map->nodes[index[0]]);
-		index[0]++;
-		index[0] %= map->capacity;
-		if (index[1] == index[0])
-			return (NULL);
+		map_node = (t_map_node *)node->data;
+		if (map_node->used && !map->cmp(map_node->key, key))
+			return (map_node);
+		node = node->next;
 	}
 	return (NULL);
 }

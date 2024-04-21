@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:18:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:11:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 void	ft_map_remove(t_map *map, const void *key, size_t size)
 {
-	size_t	index[2];
+	size_t		index;
+	t_list		*node;
+	t_map_node	*map_node;
 
-	index[0] = map->hash(key, map->capacity, size);
-	index[1] = index[0];
-	while (map->nodes[index[0]].used)
+	index = map->hash(key, map->capacity, size);
+	node = &map->nodes[index];
+	map_node = (t_map_node *)node->data;
+	while (node && map_node->used && map->cmp(map_node->key, key))
 	{
-		if (!map->cmp(map->nodes[index[0]].key, key))
-		{
-			map->nodes[index[0]].used = 0;
-			return ((void)(map->size--));
-		}
-		index[0] = (index[0] + 1) % map->capacity;
-		if (index[1] == index[0])
-			return ;
+		node = node->next;
+		map_node = (t_map_node *)node->data;
+	}
+	if (node && map_node->used)
+	{
+		map_node->used = false;
+		map->size--;
 	}
 }

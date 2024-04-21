@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/05 23:52:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:24:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,13 @@ int	test_map_clear(void)
 int	test_map_set(void)
 {
 	char	*str;
+	char	*str2;
 	t_map	*map;
 	int		ret;
 	size_t	key_size;
 
 	str = strdup("value");
+	str2 = strdup("value2");
 	map = ft_map_create(10);
 	key_size = strlen("key") + 1;
 	ret = ft_map_set(map, "key", str, key_size);
@@ -86,11 +88,11 @@ int	test_map_set(void)
 		return (1);
 	else if (map->size != 1)
 		return (1);
-	else if (map->nodes[map->hash("key", map->capacity, key_size)].used != true)
+	else if (((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->used != true)
 		return (1);
-	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].key, "key"))
+	else if (strcmp(((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->key, "key"))
 		return (1);
-	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].data, "value"))
+	else if (strcmp(((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->data, "value"))
 		return (1);
 	ft_map_destroy(map);
 	// set a key in a full map
@@ -99,28 +101,29 @@ int	test_map_set(void)
 	ret = ft_map_set(map, "key2", str, key_size);
 	if (ret == 0)
 		return (1);
-	else if (map->size != 1)
+	else if (map->size != 2)
 		return (1);
-	else if (map->nodes[map->hash("key", map->capacity, key_size)].used != true)
+	else if (((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->used != true)
 		return (1);
-	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].key, "key"))
+	else if (strcmp(((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->key, "key"))
 		return (1);
-	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].data, "value"))
+	else if (strcmp(((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->data, "value"))
 		return (1);
 	// set a key already existing to a new value
-	ret = ft_map_set(map, "key", str, key_size);
+	ret = ft_map_set(map, "key", str2, key_size);
 	if (ret == 1)
 		return (1);
 	else if (map->size != 1)
 		return (1);
-	else if (map->nodes[map->hash("key", map->capacity, key_size)].used != true)
+	else if (((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->used != true)
 		return (1);
-	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].key, "key"))
+	else if (strcmp(((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->key, "key"))
 		return (1);
-	else if (strcmp(map->nodes[map->hash("key", map->capacity, key_size)].data, "value"))
+	else if (strcmp(((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->data, "value2"))
 		return (1);
 	ft_map_destroy(map);
 	free(str);
+	free(str2);
 	return (0);
 }
 
@@ -226,7 +229,7 @@ int	test_map_remove(void)
 	ft_map_remove(map, "key", strlen("key") + 1);
 	if (map->size != 0)
 		return (1);
-	else if (map->nodes[map->hash("key", map->capacity, 5)].used != false)
+	else if (((t_map_node *)map->nodes[map->hash("key", map->capacity, 5)].data)->used != false)
 		return (1);
 	// remove a non existing key
 	ft_map_remove(map, "key", strlen("key") + 1);
