@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/04/21 17:24:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:30:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	test_map_set(void)
 	map = ft_map_create(1);
 	ft_map_set(map, "key", str, key_size);
 	ret = ft_map_set(map, "key2", str, key_size);
-	if (ret == 0)
+	if (ret == 1)
 		return (1);
 	else if (map->size != 2)
 		return (1);
@@ -113,7 +113,7 @@ int	test_map_set(void)
 	ret = ft_map_set(map, "key", str2, key_size);
 	if (ret == 1)
 		return (1);
-	else if (map->size != 1)
+	else if (map->size != 2)
 		return (1);
 	else if (((t_map_node *)map->nodes[map->hash("key", map->capacity, key_size)].data)->used != true)
 		return (1);
@@ -229,7 +229,7 @@ int	test_map_remove(void)
 	ft_map_remove(map, "key", strlen("key") + 1);
 	if (map->size != 0)
 		return (1);
-	else if (((t_map_node *)map->nodes[map->hash("key", map->capacity, 5)].data)->used != false)
+	else if (((t_map_node *)map->nodes[map->hash("key", map->capacity, strlen("key") + 1)].data)->used != false)
 		return (1);
 	// remove a non existing key
 	ft_map_remove(map, "key", strlen("key") + 1);
