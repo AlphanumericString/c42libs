@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:22:33 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/06 00:40:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:40:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ int	ft_string_insert(t_string *str, char *insert, size_t index)
 		return (0);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert, insert_len);
-	ft_memcpy(new_str + index + insert_len, str->str + index,
-		str->length - index);
-	ft_free((void **) &str->str);
+	ft_memcpy(new_str + index + insert_len, str->str + index, str->length
+		- index);
+	ft_free((void **)&str->str);
 	str->str = new_str;
 	str->length = new_len;
 	str->capacity = new_len + 1;
 	return (1);
 }
 
-int ft_string_insert_n(t_string *str, char *insert, size_t index, size_t n)
+int	ft_string_insert_n(t_string *str, char *insert, size_t index, size_t n)
 {
 	size_t	new_len;
 	char	*new_str;
@@ -83,8 +83,8 @@ int	ft_string_insert_s(t_string *str, t_string *insert, size_t index)
 		return (0);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert->str, insert->length);
-	ft_memcpy(new_str + index + insert->length, str->str + index,
-		str->length - index);
+	ft_memcpy(new_str + index + insert->length, str->str + index, str->length
+		- index);
 	ft_free((void **)&str->str);
 	str->str = new_str;
 	str->length = new_len;
@@ -93,7 +93,7 @@ int	ft_string_insert_s(t_string *str, t_string *insert, size_t index)
 }
 
 int	ft_string_insert_s_n(t_string *str, t_string *insert, size_t index,
-	size_t n)
+		size_t n)
 {
 	size_t	new_len;
 	char	*new_str;

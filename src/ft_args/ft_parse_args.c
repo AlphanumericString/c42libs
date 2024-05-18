@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 01:10:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/04/21 14:47:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:28:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,16 @@ int	ft_parse_args(int argc, char **argv, void *usr_control_struct)
 	while (argv[i] && argv[i][0] == '-')
 	{
 		if (argv[i][1] == '-' && argv[i][2] == '\0') // aka --\0
-			return (0);
+			return (EXIT_SUCCESS);
 		else if (argv[i][1] == '-') // aka --XXXXX
 			opt_index = parse_long_opt(argv[i] + 2, opt);
 		else
 			opt_index = parse_short_opt(argv[i] + 1, opt);
 		if (opt_index == -1)
-			return (ft_putstr_fd("Unkown option\n", 2), 1);
+			return (ft_putstr_fd("Unkown option\n", 2), EXIT_FAILURE);
 		// todo reference the option and prog name ft_putstrerr idk?
 		run_opt_func(opt[opt_index], usr_control_struct, argv[i], argv[i + 1]);
 		i += ((opt[opt_index].type & OPT_NOARG) != 0) + 1;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

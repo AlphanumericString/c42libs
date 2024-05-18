@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:36:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/07 04:03:55 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:47:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int tests_string()
 		printf("\nTesting %s...\n", tests[i].name);
 		collect += tests[i].test();
 		if (prev != collect)
-			printf("Testing %s... \033[31m%d\033[0m tests failed\n", tests[i].name, collect - prev);
+			printf("\nTesting %s... \033[31m%d\033[0m tests failed\n", tests[i].name, collect - prev);
 		else
-			printf("Testing %s... \033[32mOK\033[0m\n", tests[i].name);
+			printf("\nTesting %s... \033[32mOK\033[0m\n", tests[i].name);
 	}
 	return (collect);
 }

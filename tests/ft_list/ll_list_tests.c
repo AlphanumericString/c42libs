@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:17:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/05 23:46:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:59:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 static bool	is42(const void *data)
 {
@@ -44,6 +45,14 @@ static void	lnode_add42(t_list *node)
 {
 	*(int *)node->data += 42;
 }
+/*
+	list = NULL;
+	ft_listadd_front(&list, ft_listcreate(data2)); // (21)-> NULL
+	ft_listadd_front(&list, ft_listcreate(data)); // (42)-> (21)-> NULL
+	---
+	ft_listadd_front(NULL, list); // null resiliency
+	ft_listclear(&list, free);
+*/
 
 int	test_listadd_front(void)
 {
@@ -56,19 +65,12 @@ int	test_listadd_front(void)
 	data2 = malloc(sizeof(int));
 	*data2 = 21;
 	list = NULL;
-	ft_listadd_front(&list, ft_listcreate(data2)); // (21)-> NULL
-	ft_listadd_front(&list, ft_listcreate(data)); // (42)-> (21)-> NULL
-	if (list == NULL)
+	ft_listadd_front(&list, ft_listcreate(data2));
+	ft_listadd_front(&list, ft_listcreate(data));
+	if (list == NULL || list->data != data || list->next == NULL
+		|| list->next->data != data2 || list->next->next != NULL)
 		return (1);
-	else if (list->data != data)
-		return (1);
-	else if (list->next == NULL)
-		return (1);
-	else if (list->next->data != data2)
-		return (1);
-	else if (list->next->next != NULL)
-		return (1);
-	ft_listadd_front(NULL, list); // null resiliency
+	ft_listadd_front(NULL, list);
 	ft_listclear(&list, free);
 	return (0);
 }
@@ -85,15 +87,9 @@ int	test_listadd_back(void)
 	*data2 = 21;
 	list = ft_listcreate(data);
 	ft_listadd_back(&list, ft_listcreate(data2));
-	if (list == NULL)
+	if (list == NULL || list->data != data || list->next == NULL)
 		return (1);
-	else if (list->data != data)
-		return (1);
-	else if (list->next == NULL)
-		return (1);
-	else if (list->next->data != data2)
-		return (1);
-	else if (list->next->next != NULL)
+	else if (list->next->data != data2 || list->next->next != NULL)
 		return (1);
 	ft_listclear(&list, free);
 	return (0);
@@ -114,26 +110,12 @@ int	test_listapply(void)
 	list = ft_listcreate(data);
 	ft_listadd_back(&list, ft_listcreate(data2));
 	ft_listapply(list, add42);
-	if (list == NULL)
-		return (1);
-	else if (*(int *)list->data != data4)
-		return (1);
-	else if (list->next == NULL)
-		return (1);
-	else if (*(int *)list->next->data != data3)
-		return (1);
-	else if (list->next->next != NULL)
+	if (list == NULL || list->next == NULL || list->next->next != NULL
+		|| *(int *)list->data != data4 || *(int *)list->next->data != data3)
 		return (1);
 	ft_listapply(list, NULL);
-	if (list == NULL)
-		return (1);
-	else if (*(int *)list->data != data4)
-		return (1);
-	else if (list->next == NULL)
-		return (1);
-	else if (*(int *)list->next->data != data3)
-		return (1);
-	else if (list->next->next != NULL)
+	if (list == NULL || list->next == NULL || list->next->next != NULL
+		|| *(int *)list->data != data4 || *(int *)list->next->data != data3)
 		return (1);
 	ft_listclear(&list, free);
 	return (0);
@@ -189,22 +171,12 @@ int	test_listapply_range_node(void)
 	list = ft_listcreate(data);
 	ft_listadd_back(&list, ft_listcreate(data2));
 	ft_listapply_range_node(list, list->next, lnode_add42);
-	if (*(int *)list->data != data3)
-		return (1);
-	else if (list->next == NULL)
-		return (1);
-	else if (*(int *)list->next->data != 21)
-		return (1);
-	else if (list->next->next != NULL)
+	if (*(int *)list->data != data3 || list->next == NULL
+		|| *(int *)list->next->data != 21 || list->next->next != NULL)
 		return (1);
 	ft_listapply_range_node(list, list->next, NULL);
-	if (*(int *)list->data != data3)
-		return (1);
-	else if (list->next == NULL)
-		return (1);
-	else if (*(int *)list->next->data != 21)
-		return (1);
-	else if (list->next->next != NULL)
+	if (*(int *)list->data != data3 || list->next == NULL
+		|| *(int *)list->next->data != 21 || list->next->next != NULL)
 		return (1);
 	ft_listapply_range_node(NULL, NULL, lnode_add42);
 	ft_listclear(&list, free);
@@ -296,6 +268,8 @@ int	test_listcopy_list(void)
 	return (0);
 }
 
+//	ft_listdelone(NULL, NULL); // null resiliency
+
 int	test_listdelone(void)
 {
 	t_list	*list;
@@ -307,9 +281,29 @@ int	test_listdelone(void)
 	ft_listdelone(list, NULL);
 	list = ft_listcreate(data);
 	ft_listdelone(list, free);
-	ft_listdelone(NULL, NULL); // null resiliency
+	ft_listdelone(NULL, NULL);
 	return (0);
 }
+
+/*
+	ft_listadd_back(&list, ft_listcreate(data2)); // (42)-> (21)-> NULL
+	list2 = list->next;
+	nb_deleted = ft_listdelete_range(list, list->next, NULL); 
+	// (42)-> (21)-> NULL
+	nb_deleted2 = ft_listdelete_range(list, list->next, free); 
+	// (21)-> NULL
+	// we use list2 to check if the list is still valid
+	// list was destroyed by ft_listdelete_range
+	---
+	ft_listclear(&list2, free); // NULL
+	---
+	nb_deleted = ft_listdelete_range(NULL, NULL, free); // null resiliency
+	---
+	list = ft_listcreate(data); // (42)-> NULL
+	nb_deleted = ft_listdelete_range(list, NULL, free); // NULL
+	---
+	
+*/
 
 int	test_listdelete_range(void)
 {
@@ -325,12 +319,10 @@ int	test_listdelete_range(void)
 	data2 = malloc(sizeof(int));
 	*data2 = 21;
 	list = ft_listcreate(data);
-	ft_listadd_back(&list, ft_listcreate(data2)); // (42)-> (21)-> NULL
+	ft_listadd_back(&list, ft_listcreate(data2));
 	list2 = list->next;
-	nb_deleted = ft_listdelete_range(list, list->next, NULL); // (42)-> (21)-> NULL
-	nb_deleted2 = ft_listdelete_range(list, list->next, free); // (21)-> NULL
-	// we use list2 to check if the list is still valid
-	// list was destroyed by ft_listdelete_range
+	nb_deleted = ft_listdelete_range(list, list->next, NULL);
+	nb_deleted2 = ft_listdelete_range(list, list->next, free);
 	if (nb_deleted != 0)
 		return (__LINE__);
 	else if (nb_deleted2 != 1)
@@ -339,16 +331,14 @@ int	test_listdelete_range(void)
 		return (__LINE__);
 	else if (list2->next != NULL)
 		return (__LINE__);
-	ft_listclear(&list2, free); // NULL
-
-	nb_deleted = ft_listdelete_range(NULL, NULL, free); // null resiliency
+	ft_listclear(&list2, free);
+	nb_deleted = ft_listdelete_range(NULL, NULL, free);
 	if (nb_deleted != 0)
 		return (__LINE__);
-
 	data = malloc(sizeof(int));
 	*data = 42;
-	list = ft_listcreate(data); // (42)-> NULL
-	nb_deleted = ft_listdelete_range(list, NULL, free); // NULL
+	list = ft_listcreate(data);
+	nb_deleted = ft_listdelete_range(list, NULL, free);
 	if (nb_deleted != 1)
 		return (__LINE__);
 	return (0);
@@ -359,7 +349,7 @@ int	test_listfind(void)
 	t_list	*list;
 	int		*data;
 	int		*data2;
-	int 	*data3;
+	int		*data3;
 	void	*found;
 
 	data = malloc(sizeof(int));
@@ -371,22 +361,18 @@ int	test_listfind(void)
 	list = ft_listcreate(data);
 	ft_listadd_back(&list, ft_listcreate(data2));
 	found = ft_listfind(list, data2, NULL);
-	if (found == NULL)
+	if (found == NULL || *(int *)found != *data2)
 		return (1);
-	else if (*(int *)found != *data2)
-		return (2);
 	found = ft_listfind(list, data3, cmp_int);
 	if (found != NULL)
-		return (3);
+		return (2);
 	found = ft_listfind(NULL, data2, NULL);
 	if (found != NULL)
-		return (4);
+		return (3);
 	*data3 = 42;
 	found = ft_listfind(list, data3, cmp_int);
-	if (found == NULL)
-		return (5);
-	else if (*(int *)found != *data)
-		return (6);
+	if (found == NULL || *(int *)found != *data)
+		return (4);
 	ft_listclear(&list, free);
 	free(data3);
 	return (0);
@@ -406,11 +392,8 @@ int	test_listget_datas(void)
 	list = ft_listcreate(data);
 	ft_listadd_back(&list, ft_listcreate(data2));
 	datas = ft_listget_datas(list);
-	if (datas == NULL)
-		return (1);
-	else if (datas[0] != data)
-		return (1);
-	else if (datas[1] != data2)
+	if (datas == NULL || datas[2] != NULL || datas[0] != data || \
+		datas[1] != data2)
 		return (1);
 	if (ft_listget_datas(NULL) != NULL)
 		return (1);
@@ -433,11 +416,8 @@ int	test_listget_nodes(void)
 	list = ft_listcreate(data);
 	ft_listadd_back(&list, ft_listcreate(data2));
 	nodes = ft_listget_nodes(list);
-	if (nodes == NULL)
-		return (1);
-	else if (nodes[0] != list)
-		return (1);
-	else if (nodes[1] != list->next)
+	if (nodes == NULL || nodes[2] != NULL || nodes[0] != list || \
+		nodes[1] != list->next)
 		return (1);
 	if (ft_listget_nodes(NULL) != NULL)
 		return (1);
@@ -488,11 +468,7 @@ int	test_listat(void)
 	list = ft_listcreate(data);
 	ft_listadd_back(&list, ft_listcreate(data2));
 	at = ft_listat(list, 1);
-	if (at == NULL)
-		return (1);
-	else if (at->data != data2)
-		return (1);
-	else if (at->next != NULL)
+	if (at == NULL || at->data != data2 || at->next != NULL)
 		return (1);
 	at = ft_listat(list, 456);
 	if (at != NULL)
@@ -586,7 +562,6 @@ int	test_listpush(void)
 	else if (list->next->next != NULL)
 		return (1);
 	ft_listclear(&list, free);
-	// test 2
 	ft_listpush(NULL, NULL);
 	return (0);
 }
@@ -651,6 +626,23 @@ int	test_listpop(void)
 	return (0);
 }
 
+/*
+	ft_listpush(&list, data); // (42)-> NULL
+	ft_listpush(&list, data2); // (21)-> (42)-> NULL
+	ft_listpush(&list, data3); // (63)-> (21)-> (42)-> NULL
+	pop = ft_listpop_back(&list); // 42 : (63)-> (21)-> NULL
+
+	if (list == NULL) // was list destroyed ?
+
+	else if (list->data != data3) // is first elem of list 63
+	else if (list->next == NULL) // is second elem present
+	else if (list->next->data != data2) // is second elem 21
+	else if (list->next->next != NULL) 
+								// was the end of the list ptr set to smth bad?
+	else if (pop != data) // was elem pulled out 42 ?
+	pop = ft_listpop_back(&list); // 21 : (63)->NULL
+	pop = ft_listpop_back(&list); // 63 : NULL
+*/
 int	test_listpop_back(void)
 {
 	t_list	*list;
@@ -666,32 +658,32 @@ int	test_listpop_back(void)
 	data3 = malloc(sizeof(int));
 	*data3 = 63;
 	list = NULL;
-	ft_listpush(&list, data); // (42)-> NULL
-	ft_listpush(&list, data2); // (21)-> (42)-> NULL
-	ft_listpush(&list, data3); // (63)-> (21)-> (42)-> NULL
-	pop = ft_listpop_back(&list); // 42 : (63)-> (21)-> NULL
-	if (list == NULL) // was list destroyed ?
-		return (1);
-	else if (list->data != data3) // is first elem of list 63
-		return (1);
-	else if (list->next == NULL) // is second elem present
-		return (1);
-	else if (list->next->data != data2) // is second elem 21
-		return (1);
-	else if (list->next->next != NULL) // was the end of the list ptr set to smth bad?
-		return (1);
-	else if (pop != data) // was elem pulled out 42 ?
-		return (1);
-	pop = ft_listpop_back(&list); // 21 : (63)->NULL
+	ft_listpush(&list, data);
+	ft_listpush(&list, data2);
+	ft_listpush(&list, data3);
+	pop = ft_listpop_back(&list);
 	if (list == NULL)
 		return (1);
-	else if (list->next != NULL) 
+	else if (list->data != data3)
+		return (1);
+	else if (list->next == NULL)
+		return (1);
+	else if (list->next->data != data2)
+		return (1);
+	else if (list->next->next != NULL)
+		return (1);
+	else if (pop != data)
+		return (1);
+	pop = ft_listpop_back(&list);
+	if (list == NULL)
+		return (1);
+	else if (list->next != NULL)
 		return (1);
 	else if (list->data != data3)
 		return (1);
 	else if (pop != data2)
 		return (1);
-	pop = ft_listpop_back(&list); // 63 : NULL
+	pop = ft_listpop_back(&list);
 	if (list != NULL)
 		return (1);
 	else if (pop != data3)
@@ -798,6 +790,13 @@ int	test_listsize_match(void)
 	return (0);
 }
 
+/*
+	ft_listpush(&list, data); // (42)-> NULL
+	ft_listpush(&list, data2); // (21)-> (42)-> NULL
+	sub = ft_listsubrange(list, list->next); // (21)-> NULL
+	sub = ft_listsubrange(list, NULL); // (21)-> (42)-> NULL
+	sub = ft_listsubrange(list, (const t_list *)data2); // (21)-> (42)-> NULL
+*/
 int	test_listsubrange(void)
 {
 	t_list	*list;
@@ -810,10 +809,9 @@ int	test_listsubrange(void)
 	data2 = malloc(sizeof(int));
 	*data2 = 21;
 	list = NULL;
-	ft_listpush(&list, data); // (42)-> NULL
-	ft_listpush(&list, data2); // (21)-> (42)-> NULL
-	
-	sub = ft_listsubrange(list, list->next); // (21)-> NULL
+	ft_listpush(&list, data);
+	ft_listpush(&list, data2);
+	sub = ft_listsubrange(list, list->next);
 	if (sub == NULL)
 		return (1);
 	else if (sub->data != data2)
@@ -821,8 +819,7 @@ int	test_listsubrange(void)
 	else if (sub->next != NULL)
 		return (3);
 	ft_listclear(&sub, NULL);
-	
-	sub = ft_listsubrange(list, NULL); // (21)-> (42)-> NULL
+	sub = ft_listsubrange(list, NULL);
 	if (sub == NULL)
 		return (4);
 	else if (sub->data != data2)
@@ -834,8 +831,7 @@ int	test_listsubrange(void)
 	else if (sub->next->next != NULL)
 		return (7);
 	ft_listclear(&sub, NULL);
-	
-	sub = ft_listsubrange(list, (const t_list *)data2); // (21)-> (42)-> NULL
+	sub = ft_listsubrange(list, (const t_list *)data2);
 	if (sub == NULL)
 		return (8);
 	else if (sub->data != data2)
@@ -847,12 +843,10 @@ int	test_listsubrange(void)
 	else if (sub->next->next != NULL)
 		return (12);
 	ft_listclear(&sub, NULL);
-
 	sub = ft_listsubrange(NULL, NULL);
 	if (sub != NULL)
 		return (1);
 	ft_listclear(&sub, NULL);
-
 	sub = ft_listsubrange(list, list);
 	if (sub == NULL)
 		return (1);
@@ -861,43 +855,42 @@ int	test_listsubrange(void)
 	else if (sub->next != NULL)
 		return (1);
 	ft_listclear(&sub, NULL);
-	
 	ft_listclear(&list, free);
 	return (0);
 }
 
 int	tests_linked_list_all(void)
 {
-	t_test test[] = {
-		{"test_listadd_front", test_listadd_front},
-		{"test_listadd_back", test_listadd_back},
-		{"test_listapply", test_listapply},
-		{"test_listapply_range", test_listapply_range},
-		{"test_listapply_range_node", test_listapply_range_node},
-		{"test_listclear", test_listclear},
-		{"test_listcreate", test_listcreate},
-		{"test_listcopy_node", test_listcopy_node},
-		{"test_listcopy_list", test_listcopy_list},
-		{"test_listdelone", test_listdelone},
-		{"test_listdelete_range", test_listdelete_range},
-		{"test_listfind", test_listfind},
-		{"test_listget_datas", test_listget_datas},
-		{"test_listget_nodes", test_listget_nodes},
-		{"test_listlast", test_listlast},
-		{"test_listat", test_listat},
-		{"test_listmap", test_listmap},
-		{"test_listnew", test_listnew},
-		{"test_listpush", test_listpush},
-		{"test_listpush_back", test_listpush_back},
-		{"test_listpop", test_listpop},
-		{"test_listpop_back", test_listpop_back},
-		{"test_listrev", test_listrev},
-		{"test_listsize", test_listsize},
-		{"test_listsize_match", test_listsize_match},
-		{"test_listsubrange", test_listsubrange},
-		{NULL, NULL}
+	int				collect;
+	const t_test	test[] = {
+	{"test_listadd_front", test_listadd_front},
+	{"test_listadd_back", test_listadd_back},
+	{"test_listapply", test_listapply},
+	{"test_listapply_range", test_listapply_range},
+	{"test_listapply_range_node", test_listapply_range_node},
+	{"test_listclear", test_listclear},
+	{"test_listcreate", test_listcreate},
+	{"test_listcopy_node", test_listcopy_node},
+	{"test_listcopy_list", test_listcopy_list},
+	{"test_listdelone", test_listdelone},
+	{"test_listdelete_range", test_listdelete_range},
+	{"test_listfind", test_listfind},
+	{"test_listget_datas", test_listget_datas},
+	{"test_listget_nodes", test_listget_nodes},
+	{"test_listlast", test_listlast},
+	{"test_listat", test_listat},
+	{"test_listmap", test_listmap},
+	{"test_listnew", test_listnew},
+	{"test_listpush", test_listpush},
+	{"test_listpush_back", test_listpush_back},
+	{"test_listpop", test_listpop},
+	{"test_listpop_back", test_listpop_back},
+	{"test_listrev", test_listrev},
+	{"test_listsize", test_listsize},
+	{"test_listsize_match", test_listsize_match},
+	{"test_listsubrange", test_listsubrange},
+	{NULL, NULL}
 	};
-	int	collect;
 
 	collect = 0;
 	run_test(test, &collect);

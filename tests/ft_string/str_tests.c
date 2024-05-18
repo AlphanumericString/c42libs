@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/05 23:51:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:53:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -453,7 +453,7 @@ int	test_putstr(void)
 	read(fd, buff, 100);
 	if (strcmp(buff, str) != 0)
 		return (1);
-	DESTROY_TEST_FILE(fd, file_name);
+	destroy_test_file(fd, file_name);
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putstr_fd(NULL, fd);
 	close(fd);
@@ -461,7 +461,7 @@ int	test_putstr(void)
 	bread = read(fd, buff, 100);
 	if (bread != 0)
 		return (2);
-	DESTROY_TEST_FILE(fd, file_name);
+	destroy_test_file(fd, file_name);
 	return (0);
 }
 
@@ -481,7 +481,7 @@ int	test_putendl(void)
 	read(fd, buff, 100);
 	if (strncmp(buff, str, strlen(str)) != 0 || buff[strlen(str)] != '\n')
 		return (1);
-	DESTROY_TEST_FILE(fd, file_name);
+	destroy_test_file(fd, file_name);
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putendl_fd(NULL, fd);
 	close(fd);
@@ -489,7 +489,7 @@ int	test_putendl(void)
 	bread = read(fd, buff, 100);
 	if (bread != 0)
 		return (2);
-	DESTROY_TEST_FILE(fd, file_name);
+	destroy_test_file(fd, file_name);
 	return (0);
 }
 
@@ -517,7 +517,7 @@ int	test_putnbr(void)
 	read(fd, buff, sizeof(expected) / sizeof(expected[0]));
 	if (strncmp(buff, expected, sizeof(expected) / sizeof(expected[0])) != 0)
 		return (1);
-	DESTROY_TEST_FILE(fd, file_name);
+	destroy_test_file(fd, file_name);
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putnbr_fd(INT_MIN, fd);
 	ft_putchar_fd('\n', fd);
@@ -529,7 +529,7 @@ int	test_putnbr(void)
 	read(fd, buff, sizeof(buff));
 	if (strncmp(buff, expected2, sizeof(buff)) != 0)
 		return (2);
-	DESTROY_TEST_FILE(fd, file_name);
+	destroy_test_file(fd, file_name);
 	return (0);
 }
 
@@ -550,7 +550,7 @@ int	test_putchar(void)
 	bread = read(fd, buff, 100);
 	if (strcmp(buff, test_str) != 0 || (size_t)bread != strlen(test_str))
 		return (1);
-	DESTROY_TEST_FILE(fd, file_name);
+	destroy_test_file(fd, file_name);
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putchar_fd('\0', fd);
 	close(fd);
@@ -558,7 +558,7 @@ int	test_putchar(void)
 	bread = read(fd, buff, 100);
 	if (bread != 1 || buff[0] != '\0')
 		return (2);
-	DESTROY_TEST_FILE(fd, file_name);
+	destroy_test_file(fd, file_name);
 	return (0);
 }
 
@@ -1394,7 +1394,7 @@ int	test_gnl(void)
 	if (line != NULL)
 		return (2);
 	free(line);
-	DESTROY_TEST_FILE(fd, TESTS_FPREFIX "gnl.txt");
+	destroy_test_file(fd, TESTS_FPREFIX "gnl.txt");
 	return (0);
 }
 
