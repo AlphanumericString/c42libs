@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_intrange.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:05:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:45:15 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/04/29 16:22:01 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/18 19:12:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
 #include "ft_math.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_range(int x, int min, int max, int new_max)
 {
-	return (ft_strncmp(s1, s2, ft_max(ft_strlen(s1), ft_strlen(s2))));
+	int	res;
+
+	res = x + min;
+	max += min;
+	return ((int)(((double)res / max) * new_max));
+}
+
+float	ft_range_f(float x, float min, float max, float new_max)
+{
+	return ((float)ft_range_d(x, min, max, new_max));
+}
+
+double	ft_range_d(double x, double min, double max, double new_max)
+{
+	double	res;
+
+	res = x + min;
+	max += min;
+	return ((res / max) * new_max);
 }

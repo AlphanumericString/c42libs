@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_str_isnum.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:05:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:45:15 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/09 15:56:04 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/09 15:56:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_math.h"
+#include <stdbool.h>
 
-int	ft_strcmp(const char *s1, const char *s2)
+bool	ft_str_isnum(char *str)
 {
-	return (ft_strncmp(s1, s2, ft_max(ft_strlen(s1), ft_strlen(s2))));
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }

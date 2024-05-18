@@ -1,19 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_file_to_buff.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:05:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:45:15 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/18 19:52:02 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/18 19:56:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "ft_math.h"
+#include <fcntl.h>
+#include <unistd.h>
 
-int	ft_strcmp(const char *s1, const char *s2)
+#include "ft_string.h"
+
+#define READ_BLOCKS 4096
+
+char	*ft_fd_to_buff(int fd)
 {
-	return (ft_strncmp(s1, s2, ft_max(ft_strlen(s1), ft_strlen(s2))));
+	char	buff[READ_BLOCKS + 1];
+	char	*file;
+	char	*prev;
+	int		ret;
+
+	if (fd == -1)
+		return (NULL);
+	ret = read(fd, buff, READ_BLOCKS);
+	while (ret == READ_BLOCKS)
+	{
+		ret = read(fd, buff, READ_BLOCKS);
+		if (ret == -1)
+			return (NULL);
+		buff[ret] = '\0';
+		prev = file;
+		file = ft_strjoin(file, buff);
+		free(prev);
+	}
+	return (file);
 }

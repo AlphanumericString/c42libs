@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strappend_c.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:05:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:45:15 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/10 12:02:19 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/10 12:04:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_math.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+char	*ft_strappend_c(char **str, char c)
 {
-	return (ft_strncmp(s1, s2, ft_max(ft_strlen(s1), ft_strlen(s2))));
+	size_t	len;
+
+	if (!str)
+		return (NULL);
+	len = 0;
+	if (*str)
+		len = ft_strlen(*str);
+	*str = ft_realloc(*str, len + 2, len);
+	if (!*str)
+		return (NULL);
+	(*str)[len] = c;
+	(*str)[len + 1] = '\0';
+	return (*str);
 }

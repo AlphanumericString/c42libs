@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strstart_with.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:05:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:45:15 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/01/08 14:07:26 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/18 20:05:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_math.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_strstart_with(const char *str, const char *start)
 {
-	return (ft_strncmp(s1, s2, ft_max(ft_strlen(s1), ft_strlen(s2))));
+	if (ft_strlen(start) > ft_strlen(str))
+		return (0);
+	return (ft_strncmp(str, start, ft_strlen(start)) == 0);
 }

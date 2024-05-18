@@ -1,19 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_math_types.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:05:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:45:15 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/18 19:08:43 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/18 19:09:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "ft_math.h"
+#ifndef FT_MATH_TYPES_H
+# define FT_MATH_TYPES_H
 
-int	ft_strcmp(const char *s1, const char *s2)
+typedef struct s_complex
 {
-	return (ft_strncmp(s1, s2, ft_max(ft_strlen(s1), ft_strlen(s2))));
-}
+	double	real;
+	double	imaginary;
+}			t_complex;
+
+typedef struct s_vec2
+{
+	double	x;
+	double	y;
+}			t_vec2;
+
+typedef struct s_vec3
+{
+	double	x;
+	double	y;
+	double	z;
+}			t_vec3;
+
+typedef struct s_vec4
+{
+	double	x;
+	double	y;
+	double	z;
+	double	w;
+}			t_vec4;
+
+#endif

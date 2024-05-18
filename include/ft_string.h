@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 16:29:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:06:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,14 @@ int			ft_toupper(int c);
 /* **                     FT_MEM SUB MODULE                                ** */
 /* ************************************************************************** */
 
+/// @brief apply the function f on each byte of the memory
+/// @param s start of the memory
+/// @param n size of the memory
+/// @param f function to apply
+/// @return void
+/// @note the memory is modified in place
+void		ft_apply_2d(void **array, void (*f)(void *));
+
 /// @brief fill the memory with 0
 /// @param s start of the memory
 /// @param n size of the memory
@@ -123,6 +131,17 @@ void		*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld);
 /// @return void
 void		ft_free(void **ptr);
 
+/// @brief free the memory
+/// @param arr pointer to the memory to free (set to NULL after)
+/// @return void
+void		ft_free_2d(void **arr);
+
+/// @brief return the length of the 2d array
+/// @param array pointer to the 2d array
+/// @return the length of the 2d array
+/// @note the array must be NULL terminated
+size_t		ft_len_2d(const void *const *array);
+
 /// @brief search for the first occurence of c in the memory
 /// @param s start of the memory
 /// @param c char to search
@@ -144,6 +163,16 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 /// @param n size of the memory to copy
 /// @return pointer to the destination memory
 void		*ft_memcpy(void *dest, const void *src, size_t n);
+
+/// @brief apply the function f on each byte of the memory and return an 
+/// allocated memory with the result of the same size with the result of 
+/// the function f
+/// @param s start of the memory
+/// @param n size of the memory
+/// @param f function to apply
+/// @return pointer to the allocated memory with the result of the function f
+/// otherwise NULL
+void		*ft_memmap(void *src, size_t size, void *(*f)(void *));
 
 /// @brief copy the memory
 /// @param dest start of the destination memory
@@ -171,6 +200,7 @@ void		ft_swap(void **a, void **b);
 /// @param size size of each chunk
 /// @param cmp comparison function
 /// @return void
+/// @WARNING Do not use. Not implemented fully.
 void		ft_qsort(void *array, size_t nmb, size_t size,
 				int (*cmp)(const void *, const void *));
 
@@ -202,50 +232,6 @@ void		ft_putnbr_fd(int nbr, int fd);
 /// @param fd file descriptor to print on
 /// @return void
 void		ft_putstr_fd(const char *s, int fd);
-
-/* ************************************************************************** */
-/* **                     FT_NBR SUB MODULE                                ** */
-/* ************************************************************************** */
-
-/// @brief return the logaritm of the number in the specified base
-/// @param nbr number to get the logaritm
-/// @param base base of the logaritm
-/// @return the logaritm of the number in the specified base. in case of error
-/// return -1
-int			ft_llogof(long long nbr, int base);
-
-/// @brief return the logaritm of the number in the specified base
-/// @param nbr number to get the logaritm
-/// @param base base of the logaritm
-/// @return the logaritm of the number in the specified base. in case of error
-/// return -1
-int			ft_ullogof(unsigned long long nbr, int base);
-
-/// @brief return the logaritm of the number in the specified base
-/// @param nbr number to get the logaritm
-/// @param base base of the logaritm
-/// @return the logaritm of the number in the specified base. in case of error
-/// return -1
-int			ft_logof(int nbr, int base);
-
-/// @brief return the logaritm of the number in the specified base
-/// @param nbr number to get the logaritm
-/// @param base base of the logaritm
-/// @return the logaritm of the number in the specified base. in case of error
-/// return -1
-int			ft_log(int nbr);
-
-/// @brief returns the minimum of a and b
-/// @param a first number
-/// @param b second number
-/// @return the smallest between a and b
-int			ft_min(int a, int b);
-
-/// @brief returns the maximum of a and b
-/// @param a first number
-/// @param b second number
-/// @return the biggest between a and b
-int			ft_max(int a, int b);
 
 /* ************************************************************************** */
 /* **                     FT_STR MAIN MODULE                               ** */

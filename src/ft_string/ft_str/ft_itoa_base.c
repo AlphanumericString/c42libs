@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:03:11 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/31 17:48:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:39:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_math.h"
 #include <stdlib.h>
 
 static int	ft_is_valid(const char *base)

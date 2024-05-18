@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_apply_2d.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:05:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:45:15 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/11 09:47:17 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/18 19:15:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "ft_math.h"
+#include "ft_list_types.h"
+#include <stddef.h>
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	ft_apply_2d(void **array, t_data_apply f)
 {
-	return (ft_strncmp(s1, s2, ft_max(ft_strlen(s1), ft_strlen(s2))));
+	size_t	i;
+
+	i = 0;
+	while (array[i])
+		f(array[i++]);
 }

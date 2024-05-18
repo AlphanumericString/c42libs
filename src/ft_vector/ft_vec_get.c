@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_vec_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:05:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:45:15 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/09 14:24:49 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/10 09:33:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "ft_math.h"
+#include "ft_vector_types.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	*ft_vec_get(t_vector *vector, const void *key, \
+					int (*cmp)(const void *v_data, const void *key))
 {
-	return (ft_strncmp(s1, s2, ft_max(ft_strlen(s1), ft_strlen(s2))));
+	size_t	i;
+
+	i = 0;
+	while (i < vector->count)
+	{
+		if (cmp(vector->datas[i], key) == 0)
+			return (vector->datas[i]);
+		i++;
+	}
+	return (NULL);
 }

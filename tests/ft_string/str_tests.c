@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 16:53:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:47:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,67 +376,6 @@ int	test_itoa_base(void)
 	return (0);
 }
 
-int	test_log(void)
-{
-	int		t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000};
-	int		expected_results[] = {-1, 0, 0, 1, 1, 2, 2, 3, 3, 4};
-	size_t	i;
-
-	i = 0;
-	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
-	{
-		if (ft_log(t_cases[i]) != expected_results[i])
-			return (i + 1);
-	}
-	return (0);
-}
-
-int	test_logof(void)
-{
-	int		t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000};
-	int		expected_results[] = {-1, 0, 0, 1, 1, 2, 2, 3, 3, 4};
-	size_t	i;
-
-	i = 0;
-	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
-	{
-		if (ft_logof(t_cases[i], 10) != expected_results[i])
-			return (i + 1);
-	}
-	return (0);
-}
-
-int	test_llogof(void)
-{
-	long long	t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000};
-	int			expected_results[] = {-1, 0, 0, 1, 1, 2, 2, 3, 3, 4};
-	size_t		i;
-
-	i = 0;
-	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
-	{
-		if (ft_llogof(t_cases[i], 10) != expected_results[i])
-			return (i + 1);
-	}
-	return (0);
-}
-
-int	test_ullogof(void)
-{
-	unsigned long long	t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999,
-			10000};
-	int					expected_results[] = {-1, 0, 0, 1, 1, 2, 2, 3, 3, 4};
-	size_t				i;
-
-	i = 0;
-	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
-	{
-		if (ft_ullogof(t_cases[i], 10) != expected_results[i])
-			return (i + 1);
-	}
-	return (0);
-}
-
 int	test_putstr(void)
 {
 	char	file_name[] = TESTS_FPREFIX "putstr.txt";
@@ -559,66 +498,6 @@ int	test_putchar(void)
 	if (bread != 1 || buff[0] != '\0')
 		return (2);
 	destroy_test_file(fd, file_name);
-	return (0);
-}
-
-int	test_min(void)
-{
-	int	a;
-	int	b;
-	int	c;
-	int	d;
-	int	e;
-
-	a = 0;
-	b = 1;
-	c = -1;
-	d = INT_MAX;
-	e = INT_MIN;
-	if (ft_min(a, b) != a)
-		return (1);
-	if (ft_min(b, a) != a)
-		return (2);
-	if (ft_min(a, c) != c)
-		return (3);
-	if (ft_min(c, a) != c)
-		return (4);
-	if (ft_min(a, d) != a)
-		return (5);
-	if (ft_min(d, a) != a)
-		return (6);
-	if (ft_min(a, e) != e)
-		return (7);
-	return (0);
-}
-
-int	test_max(void)
-{
-	int	a;
-	int	b;
-	int	c;
-	int	d;
-	int	e;
-
-	a = 0;
-	b = 1;
-	c = -1;
-	d = INT_MAX;
-	e = INT_MIN;
-	if (ft_max(a, b) != b)
-		return (1);
-	if (ft_max(b, a) != b)
-		return (2);
-	if (ft_max(a, c) != a)
-		return (3);
-	if (ft_max(c, a) != a)
-		return (4);
-	if (ft_max(a, d) != d)
-		return (5);
-	if (ft_max(d, a) != d)
-		return (6);
-	if (ft_max(a, e) != a)
-		return (7);
 	return (0);
 }
 
@@ -1413,13 +1292,6 @@ int	str_tests(void)
 		{"is_space", test_is_space},
 		{"to_lower", test_to_lower},
 		{"to_upper", test_to_upper},
-// nbr sub module
-		{"log", test_log},
-		{"logof", test_logof},
-		{"llogof", test_llogof},
-		{"ullogof", test_ullogof},
-		{"min", test_min},
-		{"max", test_max},
 // put sub module
 		{"putstr", test_putstr},
 		{"putendl", test_putendl},

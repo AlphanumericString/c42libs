@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 01:10:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 15:28:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:45:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_args.h"
 #include "ft_args_types.h"
+#include "ft_math.h"
 #include "ft_string.h"
 #include <sys/types.h>
 
