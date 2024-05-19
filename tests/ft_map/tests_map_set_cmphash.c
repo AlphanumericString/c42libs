@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_defs.h                                          :+:      :+:    :+:   */
+/*   tests_map_set_cmphash.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 14:55:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:48:37 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/19 18:13:15 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/19 18:13:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_DEFS_H
-# define FT_DEFS_H
+#include "ft_map.h"
+#include "ft_map_types.h"
 
-# include <stdbool.h>
-# include <stddef.h>
+int	test_map_set_cmp(void)
+{
+	t_map	*map;
 
-/// @brief Type of function to compare two elements
-typedef int				(*t_funcmp)(const void *, const void *);
+	map = ft_map_create(10);
+	ft_map_set_cmp(map, NULL);
+	if (map->cmp != NULL)
+		return (1);
+	ft_map_destroy(map);
+	return (0);
+}
 
-/// @brief Type of function to apply on a node data
-typedef void			(*t_data_apply)(void *);
+int	test_map_set_hash(void)
+{
+	t_map	*map;
 
-/// @brief Type of function to see if a node data is something
-typedef bool			(*t_data_is)(const void *);
-
-#endif /* FT_DEFS_H */
+	map = ft_map_create(10);
+	ft_map_set_hash(map, NULL);
+	if (map->hash != NULL)
+		return (1);
+	ft_map_destroy(map);
+	return (0);
+}

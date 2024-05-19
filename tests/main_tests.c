@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2024/05/18 17:01:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/19 15:52:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,10 @@
 const t_test	*get_tests(void)
 {
 	static const t_test	tests[] = {
-	{"string", tests_string},
-	{"vec", tests_vector},
-	{"map",	tests_map},
-	{"simply linked lists", tests_linked_list_all},
-	{"doubly linked lists", tests_doubly_linked_list_all},
-	{"optional", tests_optional},
-	{"args", tests_args},
-	{NULL, NULL}
-	};
+	{"string", tests_string}, {"vec", tests_vector}, {"map", tests_map},
+	{"simply linked lists", tests_linked_list_all}, {"doubly linked lists",
+		tests_doubly_linked_list_all}, {"optional", tests_optional}, {"args",
+		tests_args}, {NULL, NULL}};
 
 	return (tests);
 }

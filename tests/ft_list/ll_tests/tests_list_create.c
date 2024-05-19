@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_optional_types.h                                :+:      :+:    :+:   */
+/*   tests_listcreate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 18:07:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:47:06 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/19 16:23:08 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/19 16:23:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_OPTIONAL_TYPES_H
-# define FT_OPTIONAL_TYPES_H
+#include "ft_list.h"
+#include "tests/ll_tests.h"
+#include <stdlib.h>
 
-# include <stddef.h>
-
-typedef enum e_optional_type
+int	test_listcreate(void)
 {
-	OPT_NONE,
-	OPT_SOME,
-}				t_optional_type;
+	t_list	*list;
+	int		*data;
 
-typedef struct s_optional
-{
-	t_optional_type	pres;
-	void			*val;
-}				t_optional;
-
-#endif /* FT_OPTIONAL_TYPES_H */
+	data = malloc(sizeof(int));
+	*data = 42;
+	list = ft_listcreate(data);
+	if (!list)
+		return (1);
+	else if (list->data != data)
+		return (1);
+	else if (list->next != NULL)
+		return (1);
+	free(data);
+	free(list);
+	return (0);
+}

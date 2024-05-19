@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:20:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:55:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 # define FT_MATH_H
 
 # include "ft_math_types.h"
-
-/* ************************************************************************** */
-/* **                     FT_MATH SUB MODULE                               ** */
-/* ************************************************************************** */
 
 /// @brief return the logaritm of the number in the specified base
 /// @param nbr number to get the logaritm
@@ -67,7 +63,7 @@ int			ft_max(int a, int b);
 /// @note This is a clamp function aka inferior and superior to min and max
 /// are set to min and max
 /// @file ft_clamp.c
-int	ft_clamp(int value, int min, int max);
+int			ft_clamp(int value, int min, int max);
 
 /// @brief Clamp a value between a minimum and a maximum
 /// @param value The value to clamp
@@ -76,7 +72,7 @@ int	ft_clamp(int value, int min, int max);
 /// @return The clamped value between or at the minimum or maximum
 /// @note See ft_clamp.
 /// @file ft_clamp.c
-float	ft_clamp_f(float value, float min, float max);
+float		ft_clamp_f(float value, float min, float max);
 
 /// @brief Clamp a value between a minimum and a maximum
 /// @param value The value to clamp
@@ -85,7 +81,7 @@ float	ft_clamp_f(float value, float min, float max);
 /// @return The clamped value between or at the minimum or maximum
 /// @note See ft_clamp.
 /// @file ft_clamp.c
-double	ft_clamp_d(double value, double min, double max);
+double		ft_clamp_d(double value, double min, double max);
 
 /// @brief Take a value in a range and puts it in another range of 1 to new_max
 /// @param value The value to range
@@ -93,16 +89,7 @@ double	ft_clamp_d(double value, double min, double max);
 /// @param max The maximum value of the range
 /// @param new_max The maximum value of the new range
 /// @return The value ranged between 1 and new_max
-int ft_range(int value, int min, int max, int new_max);
-
-/// @brief Take a value in a range and puts it in another range of 1 to new_max
-/// @param value The value to range
-/// @param min The minimum value of the range
-/// @param max The maximum value of the range
-/// @param new_max The maximum value of the new range
-/// @return The value ranged between 1 and new_max
-/// @note See ft_range.
-float ft_range_f(float value, float min, float max, float new_max);
+int			ft_range(int value, int min, int max, int new_max);
 
 /// @brief Take a value in a range and puts it in another range of 1 to new_max
 /// @param value The value to range
@@ -111,18 +98,27 @@ float ft_range_f(float value, float min, float max, float new_max);
 /// @param new_max The maximum value of the new range
 /// @return The value ranged between 1 and new_max
 /// @note See ft_range.
-double ft_range_d(double value, double min, double max, double new_max);
+float		ft_range_f(float value, float min, float max, float new_max);
+
+/// @brief Take a value in a range and puts it in another range of 1 to new_max
+/// @param value The value to range
+/// @param min The minimum value of the range
+/// @param max The maximum value of the range
+/// @param new_max The maximum value of the new range
+/// @return The value ranged between 1 and new_max
+/// @note See ft_range.
+double		ft_range_d(double value, double min, double max, double new_max);
 
 /// @brief Return the absolute value of a
 /// @param a The value to get the absolute value
 /// @return The absolute value of a
-int	ft_abs(int a);
+int			ft_abs(int a);
 
 /// @brief Return the absolute value of a
 /// @param a The value to get the absolute value
 /// @return The absolute value of a
 /// @note See ft_abs.
-double	ft_complex_abs(t_complex nb);
+double		ft_complex_abs(t_complex nb);
 
 /// @brief Add a long to a complex number
 /// @param nb The complex number to add the factor
@@ -142,5 +138,4 @@ t_complex	ft_complex_mull(t_complex nb, long factor);
 /// @param factor The factor to multiply the complex number
 /// @return The complex number multiplied by the factor
 t_complex	ft_complex_muld(t_complex nb, double factor);
-
 #endif

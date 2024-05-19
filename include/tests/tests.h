@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 11:15:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 17:04:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:56:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef TESTS_H
+# define TESTS_H
 
 # include <errno.h>
 # include <fcntl.h>
@@ -27,10 +27,6 @@
 # ifndef FORK_TESTS
 #  define FORK_TESTS 1
 # endif
-
-# define OPEN_TEST_FILE (x) open(x, O_CREAT | O_RDWR | O_TRUNC, 0666)
-
-# define CLOSE_TEST_FILE(x) close(x)
 
 typedef struct s_test
 {
@@ -49,4 +45,4 @@ int			tests_string(void);
 int			tests_optional(void);
 int			tests_args(void);
 
-#endif /* TEST_H */
+#endif /* TESTS_H */

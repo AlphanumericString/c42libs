@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_optional_types.h                                :+:      :+:    :+:   */
+/*   tests_list_new.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 18:07:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:47:06 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/19 16:37:19 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/19 16:39:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_OPTIONAL_TYPES_H
-# define FT_OPTIONAL_TYPES_H
+#include "ft_list.h"
+#include "ft_list_types.h"
+#include <stdlib.h>
 
-# include <stddef.h>
-
-typedef enum e_optional_type
+int	test_listnew(void)
 {
-	OPT_NONE,
-	OPT_SOME,
-}				t_optional_type;
+	t_list	*list;
 
-typedef struct s_optional
-{
-	t_optional_type	pres;
-	void			*val;
-}				t_optional;
-
-#endif /* FT_OPTIONAL_TYPES_H */
+	list = ft_listnew();
+	if (!list)
+		return (1);
+	free(list);
+	return (0);
+}

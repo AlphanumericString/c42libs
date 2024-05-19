@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/18 20:08:33 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/19 18:28:07 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -268,18 +268,64 @@ FT_STRING_SRC	=	\
 
 # Tests sources
 
-TESTS_SRC	=	\
+TESTS_SRC	=\
 			$(TESTS_DIR)/ft_args/args_tests.c			\
 			$(TESTS_DIR)/ft_optional/optional_tests.c	\
-			$(TESTS_DIR)/ft_list/ll_list_tests.c		\
-			$(TESTS_DIR)/ft_list/dl_list_tests.c		\
+			\
+			$(TESTS_DIR)/ft_list/ll_tests/ll_test_utils.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/ll_list_tests.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_push.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_new.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_map.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_rev.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_sizers.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_apply.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_iterators.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_clear.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_copy.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_create.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_deletors.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_find.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_get.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_subrange.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_add.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/dl_test_utils.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/dl_list_tests.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_add.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_clear.c	\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_copy.c	\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_create.c	\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_delete.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_iterators.c	\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_get.c			\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_subrange.c	\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_map.c			\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_new.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_push.c	\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_rev.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_sizers.c	\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_apply.c	\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_find.c	\
+			$(TESTS_DIR)/ft_list/lists_test_utils.c				\
+			\
 			$(TESTS_DIR)/ft_map/map_tests.c				\
-			$(TESTS_DIR)/ft_vector/vector_tests.c		\
-			$(TESTS_DIR)/ft_string/mem_tests.c			\
-			$(TESTS_DIR)/ft_string/string_tests.c		\
-			$(TESTS_DIR)/ft_string/str_tests.c			\
-			$(TESTS_DIR)/ft_string/t_string_tests.c		\
-			$(TESTS_DIR)/main_tests.c					\
+			$(TESTS_DIR)/ft_map/tests_map_remove.c		\
+			$(TESTS_DIR)/ft_map/tests_map_hash.c		\
+			$(TESTS_DIR)/ft_map/tests_map_create.c		\
+			$(TESTS_DIR)/ft_map/tests_map_destroy.c		\
+			$(TESTS_DIR)/ft_map/tests_map_set_cmphash.c	\
+			$(TESTS_DIR)/ft_map/tests_map_get.c			\
+			$(TESTS_DIR)/ft_map/tests_map_size.c		\
+			$(TESTS_DIR)/ft_map/tests_map_cappacity.c	\
+			$(TESTS_DIR)/ft_map/tests_map_clear.c		\
+			$(TESTS_DIR)/ft_map/tests_map_set.c			\
+			\
+			$(TESTS_DIR)/ft_vector/vector_tests.c				\
+			$(TESTS_DIR)/ft_string/mem_tests.c					\
+			$(TESTS_DIR)/ft_string/string_tests.c				\
+			$(TESTS_DIR)/ft_string/str_tests.c					\
+			$(TESTS_DIR)/ft_string/t_string_tests.c				\
+			$(TESTS_DIR)/main_tests.c							\
 			$(TESTS_DIR)/tests_utils.c
 
 # Inner variables for targets
@@ -473,4 +519,3 @@ re:	fclean all
 
 # rule to force rules to be executed even if files exist
 .PHONY: re fclean clean
-

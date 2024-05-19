@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_optional_types.h                                :+:      :+:    :+:   */
+/*   tests_map_clear.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 18:07:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:47:06 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/19 18:11:13 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/19 18:24:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_OPTIONAL_TYPES_H
-# define FT_OPTIONAL_TYPES_H
+#include "ft_map.h"
+#include "ft_map_types.h"
 
-# include <stddef.h>
-
-typedef enum e_optional_type
+int	test_map_clear(void)
 {
-	OPT_NONE,
-	OPT_SOME,
-}				t_optional_type;
+	t_map	*map;
 
-typedef struct s_optional
-{
-	t_optional_type	pres;
-	void			*val;
-}				t_optional;
-
-#endif /* FT_OPTIONAL_TYPES_H */
+	map = ft_map_create(10);
+	ft_map_clear(map);
+	ft_map_destroy(map);
+	return (0);
+}

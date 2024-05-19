@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 00:57:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/07 20:48:19 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/19 15:55:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int test_optional_unwrap(void)
 	free(ptr);
 
 	opt.pres = OPT_NONE;
+	opt.val = NULL;
 	pid = fork();
 	if (pid == 0)
 	{

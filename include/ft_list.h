@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/08 21:54:55 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:58:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_LIST_H
 
 # include "ft_list_types.h"
-# include <stddef.h>
+# include "ft_defs.h"
 
 /* ************************************************************************** */
 /*                           DOUBLY LINKED LIST                               */
@@ -248,13 +248,13 @@ t_dlist	*ft_list_dl_subrange(const t_dlist *src, const t_dlist *to);
 /// @param head The head of the list
 /// @param added The node to add
 /// @return void
-void	ft_listadd_front(t_list **lst, t_list *const new);
+void	ft_listadd_front(t_list **lst, t_list *const new_node);
 
 /// @brief Add a node at the end of the list
 /// @param head The head of the list
 /// @param added The node to add
 /// @return void
-void	ft_listadd_back(t_list **lst, t_list *const new);
+void	ft_listadd_back(t_list **lst, t_list *const new_node);
 
 // ft_list/ft_list_ll_apply.c
 

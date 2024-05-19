@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:02:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/04/21 16:18:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:55:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_MAP_TYPES_H
 
 # include "ft_list_types.h"
+# include "ft_defs.h"
 # include <stdbool.h>
 # include <stddef.h>
 
@@ -28,8 +29,8 @@ typedef struct s_map_node
 	bool		used;
 }				t_map_node;
 
-typedef int		(*t_anycmp)(const void *, const void *);
-typedef size_t	(*t_memhash)(const void *, size_t, size_t);
+typedef t_funcmp	t_anycmp;
+typedef size_t		(*t_memhash)(const void *, size_t, size_t);
 
 /// @brief Structure representing a map
 /// @param capacity The capacity of the map
