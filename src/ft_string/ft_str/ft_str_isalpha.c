@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:55:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/09 15:55:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:44:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include <stdbool.h>
+#include "ft_char.h"
 
 bool	ft_str_isalpha(char *str)
 {

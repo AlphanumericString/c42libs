@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:42:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/11/10 15:53:42 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/06 11:19:44 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/21 17:57:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_char.h"
 
-int	ft_tolower(int c)
+int	ft_isalnum(int c)
 {
-	if (ft_isupper(c))
-		c += 32;
-	return (c);
+	return (ft_isalpha(c) || ft_isdigit(c));
 }

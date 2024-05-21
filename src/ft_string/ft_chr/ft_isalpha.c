@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:19:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/05 10:22:01 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/06 11:13:03 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/21 17:57:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_char.h"
 
-int	ft_isalnum(int c)
+int	ft_isalpha(int c)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	return (ft_islower(c) || ft_isupper(c));
 }

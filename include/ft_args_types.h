@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 09:36:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:07:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 
 # define ARG_MASK_ATYPE 0x1C
 # define ARG_MASK_ANY_ARG 0x1
-
+/*
+	OPT_ARG = 1,// technically the inverse of OPT_NOARG so mask it
+	OPT_EQSIGN = 2,// if it has an arg and not eqsign, 
+					it will be the next arg aka space separated
+	OPT_OTHER = 4,// custom type, see set_custom_checker
+*
+*/
 /// @brief Enum to define the type of the option
 /// @details The type of the option is defined by the flags that are set in the
 /// t_opt structure. The flags are defined in the enum e_opt_type.
@@ -60,12 +66,11 @@
 /// @see: t_opt
 /// @see: set_custom_checker
 ///
-
 typedef enum e_opt_type
 {
-	OPT_ARG = 1,// technically the inverse of OPT_NOARG so mask it
-	OPT_EQSIGN = 2,// if it has an arg and not eqsign, it will be the next arg aka space separated
-	OPT_OTHER = 4,// custom type, see set_custom_checker
+	OPT_ARG = 1,
+	OPT_EQSIGN = 2,
+	OPT_OTHER = 4,
 	OPT_INT = 8,
 	OPT_STRING = 12,
 	OPT_BOOL = 16,

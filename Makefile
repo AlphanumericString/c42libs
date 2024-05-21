@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/21 12:18:24 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/21 18:30:06 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ FT_MATH_DIR		=	ft_math
 
 FT_LIST_LL_DIR	=	$(FT_LIST_DIR)/ft_ll
 FT_LIST_DL_DIR	=	$(FT_LIST_DIR)/ft_dl
+FT_CHR_DIR		=	$(FT_STRING_DIR)/ft_chr
 FT_MEM_DIR		=	$(FT_STRING_DIR)/ft_mem
 FT_STR_DIR		=	$(FT_STRING_DIR)/ft_str
 FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
@@ -144,55 +145,52 @@ FT_LIST_DL_SRC	=	\
 			$(FT_LIST_DL_DIR)/ft_list_dl_find.c			\
 
 FT_STR_SRC	=	\
-			$(FT_STR_DIR)/ft_atof.c			\
-			$(FT_STR_DIR)/ft_atoi.c			\
-			$(FT_STR_DIR)/ft_atoi_base.c	\
-			$(FT_STR_DIR)/ft_isalnum.c		\
-			$(FT_STR_DIR)/ft_isalpha.c		\
-			$(FT_STR_DIR)/ft_isascii.c		\
-			$(FT_STR_DIR)/ft_isdigit.c		\
-			$(FT_STR_DIR)/ft_islower.c		\
-			$(FT_STR_DIR)/ft_isprint.c		\
-			$(FT_STR_DIR)/ft_isspace.c		\
-			$(FT_STR_DIR)/ft_isupper.c		\
-			$(FT_STR_DIR)/ft_itoa.c			\
-			$(FT_STR_DIR)/ft_itoa_base.c	\
-			$(FT_STR_DIR)/ft_putchar_fd.c	\
-			$(FT_STR_DIR)/ft_putendl_fd.c	\
-			$(FT_STR_DIR)/ft_putnbr_fd.c	\
-			$(FT_STR_DIR)/ft_putstr_fd.c	\
-			$(FT_STR_DIR)/ft_shift_args.c	\
-			$(FT_STR_DIR)/ft_split.c		\
-			$(FT_STR_DIR)/ft_splits.c		\
-			$(FT_STR_DIR)/ft_str_isalpha.c	\
-				$(FT_STR_DIR)/ft_str_isdigit.c	\
-				$(FT_STR_DIR)/ft_str_isnum.c	\
-			$(FT_STR_DIR)/ft_str_replace.c	\
-			$(FT_STR_DIR)/ft_strappend_c.c	\
-			$(FT_STR_DIR)/ft_strchr.c		\
-			$(FT_STR_DIR)/ft_strclen.c		\
-			$(FT_STR_DIR)/ft_strcmp.c		\
-			$(FT_STR_DIR)/ft_strcnb.c		\
-			$(FT_STR_DIR)/ft_strcspn.c		\
-			$(FT_STR_DIR)/ft_strdup.c		\
-			$(FT_STR_DIR)/ft_strend_with.c	\
-				$(FT_STR_DIR)/ft_strisnum.c		\
-			$(FT_STR_DIR)/ft_striteri.c		\
-			$(FT_STR_DIR)/ft_strjoin.c		\
-			$(FT_STR_DIR)/ft_strlcat.c		\
-			$(FT_STR_DIR)/ft_strlcpy.c		\
-			$(FT_STR_DIR)/ft_strlen.c		\
-			$(FT_STR_DIR)/ft_strmapi.c		\
-			$(FT_STR_DIR)/ft_strncmp.c		\
-			$(FT_STR_DIR)/ft_strndup.c		\
-			$(FT_STR_DIR)/ft_strnstr.c		\
-			$(FT_STR_DIR)/ft_strrchr.c		\
-			$(FT_STR_DIR)/ft_strstart_with.c\
-			$(FT_STR_DIR)/ft_strtok.c		\
-			$(FT_STR_DIR)/ft_strtrim.c		\
-			$(FT_STR_DIR)/ft_substr.c		\
-			$(FT_STR_DIR)/ft_tolower.c		\
-			$(FT_STR_DIR)/ft_toupper.c		\
+			$(FT_STR_DIR)/ft_atof.c				\
+			$(FT_STR_DIR)/ft_atoi.c				\
+			$(FT_STR_DIR)/ft_atoi_base.c		\
+			$(FT_STR_DIR)/ft_itoa.c				\
+			$(FT_STR_DIR)/ft_itoa_base.c		\
+			$(FT_STR_DIR)/ft_putendl_fd.c		\
+			$(FT_STR_DIR)/ft_putnbr_fd.c		\
+			$(FT_STR_DIR)/ft_putstr_fd.c		\
+			$(FT_STR_DIR)/ft_shift_args.c		\
+			$(FT_STR_DIR)/ft_split.c			\
+			$(FT_STR_DIR)/ft_splits.c			\
+			$(FT_STR_DIR)/ft_str_isalpha.c		\
+			$(FT_STR_DIR)/ft_str_isalphanum.c	\
+			$(FT_STR_DIR)/ft_str_isbool.c		\
+			$(FT_STR_DIR)/ft_str_isdigit.c		\
+			$(FT_STR_DIR)/ft_str_isfloat.c		\
+			$(FT_STR_DIR)/ft_str_ishex.c		\
+			$(FT_STR_DIR)/ft_str_isdouble.c		\
+			$(FT_STR_DIR)/ft_str_isint.c		\
+			$(FT_STR_DIR)/ft_str_islong.c		\
+			$(FT_STR_DIR)/ft_str_isnum.c		\
+			$(FT_STR_DIR)/ft_str_isoct.c		\
+			$(FT_STR_DIR)/ft_str_isvalid.c		\
+			$(FT_STR_DIR)/ft_str_replace.c		\
+			$(FT_STR_DIR)/ft_strappend_c.c		\
+			$(FT_STR_DIR)/ft_strchr.c			\
+			$(FT_STR_DIR)/ft_strclen.c			\
+			$(FT_STR_DIR)/ft_strcmp.c			\
+			$(FT_STR_DIR)/ft_strcnb.c			\
+			$(FT_STR_DIR)/ft_strcspn.c			\
+			$(FT_STR_DIR)/ft_strdup.c			\
+			$(FT_STR_DIR)/ft_strend_with.c		\
+			$(FT_STR_DIR)/ft_striteri.c			\
+			$(FT_STR_DIR)/ft_strjoin.c			\
+			$(FT_STR_DIR)/ft_strlcat.c			\
+			$(FT_STR_DIR)/ft_strlcpy.c			\
+			$(FT_STR_DIR)/ft_strlen.c			\
+			$(FT_STR_DIR)/ft_strmapi.c			\
+			$(FT_STR_DIR)/ft_strncmp.c			\
+			$(FT_STR_DIR)/ft_strndup.c			\
+			$(FT_STR_DIR)/ft_strnstr.c			\
+			$(FT_STR_DIR)/ft_strrchr.c			\
+			$(FT_STR_DIR)/ft_strstart_with.c	\
+			$(FT_STR_DIR)/ft_strtok.c			\
+			$(FT_STR_DIR)/ft_strtrim.c			\
+			$(FT_STR_DIR)/ft_substr.c			\
 			$(FT_STR_DIR)/ft_utoa.c				\
 			$(FT_STR_DIR)/get_next_line.c		\
 			$(FT_STR_DIR)/get_next_line_utils.c
@@ -229,6 +227,21 @@ FT_MEM_SRC	=	\
 			$(FT_MEM_DIR)/ft_qsort.c		\
 			$(FT_MEM_DIR)/ft_realloc.c		\
 			$(FT_MEM_DIR)/ft_swap.c
+
+FT_CHR_SRC	=	\
+			$(FT_CHR_DIR)/ft_isalnum.c		\
+			$(FT_CHR_DIR)/ft_isalpha.c		\
+			$(FT_CHR_DIR)/ft_isascii.c		\
+			$(FT_CHR_DIR)/ft_isdigit.c		\
+			$(FT_CHR_DIR)/ft_ishexdigit.c	\
+			$(FT_CHR_DIR)/ft_islower.c		\
+			$(FT_CHR_DIR)/ft_isoctdigit.c	\
+			$(FT_CHR_DIR)/ft_isprint.c		\
+			$(FT_CHR_DIR)/ft_isspace.c		\
+			$(FT_CHR_DIR)/ft_isupper.c		\
+			$(FT_CHR_DIR)/ft_putchar_fd.c	\
+			$(FT_CHR_DIR)/ft_tolower.c		\
+			$(FT_CHR_DIR)/ft_toupper.c
 
 FT_VEC_SRC	=	\
 			$(FT_VEC_DIR)/ft_vec_add.c		\
@@ -275,6 +288,7 @@ FT_LIST_SRC		=	\
 			$(FT_LIST_DL_SRC)	\
 
 FT_STRING_SRC	=	\
+			$(FT_CHR_SRC)		\
 			$(FT_MEM_SRC)		\
 			$(FT_STR_SRC)		\
 			$(FT_T_STRING_SRC)
@@ -532,3 +546,4 @@ re:	fclean all
 
 # rule to force rules to be executed even if files exist
 .PHONY: re fclean clean
+

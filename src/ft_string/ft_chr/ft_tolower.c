@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strisnum.c                                      :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 16:13:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/01 14:01:24 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/06 11:42:46 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/21 18:17:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_char.h"
 
-int	ft_strisnum(const char *str)
+int	ft_tolower(int c)
 {
-	size_t	off;
-
-	off = 0;
-	if (str[off] == '-' || str[off] == '+')
-		off++;
-	while (ft_isdigit(str[off]))
-		off++;
-	return (str[off] == 0);
+	if (ft_isupper(c))
+		c += 32;
+	return (c);
 }

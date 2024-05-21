@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 20:06:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:10:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,60 +39,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
-/* ************************************************************************** */
-/* **                     FT_CHR SUB MODULE                                ** */
-/* ************************************************************************** */
-
-/// @brief check if the char is a digit or a letter
-/// @param c the char to check
-/// @return 1 if the char is a digit or a letter, 0 otherwise
-int			ft_isalnum(int c);
-
-/// @brief check if the char is a letter
-/// @param c the char to check
-/// @return 1 if the char is a letter, 0 otherwise
-int			ft_isalpha(int c);
-
-/// @brief check if the char is a ascii char
-/// @param c the char to check
-/// @return 1 if the char is a ascii char, 0 otherwise
-int			ft_isascii(int c);
-
-/// @brief check if the char is a digit
-/// @param c the char to check
-/// @return 1 if the char is a digit, 0 otherwise
-int			ft_isdigit(int c);
-
-/// @brief check if the char is a lower case letter
-/// @param c the char to check
-/// @return 1 if the char is a lower case letter, 0 otherwise
-int			ft_islower(int c);
-
-/// @brief check if the char is a printable char
-/// @param c the char to check
-/// @return 1 if the char is a printable char, 0 otherwise
-int			ft_isprint(int c);
-
-/// @brief check if the char is a space
-/// @param c the char to check
-/// @return 1 if the char is a space, 0 otherwise
-int			ft_isspace(int c);
-
-/// @brief check if the char is a upper case letter
-/// @param c the char to check
-/// @return 1 if the char is a upper case letter, 0 otherwise
-int			ft_isupper(int c);
-
-/// @brief convert the char to lower case
-/// @param c the char to convert
-/// @return the lower case char
-int			ft_tolower(int c);
-
-/// @brief convert the char to upper case
-/// @param c the char to convert
-/// @return the upper case char
-int			ft_toupper(int c);
 
 /* ************************************************************************** */
 /* **                     FT_MEM SUB MODULE                                ** */
@@ -207,12 +153,6 @@ void		ft_qsort(void *array, size_t nmb, size_t size,
 /* ************************************************************************** */
 /* **                     FT_PUT SUB MODULE                                ** */
 /* ************************************************************************** */
-
-/// @brief print the char on the specified file descriptor
-/// @param c char to print
-/// @param fd file descriptor to print on
-/// @return void
-void		ft_putchar_fd(char c, int fd);
 
 /// @brief print the string on the specified file descriptor followed by a new
 /// line
@@ -428,6 +368,18 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_str_replace(char *str, const char *to_replace,
 				const char *replace_by);
 
+/// @brief search if the string str ends with the string end
+/// @param str string to search from
+/// @param end string to search
+/// @return 1 if the string str ends with the string end, 0 otherwise
+int			ft_strend_with(const char *str, const char *end);
+
+/// @brief search if the string str starts with the string start
+/// @param str string to search from
+/// @param start string to search
+/// @return 1 if the string str starts with the string start, 0 otherwise
+int			ft_strstart_with(const char *str, const char *start);
+
 /// @brief replace the chars to_replace in the string by the char replace_by
 /// @param str string to in which the char will be replaced
 /// @param to_replace char to replace
@@ -442,6 +394,54 @@ char		*ft_str_replace_chr(char *str, char to_replace, char replace_by);
 /// is null fails and return null otherwise return the first
 /// const char pointed to by args
 const char	*ft_shift_args(const char **args[], int *index);
+
+/// @brief Check if the string is a float
+/// @param str string to check
+/// @return 1 if the string is a float, 0 otherwise
+/// @file: src/ft_string/ft_char/ft_isfloat.c
+int			ft_str_isfloat(char *str);
+
+/// @brief Check if the string is a float
+/// @param str string to check
+/// @return 1 if the string is a float, 0 otherwise
+/// @file: src/ft_string/ft_char/ft_isdouble.c
+int			ft_str_isdouble(char *str);
+
+/// @brief Check if the string is an int valid value
+/// @param str string to check
+/// @return 1 if the string is an int, 0 otherwise
+/// @file: src/ft_string/ft_char/ft_isint.c
+int			ft_str_isint(char *str);
+
+/// @brief Check if the string is a long
+/// @param str string to check
+///	@return 1 if the string is a number, 0 otherwise
+///	@file: src/ft_string/ft_char/ft_islong.c
+int			ft_str_islong(char *str);
+
+/// @brief Check if the string is a boolean value
+/// @param str string to check
+/// @return 1 if the string is a boolean value, 0 otherwise
+/// @file: src/ft_string/ft_char/ft_isbool.c
+int			ft_str_isbool(char *str);
+
+/// @brief check if the string is a hex character
+/// @param c char to check
+/// @return 1 if the char is a hex character, 0 otherwise
+/// @file: src/ft_string/ft_char/ft_ishex.c
+int			ft_str_ishex(char *str);
+
+/// @brief check if the string is an octal number
+/// @param str string to check
+/// @return 1 if the string is an octal number, 0 otherwise
+int			ft_str_isoct(char *str);
+
+/// @brief Check if the string is valid using a function pointer
+/// @param str string to check
+/// @param f function pointer to check the string
+/// @return 1 if the string is valid, 0 otherwise
+/// @file: src/ft_string/ft_char/ft_isvalid.c
+int			ft_str_isvalid(char *str, int (*f)(int));
 
 /* ************************************************************************** */
 /*                        FT_GNL SUB MODULE                                   */

@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_str_ishex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 20:05:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 17:36:45 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/21 15:46:22 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/21 18:52:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
 #include "ft_char.h"
+#include "ft_string.h"
 
-int	ft_atoi(const char *str)
+int	ft_str_ishex(char *str)
 {
-	int		ret;
-	int		sign;
-	size_t	offset;
-
-	ret = 0;
-	offset = 0;
-	sign = 0;
-	while (ft_isspace(str[offset]))
-		offset++;
-	while (str[offset] == '+' || str[offset] == '-')
-	{
-		if (str[offset] == '-')
-			sign++;
-		offset++;
-	}
-	while (ft_isdigit(str[offset]))
-		ret = ret * 10 + str[offset++] - '0';
-	if (sign % 2 == 1)
-		return (-ret);
-	return (ret);
+	if (!str)
+		return (0);
+	if (ft_strstart_with(str, "0X") || ft_strstart_with(str, "0x"))
+		str += 2;
+	return (ft_str_isvalid(str, ft_ishexdigit));
 }
