@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 15:36:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:33:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # include "ft_args_types.h"
 
-int			ft_parse_args(int argc, char **argv, void *usr_control_struct);
+int			ft_parse_args(char **argv, void *usr_control_struct);
 
 void		ft_set_opt_list(const t_opt *opt_list);
 const t_opt	*ft_get_opt_list(void);

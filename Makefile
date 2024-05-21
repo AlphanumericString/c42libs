@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/19 18:28:07 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/21 12:18:24 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,11 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 
 LDFLAGS		=	
 CPPFLAGS	=	-I$(INC_DIR) -MMD
+FFLAGS		=\
+			 -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined\
+			 -fsanitize=leak -fsanitize=pointer-compare -fsanitize=pointer-subtract\
+			 -fsanitize-address-use-after-scope -fsanitize=pointer-overflow
+
 CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC \
 				-fdiagnostics-color -g
 TEST_FLAGS	=	\
@@ -72,13 +77,20 @@ TARGET			?=	"ALL"
 CLOG_FILE		=	./compilation.log
 
 # Check for llvm-cov and llvm-profdata
-#   If not found, use the version 12 (default on 42 VMs)
+#   If not found, use the version 12 if available
+#   If not found, use the version 14 (latest version)
 ifeq (, $(shell which $(COV) 2> /dev/null))
 	COV			=	llvm-cov-12
+	ifeq (, $(shell which $(COV) 2> /dev/null))
+		COV			=	llvm-cov-14
+	endif
 endif
 
 ifeq (, $(shell which $(PRD) 2> /dev/null))
 	PRD			=	llvm-profdata-12
+	ifeq (, $(shell which $(PRD) 2> /dev/null))
+		PRD			=	llvm-profdata-14
+	endif
 endif
 
 # Sources
@@ -249,6 +261,7 @@ FT_ARGS_SRC		=	\
 			$(FT_ARGS_DIR)/ft_parse_args.c		\
 			$(FT_ARGS_DIR)/ft_progname.c		\
 			$(FT_ARGS_DIR)/ft_set_opt_args.c	\
+			$(FT_ARGS_DIR)/ft_setup_prog.c		\
 			$(FT_ARGS_DIR)/ft_version.c
 
 # Counpound sources
