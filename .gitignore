@@ -66,3 +66,4 @@ tests_run
 coverage
 Doxygen
 tools
+*test*tmp*.c
