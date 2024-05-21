@@ -6,39 +6,17 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 01:10:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 12:16:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:09:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_args.h"
 #include "ft_args_types.h"
-#include "ft_math.h"
 #include "ft_string.h"
 #include <stdio.h>
 #include <sys/types.h>
 #include <stdbool.h>
-
-ssize_t	parse_long_opt(char *str_op, const t_opt *opt_list)
-{
-	ssize_t	i;
-	size_t	offset;
-
-	str_op += 2;
-	i = 0;
-	if (ft_strchr(str_op, '='))
-		offset = ft_strchr(str_op, '=') - str_op;
-	while (opt_list[i].func)
-	{
-		if (opt_list[i].long_name
-			&& ft_strlen(opt_list[i].long_name) >= ft_strlen(str_op)
-			&& ft_strncmp(opt_list[i].long_name, str_op, ft_max(offset,
-					ft_strlen(str_op))) == 0)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
 
 ssize_t	parse_short_opt(char *str_op, const t_opt *opt_list)
 {
@@ -54,26 +32,6 @@ ssize_t	parse_short_opt(char *str_op, const t_opt *opt_list)
 		i++;
 	}
 	return (-1);
-}
-
-static int	(*singleton_custom_checker(int (*custom_checker)(char *arg)))
-	(char *arg)
-{
-	static int	(*custom_checker_ptr)(char *) = NULL;
-
-	if (custom_checker)
-		custom_checker_ptr = custom_checker;
-	return (custom_checker_ptr);
-}
-
-void	ft_arg_set_custom_checker(int (*custom_checker)(char *))
-{
-	singleton_custom_checker(custom_checker);
-}
-
-int	(*ft_arg_get_custom_checker(void))(char *arg)
-{
-	return (singleton_custom_checker(NULL));
 }
 
 // 0 success, !0 failure
