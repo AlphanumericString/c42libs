@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_tolower.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 15:59:59 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 16:00:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_char.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+static int	local_tolower(int c)
 {
-	size_t	i;
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
+}
+
+int	test_ft_tolower(void)
+{
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < 256)
 	{
-		if (!is_type(str[i]))
-			return (false);
+		if (ft_tolower(i) != local_tolower(i))
+			return (1);
 		i++;
 	}
-	return (true);
+	return (0);
 }

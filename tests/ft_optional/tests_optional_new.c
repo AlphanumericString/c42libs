@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_optional_new.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 22:31:28 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 22:32:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_optional.h"
+#include "ft_optional_types.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+int	test_optional_new(void)
 {
-	size_t	i;
+	t_optional	*opt;
 
-	i = 0;
-	while (str[i])
-	{
-		if (!is_type(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
+	opt = ft_optional_new();
+	if (opt == NULL)
+		return (1);
+	if (opt->pres != OPT_NONE)
+		return (2);
+	if (opt->val != NULL)
+		return (3);
+	ft_optional_destroy(opt);
+	return (0);
 }

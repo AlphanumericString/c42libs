@@ -1,43 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_log.c                                           :+:      :+:    :+:   */
+/*   tests_minmax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 10:09:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 00:13:26 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 23:49:30 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/24 00:34:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_ullogof(unsigned long long nbr, int base)
-{
-	int	pow;
+#include "ft_math.h"
 
-	pow = -1;
-	while (nbr)
-	{
-		nbr /= base;
-		pow++;
-	}
-	return (pow);
+int	test_ft_min(void)
+{
+	const int	a = 0xdeadbeef;
+	const int	b = 0xdeadbaaf;
+	const int	c = 0xdeadbccf;
+
+	if (ft_min(a, b) != b)
+		return (1);
+	if (ft_min(a, c) != a)
+		return (1);
+	return (0);
 }
 
-int	ft_llogof(long long nbr, int base)
+int	test_ft_max(void)
 {
-	if (nbr <= 0)
-		return (-1);
-	return (ft_ullogof((unsigned long long)nbr, base));
-}
+	const int	a = 0xdeadbeef;
+	const int	b = 0xdeadbaaf;
+	const int	c = 0xdeadbccf;
 
-int	ft_logof(int nbr, int base)
-{
-	if (nbr <= 0)
-		return (-1);
-	return (ft_llogof((long long)nbr, base));
-}
-
-int	ft_log(int nbr)
-{
-	return (ft_logof(nbr, 10));
+	if (ft_max(a, b) != a)
+		return (1);
+	if (ft_max(a, c) != c)
+		return (1);
+	return (0);
 }

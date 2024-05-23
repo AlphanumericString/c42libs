@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_isprint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 15:57:59 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 15:58:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_char.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+int	test_ft_isprint(void)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < 256)
 	{
-		if (!is_type(str[i]))
-			return (false);
+		if (ft_isprint(i) != (i >= 32 && i <= 126))
+			return (1);
 		i++;
 	}
-	return (true);
+	return (0);
 }

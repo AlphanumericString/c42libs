@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   arg_test.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 22:39:19 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 22:42:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#ifndef ARGS_TEST_H
+# define ARGS_TEST_H
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
-{
-	size_t	i;
+/* @file: tests/ft_args/args_tests.c */
+int	parse_args_test(void);
+int	getset_opt_list_test(void);
+int	tests_args(void);
 
-	i = 0;
-	while (str[i])
-	{
-		if (!is_type(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
+/* @file: tests/ft_args/test_version.c */
+int	getset_version_test(void);
+
+/* @file: tests/ft_args/test_progname.c */
+int	getset_program_name_test(void);
+
+#endif /* ARGS_TEST_H */

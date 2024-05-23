@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_ishexdigit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 16:25:47 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 16:26:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_char.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+static int	local_ishexdigit(int c)
 {
-	size_t	i;
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')
+		|| (c >= 'A' && c <= 'F'))
+		return (1);
+	return (0);
+}
+
+int	test_ft_ishexdigit(void)
+{
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < 256)
 	{
-		if (!is_type(str[i]))
-			return (false);
+		if (ft_ishexdigit(i) != local_ishexdigit(i))
+			return (1);
 		i++;
 	}
-	return (true);
+	return (0);
 }

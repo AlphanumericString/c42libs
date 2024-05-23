@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 23:00:06 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 23:10:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
-
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+// using newton's method
+double	ft_sqrt(double nb)
 {
-	size_t	i;
+	double	x;
+	double	y;
 
-	i = 0;
-	while (str[i])
+	x = nb;
+	if (nb < 0)
+		return (-1);
+	y = 1;
+	while (x - y > 0.0000001)
 	{
-		if (!is_type(str[i]))
-			return (false);
-		i++;
+		x = (x + y) / 2;
+		y = nb / x;
 	}
-	return (true);
+	return (x);
 }

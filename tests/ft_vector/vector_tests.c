@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:30:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/05 23:51:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/23 22:51:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	*add42_ret(void *data)
 	return ((void *)ret);
 }
 
-static int	cmpInt(void *a, void *b)
+static int	cmp_int(void *a, void *b)
 {
 	return (*(int *)a - *(int *)b);
 }
@@ -61,20 +61,11 @@ int	test_vec_add(void)
 	ft_vec_add(&vec, (void *)45);
 	ft_vec_add(&vec, (void *)46);
 	ft_vec_add(&vec, (void *)47);
-	fflush(stdout);
 	if (vec->count != 6)
 		return (1);
-	if (vec->datas[0] != (void *)42)
-		return (1);
-	if (vec->datas[1] != (void *)43)
-		return (1);
-	if (vec->datas[2] != (void *)44)
-		return (1);
-	if (vec->datas[3] != (void *)45)
-		return (1);
-	if (vec->datas[4] != (void *)46)
-		return (1);
-	if (vec->datas[5] != (void *)47)
+	if (vec->datas[0] != (void *)42 || vec->datas[1] != (void *)43 || \
+	vec->datas[2] != (void *)44 || vec->datas[3] != (void *)45 || \
+	vec->datas[4] != (void *)46 || vec->datas[5] != (void *)47)
 		return (1);
 	ft_vec_destroy(&vec);
 	return (0);
@@ -121,13 +112,27 @@ int	test_vec_at(void)
 	return (0);
 }
 
+/*
+	ft_vec_add(&vec_a, &a); // 42
+	ft_vec_add(&vec_a, &b); // 42 43
+	ft_vec_add(&vec_a, &c); // 42 43 44
+	ft_vec_add(&vec_b, &d); // 45
+	ft_vec_add(&vec_b, &e); // 45 46
+	ft_vec_add(&vec_b, &f); // 45 46 47
+	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
+	ft_vec_add(&vec_a, &a); // 42
+	ft_vec_add(&vec_a, &b); // 42 43
+	ft_vec_add(&vec_a, &c); // 42 43 44
+	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
+*/
+
 int	test_vec_cat(void)
 {
 	bool		ret;
 	t_vector	*vec_a;
 	t_vector	*vec_b;
+	int			a, b, c, d, e, f;
 
-	int a, b, c, d, e, f;
 	vec_a = ft_vec_from_size(6);
 	vec_b = ft_vec_new();
 	a = 42;
@@ -136,13 +141,13 @@ int	test_vec_cat(void)
 	d = 45;
 	e = 46;
 	f = 47;
-	ft_vec_add(&vec_a, &a); // 42
-	ft_vec_add(&vec_a, &b); // 42 43
-	ft_vec_add(&vec_a, &c); // 42 43 44
-	ft_vec_add(&vec_b, &d); // 45
-	ft_vec_add(&vec_b, &e); // 45 46
-	ft_vec_add(&vec_b, &f); // 45 46 47
-	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
+	ft_vec_add(&vec_a, &a);
+	ft_vec_add(&vec_a, &b);
+	ft_vec_add(&vec_a, &c);
+	ft_vec_add(&vec_b, &d);
+	ft_vec_add(&vec_b, &e);
+	ft_vec_add(&vec_b, &f);
+	ret = ft_vec_cat(&vec_a, vec_b);
 	if (ret != true)
 		return (1);
 	else if (vec_a->count != 6)
@@ -161,10 +166,10 @@ int	test_vec_cat(void)
 		return (1);
 	ft_vec_destroy(&vec_a);
 	vec_a = ft_vec_new();
-	ft_vec_add(&vec_a, &a); // 42
-	ft_vec_add(&vec_a, &b); // 42 43
-	ft_vec_add(&vec_a, &c); // 42 43 44
-	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
+	ft_vec_add(&vec_a, &a);
+	ft_vec_add(&vec_a, &b);
+	ft_vec_add(&vec_a, &c);
+	ret = ft_vec_cat(&vec_a, vec_b);
 	if (ret != false)
 		return (1);
 	else if (vec_a->count != 3)
@@ -231,8 +236,8 @@ int	test_vec_filter(void)
 	int			a;
 	int			b;
 	int			c;
+	int			*pp[3];
 
-	int *pa, *pb, *pc;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -246,19 +251,19 @@ int	test_vec_filter(void)
 	else if (*(int *)ft_vec_at(vec, 0) != 42)
 		return (1);
 	ft_vec_clear(vec);
-	pa = malloc(sizeof(int));
-	*pa = 21;
-	pb = malloc(sizeof(int));
-	*pb = 42;
-	pc = malloc(sizeof(int));
-	*pc = 63;
-	ft_vec_add(&vec, pa);
-	ft_vec_add(&vec, pb);
-	ft_vec_add(&vec, pc);
+	pp[0] = malloc(sizeof(int));
+	*pp[0] = 21;
+	pp[1] = malloc(sizeof(int));
+	*pp[1] = 42;
+	pp[2] = malloc(sizeof(int));
+	*pp[2] = 63;
+	ft_vec_add(&vec, pp[0]);
+	ft_vec_add(&vec, pp[1]);
+	ft_vec_add(&vec, pp[2]);
 	ft_vec_filter(vec, is42, free);
 	if (vec->count != 1)
 		return (1);
-	else if (ft_vec_at(vec, 0) != pb)
+	else if (ft_vec_at(vec, 0) != pp[1])
 		return (1);
 	ft_vec_apply(vec, free);
 	ft_vec_destroy(&vec);
@@ -584,7 +589,7 @@ int	test_vec_sort(void)
 	data[2] = (void *)&c;
 	vec = ft_vec_from_array(data, sizeof(data) / sizeof(data[0]));
 	// 44, 43, 42
-	ft_vec_sort(vec, cmpInt);
+	ft_vec_sort(vec, cmp_int);
 	// 42, 43, 44
 	if (vec->count != 3)
 		return (1);

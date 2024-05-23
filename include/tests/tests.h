@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 11:15:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:56:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:27:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ typedef struct s_test
 }			t_test;
 
 int			run_test(const t_test *test, int *collect);
+int			open_test_file(char **func_to_test);
 void		destroy_test_file(int fd, char *file);
 
 int			tests_map(void);
+int			tests_math(void);
 int			tests_linked_list_all(void);
 int			tests_doubly_linked_list_all(void);
 int			tests_vector(void);

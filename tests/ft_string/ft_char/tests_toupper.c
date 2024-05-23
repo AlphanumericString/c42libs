@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_toupper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 16:01:14 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 16:18:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_char.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+static int	local_toupper(int c)
 {
-	size_t	i;
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
+}
+
+int	test_ft_toupper(void)
+{
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < 256)
 	{
-		if (!is_type(str[i]))
-			return (false);
+		if (ft_toupper(i) != local_toupper(i))
+			return (1);
 		i++;
 	}
-	return (true);
+	return (0);
 }

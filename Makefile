@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/21 18:30:06 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/23 23:34:33 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,11 @@ FT_MATH_SRC	=	\
 			$(FT_MATH_DIR)/ft_complex.c		\
 			$(FT_MATH_DIR)/ft_intrange.c	\
 			$(FT_MATH_DIR)/ft_log.c			\
-			$(FT_MATH_DIR)/ft_minmax.c
+			$(FT_MATH_DIR)/ft_minmax.c		\
+			$(FT_MATH_DIR)/ft_sqrt.c		\
+			$(FT_MATH_DIR)/ft_pow.c			\
+			$(FT_MATH_DIR)/ft_abs.c			\
+			$(FT_MATH_DIR)/ft_round.c
 
 FT_MAP_SRC	=	\
 			$(FT_MAP_DIR)/ft_map_clear.c		\
@@ -271,10 +275,16 @@ FT_OPTIONAL_SRC	=	\
 			$(FT_OPTIONAL_DIR)/ft_optional_unwrap.c
 
 FT_ARGS_SRC		=	\
-			$(FT_ARGS_DIR)/ft_parse_args.c		\
-			$(FT_ARGS_DIR)/ft_progname.c		\
-			$(FT_ARGS_DIR)/ft_set_opt_args.c	\
-			$(FT_ARGS_DIR)/ft_setup_prog.c		\
+			$(FT_ARGS_DIR)/arg_err.c				\
+			$(FT_ARGS_DIR)/checker_arg.c			\
+			$(FT_ARGS_DIR)/ft_arg_custom_checker.c	\
+			$(FT_ARGS_DIR)/ft_parse_long.c			\
+			$(FT_ARGS_DIR)/parse_short_opt.c		\
+			$(FT_ARGS_DIR)/run_opt_func.c			\
+			$(FT_ARGS_DIR)/ft_parse_args.c			\
+			$(FT_ARGS_DIR)/ft_progname.c			\
+			$(FT_ARGS_DIR)/ft_set_opt_args.c		\
+			$(FT_ARGS_DIR)/ft_setup_prog.c			\
 			$(FT_ARGS_DIR)/ft_version.c
 
 # Counpound sources
@@ -296,14 +306,25 @@ FT_STRING_SRC	=	\
 # Tests sources
 
 TESTS_SRC	=\
-			$(TESTS_DIR)/ft_args/args_tests.c			\
-			$(TESTS_DIR)/ft_optional/optional_tests.c	\
+			$(TESTS_DIR)/ft_args/tests_progname.c				\
+			$(TESTS_DIR)/ft_args/tests_version.c					\
+			$(TESTS_DIR)/ft_args/args_tests.c					\
 			\
-			$(TESTS_DIR)/ft_list/ll_tests/ll_test_utils.c	\
-			$(TESTS_DIR)/ft_list/ll_tests/ll_list_tests.c	\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_push.c	\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_new.c	\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_map.c	\
+			$(TESTS_DIR)/ft_optional/tests_optional_chain.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_copy.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_destroy.c	\
+			$(TESTS_DIR)/ft_optional/tests_optional_dup.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_from_val.c	\
+			$(TESTS_DIR)/ft_optional/tests_optional_map.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_new.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_unwrap.c		\
+			$(TESTS_DIR)/ft_optional/optional_tests.c			\
+			\
+			$(TESTS_DIR)/ft_list/ll_tests/ll_tests_utils.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/ll_list_tests.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_push.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_new.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_map.c		\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_rev.c		\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_sizers.c	\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_apply.c		\
@@ -316,7 +337,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_get.c		\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_subrange.c	\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_add.c		\
-			$(TESTS_DIR)/ft_list/dl_tests/dl_test_utils.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/dl_tests_utils.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/dl_list_tests.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_add.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_clear.c	\
@@ -333,25 +354,51 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_sizers.c	\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_apply.c	\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_find.c	\
-			$(TESTS_DIR)/ft_list/lists_test_utils.c				\
+			$(TESTS_DIR)/ft_list/lists_tests_utils.c				\
 			\
-			$(TESTS_DIR)/ft_map/map_tests.c				\
-			$(TESTS_DIR)/ft_map/tests_map_remove.c		\
-			$(TESTS_DIR)/ft_map/tests_map_hash.c		\
-			$(TESTS_DIR)/ft_map/tests_map_create.c		\
-			$(TESTS_DIR)/ft_map/tests_map_destroy.c		\
-			$(TESTS_DIR)/ft_map/tests_map_set_cmphash.c	\
-			$(TESTS_DIR)/ft_map/tests_map_get.c			\
-			$(TESTS_DIR)/ft_map/tests_map_size.c		\
-			$(TESTS_DIR)/ft_map/tests_map_cappacity.c	\
-			$(TESTS_DIR)/ft_map/tests_map_clear.c		\
-			$(TESTS_DIR)/ft_map/tests_map_set.c			\
+			$(TESTS_DIR)/ft_map/map_tests.c						\
+			$(TESTS_DIR)/ft_map/tests_map_remove.c				\
+			$(TESTS_DIR)/ft_map/tests_map_hash.c				\
+			$(TESTS_DIR)/ft_map/tests_map_create.c				\
+			$(TESTS_DIR)/ft_map/tests_map_destroy.c				\
+			$(TESTS_DIR)/ft_map/tests_map_set_cmphash.c			\
+			$(TESTS_DIR)/ft_map/tests_map_get.c					\
+			$(TESTS_DIR)/ft_map/tests_map_size.c				\
+			$(TESTS_DIR)/ft_map/tests_map_cappacity.c			\
+			$(TESTS_DIR)/ft_map/tests_map_clear.c				\
+			$(TESTS_DIR)/ft_map/tests_map_set.c					\
+			\
+			$(TESTS_DIR)/ft_math/tests_abs.c					\
+			$(TESTS_DIR)/ft_math/tests_clamp.c					\
+			$(TESTS_DIR)/ft_math/tests_complex.c				\
+			$(TESTS_DIR)/ft_math/tests_intrange.c				\
+			$(TESTS_DIR)/ft_math/tests_log.c					\
+			$(TESTS_DIR)/ft_math/tests_minmax.c					\
+			$(TESTS_DIR)/ft_math/tests_pow.c					\
+			$(TESTS_DIR)/ft_math/tests_sqrt.c					\
+			$(TESTS_DIR)/ft_math/tests_round.c					\
+			$(TESTS_DIR)/ft_math/math_tests.c					\
 			\
 			$(TESTS_DIR)/ft_vector/vector_tests.c				\
-			$(TESTS_DIR)/ft_string/mem_tests.c					\
+			\
+			$(TESTS_DIR)/ft_string/ft_char/tests_isalnum.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_isalpha.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_isascii.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_isdigit.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_ishexdigit.c	\
+			$(TESTS_DIR)/ft_string/ft_char/tests_isoctdigit.c	\
+			$(TESTS_DIR)/ft_string/ft_char/tests_isspace.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_isprint.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_puchar.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_tolower.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_toupper.c		\
+			$(TESTS_DIR)/ft_string/ft_char/ft_char_tests.c		\
+			\
+			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c			\
+			$(TESTS_DIR)/ft_string/ft_str/str_tests.c			\
+			$(TESTS_DIR)/ft_string/ft_t_string/t_string_tests.c	\
 			$(TESTS_DIR)/ft_string/string_tests.c				\
-			$(TESTS_DIR)/ft_string/str_tests.c					\
-			$(TESTS_DIR)/ft_string/t_string_tests.c				\
+			\
 			$(TESTS_DIR)/main_tests.c							\
 			$(TESTS_DIR)/tests_utils.c
 

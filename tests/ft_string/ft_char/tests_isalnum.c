@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_isalnum.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 15:55:54 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 16:11:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_char.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+int	test_ft_isalnum(void)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < 256)
 	{
-		if (!is_type(str[i]))
-			return (false);
+		if (ft_isalnum(i) != ((i >= '0' && i <= '9') || (i >= 'a' && i <= 'z')
+				|| (i >= 'A' && i <= 'Z')))
+			return (1);
 		i++;
 	}
-	return (true);
+	return (0);
 }

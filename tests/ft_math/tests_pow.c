@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_ft_pow.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 23:21:25 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 23:22:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_math.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+int	test_ft_pow(void)
 {
-	size_t	i;
+	size_t	x;
+	size_t	y;
 
-	i = 0;
-	while (str[i])
-	{
-		if (!is_type(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
+	x = 2;
+	y = 3;
+	if (ft_pow(x, y) != 8)
+		return (1);
+	y = 0;
+	if (ft_pow(x, y) != 1)
+		return (1);
+	y = 1;
+	if (ft_pow(x, y) != 2)
+		return (1);
+	return (0);
 }

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_ft_abs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 23:20:34 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 23:21:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_math.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+int	test_ft_abs(void)
 {
-	size_t	i;
+	int	x;
 
-	i = 0;
-	while (str[i])
-	{
-		if (!is_type(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
+	x = -42;
+	if (ft_abs(x) != 42)
+		return (1);
+	x = 42;
+	if (ft_abs(x) != 42)
+		return (1);
+	x = 0;
+	if (ft_abs(x) != 0)
+		return (1);
+	return (0);
 }

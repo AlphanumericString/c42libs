@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 04:18:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 17:03:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:09:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "tests/tests.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -60,6 +61,22 @@ static int	run_t_test(t_test test, int *collect)
 }
 
 #endif
+
+int	open_test_file(char **func_to_test)
+{
+	char	*file;
+	int		fd;
+
+	file = ft_strjoin(TESTS_FPREFIX, *func_to_test);
+	fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (fd < 0)
+	{
+		printf("Error: on oppening %s\n", file);
+		return (free(file), -1);
+	}
+	*func_to_test = file;
+	return (fd);
+}
 
 void	destroy_test_file(int fd, char *file)
 {

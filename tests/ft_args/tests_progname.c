@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_progname.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 22:37:47 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 22:38:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_args.h"
+#include "ft_string.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+int	getset_program_name_test(void)
 {
-	size_t	i;
+	char	*s1;
+	char	*s2;
 
-	i = 0;
-	while (str[i])
-	{
-		if (!is_type(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
+	s1 = "toto";
+	s2 = 0;
+	ft_set_progname(s1);
+	if (ft_progname() != s1)
+		return (ft_putstr_fd(ft_progname(), 2), 1);
+	ft_set_progname(s2);
+	if (ft_progname() == s2)
+		return (2);
+	return (0);
 }

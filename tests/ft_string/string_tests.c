@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:36:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 16:47:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:39:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		t_string_tests(void);
 int		mem_tests(void);
 int		str_tests(void);
+int		char_tests(void);
 
 
 int tests_string()
@@ -24,6 +25,7 @@ int tests_string()
 	t_test tests[] = {
 		{"mem", mem_tests},
 		{"str", str_tests},
+		{"char", char_tests},
 		{"t_string", t_string_tests},
 		{NULL, NULL}
 	};

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:47:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:49:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,282 +29,6 @@ static char	local_mapi(unsigned int i, char c)
 {
 	(void)i;
 	return (c + 1);
-}
-
-int	test_is_alphanum(void)
-{
-	if (ft_isalnum('a') != 1)
-		return (1);
-	if (ft_isalnum('z') != 1)
-		return (2);
-	if (ft_isalnum('A') != 1)
-		return (3);
-	if (ft_isalnum('Z') != 1)
-		return (4);
-	if (ft_isalnum('0') != 1)
-		return (5);
-	if (ft_isalnum('9') != 1)
-		return (6);
-	if (ft_isalnum(' ') != 0)
-		return (7);
-	if (ft_isalnum('\n') != 0)
-		return (8);
-	if (ft_isalnum('\t') != 0)
-		return (9);
-	if (ft_isalnum('\0') != 0)
-		return (10);
-	return (0);
-}
-
-int	test_is_alpa(void)
-{
-	if (ft_isalpha('a') != 1)
-		return (1);
-	if (ft_isalpha('z') != 1)
-		return (2);
-	if (ft_isalpha('A') != 1)
-		return (3);
-	if (ft_isalpha('Z') != 1)
-		return (4);
-	if (ft_isalpha('0') != 0)
-		return (5);
-	if (ft_isalpha('9') != 0)
-		return (6);
-	if (ft_isalpha(' ') != 0)
-		return (7);
-	if (ft_isalpha('\n') != 0)
-		return (8);
-	if (ft_isalpha('\t') != 0)
-		return (9);
-	if (ft_isalpha('\0') != 0)
-		return (10);
-	return (0);
-}
-
-int	test_is_digit(void)
-{
-	if (ft_isdigit('a') != 0)
-		return (1);
-	if (ft_isdigit('z') != 0)
-		return (2);
-	if (ft_isdigit('A') != 0)
-		return (3);
-	if (ft_isdigit('Z') != 0)
-		return (4);
-	if (ft_isdigit('0') != 1)
-		return (5);
-	if (ft_isdigit('9') != 1)
-		return (6);
-	if (ft_isdigit(' ') != 0)
-		return (7);
-	if (ft_isdigit('\n') != 0)
-		return (8);
-	if (ft_isdigit('\t') != 0)
-		return (9);
-	if (ft_isdigit('\0') != 0)
-		return (10);
-	return (0);
-}
-
-int	test_is_ascii(void)
-{
-	if (ft_isascii('a') != 1)
-		return (1);
-	if (ft_isascii('z') != 1)
-		return (2);
-	if (ft_isascii('A') != 1)
-		return (3);
-	if (ft_isascii('Z') != 1)
-		return (4);
-	if (ft_isascii('0') != 1)
-		return (5);
-	if (ft_isascii('9') != 1)
-		return (6);
-	if (ft_isascii(' ') != 1)
-		return (7);
-	if (ft_isascii('\n') != 1)
-		return (8);
-	if (ft_isascii('\t') != 1)
-		return (9);
-	if (ft_isascii('\0') != 1)
-		return (10);
-	if (ft_isascii(127) != 1)
-		return (11);
-	if (ft_isascii(128) != 0)
-		return (12);
-	if (ft_isascii(-1) != 0)
-		return (13);
-	return (0);
-}
-
-int	test_is_lower(void)
-{
-	if (ft_islower('a') != 1)
-		return (1);
-	if (ft_islower('z') != 1)
-		return (2);
-	if (ft_islower('a' - 1) != 0)
-		return (13);
-	if (ft_islower('z' + 1) != 0)
-		return (14);
-	if (ft_islower('A') != 0)
-		return (3);
-	if (ft_islower('Z') != 0)
-		return (4);
-	if (ft_islower('0') != 0)
-		return (5);
-	if (ft_islower('9') != 0)
-		return (6);
-	if (ft_islower(' ') != 0)
-		return (7);
-	if (ft_islower('\n') != 0)
-		return (8);
-	if (ft_islower('\t') != 0)
-		return (9);
-	if (ft_islower('\0') != 0)
-		return (10);
-	if (ft_islower('q') != 1)
-		return (11);
-	if (ft_islower('Q') != 0)
-		return (12);
-	return (0);
-}
-
-int	test_is_upper(void)
-{
-	if (ft_isupper('a') != 0)
-		return (1);
-	if (ft_isupper('z') != 0)
-		return (2);
-	if (ft_isupper('A') != 1)
-		return (3);
-	if (ft_isupper('Z') != 1)
-		return (4);
-	if (ft_isupper('0') != 0)
-		return (5);
-	if (ft_isupper('9') != 0)
-		return (6);
-	if (ft_isupper(' ') != 0)
-		return (7);
-	if (ft_isupper('\n') != 0)
-		return (8);
-	if (ft_isupper('\t') != 0)
-		return (9);
-	if (ft_isupper('\0') != 0)
-		return (10);
-	if (ft_isupper('Q') != 1)
-		return (11);
-	if (ft_isupper('q') != 0)
-		return (12);
-	return (0);
-}
-
-int	test_is_print(void)
-{
-	if (ft_isprint('a') != 1)
-		return (1);
-	if (ft_isprint('z') != 1)
-		return (2);
-	if (ft_isprint('A') != 1)
-		return (3);
-	if (ft_isprint('Z') != 1)
-		return (4);
-	if (ft_isprint('0') != 1)
-		return (5);
-	if (ft_isprint('9') != 1)
-		return (6);
-	if (ft_isprint(' ') != 1)
-		return (7);
-	if (ft_isprint('\n') != 0)
-		return (8);
-	if (ft_isprint('\t') != 0)
-		return (9);
-	if (ft_isprint('\0') != 0)
-		return (10);
-	if (ft_isprint(127) != 0)
-		return (11);
-	return (0);
-}
-
-int	test_is_space(void)
-{
-	if (ft_isspace('a') != 0)
-		return (1);
-	if (ft_isspace('z') != 0)
-		return (2);
-	if (ft_isspace('A') != 0)
-		return (3);
-	if (ft_isspace('Z') != 0)
-		return (4);
-	if (ft_isspace('0') != 0)
-		return (5);
-	if (ft_isspace('9') != 0)
-		return (6);
-	if (ft_isspace(' ') != 1)
-		return (7);
-	if (ft_isspace('\n') != 1)
-		return (8);
-	if (ft_isspace('\t') != 1)
-		return (9);
-	if (ft_isspace('\v') != 1)
-		return (10);
-	if (ft_isspace('\f') != 1)
-		return (11);
-	if (ft_isspace('\r') != 1)
-		return (12);
-	if (ft_isspace('\0') != 0)
-		return (13);
-	return (0);
-}
-
-int	test_to_lower(void)
-{
-	if (ft_tolower('a') != 'a')
-		return (1);
-	if (ft_tolower('z') != 'z')
-		return (2);
-	if (ft_tolower('A') != 'a')
-		return (3);
-	if (ft_tolower('Z') != 'z')
-		return (4);
-	if (ft_tolower('0') != '0')
-		return (5);
-	if (ft_tolower('9') != '9')
-		return (6);
-	if (ft_tolower(' ') != ' ')
-		return (7);
-	if (ft_tolower('\n') != '\n')
-		return (8);
-	if (ft_tolower('\t') != '\t')
-		return (9);
-	if (ft_tolower('\0') != '\0')
-		return (10);
-	return (0);
-}
-
-int	test_to_upper(void)
-{
-	if (ft_toupper('a') != 'A')
-		return (1);
-	if (ft_toupper('z') != 'Z')
-		return (2);
-	if (ft_toupper('A') != 'A')
-		return (3);
-	if (ft_toupper('Z') != 'Z')
-		return (4);
-	if (ft_toupper('0') != '0')
-		return (5);
-	if (ft_toupper('9') != '9')
-		return (6);
-	if (ft_toupper(' ') != ' ')
-		return (7);
-	if (ft_toupper('\n') != '\n')
-		return (8);
-	if (ft_toupper('\t') != '\t')
-		return (9);
-	if (ft_toupper('\0') != '\0')
-		return (10);
-	return (0);
 }
 
 int	test_itoa(void)
@@ -449,7 +173,7 @@ int	test_putnbr(void)
 	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
 	{
 		ft_putnbr_fd(t_cases[i], fd);
-		ft_putchar_fd('\n', fd);
+		ft_putstr_fd("\n", fd);
 	}
 	close(fd);
 	fd = open(file_name, O_RDONLY);
@@ -459,43 +183,14 @@ int	test_putnbr(void)
 	destroy_test_file(fd, file_name);
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putnbr_fd(INT_MIN, fd);
-	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("\n", fd);
 	ft_putnbr_fd(INT_MAX, fd);
-	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("\n", fd);
 	close(fd);
 	fd = open(file_name, O_RDONLY);
 	bzero(buff, sizeof(buff));
 	read(fd, buff, sizeof(buff));
 	if (strncmp(buff, expected2, sizeof(buff)) != 0)
-		return (2);
-	destroy_test_file(fd, file_name);
-	return (0);
-}
-
-int	test_putchar(void)
-{
-	char	file_name[] = TESTS_FPREFIX "putchar.txt";
-	char	test_str[] = "Hello World!\n\t\012\15";
-	int		fd;
-	char	buff[100] = {0};
-	int		bread;
-	size_t	i;
-
-	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
-	for (i = 0; i < strlen(test_str); i++)
-		ft_putchar_fd(test_str[i], fd);
-	close(fd);
-	fd = open(file_name, O_RDONLY);
-	bread = read(fd, buff, 100);
-	if (strcmp(buff, test_str) != 0 || (size_t)bread != strlen(test_str))
-		return (1);
-	destroy_test_file(fd, file_name);
-	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
-	ft_putchar_fd('\0', fd);
-	close(fd);
-	fd = open(file_name, O_RDONLY);
-	bread = read(fd, buff, 100);
-	if (bread != 1 || buff[0] != '\0')
 		return (2);
 	destroy_test_file(fd, file_name);
 	return (0);
@@ -1281,22 +976,10 @@ int	str_tests(void)
 {
 	int collect = 0;
 	t_test tests[] = {
-// char sub module
-		{"is_alphanum", test_is_alphanum},
-		{"is_alpha", test_is_alpa},
-		{"is_digit", test_is_digit},
-		{"is_ascii", test_is_ascii},
-		{"is_lower", test_is_lower},
-		{"is_upper", test_is_upper},
-		{"is_print", test_is_print},
-		{"is_space", test_is_space},
-		{"to_lower", test_to_lower},
-		{"to_upper", test_to_upper},
 // put sub module
 		{"putstr", test_putstr},
 		{"putendl", test_putendl},
 		{"putnbr", test_putnbr},
-		{"putchar", test_putchar},
 // str main module
 		{"itoa", test_itoa},
 		{"utoa", test_utoa},

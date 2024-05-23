@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   test_isascii.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 15:56:46 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 16:30:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_char.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+int	test_ft_isascii(void)
 {
-	size_t	i;
+	int	i;
 
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (i < 256)
 	{
-		if (!is_type(str[i]))
-			return (false);
+		if (ft_isascii(i) != (i >= 0 && i <= 127))
+			return (1);
 		i++;
 	}
-	return (true);
+	return (0);
 }

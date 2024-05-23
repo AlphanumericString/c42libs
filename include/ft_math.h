@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:55:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/23 23:11:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MATH_H
 # define FT_MATH_H
 
+# include <stddef.h>
 # include "ft_math_types.h"
 
 /// @brief return the logaritm of the number in the specified base
@@ -113,6 +114,26 @@ double		ft_range_d(double value, double min, double max, double new_max);
 /// @param a The value to get the absolute value
 /// @return The absolute value of a
 int			ft_abs(int a);
+
+/// @brief Return the rounded value of x
+/// @param x The value to round
+/// @return The rounded value of x
+/// @note This function round the value to the nearest integer
+double		ft_round(double x);
+
+/// @brief Return the power of a number x to the power of y
+/// @param x The number to power
+/// @param y The power
+/// @return The result of x to the power of y
+size_t		ft_pow(size_t x, size_t y);
+
+/// @brief Return the root square of a number
+/// @param nb The number to get the root square
+/// @return The root square of nb
+/// @note This function use the newton's method to get the root square
+/// @note If nb is negative, return -1
+/// @file ft_sqrt.c
+double		ft_sqrt(double nb);
 
 /// @brief Return the absolute value of a
 /// @param a The value to get the absolute value

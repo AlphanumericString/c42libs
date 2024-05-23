@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isvalid.c                                   :+:      :+:    :+:   */
+/*   tests_clamp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 23:46:19 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/23 23:58:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "ft_math.h"
 
-int	ft_str_isvalid(char *str, int (*is_type)(int))
+int	test_ft_clamp(void)
 {
-	size_t	i;
+	const int	max = 42;
+	const int	min = 21;
+	int			x;
 
-	i = 0;
-	while (str[i])
-	{
-		if (!is_type(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
+	x = 0;
+	if (ft_clamp(x, min, max) != min)
+		return (1);
+	x = 21;
+	if (ft_clamp(x, min, max) != min)
+		return (1);
+	x = 42;
+	if (ft_clamp(x, min, max) != max)
+		return (1);
+	x = 84;
+	if (ft_clamp(x, min, max) != max)
+		return (1);
+	x = 23;
+	if (ft_clamp(x, min, max) != x)
+		return (1);
+	return (0);
 }
