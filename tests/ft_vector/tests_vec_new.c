@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:21:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 11:21:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:44:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ int	test_vec_new(void)
 	ft_vec_destroy(&vec);
 	return (0);
 }
-

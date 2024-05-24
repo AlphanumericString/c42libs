@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:20:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 12:49:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 21:29:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,16 @@
 
 int	test_vec_filter(void)
 {
+	const int	arr[3] = {21, 42, 63};
 	t_vector	*vec;
-	int			a;
-	int			b;
-	int			c;
 	int			*pp[3];
 
-	a = 42;
-	b = 43;
-	c = 44;
 	vec = ft_vec_new();
-	ft_vec_add(&vec, &a);
-	ft_vec_add(&vec, &b);
-	ft_vec_add(&vec, &c);
+	ft_vec_add(&vec, (void *)&arr[0]);
+	ft_vec_add(&vec, (void *)&arr[1]);
+	ft_vec_add(&vec, (void *)&arr[2]);
 	ft_vec_filter(vec, is42, NULL);
-	if (vec->count != 1)
-		return (1);
-	else if (*(int *)ft_vec_at(vec, 0) != 42)
+	if (vec->count != 1 || *(int *)ft_vec_at(vec, 0) != 42)
 		return (1);
 	ft_vec_clear(vec);
 	pp[0] = malloc(sizeof(int));
@@ -46,11 +39,7 @@ int	test_vec_filter(void)
 	ft_vec_add(&vec, pp[1]);
 	ft_vec_add(&vec, pp[2]);
 	ft_vec_filter(vec, is42, free);
-	if (vec->count != 1)
+	if (vec->count != 1 || ft_vec_at(vec, 0) != pp[1])
 		return (1);
-	else if (ft_vec_at(vec, 0) != pp[1])
-		return (1);
-	ft_vec_apply(vec, free);
-	ft_vec_destroy(&vec);
-	return (0);
+	return (ft_vec_apply(vec, free), ft_vec_destroy(&vec), 0);
 }

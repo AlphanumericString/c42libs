@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:21:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 15:24:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 21:12:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
 
-int test_vec_map(void) 
+int	test_vec_map(void)
 {
-	t_vector *vec;
-	t_vector *ret;
-	int **arr;
+	t_vector	*vec;
+	t_vector	*ret;
+	int			**arr;
 
 	arr = (int **)creat_tb();
 	vec = ft_vec_from_array((void **)arr, 3);
