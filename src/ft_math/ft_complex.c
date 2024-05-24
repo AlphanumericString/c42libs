@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 08:11:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:09:48 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 09:07:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	ft_complex_abs(t_complex nb)
 {
-	return (nb.real * nb.real + nb.imaginary * nb.imaginary);
+	return (ft_sqrt(nb.real * nb.real + nb.imaginary * nb.imaginary));
 }
 
 t_complex	ft_complex_addl(t_complex nb, long factor)

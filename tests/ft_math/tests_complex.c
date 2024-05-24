@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:46:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 00:47:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 09:08:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ int	test_ft_complex_abs(void)
 	const t_complex	z = {42, 42};
 	double			res;
 
-	if (ft_complex_abs(x) != 42)
+	res = ft_complex_abs(x);
+	if (res < 41.99 || res > 42.01)
 		return (1);
-	if (ft_complex_abs(y) != 42)
-		return (1);
+	res = ft_complex_abs(y);
+	if (res < 41.99 || res > 42.01)
+		return (2);
 	res = ft_complex_abs(z);
 	if (res < 59.39 || res > 59.41)
-		return (1);
+		return (3);
 	return (0);
 }
 

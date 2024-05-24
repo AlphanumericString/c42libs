@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:30:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 22:51:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 09:40:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,8 +274,8 @@ int	test_vec_map(void)
 {
 	t_vector	*vec;
 	t_vector	*ret;
+	int			a, b, c;
 
-	int a, b, c;
 	a = 0;
 	b = 1;
 	c = 2;
@@ -335,8 +335,8 @@ int	test_vec_from_array(void)
 	void		*data[3];
 	void		*data2[6];
 	t_vector	*vec;
+	int			a, b, c, d, e, f;
 
-	int a, b, c, d, e, f;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -394,8 +394,8 @@ int	test_vec_convert_alloc_array(void)
 {
 	void		**data;
 	t_vector	*vec;
+	int			a, b, c;
 
-	int a, b, c;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -425,9 +425,9 @@ int	test_vec_convert_alloc_array(void)
 int	test_vec_remove(void)
 {
 	t_vector	*vec;
+	int			a, b, c;
+	int			*pa, *pb, *pc;
 
-	int a, b, c;
-	int *pa, *pb, *pc;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -579,8 +579,8 @@ int	test_vec_sort(void)
 {
 	t_vector	*vec;
 	void		*data[3];
+	int			a, b, c;
 
-	int a, b, c;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -607,8 +607,8 @@ int	test_vec_shrink(void)
 {
 	t_vector	*vec;
 	void		*data[3];
+	int			a, b, c;
 
-	int a, b, c;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -643,8 +643,8 @@ int	test_vec_swap(void)
 {
 	t_vector	*vec;
 	void		*data[3];
+	int			a, b, c;
 
-	int a, b, c;
 	a = 42;
 	b = 43;
 	c = 44;
@@ -667,32 +667,25 @@ int	test_vec_swap(void)
 
 int	tests_vector(void)
 {
-	int	collect;
-	t_test tests[] = {
-		{"test_vec_add", test_vec_add},
-		{"test_vec_apply", test_vec_apply},
-		{"test_vec_at", test_vec_at},
-		{"test_vec_cat", test_vec_cat},
-		{"test_vec_clear", test_vec_clear},
-		{"test_vec_destroy", test_vec_destroy},
-		{"test_vec_filter", test_vec_filter},
-		{"test_vec_map", test_vec_map},
-		{"test_vec_new", test_vec_new},
-		{"test_vec_from_size", test_vec_from_size},
-		{"test_vec_from_array", test_vec_from_array},
-		{"test_vec_convert_alloc_array", test_vec_convert_alloc_array},
-		{"test_vec_remove", test_vec_remove},
-		{"test_vec_remove_if", test_vec_remove_if},
-		{"test_vec_reserve", test_vec_reserve},
-		{"test_vec_reverse", test_vec_reverse},
-		{"test_vec_shift", test_vec_shift},
-		{"test_vec_sort", test_vec_sort},
-		{"test_vec_shrink", test_vec_shrink},
-		{"test_vec_swap", test_vec_swap},
-		{NULL, NULL}
+	int				collect;
+	const t_test	tests[] = {
+	{"test_vec_add", test_vec_add}, {"test_vec_apply", test_vec_apply},
+	{"test_vec_at", test_vec_at}, {"test_vec_cat", test_vec_cat},
+	{"test_vec_clear", test_vec_clear}, {"test_vec_destroy", test_vec_destroy},
+	{"test_vec_filter", test_vec_filter}, {"test_vec_map", test_vec_map},
+	{"test_vec_new", test_vec_new}, {"test_vec_from_size", test_vec_from_size},
+	{"test_vec_from_array", test_vec_from_array},
+	{"test_vec_convert_alloc_array", test_vec_convert_alloc_array},
+	{"test_vec_remove", test_vec_remove},
+	{"test_vec_remove_if", test_vec_remove_if},
+	{"test_vec_reserve", test_vec_reserve}, {"test_vec_reverse",
+		test_vec_reverse}, {"test_vec_shift", test_vec_shift},
+	{"test_vec_sort", test_vec_sort}, {"test_vec_shrink", test_vec_shrink},
+	{"test_vec_swap", test_vec_swap},
+	{NULL, NULL}
 	};
-	
-	collect	= 0;
+
+	collect = 0;
 	run_test(tests, &collect);
 	return (collect);
 }

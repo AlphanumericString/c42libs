@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:49:30 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 00:34:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:54:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 int	test_ft_min(void)
 {
-	const int	a = 0xdeadbeef;
-	const int	b = 0xdeadbaaf;
-	const int	c = 0xdeadbccf;
+	const int	a = 1;
+	const int	b = 2;
+	const int	c = 3;
 
-	if (ft_min(a, b) != b)
+	if (ft_min(a, b) != a)
 		return (1);
-	if (ft_min(a, c) != a)
+	if (ft_min(b, c) != b)
 		return (1);
 	return (0);
 }
 
 int	test_ft_max(void)
 {
-	const int	a = 0xdeadbeef;
-	const int	b = 0xdeadbaaf;
-	const int	c = 0xdeadbccf;
+	const int	a = 1;
+	const int	b = 2;
+	const int	c = 3;
 
-	if (ft_max(a, b) != a)
+	if (ft_max(a, b) != b)
 		return (1);
-	if (ft_max(a, c) != c)
+	if (ft_max(c, b) != c)
 		return (1);
 	return (0);
 }

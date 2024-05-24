@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:49:48 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 00:25:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 09:34:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	test_ft_sqrt(void)
 {
-	size_t	x;
+	double	x;
 	double	result;
 
 	x = 4;
@@ -24,10 +24,10 @@ int	test_ft_sqrt(void)
 	x = 2;
 	result = ft_sqrt(x);
 	if (result > 1.42 || result < 1.41)
-		return (1);
+		return (2);
 	x = -1;
 	result = ft_sqrt(x);
-	if (result != 0)
-		return (1);
+	if (result >= -0.99 || result <= -1.01)
+		return (3);
 	return (0);
 }

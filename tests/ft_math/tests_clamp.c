@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:46:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 23:58:48 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:52:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,6 @@ int	test_ft_clamp(void)
 		return (1);
 	return (0);
 }
+
+// todo: add test_ft_clamp_f
+// todo: add test_ft_clamp_d

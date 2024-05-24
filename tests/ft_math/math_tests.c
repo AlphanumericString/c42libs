@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:16:35 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 00:40:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:55:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	tests_math(void)
 	{"ft_llogof", test_ft_llogof},
 	{"ft_ullogof", test_ft_ullogof},
 	{"ft_logof", test_ft_logof},
+	{"ft_min", test_ft_min},
+	{"ft_max", test_ft_max},
 	{"ft_pow", test_ft_pow},
 	{"ft_round", test_ft_round},
 	{"ft_sqrt", test_ft_sqrt},
