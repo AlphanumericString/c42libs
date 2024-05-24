@@ -6,14 +6,15 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:18:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 16:46:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:47:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests/ll_tests.h"
-#include "tests/lists_test_utils.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
+#include "tests/ll_tests.h"
+#include "tests/lists_test_utils.h"
+#include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
 
 static void	lnode_add42(t_list *node)

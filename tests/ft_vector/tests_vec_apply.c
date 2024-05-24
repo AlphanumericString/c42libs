@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vec_remove.c                                    :+:      :+:    :+:   */
+/*   tests_vec_apply.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 19:03:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 12:41:42 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/24 11:13:11 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/24 11:50:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
 #include "ft_vector.h"
+#include "ft_vector_types.h"
+#include "tests/tests_lambda_functions.h"
 
-void	ft_vec_remove(t_vector *vector, size_t n, void (*del)(void *))
+int	test_vec_apply(void)
 {
-	if (n >= vector->count)
-		return ;
-	if (del)
-		del(vector->datas[n]);
-	vector->datas[n] = NULL;
-	ft_vec_shift(vector, n, 1);
-}
-
-void	ft_vec_remove_if(t_vector *vector, t_data_is func, t_data_apply del)
-{
-	size_t	i;
+	t_vector	*vec;
+	int			i;
 
 	i = 0;
-	while (i < vector->count)
-	{
-		if (func(vector->datas[i]))
-			ft_vec_remove(vector, i, del);
-		else
-			i++;
-	}
+	vec = ft_vec_new();
+	ft_vec_add(&vec, &i);
+	ft_vec_apply(vec, add42);
+	if (*(int *)vec->datas[0] != 42)
+		return (1);
+	ft_vec_destroy(&vec);
+	return (0);
 }
+

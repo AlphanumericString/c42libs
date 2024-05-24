@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:58:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:36:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,7 @@ size_t	ft_list_dl_delete(t_dlist **head, t_data_apply del);
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
-t_dlist	*ft_list_dl_find(const t_dlist *head, const void *data,
-			int (*cmp)(const void *, const void *));
+t_dlist	*ft_list_dl_find(const t_dlist *head, const void *data, t_data_cmp cmp);
 
 // ft_list/ft_list_dl_getters.c
 
@@ -175,8 +174,7 @@ t_dlist	*ft_list_dl_begin(const t_dlist *head);
 /// @param f The function to apply
 /// @param del The function to delete the data if allocation fails
 /// @return The new list
-t_dlist	*ft_list_dl_map(const t_dlist *lst, void *(*f)(const void *),
-			t_data_apply del);
+t_dlist	*ft_list_dl_map(const t_dlist *lst, t_data_tr f, t_data_apply del);
 
 // ft_list/ft_list_dl_new.c
 
@@ -342,8 +340,7 @@ size_t	ft_listdelete_range(t_list *lst, const t_list *end, t_data_apply del);
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
-void	*ft_listfind(const t_list *list, const void *data,
-			int (*cmp)(const void *, const void *));
+void	*ft_listfind(const t_list *list, const void *data, t_data_cmp cmp);
 
 // ft_list/ft_list_ll_getters.c
 
@@ -378,8 +375,7 @@ t_list	*ft_listat(const t_list *lst, size_t index);
 /// @param f The function to apply
 /// @param del The function to delete the data if allocation fails
 /// @return The new list
-t_list	*ft_listmap(const t_list *lst, void *(*f)(const void *),
-			t_data_apply del);
+t_list	*ft_listmap(const t_list *lst, t_data_tr f, t_data_apply del);
 
 // ft_list/ft_list_ll_new.c
 

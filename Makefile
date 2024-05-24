@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/23 23:34:33 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/24 12:47:41 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -307,18 +307,8 @@ FT_STRING_SRC	=	\
 
 TESTS_SRC	=\
 			$(TESTS_DIR)/ft_args/tests_progname.c				\
-			$(TESTS_DIR)/ft_args/tests_version.c					\
+			$(TESTS_DIR)/ft_args/tests_version.c				\
 			$(TESTS_DIR)/ft_args/args_tests.c					\
-			\
-			$(TESTS_DIR)/ft_optional/tests_optional_chain.c		\
-			$(TESTS_DIR)/ft_optional/tests_optional_copy.c		\
-			$(TESTS_DIR)/ft_optional/tests_optional_destroy.c	\
-			$(TESTS_DIR)/ft_optional/tests_optional_dup.c		\
-			$(TESTS_DIR)/ft_optional/tests_optional_from_val.c	\
-			$(TESTS_DIR)/ft_optional/tests_optional_map.c		\
-			$(TESTS_DIR)/ft_optional/tests_optional_new.c		\
-			$(TESTS_DIR)/ft_optional/tests_optional_unwrap.c		\
-			$(TESTS_DIR)/ft_optional/optional_tests.c			\
 			\
 			$(TESTS_DIR)/ft_list/ll_tests/ll_tests_utils.c		\
 			$(TESTS_DIR)/ft_list/ll_tests/ll_list_tests.c		\
@@ -354,7 +344,6 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_sizers.c	\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_apply.c	\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_find.c	\
-			$(TESTS_DIR)/ft_list/lists_tests_utils.c				\
 			\
 			$(TESTS_DIR)/ft_map/map_tests.c						\
 			$(TESTS_DIR)/ft_map/tests_map_remove.c				\
@@ -379,7 +368,15 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_math/tests_round.c					\
 			$(TESTS_DIR)/ft_math/math_tests.c					\
 			\
-			$(TESTS_DIR)/ft_vector/vector_tests.c				\
+			$(TESTS_DIR)/ft_optional/tests_optional_chain.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_copy.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_destroy.c	\
+			$(TESTS_DIR)/ft_optional/tests_optional_dup.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_from_val.c	\
+			$(TESTS_DIR)/ft_optional/tests_optional_map.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_new.c		\
+			$(TESTS_DIR)/ft_optional/tests_optional_unwrap.c	\
+			$(TESTS_DIR)/ft_optional/optional_tests.c			\
 			\
 			$(TESTS_DIR)/ft_string/ft_char/tests_isalnum.c		\
 			$(TESTS_DIR)/ft_string/ft_char/tests_isalpha.c		\
@@ -399,7 +396,30 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_t_string/t_string_tests.c	\
 			$(TESTS_DIR)/ft_string/string_tests.c				\
 			\
+			$(TESTS_DIR)/ft_vector/tests_vec_add.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_apply.c			\
+			$(TESTS_DIR)/ft_vector/tests_vec_at.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_cat.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_clear.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_convert_alloc_array.c	\
+			$(TESTS_DIR)/ft_vector/tests_vec_destroy.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_filter.c			\
+			$(TESTS_DIR)/ft_vector/tests_vec_from_array.c		\
+			$(TESTS_DIR)/ft_vector/tests_vec_from_size.c		\
+			$(TESTS_DIR)/ft_vector/tests_vec_map.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_new.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_remove.c			\
+			$(TESTS_DIR)/ft_vector/tests_vec_remove_if.c		\
+			$(TESTS_DIR)/ft_vector/tests_vec_reserve.c			\
+			$(TESTS_DIR)/ft_vector/tests_vec_reverse.c			\
+			$(TESTS_DIR)/ft_vector/tests_vec_shift.c			\
+			$(TESTS_DIR)/ft_vector/tests_vec_shrink.c			\
+			$(TESTS_DIR)/ft_vector/tests_vec_sort.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_swap.c				\
+			$(TESTS_DIR)/ft_vector/vector_tests.c				\
+			\
 			$(TESTS_DIR)/main_tests.c							\
+			$(TESTS_DIR)/lambdas_for_tests.c					\
 			$(TESTS_DIR)/tests_utils.c
 
 # Inner variables for targets

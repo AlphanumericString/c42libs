@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:01:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:16:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:49:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
+#include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
 
 /*
@@ -33,7 +34,7 @@ int	test_dlistfind(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	found_ret[0] = ft_list_dl_find(list, data2, NULL);
 	found_ret[1] = ft_list_dl_find(list, data3, NULL);
-	found_ret[2] = ft_list_dl_find(list, data3, compare_int);
+	found_ret[2] = ft_list_dl_find(list, data3, cmp_int);
 	if (ft_list_dl_size(found_ret[0]) != 1 || found_ret[0]->data != data2)
 		return (1);
 	else if (found_ret[1] != NULL)

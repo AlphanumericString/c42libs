@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 13:05:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:37:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_VECTOR_H
 # define FT_VECTOR_H
 
+# include "ft_defs.h"
 # include "ft_vector_types.h"
 
 /* ************************************************************************** */
@@ -33,7 +34,7 @@ bool		ft_vec_add(t_vector **vec, void *data);
 /// @param vec pointer to the vector
 /// @param func function to apply
 /// @return void
-void		ft_vec_apply(t_vector *vec, void (*func)(void *));
+void		ft_vec_apply(t_vector *vec, t_data_apply func);
 
 // ft_vector/ft_vec_at.c
 
@@ -76,8 +77,7 @@ bool		ft_vec_destroy(t_vector **vec);
 /// @param func function to filter the vector
 /// @param del function to delete the elements filtered
 /// @return void
-void		ft_vec_filter(t_vector *vec, bool (*func)(void *),
-				void (*del)(void *));
+void		ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del);
 
 // ft_vector/ft_vec_map.c
 
@@ -92,7 +92,7 @@ void		ft_vec_filter(t_vector *vec, bool (*func)(void *),
 //	the new vector will be a collection of pointers to the
 //  data of the old vector. If you want to do that and change the
 //  value of the data, use ft_vec_apply instead.
-t_vector	*ft_vec_map(t_vector *vec, void *(*func)(void *));
+t_vector	*ft_vec_map(t_vector *vec, t_data_tr func);
 
 // ft_vector/ft_vec_new.c
 
@@ -123,7 +123,7 @@ t_vector	*ft_vec_convert_alloccarray(void **data, size_t count);
 /// @param vector vector to remove the element from
 /// @param n index of the element to remove
 /// @param del function to delete the elements data
-void		ft_vec_remove(t_vector *vector, size_t n, void (*del)(void *));
+void		ft_vec_remove(t_vector *vector, size_t n, t_data_apply del);
 
 /// @brief Remove an element from the vector
 /// @param vector vector to remove the element from
@@ -131,8 +131,8 @@ void		ft_vec_remove(t_vector *vector, size_t n, void (*del)(void *));
 /// @param del function to delete the elements data
 /// @return void
 /// @note very similar to ft_vec_filter... TODO: check if needed
-void		ft_vec_remove_if(t_vector *vector, bool (*func)(void *),
-				void (*del)(void *));
+void		ft_vec_remove_if(t_vector *vector, t_data_is func,
+			t_data_apply del);
 
 // ft_vector/ft_vec_reserve.c
 
@@ -165,7 +165,7 @@ void		ft_vec_shift(t_vector *vec, size_t start, size_t shift);
 /// @param vec pointer to the vector
 /// @param cmp_f function to compare the elements
 /// @return void
-void		ft_vec_sort(t_vector *vec, int (*cmp_f)(void *, void *));
+void		ft_vec_sort(t_vector *vec, t_data_cmp cmp_f);
 
 // ft_vector/ft_vec_shrink.c
 

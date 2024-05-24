@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 13:16:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:44:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MAP_H
 # define FT_MAP_H
 
+# include "ft_defs.h"
 # include "ft_map_types.h"
 
 /* ************************************************************************** */
@@ -35,7 +36,7 @@ void		ft_map_destroy(t_map *map);
 /// @param free_data function to free the data in the map
 /// @file ft_map/ft_map_destroy.c
 /// @return void
-void		ft_map_destroy_free(t_map *map, void (*free_data)(void *));
+void		ft_map_destroy_free(t_map *map, t_data_apply free_data);
 
 /// @brief Clears a map by setting all the nodes to unused
 /// @param map map to clear

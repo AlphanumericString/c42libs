@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:02:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:55:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:43:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_map_node
 	bool		used;
 }				t_map_node;
 
-typedef t_funcmp	t_anycmp;
+typedef t_data_cmp	t_anycmp;
 typedef size_t		(*t_memhash)(const void *, size_t, size_t);
 
 /// @brief Structure representing a map

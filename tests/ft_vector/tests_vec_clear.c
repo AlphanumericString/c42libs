@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vec_remove.c                                    :+:      :+:    :+:   */
+/*   tests_vec_clear.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 19:03:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 12:41:42 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/24 11:21:55 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/24 11:22:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
 #include "ft_vector.h"
+#include "ft_vector_types.h"
 
-void	ft_vec_remove(t_vector *vector, size_t n, void (*del)(void *))
+int	test_vec_clear(void)
 {
-	if (n >= vector->count)
-		return ;
-	if (del)
-		del(vector->datas[n]);
-	vector->datas[n] = NULL;
-	ft_vec_shift(vector, n, 1);
+	t_vector	*vec;
+	int			a;
+	int			b;
+	int			c;
+
+	a = 0;
+	b = 1;
+	c = 2;
+	vec = ft_vec_new();
+	ft_vec_add(&vec, &a);
+	ft_vec_add(&vec, &b);
+	ft_vec_add(&vec, &c);
+	ft_vec_clear(vec);
+	if (vec->count != 0)
+		return (1);
+	else if (vec->cappacity == 0)
+		return (1);
+	else if (vec->datas[0] != NULL)
+		return (1);
+	ft_vec_destroy(&vec);
+	return (0);
 }
 
-void	ft_vec_remove_if(t_vector *vector, t_data_is func, t_data_apply del)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < vector->count)
-	{
-		if (func(vector->datas[i]))
-			ft_vec_remove(vector, i, del);
-		else
-			i++;
-	}
-}

@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:43:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 16:44:08 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:46:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
+#include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
 
 int	test_listsize(void)

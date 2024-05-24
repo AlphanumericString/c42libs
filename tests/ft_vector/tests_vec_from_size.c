@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lists_test_utils.c                                 :+:      :+:    :+:   */
+/*   tests_vec_from_size.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 13:28:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 14:26:44 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/24 11:20:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/24 11:20:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stdlib.h>
+#include "ft_vector.h"
+#include "ft_vector_types.h"
 
-int	compare_int(const void *data1, const void *data2)
+int	test_vec_from_size(void)
 {
-	return (*(int *)data1 - *(int *)data2);
-}
+	t_vector	*vec;
 
-bool	is42(const void *data)
-{
-	return (*(int *)data == 42);
-}
-
-void	add42(void *data)
-{
-	*(int *)data += 42;
-}
-
-void	*add42_ret(const void *data)
-{
-	int	*ret;
-
-	ret = malloc(sizeof(int));
-	*ret = *(int *)data + 42;
-	return (ret);
+	vec = ft_vec_from_size(42);
+	if (vec->count != 0)
+		return (1);
+	else if (vec->cappacity != 42)
+		return (1);
+	else if (vec->datas == NULL)
+		return (1);
+	ft_vec_destroy(&vec);
+	return (0);
 }
