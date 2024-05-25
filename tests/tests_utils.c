@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 04:18:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 16:09:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/25 11:47:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	open_test_file(char **func_to_test)
 	return (fd);
 }
 
-void	destroy_test_file(int fd, char *file)
+void	destroy_test_file(int fd, const char *file)
 {
 	close(fd);
 	unlink(file);

@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/24 12:47:41 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/25 12:30:08 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -391,7 +391,19 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_char/tests_toupper.c		\
 			$(TESTS_DIR)/ft_string/ft_char/ft_char_tests.c		\
 			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_bzero.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_calloc.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_free.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memchr.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memcmp.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memcpy.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memmove.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memset.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_qsort.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_realloc.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_swap.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c			\
+			\
 			$(TESTS_DIR)/ft_string/ft_str/str_tests.c			\
 			$(TESTS_DIR)/ft_string/ft_t_string/t_string_tests.c	\
 			$(TESTS_DIR)/ft_string/string_tests.c				\

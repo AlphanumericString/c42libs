@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:41:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 09:23:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:14:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	test_ft_range(void)
 	if (ft_range(x, min, max, new_max) != new_max)
 		return (5);
 	x = 21;
-	if (ft_range(x, min, max, new_max) != (int) (((double)(x - min) / \
+	if (ft_range(x, min, max, new_max) != (int)(((double)(x - min) / \
 	(max - min)) * new_max))
 		return (6);
 	return (0);
@@ -63,7 +63,7 @@ int	test_ft_range_f(void)
 		return (5);
 	x = 21;
 	if (ft_range_f(x, min, max, new_max) != \
-	(float) (((double) (x - min) / (max - min)) * new_max))
+	(float)(((double)(x - min) / (max - min)) * new_max))
 		return (6);
 	return (0);
 }

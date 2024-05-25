@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/07 10:20:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:38:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include "tests/tests.h"
 #include "ft_string.h"
 
-int test_string_new(void)
+int	test_string_new(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_new(42);
 	if (str->str == NULL)
@@ -33,9 +33,9 @@ int test_string_new(void)
 	return (0);
 }
 
-int test_string_from(void)
+int	test_string_from(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello World");
 	if (ft_string_cmp(str, "Hello World") != 0)
@@ -48,9 +48,9 @@ int test_string_from(void)
 	return (0);
 }
 
-int test_string_from_n(void)
+int	test_string_from_n(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from_n("Hello World", 5);
 	if (ft_string_cmp(str, "Hello") != 0)
@@ -63,9 +63,9 @@ int test_string_from_n(void)
 	return (0);
 }
 
-int test_string_from_c(void)
+int	test_string_from_c(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from_c('c');
 	if (ft_string_cmp(str, "c") != 0)
@@ -78,9 +78,9 @@ int test_string_from_c(void)
 	return (0);
 }
 
-int test_string_append(void)
+int	test_string_append(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_append(str, " World");
@@ -94,9 +94,9 @@ int test_string_append(void)
 	return (0);
 }
 
-int test_string_append_n(void)
+int	test_string_append_n(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_append_n(str, " World", 5);
@@ -110,9 +110,9 @@ int test_string_append_n(void)
 	return (0);
 }
 
-int test_string_append_c(void)
+int	test_string_append_c(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_append_c(str, ' ');
@@ -126,10 +126,10 @@ int test_string_append_c(void)
 	return (0);
 }
 
-int test_string_append_s(void)
+int	test_string_append_s(void)
 {
-	t_string *str;
-	t_string *str2;
+	t_string	*str;
+	t_string	*str2;
 
 	str = ft_string_from("Hello");
 	str2 = ft_string_from(" World");
@@ -145,10 +145,10 @@ int test_string_append_s(void)
 	return (0);
 }
 
-int test_string_append_s_n(void)
+int	test_string_append_s_n(void)
 {
-	t_string *str;
-	t_string *str2;
+	t_string	*str;
+	t_string	*str2;
 
 	str = ft_string_from("Hello");
 	str2 = ft_string_from(" World!!!!");
@@ -164,10 +164,10 @@ int test_string_append_s_n(void)
 	return (0);
 }
 
-int test_string_clear(void)
+int	test_string_clear(void)
 {
-	t_string *str;
-	size_t capacity;
+	t_string	*str;
+	size_t		capacity;
 
 	str = ft_string_from("Hello");
 	capacity = str->capacity;
@@ -182,22 +182,26 @@ int test_string_clear(void)
 	return (0);
 }
 
-int test_string_destroy(void)
+/*
+	ft_string_destroy(&str); // null resiliancy
+	ft_string_destroy(NULL); // null resiliancy
+*/
+int	test_string_destroy(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_destroy(&str);
 	if (str != NULL)
 		return (1);
-	ft_string_destroy(&str); // null resiliancy
-	ft_string_destroy(NULL); // null resiliancy
+	ft_string_destroy(&str);
+	ft_string_destroy(NULL);
 	return (0);
 }
 
-int test_string_insert(void)
+int	test_string_insert(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_insert(str, " World", 0);
@@ -211,9 +215,9 @@ int test_string_insert(void)
 	return (0);
 }
 
-int test_string_insert_n(void)
+int	test_string_insert_n(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_insert_n(str, " World", 0, 5);
@@ -227,9 +231,9 @@ int test_string_insert_n(void)
 	return (0);
 }
 
-int test_string_insert_c(void)
+int	test_string_insert_c(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_insert_c(str, ' ', 0);
@@ -243,10 +247,10 @@ int test_string_insert_c(void)
 	return (0);
 }
 
-int test_string_insert_s(void)
+int	test_string_insert_s(void)
 {
-	t_string *str;
-	t_string *str2;
+	t_string	*str;
+	t_string	*str2;
 
 	str = ft_string_from("Hello");
 	str2 = ft_string_from(" World");
@@ -262,10 +266,10 @@ int test_string_insert_s(void)
 	return (0);
 }
 
-int test_string_insert_s_n(void)
+int	test_string_insert_s_n(void)
 {
-	t_string *str;
-	t_string *str2;
+	t_string	*str;
+	t_string	*str2;
 
 	str = ft_string_from("Hello");
 	str2 = ft_string_from(" World!!!!");
@@ -281,9 +285,9 @@ int test_string_insert_s_n(void)
 	return (0);
 }
 
-int test_string_reserve(void)
+int	test_string_reserve(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_reserve(str, 42);
@@ -297,9 +301,9 @@ int test_string_reserve(void)
 	return (0);
 }
 
-int test_string_resize(void)
+int	test_string_resize(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_resize(str, 42);
@@ -313,9 +317,9 @@ int test_string_resize(void)
 	return (0);
 }
 
-int test_string_shrink(void)
+int	test_string_shrink(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello");
 	ft_string_shrink(str);
@@ -329,10 +333,10 @@ int test_string_shrink(void)
 	return (0);
 }
 
-int test_string_substr(void)
+int	test_string_substr(void)
 {
-	t_string *str;
-	t_string *sub;
+	t_string	*str;
+	t_string	*sub;
 
 	str = ft_string_from("Hello World");
 	sub = ft_string_substr(str, 0, 6);
@@ -349,10 +353,10 @@ int test_string_substr(void)
 	return (0);
 }
 
-int test_string_to_str(void)
+int	test_string_to_str(void)
 {
-	t_string *str;
-	char *cstr;
+	t_string	*str;
+	char		*cstr;
 
 	str = ft_string_from("Hello World");
 	cstr = ft_string_to_str(str);
@@ -363,9 +367,9 @@ int test_string_to_str(void)
 	return (0);
 }
 
-int test_string_trim(void)
+int	test_string_trim(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("   Hello World   ");
 	ft_string_trim(str);
@@ -379,9 +383,9 @@ int test_string_trim(void)
 	return (0);
 }
 
-int test_string_trim_chr(void)
+int	test_string_trim_chr(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("   Hello World   ");
 	ft_string_trim_chr(str, ' ');
@@ -395,9 +399,9 @@ int test_string_trim_chr(void)
 	return (0);
 }
 
-int test_string_trimstr(void)
+int	test_string_trimstr(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("   Hello World   ");
 	ft_string_trimstr(str, " d");
@@ -411,9 +415,9 @@ int test_string_trimstr(void)
 	return (0);
 }
 
-int test_string_cmp(void)
+int	test_string_cmp(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello World");
 	if (ft_string_cmp(str, "Hello World") != 0)
@@ -426,9 +430,9 @@ int test_string_cmp(void)
 	return (0);
 }
 
-int test_string_cmp_n(void)
+int	test_string_cmp_n(void)
 {
-	t_string *str;
+	t_string	*str;
 
 	str = ft_string_from("Hello World");
 	if (ft_string_ncmp(str, "Hello World", 11) != 0)
@@ -441,42 +445,31 @@ int test_string_cmp_n(void)
 	return (0);
 }
 
-
-
-int t_string_tests(void)
+int	t_string_tests(void)
 {
-	int sum;
-	t_test tests[] = {
-		{"test_string_new", test_string_new},
-		{"test_string_from", test_string_from},
-		{"test_string_from_n", test_string_from_n},
-		{"test_string_from_c", test_string_from_c},
-		{"test_string_append", test_string_append},
-		{"test_string_append_n", test_string_append_n},
-		{"test_string_append_c", test_string_append_c},
-		{"test_string_append_s", test_string_append_s},
-		{"test_string_append_s_n", test_string_append_s_n},
-		{"test_string_clear", test_string_clear},
-		{"test_string_destroy", test_string_destroy},
-		{"test_string_insert", test_string_insert},
-		{"test_string_insert_n", test_string_insert_n},
-		{"test_string_insert_c", test_string_insert_c},
-		{"test_string_insert_s", test_string_insert_s},
-		{"test_string_insert_s_n", test_string_insert_s_n},
-		{"test_string_reserve", test_string_reserve},
-		{"test_string_resize", test_string_resize},
-		{"test_string_shrink", test_string_shrink},
-		{"test_string_substr", test_string_substr},
-		{"test_string_to_str", test_string_to_str},
-		{"test_string_trim", test_string_trim},
-		{"test_string_trim_chr", test_string_trim_chr},
-		{"test_string_trimstr", test_string_trimstr},
-		{"test_string_cmp", test_string_cmp},
-		{"test_string_cmp_n", test_string_cmp_n},
-		{NULL, NULL}
+	int				sum;
+	const t_test	tests[] = {\
+	{"test_string_new", test_string_new}, {"test_string_from", \
+	test_string_from}, {"test_string_from_n", test_string_from_n}, \
+	{"test_string_from_c", test_string_from_c}, {"test_string_append", \
+	test_string_append}, {"test_string_append_n", test_string_append_n}, \
+	{"test_string_append_c", test_string_append_c}, {"test_string_append_s", \
+		test_string_append_s}, {"test_string_append_s_n", \
+		test_string_append_s_n}, {"test_string_clear", test_string_clear}, \
+	{"test_string_destroy", test_string_destroy}, {"test_string_insert", \
+		test_string_insert}, {"test_string_insert_n", test_string_insert_n}, \
+	{"test_string_insert_c", test_string_insert_c}, {"test_string_insert_s", \
+		test_string_insert_s}, {"test_string_insert_s_n", \
+		test_string_insert_s_n}, {"test_string_reserve", test_string_reserve}, \
+	{"test_string_resize", test_string_resize}, {"test_string_shrink", \
+		test_string_shrink}, {"test_string_substr", test_string_substr}, \
+	{"test_string_to_str", test_string_to_str}, {"test_string_trim", \
+		test_string_trim}, {"test_string_trim_chr", test_string_trim_chr}, \
+	{"test_string_trimstr", test_string_trimstr}, {"test_string_cmp", \
+		test_string_cmp}, {"test_string_cmp_n", test_string_cmp_n}, \
+	{NULL, NULL}
 	};
 
 	sum = 0;
-	run_test(tests, &sum);
-	return (sum);
+	return (run_test(tests, &sum), sum);
 }

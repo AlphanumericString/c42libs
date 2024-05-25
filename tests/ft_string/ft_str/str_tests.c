@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 15:49:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:11:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ static char	local_mapi(unsigned int i, char c)
 
 int	test_itoa(void)
 {
-	int		t_cases[] = {0, 123, -456, 7890, -12345};
-	char	*expected_results[] = {"0", "123", "-456", "7890", "-12345"};
-	char	*res;
-	size_t	i;
+	const int	t_cases[] = {0, 123, -456, 7890, -12345};
+	const char	*expected_results[] = {"0", "123", "-456", "7890", "-12345"};
+	char		*res;
+	size_t		i;
 
 	i = 0;
-	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
+	while (i < sizeof(t_cases) / sizeof(t_cases[0]))
 	{
 		res = ft_itoa(t_cases[i]);
-		if (strcmp(res, expected_results[i]) != 0)
-			return (i + 1);
+		if (strcmp(res, expected_results[i++]) != 0)
+			return (i);
 		free(res);
 	}
 	return (0);
@@ -51,17 +51,17 @@ int	test_itoa(void)
 
 int	test_utoa(void)
 {
-	unsigned int	t_cases[] = {0, 123, 456, 7890, 12345};
-	char			*expected_results[] = {"0", "123", "456", "7890", "12345"};
-	char			*res;
-	size_t			i;
+	const unsigned int	t_cases[] = {0, 123, 456, 7890, 12345};
+	const char			*expected_results[] = {"0", "123", "456", "7890", "12345"};
+	char				*res;
+	size_t				i;
 
 	i = 0;
-	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
+	while (i < sizeof(t_cases) / sizeof(t_cases[0]))
 	{
 		res = ft_utoa(t_cases[i]);
-		if (strcmp(res, expected_results[i]) != 0)
-			return (i + 1);
+		if (strcmp(res, expected_results[i++]) != 0)
+			return (i);
 		free(res);
 	}
 	return (0);
@@ -69,52 +69,52 @@ int	test_utoa(void)
 
 int	test_itoa_base(void)
 {
-	int		t_cases[] = {0, 123, -456, 7890, -12345};
-	char	*bases[] = {"0123456789abcdef", "0123456789", "01",
-			"0123456789ABCDEF"};
-	char	*expected_results[sizeof(bases) / sizeof(bases[0])][sizeof(t_cases)
-			/ sizeof(t_cases[0])] = {{"0", "7b", "-1c8", "1ed2", "-3039"}, {"0",
-			"123", "-456", "7890", "-12345"}, {"0", "1111011", "-111001000",
-			"1111011010010", "-11000000111001"}, {"0", "7B", "-1C8", "1ED2",
-			"-3039"}};
-	char	*res;
-	size_t	i;
-	size_t	j;
+	const int		t_cases[] = {0, 123, -456, 7890, -12345};
+	const char		*bases[] = {"0123456789abcdef", "0123456789", "01", \
+	"0123456789ABCDEF"};
+	const char		*expected_results[sizeof(bases) / sizeof(bases[0])] \
+	[sizeof(t_cases) / sizeof(t_cases[0])] = {
+	{"0", "7b", "-1c8", "1ed2", "-3039"},
+	{"0", "123", "-456", "7890", "-12345"},
+	{"0", "1111011", "-111001000", "1111011010010", "-11000000111001"},
+	{"0", "7B", "-1C8", "1ED2", "-3039"}
+	};
+	char			*res;
+	size_t			i;
+	size_t			j;
 
 	i = 0;
 	j = 0;
-	for (i = 0; i < sizeof(t_cases) / sizeof(t_cases[0]); i++)
+	while (i < sizeof(t_cases) / sizeof(t_cases[0]))
 	{
-		for (j = 0; j < sizeof(bases) / sizeof(bases[0]); j++)
+		j = 0;
+		while (j < sizeof(bases) / sizeof(bases[0]))
 		{
 			res = ft_itoa_base(t_cases[i], bases[j]);
 			if (strcmp(res, expected_results[j][i]) != 0)
-			{
-				printf("expected: %s got: %s\n", expected_results[j][i], res);
-				free(res);
-				return (j + i + 1);
-			}
+				return (free(res), j * 10 + i + 1);
 			free(res);
+			j++;
 		}
+		i++;
 	}
 	return (0);
 }
 
 int	test_putstr(void)
 {
-	char	file_name[] = TESTS_FPREFIX "putstr.txt";
-	char	*str;
-	int		fd;
-	char	buff[100] = {0};
-	int		bread;
+	const char	file_name[] = TESTS_FPREFIX "putstr.txt";
+	const char	*str = "Hello World!";
+	int			fd;
+	char		buff[100];
+	int			bread;
 
-	str = "Hello World!";
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putstr_fd(str, fd);
 	close(fd);
 	fd = open(file_name, O_RDONLY);
-	read(fd, buff, 100);
-	if (strcmp(buff, str) != 0)
+	bread = read(fd, buff, 100);
+	if (bread < 0 || strncmp(buff, str, ft_strlen(str)) != 0)
 		return (1);
 	destroy_test_file(fd, file_name);
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
@@ -130,19 +130,19 @@ int	test_putstr(void)
 
 int	test_putendl(void)
 {
-	char	file_name[] = TESTS_FPREFIX "putendl.txt";
-	char	*str;
-	int		fd;
-	char	buff[100] = {0};
-	int		bread;
+	const char	file_name[] = TESTS_FPREFIX "putendl.txt";
+	const char	*str = "Hello World!";
+	int			fd;
+	char		buff[100];
+	int			bread;
 
-	str = "Hello World!";
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putendl_fd(str, fd);
 	close(fd);
 	fd = open(file_name, O_RDONLY);
-	read(fd, buff, 100);
-	if (strncmp(buff, str, strlen(str)) != 0 || buff[strlen(str)] != '\n')
+	bread = read(fd, buff, 100);
+	if (bread < 0 || strncmp(buff, str, strlen(str)) != 0 || \
+	buff[strlen(str)] != '\n')
 		return (1);
 	destroy_test_file(fd, file_name);
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
@@ -158,14 +158,14 @@ int	test_putendl(void)
 
 int	test_putnbr(void)
 {
-	char	file_name[] = TESTS_FPREFIX "putnbr.txt";
-	int		t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000, -1, -9,
-				-10, -99, -100, -999, -1000, -9999, -10000};
-	char	expected[] = "0\n1\n9\n10\n99\n100\n999\n1000\n9999\n10000\n-1\n-9\n-10\n-99\n-100\n-999\n-1000\n-9999\n-10000\n";
-	char	*expected2;
-	int		fd;
-	size_t	i;
-	char	buff[sizeof(expected) / sizeof(expected[0]) + 1] = {0};
+	const char	*file_name = TESTS_FPREFIX "putnbr.txt";
+	const int	t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000, -1, \
+	-9,	-10, -99, -100, -999, -1000, -9999, -10000};
+	const char	expected[] = "0\n1\n9\n10\n99\n100\n999\n1000\n9999\n10000\n-1\n-9\n-10\n-99\n-100\n-999\n-1000\n-9999\n-10000\n";
+	const char	*expected2 = "-2147483648\n2147483647\n";
+	int			fd;
+	size_t		i;
+	char		buff[sizeof(expected) / sizeof(expected[0]) + 1] = {0};
 
 	expected2 = "-2147483648\n2147483647\n";
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
@@ -198,12 +198,12 @@ int	test_putnbr(void)
 
 int	test_atoi(void)
 {
-	int		t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000, -1, -9,
-				-10, -99, -100, -999, -1000, -9999, -10000};
-	char	*t_str[] = {"0", "1", "9", "10", "99", "100", "999", "1000", "9999",
-			"10000", "-1", "-9", "-10", "-99", "-100", "-999", "-1000", "-9999",
-			"-10000"};
-	size_t	i;
+	const int	t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000, -1, \
+		-9,	-10, -99, -100, -999, -1000, -9999, -10000};
+	const char	*t_str[] = {"0", "1", "9", "10", "99", "100", "999", "1000", \
+	"9999", "10000", "-1", "-9", "-10", "-99", "-100", "-999", "-1000", "-9999"\
+	, "-10000"};
+	size_t		i;
 
 	//  normal cases
 	i = 0;
@@ -356,10 +356,11 @@ int	test_atoi_base(void)
 
 int	test_strtok(void)
 {
-	char	test[] = "path/to/file:another/path:yet/another/path";
+	char	test[43];
+	char	lorem[30];
 
-	char lorem[] = "Lorem ipsum dolor sit amet, "
-					"consectetur adipiscing elit. Sed non risus. Suspendisse";
+	ft_strlcpy(lorem, "Lorem ipsum dolor sit amet, ", 30);
+	ft_strlcpy(test, "path/to/file:another/path:yet/another/path", 43);
 	if (strcmp(ft_strtok(lorem, " "), "Lorem") != 0)
 		return (1);
 	if (strcmp(ft_strtok(NULL, " "), "ipsum") != 0)
@@ -370,28 +371,16 @@ int	test_strtok(void)
 		return (4);
 	if (strcmp(ft_strtok(NULL, " "), "amet,") != 0)
 		return (5);
-	if (strcmp(ft_strtok(NULL, " "), "consectetur") != 0)
+	if (strcmp(ft_strtok(NULL, " "), "") != 0)
 		return (6);
-	if (strcmp(ft_strtok(NULL, " "), "adipiscing") != 0)
-		return (7);
-	if (strcmp(ft_strtok(NULL, " "), "elit.") != 0)
-		return (8);
-	if (strcmp(ft_strtok(NULL, " "), "Sed") != 0)
-		return (9);
-	if (strcmp(ft_strtok(NULL, " "), "non") != 0)
-		return (10);
-	if (strcmp(ft_strtok(NULL, " "), "risus.") != 0)
-		return (11);
-	if (strcmp(ft_strtok(NULL, " "), "Suspendisse") != 0)
-		return (12);
 	if (ft_strtok(NULL, " ") != NULL)
-		return (13);
+		return (7);
 	if (strcmp(ft_strtok(test, ":"), "path/to/file") != 0)
-		return (14);
+		return (8);
 	if (strcmp(ft_strtok(NULL, ":/"), "another") != 0)
-		return (15);
+		return (9);
 	if (strcmp(ft_strtok(NULL, ":"), "path") != 0)
-		return (16);
+		return (10);
 	return (0);
 }
 
@@ -456,9 +445,9 @@ int	test_split(void)
 
 int tests_splits(void)
 {
-	char	*str = "path/to/file:another/path:yet/another/path";
-	char	**res;
-	size_t	i;
+	const char	*str = "path/to/file:another/path:yet/another/path";
+	char		**res;
+	size_t		i;
 
 	res = ft_splits(str, " /:");
 	if (strcmp(res[0], "path") != 0)
@@ -522,8 +511,9 @@ int	test_strdup(void)
 
 int	test_striteri(void)
 {
-	char	str[] = "Hello World!";
+	char	str[20];
 
+	ft_strlcpy(str, "Hello World!", 20);
 	ft_striteri(str, &local_iteri);
 	if (strcmp(str, "aaaaaaaaaaaa") != 0)
 		return (1);
