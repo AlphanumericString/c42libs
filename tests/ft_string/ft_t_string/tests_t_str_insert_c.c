@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_swap.c                                       :+:      :+:    :+:   */
+/*   tests_t_str_insert_c.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 12:20:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 15:13:47 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/25 17:37:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_string_struct.h"
 
-/*
-	// ignore warning for memset args
-	#pragma clang diagnostic pop
-*/
-
-int	test_swap(void)
+int	test_string_insert_c(void)
 {
-	const int	pair_og[2] = {1, 2};
-	const int	*pair[2];
-	const int	*pair2[2] = {&pair_og[1], &pair_og[0]};
+	t_string	*str;
 
-	pair[0] = &pair_og[0];
-	pair[1] = &pair_og[1];
-	ft_swap((void **)&pair[0], (void **)&pair[1]);
-	if (pair[0] != pair2[0] || pair[1] != pair2[1])
+	str = ft_string_from("Hello");
+	ft_string_insert_c(str, ' ', 0);
+	if (ft_string_cmp(str, " Hello") != 0)
 		return (1);
+	if (str->length != 6)
+		return (2);
+	if (str->capacity < 6)
+		return (3);
+	ft_string_destroy(&str);
 	return (0);
 }
+

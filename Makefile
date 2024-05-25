@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/25 12:30:08 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/25 17:49:59 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -405,7 +405,35 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c			\
 			\
 			$(TESTS_DIR)/ft_string/ft_str/str_tests.c			\
-			$(TESTS_DIR)/ft_string/ft_t_string/t_string_tests.c	\
+			\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append_c.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append_n.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append_s.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append_s_n.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_clear.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_cmp.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_cmp_n.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_destroy.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_from.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_from_c.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_from_n.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert_c.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert_n.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert_s.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert_s_n.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_new.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_reserve.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_resize.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_shrink.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_substr.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_to_str.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_trim.c		\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_trim_chr.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_trimstr.c	\
+			$(TESTS_DIR)/ft_string/ft_t_string/t_string_tests.c			\
+			\
 			$(TESTS_DIR)/ft_string/string_tests.c				\
 			\
 			$(TESTS_DIR)/ft_vector/tests_vec_add.c				\
