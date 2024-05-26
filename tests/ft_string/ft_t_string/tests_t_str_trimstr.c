@@ -28,4 +28,3 @@ int	test_string_trimstr(void)
 	ft_string_destroy(&str);
 	return (0);
 }
-

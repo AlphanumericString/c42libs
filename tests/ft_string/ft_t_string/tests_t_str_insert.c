@@ -28,6 +28,3 @@ int	test_string_insert(void)
 	ft_string_destroy(&str);
 	return (0);
 }
-
-
-

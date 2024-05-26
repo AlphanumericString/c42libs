@@ -27,5 +27,3 @@ int	test_string_new(void)
 	ft_string_destroy(&str);
 	return (0);
 }
-
-

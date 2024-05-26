@@ -33,4 +33,3 @@ int	test_string_substr(void)
 	ft_string_destroy(&sub);
 	return (0);
 }
-

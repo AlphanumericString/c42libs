@@ -28,4 +28,3 @@ int	test_string_resize(void)
 	ft_string_destroy(&str);
 	return (0);
 }
-

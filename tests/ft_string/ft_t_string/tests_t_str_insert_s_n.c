@@ -31,5 +31,3 @@ int	test_string_insert_s_n(void)
 	ft_string_destroy(&str2);
 	return (0);
 }
-
-
