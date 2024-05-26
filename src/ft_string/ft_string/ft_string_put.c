@@ -6,11 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 03:49:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 16:45:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 15:50:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string_struct.h"
+#include "ft_string_types.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>

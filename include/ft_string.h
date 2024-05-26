@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:45:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 15:49:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 #  endif
 # endif
 
-# include "ft_string_struct.h"
+# include "ft_string_types.h"
 
 // malloc + free
 

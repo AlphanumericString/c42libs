@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_string_struct.h"
+#include "ft_string_types.h"
 
 int	test_string_insert_n(void)
 {

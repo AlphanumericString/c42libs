@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:57:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 15:57:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 15:56:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_string_struct.h"
+#include "ft_string_types.h"
 
 int	test_string_append(void)
 {
