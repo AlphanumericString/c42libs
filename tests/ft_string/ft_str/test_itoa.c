@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_tests.h                                       :+:      :+:    :+:   */
+/*   test_itoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 22:39:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:27:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/26 12:36:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_TESTS_H
-# define ARGS_TESTS_H
+#include "ft_string.h"
+#include <string.h>
 
-/* @file: tests/ft_args/args_tests.c */
-int	parse_args_test(void);
-int	getset_opt_list_test(void);
-int	tests_args(void);
+int	test_itoa(void)
+{
+	char		*res;
+	size_t		i;
+	const int	t_cases[] = {0, 123, -456, 7890, -12345};
+	const char	*expected_results[] = {"0", "123", "-456", "7890", "-12345"};
 
-/* @file: tests/ft_args/test_version.c */
-int	getset_version_test(void);
-
-/* @file: tests/ft_args/test_progname.c */
-int	getset_program_name_test(void);
-
-#endif /* ARGS_TESTS_H */
+	i = 0;
+	while (i < sizeof(t_cases) / sizeof(t_cases[0]))
+	{
+		res = ft_itoa(t_cases[i]);
+		if (strcmp(res, expected_results[i++]) != 0)
+			return (i);
+		free(res);
+	}
+	return (0);
+}

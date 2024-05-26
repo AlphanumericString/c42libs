@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:39:35 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 22:39:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 12:28:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CHAR_TESTS_H
-# define FT_CHAR_TESTS_H
+#ifndef CHAR_TESTS_H
+# define CHAR_TESTS_H
 
 /* @file: tests/ft_string/ft_char/test_tolower.c */
 int	test_ft_tolower(void);
@@ -49,4 +49,4 @@ int	char_tests(void);
 /* @file: tests/ft_string/ft_char/test_isdigit.c */
 int	test_ft_isdigit(void);
 
-#endif /* FT_CHAR_TESTS_H */
+#endif /* CHAR_TESTS_H */

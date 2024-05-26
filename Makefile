@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/25 17:49:59 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/26 11:38:27 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ COVERAGE_DIR	=	coverage
 FT_MAP_DIR		=	ft_map
 FT_LIST_DIR		=	ft_list
 FT_STRING_DIR	=	ft_string
-FT_CONF_DIR		=	ft_config
 FT_VEC_DIR		=	ft_vector
 FT_OPTIONAL_DIR	=	ft_optional
 FT_ARGS_DIR		=	ft_args
@@ -289,10 +288,6 @@ FT_ARGS_SRC		=	\
 
 # Counpound sources
 
-FT_CONF_SRC		=	\
-			$(FT_CONF_DIR)/ftc_baseop.c		\
-			$(FT_CONF_DIR)/ftc_get_parser.c
-
 FT_LIST_SRC		=	\
 			$(FT_LIST_LL_SRC)	\
 			$(FT_LIST_DL_SRC)	\
@@ -404,7 +399,38 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_swap.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c			\
 			\
-			$(TESTS_DIR)/ft_string/ft_str/str_tests.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_atoi_base.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_atoi.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_gnl.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_itoa_base.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_itoa.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_putendl.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_putnbr.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_putstr.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_shift_args.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_split.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_splits.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strchr.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strcmp.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strdup.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_striteri.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strjoin.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strlcat.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strlcpy.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strlen.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strmapi.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strncmp.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strndup.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strnstr.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strrchr.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_replace.c		\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_replace_chr.c	\
+			$(TESTS_DIR)/ft_string/ft_str/test_strtok.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strtrim.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_substr.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_utoa.c				\
+			$(TESTS_DIR)/ft_string/ft_str/str_tests.c				\
+			$(TESTS_DIR)/ft_string/string_tests.c					\
 			\
 			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append.c		\
 			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append_c.c	\
@@ -433,8 +459,6 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_trim_chr.c	\
 			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_trimstr.c	\
 			$(TESTS_DIR)/ft_string/ft_t_string/t_string_tests.c			\
-			\
-			$(TESTS_DIR)/ft_string/string_tests.c				\
 			\
 			$(TESTS_DIR)/ft_vector/tests_vec_add.c				\
 			$(TESTS_DIR)/ft_vector/tests_vec_apply.c			\
@@ -474,7 +498,6 @@ STABLE		=	\
 
 UNSTABLE	=	\
 			$(FT_ARGS_SRC)
-#			$(FT_CONF_SRC)		\
 
 INNER_SRC   = \
 			$(STABLE)

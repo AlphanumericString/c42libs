@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_tests.h                                       :+:      :+:    :+:   */
+/*   test_strrchr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 22:39:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:27:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:41:05 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/26 11:41:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_TESTS_H
-# define ARGS_TESTS_H
+#include "ft_string.h"
+#include <stddef.h>
+#include <string.h>
 
-/* @file: tests/ft_args/args_tests.c */
-int	parse_args_test(void);
-int	getset_opt_list_test(void);
-int	tests_args(void);
+int	test_strrchr(void)
+{
+	char	*str;
+	char	s;
+	char	s2;
+	char	*res;
 
-/* @file: tests/ft_args/test_version.c */
-int	getset_version_test(void);
-
-/* @file: tests/ft_args/test_progname.c */
-int	getset_program_name_test(void);
-
-#endif /* ARGS_TESTS_H */
+	str = "Hello World!";
+	s = 'o';
+	s2 = 'z';
+	res = ft_strrchr(str, s);
+	if (res != str + 7)
+		return (1);
+	res = ft_strrchr(str, s2);
+	if (res != NULL)
+		return (2);
+	res = ft_strrchr(str, '\0');
+	if (res != str + strlen(str))
+		return (3);
+	return (0);
+}

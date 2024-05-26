@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:26:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 12:27:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 12:31:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STR__MEM_TESTS_H
-#define STR__MEM_TESTS_H
+# define STR__MEM_TESTS_H
 
 /// @file: tests/ft_string/ft_mem/tests_bzero.c
 int	test_bzero(void);

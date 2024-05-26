@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_tests.h                                       :+:      :+:    :+:   */
+/*   test_striteri.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 22:39:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:27:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:39:56 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/26 11:39:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_TESTS_H
-# define ARGS_TESTS_H
+#include "ft_string.h"
+#include <string.h>
 
-/* @file: tests/ft_args/args_tests.c */
-int	parse_args_test(void);
-int	getset_opt_list_test(void);
-int	tests_args(void);
+static void	local_iteri(unsigned int i, char *c)
+{
+	*c = 'a';
+	(void)i;
+}
 
-/* @file: tests/ft_args/test_version.c */
-int	getset_version_test(void);
+int	test_striteri(void)
+{
+	char	str[20];
 
-/* @file: tests/ft_args/test_progname.c */
-int	getset_program_name_test(void);
-
-#endif /* ARGS_TESTS_H */
+	ft_strlcpy(str, "Hello World!", 20);
+	ft_striteri(str, &local_iteri);
+	if (strcmp(str, "aaaaaaaaaaaa") != 0)
+		return (1);
+	return (0);
+}

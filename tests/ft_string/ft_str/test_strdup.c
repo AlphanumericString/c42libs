@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_tests.h                                       :+:      :+:    :+:   */
+/*   test_strdup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 22:39:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:27:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:23:17 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/26 11:23:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_TESTS_H
-# define ARGS_TESTS_H
+#include "ft_string.h"
+#include <string.h>
 
-/* @file: tests/ft_args/args_tests.c */
-int	parse_args_test(void);
-int	getset_opt_list_test(void);
-int	tests_args(void);
+int	test_strdup(void)
+{
+	char	*str;
+	char	*res;
 
-/* @file: tests/ft_args/test_version.c */
-int	getset_version_test(void);
-
-/* @file: tests/ft_args/test_progname.c */
-int	getset_program_name_test(void);
-
-#endif /* ARGS_TESTS_H */
+	str = "Hello World!";
+	res = ft_strdup(str);
+	if (strcmp(res, str) != 0)
+		return (1);
+	free(res);
+	return (0);
+}

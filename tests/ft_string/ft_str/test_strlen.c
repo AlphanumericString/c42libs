@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_tests.h                                       :+:      :+:    :+:   */
+/*   test_strlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 22:39:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:27:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 12:26:06 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/26 12:26:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_TESTS_H
-# define ARGS_TESTS_H
+#include "ft_string.h"
 
-/* @file: tests/ft_args/args_tests.c */
-int	parse_args_test(void);
-int	getset_opt_list_test(void);
-int	tests_args(void);
+int	test_strlen(void)
+{
+	char	*str;
+	char	*str2;
+	char	*str3;
 
-/* @file: tests/ft_args/test_version.c */
-int	getset_version_test(void);
-
-/* @file: tests/ft_args/test_progname.c */
-int	getset_program_name_test(void);
-
-#endif /* ARGS_TESTS_H */
+	str = "Hello World!";
+	str2 = "";
+	str3 = "Hello\0World!";
+	if (ft_strlen(str) != 12)
+		return (1);
+	if (ft_strlen(str2) != 0)
+		return (2);
+	if (ft_strlen(str3) != 5)
+		return (3);
+	return (0);
+}

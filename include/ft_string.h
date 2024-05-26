@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 19:10:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 12:45:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -385,6 +385,7 @@ int			ft_strstart_with(const char *str, const char *start);
 /// @param to_replace char to replace
 /// @param replace_by char to replace by
 /// @return A pointer to the string str
+/// @note The string is modified in place
 char		*ft_str_replace_chr(char *str, char to_replace, char replace_by);
 
 /// @brief Returns a pointer to the first string pointed to by args

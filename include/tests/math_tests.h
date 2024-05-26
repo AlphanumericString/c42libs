@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:17:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 23:57:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 12:30:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	test_ft_complex_mull(void);
 int	test_ft_complex_muld(void);
 
 /* @file: tests/ft_math/tests_log.c */
-int test_ft_log(void);
-int test_ft_llogof(void);
-int test_ft_ullogof(void);
-int test_ft_logof(void);
+int	test_ft_log(void);
+int	test_ft_llogof(void);
+int	test_ft_ullogof(void);
+int	test_ft_logof(void);
 
 /* @file: tests/ft_math/tests_intrange.c */
 int	test_ft_range(void);
-int test_ft_range_f(void);
-int test_ft_range_d(void);
+int	test_ft_range_f(void);
+int	test_ft_range_d(void);
 
 /* @file: tests/ft_math/tests_sqrt.c */
 int	test_ft_sqrt(void);
@@ -49,6 +49,5 @@ int	test_ft_clamp(void);
 
 /* @file: tests/ft_math/tests_abs.c */
 int	test_ft_abs(void);
-
 
 #endif

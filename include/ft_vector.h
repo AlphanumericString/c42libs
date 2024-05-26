@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 12:37:59 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 12:31:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void		ft_vec_remove(t_vector *vector, size_t n, t_data_apply del);
 /// @return void
 /// @note very similar to ft_vec_filter... TODO: check if needed
 void		ft_vec_remove_if(t_vector *vector, t_data_is func,
-			t_data_apply del);
+				t_data_apply del);
 
 // ft_vector/ft_vec_reserve.c
 

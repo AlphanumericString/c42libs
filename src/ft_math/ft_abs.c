@@ -6,11 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:10:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 23:12:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:21:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_abs(int x)
+int	ft_abs(int x)
 {
 	if (x < 0)
 		return (-x);
