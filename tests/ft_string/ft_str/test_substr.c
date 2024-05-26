@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:25:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:25:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:24:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,24 @@
 
 int	test_substr(void)
 {
-	char	*str;
-	char	*res;
+	const char	*str = "Hello World!";
+	char		*res[6];
+	size_t		i;
 
-	str = "Hello World!";
-	res = NULL;
-	res = ft_substr(str, 0, 5);
-	if (strcmp(res, "Hello") != 0)
+	res[0] = ft_substr(str, 0, 5);
+	res[1] = ft_substr(str, 6, 6);
+	res[2] = ft_substr(str, 6, 100);
+	res[3] = ft_substr(str, 6, 0);
+	res[4] = ft_substr(str, 12, 0);
+	res[5] = ft_substr(str, 12, 100);
+	if (strcmp(res[0], "Hello") != 0 || strcmp(res[1], "World!") != 0 || \
+	strcmp(res[2], "World!") != 0)
 		return (1);
-	free(res);
-	res = ft_substr(str, 6, 6);
-	if (strcmp(res, "World!") != 0)
+	if (strcmp(res[3], "") != 0 || strcmp(res[4], "") != 0 || \
+	strcmp(res[5], "") != 0)
 		return (2);
-	free(res);
-	res = ft_substr(str, 6, 100);
-	if (strcmp(res, "World!") != 0)
-		return (3);
-	free(res);
-	res = ft_substr(str, 6, 0);
-	if (strcmp(res, "") != 0)
-		return (4);
-	free(res);
-	res = ft_substr(str, 12, 0);
-	if (strcmp(res, "") != 0)
-		return (5);
-	free(res);
-	res = ft_substr(str, 12, 100);
-	if (strcmp(res, "") != 0)
-		return (6);
-	free(res);
+	i = 0;
+	while (i < 6)
+		free(res[i++]);
 	return (0);
 }
