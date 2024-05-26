@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/26 11:38:27 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/26 18:03:05 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,7 +158,7 @@ FT_STR_SRC	=	\
 			$(FT_STR_DIR)/ft_putstr_fd.c		\
 			$(FT_STR_DIR)/ft_shift_args.c		\
 			$(FT_STR_DIR)/ft_split.c			\
-			$(FT_STR_DIR)/ft_splits.c			\
+		ft_string_struct	$(FT_STR_DIR)/ft_splits.c			\
 			$(FT_STR_DIR)/ft_str_isalpha.c		\
 			$(FT_STR_DIR)/ft_str_isalphanum.c	\
 			$(FT_STR_DIR)/ft_str_isbool.c		\
@@ -401,6 +401,7 @@ TESTS_SRC	=\
 			\
 			$(TESTS_DIR)/ft_string/ft_str/test_atoi_base.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_atoi.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_atof.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_gnl.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_itoa_base.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_itoa.c				\
@@ -626,6 +627,21 @@ debug:
 	make -C ./ so CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"				&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
+
+.clangd: Makefile
+	@echo "Making clangd configuration file"
+	@$(ECHO) -n																		\
+	"CompileFlags:\n"																\
+	"  Compiler: clang\n"															\
+	"  Add:\n"																		\
+	"	- \"-Wall -Wextra -Werror\"\n"												\
+	"	- \"-Wno-unused-parameter -Wno-unused-variable -Wno-unused-function\"\n"	\
+	"	- \"-Wno-unused-but-set-variable -Wno-unused-value -Wno-unused-label\"\n"	\
+	"	- \"-Wno-unused-local-typedefs\"\n"											\
+	"	- \"-Wno-unused-result\"\n"													\
+	"	- \"-xc\"\n"  > .clangd
+	@echo "    - \"-I " $(shell pwd)"/includes\"" >> .clangd
+	@$(ECHO) $(GREEN) "Done" $(RESET)
 
 # Rule to clean objects
 clean:

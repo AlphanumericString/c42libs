@@ -6,11 +6,30 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:41:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 12:14:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:09:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math.h"
+
+int	test_ft_range_errors(void)
+{
+	const int	min = 9;
+	const int	max = 42;
+	const int	new_max = 21;
+	int			x;
+
+	x = -1;
+	if (ft_range(x, min, max, new_max) != 0)
+		return (1);
+	x = min;
+	if (ft_range(x, min + max, max, new_max) != 0)
+		return (2);
+	x = max + 1;
+	if (ft_range(x, min, max, 0) != 0)
+		return (3);
+	return (0);
+}
 
 int	test_ft_range(void)
 {
@@ -37,7 +56,7 @@ int	test_ft_range(void)
 	if (ft_range(x, min, max, new_max) != (int)(((double)(x - min) / \
 	(max - min)) * new_max))
 		return (6);
-	return (0);
+	return (test_ft_range_errors());
 }
 
 int	test_ft_range_f(void)
@@ -68,6 +87,25 @@ int	test_ft_range_f(void)
 	return (0);
 }
 
+int	test_ft_range_d_errors(void)
+{
+	const double	min = 9.0;
+	const double	max = 42.0;
+	const double	new_max = 21.0;
+	double			x;
+
+	x = -1;
+	if (ft_range_d(x, min, max, new_max) != 0)
+		return (1);
+	x = min;
+	if (ft_range_d(x, min + max, max, new_max) != 0)
+		return (2);
+	x = max + 1;
+	if (ft_range_d(x, min, max, 0) != 0)
+		return (3);
+	return (0);
+}
+
 int	test_ft_range_d(void)
 {
 	const double	min = 9.0;
@@ -92,5 +130,5 @@ int	test_ft_range_d(void)
 	x = 21;
 	if (ft_range_d(x, min, max, new_max) != ((x - min) / (max - min)) * new_max)
 		return (6);
-	return (0);
+	return (test_ft_range_d_errors());
 }

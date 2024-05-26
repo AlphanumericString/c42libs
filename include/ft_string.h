@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 15:49:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 16:20:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,11 @@ void		ft_putstr_fd(const char *s, int fd);
 /* ************************************************************************** */
 /* **                     FT_STR MAIN MODULE                               ** */
 /* ************************************************************************** */
+
+/// @brief convert the string to a float
+/// @param str string to convert
+/// @return the float converted from the string
+double		ft_atof(const char *str);
 
 /// @brief convert the string to an int
 /// @param str string to convert

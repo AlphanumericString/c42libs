@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:28:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:29:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/26 16:18:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ int	test_strncmp(void);
 /// @brief test_strlcat
 /// @file: tests/ft_string/ft_str/test_strlcat.c
 int	test_strlcat(void);
+
+/// @brief test_atof
+/// @file: tests/ft_string/ft_str/test_atof.c
+int	test_atof(void);
 
 /// @brief test_itoa
 /// @file: tests/ft_string/ft_str/test_itoa.c
