@@ -27,7 +27,7 @@ int	tests_linked_list_all(void)
 		test_listdelone}, {"test_listdelete_range", test_listdelete_range},
 	{"test_listfind", test_listfind}, {"test_listget_datas",
 		test_listget_datas}, {"test_listget_nodes", test_listget_nodes}, {
-		"test_listlast", test_listlast}, {"test_listat", test_listat}, {
+		"test_listend", test_listend}, {"test_listat", test_listat}, {
 		"test_listmap", test_listmap}, {"test_listnew", test_listnew}, {
 		"test_listpush", test_listpush}, {"test_listpush_back",
 		test_listpush_back}, {"test_listpop", test_listpop}, {

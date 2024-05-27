@@ -6,13 +6,13 @@ Library for c projects at 42.
 
 - [ ]   libs
     - [ ]   includes
-        - [ ]   split sub modules includes to separate files
-            - [ ]   mem
-            - [ ]   str
-            - [ ]   chr
-            - [ ]   t_string
-            - [ ]   ll
-            - [ ]   dl
+        - [x]   split sub modules includes to separate files
+            - [x]   mem
+            - [x]   str
+            - [x]   chr
+            - [x]   t_string
+            - [x]   ll
+            - [x]   dl
         - [ ]   remove useless includes
         - [ ]   remove trailing comments
         - [x]   doxygen
@@ -42,26 +42,38 @@ Library for c projects at 42.
             - [x]   string
             - [x]   map
             - [x]   optional
-- [x]   Makefile
+- [ ]   Makefile
     - [x]   Makefile add debug rule for “so” ? or run “so” in debug rule. idk idc will see…
     - [x]   Check if cmd exist for llvm suite
     - [x]   Tests_run rule
         - [x]    remodel tests_run to compile only needed sources by adding a patern rule build/tests/%.o to TESTS_SRC compiling with TEST_FLAGS
+    - [ ]   Check all new .c files have been added to the Makefile
+- [ ]   Tests
+    - [ ]   Add tests for all *finished* libs
+        - [x]   ft_list
+            - [x]   ll
+            - [x]   dl
+        - [ ]   ft_map
+        - [ ]   ft_string
+            - [ ]   t_string
+            - [ ]   str
+            - [ ]   mem
+        - [x]   ft_vector
+        - [x]   ft_optional
+    - [ ]   Up the coverage percentage (dropped due to new funcs)
 
 ## TO ADD:
 - Module
-    - [ ]   prog_info
-        -   prog name
-        -   env vars
-        -   ctx relative to program
-        -   cli args parser
+    - [x]   prog_info
+        - [x]  prog name
+        - [ ]  env vars
+        - [ ]  ctx relative to program
+        - [x]  cli args parser
 - Sub-Modules
     - list
         - [ ]   circular
         - [ ]   stack
         - [ ]   queu
-    - map
-        - [ ]   str_map
 - Functions
     - list
         - [ ]   Find functions
@@ -76,7 +88,7 @@ Library for c projects at 42.
             - [ ]   Kinda done but wanna optimise lib to return/use vars from t_string
         - [x]  Gnl
             - [x]  Update gnl
-            - [ ]  Optimise gnl
+            - [ ]  Optimise gnl to use func from lib
         - [ ]  Printf
             - [ ]   Basic printf
             - [ ]   you could at least support flags you scum bag
@@ -89,12 +101,12 @@ Library for c projects at 42.
             - [x] get
         - [ ] cmp
             - [x] set
-            - [ ] get
+            - [x] get
         - [ ] hash
             - [x] set
-            - [ ] get
+            - [x] get
         - [ ] keys
-            - [ ] get (current get is more of a get_mapkv)
+            - [x] get (current get is more of a get_mapkv)
             - [x] set 
-        - [ ] size
-            - [ ] get
+        - [x] size
+            - [x] get

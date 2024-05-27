@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 12:36:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/27 10:05:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -356,11 +356,10 @@ t_list	**ft_listget_nodes(const t_list *src);
 
 // ft_list/ft_list_ll_iterator.c
 
-// TODO: implement rename last to end (match dl)
 /// @brief Get the last node of a list
 /// @param lst The list
 /// @return The last node of the list
-t_list	*ft_listlast(const t_list *lst);
+t_list	*ft_listend(const t_list *lst);
 
 /// @brief Get the node of a list at position index
 /// @param lst The list

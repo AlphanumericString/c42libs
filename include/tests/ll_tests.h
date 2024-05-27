@@ -35,7 +35,7 @@ int	test_listfind(void);
 int	test_listget_datas(void);
 int	test_listget_nodes(void);
 
-int	test_listlast(void);
+int	test_listend(void);
 int	test_listat(void);
 
 int	test_listmap(void);
