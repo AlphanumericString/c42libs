@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_file_to_buff.c                                  :+:      :+:    :+:   */
+/*   ft_fd_to_buff.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 19:52:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:56:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/27 09:31:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,21 @@ char	*ft_fd_to_buff(int fd)
 
 	if (fd == -1)
 		return (NULL);
+	file = NULL;
 	ret = read(fd, buff, READ_BLOCKS);
+	if (ret == -1)
+		return (NULL);
+	buff[ret] = '\0';
+	file = ft_strdup(buff);
 	while (ret == READ_BLOCKS)
 	{
 		ret = read(fd, buff, READ_BLOCKS);
 		if (ret == -1)
-			return (NULL);
+			return (ft_free((void **)&file), NULL);
 		buff[ret] = '\0';
 		prev = file;
 		file = ft_strjoin(file, buff);
-		free(prev);
+		ft_free((void **)&prev);
 	}
 	return (file);
 }

@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:06:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 15:37:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/27 09:04:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_optional.h"
 #include <stdbool.h>
 
-bool	ft_optional_chain(t_optional *opt, void *(**f)(void *))
+bool	ft_optional_chain(t_optional *opt, const t_data_tr_i *f)
 {
 	size_t	i;
 

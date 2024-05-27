@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:46:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 00:52:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/27 02:14:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,50 @@ int	test_ft_clamp(void)
 	return (0);
 }
 
-// todo: add test_ft_clamp_f
-// todo: add test_ft_clamp_d
+int	test_ft_clamp_f(void)
+{
+	const float	max = 42.0;
+	const float	min = 21.0;
+	float			x;
+
+	x = 0;
+	if (ft_clamp_f(x, min, max) != min)
+		return (1);
+	x = 21;
+	if (ft_clamp_f(x, min, max) != min)
+		return (1);
+	x = 42;
+	if (ft_clamp_f(x, min, max) != max)
+		return (1);
+	x = 84;
+	if (ft_clamp_f(x, min, max) != max)
+		return (1);
+	x = 23;
+	if (ft_clamp_f(x, min, max) != x)
+		return (1);
+	return (0);
+}
+
+int	test_ft_clamp_d(void)
+{
+	const double	max = 42.0;
+	const double	min = 21.0;
+	double			x;
+
+	x = 0;
+	if (ft_clamp_d(x, min, max) != min)
+		return (1);
+	x = 21;
+	if (ft_clamp_d(x, min, max) != min)
+		return (1);
+	x = 42;
+	if (ft_clamp_d(x, min, max) != max)
+		return (1);
+	x = 84;
+	if (ft_clamp_d(x, min, max) != max)
+		return (1);
+	x = 23;
+	if (ft_clamp_d(x, min, max) != x)
+		return (1);
+	return (0);
+}

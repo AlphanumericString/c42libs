@@ -6,11 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 09:47:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:15:08 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/27 09:08:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list_types.h"
+#include "ft_defs.h"
 #include <stddef.h>
 
 void	ft_apply_2d(void **array, t_data_apply f)

@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/26 18:03:05 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/27 09:09:36 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,7 +158,7 @@ FT_STR_SRC	=	\
 			$(FT_STR_DIR)/ft_putstr_fd.c		\
 			$(FT_STR_DIR)/ft_shift_args.c		\
 			$(FT_STR_DIR)/ft_split.c			\
-		ft_string_struct	$(FT_STR_DIR)/ft_splits.c			\
+			$(FT_STR_DIR)/ft_splits.c			\
 			$(FT_STR_DIR)/ft_str_isalpha.c		\
 			$(FT_STR_DIR)/ft_str_isalphanum.c	\
 			$(FT_STR_DIR)/ft_str_isbool.c		\
@@ -219,9 +219,13 @@ FT_T_STRING_SRC	=	\
 			$(FT_T_STRING_DIR)/ft_string_set.c
 
 FT_MEM_SRC	=	\
+			$(FT_MEM_DIR)/ft_apply_2d.c		\
 			$(FT_MEM_DIR)/ft_bzero.c		\
 			$(FT_MEM_DIR)/ft_calloc.c		\
+			$(FT_MEM_DIR)/ft_fd_to_buff.c	\
 			$(FT_MEM_DIR)/ft_free.c			\
+			$(FT_MEM_DIR)/ft_free_2d.c		\
+			$(FT_MEM_DIR)/ft_len_2d.c		\
 			$(FT_MEM_DIR)/ft_memchr.c		\
 			$(FT_MEM_DIR)/ft_memcmp.c		\
 			$(FT_MEM_DIR)/ft_memcpy.c		\

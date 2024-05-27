@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 14:45:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/27 02:04:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ static int	file_cmp(const char *file_name, const char *expected)
 	bzero(buff, sizeof(buff));
 	read(fd, buff, sizeof(buff));
 	close(fd);
-	return (strncmp(buff, expected, sizeof(buff)));
+	if (strncmp(buff, expected, sizeof(buff)))
+		return (1);
+	return (destroy_test_file(fd, file_name), 0);
 }
 
 static int	test_positives(void)

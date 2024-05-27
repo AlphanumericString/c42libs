@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:17:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:30:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/27 02:13:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	test_ft_round(void);
 
 /* @file: tests/ft_math/tests_clamp.c */
 int	test_ft_clamp(void);
+int	test_ft_clamp_f(void);
+int	test_ft_clamp_d(void);
 
 /* @file: tests/ft_math/tests_abs.c */
 int	test_ft_abs(void);
