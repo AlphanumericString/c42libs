@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:35:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/01 16:54:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 07:47:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-char	*ft_str_replace(char *str, const char *to_replace,
+char	*ft_str_replace(const char *str, const char *to_replace,
 		const char *replace_by)
 {
 	char	*new_str;

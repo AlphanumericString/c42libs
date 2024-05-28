@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 16:20:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 07:59:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,6 @@
 # define FT_STRING_H
 
 # include <stddef.h>
-
-// gnl
-
-# ifndef MAX_FD
-#  ifdef TEST
-#   define MAX_FD 5
-#  else
-#   define MAX_FD 1024
-#  endif
-# endif
-
-# ifndef BUFFER_SIZE
-#  ifdef TEST
-#   define BUFFER_SIZE 5
-#  else
-#   define BUFFER_SIZE 4096
-#  endif
-# endif
 
 # include "ft_string_types.h"
 
@@ -240,7 +222,8 @@ char		**ft_splits(const char *str, const char *delims);
 /// @param c char to search
 /// @return a pointer to the first occurence of c in the string str otherwise
 /// NULL
-/// @note TODO: pass return as const
+/// @note The returned pointer is from str and has the same constness as str
+///  it was left as non-const to align with glibc's strchr
 char		*ft_strchr(const char *str, int c);
 
 /// @brief duplicate the string src into a new allocated string
@@ -335,14 +318,16 @@ char		*ft_strdup(const char *src);
 /// @return returns a pointer to the first occurrence of the string small in the
 /// string big, where not more than n characters are searched. Characters that
 /// appear after a `\0' character are not searched.
-/// @note TODO: pass return as const
+/// @note The returned pointer is from str and has the same constness as str
+///  it was left as non-const to align with glibc's strnstr
 char		*ft_strnstr(const char *big, const char *small, size_t n);
 
 /// @brief search for the last occurence of c in the string
 /// @param str string to search from
 /// @param c char to search
 /// @return pointer to the last occurence of c in the string otherwise NULL
-/// @note TODO: pass return as const
+/// @note The returned pointer is from str and has the same constness as str
+///  it was left as non-const to align with glibc's strrchr
 char		*ft_strrchr(const char *str, int c);
 
 /// @brief remove the specified chars from the string s1
@@ -367,10 +352,8 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 /// @param replace_by string to replace with
 /// @return the string with the modified chars otherwise NULL
 /// @note to_replace and replace_by must not be NULL
-/// @note You must free the returned string
-/// @note TODO: pass str as const - clearer signal that it is not modified
-/// @note TODO: enable replacement of multiple occurences.
-char		*ft_str_replace(char *str, const char *to_replace,
+/// @note You must free the returned string !
+char		*ft_str_replace(const char *str, const char *to_replace,
 				const char *replace_by);
 
 /// @brief search if the string str ends with the string end
@@ -461,21 +444,6 @@ int			ft_str_isvalid(char *str, int (*f)(int));
 /// MAX_FD
 char		*get_next_line(int fd);
 
-/// @brief Split the string from the specified position with the specified
-/// delimiter
-/// @param dst destination of string
-/// @param from string to split
-/// @param pos position to split from
-/// @param delim delimiter to split the string
-/// @return -1 if allocation failed, 0 otherwise
-int			split_from(char **dst, char *from, int pos, char delim);
-
-/// @brief Search for the first occurence of c in the string
-/// @param from string to search from
-/// @param c char to search
-/// @return the index of the first occurence of c in the string otherwise -1
-int			ft_strchr_index(const char *from, char c);
-
 // printf
 
 // missing ...
@@ -484,7 +452,6 @@ int			ft_strchr_index(const char *from, char c);
 /*                        FT_STRING SUB MODULE                                */
 /* ************************************************************************** */
 
-//// TODO: add doc
 
 /* ************************************************************************** */
 /* **                     ft_string_new                                    ** */
@@ -718,8 +685,7 @@ void		ft_string_trimstr(t_string *str, char *to_trim);
 /// @param cmp string to compare
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-/// @note TODO: pass str as const - clearer signal that it is not modified
-int			ft_string_cmp(t_string *str, const char *cmp);
+int			ft_string_cmp(const t_string *str, const char *cmp);
 
 /// @brief compare the string with the string cmp up to n chars
 /// @param str t_string to compare
@@ -727,15 +693,14 @@ int			ft_string_cmp(t_string *str, const char *cmp);
 /// @param n number of chars to compare
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-int			ft_string_ncmp(t_string *str, const char *cmp, size_t n);
+int			ft_string_ncmp(const t_string *str, const char *cmp, size_t n);
 
 /// @brief compare the string with the string cmp
 /// @param str t_string to compare
 /// @param cmp string to compare
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-/// @note TODO: pass str as const - clearer signal that it is not modified
-int			ft_string_cmpstr(t_string *str, t_string *cmp);
+int			ft_string_cmpstr(const t_string *str, const t_string *cmp);
 
 /// @brief compare the string with the string cmp up to n chars
 /// @param str t_string to compare
@@ -743,8 +708,8 @@ int			ft_string_cmpstr(t_string *str, t_string *cmp);
 /// @param n number of chars to compare
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-/// @note TODO: pass str as const - clearer signal that it is not modified
-int			ft_string_ncmpstr(t_string *str, t_string *cmp, size_t n);
+int			ft_string_ncmpstr(const t_string *str, const t_string *cmp, 
+					size_t n);
 
 /* ************************************************************************** */
 /* **                     ft_string_get                                    ** */
@@ -753,20 +718,17 @@ int			ft_string_ncmpstr(t_string *str, t_string *cmp, size_t n);
 /// @brief get the length of the string
 /// @param str t_string to get the length
 /// @return the length of the string
-/// @note TODO: pass str as const - clearer signal that it is not modified
-size_t		ft_string_len(t_string *str);
+size_t		ft_string_len(const t_string *str);
 
 /// @brief get the capacity of the string
 /// @param str t_string to get the capacity
 /// @return the capacity of the string
-/// @note TODO: pass str as const - clearer signal that it is not modified
-size_t		ft_string_cap(t_string *str);
+size_t		ft_string_cap(const t_string *str);
 
 /// @brief get the content of the string
 /// @param str t_string to get the content
 /// @return the content of the string
-/// @note TODO: pass str as const - clearer signal that it is not modified
-const char	*ft_string_get(t_string *str);
+const char	*ft_string_get(const t_string *str);
 
 /* ************************************************************************** */
 /* **                     ft_string_set                                    ** */
@@ -796,6 +758,7 @@ int			ft_string_set_inplace(t_string *str, char *src);
 /* ************************************************************************** */
 /* **                     ft_string_chr                                    ** */
 /* ************************************************************************** */
+//// TODO: add doc
 size_t		ft_string_offset(t_string *str, char c);
 size_t		ft_string_roffset(t_string *str, char c);
 char		*ft_string_chr(t_string *str, char c);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string_struct.h                                 :+:      :+:    :+:   */
+/*   ft_string_types.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:54:48 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/12 12:43:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 07:56:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 # define FT_STRING_STRUCT_H
 
 # include <stddef.h>
+# ifndef MAX_FD
+#  ifdef TEST
+#   define MAX_FD 5
+#  else
+#   define MAX_FD 1024
+#  endif
+# endif
+
+# ifndef BUFFER_SIZE
+#  ifdef TEST
+#   define BUFFER_SIZE 5
+#  else
+#   define BUFFER_SIZE 4096
+#  endif
+# endif
 
 /// @brief Structure representing a string
 /// @param str The string

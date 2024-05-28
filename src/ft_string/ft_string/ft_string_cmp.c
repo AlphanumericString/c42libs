@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:50:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/07 10:22:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 07:51:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-int	ft_string_cmp(t_string *str, const char *cmp)
+int	ft_string_cmp(const t_string *str, const char *cmp)
 {
 	size_t	i;
 
@@ -28,7 +28,7 @@ int	ft_string_cmp(t_string *str, const char *cmp)
 	return (str->str[i]);
 }
 
-int	ft_string_ncmp(t_string *str, const char *cmp, size_t n)
+int	ft_string_ncmp(const t_string *str, const char *cmp, size_t n)
 {
 	size_t	i;
 
@@ -46,7 +46,7 @@ int	ft_string_ncmp(t_string *str, const char *cmp, size_t n)
 	return (0);
 }
 
-int	ft_string_cmpstr(t_string *str, t_string *cmp)
+int	ft_string_cmpstr(const t_string *str, const t_string *cmp)
 {
 	size_t	i;
 
@@ -66,7 +66,7 @@ int	ft_string_cmpstr(t_string *str, t_string *cmp)
 	return (0);
 }
 
-int	ft_string_ncmpstr(t_string *str, t_string *cmp, size_t n)
+int	ft_string_ncmpstr(const t_string *str, const t_string *cmp, size_t n)
 {
 	size_t	i;
 

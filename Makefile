@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/27 09:09:36 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/28 07:59:56 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -196,7 +196,6 @@ FT_STR_SRC	=	\
 			$(FT_STR_DIR)/ft_substr.c			\
 			$(FT_STR_DIR)/ft_utoa.c				\
 			$(FT_STR_DIR)/get_next_line.c		\
-			$(FT_STR_DIR)/get_next_line_utils.c
 
 FT_T_STRING_SRC	=	\
 			$(FT_T_STRING_DIR)/ft_string_append.c	\
