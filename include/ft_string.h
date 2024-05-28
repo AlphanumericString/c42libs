@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 09:08:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 23:10:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void		ft_bzero(void *s, size_t n);
 /// @param weight size of each element
 /// @return pointer to the allocated memory
 void		*ft_calloc(size_t nmemb, size_t weight);
+
+/// @brief 
+char		*ft_fd_to_buff(int fd);
 
 /// @brief allocate memory and copy the content of the source memory
 /// @param ptr pointer to the source memory.

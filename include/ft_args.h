@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 17:21:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:59:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			checker_arg(t_opt_type type, char *arg);
 ssize_t		parse_long_opt(char *str_op, const t_opt *opt_list);
 
 /* @file: src/ft_args/ft_setup_prog.c */
-void		ft_setup_prog(char **av);
+void		ft_setup_prog(const char *const *av);
 
 /* @file: src/ft_args/arg_err.c */
 int			arg_type_err(t_opt opt, char *arg);

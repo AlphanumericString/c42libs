@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_tests.c                                       :+:      :+:    :+:   */
+/*   tests_fd_to_buff.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 17:02:31 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 16:01:46 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/28 16:15:20 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/28 16:22:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "tests/tests.h"
-#include "tests/args_tests.h"
 
-int	parse_args_test(void)
+int	fd_to_buff_test(void)
 {
+	char *func_to_test = "fd_to_buff";
+	char buff[100];
+	char *ret;
+	int fd;
+
+	ft_bzero(buff, 100);
+	ft_strlcat(buff, "Hello World\n\n\n\n\tv\vjkldqskjfsldfjsmldfkj\n", 100);
+	fd = open_test_file(&func_to_test);
+	write(fd, buff, ft_strlen(buff));
+	close(fd);
+	fd = open_test_file(&func_to_test);
+	ret = fd_to_buff(fd);
+	if (ft_strcmp(ret, buff) != 0)
+		return (1);
+	close(fd);
 	return (0);
-}
-
-int	tests_args(void)
-{
-	int				collect;
-	const t_test	test[] = {
-	{"getset_version", getset_version_test}, {"getset_progname", \
-		getset_program_name_test}, {"getset_opt_list", getset_opt_list_test},
-	{"parse_args", parse_args_test}, {"setup_prog", tests_setup_prog},
-	{NULL, NULL}};
-
-	collect = 0;
-	run_test(test, &collect);
-	return (collect);
 }
