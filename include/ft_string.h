@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 07:59:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:08:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -452,7 +452,6 @@ char		*get_next_line(int fd);
 /*                        FT_STRING SUB MODULE                                */
 /* ************************************************************************** */
 
-
 /* ************************************************************************** */
 /* **                     ft_string_new                                    ** */
 /* ************************************************************************** */
@@ -708,8 +707,8 @@ int			ft_string_cmpstr(const t_string *str, const t_string *cmp);
 /// @param n number of chars to compare
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-int			ft_string_ncmpstr(const t_string *str, const t_string *cmp, 
-					size_t n);
+int			ft_string_ncmpstr(const t_string *str, const t_string *cmp, size_t \
+			n);
 
 /* ************************************************************************** */
 /* **                     ft_string_get                                    ** */

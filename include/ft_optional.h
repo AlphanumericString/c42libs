@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:07:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/27 09:41:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:06:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_OPTIONAL_H
 # define FT_OPTIONAL_H
 
-#include "ft_defs.h"
+# include "ft_defs.h"
 # include "ft_optional_types.h"
 # include <stdbool.h>
 

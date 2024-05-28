@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:28:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/27 09:37:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:11:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 int	test_optional_chain(void)
 {
-	t_optional		opt;
-	bool			ret;
-	t_data_tr_i		function_list[3] = {
-	add_4,
-	add_4,
-	NULL
+	t_optional				opt;
+	bool					ret;
+	const t_data_tr_i		function_list[3] = {
+		add_4,
+		add_4,
+		NULL
 	};
 
 	opt.pres = OPT_SOME;

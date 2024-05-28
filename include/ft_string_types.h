@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:54:48 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 07:56:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:08:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STRING_STRUCT_H
-# define FT_STRING_STRUCT_H
+#ifndef FT_STRING_TYPES_H
+# define FT_STRING_TYPES_H
 
 # include <stddef.h>
 # ifndef MAX_FD
@@ -41,4 +41,4 @@ typedef struct s_string
 	size_t	capacity;
 }			t_string;
 
-#endif // FT_STRING_STRUCT_H
+#endif /* FT_STRING_TYPES_H */

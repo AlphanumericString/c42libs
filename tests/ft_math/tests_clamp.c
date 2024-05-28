@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:46:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/27 02:14:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:12:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	test_ft_clamp_f(void)
 {
 	const float	max = 42.0;
 	const float	min = 21.0;
-	float			x;
+	float		x;
 
 	x = 0;
 	if (ft_clamp_f(x, min, max) != min)
