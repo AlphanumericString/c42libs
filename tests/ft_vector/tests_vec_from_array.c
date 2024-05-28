@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:19:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 21:16:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/28 08:04:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	checks_02(t_vector *vec, void **data)
 	return (0);
 }
 
-// TODO: test_vec_from_array with bigger array to test the cappacity when
-// 		it's bigger than FT_VECTOR_BASE_LEN
 int	test_vec_from_array(void)
 {
 	void		*data[3];
