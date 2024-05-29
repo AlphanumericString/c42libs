@@ -6,27 +6,37 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:05:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 16:12:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:31:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "tests/tests_lambda_functions.h"
+#include <stdio.h>
 
-int	apply_2d_tests(void)
+static void	to_a(void *ptr)
 {
-	char	*arr2d[3];
+	char	*sptr;
+
+	sptr = (char *)ptr;
+	while (*sptr)
+	{
+		*sptr = 'a';
+		sptr++;
+	}
+}
+
+int	test_apply_2d(void)
+{
+	char	*arr2d[4];
 	size_t	i;
 
 	i = 0;
 	while (i < 3)
-	{
-		arr2d[i] = (void *)42 + i;
-		i++;
-	}
-	ft_apply_2d((void **)arr2d, add42);
-	if (arr2d[0] != (void *)42 || arr2d[1] != (void *)43 || arr2d[2] != \
-	(void *)44)
+		arr2d[i++] = ft_strdup("Hello World");
+	arr2d[i] = NULL;
+	ft_apply_2d((void **)arr2d, to_a);
+	if (ft_strcmp(arr2d[0], "aaaaaaaaaaa") != 0 || ft_strcmp(arr2d[1],
+			"aaaaaaaaaaa") != 0 || ft_strcmp(arr2d[2], "aaaaaaaaaaa") != 0)
 		return (1);
-	return (0);
+	return (ft_apply_2d((void **)arr2d, free), 0);
 }

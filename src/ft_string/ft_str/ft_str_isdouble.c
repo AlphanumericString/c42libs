@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:42:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 17:48:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:06:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-int	ft_str_isdouble(char *str)
+bool	ft_str_isdouble(char *str)
 {
 	return (ft_str_isfloat(str));
 }

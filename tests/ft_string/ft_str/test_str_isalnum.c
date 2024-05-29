@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isint.c                                     :+:      :+:    :+:   */
+/*   test_str_isalnum.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:47:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:47:11 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/29 15:16:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
 #include "ft_string.h"
-#include <stdbool.h>
 
-// 0 success, !0 failure
-bool	ft_str_isint(char *str)
+int	test_str_isalnum(void)
 {
-	size_t	i;
-
-	i = 0;
-	if (str[i] == '-')
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (false);
-		i++;
-	}
-	if ((i == 10 && ft_strcmp(str, "2147483647") > 0) || (i == 11
-			&& ft_strcmp(str, "-2147483648") > 0) || i > 11)
-		return (false);
-	if (i == 0 || (i == 1 && (str[0] == '-')))
-		return (false);
-	return (true);
+	if (ft_str_isalnum("HelloWorld42") != 1)
+		return (1);
+	if (ft_str_isalnum("Hello World42") != 0)
+		return (2);
+	if (ft_str_isalnum("Hello21World!") != 0)
+		return (3);
+	if (ft_str_isalnum("Hello420BlazeIt.") != 0)
+		return (4);
+	if (ft_str_isalnum("HelloWorld696969\0") != 1)
+		return (5);
+	if (ft_str_isalnum("") != 0)
+		return (6);
+	return (0);
 }

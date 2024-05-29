@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:50:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 17:49:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:08:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_string.h"
 #include "ft_char.h"
 
-int	ft_str_islong(char *str)
+bool	ft_str_islong(char *str)
 {
 	size_t	i;
 
@@ -30,6 +30,8 @@ int	ft_str_islong(char *str)
 	}
 	if ((i == 19 && ft_strcmp(str, "9223372036854775807") > 0) || (i == 20
 			&& ft_strcmp(str, "-9223372036854775808") > 0) || i > 20)
+		return (false);
+	if (i == 0 || (i == 1 && (str[0] == '-')))
 		return (false);
 	return (true);
 }

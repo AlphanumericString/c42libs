@@ -6,23 +6,15 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:39:43 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 17:47:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:35:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_char.h"
+#include "ft_string.h"
 #include <stdbool.h>
 
 bool	ft_str_isdigit(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
+	return (ft_str_isvalid(str, ft_isdigit));
 }

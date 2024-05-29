@@ -6,15 +6,17 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 23:10:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:27:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRING_H
 # define FT_STRING_H
 
+// sys types
 # include <stddef.h>
-
+# include <stdbool.h>
+// self types
 # include "ft_string_types.h"
 
 // malloc + free
@@ -63,8 +65,10 @@ void		*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld);
 void		ft_free(void **ptr);
 
 /// @brief free the memory
-/// @param arr pointer to the memory to free (set to NULL after)
+/// @param arr pointer to the 2d array to free.
 /// @return void
+/// @note the array is not set to NULL after as memory is freed and no longer
+/// valid to write to.
 void		ft_free_2d(void **arr);
 
 /// @brief return the length of the 2d array
@@ -387,53 +391,77 @@ char		*ft_str_replace_chr(char *str, char to_replace, char replace_by);
 /// const char pointed to by args
 const char	*ft_shift_args(const char **args[], int *index);
 
+/// @brief Checks if the string str is composed only of alphabetical characters
+/// @param str string to check
+/// @return true if the string is composed only of alphabetical characters, 
+/// false otherwise
+bool		ft_str_isalpha(char *str);
+
+/// @brief Checks if the string str is composed only of alphabetical and
+/// numerical characters
+/// @param str string to check
+/// @return true if the string is composed only of alphabetical and numerical
+/// characters, false otherwise
+bool		ft_str_isalnum(char *str);
+
+/// @brief Checks if the string str is comprised of only numbers.
+bool		ft_str_isnum(char *str);
+
+/// @brief Checks if the string str is a valid boolean value ("false" || 
+/// "true" || "0" || "1")
+/// @param str string to check
+/// @return true if it ;atches with any of the following: "false" "0" "true" "1"
+///  false otherwise
+bool		ft_str_isbool(char *str);
+
+/// @brief Checks if the string str is composed only of numerical characters
+/// @param str string to check
+/// @return true if the string is composed only of numerical characters, false
+/// otherwise
+bool		ft_str_isdigit(char *str);
+
 /// @brief Check if the string is a float
 /// @param str string to check
 /// @return 1 if the string is a float, 0 otherwise
 /// @file: src/ft_string/ft_char/ft_isfloat.c
-int			ft_str_isfloat(char *str);
+bool		ft_str_isfloat(char *str);
 
 /// @brief Check if the string is a float
 /// @param str string to check
 /// @return 1 if the string is a float, 0 otherwise
 /// @file: src/ft_string/ft_char/ft_isdouble.c
-int			ft_str_isdouble(char *str);
+bool		ft_str_isdouble(char *str);
 
 /// @brief Check if the string is an int valid value
 /// @param str string to check
 /// @return 1 if the string is an int, 0 otherwise
 /// @file: src/ft_string/ft_char/ft_isint.c
-int			ft_str_isint(char *str);
+bool		ft_str_isint(char *str);
 
 /// @brief Check if the string is a long
 /// @param str string to check
 ///	@return 1 if the string is a number, 0 otherwise
 ///	@file: src/ft_string/ft_char/ft_islong.c
-int			ft_str_islong(char *str);
-
-/// @brief Check if the string is a boolean value
-/// @param str string to check
-/// @return 1 if the string is a boolean value, 0 otherwise
-/// @file: src/ft_string/ft_char/ft_isbool.c
-int			ft_str_isbool(char *str);
+bool		ft_str_islong(char *str);
 
 /// @brief check if the string is a hex character
 /// @param c char to check
 /// @return 1 if the char is a hex character, 0 otherwise
 /// @file: src/ft_string/ft_char/ft_ishex.c
-int			ft_str_ishex(char *str);
+bool		ft_str_ishex(char *str);
 
 /// @brief check if the string is an octal number
 /// @param str string to check
 /// @return 1 if the string is an octal number, 0 otherwise
-int			ft_str_isoct(char *str);
+bool		ft_str_isoct(char *str);
 
 /// @brief Check if the string is valid using a function pointer
 /// @param str string to check
-/// @param f function pointer to check the string
+/// @param f function pointer to check the string (takes a char c as int 
+///		and returns 0 if the char is invalid)
 /// @return 1 if the string is valid, 0 otherwise
 /// @file: src/ft_string/ft_char/ft_isvalid.c
-int			ft_str_isvalid(char *str, int (*f)(int));
+bool		ft_str_isvalid(char *str, int (*f)(int));
 
 /* ************************************************************************** */
 /*                        FT_GNL SUB MODULE                                   */

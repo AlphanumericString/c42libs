@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:46:22 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 18:52:56 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:07:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_char.h"
 #include "ft_string.h"
 
-int	ft_str_ishex(char *str)
+bool	ft_str_ishex(char *str)
 {
 	if (!str)
 		return (0);

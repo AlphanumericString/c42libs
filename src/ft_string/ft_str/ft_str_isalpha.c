@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:55:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 17:44:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:05:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ bool	ft_str_isalpha(char *str)
 			return (false);
 		i++;
 	}
+	if (i == 0)
+		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:28:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 16:18:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:02:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,24 @@ int	test_split(void);
 /// @brief test_strchr
 /// @file: tests/ft_string/ft_str/test_strchr.c
 int	test_strchr(void);
+
+/// @brief test_str_isbool
+/// @file: tests/ft_string/ft_str/test_str_isbool.c
+int	test_str_isbool(void);
+
+/// @brief test_str_isalpha
+/// @file: tests/ft_string/ft_str/test_str_isalpha.c
+int	test_str_isalpha(void);
+
+int	test_str_isdouble(void);
+int	test_str_isalnum(void);
+int	test_str_isdigit(void);
+int	test_str_ishex(void);
+int	test_str_isfloat(void);
+int	test_str_isint(void);
+int	test_str_islong(void);
+int	test_str_isnum(void);
+int	test_str_isoct(void);
+int	test_str_isvalid(void);
 
 #endif /* STR__STR_TESTS_H */

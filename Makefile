@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/28 16:04:03 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/29 23:57:19 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,7 +160,7 @@ FT_STR_SRC	=	\
 			$(FT_STR_DIR)/ft_split.c			\
 			$(FT_STR_DIR)/ft_splits.c			\
 			$(FT_STR_DIR)/ft_str_isalpha.c		\
-			$(FT_STR_DIR)/ft_str_isalphanum.c	\
+			$(FT_STR_DIR)/ft_str_isalnum.c		\
 			$(FT_STR_DIR)/ft_str_isbool.c		\
 			$(FT_STR_DIR)/ft_str_isdigit.c		\
 			$(FT_STR_DIR)/ft_str_isfloat.c		\
@@ -391,9 +391,13 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_char/tests_toupper.c		\
 			$(TESTS_DIR)/ft_string/ft_char/ft_char_tests.c		\
 			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_apply_2d.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_bzero.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_calloc.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_fd_to_buff.c	\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_free.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_free_2d.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_len_2d.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memchr.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memcmp.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memcpy.c		\
@@ -416,6 +420,18 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/test_shift_args.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_split.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_splits.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isalpha.c		\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isalnum.c		\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isdouble.c		\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isdigit.c		\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isbool.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isfloat.c		\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_ishex.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isint.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_islong.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isnum.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isoct.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_str_isvalid.c		\
 			$(TESTS_DIR)/ft_string/ft_str/test_strchr.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_strcmp.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_strdup.c				\
