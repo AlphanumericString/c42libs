@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:27:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:42:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,12 +247,21 @@ char		*ft_strdup(const char *strsrc);
 /// string s.
 void		ft_striteri(char *s, void (*f)(unsigned int, char *));
 
-/// @brief Add up two strings s1 and s2 and return the result
-/// @param s1 String to add
-/// @param s2 String to add
-/// @return The result of the addition of the two strings
-/// @note You must free the returned string
+/// @brief	Add up two strings s1 and s2 and return the result
+/// @param	s1 String to add
+/// @param	s2 String to add
+/// @return	The result of the addition of the two strings
+/// @note	You must free the returned string
 char		*ft_strjoin(char const *s1, char const *s2);
+
+/// @brief	Add up a char c at the end of a pre-existing and allocated string
+/// @param	str String to append to
+/// @param	c Char to append
+/// @return The new memory segment pointed by *str or null if re-allocation
+///	failed
+///	@note	You must free the returned string
+///	@note	Do no use this method to add two string, please use strjoin instead
+char		*ft_strappend_c(char **str, char c);
 
 /// @brief copy up to size - 1 characters from the NULL-terminated string src
 /// to dst, NULL-terminating the result.
@@ -280,6 +289,33 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 /// @param str String to get the length of
 /// @return the length of the string str
 size_t		ft_strlen(const char *str);
+
+/// @brief Get the length of the string str up to the first occurence of c
+/// @param str String to get the length of
+/// @param c Char to search
+/// @return the length of the string str up to the first c, if c is not found
+/// the length of the string str
+size_t		ft_strclen(char *str, char c);
+
+/// @brief Get the number of occurance of char c in string str
+/// @param str String to search from
+/// @param c Char to search
+/// @return the number of occurance of char c in string str
+size_t		ft_strcnb(char *str, char c);
+
+/// @brief Calculate the length of the starting segment of str that contain 
+/// char from the accept string
+/// @param str String to search from
+/// @param accept String of the valid char
+/// @return The calculated length.
+size_t		ft_strspn(const char *str, const char *accept);
+
+/// @brief Calculate the length of the starting segment of str that don't
+/// contain chars from the exclude string
+/// @param str String to search from
+/// @param exclude String of char to exclude
+/// @return The calculated length.
+size_t		ft_strcspn(const char *str, const char *exclude);
 
 /// @brief Execute the function f on each char of the string s
 /// @param s String to iterate over

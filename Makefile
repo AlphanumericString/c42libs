@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/29 23:57:19 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/30 11:39:29 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -190,6 +190,7 @@ FT_STR_SRC	=	\
 			$(FT_STR_DIR)/ft_strndup.c			\
 			$(FT_STR_DIR)/ft_strnstr.c			\
 			$(FT_STR_DIR)/ft_strrchr.c			\
+			$(FT_STR_DIR)/ft_strspn.c			\
 			$(FT_STR_DIR)/ft_strstart_with.c	\
 			$(FT_STR_DIR)/ft_strtok.c			\
 			$(FT_STR_DIR)/ft_strtrim.c			\
@@ -433,8 +434,12 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/test_str_isoct.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_str_isvalid.c		\
 			$(TESTS_DIR)/ft_string/ft_str/test_strchr.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strclen.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_strcmp.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strcnb.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strcspn.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_strdup.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strend_with.c		\
 			$(TESTS_DIR)/ft_string/ft_str/test_striteri.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_strjoin.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_strlcat.c			\
@@ -445,8 +450,11 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/test_strndup.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_strnstr.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_strrchr.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strspn.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_strstart_with.c		\
 			$(TESTS_DIR)/ft_string/ft_str/test_str_replace.c		\
 			$(TESTS_DIR)/ft_string/ft_str/test_str_replace_chr.c	\
+			$(TESTS_DIR)/ft_string/ft_str/test_strappend_c.c		\
 			$(TESTS_DIR)/ft_string/ft_str/test_strtok.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_strtrim.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_substr.c				\
@@ -492,6 +500,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tests_vec_filter.c			\
 			$(TESTS_DIR)/ft_vector/tests_vec_from_array.c		\
 			$(TESTS_DIR)/ft_vector/tests_vec_from_size.c		\
+			$(TESTS_DIR)/ft_vector/tests_vec_get.c				\
 			$(TESTS_DIR)/ft_vector/tests_vec_map.c				\
 			$(TESTS_DIR)/ft_vector/tests_vec_new.c				\
 			$(TESTS_DIR)/ft_vector/tests_vec_remove.c			\
@@ -502,6 +511,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tests_vec_shrink.c			\
 			$(TESTS_DIR)/ft_vector/tests_vec_sort.c				\
 			$(TESTS_DIR)/ft_vector/tests_vec_swap.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_to_array.c			\
 			$(TESTS_DIR)/ft_vector/vector_tests.c				\
 			\
 			$(TESTS_DIR)/main_tests.c							\

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:39:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:30:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:08:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		test_optional_new(void);
 int		test_optional_dup(void);
 
 /* @file: tests/ft_optional/test_optional_copy.c */
-int		optional_copy(void);
+int		test_optional_copy(void);
 
 /* @file: tests/ft_optional/test_optional_unwrap.c */
 int		test_optional_unwrap(void);

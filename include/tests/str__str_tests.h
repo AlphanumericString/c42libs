@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:28:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:02:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:42:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,6 @@ int	test_str_isbool(void);
 /// @brief test_str_isalpha
 /// @file: tests/ft_string/ft_str/test_str_isalpha.c
 int	test_str_isalpha(void);
-
 int	test_str_isdouble(void);
 int	test_str_isalnum(void);
 int	test_str_isdigit(void);
@@ -159,5 +158,12 @@ int	test_str_islong(void);
 int	test_str_isnum(void);
 int	test_str_isoct(void);
 int	test_str_isvalid(void);
+int	test_strclen(void);
+int	test_strcnb(void);
+int	test_strcspn(void);
+int	test_strspn(void);
+int	test_strend_with(void);
+int	test_strstart_with(void);
+int	test_strappend_c(void);
 
 #endif /* STR__STR_TESTS_H */

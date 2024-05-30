@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 00:57:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 22:32:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:08:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	tests_optional(void)
 {
 	int				collect;
 	const t_test	test[] = {
-	{"optional_copy", optional_copy},
-	{"test_optional_new", test_optional_new},
-	{"test_optional_from_val", test_optional_from_val},
-	{"test_optional_dup", test_optional_dup},
-	{"test_optional_chain", test_optional_chain},
-	{"test_optional_map", test_optional_map},
-	{"test_optional_unwrap", test_optional_unwrap},
-	{"test_optional_destroy", test_optional_destroy},
+	{"copy", test_optional_copy},
+	{"new", test_optional_new},
+	{"from_val", test_optional_from_val},
+	{"dup", test_optional_dup},
+	{"chain", test_optional_chain},
+	{"map", test_optional_map},
+	{"unwrap", test_optional_unwrap},
+	{"destroy", test_optional_destroy},
 	{NULL, NULL}
 	};
 

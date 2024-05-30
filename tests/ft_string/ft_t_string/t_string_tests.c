@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 17:44:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:06:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ int	t_string_tests(void)
 {
 	int				sum;
 	const t_test	tests[] = {\
-	{"test_string_new", test_string_new}, {"test_string_from", \
-	test_string_from}, {"test_string_from_n", test_string_from_n}, \
-	{"test_string_from_c", test_string_from_c}, {"test_string_append", \
-	test_string_append}, {"test_string_append_n", test_string_append_n}, \
-	{"test_string_append_c", test_string_append_c}, {"test_string_append_s", \
-		test_string_append_s}, {"test_string_append_s_n", \
-		test_string_append_s_n}, {"test_string_clear", test_string_clear}, \
-	{"test_string_destroy", test_string_destroy}, {"test_string_insert", \
-		test_string_insert}, {"test_string_insert_n", test_string_insert_n}, \
-	{"test_string_insert_c", test_string_insert_c}, {"test_string_insert_s", \
-		test_string_insert_s}, {"test_string_insert_s_n", \
-		test_string_insert_s_n}, {"test_string_reserve", test_string_reserve}, \
-	{"test_string_resize", test_string_resize}, {"test_string_shrink", \
-		test_string_shrink}, {"test_string_substr", test_string_substr}, \
-	{"test_string_to_str", test_string_to_str}, {"test_string_trim", \
-		test_string_trim}, {"test_string_trim_chr", test_string_trim_chr}, \
-	{"test_string_trimstr", test_string_trimstr}, {"test_string_cmp", \
-		test_string_cmp}, {"test_string_cmp_n", test_string_cmp_n}, \
+	{"new", test_string_new}, {"from", \
+	test_string_from}, {"from_n", test_string_from_n}, \
+	{"from_c", test_string_from_c}, {"append", \
+	test_string_append}, {"append_n", test_string_append_n}, \
+	{"append_c", test_string_append_c}, {"append_s", \
+		test_string_append_s}, {"append_s_n", \
+		test_string_append_s_n}, {"clear", test_string_clear}, \
+	{"destroy", test_string_destroy}, {"insert", \
+		test_string_insert}, {"insert_n", test_string_insert_n}, \
+	{"insert_c", test_string_insert_c}, {"insert_s", \
+		test_string_insert_s}, {"insert_s_n", \
+		test_string_insert_s_n}, {"reserve", test_string_reserve}, \
+	{"resize", test_string_resize}, {"shrink", \
+		test_string_shrink}, {"substr", test_string_substr}, \
+	{"to_str", test_string_to_str}, {"trim", \
+		test_string_trim}, {"trim_chr", test_string_trim_chr}, \
+	{"trimstr", test_string_trimstr}, {"cmp", \
+		test_string_cmp}, {"cmp_n", test_string_cmp_n}, \
 	{NULL, NULL}
 	};
 

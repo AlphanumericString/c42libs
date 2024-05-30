@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_optional_copy.c                              :+:      :+:    :+:   */
+/*   test_strcnb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 22:29:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 12:08:07 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/30 10:47:58 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/30 10:48:30 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_optional.h"
-#include "ft_optional_types.h"
-#include <stdlib.h>
+#include "ft_string.h"
 
-int	test_optional_copy(void)
+int	test_strcnb(void)
 {
-	int			*ptr;
-	t_optional	opt_a;
-	t_optional	opt_b;
-
-	ptr = malloc(sizeof(int));
-	*ptr = 42;
-	opt_a.pres = OPT_SOME;
-	opt_a.val = ptr;
-	ft_optional_copy(&opt_b, &opt_a);
-	if (opt_b.pres != OPT_SOME)
+	if (ft_strcnb("Hello World", 'o') != 2)
 		return (1);
-	if (*(int *)opt_b.val != 42)
-		return (2);
-	free(ptr);
+	if (ft_strcnb("Hello World", 'z') != 0)
+		return (1);
+	if (ft_strcnb("Hello World", 'H') != 1)
+		return (1);
+	if (ft_strcnb("Hello World", 'd') != 1)
+		return (1);
+	if (ft_strcnb("Hello World", ' ') != 1)
+		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 09:02:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:37:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,17 @@ bool		ft_vec_destroy(t_vector **vec);
 /// @param del function to delete the elements filtered
 /// @return void
 void		ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del);
+
+// ft_vector/ft_vec_get.c
+
+/// @brief Get an element from the vector
+/// @param vector vector to get the element from
+/// @param key key to search for using the cmp function
+/// @param cmp function to compare the elements
+/// @return pointer to the element or NULL if not found
+/// @note If you want to get an element by index, use ft_vec_at
+void		*ft_vec_get(t_vector *vector, const void *key, \
+					int (*cmp)(const void *v_data, const void *key));
 
 // ft_vector/ft_vec_map.c
 
@@ -182,5 +193,13 @@ bool		ft_vec_shrink(t_vector *vec);
 /// @param b index of the second element
 /// @return void
 void		ft_vec_swap(t_vector *vec, size_t a, size_t b);
+
+// ft_vector/ft_vec_to_array.c
+
+/// @brief Convert a vector to an array
+/// @param vec pointer to the vector
+/// @return pointer to the array
+/// @note the array is allocated and must be freed but the vector is freed
+void		**ft_vec_to_array(t_vector **vec);
 
 #endif /* FT_VECTOR_H */

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:37:03 by iron              #+#    #+#             */
-/*   Updated: 2024/05/19 17:14:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:10:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@
 static const t_test	*init_tests(void)
 {
 	static const t_test	var[] = {
-	{"test_dlistadd_front", test_dlistadd_front}, {"test_dlistadd_back", \
-		test_dlistadd_back}, {"test_dlistapply", test_dlistapply}, {\
-		"test_dlistapply_range", test_dlistapply_range}, {\
-		"test_dlistapply_range_node", test_dlistapply_range_node}, {\
-		"test_dlistclear", test_dlistclear}, {"test_dlistclear_range", \
-		test_dlistclear_range}, {"test_dlistcreate", test_dlistcreate}, {\
-		"test_dlistcopy_node", test_dlistcopy_node}, {"test_dlistcopy_list", \
-		test_dlistcopy_list}, {"test_dlist_delete_self", \
-		test_dlist_delete_self}, {"test_dlistdelete_range", \
-		test_dlistdelete_range}, {"test_dlistdelete", test_dlistdelete}, \
-		{"test_dlistfind", test_dlistfind}, {"test_dlistget_datas", \
-		test_dlistget_datas}, {"test_dlistget_nodes", test_dlistget_nodes}, \
-		{"test_dlist_at", test_dlist_at}, {"test_dlist_begin", \
-		test_dlist_begin}, {"test_dlist_end", test_dlist_end}, {\
-		"test_dlist_map", test_dlist_map}, {"test_dlist_new", test_dlist_new}, \
-		{"test_dlist_pop", test_dlist_pop}, {"test_dlist_pop_back", \
-		test_dlist_pop_back}, {"test_dlist_push", test_dlist_push}, \
-		{"test_dlist_push_back", test_dlist_push_back}, {"test_dlist_rev", \
-		test_dlist_rev}, {"test_dlist_size", test_dlist_size}, {\
-		"test_dlist_size_of_data", test_dlist_size_of_data}, {\
-		"test_dlist_subrange", test_dlist_subrange}, {NULL, NULL}};
+	{"add_front", test_dlistadd_front}, {"add_back", \
+		test_dlistadd_back}, {"apply", test_dlistapply}, {\
+		"apply_range", test_dlistapply_range}, {\
+		"apply_range_node", test_dlistapply_range_node}, {\
+		"clear", test_dlistclear}, {"clear_range", \
+		test_dlistclear_range}, {"create", test_dlistcreate}, {\
+		"copy_node", test_dlistcopy_node}, {"copy_list", \
+		test_dlistcopy_list}, {"delete_self", \
+		test_dlist_delete_self}, {"delete_range", \
+		test_dlistdelete_range}, {"delete", test_dlistdelete}, \
+		{"find", test_dlistfind}, {"get_datas", \
+		test_dlistget_datas}, {"get_nodes", test_dlistget_nodes}, \
+		{"at", test_dlist_at}, {"begin", \
+		test_dlist_begin}, {"end", test_dlist_end}, {\
+		"map", test_dlist_map}, {"new", test_dlist_new}, \
+		{"pop", test_dlist_pop}, {"pop_back", \
+		test_dlist_pop_back}, {"push", test_dlist_push}, \
+		{"push_back", test_dlist_push_back}, {"rev", \
+		test_dlist_rev}, {"size", test_dlist_size}, {\
+		"size_of_data", test_dlist_size_of_data}, {\
+		"subrange", test_dlist_subrange}, {NULL, NULL}};
 
 	return (var);
 }

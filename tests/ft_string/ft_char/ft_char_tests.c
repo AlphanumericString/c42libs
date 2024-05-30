@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:31:03 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 16:35:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:07:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	char_tests(void)
 {
 	int				i;
 	const t_test	tests[] = {
-	{"ft_isalnum", test_ft_isalnum}, {"ft_isalpha", test_ft_isalpha},
-	{"ft_isascii", test_ft_isascii}, {"ft_isdigit",	test_ft_isdigit},
-	{"ft_isprint", test_ft_isprint}, {"ft_tolower", test_ft_tolower},
-	{"ft_toupper", test_ft_toupper}, {"ft_isalnum",	test_ft_isalnum},
-	{"ft_putchar", test_ft_putchar}, {"ft_ishexdigit", test_ft_ishexdigit},
-	{"ft_isoctdigit", test_ft_isoctdigit}, {"ft_isspace", test_ft_isspace},
+	{"isalnum", test_ft_isalnum}, {"isalpha", test_ft_isalpha},
+	{"isascii", test_ft_isascii}, {"isdigit",	test_ft_isdigit},
+	{"isprint", test_ft_isprint}, {"tolower", test_ft_tolower},
+	{"toupper", test_ft_toupper}, {"isalnum",	test_ft_isalnum},
+	{"putchar", test_ft_putchar}, {"ishexdigit", test_ft_ishexdigit},
+	{"isoctdigit", test_ft_isoctdigit}, {"isspace", test_ft_isspace},
 	{NULL, NULL}
 	};
 

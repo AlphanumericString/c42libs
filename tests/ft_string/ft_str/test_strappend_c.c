@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_optional_copy.c                              :+:      :+:    :+:   */
+/*   test_strappend.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 22:29:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 12:08:07 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:12:40 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/30 11:19:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_optional.h"
-#include "ft_optional_types.h"
-#include <stdlib.h>
+#include "ft_string.h"
 
-int	test_optional_copy(void)
+int	test_strappend_c(void)
 {
-	int			*ptr;
-	t_optional	opt_a;
-	t_optional	opt_b;
+	char	*str;
 
-	ptr = malloc(sizeof(int));
-	*ptr = 42;
-	opt_a.pres = OPT_SOME;
-	opt_a.val = ptr;
-	ft_optional_copy(&opt_b, &opt_a);
-	if (opt_b.pres != OPT_SOME)
+	str = ft_strdup("Hello");
+	if (!str)
 		return (1);
-	if (*(int *)opt_b.val != 42)
+	if (ft_strappend_c(&str, ' ') == 0)
 		return (2);
-	free(ptr);
+	if (ft_strcmp(str, "Hello ") != 0)
+		return (3);
+	if (ft_strappend_c(&str, 'W') == 0)
+		return (4);
+	if (ft_strcmp(str, "Hello W") != 0)
+		return (5);
+	free(str);
 	return (0);
 }
