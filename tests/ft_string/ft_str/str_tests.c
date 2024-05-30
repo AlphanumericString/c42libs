@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:55:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 10:39:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static const t_test	*load_tests(void)
 {
-	static t_test tb[] = {{"putstr", test_putstr}, {"putendl", test_putendl},
+	static t_test	tb[] = {{"putstr", test_putstr}, {"putendl", test_putendl},
 	{"putnbr", test_putnbr}, {"itoa", test_itoa}, {"utoa", test_utoa}, \
 	{"itoa_base", test_itoa_base}, {"atoi", test_atoi}, {"atoi_base", \
 	test_atoi_base}, {"strtok", test_strtok}, {"split", test_split},
