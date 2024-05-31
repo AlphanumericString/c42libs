@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/23 23:11:59 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:51:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stddef.h>
 # include "ft_math_types.h"
+
+/* ************************************************************************** */
+/*                                    MATH                                    */
+/* ************************************************************************** */
 
 /// @brief return the logaritm of the number in the specified base
 /// @param nbr number to get the logaritm

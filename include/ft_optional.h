@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:07:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 09:06:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:51:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include "ft_defs.h"
 # include "ft_optional_types.h"
 # include <stdbool.h>
+
+/* ************************************************************************** */
+/*                                  OPTIONAL                                  */
+/* ************************************************************************** */
 
 /// @brief Create a new empty optional
 /// @return The new optional

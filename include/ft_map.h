@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 12:44:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:50:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_map		*ft_map_create(size_t capacity);
 /// @file ft_map/ft_map_destroy.c
 /// @return void
 void		ft_map_destroy(t_map *map);
+
 /// @brief Destroy a map and free the data
 /// @param map map to destroy
 /// @param free_data function to free the data in the map
@@ -54,12 +55,14 @@ void		ft_map_clear(t_map *map);
 /// created
 int			ft_map_set(t_map *map, const void *key, const void *value,
 				size_t size);
+
 /// @brief Set the compare function of a map
 /// @param map map to set the compare function
 /// @param cmp compare function newly set
 /// @file ft_map/ft_map_set.c
 /// @return void
-void		ft_map_set_cmp(t_map *map, t_anycmp cmp);
+void		ft_map_set_cmp(t_map *map, t_data_cmp cmp);
+
 /// @brief Set the hash function of a map
 /// @param map map to set the hash function
 /// @param hash hash function newly set

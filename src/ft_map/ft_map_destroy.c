@@ -6,50 +6,52 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:32:38 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/04/21 17:48:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:21:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include "ft_list.h"
 #include "ft_map.h"
+#include "ft_vector.h"
 #include <stdlib.h>
 
-static t_data_apply	singleton_freedata_ptr(t_data_apply ptr)
+t_data_apply singleton_custom_destroy(t_data_apply custom_destroy)
 {
-	static t_data_apply	singleton = NULL;
+	static t_data_apply f_ptr = NULL;
 
-	if (ptr)
-		singleton = ptr;
-	return (singleton);
+	if (custom_destroy)
+		f_ptr = custom_destroy;
+	return (f_ptr);
 }
 
-static void	destroy_node(void *data)
+static void wrapper_destroy(void *data)
 {
-	t_map_node		*map_node;
-	t_data_apply	del;
+	t_data_apply	destroy = singleton_custom_destroy(NULL);
+	t_list			*node = (t_list *)data;
+	t_map_node		*map_node = (t_map_node *)node->data;
 
-	del = singleton_freedata_ptr(NULL);
-	map_node = (t_map_node *)data;
-	if (map_node && map_node->used && del)
-		del(map_node);
+	if (destroy)
+		(*destroy)(map_node->data);
+	free(map_node);
+	free(node);
 }
 
 void	ft_map_destroy(t_map *map)
 {
-	free(map->nodes);
-	free(map);
+	ft_map_destroy_free(map, NULL);
 }
 
-void	ft_map_destroy_free(t_map *map, void (*free_data)(void *))
+void	ft_map_destroy_free(t_map *map, t_data_apply free_fun)
 {
 	size_t	i;
 
+	singleton_custom_destroy(free_fun);
 	i = 0;
-	singleton_freedata_ptr(free_data);
-	while (i < map->capacity)
-	{
-		ft_listapply(&map->nodes[i], destroy_node);
-		i++;
-	}
+	while (i < map->size)
+		ft_listapply(map->nodes[i++], wrapper_destroy);
 	ft_map_destroy(map);
+	free(map->nodes);
+	ft_vec_destroy(&map->reserved_nodes);
+	free(map);
 }
