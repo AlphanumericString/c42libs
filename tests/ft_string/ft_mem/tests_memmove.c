@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:21:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 12:21:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:57:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	test_memmove(void)
 	char		str2[10];
 	const char	str3[] = "1234567\0009";
 
-	ft_strlcat(str, "123456789", 10);
-	ft_strlcat(str2, "123456789", 10);
+	ft_strlcpy(str, "123456789", 10);
+	ft_strlcpy(str2, "123456789", 10);
 	ft_memmove(str, "abc", 10);
 	memmove(str2, "abc", 10);
 	if (memcmp(str, str2, 10) != 0)

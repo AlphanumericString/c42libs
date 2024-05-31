@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:22:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 12:22:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:56:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	test_memcpy(void)
 	char		str2[10];
 	const char	str3[] = "1234567\0009";
 
-	ft_strlcat(str, "123456789", 10);
-	ft_strlcat(str2, "123456789", 10);
+	ft_strlcpy(str, "123456789", 10);
+	ft_strlcpy(str2, "123456789", 10);
 	ft_memcpy(str, "abc", 10);
 	memcpy(str2, "abc", 10);
 	if (memcmp(str, str2, 10) != 0)

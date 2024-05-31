@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:48:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:01:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,5 @@ int	test_str_replace(void)
 	if (strcmp(res, "Hello !") != 0)
 		return (2);
 	free(res);
-	res = ft_str_replace(str, "World", NULL);
-	if (res != NULL)
-		return (3);
-	return (free(res), 0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:15:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:54:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:53:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	test_fd_to_buff(void)
 	if (ft_strcmp(ret, buff) != 0)
 		return (1);
 	destroy_test_file(fd, TESTS_FPREFIX "test_fd_to_buff.txt");
+	free(ret);
 	return (0);
 }

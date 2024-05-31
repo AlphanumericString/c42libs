@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 21:12:30 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 13:20:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -544,13 +544,26 @@ t_string	*ft_string_from(const char *str);
 ///  -> "123"
 /// @return a pointer to the new t_string
 /// @note You must free the returned string with ft_string_destroy
-t_string	*ft_string_from_n(char *str, size_t n);
+t_string	*ft_string_from_n(const char *str, size_t n);
 
 /// @brief create a new t_string from the char c
 /// @param c char to copy from
 /// @return a pointer to the new t_string
 /// @note You must free the returned string with ft_string_destroy
 t_string	*ft_string_from_c(char c);
+
+/// @brief create a new t_string from the t_string str
+/// @param str t_string to copy from
+/// @return a pointer to the new t_string
+/// @note You must free the returned string with ft_string_destroy
+t_string	*ft_string_from_s(const t_string *str);
+
+/// @brief create a new t_string from the t_string str using at most n chars
+/// @param str t_string to copy from
+/// @param n number of chars to copy
+/// @return a pointer to the new t_string created
+/// @note You must free the returned string with ft_string_destroy
+t_string	*ft_string_from_s_n(const t_string *str, size_t n);
 
 /* ************************************************************************** */
 /* **                     ft_string_put                                    ** */
@@ -808,7 +821,8 @@ int			ft_string_set(t_string *str, const char *src);
 /// string src
 /// @param str t_string to modify
 /// @param src string to copy from
-/// @param n number of chars to set
+/// @param n number of chars to set (including the '\0') "1234" with n = 3
+/// -> "123"
 /// @return 1 if the string has been set otherwise 0
 int			ft_string_set_n(t_string *str, const char *src, size_t n);
 
@@ -823,10 +837,10 @@ int			ft_string_set_inplace(t_string *str, char *src);
 /* **                     ft_string_chr                                    ** */
 /* ************************************************************************** */
 //// TODO: add doc
-size_t		ft_string_offset(t_string *str, char c);
-size_t		ft_string_roffset(t_string *str, char c);
-char		*ft_string_chr(t_string *str, char c);
-char		*ft_string_rchr(t_string *str, char c);
+ssize_t		ft_string_offset(const t_string *str, char c);
+ssize_t		ft_string_roffset(const t_string *str, char c);
+char		*ft_string_chr(const t_string *str, char c);
+char		*ft_string_rchr(const t_string *str, char c);
 
 /* ************************************************************************** */
 /* **                     ft_string_replace                                ** */

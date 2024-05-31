@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:22:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 12:22:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:59:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	test_memchr(void)
 {
 	char	str[10];
 
-	ft_strlcat(str, "1234567\0009", 10);
+	ft_strlcpy(str, "1234567", 10);
+	ft_strlcat(str, "890", 10);
 	if (ft_memchr(str, '1', 10) != memchr(str, '1', 10))
 		return (1);
 	if (ft_memchr(str, '5', 10) != memchr(str, '5', 10))

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:22:33 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 15:40:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:11:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_string_insert(t_string *str, char *insert, size_t index)
 	char	*new_str;
 
 	insert_len = ft_strlen(insert);
+	if (index > str->length)
+		index = str->length;
 	new_len = str->length + insert_len;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (new_str == NULL)
@@ -29,8 +31,10 @@ int	ft_string_insert(t_string *str, char *insert, size_t index)
 		- index);
 	ft_free((void **)&str->str);
 	str->str = new_str;
+	if (index == str->length)
+		str->str[new_len] = '\0';
 	str->length = new_len;
-	str->capacity = new_len + 1;
+	str->capacity += insert_len + 1;
 	return (1);
 }
 
@@ -39,6 +43,8 @@ int	ft_string_insert_n(t_string *str, char *insert, size_t index, size_t n)
 	size_t	new_len;
 	char	*new_str;
 
+	if (index > str->length)
+		index = str->length;
 	new_len = str->length + n;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (new_str == NULL)
@@ -48,6 +54,8 @@ int	ft_string_insert_n(t_string *str, char *insert, size_t index, size_t n)
 	ft_memcpy(new_str + index + n, str->str + index, str->length - index);
 	ft_free((void **)&str->str);
 	str->str = new_str;
+	if (index == str->length)
+		str->str[new_len] = '\0';
 	str->length = new_len;
 	str->capacity = new_len + 1;
 	return (1);
@@ -58,6 +66,8 @@ int	ft_string_insert_c(t_string *str, char insert, size_t index)
 	size_t	new_len;
 	char	*new_str;
 
+	if (index > str->length)
+		index = str->length;
 	new_len = str->length + 1;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (new_str == NULL)
@@ -67,6 +77,8 @@ int	ft_string_insert_c(t_string *str, char insert, size_t index)
 	ft_memcpy(new_str + index + 1, str->str + index, str->length - index);
 	ft_free((void **)&str->str);
 	str->str = new_str;
+	if (index == str->length)
+		str->str[new_len] = '\0';
 	str->length = new_len;
 	str->capacity = new_len + 1;
 	return (1);
@@ -77,6 +89,8 @@ int	ft_string_insert_s(t_string *str, t_string *insert, size_t index)
 	size_t	new_len;
 	char	*new_str;
 
+	if (index > str->length)
+		index = str->length;
 	new_len = str->length + insert->length;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (new_str == NULL)
@@ -87,6 +101,8 @@ int	ft_string_insert_s(t_string *str, t_string *insert, size_t index)
 		- index);
 	ft_free((void **)&str->str);
 	str->str = new_str;
+	if (index == str->length)
+		str->str[new_len] = '\0';
 	str->length = new_len;
 	str->capacity = new_len + 1;
 	return (1);
@@ -98,6 +114,8 @@ int	ft_string_insert_s_n(t_string *str, t_string *insert, size_t index,
 	size_t	new_len;
 	char	*new_str;
 
+	if (index > str->length)
+		index = str->length;
 	new_len = str->length + n;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (new_str == NULL)
@@ -107,6 +125,8 @@ int	ft_string_insert_s_n(t_string *str, t_string *insert, size_t index,
 	ft_memcpy(new_str + index + n, str->str + index, str->length - index);
 	ft_free((void **)&str->str);
 	str->str = new_str;
+	if (index == str->length)
+		str->str[new_len] = '\0';
 	str->length = new_len;
 	str->capacity = new_len + 1;
 	return (1);

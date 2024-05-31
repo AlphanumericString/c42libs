@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:21:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 12:21:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:57:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	test_memset(void)
 	char	str[10];
 	char	str2[10];
 
-	ft_strlcat(str, "123456789", 10);
-	ft_strlcat(str2, "123456789", 10);
+	ft_strlcpy(str, "123456789", 10);
+	ft_strlcpy(str2, "123456789", 10);
 	ft_memset(str, 'a', 10);
 	memset(str2, 'a', 10);
 	if (memcmp(str, str2, 10) != 0)

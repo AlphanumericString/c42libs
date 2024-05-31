@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 04:18:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 11:47:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 13:54:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	run_t_test(t_test test, int *collect)
 			printf("\n\t %s: \033[31mKO\033[0m ret %d\n", test.name,
 				WEXITSTATUS(ret));
 		else
-			printf(" \033[32mOK\033[0m");
+			printf("\033[32mOK\033[0m");
 		*collect += ret;
 	}
 	return (ret);

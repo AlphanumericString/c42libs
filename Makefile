@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/30 12:27:26 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/31 13:53:11 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -312,40 +312,40 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_args/tests_setup_prog.c				\
 			$(TESTS_DIR)/ft_args/args_tests.c					\
 			\
-			$(TESTS_DIR)/ft_list/ll_tests/ll_tests_utils.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/ll_list_tests.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_push.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_new.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_map.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_rev.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_sizers.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/ll_tests_utils.c			\
+			$(TESTS_DIR)/ft_list/ll_tests/ll_list_tests.c			\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_push.c			\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_new.c			\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_map.c			\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_rev.c			\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_sizers.c		\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_apply.c		\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_iterators.c	\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_clear.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_copy.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_create.c	\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_deletors.c	\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_find.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_get.c		\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_subrange.c	\
-			$(TESTS_DIR)/ft_list/ll_tests/tests_list_add.c		\
-			$(TESTS_DIR)/ft_list/dl_tests/dl_tests_utils.c		\
-			$(TESTS_DIR)/ft_list/dl_tests/dl_list_tests.c		\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_add.c		\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_clear.c	\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_copy.c	\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_create.c	\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_copy.c			\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_create.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_deletors.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_find.c			\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_get.c			\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_subrange.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_add.c			\
+			$(TESTS_DIR)/ft_list/dl_tests/dl_tests_utils.c			\
+			$(TESTS_DIR)/ft_list/dl_tests/dl_list_tests.c			\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_add.c			\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_clear.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_copy.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_create.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_delete.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_iterators.c	\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_get.c			\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_subrange.c	\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_map.c			\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_new.c		\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_push.c	\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_rev.c		\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_sizers.c	\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_apply.c	\
-			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_find.c	\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_new.c			\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_push.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_rev.c			\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_sizers.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_apply.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_find.c		\
 			\
 			$(TESTS_DIR)/ft_map/map_tests.c						\
 			$(TESTS_DIR)/ft_map/tests_map_remove.c				\
@@ -464,57 +464,74 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/str_tests.c				\
 			$(TESTS_DIR)/ft_string/string_tests.c					\
 			\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append_c.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append_n.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append_s.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_append_s_n.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_clear.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_cmp.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_cmp_n.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_destroy.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_from.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_from_c.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_from_n.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert_c.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert_n.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert_s.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_insert_s_n.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_new.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_reserve.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_resize.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_shrink.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_substr.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_to_str.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_trim.c		\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_trim_chr.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/tests_t_str_trimstr.c	\
-			$(TESTS_DIR)/ft_string/ft_t_string/t_string_tests.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_append.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_append_c.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_append_n.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_append_s.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_append_sn.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_cap.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_chr.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_clear.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_cmp.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_cmp_str.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_destroy.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_from.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_from_c.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_from_n.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_from_s.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_from_sn.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_get.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_insert.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_insert_c.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_insert_n.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_insert_s.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_insert_sn.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_len.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_ncmp.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_ncmp_str.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_new.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_offset.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_put.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_rchr.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_replace.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_replace_chr.c	\
+			$(TESTS_DIR)/ft_string/ft_string/test_reserve.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_resize.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_roffset.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_set.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_set_inplace.c	\
+			$(TESTS_DIR)/ft_string/ft_string/test_set_n.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_shrink.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_substr.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_to_str.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_trim.c			\
+			$(TESTS_DIR)/ft_string/ft_string/test_trim_chr.c		\
+			$(TESTS_DIR)/ft_string/ft_string/test_trimstr.c		\
+			$(TESTS_DIR)/ft_string/ft_string/t_string_tests.c				\
 			\
-			$(TESTS_DIR)/ft_vector/tests_vec_add.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_apply.c			\
-			$(TESTS_DIR)/ft_vector/tests_vec_at.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_cat.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_clear.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_convert_alloc_array.c	\
-			$(TESTS_DIR)/ft_vector/tests_vec_destroy.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_filter.c			\
-			$(TESTS_DIR)/ft_vector/tests_vec_from_array.c		\
-			$(TESTS_DIR)/ft_vector/tests_vec_from_size.c		\
-			$(TESTS_DIR)/ft_vector/tests_vec_get.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_map.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_new.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_remove.c			\
-			$(TESTS_DIR)/ft_vector/tests_vec_remove_if.c		\
-			$(TESTS_DIR)/ft_vector/tests_vec_reserve.c			\
-			$(TESTS_DIR)/ft_vector/tests_vec_reverse.c			\
-			$(TESTS_DIR)/ft_vector/tests_vec_shift.c			\
-			$(TESTS_DIR)/ft_vector/tests_vec_shrink.c			\
-			$(TESTS_DIR)/ft_vector/tests_vec_sort.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_swap.c				\
-			$(TESTS_DIR)/ft_vector/tests_vec_to_array.c			\
-			$(TESTS_DIR)/ft_vector/vector_tests.c				\
+			$(TESTS_DIR)/ft_vector/tests_vec_add.c							\
+			$(TESTS_DIR)/ft_vector/tests_vec_apply.c						\
+			$(TESTS_DIR)/ft_vector/tests_vec_at.c							\
+			$(TESTS_DIR)/ft_vector/tests_vec_cat.c							\
+			$(TESTS_DIR)/ft_vector/tests_vec_clear.c						\
+			$(TESTS_DIR)/ft_vector/tests_vec_convert_alloc_array.c			\
+			$(TESTS_DIR)/ft_vector/tests_vec_destroy.c						\
+			$(TESTS_DIR)/ft_vector/tests_vec_filter.c						\
+			$(TESTS_DIR)/ft_vector/tests_vec_from_array.c					\
+			$(TESTS_DIR)/ft_vector/tests_vec_from_size.c					\
+			$(TESTS_DIR)/ft_vector/tests_vec_get.c							\
+			$(TESTS_DIR)/ft_vector/tests_vec_map.c							\
+			$(TESTS_DIR)/ft_vector/tests_vec_new.c							\
+			$(TESTS_DIR)/ft_vector/tests_vec_remove.c						\
+			$(TESTS_DIR)/ft_vector/tests_vec_remove_if.c					\
+			$(TESTS_DIR)/ft_vector/tests_vec_reserve.c						\
+			$(TESTS_DIR)/ft_vector/tests_vec_reverse.c						\
+			$(TESTS_DIR)/ft_vector/tests_vec_shift.c						\
+			$(TESTS_DIR)/ft_vector/tests_vec_shrink.c						\
+			$(TESTS_DIR)/ft_vector/tests_vec_sort.c							\
+			$(TESTS_DIR)/ft_vector/tests_vec_swap.c							\
+			$(TESTS_DIR)/ft_vector/tests_vec_to_array.c						\
+			$(TESTS_DIR)/ft_vector/vector_tests.c							\
 			\
 			$(TESTS_DIR)/main_tests.c							\
 			$(TESTS_DIR)/lambdas_for_tests.c					\
