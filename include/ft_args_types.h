@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 19:07:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:04:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,43 +90,43 @@ typedef enum e_opt_type
 /// void * and later casted depending on the flags
 ///	@details An example of how to use the structure:
 ///	@code
-///	#include "ft_args.h"
-///	#include "ft_args_types.h"
-///	#include <stdio.h>
-///
-///	typedef struct s_control
-///	{
-///	int		n;
-///	char	*name;
-///	float	f;
-///	}				t_control;
-///
-///	void	set_n(void *control_struct, char *arg)
-///	{
-///	((t_control *)control_struct)->n = ft_atoi(arg);
-///	}
-///	void	set_name(void *control_struct, char *arg)
-///	{
-///	((t_control *)control_struct)->name = arg;
-///	}
-///	void	set_f(void *control_struct, char *arg)
-///	{
-///	((t_control *)control_struct)->f = ft_atof(arg);
-///	}
-/// int	main(int argc, char **argv)
-/// {
-/// t_control	control;
-/// t_opt		opt_list[] = {
-/// {"nbr", 'n', set_n, OPT_INT | OPT_EQSIGN},
-/// {"name", 'a', set_name, OPT_STRING | OPT_EQSIGN},
-/// {"float", 'f', set_f, OPT_FLOAT | OPT_EQSIGN},
-/// {NULL, 0, NULL, 0}
-/// };
-///
-/// ft_set_opt_list(opt_list);
-/// ft_parse_args(argc, argv, &control);
-/// printf("n = %d\nname = %s\nf = %f\n", control.n, control.name, control.f);
-/// return (0);
+/// #include "ft_args.h"
+/// #include "ft_args_types.h"
+/// #include "ft_string.h"
+/// #include <stdio.h>
+/// 
+/// typedef struct s_control {
+/// 	int n;
+/// 	char *name;
+/// 	float f;
+/// }	t_control;
+/// 
+/// void set_n(void *control_struct, char *arg) {
+/// 	printf("set_n\n");
+/// 	((t_control *)control_struct)->n = ft_atoi(arg);
+/// }
+/// void set_name(void *control_struct, char *arg) {
+/// 	printf("set_name\n");
+/// 	((t_control *)control_struct)->name = arg;
+/// }
+/// void set_f(void *control_struct, char *arg) {
+/// 	printf("set_f\n");
+/// 	((t_control *)control_struct)->f = ft_atof(arg);
+/// }
+/// int main(int argc, char **argv) {
+/// 	t_control control;
+/// 	t_opt opt_list[] = {
+/// 	{"nbr", 'n', set_n,  OPT_INT | OPT_EQSIGN},
+/// 	{"name", 'a', set_name, OPT_STRING | OPT_EQSIGN},
+/// 	{"float", 'f', set_f, OPT_FLOAT | OPT_EQSIGN},
+/// 	{NULL, 0, NULL, 0}
+/// 	};
+/// 
+/// 	ft_bzero(&control, sizeof(t_control));
+/// 	ft_set_opt_list(opt_list);
+/// 	ft_parse_args(argv, &control);
+/// 	printf("n = %d\nname = %s\nf = %f\n", control.n, control.name, control.f);
+/// 	return (0);
 /// }
 /// @endcode
 /// @details The previous code will parse the arguments and set the values of 

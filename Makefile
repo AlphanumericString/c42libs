@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/31 13:53:11 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/31 17:56:46 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -279,13 +279,10 @@ FT_OPTIONAL_SRC	=	\
 			$(FT_OPTIONAL_DIR)/ft_optional_unwrap.c
 
 FT_ARGS_SRC		=	\
-			$(FT_ARGS_DIR)/arg_err.c				\
-			$(FT_ARGS_DIR)/checker_arg.c			\
 			$(FT_ARGS_DIR)/ft_arg_custom_checker.c	\
-			$(FT_ARGS_DIR)/ft_parse_long.c			\
-			$(FT_ARGS_DIR)/parse_short_opt.c		\
-			$(FT_ARGS_DIR)/run_opt_func.c			\
 			$(FT_ARGS_DIR)/ft_parse_args.c			\
+			$(FT_ARGS_DIR)/ft_parse_err.c			\
+			$(FT_ARGS_DIR)/ft_parse_opt.c			\
 			$(FT_ARGS_DIR)/ft_progname.c			\
 			$(FT_ARGS_DIR)/ft_set_opt_args.c		\
 			$(FT_ARGS_DIR)/ft_setup_prog.c			\
