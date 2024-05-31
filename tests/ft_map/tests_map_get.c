@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:14:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 18:15:08 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:20:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 #include "ft_map.h"
 #include "ft_map_types.h"
+#include "ft_string.h"
 #include <stdlib.h>
-#include <string.h>
 
 int	test_map_get(void)
 {
@@ -29,21 +29,21 @@ int	test_map_get(void)
 	t_map		*map;
 	t_map_node	*ret;
 
-	str = strdup("value");
+	str = ft_strdup("value");
 	map = ft_map_create(10);
-	ft_map_set(map, "key", str, strlen("key") + 1);
-	ret = ft_map_get(map, "key", strlen("key") + 1);
+	ft_map_set(map, "key", str, ft_strlen("key") + 1);
+	ret = ft_map_get(map, "key", ft_strlen("key") + 1);
 	if (ret == NULL)
 		return (1);
-	else if (strcmp((char *)ret->data, "value"))
+	else if (ft_strcmp((char *)ret->data, "value"))
 		return (1);
-	ret = ft_map_get(map, "key2", strlen("key2") + 1);
+	ret = ft_map_get(map, "key2", ft_strlen("key2") + 1);
 	if (ret != NULL)
 		return (1);
 	ft_map_destroy(map);
 	map = ft_map_create(1);
-	ft_map_set(map, "key", str, strlen("key") + 1);
-	ret = ft_map_get(map, "key2", strlen("key2") + 1);
+	ft_map_set(map, "key", str, ft_strlen("key") + 1);
+	ret = ft_map_get(map, "key2", ft_strlen("key2") + 1);
 	if (ret != NULL)
 		return (1);
 	ft_map_destroy(map);

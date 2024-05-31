@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:39:56 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 11:39:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:10:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <string.h>
 
 static void	local_iteri(unsigned int i, char *c)
 {
@@ -25,7 +24,7 @@ int	test_striteri(void)
 
 	ft_strlcpy(str, "Hello World!", 20);
 	ft_striteri(str, &local_iteri);
-	if (strcmp(str, "aaaaaaaaaaaa") != 0)
+	if (ft_strcmp(str, "aaaaaaaaaaaa") != 0)
 		return (1);
 	return (0);
 }

@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:50:18 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 16:26:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:58:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <stdio.h>
 
 void	ft_string_trim(t_string *str)
 {

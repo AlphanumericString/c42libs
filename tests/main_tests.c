@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2024/05/31 12:36:19 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:54:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "tests/tests.h"
-#include <stdio.h>
 
 const t_test	*get_tests(void)
 {
@@ -42,12 +42,15 @@ int	main(void)
 	while (tests[i].name != NULL)
 	{
 		prev = collect;
-		printf("\n\nTesting %s...\n", tests[i].name);
+		ft_putstr_fd("\n\nTesting ", STDOUT_FILENO);
+		ft_putendl_fd(tests[i].name, STDOUT_FILENO);
 		collect += tests[i].test();
+		ft_putstr_fd("\nModule:: ", STDOUT_FILENO);
+		ft_putstr_fd(tests[i].name, STDOUT_FILENO);
 		if (collect == prev)
-			printf("\nModule :: %s \033[32mOK\033[0m\n", tests[i].name);
+			ft_putstr_fd(" \033[32mOK\033[0m\n", STDOUT_FILENO);
 		else
-			printf("\nModule :: %s \033[31mKO\033[0m\n", tests[i].name);
+			ft_putstr_fd(" \033[31mKO\033[0m\n", STDOUT_FILENO);
 		i++;
 	}
 	return (collect);

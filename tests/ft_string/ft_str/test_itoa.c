@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:36:08 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:26:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <string.h>
+#include "ft_string.h"
 
 int	test_itoa(void)
 {
@@ -24,7 +24,7 @@ int	test_itoa(void)
 	while (i < sizeof(t_cases) / sizeof(t_cases[0]))
 	{
 		res = ft_itoa(t_cases[i]);
-		if (strcmp(res, expected_results[i++]) != 0)
+		if (ft_strcmp(res, expected_results[i++]) != 0)
 			return (i);
 		free(res);
 	}

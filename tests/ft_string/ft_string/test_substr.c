@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_substr.c                               :+:      :+:    :+:   */
+/*   test_substr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:21:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:16:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_string_types.h"
-#include <string.h>
 
 int	test_string_substr(void)
 {
@@ -23,7 +22,7 @@ int	test_string_substr(void)
 	sub = ft_string_substr(str, 0, 6);
 	if (sub == NULL)
 		return (1);
-	if (strcmp(sub->str, "Hello") != 0)
+	if (ft_strcmp(sub->str, "Hello") != 0)
 		return (2);
 	if (sub->length != 5)
 		return (3);

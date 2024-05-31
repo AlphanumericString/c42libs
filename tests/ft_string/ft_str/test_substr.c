@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:25:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 14:24:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:15:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <string.h>
 
 int	test_substr(void)
 {
@@ -25,11 +24,11 @@ int	test_substr(void)
 	res[3] = ft_substr(str, 6, 0);
 	res[4] = ft_substr(str, 12, 0);
 	res[5] = ft_substr(str, 12, 100);
-	if (strcmp(res[0], "Hello") != 0 || strcmp(res[1], "World!") != 0 || \
-	strcmp(res[2], "World!") != 0)
+	if (ft_strcmp(res[0], "Hello") != 0 || ft_strcmp(res[1], "World!") != 0
+		|| ft_strcmp(res[2], "World!") != 0)
 		return (1);
-	if (strcmp(res[3], "") != 0 || strcmp(res[4], "") != 0 || \
-	strcmp(res[5], "") != 0)
+	if (ft_strcmp(res[3], "") != 0 || ft_strcmp(res[4], "") != 0
+		|| ft_strcmp(res[5], "") != 0)
 		return (2);
 	i = 0;
 	while (i < 6)

@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:05:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:31:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:59:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <stdio.h>
 
 static void	to_a(void *ptr)
 {

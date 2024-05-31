@@ -6,14 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 10:48:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:57:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <stdio.h>
 
-// set _n to remove the \0
 int	ft_string_replace(t_string *str, char *to_replace, char *replace_by)
 {
 	char	*tmp;

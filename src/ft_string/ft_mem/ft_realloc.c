@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:27:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 19:39:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:39:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld)
 {
 	void	*new;
 
+	if (sizeNew == sizeOld)
+		return (ptr);
 	new = malloc(sizeNew);
 	if (new == NULL)
 		return (NULL);

@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:51:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 13:16:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:57:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <stdio.h>
 
 char	*ft_string_chr(const t_string *str, char c)
 {

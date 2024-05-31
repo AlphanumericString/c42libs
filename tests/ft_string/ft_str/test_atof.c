@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:08:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 09:09:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:00:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <stdio.h>
 
 int	test_atof(void)
 {
@@ -33,7 +32,7 @@ int	test_atof(void)
 	{
 		res = ft_atof(t_str[i]);
 		if (res < t_cases[i] - marge || res > t_cases[i] + marge)
-			return (printf("%.6lf %.6lf\n", res, t_cases[i]), i + 1);
+			return (i + 1);
 		i++;
 	}
 	return (0);

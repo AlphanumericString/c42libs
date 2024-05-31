@@ -6,13 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 11:37:08 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:13:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include <stdlib.h>
-#include <string.h>
 
 static char	local_mapi(unsigned int i, char c)
 {
@@ -31,7 +30,7 @@ int	test_strmapi(void)
 
 	str = "Hello World!";
 	res = ft_strmapi(str, &local_mapi);
-	if (strcmp(res, "hELLO wORLD!") != 0)
+	if (ft_strcmp(res, "hELLO wORLD!") != 0)
 		return (1);
 	free(res);
 	return (0);

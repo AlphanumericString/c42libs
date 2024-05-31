@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:23:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 11:23:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:10:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <string.h>
 
 int	test_strdup(void)
 {
@@ -20,7 +19,7 @@ int	test_strdup(void)
 
 	str = "Hello World!";
 	res = ft_strdup(str);
-	if (strcmp(res, str) != 0)
+	if (ft_strcmp(res, str) != 0)
 		return (1);
 	free(res);
 	return (0);

@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 17:12:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:27:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <string.h>
+#include "ft_string.h"
 
 #define MAGIC 42
 
@@ -24,7 +24,7 @@ int	eval_base(int *t_cases, const char *bases, const char *expected_results[])
 	while (t_cases[j] != MAGIC)
 	{
 		res = ft_itoa_base(t_cases[j], bases);
-		if (strcmp(res, expected_results[j]) != 0)
+		if (ft_strcmp(res, expected_results[j]) != 0)
 			return (free(res), j + 1);
 		free(res);
 		j++;

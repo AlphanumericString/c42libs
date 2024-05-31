@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:23:38 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 11:25:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:13:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <string.h>
 
 int	test_strndup(void)
 {
@@ -20,19 +19,19 @@ int	test_strndup(void)
 
 	str = "Hello World!";
 	res = ft_strndup(str, 5);
-	if (strcmp(res, "Hello") != 0)
+	if (ft_strcmp(res, "Hello") != 0)
 		return (1);
 	free(res);
 	res = ft_strndup(str, 0);
-	if (strcmp(res, "") != 0)
+	if (ft_strcmp(res, "") != 0)
 		return (2);
 	free(res);
 	res = ft_strndup(str, 12);
-	if (strcmp(res, "Hello World!") != 0)
+	if (ft_strcmp(res, "Hello World!") != 0)
 		return (3);
 	free(res);
 	res = ft_strndup(str, 15);
-	if (strcmp(res, "Hello World!") != 0)
+	if (ft_strcmp(res, "Hello World!") != 0)
 		return (4);
 	free(res);
 	return (0);

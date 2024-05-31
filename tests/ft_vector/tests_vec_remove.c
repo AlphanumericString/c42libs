@@ -6,13 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 10:13:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 10:18:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:55:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "ft_vector_types.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 // tests vector has removed the arr[2]orrect element

@@ -6,14 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 04:18:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 13:54:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:09:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>
 
@@ -26,20 +25,23 @@ static int	run_t_test(t_test test, int *collect)
 
 	pid = fork();
 	if (pid == 0)
-	{
-		ret = test.test();
-		exit(ret);
-	}
+		exit(test.test());
 	else
 	{
 		waitpid(pid, &ret, 0);
-		if (WIFSIGNALED(ret))
-			printf("\n\t %s: \033[31mCRASH\033[0m\n", test.name);
-		else if (ret != 0)
-			printf("\n\t %s: \033[31mKO\033[0m ret %d\n", test.name,
-				WEXITSTATUS(ret));
+		if (WIFEXITED(ret) && ret == 0)
+			ft_putstr_fd("\033[32mOK \033[0m", STDOUT_FILENO);
 		else
-			printf("\033[32mOK\033[0m");
+		{
+			if (WIFSIGNALED(ret))
+				ft_putstr_fd(" \033[31mCRASH\033[0m\n", STDOUT_FILENO);
+			else if (ret != 0)
+			{
+				ft_putstr_fd(" \033[31mKO\033[0m:\n", STDOUT_FILENO);
+				ft_putnbr_fd(ret, STDOUT_FILENO);
+				ft_putstr_fd("\n", STDOUT_FILENO);
+			}
+		}
 		*collect += ret;
 	}
 	return (ret);
@@ -54,9 +56,14 @@ static int	run_t_test(t_test test, int *collect)
 	ret = test.test();
 	*collect += ret;
 	if (ret != 0)
-		printf("\t %s: \033[31mKO\033[0m ret %d\n", test.name, ret);
+	{
+		ft_putstr_fd(test.name, STDOUT_FILENO);
+		ft_putstr_fd(" \033[31mKO\033[0m ret::", STDOUT_FILENO);
+		ft_putnbr_fd(ret, STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
+	}
 	else
-		printf("\t \033[32mOK\033[0m");
+		ft_putstr_fd(" \033[32mOK\033[0m", STDOUT_FILENO);
 	return (ret);
 }
 
@@ -71,7 +78,8 @@ int	open_test_file(char **func_to_test)
 	fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 	{
-		printf("Error: on oppening %s\n", file);
+		ft_putstr_fd("Error: on oppening ", STDERR_FILENO);
+		ft_putstr_fd(file, STDERR_FILENO);
 		return (free(file), -1);
 	}
 	*func_to_test = file;
@@ -93,10 +101,8 @@ int	run_test(const t_test *test, int *collect)
 	ret = 0;
 	sum = 0;
 	i = 0;
-	fflush(stdout);
 	while (test[i].name)
 	{
-		fflush(stdout);
 		ret = run_t_test(test[i], &sum);
 		*collect += ret;
 		sum += ret;

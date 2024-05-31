@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:28:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 09:11:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:58:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "ft_optional_types.h"
 #include "tests/optional_test.h"
 #include "ft_defs.h"
-#include <stdio.h>
 
 int	test_optional_chain(void)
 {

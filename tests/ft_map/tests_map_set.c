@@ -12,7 +12,6 @@
 
 #include "ft_map.h"
 #include "ft_map_types.h"
-#include <string.h>
 
 /*
 	// set a key in a full map

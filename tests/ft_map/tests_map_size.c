@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:15:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 18:16:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:23:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_map.h"
 #include "ft_map_types.h"
+#include "ft_string.h"
 #include <stdlib.h>
-#include <string.h>
 
 int	test_map_size(void)
 {
@@ -21,9 +21,9 @@ int	test_map_size(void)
 	t_map	*map;
 	size_t	ret;
 
-	str = strdup("value");
+	str = ft_strdup("value");
 	map = ft_map_create(10);
-	ft_map_set(map, "key", str, strlen(str) + 1);
+	ft_map_set(map, "key", str, ft_strlen(str) + 1);
 	ret = ft_map_size(map);
 	if (ret != 1)
 		return (1);

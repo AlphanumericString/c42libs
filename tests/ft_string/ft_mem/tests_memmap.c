@@ -6,13 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:21:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 20:51:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:57:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_char.h"
 #include "ft_string.h"
-#include <string.h>
 
 int	test_memmap(void)
 {

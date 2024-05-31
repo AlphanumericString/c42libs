@@ -6,13 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:41:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 11:41:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:14:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include <stddef.h>
-#include <string.h>
 
 int	test_strrchr(void)
 {
@@ -31,7 +30,7 @@ int	test_strrchr(void)
 	if (res != NULL)
 		return (2);
 	res = ft_strrchr(str, '\0');
-	if (res != str + strlen(str))
+	if (res != str + ft_strlen(str))
 		return (3);
 	return (0);
 }

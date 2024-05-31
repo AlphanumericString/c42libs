@@ -6,14 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/27 02:04:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:07:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests.h"
 #include <limits.h>
-#include <string.h>
 
 static int	nb_to_file(const int *nbs, size_t size, const char *file_name)
 {
@@ -40,10 +39,10 @@ static int	file_cmp(const char *file_name, const char *expected)
 	char	buff[100];
 
 	fd = open(file_name, O_RDONLY);
-	bzero(buff, sizeof(buff));
+	ft_bzero(buff, sizeof(buff));
 	read(fd, buff, sizeof(buff));
 	close(fd);
-	if (strncmp(buff, expected, sizeof(buff)))
+	if (ft_strncmp(buff, expected, sizeof(buff)))
 		return (1);
 	return (destroy_test_file(fd, file_name), 0);
 }

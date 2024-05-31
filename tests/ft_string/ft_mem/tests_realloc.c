@@ -6,39 +6,26 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:21:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 12:21:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:28:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 int	test_realloc(void)
 {
 	char	*str;
-	char	*str2;
+	char	*str_ret;
 
-	str = ft_calloc(10, sizeof(char));
-	str2 = calloc(10, sizeof(char));
-	str = ft_realloc(str, 20, 10);
-	str2 = realloc(str2, 20);
-	memset(str, 'a', 20);
-	memset(str2, 'a', 20);
-	if (memcmp(str, str2, 20) != 0)
-		return (printf("got %s, expected %s\n", str, str2), 1);
+	str = ft_calloc(15, sizeof(char));
+	ft_strlcpy(str, "Hello world", 15);
+	str = ft_realloc(str, 25, 15);
+	ft_strlcat(str, " this is zod!", 25);
+	if (ft_strcmp(str, "Hello world this is zod!") != 0)
+		return (1);
+	str_ret = ft_realloc(str, 10, 10);
+	if (str != str_ret)
+		return (2);
 	free(str);
-	free(str2);
-	str = ft_calloc(10, sizeof(char));
-	str2 = calloc(10, sizeof(char));
-	str = ft_realloc(str, 2, 10);
-	str2 = realloc(str2, 2);
-	memset(str, 'a', 2);
-	memset(str2, 'a', 2);
-	if (memcmp(str, str2, 2) != 0)
-		return (printf("got %s, expected %s\n", str, str2), 2);
-	free(str);
-	free(str2);
 	return (0);
 }

@@ -6,13 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:11:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 14:28:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:10:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include <stdlib.h>
-#include <string.h>
 
 static int	test_right_empty(void)
 {
@@ -23,12 +22,13 @@ static int	test_right_empty(void)
 	str = "Hello World!";
 	str2 = "";
 	res = ft_strjoin(str, str2);
-	if (strcmp(res, "Hello World!") != 0 || !res || res == str || res == str2)
+	if (ft_strcmp(res, "Hello World!") != 0 || !res || res == str
+		|| res == str2)
 		return (1);
 	free(res);
 	str2 = NULL;
 	res = ft_strjoin(str, str2);
-	if (strcmp(res, "Hello World!") != 0 || !res || res == str)
+	if (ft_strcmp(res, "Hello World!") != 0 || !res || res == str)
 		return (2);
 	free(res);
 	return (0);
@@ -43,12 +43,13 @@ static int	test_left_empty(void)
 	str = "";
 	str2 = "Hello World!";
 	res = ft_strjoin(str, str2);
-	if (strcmp(res, "Hello World!") != 0 || !res || res == str || res == str2)
+	if (ft_strcmp(res, "Hello World!") != 0 || !res || res == str
+		|| res == str2)
 		return (1);
 	free(res);
 	str = NULL;
 	res = ft_strjoin(str, str2);
-	if (strcmp(res, "Hello World!") != 0 || !res || res == str2)
+	if (ft_strcmp(res, "Hello World!") != 0 || !res || res == str2)
 		return (2);
 	free(res);
 	return (0);
@@ -63,7 +64,7 @@ int	test_strjoin(void)
 	str = "Hello World!";
 	str2 = "Hello World!";
 	res = ft_strjoin(str, str2);
-	if (strcmp(res, "Hello World!Hello World!") != 0)
+	if (ft_strcmp(res, "Hello World!Hello World!") != 0)
 		return (1);
 	free(res);
 	if (test_right_empty() != 0)

@@ -6,14 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 14:14:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:26:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests.h"
 #include <fcntl.h>
-#include <string.h>
 
 static int	write_lines(const char **lines, size_t n)
 {
@@ -26,7 +25,7 @@ static int	write_lines(const char **lines, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		write(fd, lines[i], strlen(lines[i]));
+		write(fd, lines[i], ft_strlen(lines[i]));
 		i++;
 	}
 	close(fd);
@@ -65,7 +64,7 @@ int	test_gnl(void)
 	while (i < lines_count)
 	{
 		line = get_next_line(fd);
-		if (strcmp(line, test_lines[i++]) != 0)
+		if (ft_strcmp(line, test_lines[i++]) != 0)
 			return (i + 1);
 		free(line);
 	}

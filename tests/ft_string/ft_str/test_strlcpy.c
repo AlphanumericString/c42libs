@@ -6,14 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:10:11 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 11:10:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:12:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include <stdlib.h>
-#include <string.h>
-#include <strings.h>
 
 int	test_strlcpy(void)
 {
@@ -25,20 +23,20 @@ int	test_strlcpy(void)
 	str = "Hello World!";
 	size = 15;
 	res = malloc(sizeof(char) * size);
-	bzero(res, size);
+	ft_bzero(res, size);
 	ret = ft_strlcpy(res, str, size);
-	if (strcmp(res, "Hello World!") != 0 || ret != 12)
+	if (ft_strcmp(res, "Hello World!") != 0 || ret != 12)
 		return (1);
 	free(res);
 	res = malloc(sizeof(char) * size);
 	ret = ft_strlcpy(res, "This is zod!", size);
-	if (strcmp(res, "This is zod!") != 0 || ret != 12)
+	if (ft_strcmp(res, "This is zod!") != 0 || ret != 12)
 		return (2);
 	free(res);
 	res = malloc(sizeof(char) * size);
 	ret = ft_strlcpy(res, "This is too large!", size);
-	if (strncmp(res, "This is too large!", size - 1) != 0
-		|| ret != strlen("This is too large!"))
+	if (ft_strncmp(res, "This is too large!", size - 1) != 0 || \
+	ret != (int)ft_strlen("This is too large!"))
 		return (3);
 	free(res);
 	return (0);
