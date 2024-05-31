@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/31 17:56:46 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/31 18:31:57 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -303,6 +303,7 @@ FT_STRING_SRC	=	\
 # Tests sources
 
 TESTS_SRC	=\
+			$(TESTS_DIR)/ft_args/tests_custom_checker.c		\
 			$(TESTS_DIR)/ft_args/tests_optlist.c				\
 			$(TESTS_DIR)/ft_args/tests_progname.c				\
 			$(TESTS_DIR)/ft_args/tests_version.c				\

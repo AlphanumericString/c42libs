@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 01:10:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:01:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:23:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #include <sys/types.h>
 #include <stdbool.h>
 
-int	run_opt_func(const t_opt opt, void *usr_control_struct, char **arg, int *i)
+int	run_opt_func(const t_opt opt, void *usr_control_struct, const char **arg, int *i)
 {
-	char	*arg_ptr;
-	void	(*func_arg)(void *, char *);
+	const char	*arg_ptr;
+	void	(*func_arg)(void *, const char *);
 	void	(*func_no_arg)(void *);
 
 	func_arg = opt.func;
@@ -42,7 +42,7 @@ int	run_opt_func(const t_opt opt, void *usr_control_struct, char **arg, int *i)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_parse_args(char **argv, void *usr_control_struct)
+int	ft_parse_args(const char **argv, void *usr_control_struct)
 {
 	const t_opt	*opt;
 	ssize_t		opt_index;

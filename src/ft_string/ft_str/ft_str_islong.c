@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:50:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/29 15:08:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:29:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_string.h"
 #include "ft_char.h"
 
-bool	ft_str_islong(char *str)
+bool	ft_str_islong(const char *str)
 {
 	size_t	i;
 

@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:55:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/29 15:05:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:28:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_char.h"
 
-bool	ft_str_isalpha(char *str)
+bool	ft_str_isalpha(const char *str)
 {
 	int	i;
 

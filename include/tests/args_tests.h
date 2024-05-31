@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:39:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 16:02:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:33:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 /* @file: tests/ft_args/args_tests.c */
 int	parse_args_test(void);
 int	tests_args(void);
+
+/* @file: tests/ft_args/tests_custom_checker.c */
+int	getset_custom_checker_test(void);
 
 /* @file: tests/ft_args/tests_optlist.c */
 int	getset_opt_list_test(void);

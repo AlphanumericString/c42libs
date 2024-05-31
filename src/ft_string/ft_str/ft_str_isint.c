@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:47:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:47:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:29:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdbool.h>
 
 // 0 success, !0 failure
-bool	ft_str_isint(char *str)
+bool	ft_str_isint(const char *str)
 {
 	size_t	i;
 

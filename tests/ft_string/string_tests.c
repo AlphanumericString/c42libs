@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:36:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 16:05:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:33:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	tests_string(void)
 		ft_putendl_fd("\nTesting::", STDOUT_FILENO);
 		ft_putendl_fd(tests[i].name, STDOUT_FILENO);
 		collect += tests[i++].test();
-		ft_putstr_fd("\nTesting sub-module", STDOUT_FILENO);
+		ft_putstr_fd("\nTesting sub-module ", STDOUT_FILENO);
 		ft_putstr_fd(tests[i - 1].name, STDOUT_FILENO);
 		if (prev != collect)
 			ft_putendl_fd(" \033[31mKO\033[0m", STDOUT_FILENO);

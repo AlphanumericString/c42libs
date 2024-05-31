@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:56:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/29 15:12:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:29:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_string.h"
 #include <stdbool.h>
 
-bool	ft_str_isnum(char *str)
+bool	ft_str_isnum(const char *str)
 {
 	int	i;
 

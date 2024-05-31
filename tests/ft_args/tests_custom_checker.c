@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isdigit.c                                   :+:      :+:    :+:   */
+/*   tests_custom_parser.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 13:39:43 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:28:52 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/31 18:15:10 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/31 18:32:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "ft_string.h"
-#include <stdbool.h>
+#include "ft_args.h"
 
-bool	ft_str_isdigit(const char *str)
+static int	loc_checker(const char *arg)
 {
-	return (ft_str_isvalid(str, ft_isdigit));
+	if (arg[0] == 'a')
+		return (1);
+	return (0);
+}
+
+int	getset_custom_checker_test(void)
+{
+	ft_arg_set_custom_checker(loc_checker);
+	if (ft_arg_get_custom_checker() != loc_checker)
+		return (-1);
+	return (0);
 }

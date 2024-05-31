@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:23:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:02:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:22:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdlib.h>
 
 // 0 success, !0 failure
-int	checker_arg(t_opt_type type, char *arg)
+int	checker_arg(t_opt_type type, const char *arg)
 {
 	if (!arg || arg == (char *)0x1)
 		return (type);
@@ -46,7 +46,7 @@ int	checker_arg(t_opt_type type, char *arg)
 	return (EXIT_SUCCESS);
 }
 
-int	arg_type_err(t_opt opt, char *arg)
+int	arg_type_err(t_opt opt, const char *arg)
 {
 	const char	*progname;
 
@@ -70,7 +70,7 @@ int	arg_type_err(t_opt opt, char *arg)
 	return (EXIT_FAILURE);
 }
 
-int	arg_opt_err(char *arg)
+int	arg_opt_err(const char *arg)
 {
 	const char	*progname;
 
