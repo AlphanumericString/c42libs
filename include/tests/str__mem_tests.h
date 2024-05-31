@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:26:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/29 00:13:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:40:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ int	test_memcmp(void);
 
 /// @file: tests/ft_string/ft_mem/tests_memcpy.c
 int	test_memcpy(void);
+
+/// @file: tests/ft_string/ft_mem/tests_memmap.c
+int	test_memmap(void);
 
 /// @file: tests/ft_string/ft_mem/tests_memmove.c
 int	test_memmove(void);

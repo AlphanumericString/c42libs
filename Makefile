@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/30 11:39:29 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/30 12:27:26 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -229,6 +229,7 @@ FT_MEM_SRC	=	\
 			$(FT_MEM_DIR)/ft_memchr.c		\
 			$(FT_MEM_DIR)/ft_memcmp.c		\
 			$(FT_MEM_DIR)/ft_memcpy.c		\
+			$(FT_MEM_DIR)/ft_memmap.c		\
 			$(FT_MEM_DIR)/ft_memmove.c		\
 			$(FT_MEM_DIR)/ft_memset.c		\
 			$(FT_MEM_DIR)/ft_qsort.c		\
@@ -402,6 +403,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memchr.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memcmp.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memcpy.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memmap.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memmove.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memset.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_qsort.c			\
@@ -601,6 +603,9 @@ $(BUILD_DIR)/$(TESTS_DIR)/%.o: $(TESTS_DIR)/%.c
 # Default rule
 all:	lib$(NAME).a
 
+tmp:
+	@echo $(SRCS)
+
 so: lib$(NAME).so
 
 # Rule for shared library
@@ -661,15 +666,17 @@ debug:
 
 .clangd: Makefile
 	@echo "Making clangd configuration file"
-	@$(ECHO) -n																		\
-	"CompileFlags:\n"																\
-	"  Compiler: clang\n"															\
-	"  Add:\n"																		\
-	"	- \"-Wall -Wextra -Werror\"\n"												\
-	"	- \"-Wno-unused-parameter -Wno-unused-variable -Wno-unused-function\"\n"	\
-	"	- \"-Wno-unused-but-set-variable -Wno-unused-value -Wno-unused-label\"\n"	\
-	"	- \"-Wno-unused-local-typedefs\"\n"											\
-	"	- \"-Wno-unused-result\"\n"													\
+	@$(ECHO) -n																\
+	"CompileFlags:\n"														\
+	"  Compiler: clang\n"													\
+	"  Add:\n"																\
+	"	- \"-Wall -Wextra -Werror\"\n"										\
+	"	- \"-Wno-unused-parameter -Wno-unused-variable "					\
+		"-Wno-unused-function\"\n"											\
+	"	- \"-Wno-unused-but-set-variable -Wno-unused-value "				\
+		"-Wno-unused-label\"\n"												\
+	"	- \"-Wno-unused-local-typedefs\"\n"									\
+	"	- \"-Wno-unused-result\"\n"											\
 	"	- \"-xc\"\n"  > .clangd
 	@echo "    - \"-I " $(shell pwd)"/includes\"" >> .clangd
 	@$(ECHO) $(GREEN) "Done" $(RESET)

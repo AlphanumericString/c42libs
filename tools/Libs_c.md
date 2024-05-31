@@ -5,7 +5,7 @@ Library for c projects at 42.
 ## TODO: global
 
 - [ ]   libs
-    - [ ]   includes
+    - [x]   includes
         - [x]   split sub modules includes to separate files
             - [x]   mem
             - [x]   str
@@ -13,8 +13,8 @@ Library for c projects at 42.
             - [x]   t_string
             - [x]   ll
             - [x]   dl
-        - [ ]   remove useless includes
-        - [ ]   remove trailing comments
+        - [x]   remove useless includes
+        - [x]   remove trailing comments
         - [x]   doxygen
             - [x]   ll
             - [x]   dl
@@ -42,22 +42,22 @@ Library for c projects at 42.
             - [x]   string
             - [x]   map
             - [x]   optional
-- [ ]   Makefile
+- [x]   Makefile
     - [x]   Makefile add debug rule for “so” ? or run “so” in debug rule. idk idc will see…
     - [x]   Check if cmd exist for llvm suite
     - [x]   Tests_run rule
         - [x]    remodel tests_run to compile only needed sources by adding a patern rule build/tests/%.o to TESTS_SRC compiling with TEST_FLAGS
-    - [ ]   Check all new .c files have been added to the Makefile
+    - [x]   Check all new .c files have been added to the Makefile
 - [ ]   Tests
     - [ ]   Add tests for all *finished* libs
         - [x]   ft_list
             - [x]   ll
             - [x]   dl
-        - [ ]   ft_map
+        - [~]   ft_map
         - [ ]   ft_string
             - [ ]   t_string
-            - [ ]   str
-            - [ ]   mem
+            - [x]   str
+            - [x]   mem
         - [x]   ft_vector
         - [x]   ft_optional
     - [ ]   Up the coverage percentage (dropped due to new funcs)
@@ -94,19 +94,10 @@ Library for c projects at 42.
             - [ ]   you could at least support flags you scum bag
         - [ ]   Optimise functions from ft_lib
             - [ ]   Add more re-link in-between function lib cf. Don't add a loc_strlen nor do a basic while loop to get char name but use ft_strlen; don't loop to add char in str but use ft_strlcat…
+                - [ ]   simian
+                - [ ]   manual rev
             - [x] kinda started but MOAR.
     - map
-        - [ ] capacity
-            - [ ] set -> should only work if nb elem == 0
-            - [x] get
-        - [ ] cmp
-            - [x] set
-            - [x] get
-        - [ ] hash
-            - [x] set
-            - [x] get
-        - [ ] keys
-            - [x] get (current get is more of a get_mapkv)
-            - [x] set 
-        - [x] size
-            - [x] get
+        - [ ]   Re - implement maps to be growable
+                - n linked lists (n being the number of ll starts)
+                - save the hash in the node to be able to resize map aka n+=10%

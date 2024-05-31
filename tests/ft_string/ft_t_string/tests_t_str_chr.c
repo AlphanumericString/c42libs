@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmap.c                                        :+:      :+:    :+:   */
+/*   tests_t_str_chr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 18:14:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 12:36:08 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/25 15:57:50 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/30 21:13:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
+#include "ft_string.h"
+#include "ft_string_types.h"
 
-void	*ft_memmap(void *src, size_t nb_e, size_t sz_e, void *(*f)(void *))
+int	test_string_chr(void)
 {
-	void	*dst;
-	size_t	i;
+	t_string	*str;
+	const char	*src;
+	char		c;
 
-	if (!src || !f)
-		return (NULL);
-	dst = malloc(nb_e * sz_e);
-	if (!dst)
-		return (NULL);
-	i = 0;
-	while (i < nb_e)
-	{
-		dst = f(src);
-		src += sz_e;
-		dst += sz_e;
-		i++;
-	}
-	return (dst);
+	src = "Hello world this is zod!";
+	c = 0;
+	str = ft_string_from(src);
+	while (c < 127)
+		if (ft_string_chr(str, c) == ft_strchr(src, c))
+			return (c + 1);
+	return (0);
 }

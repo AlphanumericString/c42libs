@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 11:42:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/30 21:12:30 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,13 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 /// @return pointer to the destination memory
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 
-/// @brief apply the function f on each byte of the memory and return an 
-/// allocated memory with the result of the same size with the result of 
-/// the function f
-/// @param s start of the memory
-/// @param n size of the memory
+/// @brief map memory region src to new region using f
+/// @param src start of the source memory
+/// @param nb_e number of elements
+/// @param sz_e size of each element
 /// @param f function to apply
-/// @return pointer to the allocated memory with the result of the function f
-/// otherwise NULL
-void		*ft_memmap(void *src, size_t size, void *(*f)(void *));
+/// @return pointer to the new memory or NULL
+void		*ft_memmap(void *src, size_t nb_e, size_t sz_e, void *(*f)(void *));
 
 /// @brief copy the memory
 /// @param dest start of the destination memory
@@ -538,7 +536,7 @@ t_string	*ft_string_new(size_t capacity);
 /// @return a pointer to the new t_string
 /// @note You must free the returned string with ft_string_destroy
 /// @note This function does NOT take ownership of the passed string.
-t_string	*ft_string_from(char *str);
+t_string	*ft_string_from(const char *str);
 
 /// @brief create a new t_string from the string with at most n chars
 /// @param str string to copy from
