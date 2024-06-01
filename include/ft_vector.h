@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:53:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 23:02:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,13 @@ t_vector	*ft_vec_map(t_vector *vec, t_data_tr func);
 /// @brief Create a new vector
 /// @return pointer to the new vector
 t_vector	*ft_vec_new(void);
+
+// ft_vector/ft_vec_pop.c
+
+/// @brief Pop an element from the vector's end
+/// @param vec pointer to the vector
+/// @return pointer to the element
+void	*ft_vec_pop(t_vector *vec);
 
 /// @brief Create a new vector with a given capacity
 /// @param n capacity of the new vector

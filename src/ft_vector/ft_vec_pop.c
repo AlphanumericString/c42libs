@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map_clear.c                                     :+:      :+:    :+:   */
+/*   ft_vec_pop.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 18:29:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 23:30:14 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/31 23:00:25 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/05/31 23:01:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_map.h"
-#include "ft_vector.h"
+#include "ft_vector_types.h"
 
-void	ft_map_clear(t_map *map)
+void	*ft_vec_pop(t_vector *vec)
 {
-	size_t	i;
-	t_list	*cur;
+	void	*data;
 
-	i = 0;
-	while (i < map->capacity)
-	{
-		while (map->nodes[i])
-		{
-			cur = map->nodes[i];
-			map->nodes[i] = map->nodes[i]->next;
-			ft_vec_add(&map->reserved_nodes, cur);
-		}
-		map->weights[i] = 0;
-		i++;
-	}
-	map->w_total = 0;
+	if (vec->count == 0)
+		return (NULL);
+	data = vec->datas[vec->count - 1];
+	vec->datas[vec->count - 1] = NULL;
+	return (data);
 }

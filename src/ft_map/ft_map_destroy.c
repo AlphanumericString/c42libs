@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:32:38 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 19:21:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 00:05:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ void	ft_map_destroy_free(t_map *map, t_data_apply free_fun)
 
 	singleton_custom_destroy(free_fun);
 	i = 0;
-	while (i < map->size)
+	while (i < map->w_total)
 		ft_listapply(map->nodes[i++], wrapper_destroy);
-	ft_map_destroy(map);
 	free(map->nodes);
+	free(map->weights);
+	ft_vec_apply(map->reserved_nodes, free);
 	ft_vec_destroy(&map->reserved_nodes);
 	free(map);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:02:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 19:05:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/05/31 23:12:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_map_node
 	size_t		hash;
 }				t_map_node;
 
-typedef size_t		(*t_memhash)(const void *, size_t, size_t);
+typedef size_t		(*t_memhash)(const void *data, size_t data_len);
 
 /// @brief Structure representing a map
 /// @param capacity The capacity of the map
@@ -41,7 +41,8 @@ typedef size_t		(*t_memhash)(const void *, size_t, size_t);
 typedef struct s_map
 {
 	size_t		capacity;
-	size_t		size;
+	size_t		*weights;
+	size_t		w_total;
 	t_list		**nodes;
 	t_data_cmp	cmp;
 	t_memhash	hash;

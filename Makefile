@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/31 18:31:57 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/05/31 23:37:33 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -262,6 +262,7 @@ FT_VEC_SRC	=	\
 			$(FT_VEC_DIR)/ft_vec_get.c		\
 			$(FT_VEC_DIR)/ft_vec_map.c		\
 			$(FT_VEC_DIR)/ft_vec_new.c		\
+			$(FT_VEC_DIR)/ft_vec_pop.c		\
 			$(FT_VEC_DIR)/ft_vec_remove.c	\
 			$(FT_VEC_DIR)/ft_vec_reserve.c	\
 			$(FT_VEC_DIR)/ft_vec_reverse.c	\
