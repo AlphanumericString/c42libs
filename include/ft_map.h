@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 23:12:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 11:55:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,20 @@ void		ft_map_set_cmp(t_map *map, t_data_cmp cmp);
 /// @return void
 void		ft_map_set_hash(t_map *map, t_memhash hash);
 
+/// @brief Get a node from a map
+/// @param map map to get the node from
+/// @param key key of the node
+/// @param size size of the key
+/// @file ft_map/ft_map_get.c
+t_map_node	*ft_map_get_node(t_map *map, const void *key, size_t size);
+
 /// @brief Get a value from a map
 /// @param map map to get the value from
 /// @param key key of the value
 /// @param key_size size of the key
 /// @file ft_map/ft_map_get.c
 /// @return a pointer to the user data or NULL if the key is not found
-void	*ft_map_get(t_map *map, const void *key, size_t key_size);
+void		*ft_map_get(t_map *map, const void *key, size_t key_size);
 
 /// @brief Get the number of elements in a map
 /// @param map map to get the size from
@@ -95,8 +102,8 @@ size_t		ft_map_capacity(const t_map *map);
 /// @param key key of the value
 /// @param size size of the key
 /// @file ft_map/ft_map_remove.c
-/// @return void
-void		ft_map_remove(t_map *map, const void *key, size_t size);
+/// @return the value removed or NULL if the key is not found
+void		*ft_map_remove(t_map *map, const void *key, size_t size);
 
 /// @brief Hash a key
 /// @param key key to hash

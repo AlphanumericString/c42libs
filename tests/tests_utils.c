@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 04:18:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 16:09:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 12:12:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,18 @@ static int	run_t_test(t_test test, int *collect)
 	else
 	{
 		waitpid(pid, &ret, 0);
+		ft_putstr_fd(test.name, STDOUT_FILENO);
 		if (WIFEXITED(ret) && ret == 0)
-			ft_putstr_fd("\033[32mOK \033[0m", STDOUT_FILENO);
+			ft_putstr_fd(" \033[32mOK \033[0m", STDOUT_FILENO);
 		else
 		{
-			if (WIFSIGNALED(ret))
-				ft_putstr_fd(" \033[31mCRASH\033[0m\n", STDOUT_FILENO);
-			else if (ret != 0)
-			{
-				ft_putstr_fd(" \033[31mKO\033[0m:\n", STDOUT_FILENO);
-				ft_putnbr_fd(ret, STDOUT_FILENO);
-				ft_putstr_fd("\n", STDOUT_FILENO);
-			}
+			ft_putstr_fd(" \033[31mKO\033[0m ret::", STDOUT_FILENO);
+			if (WIFEXITED(ret))
+				ft_putnbr_fd(WEXITSTATUS(ret), STDOUT_FILENO);
+			else
+				ft_putstr_fd("crash", STDOUT_FILENO);
 		}
+		ft_putstr_fd("\n", STDOUT_FILENO);
 		*collect += ret;
 	}
 	return (ret);

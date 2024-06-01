@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 17:47:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:23:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 12:48:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "ft_args_types.h"
 # include <stddef.h>
 # include <sys/types.h>
-
 
 // Parser opt
 //

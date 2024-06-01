@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 23:57:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 11:56:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 #include "ft_list_types.h"
 #include <stdio.h>
 
-t_map_node	*ft_map_get_node(t_map *map, const void *key, size_t size);
-
-void	ft_map_remove(t_map *map, const void *key, size_t size)
+void	*ft_map_remove(t_map *map, const void *key, size_t size)
 {
 	size_t		hash;
 	t_list		*prev;
@@ -35,7 +33,7 @@ void	ft_map_remove(t_map *map, const void *key, size_t size)
 		cur = cur->next;
 	}
 	if (!cur)
-		return ;
+		return (NULL);
 	if (!prev)
 		map->nodes[hash] = cur->next;
 	else
@@ -44,4 +42,5 @@ void	ft_map_remove(t_map *map, const void *key, size_t size)
 	ft_vec_add(&map->reserved_nodes, cur);
 	map->weights[hash]--;
 	map->w_total--;
+	return (((t_map_node *)cur->data)->data);
 }

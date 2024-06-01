@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 18:10:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 12:07:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ft_map_types.h"
 #include <stdlib.h>
 
+// check valgrind for no memory leak
 int	test_map_destroy(void)
 {
 	t_map	*map;
@@ -24,14 +25,8 @@ int	test_map_destroy(void)
 	return (0);
 }
 
-/*
-	// check we can still access the data
-	key[0] = 'k';
-	value[0] = 'v';
- 
-	ft_map_destroy_free(map, free); // free the data -> value
-*/
-
+// accessing to key[0] and value[0] after the call to check
+// that no free occured on the data at first call
 int	test_map_destroy_free(void)
 {
 	t_map	*map;

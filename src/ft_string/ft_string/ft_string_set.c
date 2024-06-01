@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:17:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 13:08:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 12:35:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_string_set_n(t_string *str, const char *new_str, size_t n)
 		new_len = n;
 	if (new_len > str->capacity)
 	{
-		str->str = ft_realloc(str->str, str->capacity, new_len);
+		str->str = ft_realloc(str->str, new_len, str->capacity);
 		if (str->str == NULL)
 			return (0);
 		str->capacity = new_len;

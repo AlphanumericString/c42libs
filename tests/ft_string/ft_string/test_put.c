@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_put.c                                  :+:      :+:    :+:   */
+/*   test_put.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:45:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 13:12:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 12:28:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	test_string_put(void)
 	destroy_test_file(fd, file);
 	if (ft_strcmp(src, res) != 0)
 		return (1);
+	free(res);
 	ft_string_destroy(&str);
 	return (0);
 }

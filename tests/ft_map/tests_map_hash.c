@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:21:33 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 14:21:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 12:24:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,23 @@
 int	test_map_hash(void)
 {
 	size_t	ret;
+	size_t	ret2;
 
-	ret = ft_hash_djb2("key", 10, ft_strlen("key") + 1);
-	if (ret >= 10)
+	ret = ft_hash_djb2("key", ft_strlen("key"));
+	ret2 = ft_hash_djb2("key2", ft_strlen("key2"));
+	if (ret == ret2)
 		return (1);
-	ret = ft_hash_sdbm("key", 10, ft_strlen("key") + 1);
-	if (ret >= 10)
+	ret = ft_hash_sdbm("key", ft_strlen("key"));
+	ret2 = ft_hash_sdbm("key2", ft_strlen("key2"));
+	if (ret == ret2)
 		return (1);
-	ret = ft_hash_fnv1a("key", 10, ft_strlen("key") + 1);
-	if (ret >= 10)
+	ret = ft_hash_fnv1a("key", ft_strlen("key"));
+	ret2 = ft_hash_fnv1a("key2", ft_strlen("key2"));
+	if (ret == ret2)
 		return (1);
-	ret = ft_hash_dummy("key", 10, ft_strlen("key") + 1);
-	if (ret >= 10)
+	ret = ft_hash_dummy("key", ft_strlen("key"));
+	ret2 = ft_hash_dummy("key2", ft_strlen("key2"));
+	if (ret == ret2)
 		return (1);
 	return (0);
 }

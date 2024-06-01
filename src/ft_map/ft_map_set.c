@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:36:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 00:10:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 12:18:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void	setup_map_node(t_map_node *map_node, const void *key, const void \
-*value)
+static void	setup_map_node(t_map_node *map_node, const void *key,
+		const void *value)
 {
 	map_node->data = (void *)value;
 	map_node->key = key;
 	map_node->hash = 0;
 }
 
-t_map_node	*ft_map_get_node(t_map *map, const void *key, size_t size)
-{
-	t_list		*bucket;
-	t_map_node	*map_node;
-
-	bucket = map->nodes[map->hash(key, size) % map->capacity];
-	map_node = NULL;
-	while (bucket)
-	{
-		map_node = bucket->data;
-		if (map->cmp(map_node->key, key) == 0)
-			break ;
-		bucket = bucket->next;
-	}
-	if (map_node && map->cmp(map_node->key, key) == 0)
-		return (map_node);
-	return (NULL);
-}
-
-bool ft_map_set(t_map *map, const void *key, const void *value, size_t size)
+bool	ft_map_set(t_map *map, const void *key, const void *value, size_t size)
 {
 	t_map_node	*map_node;
 	t_list		*reuse_node;
