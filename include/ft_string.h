@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:27:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 14:18:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stddef.h>
 # include <stdbool.h>
 // self types
+# include "ft_defs.h"
 # include "ft_string_types.h"
 
 // malloc + free
@@ -34,7 +35,7 @@
 /// @param f function to apply
 /// @return void
 /// @note the memory is modified in place
-void		ft_apply_2d(void **array, void (*f)(void *));
+void		ft_apply_2d(void **array, t_data_apply f);
 
 /// @brief fill the memory with 0
 /// @param s start of the memory
@@ -102,10 +103,9 @@ void		*ft_memcpy(void *dest, const void *src, size_t n);
 /// @brief map memory region src to new region using f
 /// @param src start of the source memory
 /// @param nb_e number of elements
-/// @param sz_e size of each element
 /// @param f function to apply
 /// @return pointer to the new memory or NULL
-void		*ft_memmap(void *src, size_t nb_e, size_t sz_e, void *(*f)(void *));
+void		*ft_memmap(void **src, size_t nb_e, t_data_tr f);
 
 /// @brief copy the memory
 /// @param dest start of the destination memory
@@ -134,8 +134,7 @@ void		ft_swap(void **a, void **b);
 /// @param cmp comparison function
 /// @return void
 /// @WARNING Do not use. Not implemented fully.
-void		ft_qsort(void *array, size_t nmb, size_t size,
-				int (*cmp)(const void *, const void *));
+void		ft_qsort(void *array, size_t nmb, size_t size, t_data_cmp cmp);
 
 /* ************************************************************************** */
 /* **                     FT_PUT SUB MODULE                                ** */

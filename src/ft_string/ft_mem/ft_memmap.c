@@ -6,29 +6,29 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:14:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 12:36:08 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 14:20:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include <stddef.h>
 #include <stdlib.h>
 
-void	*ft_memmap(void *src, size_t nb_e, size_t sz_e, void *(*f)(void *))
+void	*ft_memmap(void **src, size_t nb_e, t_data_tr f)
 {
-	void	*dst;
+	void	**dst;
 	size_t	i;
 
 	if (!src || !f)
 		return (NULL);
-	dst = malloc(nb_e * sz_e);
+	dst = malloc((nb_e + 1) * sizeof(void *));
 	if (!dst)
 		return (NULL);
+	dst[nb_e] = NULL;
 	i = 0;
 	while (i < nb_e)
 	{
-		dst = f(src);
-		src += sz_e;
-		dst += sz_e;
+		dst[i] = f(src[i]);
 		i++;
 	}
 	return (dst);

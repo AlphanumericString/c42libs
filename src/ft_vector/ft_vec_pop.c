@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:00:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 23:01:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 13:56:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	*ft_vec_pop(t_vector *vec)
 	if (vec->count == 0)
 		return (NULL);
 	data = vec->datas[vec->count - 1];
-	vec->datas[vec->count - 1] = NULL;
+	vec->datas[--vec->count] = NULL;
 	return (data);
 }

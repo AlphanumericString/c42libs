@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_custom_parser.c                              :+:      :+:    :+:   */
+/*   tests_custom_checker.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:15:10 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:32:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 14:28:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_args.h"
 
-static int	loc_checker(const char *arg)
+static bool	loc_checker(const void *arg)
 {
-	if (arg[0] == 'a')
-		return (1);
-	return (0);
+	const char	*str = (const char *)arg;
+
+	if (str[0] == 'a')
+		return (true);
+	return (false);
 }
 
 int	getset_custom_checker_test(void)

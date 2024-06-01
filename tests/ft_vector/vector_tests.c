@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:30:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 11:38:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 13:53:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	tests_vector(void)
 	{"add", test_vec_add}, {"apply", test_vec_apply}, {"at", test_vec_at}, \
 	{"cat", test_vec_cat}, {"clear", test_vec_clear}, \
 	{"destroy", test_vec_destroy}, {"filter", test_vec_filter}, \
-	{"map", test_vec_map}, {"new", test_vec_new}, \
+	{"map", test_vec_map}, {"new", test_vec_new}, {"pop", test_vec_pop}, \
 	{"from_size", test_vec_from_size}, {"from_array", test_vec_from_array}, \
 	{"convert_alloc_array", test_vec_convert_alloc_array}, \
 	{"remove", test_vec_remove}, {"remove_if", test_vec_remove_if}, \

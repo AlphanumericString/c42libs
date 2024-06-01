@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/05/31 23:37:33 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/06/01 13:54:22 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -521,6 +521,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tests_vec_get.c							\
 			$(TESTS_DIR)/ft_vector/tests_vec_map.c							\
 			$(TESTS_DIR)/ft_vector/tests_vec_new.c							\
+			$(TESTS_DIR)/ft_vector/tests_vec_pop.c							\
 			$(TESTS_DIR)/ft_vector/tests_vec_remove.c						\
 			$(TESTS_DIR)/ft_vector/tests_vec_remove_if.c					\
 			$(TESTS_DIR)/ft_vector/tests_vec_reserve.c						\
@@ -746,4 +747,3 @@ re:	fclean all
 
 # rule to force rules to be executed even if files exist
 .PHONY: re fclean clean
-

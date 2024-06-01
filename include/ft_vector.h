@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 12:48:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 14:04:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ void		ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del);
 /// @brief Get an element from the vector
 /// @param vector vector to get the element from
 /// @param key key to search for using the cmp function
-/// @param cmp function to compare the elements
+/// @param cmp function to compare the elements where the first argument is the
+/// key and the second is the element of the vector
 /// @return pointer to the element or NULL if not found
 /// @note If you want to get an element by index, use ft_vec_at
-void		*ft_vec_get(t_vector *vector, const void *key, \
-					int (*cmp)(const void *v_data, const void *key));
+void		*ft_vec_get(t_vector *vector, const void *key, t_data_cmp cmp);
 
 // ft_vector/ft_vec_map.c
 

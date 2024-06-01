@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:22:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/01 14:09:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 #  define VERSION "1.0.0"
 # endif
 
+# include "ft_defs.h"
 # include <sys/types.h>
 # include "ft_args_types.h"
 
 /* @file: src/ft_args/ft_arg_custom_checker.c */
-void		ft_arg_set_custom_checker(int (*custom_checker)(const char *));
-int			(*ft_arg_get_custom_checker(void))(const char *arg);
+void		ft_arg_set_custom_checker(t_data_is custom_checker);
+t_data_is	ft_arg_get_custom_checker(void);
 
 /* @file: src/ft_args/ft_setup_prog.c */
 void		ft_setup_prog(const char *const *av);
