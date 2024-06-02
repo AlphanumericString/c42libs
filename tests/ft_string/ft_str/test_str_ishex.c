@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/29 23:52:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 07:44:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ int	test_str_ishex(void)
 		return (8);
 	if (ft_str_ishex("") != 0)
 		return (8);
+	if (ft_str_ishex(NULL) != false)
+		return (9);
 	return (0);
 }

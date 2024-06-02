@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:03:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 09:11:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	test_str_isint(void)
 	ft_str_isint("0.000000") != 0 || ft_str_isint("2147483648") != 0 || \
 	ft_str_isint("-2147483649") != 0 || ft_str_isint("2147483647.0") != 0 || \
 	ft_str_isint("-2147483648.0") != 0)
-		return (1);
+		return (2);
+	if (ft_str_isint("") != 0 || ft_str_isint("999999999999") != 0 || \
+	ft_str_isint("-") != 0 || ft_str_isint("+") != 0)
+		return (3);
+	if (ft_str_isint(NULL) != false)
+		return (4);
 	return (0);
 }

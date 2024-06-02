@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:24:10 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 11:24:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 08:44:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,19 @@ int	test_strnstr(void)
 	char	*res;
 
 	str = "The cake is a lie !\0I'm hidden lol\n";
-	res = ft_strnstr(str, "The cake is a lie !", 100);
-	if (res != str)
+	if (ft_strnstr(str, "The cake is a lie !", 100) != str)
 		return (1);
-	res = ft_strnstr(str, "The cake is a lie !", 20);
-	if (res != str)
+	if (ft_strnstr(str, "The cake is a lie !", 20) != str)
 		return (2);
 	res = ft_strnstr(str, "The cake is a lie !", 19);
 	if (res == NULL)
 		return (3);
-	res = ft_strnstr(str, "The cake is a lie !", 0);
-	if (res != NULL)
+	if (ft_strnstr(str, "The cake is a lie !", 0) != NULL)
 		return (4);
-	res = ft_strnstr(str, "hidden", 100);
-	if (res != NULL)
+	if (ft_strnstr(str, "hidden", 100) != NULL)
 		return (5);
+	if (ft_strnstr(NULL, "hidden", 10) != NULL || \
+	ft_strnstr(str, NULL, 10) != NULL)
+		return (6);
 	return (0);
 }

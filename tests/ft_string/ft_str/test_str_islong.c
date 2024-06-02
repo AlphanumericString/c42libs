@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:10:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 07:44:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,9 @@ int	test_str_islong(void)
 	ft_str_islong("-+0") != 0 || ft_str_islong("+-0") != 0 || \
 	ft_str_islong("0-") != 0 || ft_str_islong("0+") != 0)
 		return (2);
+	if (ft_str_islong("") != 0 || ft_str_islong("-") != 0)
+		return (3);
+	if (ft_str_islong(NULL) != false)
+		return (4);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:47:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:29:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 07:41:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ bool	ft_str_isint(const char *str)
 {
 	size_t	i;
 
+	if (!str)
+		return (false);
 	i = 0;
 	if (str[i] == '-')
 		i++;
@@ -28,8 +30,8 @@ bool	ft_str_isint(const char *str)
 			return (false);
 		i++;
 	}
-	if ((i == 10 && ft_strcmp(str, "2147483647") > 0) || (i == 11
-			&& ft_strcmp(str, "-2147483648") > 0) || i > 11)
+	if ((i == 10 && ft_strcmp(str, "2147483647") > 0) || i > 11 || \
+	(i == 11 && ft_strcmp(str, "-2147483648") > 0))
 		return (false);
 	if (i == 0 || (i == 1 && (str[0] == '-')))
 		return (false);

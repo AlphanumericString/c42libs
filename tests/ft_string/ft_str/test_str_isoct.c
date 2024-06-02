@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 00:19:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 07:45:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ int	test_str_isoct(void)
 	ft_str_isoct("0o9") != 0 || ft_str_isoct("12") != 0 || \
 	ft_str_isoct("-7") != 0 || ft_str_isoct("+67") != 0)
 		return (2);
+	if (ft_str_isoct(NULL) != false)
+		return (3);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:04:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 00:09:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,8 @@ typedef enum e_opt_type
 /// 	ft_bzero(&control, sizeof(t_control));
 /// 	ft_set_opt_list(opt_list);
 /// 	ft_parse_args(argv, &control);
-/// 	printf("n = %d\nname = %s\nf = %f\n", control.n, control.name, control.f);
+/// 	printf("n = %d\nname = %s\nf = %f\n", control.n, control.name, 
+/// 	control.f);
 /// 	return (0);
 /// }
 /// @endcode

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:22:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 14:54:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 00:46:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ int	test_memcmp(void)
 		return (4);
 	if (ft_memcmp(str, str4, 10) != 0)
 		return (5);
+	if (ft_memcmp(str, str, 999) != 0)
+		return (6);
 	return (0);
 }

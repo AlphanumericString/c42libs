@@ -6,12 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:21:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:34:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 00:54:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
+// last ft_memmove is a test to check that we do nothing on
+// dst if src and dst are the same otherwise it will segfault
 int	test_memmove(void)
 {
 	char		str[10];
@@ -30,5 +32,6 @@ int	test_memmove(void)
 	ft_memmove(str + 2, str, 5);
 	if (ft_memcmp(str, "3434567a9", 10) != 0)
 		return (4);
+	ft_memmove(str, str, 999);
 	return (0);
 }

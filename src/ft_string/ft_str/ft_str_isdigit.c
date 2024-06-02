@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:39:43 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:28:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 07:40:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 
 bool	ft_str_isdigit(const char *str)
 {
+	if (!str)
+		return (false);
 	return (ft_str_isvalid(str, ft_isdigit));
 }

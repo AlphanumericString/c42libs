@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:54:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/04 17:43:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 09:04:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ char	*ft_utoa(unsigned int nbr)
 	if (!ret)
 		return (NULL);
 	if (srcnbr == 0)
-		if (srcnbr == 0)
-			ret[0] = '0';
+		ret[0] = '0';
 	off = 0;
 	while (srcnbr)
 	{

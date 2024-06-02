@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:25:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:15:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 09:02:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int	test_substr(void)
 {
 	const char	*str = "Hello World!";
-	char		*res[6];
-	size_t		i;
+	char		*res[7];
 
 	res[0] = ft_substr(str, 0, 5);
 	res[1] = ft_substr(str, 6, 6);
@@ -24,14 +23,13 @@ int	test_substr(void)
 	res[3] = ft_substr(str, 6, 0);
 	res[4] = ft_substr(str, 12, 0);
 	res[5] = ft_substr(str, 12, 100);
+	res[6] = ft_substr(NULL, 0, 5);
 	if (ft_strcmp(res[0], "Hello") != 0 || ft_strcmp(res[1], "World!") != 0
 		|| ft_strcmp(res[2], "World!") != 0)
 		return (1);
 	if (ft_strcmp(res[3], "") != 0 || ft_strcmp(res[4], "") != 0
-		|| ft_strcmp(res[5], "") != 0)
+		|| ft_strcmp(res[5], "") != 0 || res[6] != NULL)
 		return (2);
-	i = 0;
-	while (i < 6)
-		free(res[i++]);
+	ft_apply_2d((void **)res, free);
 	return (0);
 }

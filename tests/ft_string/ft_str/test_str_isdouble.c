@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/29 15:43:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 07:43:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	test_str_isdouble(void)
 	if (ft_str_isdouble("94308243208523048750743") != 0 || \
 	ft_str_isdouble("") != 0 || ft_str_isdouble(".") != 0)
 		return (6);
+	if (ft_str_isdouble(NULL) != false)
+		return (7);
 	return (0);
 }

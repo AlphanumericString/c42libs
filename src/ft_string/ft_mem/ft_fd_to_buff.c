@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 19:52:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/27 09:31:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 00:43:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 #include <unistd.h>
 
 #include "ft_string.h"
-
-#define READ_BLOCKS 4096
+#include "ft_string_types.h"
 
 char	*ft_fd_to_buff(int fd)
 {
-	char	buff[READ_BLOCKS + 1];
+	char	buff[BUFFER_SIZE + 1];
 	char	*file;
 	char	*prev;
 	int		ret;
@@ -27,14 +26,14 @@ char	*ft_fd_to_buff(int fd)
 	if (fd == -1)
 		return (NULL);
 	file = NULL;
-	ret = read(fd, buff, READ_BLOCKS);
+	ret = read(fd, buff, BUFFER_SIZE);
 	if (ret == -1)
 		return (NULL);
 	buff[ret] = '\0';
 	file = ft_strdup(buff);
-	while (ret == READ_BLOCKS)
+	while (ret == BUFFER_SIZE)
 	{
-		ret = read(fd, buff, READ_BLOCKS);
+		ret = read(fd, buff, BUFFER_SIZE);
 		if (ret == -1)
 			return (ft_free((void **)&file), NULL);
 		buff[ret] = '\0';

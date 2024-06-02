@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:56:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:29:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 07:41:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ bool	ft_str_isnum(const char *str)
 {
 	int	i;
 
+	if (!str)
+		return (false);
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	if (!ft_str_isvalid(str + i, ft_isdigit))
-		return (false);
-	if (str[i] == '\0')
-		return (false);
-	return (true);
+	return (ft_str_isvalid(str + i, ft_isdigit));
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:21:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 14:45:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 00:53:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	test_memmap(void)
 	const char	*tb[3] = {"Hello", "World", "!"};
 	char		**str2;
 
-	str2 = ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]),
+	str2 = (char **) ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]),
 			(t_data_tr)ft_strdup);
 	if (ft_strcmp(str2[0], "Hello") != 0)
 		return (1);
@@ -27,5 +27,14 @@ int	test_memmap(void)
 	if (ft_strcmp(str2[2], "!") != 0)
 		return (1);
 	ft_free_2d((void **)str2);
+	str2 = (char **) ft_memmap(NULL, 0, (t_data_tr)ft_strdup);
+	if (str2 != NULL)
+		return (2);
+	str2 = (char **) ft_memmap((void *)tb, 0, (t_data_tr)ft_strdup);
+	if (str2 != NULL)
+		return (3);
+	str2 = (char **) ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]), NULL);
+	if (str2 != NULL)
+		return (4);
 	return (0);
 }

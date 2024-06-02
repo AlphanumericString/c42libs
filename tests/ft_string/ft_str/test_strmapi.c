@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:13:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 08:40:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,11 @@ int	test_strmapi(void)
 	if (ft_strcmp(res, "hELLO wORLD!") != 0)
 		return (1);
 	free(res);
+	res = ft_strmapi(NULL, &local_mapi);
+	if (res != NULL)
+		return (2);
+	res = ft_strmapi(str, NULL);
+	if (res != NULL)
+		return (3);
 	return (0);
 }

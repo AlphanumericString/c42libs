@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:19:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/31 18:00:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 08:52:24 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strtok(char *str, const char *token)
 	while (ptr && ft_strchr(token, *ptr) && *ptr)
 		ptr++;
 	ret = ptr;
-	while (ptr && !ft_strchr(token, *ptr) && *ptr)
+	while (ptr && !ft_strchr(token, *ptr))
 		ptr++;
 	if (ptr && *ptr)
 	{

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:11:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/05 10:28:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 08:15:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	src_len;
 	size_t	i;
 
-	if (size == 0 && (!dst || !src))
+	if (!size || !dst)
 		return (0);
+	if (!src)
+		return (ft_strlen(dst));
 	dst_len = ft_strlen(dst);
 	src_len = ft_strlen(src);
 	if (dst_len >= size)

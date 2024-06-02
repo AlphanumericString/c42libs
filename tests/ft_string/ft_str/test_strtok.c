@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:24:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:15:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 08:52:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	test_strtok(void)
 	char	lorem[30];
 
 	ft_strlcpy(lorem, "Lorem ipsum dolor ", 30);
-	ft_strlcpy(test, "path/to/file:another/path:yet/another/path", 43);
+	ft_strlcpy(test, ":::path/to/file:::another/path::yet/:/another/path", 47);
 	if (ft_strcmp(ft_strtok(lorem, " "), "Lorem") != 0
 		|| ft_strcmp(ft_strtok(NULL, " "), "ipsum") != 0
 		|| ft_strcmp(ft_strtok(NULL, " "), "dolor") != 0)

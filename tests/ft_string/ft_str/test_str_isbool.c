@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:22:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/29 15:00:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 07:43:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	test_str_isbool(void)
 		return (7);
 	if (ft_str_isbool("") != 0)
 		return (8);
+	if (ft_str_isbool(NULL) != false)
+		return (9);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:45:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:29:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 07:40:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ bool	ft_str_isfloat(const char *str)
 	size_t	i;
 	bool	dot;
 
+	if (!str)
+		return (false);
 	i = 0;
 	dot = false;
 	if (str[i] == '-')
