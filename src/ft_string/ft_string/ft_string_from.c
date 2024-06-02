@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:14:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/02 10:22:08 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:40:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_string	*ft_string_from_n(const char *str, size_t n)
 	new = ft_string_new(n + 1);
 	if (new == NULL)
 		return (NULL);
-	if (n == 0)
+	if (n == 0 || str == NULL)
 		return (new);
 	ft_memcpy(new->str, str, n);
 	new->str[n] = '\0';
@@ -62,6 +62,8 @@ t_string	*ft_string_from_s(const t_string *str)
 {
 	t_string	*new;
 
+	if (str == NULL)
+		return (ft_string_new(0));
 	new = ft_string_new(str->length + 1);
 	if (new == NULL)
 		return (NULL);
@@ -75,6 +77,8 @@ t_string	*ft_string_from_s_n(const t_string *str, size_t n)
 	t_string	*new;
 	size_t		len;
 
+	if (str == NULL || n == 0)
+		return (ft_string_new(0));
 	len = ft_min(n, str->length);
 	new = ft_string_new(len + 1);
 	if (new == NULL)

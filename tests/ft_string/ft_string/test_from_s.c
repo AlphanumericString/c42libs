@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_from_s.c                               :+:      :+:    :+:   */
+/*   test_from_s.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:28:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:38:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int	test_string_from_s(void)
 	str = ft_string_from_s(str_src);
 	if (ft_string_cmp(str, "Hello World") != 0)
 		return (1);
-	if (str->length != 11)
+	if (str->length != 11 || str->capacity < 11)
 		return (2);
 	ft_string_destroy(&str);
-	ft_string_destroy(&str_src);
-	return (0);
+	str = ft_string_from_s(NULL);
+	if (str->length != 0 || str->capacity < 1)
+		return (3);
+	return (ft_string_destroy(&str), ft_string_destroy(&str_src), 0);
 }

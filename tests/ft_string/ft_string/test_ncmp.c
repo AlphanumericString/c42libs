@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_ncmp.c                                 :+:      :+:    :+:   */
+/*   test_ncmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:21:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:23:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	test_string_ncmp(void)
 	str = ft_string_from("Hello World");
 	if (ft_string_ncmp(str, "Hello World", 11) != 0)
 		return (1);
-	if (ft_string_ncmp(str, "Hello", 5) == 0)
+	if (ft_string_ncmp(str, "Hello_foobar", 5) != 0)
 		return (2);
 	if (ft_string_ncmp(str, "Hello World!", 12) == 0)
 		return (3);

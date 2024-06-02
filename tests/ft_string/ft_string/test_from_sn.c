@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_from_sn.c                              :+:      :+:    :+:   */
+/*   test_from_sn.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:28:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:41:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int	test_string_from_sn(void)
 	if (str->capacity < 5)
 		return (3);
 	ft_string_destroy(&str);
-	ft_string_destroy(&str_src);
-	return (0);
+	str = ft_string_from_s_n(NULL, 5);
+	if (str->length != 0 || str->capacity < 1)
+		return (4);
+	ft_string_destroy(&str);
+	str = ft_string_from_s_n(str_src, 0);
+	if (str->length != 0 || str->capacity < 1)
+		return (5);
+	return (ft_string_destroy(&str), ft_string_destroy(&str_src), 0);
 }

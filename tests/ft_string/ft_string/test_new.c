@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_new.c                                  :+:      :+:    :+:   */
+/*   test_new.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:21:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:34:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	test_string_new(void)
 	t_string	*str;
 
 	str = ft_string_new(42);
-	if (str->str == NULL)
+	if (str->str == NULL || str->length != 0 || str->capacity < 42)
 		return (1);
-	if (str->length != 0)
-		return (2);
-	if (str->capacity == 0)
-		return (3);
+	ft_string_destroy(&str);
+	str = ft_string_new(0);
+	if (str->str == NULL || str->length != 0 || str->capacity < 1)
+		return (1);
 	ft_string_destroy(&str);
 	return (0);
 }
