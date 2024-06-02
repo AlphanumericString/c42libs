@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_cmp.c                                  :+:      :+:    :+:   */
+/*   test_cmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:21:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:46:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int	test_string_cmp(void)
 	str = ft_string_from("Hello World");
 	if (ft_string_cmp(str, "Hello World") != 0)
 		return (1);
-	if (ft_string_cmp(str, "Hello") == 0)
+	if (ft_string_cmp(str, "Hello Warld!") != 'o' - 'a')
 		return (2);
-	if (ft_string_cmp(str, "Hello World!") == 0)
+	if (ft_string_cmp(str, "Hello Wprld!") != 'o' - 'p')
 		return (3);
+	if (ft_string_cmp(str, "Hello World!") == 0)
+		return (4);
 	ft_string_destroy(&str);
 	return (0);
 }

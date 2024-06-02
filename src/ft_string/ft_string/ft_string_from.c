@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:14:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 10:40:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:22:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_string	*ft_string_from(const char *str)
 	t_string	*new;
 	size_t		len;
 
+	if (str == NULL)
+		return (ft_string_new(0));
 	len = ft_strlen(str);
 	new = ft_string_new(len + 1);
 	if (new == NULL)

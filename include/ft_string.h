@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/02 00:51:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:49:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void		ft_bzero(void *s, size_t n);
 /// @return pointer to the allocated memory
 void		*ft_calloc(size_t nmemb, size_t weight);
 
-/// @brief 
+/// @brief load the content of the file descriptor into a string
+/// @param fd file descriptor to read from
+/// @return pointer to the string otherwise NULL
+/// @note You must free the returned string
 char		*ft_fd_to_buff(int fd);
 
 /// @brief allocate memory and copy the content of the source memory

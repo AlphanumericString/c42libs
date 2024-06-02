@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_chr.c                                  :+:      :+:    :+:   */
+/*   test_chr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:57:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:40:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:35:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,19 @@
 int	test_string_chr(void)
 {
 	t_string	*str;
-	const char	*src;
-	char		c;
+	const char	c[] = "z!H@\0";
+	char		*ptr_exp[sizeof(c) / sizeof(c[0])];
+	size_t		i;
 
-	src = "Hello world this is zod!";
-	str = ft_string_from(src);
-	c = 'z';
-	if ((ft_string_chr(str, c) - str->str) != 20)
-		return (1);
-	c = '!';
-	if (ft_string_chr(str, c) - str->str != 23)
-		return (2);
-	c = 'H';
-	if (ft_string_chr(str, c) - str->str != 0)
-		return (3);
-	c = '@';
-	if (ft_string_chr(str, c) != NULL)
-		return (4);
+	str = ft_string_from("Hello world this is zod!");
+	i = 0;
+	while (i < sizeof(c) / sizeof(c[0]))
+	{
+		ptr_exp[i] = ft_strchr(str->str, c[i]);
+		if (ft_string_chr(str, c[i]) != ptr_exp[i])
+			return (i + 1);
+		i++;
+	}
 	ft_string_destroy(&str);
 	return (0);
 }

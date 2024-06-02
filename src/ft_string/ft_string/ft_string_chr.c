@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:51:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:57:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:38:24 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_string_rchr(const t_string *str, char c)
 			return (str->str + i);
 		i--;
 	}
-	if (i == 0 && str->str[i] == c)
+	if (str->str[i] == c)
 		return (str->str + i);
 	return (NULL);
 }

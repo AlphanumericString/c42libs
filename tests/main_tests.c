@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2024/06/01 14:25:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:43:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ const t_test	*get_tests(void)
 	};
 
 	return (tests);
+}
+
+static int exit_msg(int collect)
+{
+	if (collect == 0)
+		ft_putendl_fd("\033[32mAll tests passed\033[0m", STDOUT_FILENO);
+	else
+		ft_putendl_fd("\033[31mSome tests failed\033[0m", STDOUT_FILENO);
+	return (collect != 0);
 }
 
 int	main(void)
@@ -53,5 +62,5 @@ int	main(void)
 			ft_putstr_fd(" \033[31mKO\033[0m\n", STDOUT_FILENO);
 		i++;
 	}
-	return (collect);
+	return (exit_msg(collect));
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:00:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/05 02:38:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:22:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_string	*ft_string_new(size_t capacity)
 	new = ft_calloc(1, sizeof(t_string));
 	if (new == NULL)
 		return (NULL);
+	if (capacity < T_STRING_BUFF)
+		capacity = T_STRING_BUFF;
 	new->str = ft_calloc(capacity, sizeof(char));
 	if (new->str == NULL)
 		return (ft_free((void **)&new), NULL);
