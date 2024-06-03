@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_cmp_str.c                              :+:      :+:    :+:   */
+/*   test_cmp_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:21:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:01:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	test_string_cmp_str(void)
 	str2 = ft_string_from("Hell");
 	if (ft_string_cmpstr(str, str2) <= 0)
 		return (3);
-	ft_strlen(str2->str);
 	ft_string_destroy(&str);
 	ft_string_destroy(&str2);
 	return (0);

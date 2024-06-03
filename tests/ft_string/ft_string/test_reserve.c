@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_reserve.c                              :+:      :+:    :+:   */
+/*   test_reserve.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:21:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:36:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ int	test_string_reserve(void)
 	ft_string_reserve(str, 42);
 	if (ft_string_cmp(str, "Hello") != 0)
 		return (1);
-	if (str->length != 5)
+	if (str->length != 5 || str->capacity < 42)
 		return (2);
-	if (str->capacity < 42)
+	ft_string_reserve(str, 10);
+	if (ft_string_cmp(str, "Hello") != 0)
 		return (3);
+	if (str->length != 5 || str->capacity < 42)
+		return (4);
 	ft_string_destroy(&str);
 	return (0);
 }

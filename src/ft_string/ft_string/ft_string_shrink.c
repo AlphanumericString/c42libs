@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:31:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/01/07 03:47:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:56:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_string_shrink(t_string *str)
 {
 	char	*new;
 
-	if (str->capacity <= str->length)
+	if (str->capacity <= str->length + 1)
 		return (0);
 	new = ft_realloc(str->str, str->length + 1, str->capacity);
 	if (new == NULL)

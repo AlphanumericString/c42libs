@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:56:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 13:55:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:43:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int	test_string_set_inplace(void)
 	res = ft_string_get(str);
 	if (ft_strcmp(src, res) != 0)
 		return (1);
-	ft_string_destroy(&str);
-	return (0);
+	src = ft_strdup("Hello world this is zod!");
+	free(str->str);
+	str->str = NULL;
+	ft_string_set_inplace(str, src);
+	res = ft_string_get(str);
+	if (ft_strcmp(src, res) != 0)
+		return (2);
+	return (ft_string_destroy(&str), 0);
 }

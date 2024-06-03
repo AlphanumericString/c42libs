@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_t_str_insert_c.c                             :+:      :+:    :+:   */
+/*   test_insert_c.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 12:21:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:15:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ int	test_string_insert_c(void)
 	ft_string_insert_c(str, ' ', 0);
 	if (ft_string_cmp(str, " Hello") != 0)
 		return (1);
-	if (str->length != 6)
+	if (str->length != 6 || str->capacity < 6)
 		return (2);
-	if (str->capacity < 6)
+	ft_string_insert_c(str, '!', 99);
+	if (ft_string_cmp(str, " Hello!") != 0)
 		return (3);
+	if (str->length != 7 || str->capacity < 7)
+		return (4);
 	ft_string_destroy(&str);
 	return (0);
 }
