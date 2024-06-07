@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:32:38 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 11:53:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:58:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include "ft_vector.h"
 #include <stdlib.h>
 
-static t_data_apply	singleton_custom_destroy(const t_data_apply custom_destroy)
+static t_data_apply	singleton_custom_destroy(const t_data_apply custom_destroy, bool set)
 {
 	static t_data_apply	f_ptr = NULL;
 
-	if (custom_destroy)
+	if (set == true)
 		f_ptr = custom_destroy;
 	return (f_ptr);
 }
@@ -30,7 +30,7 @@ static void	wrapper_destroy(void *restrict data)
 	t_data_apply	destroy;
 	t_map_node		*map_node;
 
-	destroy = singleton_custom_destroy(NULL);
+	destroy = singleton_custom_destroy(NULL, false);
 	map_node = (t_map_node *)data;
 	if (destroy)
 		(*destroy)(map_node->data);
@@ -56,7 +56,7 @@ void	ft_map_destroy_free(t_map *map, t_data_apply free_fun)
 {
 	size_t	i;
 
-	singleton_custom_destroy(free_fun);
+	singleton_custom_destroy(free_fun, true);
 	i = 0;
 	while (i < map->capacity)
 	{
@@ -67,4 +67,5 @@ void	ft_map_destroy_free(t_map *map, t_data_apply free_fun)
 	ft_vec_apply(map->reserved_nodes, rsv_del);
 	ft_vec_destroy(&map->reserved_nodes);
 	free(map);
+	singleton_custom_destroy(NULL, true);
 }
