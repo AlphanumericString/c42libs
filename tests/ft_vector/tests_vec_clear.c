@@ -32,7 +32,7 @@ int	test_vec_clear(void)
 		return (1);
 	else if (vec->cappacity == 0)
 		return (1);
-	else if (vec->datas[0] != NULL)
+	else if (vec->datas[0])
 		return (1);
 	ft_vec_destroy(&vec);
 	return (0);

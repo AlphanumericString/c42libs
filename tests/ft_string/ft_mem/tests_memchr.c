@@ -22,11 +22,11 @@ int	test_memchr(void)
 		return (1);
 	if (ft_memchr(str, '9', 10) != &str[8])
 		return (2);
-	if (ft_memchr(str, 'z', 10) != NULL)
+	if (ft_memchr(str, 'z', 10))
 		return (3);
 	if (ft_memchr(str, '7', 10) != &str[6])
 		return (4);
-	if (ft_memchr(str, '7', 0) != NULL)
+	if (ft_memchr(str, '7', 0))
 		return (5);
 	return (0);
 }

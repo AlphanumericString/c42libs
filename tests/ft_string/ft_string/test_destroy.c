@@ -23,7 +23,7 @@ int	test_string_destroy(void)
 
 	str = ft_string_from("Hello");
 	ft_string_destroy(&str);
-	if (str != NULL)
+	if (str)
 		return (1);
 	ft_string_destroy(&str);
 	ft_string_destroy(NULL);

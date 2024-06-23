@@ -18,11 +18,11 @@ int	test_optional_new(void)
 	t_optional	*opt;
 
 	opt = ft_optional_new();
-	if (opt == NULL)
+	if (!opt)
 		return (1);
 	if (opt->pres != OPT_NONE)
 		return (2);
-	if (opt->val != NULL)
+	if (opt->val)
 		return (3);
 	ft_optional_destroy(opt);
 	return (0);

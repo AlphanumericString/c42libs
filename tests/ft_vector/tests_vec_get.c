@@ -36,7 +36,7 @@ int	test_vec_get(void)
 	if (ft_strcmp(data_ret, "Zod") != 0)
 		return (1);
 	data_ret = ft_vec_get(vector, "not here", cmp_fun);
-	if (data_ret != NULL)
+	if (data_ret)
 		return (1);
 	ft_vec_destroy(&vector);
 	return (0);

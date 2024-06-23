@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:46:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/11/10 13:18:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:54:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ char	*ft_strchr(const char *str, int c)
 {
 	char		*ret;
 	int			i;
-	const char	target = c;
+	const char	target = (char)c;
 
 	ret = NULL;
 	i = 0;
-	while (str[i] && ret == NULL)
+	while (str[i] && !ret)
 	{
 		if (str[i] == target)
 			ret = (char *)str + i;

@@ -21,6 +21,6 @@ void	create_2elem_dlist(t_dlist **list, void **data1, void **data2)
 	*(int *)*data1 = 42;
 	*(int *)*data2 = 21;
 	*list = NULL;
-	ft_list_dl_push(list, *data1);
-	ft_list_dl_push_back(list, *data2);
+	ft_dl_push(list, *data1);
+	ft_dl_push_back(list, *data2);
 }

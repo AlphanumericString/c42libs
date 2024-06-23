@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:07:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 14:41:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:48:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memset(void *s, int c, size_t n)
 		return (s);
 	while (n--)
 	{
-		*casted = c;
+		*casted = (char)c;
 		casted++;
 	}
 	return (s);

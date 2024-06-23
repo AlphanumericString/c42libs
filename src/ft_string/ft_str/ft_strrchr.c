@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:46:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/11/10 13:19:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:54:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strrchr(const char *str, int c)
 {
 	char		*ret;
 	int			i;
-	const char	target = c;
+	const char	target = (char)c;
 
 	ret = NULL;
 	i = 0;

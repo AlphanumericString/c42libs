@@ -21,7 +21,7 @@ int	test_optional_dup(void)
 	opt_a.pres = OPT_SOME;
 	opt_a.val = (void *)42;
 	opt_b = ft_optional_dup(&opt_a);
-	if (opt_b == NULL)
+	if (!opt_b)
 		return (1);
 	if (opt_b->pres != OPT_SOME)
 		return (2);

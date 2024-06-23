@@ -13,45 +13,45 @@
 #ifndef LL_TESTS_H
 # define LL_TESTS_H
 
-int	test_listadd_front(void);
-int	test_listadd_back(void);
+int	t_ll_add_front(void);
+int	t_ll_add_back(void);
 
-int	test_listapply(void);
-int	test_listapply_range(void);
-int	test_listapply_range_node(void);
+int	t_ll_apply(void);
+int	t_ll_apply_range(void);
+int	t_ll_apply_range_node(void);
 
-int	test_listclear(void);
+int	t_ll_clear(void);
 
-int	test_listcreate(void);
+int	t_ll_create(void);
 
-int	test_listcopy_node(void);
-int	test_listcopy_list(void);
+int	t_ll_copy_node(void);
+int	t_ll_copy_list(void);
 
-int	test_listdelone(void);
-int	test_listdelete_range(void);
+int	t_ll_delone(void);
+int	t_ll_delete_range(void);
 
-int	test_listfind(void);
+int	t_ll_find(void);
 
-int	test_listget_datas(void);
-int	test_listget_nodes(void);
+int	t_ll_get_datas(void);
+int	t_ll_get_nodes(void);
 
-int	test_listend(void);
-int	test_listat(void);
+int	t_ll_end(void);
+int	t_ll_at(void);
 
-int	test_listmap(void);
+int	t_ll_map(void);
 
-int	test_listnew(void);
+int	t_ll_new(void);
 
-int	test_listpush(void);
-int	test_listpush_back(void);
-int	test_listpop(void);
-int	test_listpop_back(void);
+int	t_ll_push(void);
+int	t_ll_push_back(void);
+int	t_ll_pop(void);
+int	t_ll_pop_back(void);
 
-int	test_listrev(void);
+int	t_ll_rev(void);
 
-int	test_listsize(void);
-int	test_listsize_match(void);
+int	t_ll_size(void);
+int	t_ll_size_match(void);
 
-int	test_listsubrange(void);
+int	t_ll_subrange(void);
 
 #endif /* LL_TESTS_H */

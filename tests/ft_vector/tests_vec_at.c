@@ -33,7 +33,7 @@ int	test_vec_at(void)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 2) != 2)
 		return (1);
-	else if (ft_vec_at(vec, 3) != NULL)
+	else if (ft_vec_at(vec, 3))
 		return (1);
 	ft_vec_destroy(&vec);
 	return (0);

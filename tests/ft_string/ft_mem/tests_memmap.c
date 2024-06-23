@@ -28,13 +28,13 @@ int	test_memmap(void)
 		return (1);
 	ft_free_2d((void **)str2);
 	str2 = (char **) ft_memmap(NULL, 0, (t_data_tr)ft_strdup);
-	if (str2 != NULL)
+	if (str2)
 		return (2);
 	str2 = (char **) ft_memmap((void *)tb, 0, (t_data_tr)ft_strdup);
-	if (str2 != NULL)
+	if (str2)
 		return (3);
 	str2 = (char **) ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]), NULL);
-	if (str2 != NULL)
+	if (str2)
 		return (4);
 	return (0);
 }

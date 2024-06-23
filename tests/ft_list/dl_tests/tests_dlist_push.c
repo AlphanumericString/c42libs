@@ -15,7 +15,7 @@
 #include "tests/lists_test_utils.h"
 #include <stdlib.h>
 
-int	test_dlist_pop(void)
+int	t_dl_pop(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -23,26 +23,26 @@ int	test_dlist_pop(void)
 	int		*ret;
 
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
-	ret = ft_list_dl_pop(&list);
-	if (list == NULL)
+	ret = ft_dl_pop(&list);
+	if (!list)
 		return (1);
 	else if (ret != data1)
 		return (2);
-	ret = ft_list_dl_pop(&list);
+	ret = ft_dl_pop(&list);
 	if (ret != data2)
 		return (3);
-	if (list != NULL)
+	if (list)
 		return (4);
-	ret = ft_list_dl_pop(&list);
-	if (ret != NULL)
+	ret = ft_dl_pop(&list);
+	if (ret)
 		return (5);
-	ret = ft_list_dl_pop(NULL);
-	if (ret != NULL)
+	ret = ft_dl_pop(NULL);
+	if (ret)
 		return (6);
 	return (free(data1), free(data2), 0);
 }
 
-int	test_dlist_pop_back(void)
+int	t_dl_pop_back(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -50,28 +50,28 @@ int	test_dlist_pop_back(void)
 	int		*data3;
 
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
-	data3 = ft_list_dl_pop_back(&list);
-	if (list == NULL)
+	data3 = ft_dl_pop_back(&list);
+	if (!list)
 		return (1);
 	else if (data3 != data2)
 		return (1);
-	data3 = ft_list_dl_pop_back(&list);
-	if (list != NULL)
+	data3 = ft_dl_pop_back(&list);
+	if (list)
 		return (1);
 	else if (data3 != data1)
 		return (1);
-	data3 = ft_list_dl_pop_back(NULL);
-	if (data3 != NULL)
+	data3 = ft_dl_pop_back(NULL);
+	if (data3)
 		return (1);
-	data3 = ft_list_dl_pop_back(&list);
-	if (data3 != NULL)
+	data3 = ft_dl_pop_back(&list);
+	if (data3)
 		return (1);
 	free(data1);
 	free(data2);
 	return (0);
 }
 
-int	test_dlist_push(void)
+int	t_dl_push(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -79,16 +79,16 @@ int	test_dlist_push(void)
 	data1 = malloc(sizeof(int));
 	*data1 = 42;
 	list = NULL;
-	ft_list_dl_push(&list, data1);
-	if (list == NULL)
+	ft_dl_push(&list, data1);
+	if (!list)
 		return (1);
 	else if (list->data != data1)
 		return (1);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }
 
-int	test_dlist_push_back(void)
+int	t_dl_push_back(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -102,14 +102,14 @@ int	test_dlist_push_back(void)
 	*data2 = 21;
 	data3 = malloc(sizeof(int));
 	*data3 = 63;
-	ft_list_dl_push_back(&list, data1);
-	ft_list_dl_push_back(&list, data2);
-	ft_list_dl_push_back(&list, data3);
-	if (ft_list_dl_size(list) != 3)
+	ft_dl_push_back(&list, data1);
+	ft_dl_push_back(&list, data2);
+	ft_dl_push_back(&list, data3);
+	if (ft_dl_size(list) != 3)
 		return (1);
 	else if (list->data != data1 || list->next->data != data2 || \
 	list->next->next->data != data3)
 		return (1);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }

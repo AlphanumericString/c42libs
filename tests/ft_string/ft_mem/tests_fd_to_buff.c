@@ -43,7 +43,7 @@ static int	error_case(void)
 
 	bad_fd = -1;
 	ret = ft_fd_to_buff(bad_fd);
-	if (ret != NULL)
+	if (ret)
 		return (1);
 	bad_fd = open(TESTS_FPREFIX "test_fd_to_buff.txt", O_CREAT, 0004);
 	if (bad_fd < 0)
@@ -51,7 +51,7 @@ static int	error_case(void)
 	close(bad_fd);
 	open(TESTS_FPREFIX "test_fd_to_buff.txt", O_RDONLY);
 	ret = ft_fd_to_buff(bad_fd);
-	if (ret != NULL)
+	if (ret)
 		return (3);
 	close(bad_fd);
 	destroy_test_file(bad_fd, TESTS_FPREFIX "test_fd_to_buff.txt");

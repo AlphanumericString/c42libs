@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_dl_new.c                                   :+:      :+:    :+:   */
+/*   ft_list_ll_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 12:42:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:42:21 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/09 09:04:38 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/06/01 14:09:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_string.h"
 
-t_dlist	*ft_list_dl_new(void)
+t_list	*ft_ll_map(const t_list *lst, t_data_tr f, t_data_apply del)
 {
-	t_dlist	*ret;
+	t_list	*ret;
+	t_list	*node;
 
-	ret = ft_calloc(1, sizeof(t_dlist));
-	if (!ret)
-		return (ret);
-	ret->data = NULL;
-	ret->prev = NULL;
-	ret->next = NULL;
+	ret = NULL;
+	if (!f || !del || !lst)
+		return (NULL);
+	while (lst)
+	{
+		node = ft_ll_create(f(lst->data));
+		if (!node)
+			return (ft_ll_clear(&ret, del), NULL);
+		ft_ll_add_back(&ret, node);
+		lst = lst->next;
+	}
 	return (ret);
 }

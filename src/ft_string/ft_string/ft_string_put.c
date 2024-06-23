@@ -19,7 +19,7 @@ int	ft_string_put(t_string *str, int fd)
 {
 	int	ret;
 
-	if (fd < 0 || str == NULL || (str->str == NULL && str->length != 0))
+	if (fd < 0 || !str || (!str->str && str->length != 0))
 		return (-1);
 	ret = write(fd, str->str, str->length);
 	return (ret);

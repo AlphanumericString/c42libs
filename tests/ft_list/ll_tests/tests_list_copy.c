@@ -15,7 +15,7 @@
 #include "tests/ll_tests.h"
 #include <stdlib.h>
 
-int	test_listcopy_node(void)
+int	t_ll_copy_node(void)
 {
 	t_list	*list;
 	t_list	*copy;
@@ -23,8 +23,8 @@ int	test_listcopy_node(void)
 
 	data = malloc(sizeof(int));
 	*data = 42;
-	list = ft_listcreate(data);
-	copy = ft_listcopy_node(list);
+	list = ft_ll_create(data);
+	copy = ft_ll_copy_node(list);
 	if (!copy)
 		return (1);
 	else if (copy->data != list->data)
@@ -37,7 +37,7 @@ int	test_listcopy_node(void)
 	return (0);
 }
 
-int	test_listcopy_list(void)
+int	t_ll_copy_list(void)
 {
 	t_list	*list;
 	t_list	*copy;
@@ -45,7 +45,7 @@ int	test_listcopy_list(void)
 	int		*data2;
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	copy = ft_listcopy_list(list);
+	copy = ft_ll_copy_list(list);
 	if (!copy)
 		return (1);
 	else if (copy->data != list->data)
@@ -54,9 +54,9 @@ int	test_listcopy_list(void)
 		return (1);
 	else if (copy->next->data != list->next->data)
 		return (1);
-	else if (copy->next->next != NULL)
+	else if (copy->next->next)
 		return (1);
-	ft_listclear(&list, free);
-	ft_listclear(&copy, NULL);
+	ft_ll_clear(&list, free);
+	ft_ll_clear(&copy, NULL);
 	return (0);
 }

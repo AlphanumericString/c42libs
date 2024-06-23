@@ -15,7 +15,7 @@
 #include "tests/lists_test_utils.h"
 #include <stdlib.h>
 
-int	test_listend(void)
+int	t_ll_end(void)
 {
 	t_list	*list;
 	int		*data;
@@ -23,21 +23,21 @@ int	test_listend(void)
 	t_list	*last;
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	last = ft_listend(list);
+	last = ft_ll_end(list);
 	if (!last)
 		return (1);
 	else if (last->data != data2)
 		return (1);
-	else if (last->next != NULL)
+	else if (last->next)
 		return (1);
-	last = ft_listend(NULL);
-	if (last != NULL)
+	last = ft_ll_end(NULL);
+	if (last)
 		return (1);
-	ft_listclear(&list, free);
+	ft_ll_clear(&list, free);
 	return (0);
 }
 
-int	test_listat(void)
+int	t_ll_at(void)
 {
 	t_list	*list;
 	int		*data;
@@ -45,15 +45,15 @@ int	test_listat(void)
 	t_list	*at;
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	at = ft_listat(list, 1);
-	if (!at || at->data != data2 || at->next != NULL)
+	at = ft_ll_at(list, 1);
+	if (!at || at->data != data2 || at->next)
 		return (1);
-	at = ft_listat(list, 456);
-	if (at != NULL)
+	at = ft_ll_at(list, 456);
+	if (at)
 		return (1);
-	at = ft_listat(NULL, 0);
-	if (at != NULL)
+	at = ft_ll_at(NULL, 0);
+	if (at)
 		return (1);
-	ft_listclear(&list, free);
+	ft_ll_clear(&list, free);
 	return (0);
 }

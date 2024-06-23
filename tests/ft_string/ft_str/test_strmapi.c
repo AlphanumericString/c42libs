@@ -34,10 +34,10 @@ int	test_strmapi(void)
 		return (1);
 	free(res);
 	res = ft_strmapi(NULL, &local_mapi);
-	if (res != NULL)
+	if (res)
 		return (2);
 	res = ft_strmapi(str, NULL);
-	if (res != NULL)
+	if (res)
 		return (3);
 	return (0);
 }

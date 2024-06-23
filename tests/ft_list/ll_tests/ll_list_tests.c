@@ -17,23 +17,23 @@ int	tests_linked_list_all(void)
 {
 	int				collect;
 	const t_test	test[] = {
-	{"add_front", test_listadd_front}, {"add_back",
-		test_listadd_back},	{"apply", test_listapply},	{
-		"apply_range", test_listapply_range}, {
-		"apply_range_node", test_listapply_range_node}, {
-		"clear", test_listclear}, {"create",
-		test_listcreate}, {"copy_node", test_listcopy_node},
-	{"copy_list", test_listcopy_list},	{"delone",
-		test_listdelone}, {"delete_range", test_listdelete_range},
-	{"find", test_listfind}, {"get_datas",
-		test_listget_datas}, {"get_nodes", test_listget_nodes}, {
-		"end", test_listend}, {"at", test_listat}, {
-		"map", test_listmap}, {"new", test_listnew}, {
-		"push", test_listpush}, {"push_back",
-		test_listpush_back}, {"pop", test_listpop}, {
-		"pop_back", test_listpop_back}, {"rev", test_listrev},
-	{"size", test_listsize}, {"size_match",
-		test_listsize_match}, {"subrange", test_listsubrange},
+	{"add_front", t_ll_add_front}, {"add_back",
+		t_ll_add_back},	{"apply", t_ll_apply},	{
+		"apply_range", t_ll_apply_range}, {
+		"apply_range_node", t_ll_apply_range_node}, {
+		"clear", t_ll_clear}, {"create",
+		t_ll_create}, {"copy_node", t_ll_copy_node},
+	{"copy_list", t_ll_copy_list},	{"delone",
+		t_ll_delone}, {"delete_range", t_ll_delete_range},
+	{"find", t_ll_find}, {"get_datas",
+		t_ll_get_datas}, {"get_nodes", t_ll_get_nodes}, {
+		"end", t_ll_end}, {"at", t_ll_at}, {
+		"map", t_ll_map}, {"new", t_ll_new}, {
+		"push", t_ll_push}, {"push_back",
+		t_ll_push_back}, {"pop", t_ll_pop}, {
+		"pop_back", t_ll_pop_back}, {"rev", t_ll_rev},
+	{"size", t_ll_size}, {"size_match",
+		t_ll_size_match}, {"subrange", t_ll_subrange},
 	{NULL, NULL}
 	};
 

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2024/06/07 15:00:19 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:27:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ const t_test	*get_tests(void)
 	return (tests);
 }
 
-static int exit_msg(int collect)
+static int	exit_msg(int collect)
 {
 	if (collect == 0)
 		ft_putendl_fd("\033[32mAll tests passed\033[0m", STDOUT_FILENO);
@@ -48,7 +48,7 @@ int	main(void)
 
 	i = 0;
 	collect = 0;
-	while (tests[i].name != NULL)
+	while (tests[i].name)
 	{
 		prev = collect;
 		ft_putstr_fd("\n\nTesting ", STDOUT_FILENO);

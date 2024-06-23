@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_find.c                                  :+:      :+:    :+:   */
+/*   ft_list_ll_rev.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 11:12:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:05:28 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/21 15:22:54 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/15 22:24:40 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	*ft_listfind(const t_list *list, const void *data,
-		int (*cmp)(const void *, const void *))
+t_list	*ft_ll_rev(t_list **head)
 {
+	t_list	*next;
 	t_list	*it;
+	t_list	*prev;
 
-	it = (t_list *)list;
-	while (it)
+	if (!head || !*head)
+		return (NULL);
+	it = *head;
+	prev = NULL;
+	next = it->next;
+	while (next)
 	{
-		if (data == it->data || (cmp && cmp(it->data, data) == 0))
-			return (it->data);
-		it = it->next;
+		next = it->next;
+		it->next = prev;
+		prev = it;
+		it = next;
 	}
-	return (NULL);
+	*head = prev;
+	return (*head);
 }

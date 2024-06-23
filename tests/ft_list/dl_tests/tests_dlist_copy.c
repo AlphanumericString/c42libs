@@ -15,7 +15,7 @@
 #include "tests/lists_test_utils.h"
 #include <stdlib.h>
 
-int	test_dlistcopy_node(void)
+int	t_dl_copy_node(void)
 {
 	int		*data;
 	t_dlist	*list;
@@ -23,9 +23,9 @@ int	test_dlistcopy_node(void)
 
 	data = malloc(sizeof(int));
 	*data = 42;
-	list = ft_list_dl_create(data);
-	copy = ft_list_dl_copy_node(list);
-	if (copy == NULL)
+	list = ft_dl_create(data);
+	copy = ft_dl_copy_node(list);
+	if (!copy)
 		return (1);
 	else if (copy->data != list->data)
 		return (1);
@@ -33,12 +33,12 @@ int	test_dlistcopy_node(void)
 		return (1);
 	else if (copy->prev != list->prev)
 		return (1);
-	ft_list_dl_clear(&list, free);
-	ft_list_dl_clear(&copy, NULL);
+	ft_dl_clear(&list, free);
+	ft_dl_clear(&copy, NULL);
 	return (0);
 }
 
-int	test_dlistcopy_list(void)
+int	t_dl_copy_list(void)
 {
 	t_dlist	*list;
 	t_dlist	*copy;
@@ -46,20 +46,20 @@ int	test_dlistcopy_list(void)
 	int		*data2;
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
-	copy = ft_list_dl_copy_list(list);
-	if (copy == NULL)
+	copy = ft_dl_copy_list(list);
+	if (!copy)
 		return (1);
 	else if (copy->data != list->data)
 		return (1);
-	else if (copy->next == NULL)
+	else if (!copy->next)
 		return (1);
 	else if (copy->next->data != list->next->data)
 		return (1);
-	else if (copy->next->next != NULL)
+	else if (copy->next->next)
 		return (1);
 	else if (copy->next->prev != copy)
 		return (1);
-	ft_list_dl_clear(&list, free);
-	ft_list_dl_clear(&copy, NULL);
+	ft_dl_clear(&list, free);
+	ft_dl_clear(&copy, NULL);
 	return (0);
 }

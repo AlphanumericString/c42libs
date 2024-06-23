@@ -15,7 +15,7 @@
 #include "tests/lists_test_utils.h"
 #include <stdlib.h>
 
-int	test_listget_datas(void)
+int	t_ll_get_datas(void)
 {
 	t_list	*list;
 	int		*data;
@@ -23,18 +23,18 @@ int	test_listget_datas(void)
 	void	**datas;
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	datas = ft_listget_datas(list);
-	if (!datas || datas[2] != NULL || datas[0] != data || \
+	datas = ft_ll_get_datas(list);
+	if (!datas || datas[2] || datas[0] != data || \
 		datas[1] != data2)
 		return (1);
-	if (ft_listget_datas(NULL) != NULL)
+	if (ft_ll_get_datas(NULL))
 		return (1);
-	ft_listclear(&list, free);
+	ft_ll_clear(&list, free);
 	free(datas);
 	return (0);
 }
 
-int	test_listget_nodes(void)
+int	t_ll_get_nodes(void)
 {
 	t_list	*list;
 	int		*data;
@@ -42,13 +42,13 @@ int	test_listget_nodes(void)
 	t_list	**nodes;
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	nodes = ft_listget_nodes(list);
-	if (!nodes || nodes[2] != NULL || nodes[0] != list || \
+	nodes = ft_ll_get_nodes(list);
+	if (!nodes || nodes[2] || nodes[0] != list || \
 		nodes[1] != list->next)
 		return (1);
-	if (ft_listget_nodes(NULL) != NULL)
+	if (ft_ll_get_nodes(NULL))
 		return (1);
-	ft_listclear(&list, free);
+	ft_ll_clear(&list, free);
 	free(nodes);
 	return (0);
 }

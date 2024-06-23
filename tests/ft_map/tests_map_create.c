@@ -18,7 +18,7 @@ int	test_map_create(void)
 	t_map	*map;
 
 	map = ft_map_create(10);
-	if (map == NULL)
+	if (!map)
 		return (1);
 	ft_map_destroy(map);
 	return (0);

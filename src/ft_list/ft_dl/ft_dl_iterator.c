@@ -1,32 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_map.c                                   :+:      :+:    :+:   */
+/*   ft_dl_iterator.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 09:04:38 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 14:09:25 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/27 21:34:27 by iron              #+#    #+#             */
+/*   Updated: 2023/12/30 11:34:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_list	*ft_listmap(const t_list *lst, t_data_tr f, t_data_apply del)
+t_dlist	*ft_dl_at(const t_dlist *head, size_t index)
 {
-	t_list	*ret;
-	t_list	*node;
+	size_t	i;
+	t_dlist	*it;
 
-	ret = NULL;
-	if (!f || !del || !lst)
-		return (NULL);
-	while (lst)
+	it = (t_dlist *)head;
+	i = 0;
+	while (i != index)
 	{
-		node = ft_listcreate(f(lst->data));
-		if (!node)
-			return (ft_listclear(&ret, del), NULL);
-		ft_listadd_back(&ret, node);
-		lst = lst->next;
+		i++;
+		it = it->next;
 	}
-	return (ret);
+	return (it);
+}
+
+t_dlist	*ft_dl_end(const t_dlist *head)
+{
+	t_dlist	*it;
+
+	it = (t_dlist *)head;
+	while (it->next)
+		it = it->next;
+	return (it);
+}
+
+t_dlist	*ft_dl_begin(const t_dlist *head)
+{
+	t_dlist	*it;
+
+	it = (t_dlist *)head;
+	while (it->prev)
+		it = it->prev;
+	return (it);
 }

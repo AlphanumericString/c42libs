@@ -16,7 +16,7 @@
 #include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
 
-int	test_dlist_map(void)
+int	t_dl_map(void)
 {
 	t_dlist	*list;
 	t_dlist	*map;
@@ -25,21 +25,21 @@ int	test_dlist_map(void)
 	int		*data2;
 
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
-	map2 = ft_list_dl_map(list, NULL, free);
-	map = ft_list_dl_map(list, add42_ret, free);
-	if (map == NULL)
+	map2 = ft_dl_map(list, NULL, free);
+	map = ft_dl_map(list, add42_ret, free);
+	if (!map)
 		return (1);
 	else if (*(int *)map->data != 84)
 		return (1);
-	else if (map->next == NULL)
+	else if (!map->next)
 		return (1);
 	else if (*(int *)map->next->data != 63)
 		return (1);
-	else if (map->next->next != NULL)
+	else if (map->next->next)
 		return (1);
-	else if (map2 != NULL)
+	else if (map2)
 		return (1);
-	ft_list_dl_clear(&list, free);
-	ft_list_dl_clear(&map, free);
+	ft_dl_clear(&list, free);
+	ft_dl_clear(&map, free);
 	return (0);
 }

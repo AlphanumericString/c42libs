@@ -26,7 +26,7 @@ int	test_strchr(void)
 	if (res != str + 4)
 		return (1);
 	res = ft_strchr(str, s2);
-	if (res != NULL)
+	if (res)
 		return (2);
 	res = ft_strchr(str, '\0');
 	if (res != str + ft_strlen(str))

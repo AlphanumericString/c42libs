@@ -22,7 +22,7 @@ int	test_vec_new(void)
 		return (1);
 	else if (vec->cappacity != FT_VECTOR_BASE_LEN)
 		return (1);
-	else if (vec->datas == NULL)
+	else if (!vec->datas)
 		return (1);
 	ft_vec_destroy(&vec);
 	return (0);

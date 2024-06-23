@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 14:27:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:24:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ int	eval_base(int *t_cases, const char *bases, const char *expected_results[])
 
 int	check_base_error(void)
 {
-	if (ft_itoa_base(0, "0") != NULL || ft_itoa_base(0, "010") != NULL || \
-	ft_itoa_base(0, "0123456789+") != NULL || ft_itoa_base(0, "0123456789a-") \
-	!= NULL || ft_itoa_base(0, "0123456789a1") != NULL || \
-	ft_itoa_base(0, "0123456789a ") != NULL || ft_itoa_base(0, "0123456789\t") \
-	!= NULL)
+	if (ft_itoa_base(0, "0") || ft_itoa_base(0, "010") || \
+	ft_itoa_base(0, "0123456789+") || ft_itoa_base(0, "0123456789a-") \
+	|| ft_itoa_base(0, "0123456789a1") || ft_itoa_base(0, "0123456789a ") \
+	|| ft_itoa_base(0, "0123456789\t"))
 		return (15);
 	return (0);
 }

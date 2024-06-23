@@ -21,52 +21,52 @@ static void	dnode_add42(t_dlist *node)
 	*(int *)node->data += 42;
 }
 
-int	test_dlistapply(void)
+int	t_dl_apply(void)
 {
 	t_dlist	*list;
 	int		*data;
 	int		*data2;
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
-	ft_list_dl_apply(list, add42);
-	if (ft_list_dl_size(list) != 2)
+	ft_dl_apply(list, add42);
+	if (ft_dl_size(list) != 2)
 		return (1);
 	else if (*(int *)list->data != 84)
 		return (2);
 	else if (*(int *)list->next->data != 63)
 		return (3);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }
 
-int	test_dlistapply_range(void)
+int	t_dl_apply_range(void)
 {
 	t_dlist	*list;
 	int		*data;
 	int		*data2;
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
-	ft_list_dl_apply_range(list, list->next, add42);
-	if (ft_list_dl_size(list) != 2)
+	ft_dl_apply_range(list, list->next, add42);
+	if (ft_dl_size(list) != 2)
 		return (1);
 	else if (*(int *)list->data != 84 || \
 	*(int *)list->next->data != 21)
 		return (1);
-	return (ft_list_dl_clear(&list, free), 0);
+	return (ft_dl_clear(&list, free), 0);
 }
 
-int	test_dlistapply_range_node(void)
+int	t_dl_apply_range_node(void)
 {
 	t_dlist	*list;
 	int		*data;
 	int		*data2;
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
-	ft_list_dl_apply_range_node(list, list->next, dnode_add42);
-	if (ft_list_dl_size(list) != 2)
+	ft_dl_apply_range_node(list, list->next, dnode_add42);
+	if (ft_dl_size(list) != 2)
 		return (1);
 	else if (*(int *)list->data != 84 || \
 	*(int *)list->next->data != 21)
 		return (1);
-	return (ft_list_dl_clear(&list, free), 0);
+	return (ft_dl_clear(&list, free), 0);
 }

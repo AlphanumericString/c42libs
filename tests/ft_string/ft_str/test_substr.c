@@ -28,7 +28,7 @@ int	test_substr(void)
 		|| ft_strcmp(res[2], "World!") != 0)
 		return (1);
 	if (ft_strcmp(res[3], "") != 0 || ft_strcmp(res[4], "") != 0
-		|| ft_strcmp(res[5], "") != 0 || res[6] != NULL)
+		|| ft_strcmp(res[5], "") != 0 || res[6])
 		return (2);
 	ft_apply_2d((void **)res, free);
 	return (0);

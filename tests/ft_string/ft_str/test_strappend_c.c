@@ -25,7 +25,7 @@ int	test_strappend_c(void)
 		return (2);
 	if (ft_strappend_c(&str, 'W') == 0 || ft_strcmp(str, "Hello W") != 0)
 		return (3);
-	if (ft_strappend_c(NULL, '\0') != NULL)
+	if (ft_strappend_c(NULL, '\0'))
 		return (4);
 	free(str);
 	str = ft_calloc(1, 1);

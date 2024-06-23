@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:03:11 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 17:42:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:53:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	ft_is_valid(const char *base)
 	return (1);
 }
 
-static int	loc_getlen(long long nbr, int blen)
+static int	loc_getlen(long long nbr, size_t blen)
 {
 	size_t	nbr_len;
 
@@ -54,11 +54,11 @@ static int	loc_getlen(long long nbr, int blen)
 
 char	*ft_itoa_base(int nbr, const char *base)
 {
-	char		*ret;
-	size_t		off;
-	long long	srcnbr;
-	const int	blen = ft_strlen(base);
-	const int	nbrlen = loc_getlen((long long)nbr, blen);
+	char			*ret;
+	size_t			off;
+	long long		srcnbr;
+	const size_t	blen = ft_strlen(base);
+	const int		nbrlen = loc_getlen((long long)nbr, blen);
 
 	srcnbr = (long long)nbr;
 	if (!ft_is_valid(base))

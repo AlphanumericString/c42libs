@@ -22,7 +22,7 @@ static void	lnode_add42(t_list *node)
 	*(int *)node->data += 42;
 }
 
-int	test_listapply(void)
+int	t_ll_apply(void)
 {
 	const int	data3 = 63;
 	const int	data4 = 84;
@@ -31,19 +31,19 @@ int	test_listapply(void)
 	int			*data2;
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	ft_listapply(list, add42);
-	if (!list || !list->next || list->next->next != NULL
+	ft_ll_apply(list, add42);
+	if (!list || !list->next || list->next->next
 		|| *(int *)list->data != data4 || *(int *)list->next->data != data3)
 		return (1);
-	ft_listapply(list, NULL);
-	if (!list || !list->next || list->next->next != NULL
+	ft_ll_apply(list, NULL);
+	if (!list || !list->next || list->next->next
 		|| *(int *)list->data != data4 || *(int *)list->next->data != data3)
 		return (1);
-	ft_listclear(&list, free);
+	ft_ll_clear(&list, free);
 	return (0);
 }
 
-int	test_listapply_range(void)
+int	t_ll_apply_range(void)
 {
 	t_list		*list;
 	int			*data;
@@ -51,26 +51,26 @@ int	test_listapply_range(void)
 	const int	data3 = 84;
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	ft_listapply_range(list, list->next, add42);
+	ft_ll_apply_range(list, list->next, add42);
 	if (*(int *)list->data != data3)
 		return (1);
-	else if (ft_listsize(list) != 2)
+	else if (ft_ll_size(list) != 2)
 		return (1);
 	else if (*(int *)list->next->data != 21)
 		return (1);
-	ft_listapply_range(list, list->next, NULL);
-	if (ft_listsize(list) != 2)
+	ft_ll_apply_range(list, list->next, NULL);
+	if (ft_ll_size(list) != 2)
 		return (1);
 	else if (*(int *)list->data != data3)
 		return (1);
 	else if (*(int *)list->next->data != 21)
 		return (1);
-	ft_listapply_range(NULL, NULL, add42);
-	ft_listclear(&list, free);
+	ft_ll_apply_range(NULL, NULL, add42);
+	ft_ll_clear(&list, free);
 	return (0);
 }
 
-int	test_listapply_range_node(void)
+int	t_ll_apply_range_node(void)
 {
 	const int	data3 = 84;
 	t_list		*list;
@@ -78,15 +78,15 @@ int	test_listapply_range_node(void)
 	int			*data2;
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	ft_listapply_range_node(list, list->next, lnode_add42);
+	ft_ll_apply_range_node(list, list->next, lnode_add42);
 	if (*(int *)list->data != data3 || !list->next
-		|| *(int *)list->next->data != 21 || list->next->next != NULL)
+		|| *(int *)list->next->data != 21 || list->next->next)
 		return (1);
-	ft_listapply_range_node(list, list->next, NULL);
+	ft_ll_apply_range_node(list, list->next, NULL);
 	if (*(int *)list->data != data3 || !list->next
-		|| *(int *)list->next->data != 21 || list->next->next != NULL)
+		|| *(int *)list->next->data != 21 || list->next->next)
 		return (1);
-	ft_listapply_range_node(NULL, NULL, lnode_add42);
-	ft_listclear(&list, free);
+	ft_ll_apply_range_node(NULL, NULL, lnode_add42);
+	ft_ll_clear(&list, free);
 	return (0);
 }

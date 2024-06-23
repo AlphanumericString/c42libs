@@ -33,7 +33,7 @@ int	test_shift_args(void)
 	ret = ft_shift_args(&test, &fake_argc);
 	ret = ft_shift_args(&test, &fake_argc);
 	ret = ft_shift_args(&test, &fake_argc);
-	if (fake_argc != 0 || ret != NULL)
+	if (fake_argc != 0 || ret)
 		return (2);
 	return (0);
 }

@@ -28,7 +28,7 @@ int	test_strtrim(void)
 	if (ft_strcmp(res[0], "Hello World!") != 0 || ft_strcmp(res[1], \
 	"Hello World!") != 0 || ft_strcmp(res[2], "Hello World!") != 0 || \
 	ft_strcmp(res[3], "Hello Worl") != 0 || ft_strcmp(res[4], str_ugly) \
-	!= 0 || ft_strcmp(res[5], "") != 0 || res[6] != NULL)
+	!= 0 || ft_strcmp(res[5], "") != 0 || res[6])
 		return (1);
 	ft_apply_2d((void **)res, free);
 	return (0);

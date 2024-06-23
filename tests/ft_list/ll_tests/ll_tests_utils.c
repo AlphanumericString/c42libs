@@ -21,6 +21,6 @@ void	create_2elem_list(t_list **list, void **data1, void **data2)
 	*(int *)*data1 = 42;
 	*(int *)*data2 = 21;
 	*list = NULL;
-	ft_listpush(list, *data1);
-	ft_listpush_back(list, *data2);
+	ft_ll_push(list, *data1);
+	ft_ll_push_back(list, *data2);
 }

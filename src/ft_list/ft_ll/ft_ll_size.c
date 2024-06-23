@@ -1,22 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_new.c                                   :+:      :+:    :+:   */
+/*   ft_list_ll_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:30:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 11:40:41 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/07 23:38:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/12 14:40:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_string.h"
 
-t_list	*ft_listnew(void)
+size_t	ft_ll_size(const t_list *lst)
 {
-	t_list	*elem;
+	t_list	*it;
+	size_t	i;
 
-	elem = ft_calloc(sizeof(t_list), 1);
-	return (elem);
+	i = 0;
+	it = (t_list *)lst;
+	while (it)
+	{
+		it = it->next;
+		i++;
+	}
+	return (i);
+}
+
+size_t	ft_ll_size_match(const t_list *lst, t_data_is function)
+{
+	size_t	i;
+	t_list	*it;
+
+	i = 0;
+	it = (t_list *)lst;
+	while (it)
+	{
+		if (function(it->data))
+			i++;
+		it = it->next;
+	}
+	return (i);
 }

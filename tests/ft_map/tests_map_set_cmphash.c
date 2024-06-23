@@ -19,7 +19,7 @@ int	test_map_set_cmp(void)
 
 	map = ft_map_create(10);
 	ft_map_set_cmp(map, NULL);
-	if (map->cmp != NULL)
+	if (map->cmp)
 		return (1);
 	ft_map_destroy(map);
 	return (0);
@@ -31,7 +31,7 @@ int	test_map_set_hash(void)
 
 	map = ft_map_create(10);
 	ft_map_set_hash(map, NULL);
-	if (map->hash != NULL)
+	if (map->hash)
 		return (1);
 	ft_map_destroy(map);
 	return (0);

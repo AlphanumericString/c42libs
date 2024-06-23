@@ -69,7 +69,7 @@ int	test_gnl(void)
 		free(line);
 	}
 	line = get_next_line(fd);
-	if (line != NULL)
+	if (line)
 		return (2);
 	return (free(line), destroy_test_file(fd, TESTS_FPREFIX "gnl.txt"), 0);
 }

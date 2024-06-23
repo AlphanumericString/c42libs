@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_dl_map.c                                   :+:      :+:    :+:   */
+/*   ft_dl_rev.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 12:21:43 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 14:08:50 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/10 12:20:27 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/15 22:24:49 by iron             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_dlist	*ft_list_dl_map(const t_dlist *lst, t_data_tr f, t_data_apply del)
+t_dlist	*ft_dl_rev(t_dlist **head)
 {
-	t_dlist	*ret;
+	t_dlist	*it;
 	t_dlist	*tmp;
 
-	if (!lst || !f)
+	if (!head || !*head)
 		return (NULL);
-	ret = NULL;
-	while (lst)
+	it = *head;
+	while (it)
 	{
-		tmp = ft_list_dl_create(f(lst->data));
+		tmp = it->next;
+		it->next = it->prev;
+		it->prev = tmp;
 		if (!tmp)
-			return (ft_list_dl_clear(&ret, del), NULL);
-		ft_list_dl_add_back(&ret, tmp);
-		lst = lst->next;
+			*head = it;
+		it = tmp;
 	}
-	return (ret);
+	return (*head);
 }

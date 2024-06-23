@@ -27,7 +27,7 @@ int	ft_string_set_n(t_string *str, const char *new_str, size_t n)
 	if (new_len > str->capacity)
 	{
 		str->str = ft_realloc(str->str, new_len, str->capacity);
-		if (str->str == NULL)
+		if (!str->str)
 			return (0);
 		str->capacity = new_len;
 	}

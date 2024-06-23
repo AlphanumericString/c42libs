@@ -16,7 +16,7 @@
 #include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
 
-int	test_listmap(void)
+int	t_ll_map(void)
 {
 	t_list	*list;
 	int		*data;
@@ -25,19 +25,19 @@ int	test_listmap(void)
 	t_list	*map_err[3];
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	map = ft_listmap(list, add42_ret, free);
-	map_err[0] = ft_listmap(list, NULL, free);
-	map_err[1] = ft_listmap(NULL, add42_ret, free);
-	map_err[2] = ft_listmap(list, add42_ret, NULL);
+	map = ft_ll_map(list, add42_ret, free);
+	map_err[0] = ft_ll_map(list, NULL, free);
+	map_err[1] = ft_ll_map(NULL, add42_ret, free);
+	map_err[2] = ft_ll_map(list, add42_ret, NULL);
 	if (!map || *(int *)map->data != 84 || !map->next)
 		return (1);
 	else if (*(int *)map->next->data != 63)
 		return (1);
-	else if (map->next->next != NULL)
+	else if (map->next->next)
 		return (1);
-	else if (map_err[0] != NULL || map_err[1] != NULL || map_err[2] != NULL)
+	else if (map_err[0] || map_err[1] || map_err[2])
 		return (1);
-	ft_listclear(&list, free);
-	ft_listclear(&map, free);
+	ft_ll_clear(&list, free);
+	ft_ll_clear(&map, free);
 	return (0);
 }

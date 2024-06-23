@@ -14,11 +14,11 @@
 #include "ft_list_types.h"
 #include <stdlib.h>
 
-int	test_listnew(void)
+int	t_ll_new(void)
 {
 	t_list	*list;
 
-	list = ft_listnew();
+	list = ft_ll_new();
 	if (!list)
 		return (1);
 	free(list);

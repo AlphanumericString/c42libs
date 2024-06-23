@@ -14,19 +14,19 @@
 #include "tests/ll_tests.h"
 #include <stdlib.h>
 
-int	test_listcreate(void)
+int	t_ll_create(void)
 {
 	t_list	*list;
 	int		*data;
 
 	data = malloc(sizeof(int));
 	*data = 42;
-	list = ft_listcreate(data);
+	list = ft_ll_create(data);
 	if (!list)
 		return (1);
 	else if (list->data != data)
 		return (1);
-	else if (list->next != NULL)
+	else if (list->next)
 		return (1);
 	free(data);
 	free(list);

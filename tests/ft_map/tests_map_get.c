@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:14:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/07 14:59:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:28:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include "ft_string.h"
 #include <stdlib.h>
 
-int test_map_get_ultra_small(void)
+int	test_map_get_ultra_small(void)
 {
 	char		*str[2];
 	t_map		*map;
@@ -35,12 +35,12 @@ int test_map_get_ultra_small(void)
 	ft_map_set(map, "key", str[0], ft_strlen("key"));
 	ft_map_set(map, "key2", str[1], ft_strlen("key"));
 	ret = ft_map_get(map, "key", ft_strlen("key"));
-	if (ret == NULL)
+	if (!ret)
 		return (1);
 	else if (ft_strcmp((char *)ret, "value"))
 		return (2);
 	ret = ft_map_get(map, "key2", ft_strlen("key2"));
-	if (ret == NULL)
+	if (!ret)
 		return (3);
 	else if (ft_strcmp((char *)ret, "value2"))
 		return (4);
@@ -48,7 +48,7 @@ int test_map_get_ultra_small(void)
 	return (0);
 }
 
-int test_map_normal(void)
+int	test_map_normal(void)
 {
 	char		*str;
 	t_map		*map;
@@ -58,12 +58,12 @@ int test_map_normal(void)
 	map = ft_map_create(10);
 	ft_map_set(map, "key", str, ft_strlen("key"));
 	ret = ft_map_get(map, "key", ft_strlen("key"));
-	if (ret == NULL)
+	if (!ret)
 		return (1);
 	else if (ft_strcmp((char *)ret, "value"))
 		return (2);
 	ret = ft_map_get(map, "key2", ft_strlen("key2"));
-	if (ret != NULL)
+	if (ret)
 		return (3);
 	ft_map_destroy(map);
 	free(str);
@@ -72,7 +72,7 @@ int test_map_normal(void)
 
 int	test_map_get(void)
 {
-	int ret;
+	int	ret;
 
 	ret = test_map_get_ultra_small();
 	if (ret != 0)

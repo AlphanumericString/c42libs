@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:22:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 09:11:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:41:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	ft_range(int x, int min, int max, int new_max)
 
 float	ft_range_f(float x, float min, float max, float new_max)
 {
-	return ((float)ft_range_d(x, min, max, new_max));
+	return ((float)ft_range_d((double)x, (double)min, (double)max, \
+	(double)new_max));
 }
 
 double	ft_range_d(double x, double min, double max, double new_max)

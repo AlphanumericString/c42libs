@@ -22,7 +22,7 @@ int	test_optional_from_val(void)
 	ptr = malloc(sizeof(int));
 	*ptr = 42;
 	opt = ft_optional_from_val(ptr);
-	if (opt == NULL)
+	if (!opt)
 		return (1);
 	if (opt->pres != OPT_SOME)
 		return (2);

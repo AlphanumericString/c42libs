@@ -16,7 +16,7 @@
 #include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
 
-int	test_dlist_size(void)
+int	t_dl_size(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -24,20 +24,20 @@ int	test_dlist_size(void)
 	size_t	size_ret[3];
 
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
-	size_ret[0] = ft_list_dl_size(NULL);
-	size_ret[1] = ft_list_dl_size(list->next);
-	size_ret[2] = ft_list_dl_size(list);
+	size_ret[0] = ft_dl_size(NULL);
+	size_ret[1] = ft_dl_size(list->next);
+	size_ret[2] = ft_dl_size(list);
 	if (size_ret[0] != 0)
 		return (1);
 	else if (size_ret[1] != 1)
 		return (1);
 	else if (size_ret[2] != 2)
 		return (1);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }
 
-int	test_dlist_size_of_data(void)
+int	t_dl_size_of_data(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -45,15 +45,15 @@ int	test_dlist_size_of_data(void)
 	size_t	size_ret[3];
 
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
-	size_ret[0] = ft_list_dl_size_of_data(NULL, is42);
-	size_ret[1] = ft_list_dl_size_of_data(list->next, is42);
-	size_ret[2] = ft_list_dl_size_of_data(list, is42);
+	size_ret[0] = ft_dl_size_of_data(NULL, is42);
+	size_ret[1] = ft_dl_size_of_data(list->next, is42);
+	size_ret[2] = ft_dl_size_of_data(list, is42);
 	if (size_ret[0] != 0)
 		return (1);
 	else if (size_ret[1] != 0)
 		return (2);
 	else if (size_ret[2] != 1)
 		return (3);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }

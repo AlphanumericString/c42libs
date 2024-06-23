@@ -6,18 +6,19 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:09:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 00:13:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:27:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_ullogof(unsigned long long nbr, int base)
 {
-	int	pow;
+	const unsigned long long	bul = (unsigned long long)base;
+	int							pow;
 
 	pow = -1;
 	while (nbr)
 	{
-		nbr /= base;
+		nbr /= bul;
 		pow++;
 	}
 	return (pow);

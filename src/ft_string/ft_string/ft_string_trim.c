@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:50:18 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:58:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:22:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	ft_string_trimstr(t_string *str, char *to_trim)
 	size_t	lpad;
 
 	lpad = 0;
-	if (to_trim == NULL || str == NULL || str->str == NULL || str->length == 0)
+	if (!to_trim || !str || !str->str || str->length == 0)
 		return ;
-	while (ft_strchr(to_trim, str->str[lpad]) != NULL && lpad < str->length)
+	while (ft_strchr(to_trim, str->str[lpad]) && lpad < str->length)
 		lpad++;
 	rpad = str->length - 1;
-	while (ft_strchr(to_trim, str->str[rpad]) != NULL && rpad > 0)
+	while (ft_strchr(to_trim, str->str[rpad]) && rpad > 0)
 		rpad--;
 	if (rpad < lpad)
 		return ((void)ft_string_set(str, ""));

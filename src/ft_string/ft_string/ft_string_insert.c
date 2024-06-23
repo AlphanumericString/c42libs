@@ -23,7 +23,7 @@ int	ft_string_insert(t_string *str, char *insert, size_t index)
 		index = str->length;
 	new_len = str->length + insert_len;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
-	if (new_str == NULL)
+	if (!new_str)
 		return (0);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert, insert_len);
@@ -47,7 +47,7 @@ int	ft_string_insert_n(t_string *str, char *insert, size_t index, size_t n)
 		index = str->length;
 	new_len = str->length + n;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
-	if (new_str == NULL)
+	if (!new_str)
 		return (0);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert, n);
@@ -70,7 +70,7 @@ int	ft_string_insert_c(t_string *str, char insert, size_t index)
 		index = str->length;
 	new_len = str->length + 1;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
-	if (new_str == NULL)
+	if (!new_str)
 		return (0);
 	ft_memcpy(new_str, str->str, index);
 	new_str[index] = insert;
@@ -93,7 +93,7 @@ int	ft_string_insert_s(t_string *str, t_string *insert, size_t index)
 		index = str->length;
 	new_len = str->length + insert->length;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
-	if (new_str == NULL)
+	if (!new_str)
 		return (0);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert->str, insert->length);
@@ -118,7 +118,7 @@ int	ft_string_insert_s_n(t_string *str, t_string *insert, size_t index,
 		index = str->length;
 	new_len = str->length + n;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
-	if (new_str == NULL)
+	if (!new_str)
 		return (0);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert->str, n);

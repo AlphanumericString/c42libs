@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:53:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:57:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:47:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	ft_string_replace(t_string *str, char *to_replace, char *replace_by)
 	char	*tmp2;
 
 	tmp = (char *)ft_string_get(str);
-	if (tmp == NULL)
+	if (!tmp)
 		return (0);
 	tmp2 = ft_str_replace(tmp, to_replace, replace_by);
-	if (tmp2 == NULL)
+	if (!tmp2)
 		return (0);
 	ft_string_set_inplace(str, tmp2);
 	return (1);
@@ -32,7 +32,7 @@ int	ft_string_replace_chr(t_string *str, char to_replace, char replace_by)
 	size_t	i;
 	size_t	nb_rep;
 
-	if (str->str == NULL)
+	if (!str->str)
 		return (0);
 	i = 0;
 	nb_rep = 0;

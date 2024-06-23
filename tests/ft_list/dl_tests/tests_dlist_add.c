@@ -14,7 +14,7 @@
 #include "ft_list_types.h"
 #include <stdlib.h>
 
-int	test_dlistadd_front(void)
+int	t_dl_add_front(void)
 {
 	t_dlist	*list;
 	int		*data;
@@ -24,26 +24,26 @@ int	test_dlistadd_front(void)
 	data2 = malloc(sizeof(int));
 	*data = 42;
 	*data2 = 21;
-	list = ft_list_dl_create(data2);
-	ft_list_dl_add_front(&list, NULL);
-	if (list == NULL || list->next)
+	list = ft_dl_create(data2);
+	ft_dl_add_front(&list, NULL);
+	if (!list || list->next)
 		return (1);
 	else
 	{
-		ft_list_dl_add_front(&list, ft_list_dl_create(data));
-		if (list == NULL || list->data != data || list->next == NULL)
+		ft_dl_add_front(&list, ft_dl_create(data));
+		if (!list || list->data != data || !list->next)
 			return (1);
-		else if (list->next->data != data2 || list->next->next != NULL)
+		else if (list->next->data != data2 || list->next->next)
 			return (1);
 		else if (list->next->prev != list)
 			return (1);
 	}
-	ft_list_dl_clear(&list, free);
-	ft_list_dl_add_front(NULL, NULL);
+	ft_dl_clear(&list, free);
+	ft_dl_add_front(NULL, NULL);
 	return (0);
 }
 
-int	test_dlistadd_back(void)
+int	t_dl_add_back(void)
 {
 	t_dlist	*list;
 	int		*data;
@@ -54,20 +54,20 @@ int	test_dlistadd_back(void)
 	data2 = malloc(sizeof(int));
 	*data = 42;
 	*data2 = 21;
-	ft_list_dl_add_back(&list, ft_list_dl_create(data));
-	ft_list_dl_add_back(&list, NULL);
+	ft_dl_add_back(&list, ft_dl_create(data));
+	ft_dl_add_back(&list, NULL);
 	if (!list || list->next)
 		return (1);
 	else
 	{
-		ft_list_dl_add_back(&list, ft_list_dl_create(data2));
+		ft_dl_add_back(&list, ft_dl_create(data2));
 		if (!list || list->data != data || !list->next || \
 		list->next->data != data2)
 			return (1);
-		else if (list->next->next != NULL || list->next->prev != list)
+		else if (list->next->next || list->next->prev != list)
 			return (1);
 	}
-	ft_list_dl_clear(&list, free);
-	ft_list_dl_add_front(NULL, NULL);
+	ft_dl_clear(&list, free);
+	ft_dl_add_front(NULL, NULL);
 	return (0);
 }

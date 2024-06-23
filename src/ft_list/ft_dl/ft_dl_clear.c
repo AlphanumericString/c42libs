@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_clear.c                                 :+:      :+:    :+:   */
+/*   ft_dl_clear.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 03:12:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/10 12:37:43 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/27 21:33:59 by iron              #+#    #+#             */
+/*   Updated: 2023/12/30 12:58:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include <stdlib.h>
 
-void	ft_listclear(t_list **lst, t_data_apply del)
+size_t	ft_dl_clear(t_dlist **head, t_data_apply del)
 {
-	t_list	*runner;
-	t_list	*next;
+	size_t	ret;
 
-	if (!lst)
-		return ;
-	runner = *lst;
-	while (runner)
+	ret = ft_dl_delete_range(*head, NULL, del);
+	*head = NULL;
+	return (ret);
+}
+
+size_t	ft_dl_clear_range(t_dlist *start, t_dlist *end, t_data_apply del)
+{
+	size_t	i;
+
+	i = 0;
+	if (!start)
+		return (0);
+	while (start != end)
 	{
-		next = runner->next;
 		if (del)
-			del(runner->data);
-		runner->data = NULL;
-		free(runner);
-		runner = next;
+			del(start->data);
+		start->data = NULL;
+		start = start->next;
+		i++;
 	}
-	*lst = NULL;
+	return (i);
 }

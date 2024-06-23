@@ -32,7 +32,7 @@ int	test_calloc(void)
 	free(str2);
 	str = ft_calloc(SIZE_MAX, SIZE_MAX);
 	str2 = calloc(SIZE_MAX, SIZE_MAX);
-	if (str != NULL || str2 != NULL)
+	if (str || str2)
 		return (3);
 	return (0);
 }

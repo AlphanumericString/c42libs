@@ -14,13 +14,13 @@
 #include "ft_list_types.h"
 #include <stdlib.h>
 
-int	test_dlist_new(void)
+int	t_dl_new(void)
 {
 	t_dlist	*list;
 
-	list = ft_list_dl_new();
-	if (list == NULL)
+	list = ft_dl_new();
+	if (!list)
 		return (1);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }

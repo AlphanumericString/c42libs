@@ -28,7 +28,7 @@ int	test_vec_destroy(void)
 	ft_vec_add(&vec, &b);
 	ft_vec_add(&vec, &c);
 	ft_vec_destroy(&vec);
-	if (vec != NULL)
+	if (vec)
 		return (1);
 	return (0);
 }

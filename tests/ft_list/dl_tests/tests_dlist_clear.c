@@ -14,34 +14,34 @@
 #include "tests/lists_test_utils.h"
 #include <stdlib.h>
 
-int	test_dlistclear(void)
+int	t_dl_clear(void)
 {
 	t_dlist	*list;
 	int		*data;
 
 	data = malloc(sizeof(int));
 	*data = 42;
-	list = ft_list_dl_create(data);
-	ft_list_dl_clear(&list, NULL);
-	list = ft_list_dl_create(data);
-	ft_list_dl_clear(&list, free);
+	list = ft_dl_create(data);
+	ft_dl_clear(&list, NULL);
+	list = ft_dl_create(data);
+	ft_dl_clear(&list, free);
 	return (0);
 }
 
 //
-//ft_list_dl_add_back(&list, ft_list_dl_create(data3))
+//ft_dl_add_back(&list, ft_dl_create(data3))
 //	data -> data2 -> data3
-//ft_list_dl_clear_range(list->next, list->next->next, NULL)
+//ft_dl_clear_range(list->next, list->next->next, NULL)
 //	data -> NULL -> data3
-//ft_list_dl_add_back(&list, ft_list_dl_create(data2))
+//ft_dl_add_back(&list, ft_dl_create(data2))
 //	data -> NULL -> data3 -> data2
-//ft_list_dl_clear_range(list->next->next, NULL, free)
+//ft_dl_clear_range(list->next->next, NULL, free)
 //	data -> NULL -> NULL -> NULL
-//ft_list_dl_delete_range(list, NULL, NULL)
+//ft_dl_delete_range(list, NULL, NULL)
 //	delete nodes
 //
 
-int	test_dlistclear_range(void)
+int	t_dl_clear_range(void)
 {
 	t_dlist	*list;
 	int		*data;
@@ -51,18 +51,18 @@ int	test_dlistclear_range(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	data3 = malloc(sizeof(int));
 	*data3 = 63;
-	ft_list_dl_add_back(&list, ft_list_dl_create(data3));
-	ft_list_dl_clear_range(list->next, list->next->next, NULL);
-	if ((ft_list_dl_size(list) != 3) || (list->data != data || \
-	list->next->data != NULL || list->next->next->data != data3))
+	ft_dl_add_back(&list, ft_dl_create(data3));
+	ft_dl_clear_range(list->next, list->next->next, NULL);
+	if ((ft_dl_size(list) != 3) || (list->data != data || \
+	list->next->data || list->next->next->data != data3))
 		return (1);
-	ft_list_dl_add_back(&list, ft_list_dl_create(data2));
-	ft_list_dl_clear_range(list->next->next, NULL, free);
-	if (ft_list_dl_size(list) != 4 || list->data != data \
-	|| list->next->data != NULL || list->next->next->data != NULL)
+	ft_dl_add_back(&list, ft_dl_create(data2));
+	ft_dl_clear_range(list->next->next, NULL, free);
+	if (ft_dl_size(list) != 4 || list->data != data \
+	|| list->next->data || list->next->next->data)
 		return (2);
-	ft_list_dl_clear_range(list, NULL, free);
-	ft_list_dl_clear_range(NULL, NULL, free);
-	ft_list_dl_delete_range(list, NULL, NULL);
+	ft_dl_clear_range(list, NULL, free);
+	ft_dl_clear_range(NULL, NULL, free);
+	ft_dl_delete_range(list, NULL, NULL);
 	return (0);
 }

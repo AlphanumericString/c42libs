@@ -25,10 +25,10 @@ int	tests_splits(void)
 	ft_strcmp(res[2], "file") != 0 || ft_strcmp(res[3], "another") != 0 || \
 	ft_strcmp(res[4], "path") != 0 || ft_strcmp(res[5], "yet") != 0 || \
 	ft_strcmp(res[6], "another") != 0 || ft_strcmp(res[7], "path") != 0 || \
-	res[8] != NULL)
+	res[8])
 		return (1);
 	i = 0;
-	while (res[i] != NULL)
+	while (res[i])
 		free(res[i++]);
 	free(res);
 	return (0);

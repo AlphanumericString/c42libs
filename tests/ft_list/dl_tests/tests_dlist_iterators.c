@@ -15,7 +15,7 @@
 #include "tests/lists_test_utils.h"
 #include <stdlib.h>
 
-int	test_dlist_at(void)
+int	t_dl_at(void)
 {
 	t_dlist	*list;
 	t_dlist	*at;
@@ -23,20 +23,20 @@ int	test_dlist_at(void)
 	int		*data2;
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
-	at = ft_list_dl_at(list, 1);
-	if (at == NULL)
+	at = ft_dl_at(list, 1);
+	if (!at)
 		return (1);
 	else if (at->data != data2)
 		return (1);
-	else if (at->next != NULL)
+	else if (at->next)
 		return (1);
 	else if (at->prev != list)
 		return (1);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }
 
-int	test_dlist_begin(void)
+int	t_dl_begin(void)
 {
 	t_dlist	*list;
 	t_dlist	*begin;
@@ -44,8 +44,8 @@ int	test_dlist_begin(void)
 	int		*data2;
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
-	begin = ft_list_dl_begin(list->next);
-	if (begin == NULL)
+	begin = ft_dl_begin(list->next);
+	if (!begin)
 		return (1);
 	else if (begin != list)
 		return (1);
@@ -53,13 +53,13 @@ int	test_dlist_begin(void)
 		return (1);
 	else if (begin->next != list->next)
 		return (1);
-	else if (begin->prev != NULL)
+	else if (begin->prev)
 		return (1);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }
 
-int	test_dlist_end(void)
+int	t_dl_end(void)
 {
 	t_dlist	*list;
 	t_dlist	*end;
@@ -67,15 +67,15 @@ int	test_dlist_end(void)
 	int		*data2;
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
-	end = ft_list_dl_end(list);
-	if (end == NULL)
+	end = ft_dl_end(list);
+	if (!end)
 		return (1);
 	else if (end->data != data2)
 		return (1);
-	else if (end->next != NULL)
+	else if (end->next)
 		return (1);
 	else if (end->prev != list)
 		return (1);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }

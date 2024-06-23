@@ -18,11 +18,11 @@ int	test_string_new(void)
 	t_string	*str;
 
 	str = ft_string_new(42);
-	if (str->str == NULL || str->length != 0 || str->capacity < 42)
+	if (!str->str || str->length != 0 || str->capacity < 42)
 		return (1);
 	ft_string_destroy(&str);
 	str = ft_string_new(0);
-	if (str->str == NULL || str->length != 0 || str->capacity < 1)
+	if (!str->str || str->length != 0 || str->capacity < 1)
 		return (1);
 	ft_string_destroy(&str);
 	return (0);

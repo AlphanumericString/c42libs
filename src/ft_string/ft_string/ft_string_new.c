@@ -17,12 +17,12 @@ t_string	*ft_string_new(size_t capacity)
 	t_string	*new;
 
 	new = ft_calloc(1, sizeof(t_string));
-	if (new == NULL)
+	if (!new)
 		return (NULL);
 	if (capacity < T_STRING_BUFF)
 		capacity = T_STRING_BUFF;
 	new->str = ft_calloc(capacity, sizeof(char));
-	if (new->str == NULL)
+	if (!new->str)
 		return (ft_free((void **)&new), NULL);
 	new->capacity = capacity;
 	new->length = 0;

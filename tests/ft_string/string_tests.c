@@ -40,7 +40,7 @@ int	tests_string(void)
 
 	i = 0;
 	collect = 0;
-	while (tests[i].name != NULL)
+	while (tests[i].name)
 	{
 		prev = collect;
 		ft_putendl_fd("\nTesting::", STDOUT_FILENO);

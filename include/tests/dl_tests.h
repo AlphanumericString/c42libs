@@ -13,48 +13,48 @@
 #ifndef DL_TESTS_H
 # define DL_TESTS_H
 
-int	test_dlistadd_front(void);
-int	test_dlistadd_back(void);
+int	t_dl_add_front(void);
+int	t_dl_add_back(void);
 
-int	test_dlistapply(void);
-int	test_dlistapply_range(void);
-int	test_dlistapply_range_node(void);
+int	t_dl_apply(void);
+int	t_dl_apply_range(void);
+int	t_dl_apply_range_node(void);
 
-int	test_dlistclear(void);
-int	test_dlistclear_range(void);
+int	t_dl_clear(void);
+int	t_dl_clear_range(void);
 
-int	test_dlistcreate(void);
+int	t_dl_create(void);
 
-int	test_dlistcopy_node(void);
-int	test_dlistcopy_list(void);
+int	t_dl_copy_node(void);
+int	t_dl_copy_list(void);
 
-int	test_dlist_delete_self(void);
-int	test_dlistdelete_range(void);
-int	test_dlistdelete(void);
+int	t_dl_delete_self(void);
+int	t_dl_delete_range(void);
+int	t_dl_delete(void);
 
-int	test_dlistfind(void);
+int	t_dl_find(void);
 
-int	test_dlistget_datas(void);
-int	test_dlistget_nodes(void);
+int	t_dl_get_datas(void);
+int	t_dl_get_nodes(void);
 
-int	test_dlist_at(void);
-int	test_dlist_begin(void);
-int	test_dlist_end(void);
+int	t_dl_at(void);
+int	t_dl_begin(void);
+int	t_dl_end(void);
 
-int	test_dlist_map(void);
+int	t_dl_map(void);
 
-int	test_dlist_new(void);
+int	t_dl_new(void);
 
-int	test_dlist_pop(void);
-int	test_dlist_pop_back(void);
-int	test_dlist_push(void);
-int	test_dlist_push_back(void);
+int	t_dl_pop(void);
+int	t_dl_pop_back(void);
+int	t_dl_push(void);
+int	t_dl_push_back(void);
 
-int	test_dlist_rev(void);
+int	t_dl_rev(void);
 
-int	test_dlist_size(void);
-int	test_dlist_size_of_data(void);
+int	t_dl_size(void);
+int	t_dl_size_of_data(void);
 
-int	test_dlist_subrange(void);
+int	t_dl_subrange(void);
 
 #endif /* DL_TESTS_H */

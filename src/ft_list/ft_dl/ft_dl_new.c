@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_ll_iterator.c                              :+:      :+:    :+:   */
+/*   ft_dl_new.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:43:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:03:59 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/10 12:42:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2023/12/10 12:42:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "ft_string.h"
 
-t_list	*ft_listend(const t_list *lst)
+t_dlist	*ft_dl_new(void)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return ((t_list *)lst);
-}
+	t_dlist	*ret;
 
-t_list	*ft_listat(const t_list *lst, size_t index)
-{
-	size_t	i;
-
-	i = 0;
-	while (lst && i < index)
-	{
-		lst = lst->next;
-		i++;
-	}
-	if (i != index)
-		return (NULL);
-	return ((t_list *)lst);
+	ret = ft_calloc(1, sizeof(t_dlist));
+	if (!ret)
+		return (ret);
+	ret->data = NULL;
+	ret->prev = NULL;
+	ret->next = NULL;
+	return (ret);
 }

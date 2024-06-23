@@ -24,14 +24,14 @@ int	test_strnstr(void)
 	if (ft_strnstr(str, "The cake is a lie !", 20) != str)
 		return (2);
 	res = ft_strnstr(str, "The cake is a lie !", 19);
-	if (res == NULL)
+	if (!res)
 		return (3);
-	if (ft_strnstr(str, "The cake is a lie !", 0) != NULL)
+	if (ft_strnstr(str, "The cake is a lie !", 0))
 		return (4);
-	if (ft_strnstr(str, "hidden", 100) != NULL)
+	if (ft_strnstr(str, "hidden", 100))
 		return (5);
-	if (ft_strnstr(NULL, "hidden", 10) != NULL || \
-	ft_strnstr(str, NULL, 10) != NULL)
+	if (ft_strnstr(NULL, "hidden", 10) || \
+	ft_strnstr(str, NULL, 10))
 		return (6);
 	return (0);
 }

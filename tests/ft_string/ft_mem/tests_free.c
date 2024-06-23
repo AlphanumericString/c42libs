@@ -18,7 +18,7 @@ int	test_free(void)
 
 	str = ft_calloc(10, sizeof(char));
 	ft_free((void **)&str);
-	if (str != NULL)
+	if (str)
 		return (1);
 	return (0);
 }

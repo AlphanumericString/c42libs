@@ -23,16 +23,16 @@ int	test_split(void)
 	res = ft_split(str, ' ');
 	res2 = ft_split(str2, ' ');
 	if (ft_strcmp(res[0], "Hello") != 0 || ft_strcmp(res[1], "World!") != 0
-		|| res[2] != NULL)
+		|| res[2])
 		return (1);
 	if (ft_strcmp(res2[0], "Hello") != 0 || ft_strcmp(res2[1], "World!") != 0
-		|| res2[2] != NULL)
+		|| res2[2])
 		return (2);
 	i = 0;
-	while (res[i] != NULL)
+	while (res[i])
 		free(res[i++]);
 	i = 0;
-	while (res2[i] != NULL)
+	while (res2[i])
 		free(res2[i++]);
 	return (free(res), free(res2), 0);
 }

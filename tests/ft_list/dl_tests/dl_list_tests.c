@@ -16,27 +16,27 @@
 static const t_test	*init_tests(void)
 {
 	static const t_test	var[] = {
-	{"add_front", test_dlistadd_front}, {"add_back", \
-		test_dlistadd_back}, {"apply", test_dlistapply}, {\
-		"apply_range", test_dlistapply_range}, {\
-		"apply_range_node", test_dlistapply_range_node}, {\
-		"clear", test_dlistclear}, {"clear_range", \
-		test_dlistclear_range}, {"create", test_dlistcreate}, {\
-		"copy_node", test_dlistcopy_node}, {"copy_list", \
-		test_dlistcopy_list}, {"delete_self", \
-		test_dlist_delete_self}, {"delete_range", \
-		test_dlistdelete_range}, {"delete", test_dlistdelete}, \
-		{"find", test_dlistfind}, {"get_datas", \
-		test_dlistget_datas}, {"get_nodes", test_dlistget_nodes}, \
-		{"at", test_dlist_at}, {"begin", \
-		test_dlist_begin}, {"end", test_dlist_end}, {\
-		"map", test_dlist_map}, {"new", test_dlist_new}, \
-		{"pop", test_dlist_pop}, {"pop_back", \
-		test_dlist_pop_back}, {"push", test_dlist_push}, \
-		{"push_back", test_dlist_push_back}, {"rev", \
-		test_dlist_rev}, {"size", test_dlist_size}, {\
-		"size_of_data", test_dlist_size_of_data}, {\
-		"subrange", test_dlist_subrange}, {NULL, NULL}};
+	{"add_front", t_dl_add_front}, {"add_back", \
+		t_dl_add_back}, {"apply", t_dl_apply}, {\
+		"apply_range", t_dl_apply_range}, {\
+		"apply_range_node", t_dl_apply_range_node}, {\
+		"clear", t_dl_clear}, {"clear_range", \
+		t_dl_clear_range}, {"create", t_dl_create}, {\
+		"copy_node", t_dl_copy_node}, {"copy_list", \
+		t_dl_copy_list}, {"delete_self", \
+		t_dl_delete_self}, {"delete_range", \
+		t_dl_delete_range}, {"delete", t_dl_delete}, \
+		{"find", t_dl_find}, {"get_datas", \
+		t_dl_get_datas}, {"get_nodes", t_dl_get_nodes}, \
+		{"at", t_dl_at}, {"begin", \
+		t_dl_begin}, {"end", t_dl_end}, {\
+		"map", t_dl_map}, {"new", t_dl_new}, \
+		{"pop", t_dl_pop}, {"pop_back", \
+		t_dl_pop_back}, {"push", t_dl_push}, \
+		{"push_back", t_dl_push_back}, {"rev", \
+		t_dl_rev}, {"size", t_dl_size}, {\
+		"size_of_data", t_dl_size_of_data}, {\
+		"subrange", t_dl_subrange}, {NULL, NULL}};
 
 	return (var);
 }

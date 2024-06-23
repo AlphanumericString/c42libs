@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 19:52:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/02 00:43:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:46:24 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_fd_to_buff(int fd)
 	char	buff[BUFFER_SIZE + 1];
 	char	*file;
 	char	*prev;
-	int		ret;
+	ssize_t	ret;
 
 	if (fd == -1)
 		return (NULL);

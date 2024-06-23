@@ -19,7 +19,7 @@ static int	test_base_resps(const char *base, const int *expected_results,
 	int	res;
 
 	i = 0;
-	while (inputs[i] != NULL)
+	while (inputs[i])
 	{
 		res = ft_atoi_base(inputs[i], base);
 		if (res != expected_results[i])

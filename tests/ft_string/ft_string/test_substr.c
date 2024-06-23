@@ -20,7 +20,7 @@ int	test_string_substr(void)
 
 	str = ft_string_from("Hello World");
 	sub = ft_string_substr(str, 0, 6);
-	if (sub == NULL)
+	if (!sub)
 		return (1);
 	if (ft_strcmp(sub->str, "Hello") != 0)
 		return (2);

@@ -6,12 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:27:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:39:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:53:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_math.h"
 #include <stdlib.h>
 
 // direct call to malloc as ft_bzero is not needed
@@ -23,9 +22,12 @@ void	*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld)
 	if (sizeNew == sizeOld)
 		return (ptr);
 	new = malloc(sizeNew);
-	if (new == NULL)
+	if (!new)
 		return (NULL);
-	ft_memcpy(new, ptr, ft_min(sizeNew, sizeOld));
+	if (sizeNew < sizeOld)
+		ft_memcpy(new, ptr, sizeNew);
+	else
+		ft_memcpy(new, ptr, sizeOld);
 	free(ptr);
 	return (new);
 }

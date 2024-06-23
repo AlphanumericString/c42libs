@@ -16,7 +16,7 @@
 #include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
 
-int	test_listfind(void)
+int	t_ll_find(void)
 {
 	t_list	*list;
 	int		*data;
@@ -26,21 +26,21 @@ int	test_listfind(void)
 
 	data3 = malloc(sizeof(int));
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	found = ft_listfind(list, data2, NULL);
+	found = ft_ll_find(list, data2, NULL);
 	if (!found || *(int *)found != *data2)
 		return (1);
 	*data3 = 63;
-	found = ft_listfind(list, data3, cmp_int);
-	if (found != NULL)
+	found = ft_ll_find(list, data3, cmp_int);
+	if (found)
 		return (2);
-	found = ft_listfind(NULL, data2, NULL);
-	if (found != NULL)
+	found = ft_ll_find(NULL, data2, NULL);
+	if (found)
 		return (3);
 	*data3 = 42;
-	found = ft_listfind(list, data3, cmp_int);
+	found = ft_ll_find(list, data3, cmp_int);
 	if (!found || *(int *)found != *data)
 		return (4);
-	ft_listclear(&list, free);
+	ft_ll_clear(&list, free);
 	free(data3);
 	return (0);
 }

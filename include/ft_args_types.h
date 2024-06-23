@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/02 00:09:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:25:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ARGS_TYPES_H
 # define FT_ARGS_TYPES_H
 
-# define ARG_MASK_ATYPE 0x1C
+# define ARG_MASK_ATYPE ~3
 # define ARG_MASK_ANY_ARG 0x1
 /*
 	OPT_ARG = 1,// technically the inverse of OPT_NOARG so mask it

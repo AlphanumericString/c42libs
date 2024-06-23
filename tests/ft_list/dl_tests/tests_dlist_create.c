@@ -13,22 +13,22 @@
 #include "ft_list_types.h"
 #include <stdlib.h>
 
-int	test_dlistcreate(void)
+int	t_dl_create(void)
 {
 	t_dlist	*list;
 	int		*data;
 
 	data = malloc(sizeof(int));
 	*data = 42;
-	list = ft_list_dl_create(data);
-	if (list == NULL)
+	list = ft_dl_create(data);
+	if (!list)
 		return (1);
 	else if (list->data != data)
 		return (1);
-	else if (list->next != NULL)
+	else if (list->next)
 		return (1);
-	else if (list->prev != NULL)
+	else if (list->prev)
 		return (1);
-	ft_list_dl_clear(&list, free);
+	ft_dl_clear(&list, free);
 	return (0);
 }
