@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_optional_unwrap.c                               :+:      :+:    :+:   */
+/*   ft_pair_types.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 18:07:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 20:41:12 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/06/23 22:14:56 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/06/23 22:15:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_optional.h"
+#ifndef FT_PAIR_TYPES_H
+# define FT_PAIR_TYPES_H
 
-void	*ft_optional_unwrap(t_optional opt)
+typedef struct s_pair
 {
-	char	*sigsegv;
+	void	*first;
+	void	*second;
+}	t_pair;
 
-	sigsegv = NULL;
-	if (opt.pres != OPT_NONE)
-		return (opt.val);
-	sigsegv[42] = sigsegv[0];
-	return (opt.val);
-}
+#endif

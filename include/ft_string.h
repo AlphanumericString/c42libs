@@ -6,12 +6,24 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/02 10:49:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:28:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRING_H
 # define FT_STRING_H
+
+/* ************************************************************************** */
+/* 					                                                          */
+/* Module: FT_STRING														  */
+/* Prefix:	ft_, ft_string (t_string)										  */
+/*																		      */
+/* This module provides a usefull c function for manipulationg string and     */
+/*		manipulating memory. It also includes the type t_string a string that */
+/*		caches it's malloc and allocates by chunks instead of 'JIT' in the	  */
+/*		code.																  */
+/*																			  */
+/* ************************************************************************** */
 
 // sys types
 # include <stddef.h>

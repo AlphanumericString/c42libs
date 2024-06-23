@@ -6,12 +6,23 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:59:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/21 19:08:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:08:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_CHAR_H
 # define FT_CHAR_H
+
+/* ************************************************************************** */
+/*                                                                            */
+/* Module: FT_CHAR                                                            */
+/* Prefix: ft_*                                                               */
+/*                                                                            */
+/* The module ft_char - (a sub module of the module string) provides an easy  */
+/*		way to handle task or queries related purely to chars. It was         */
+/*		separated from module ft_string to lighten and clarify it.            */
+/*                                                                            */
+/* ************************************************************************** */
 
 # include <stdbool.h>
 

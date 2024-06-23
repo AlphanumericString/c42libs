@@ -6,19 +6,31 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 18:54:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:04:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LIST_H
 # define FT_LIST_H
 
+/* ************************************************************************** */
+/*																			  */
+/* Module: FT_LIST															  */
+/* Prefix: ft_dl, ft_ll														  */
+/*																			  */
+/* The module FT_LIST provides a way to handle task related to linked		  */
+/*		lists whether the list happens to be simply linked, doubly linked.	  */
+/*		Due to the nature of the module (handling different types of the same */
+/*		variety of struct the prototypes are arranged using functionality	  */
+/*		instead of type as would be common.									  */
+/*		Currently supported types:											  */
+/*			-simply_linked,													  */
+/*			-doubly_linked.													  */
+/*																			  */
+/* ************************************************************************** */
+
 # include "ft_list_types.h"
 # include "ft_defs.h"
-
-/* ************************************************************************** */
-/*                           DOUBLY LINKED LIST                               */
-/* ************************************************************************** */
 
 /* ************************************************************************** */
 /*                                    ADD                                     */

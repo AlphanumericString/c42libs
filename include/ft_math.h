@@ -6,19 +6,25 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:51:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:09:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MATH_H
 # define FT_MATH_H
 
+/* ************************************************************************** */
+/*                                                                            */
+/* Module: FT_MATH                                                            */
+/* Prefix: ft_*																  */
+/*                                                                            */
+/* The FT_MATH module provides a way to handle task or queries related		  */
+/*		to arithmetic operations.											  */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include <stddef.h>
 # include "ft_math_types.h"
-
-/* ************************************************************************** */
-/*                                    MATH                                    */
-/* ************************************************************************** */
 
 /// @brief return the logaritm of the number in the specified base
 /// @param nbr number to get the logaritm

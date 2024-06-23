@@ -6,20 +6,28 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:07:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 18:51:18 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:08:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_OPTIONAL_H
 # define FT_OPTIONAL_H
 
+/* ************************************************************************** */
+/*											                                  */
+/* Module: FT_OPTIONAL                                                        */
+/* Prefix: ft_optional                                                        */
+/*																			  */
+/* The FT_OPTIONAL module provides a way to add the optional type to the      */
+/*		project, this type is used to handle the case where a function can    */
+/*		return a value or nothing, or to chain functions on a pointer		  */
+/*		(creating a 'pipeline' for the data to follow).					      */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "ft_defs.h"
 # include "ft_optional_types.h"
 # include <stdbool.h>
-
-/* ************************************************************************** */
-/*                                  OPTIONAL                                  */
-/* ************************************************************************** */
 
 /// @brief Create a new empty optional
 /// @return The new optional

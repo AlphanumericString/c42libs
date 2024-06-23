@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_optional_unwrap.c                               :+:      :+:    :+:   */
+/*   ft_pair_new.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 18:07:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 20:41:12 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/06/23 22:28:49 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/06/24 00:28:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_optional.h"
+#include "ft_pair.h"
+#include "ft_pair_types.h"
+#include <stdlib.h>
 
-void	*ft_optional_unwrap(t_optional opt)
+t_pair	*ft_pair_new(void *a, void *b)
 {
-	char	*sigsegv;
+	t_pair	*ret;
 
-	sigsegv = NULL;
-	if (opt.pres != OPT_NONE)
-		return (opt.val);
-	sigsegv[42] = sigsegv[0];
-	return (opt.val);
+	ret = malloc(sizeof(*ret));
+	if (!ret)
+		return (NULL);
+	return (ft_pair_set(ret, a, b), ret);
 }

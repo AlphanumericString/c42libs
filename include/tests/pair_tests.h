@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_optional_unwrap.c                               :+:      :+:    :+:   */
+/*   pair_tests.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 18:07:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 20:41:12 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/06/24 00:30:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/06/24 00:30:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_optional.h"
+#ifndef PAIR_TESTS_H
+# define PAIR_TESTS_H
 
-void	*ft_optional_unwrap(t_optional opt)
-{
-	char	*sigsegv;
+// todo: add tests
 
-	sigsegv = NULL;
-	if (opt.pres != OPT_NONE)
-		return (opt.val);
-	sigsegv[42] = sigsegv[0];
-	return (opt.val);
-}
+#endif

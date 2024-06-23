@@ -6,12 +6,22 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 14:09:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:01:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ARGS_H
 # define FT_ARGS_H
+
+/* ************************************************************************** */
+/*                                                                            */
+/* Module: FT_ARGS                                                            */
+/* Prefix: ft_arg                                                             */
+/*                                                                            */
+/* The Module FT_ARGS provides an easy way to handle task related to the cli  */
+/*		arguments both for manipulation and parsing.	                      */
+/*                                                                            */
+/* ************************************************************************** */
 
 // Change version with -DVERSION="x.y.z-W" via Makefile
 # ifndef VERSION

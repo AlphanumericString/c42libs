@@ -6,19 +6,25 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/02 11:33:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:09:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_VECTOR_H
 # define FT_VECTOR_H
 
+/* ************************************************************************** */
+/* 																		      */
+/* Module: FT_VECTOR														  */
+/* Prefix: ft_vec_															  */
+/*																			  */
+/* This module provides the vector type, a way to create array that are chunk */
+/*		allocated and allows for easy manipulations.						  */
+/* 																		      */
+/* ************************************************************************** */
+
 # include "ft_defs.h"
 # include "ft_vector_types.h"
-
-/* ************************************************************************** */
-/*                               VECTOR	                                      */
-/* ************************************************************************** */
 
 // ft_vector/ft_vec_add.c
 

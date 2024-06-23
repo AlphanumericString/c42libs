@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/06/23 18:19:55 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/06/24 00:27:52 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ FT_VEC_DIR		=	ft_vector
 FT_OPTIONAL_DIR	=	ft_optional
 FT_ARGS_DIR		=	ft_args
 FT_MATH_DIR		=	ft_math
+FT_PAIR_DIR		=	ft_pair
 
 # Counpound directories
 
@@ -57,9 +58,10 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 LDFLAGS		=	
 CPPFLAGS	=	-I$(INC_DIR) -MMD -MP
 FFLAGS		=\
-			 -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined\
-			 -fsanitize=leak -fsanitize=pointer-compare -fsanitize=pointer-subtract\
-			 -fsanitize-address-use-after-scope -fsanitize=pointer-overflow
+			-fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined	   \
+			-fsanitize=leak -fsanitize=pointer-compare 						   \
+			-fsanitize=pointer-subtract										   \
+			-fsanitize-address-use-after-scope -fsanitize=pointer-overflow 
 
 CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC \
 				-fdiagnostics-color
@@ -95,6 +97,13 @@ ifeq (, $(shell which $(PRD) 2> /dev/null))
 endif
 
 # Sources
+
+FT_PAIR_SRC	=	\
+			$(FT_PAIR_DIR)/ft_pair_cmp.c		\
+			$(FT_PAIR_DIR)/ft_pair_destroy.c	\
+			$(FT_PAIR_DIR)/ft_pair_get.c		\
+			$(FT_PAIR_DIR)/ft_pair_new.c		\
+			$(FT_PAIR_DIR)/ft_pair_set.c		\
 
 FT_MATH_SRC	=	\
 			$(FT_MATH_DIR)/ft_clamp.c		\
@@ -547,9 +556,10 @@ STABLE		=	\
 			$(FT_STRING_SRC)	\
 			$(FT_MAP_SRC)		\
 			$(FT_OPTIONAL_SRC)	\
+			$(FT_ARGS_SRC)		\
+			$(FT_PAIR_SRC)		\
 
 UNSTABLE	=	\
-			$(FT_ARGS_SRC)
 
 INNER_SRC   = \
 			$(STABLE)

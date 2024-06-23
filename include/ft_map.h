@@ -6,19 +6,25 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 11:55:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:05:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MAP_H
 # define FT_MAP_H
 
+/* ************************************************************************** */
+/*                                                                            */
+/* Module: FT_MAP                                                             */
+/* Prefix: ft_map                                                             */
+/*																			  */
+/* The module FT_MAP provides a way to handle hash maps and function		  */
+/*		related to hashmaps.												  */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "ft_defs.h"
 # include "ft_map_types.h"
-
-/* ************************************************************************** */
-/*                          MAP FUNCTIONS                                     */
-/* ************************************************************************** */
 
 /// @brief Create a new map
 /// @param capacity possible number of elements in the map

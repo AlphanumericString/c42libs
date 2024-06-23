@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_optional_unwrap.c                               :+:      :+:    :+:   */
+/*   ft_pair_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 18:07:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 20:41:12 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/06/23 22:57:05 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/06/23 22:57:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_optional.h"
+#include "ft_pair_types.h"
+#include <stddef.h>
 
-void	*ft_optional_unwrap(t_optional opt)
+void	*ft_pair_get_first(t_pair *pair)
 {
-	char	*sigsegv;
+	if (!pair)
+		return (NULL);
+	return (pair->first);
+}
 
-	sigsegv = NULL;
-	if (opt.pres != OPT_NONE)
-		return (opt.val);
-	sigsegv[42] = sigsegv[0];
-	return (opt.val);
+void	*ft_pair_get_second(t_pair *pair)
+{
+	if (!pair)
+		return (NULL);
+	return (pair->second);
 }
