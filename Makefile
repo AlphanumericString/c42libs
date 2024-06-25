@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/06/24 00:27:52 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/06/25 18:24:12 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -734,7 +734,11 @@ Doxygen:
 	$(ECHO) $(RED) "Failed" $(RESET)
 
 # Rule to recompile
-re:	fclean all
+re:	fclean
+	@$(ECHO) -n $(GRAY) "Recompiling ... " $(RESET)				&& \
+	make --no-print-directory all								&& \
+	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
+	$(ECHO) $(RED) "Failed" $(RESET)
 
 # rule to clean everything and make the project ready for 42 norm
 42ready: fclean
