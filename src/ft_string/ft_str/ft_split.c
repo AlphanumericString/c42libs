@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:48:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/08 15:15:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:48:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,6 @@ static char	*loc_cpy_til(const char *str, char delim, size_t *offset_str)
 	return (ret);
 }
 
-static void	loc_tbfree(void **tb)
-{
-	size_t	i;
-
-	i = 0;
-	while (tb[i])
-		free(tb[i++]);
-	free(tb);
-}
-
 char	**ft_split(const char *str, char delim)
 {
 	size_t	offset_str;
@@ -90,7 +80,7 @@ char	**ft_split(const char *str, char delim)
 	{
 		words[offset_words++] = loc_cpy_til(str, delim, &offset_str);
 		if (!words[offset_words - 1])
-			return (loc_tbfree((void **)words), NULL);
+			return (ft_free_2d((void **)words), NULL);
 		while (str[offset_str] == delim && str[offset_str])
 			offset_str++;
 	}

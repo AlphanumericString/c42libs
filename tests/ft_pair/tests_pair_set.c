@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pair_destroy.c                                  :+:      :+:    :+:   */
+/*   tests_pair_set.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/23 23:04:56 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/06 17:13:49 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/07/06 16:09:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/07/06 16:46:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
+#include "ft_pair.h"
 #include "ft_pair_types.h"
-#include "ft_string.h"
+#include "tests/pair_tests.h"
 
-void	ft_pair_destroy(t_pair **pair, t_data_apply del_f, t_data_apply del_s)
+int	test_pair_set(void)
 {
-	if (!pair)
-		return ;
-	if (del_f)
-		del_f((*pair)->first);
-	if (del_s)
-		del_s((*pair)->second);
-	ft_free((void **)pair);
+	t_pair	pair;
+	void	*a;
+	void	*b;
+	void	*c;
+
+	a = (void *)0xDEADBEEF;
+	b = (void *)0xDEADDEAD;
+	c = (void *)0xDEADCAFE;
+	ft_pair_set(&pair, a, b);
+	if (pair.first != a || pair.second != b)
+		return (1);
+	ft_pair_set(&pair, c, a);
+	if (pair.first != c || pair.second != a)
+		return (1);
+	ft_pair_set(NULL, a, b);
+	return (0);
 }

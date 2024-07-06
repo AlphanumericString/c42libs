@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/07/06 14:36:25 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/07/06 17:15:40 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -393,6 +393,16 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_optional/tests_optional_new.c		\
 			$(TESTS_DIR)/ft_optional/tests_optional_unwrap.c	\
 			$(TESTS_DIR)/ft_optional/optional_tests.c			\
+			\
+			$(TESTS_DIR)/ft_pair/tests_pair_cmp.c				\
+			$(TESTS_DIR)/ft_pair/tests_pair_cmp_first.c			\
+			$(TESTS_DIR)/ft_pair/tests_pair_cmp_second.c		\
+			$(TESTS_DIR)/ft_pair/tests_pair_destroy.c			\
+			$(TESTS_DIR)/ft_pair/tests_pair_get_first.c			\
+			$(TESTS_DIR)/ft_pair/tests_pair_get_second.c		\
+			$(TESTS_DIR)/ft_pair/tests_pair_new.c				\
+			$(TESTS_DIR)/ft_pair/tests_pair_set.c				\
+			$(TESTS_DIR)/ft_pair/pair_tests.c					\
 			\
 			$(TESTS_DIR)/ft_string/ft_char/tests_isalnum.c		\
 			$(TESTS_DIR)/ft_string/ft_char/tests_isalpha.c		\

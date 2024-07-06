@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2024/06/26 19:26:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/06 16:23:30 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ const t_test	*get_tests(void)
 	{"optional", tests_optional},
 	{"args", tests_args},
 	{"math", tests_math},
+	{"pair", tests_pair},
 	{NULL, NULL}
 	};
 
