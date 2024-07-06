@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:07:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 20:41:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:28:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 void	*ft_optional_unwrap(t_optional opt)
 {
-	char	*sigsegv;
-
-	sigsegv = NULL;
 	if (opt.pres != OPT_NONE)
 		return (opt.val);
-	sigsegv[42] = sigsegv[0];
-	return (opt.val);
+	return (NULL);
 }

@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_realloc.c                                    :+:      :+:    :+:   */
+/*   ft_align.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 12:21:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/26 19:27:29 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/06/26 19:51:21 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/06/26 20:46:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include <stddef.h>
 
-int	test_realloc(void)
+size_t	ft_align_2(size_t size, size_t alignment)
 {
-	char	*str;
-	char	*str_ret;
+	return ((size + alignment - 1) & ~(alignment - 1));
+}
 
-	str = ft_calloc(15, sizeof(char));
-	ft_strlcpy(str, "Hello world", 15);
-	str = ft_realloc(str, 25, 15);
-	ft_strlcat(str, " this is zod!", 25);
-	if (ft_strcmp(str, "Hello world this is zod!") != 0)
-		return (1);
-	str_ret = ft_realloc(str, 10, 10);
-	if (str != str_ret)
-		return (2);
-	free(str);
-	return (0);
+size_t	ft_align(size_t size, size_t alignment)
+{
+	if (alignment < 2)
+		return (size);
+	if (size % alignment == 0)
+		return (size);
+	size += alignment - size % alignment;
+	return (size);
 }

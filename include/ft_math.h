@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/24 00:09:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/26 20:48:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@
 
 # include <stddef.h>
 # include "ft_math_types.h"
+
+
+/// @brief Return the nearest aligned value of size on the alignment
+/// @param size The size to align
+/// @param alignment The alignment to use
+/// @return The aligned value of size on the alignment
+/// @note Optimized for power of 2 alignment
+size_t	ft_align_2(size_t size, size_t alignment);
+
+/// @brief Return the nearest aligned value of size on the alignment
+/// @param size The size to align
+/// @param alignment The alignment to use
+/// @return The aligned value of size on the alignment
+/// @note See: ft_align_2 for an optimized version for power of 2
+size_t	ft_align(size_t size, size_t alignment);
 
 /// @brief return the logaritm of the number in the specified base
 /// @param nbr number to get the logaritm

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:17:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/27 02:13:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/26 20:51:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,9 @@ int	test_ft_clamp_d(void);
 
 /* @file: tests/ft_math/tests_abs.c */
 int	test_ft_abs(void);
+
+/* @file: tests/ft_math/tests_align.c */
+int	test_ft_align_2(void);
+int	test_ft_align(void);
 
 #endif

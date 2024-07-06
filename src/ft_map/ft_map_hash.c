@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:07:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 23:09:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:18:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	ft_hash_djb2(const void *key, size_t size)
 	hash = 5381;
 	str = (unsigned char *)key;
 	while (size--)
-		hash = (hash << 5) + hash + *str++;
+		hash = (hash << 5) + hash + str[size];
 	return (hash);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:15:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/02 09:11:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:34:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ static int	error_case(void)
 	if (bad_fd < 0)
 		return (2);
 	close(bad_fd);
-	open(TESTS_FPREFIX "test_fd_to_buff.txt", O_RDONLY);
+	bad_fd = open(TESTS_FPREFIX "test_fd_to_buff.txt", O_RDONLY);
 	ret = ft_fd_to_buff(bad_fd);
 	if (ret)
 		return (3);
-	close(bad_fd);
 	destroy_test_file(bad_fd, TESTS_FPREFIX "test_fd_to_buff.txt");
 	return (0);
 }

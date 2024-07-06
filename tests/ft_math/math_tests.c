@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:16:35 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 14:24:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/26 20:50:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	tests_math(void)
 	{"logof", test_ft_logof}, {"min", test_ft_min},
 	{"max", test_ft_max}, {"pow", test_ft_pow}, {"round", test_ft_round},
 	{"sqrt", test_ft_sqrt}, {"clamp_f", test_ft_clamp_f},
-	{"clamp_d", test_ft_clamp_d}, {NULL, NULL}};
+	{"clamp_d", test_ft_clamp_d}, {"align", test_ft_align},
+	{"align_2", test_ft_align_2}, {NULL, NULL}};
 
 	i = 0;
 	run_test(tests, &i);

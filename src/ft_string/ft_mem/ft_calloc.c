@@ -6,21 +6,24 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:28:30 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/05 10:21:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:59:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include "ft_string.h"
 
 void	*ft_calloc(size_t nmemb, size_t weight)
 {
-	const size_t	tot = nmemb * weight;
-	void			*ret;
+	void	*ret;
+	size_t	tot;
 
-	if (tot && tot / weight != nmemb)
+	if (nmemb == 0 || weight == 0)
+		return (malloc(0));
+	if (nmemb > SIZE_MAX / weight)
 		return (NULL);
+	tot = nmemb * weight;
 	ret = malloc(tot);
 	if (!ret)
 		return (NULL);

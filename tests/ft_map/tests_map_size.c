@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:15:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 14:23:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:17:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	test_map_size(void)
 
 	str = ft_strdup("value");
 	map = ft_map_create(10);
-	ft_map_set(map, "key", str, ft_strlen(str) + 1);
+	ft_map_set(map, "key", str, ft_strlen("key"));
 	ret = ft_map_size(map);
 	if (ret != 1)
 		return (1);

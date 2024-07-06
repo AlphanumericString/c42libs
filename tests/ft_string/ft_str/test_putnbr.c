@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:07:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:29:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static int	file_cmp(const char *file_name, const char *expected)
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(buff, sizeof(buff));
 	read(fd, buff, sizeof(buff));
-	close(fd);
 	if (ft_strncmp(buff, expected, sizeof(buff)))
 		return (1);
 	return (destroy_test_file(fd, file_name), 0);

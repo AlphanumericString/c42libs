@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/06/25 18:24:12 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/07/06 14:36:25 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,9 @@ FT_STR_DIR		=	$(FT_STRING_DIR)/ft_str
 FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 
 # Compilation flags
+##
+## To change debug level run make DEBUG_LEVEL=xxx
+##
 
 LDFLAGS		=	
 CPPFLAGS	=	-I$(INC_DIR) -MMD -MP
@@ -62,16 +65,16 @@ FFLAGS		=\
 			-fsanitize=leak -fsanitize=pointer-compare 						   \
 			-fsanitize=pointer-subtract										   \
 			-fsanitize-address-use-after-scope -fsanitize=pointer-overflow 
+CFLAGS		=\
+			-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color
+TEST_FLAGS	=\
+		-g2	-DTEST \
+		-fprofile-instr-generate -ftest-coverage -fcoverage-mapping \
 
-CFLAGS		=	-Wall -Wextra $(CPPFLAGS) -Werror -fPIC \
-				-fdiagnostics-color
-
-TEST_FLAGS	=	\
-			-g2											\
-			-DDEBUG	-DTEST								\
-			-ftest-coverage 							\
-			-fprofile-instr-generate					\
-			-fcoverage-mapping							\
+DEBUG_LEVEL	=\
+				0
+DEBUG_FLAGS	=\
+			-g2	-DDEBUG	$(FFLAGS) -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 
 # Inner variables
 
@@ -114,6 +117,7 @@ FT_MATH_SRC	=	\
 			$(FT_MATH_DIR)/ft_sqrt.c		\
 			$(FT_MATH_DIR)/ft_pow.c			\
 			$(FT_MATH_DIR)/ft_abs.c			\
+			$(FT_MATH_DIR)/ft_align.c		\
 			$(FT_MATH_DIR)/ft_round.c
 
 FT_MAP_SRC	=	\
@@ -369,6 +373,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_map/tests_map_set.c					\
 			\
 			$(TESTS_DIR)/ft_math/tests_abs.c					\
+			$(TESTS_DIR)/ft_math/tests_align.c					\
 			$(TESTS_DIR)/ft_math/tests_clamp.c					\
 			$(TESTS_DIR)/ft_math/tests_complex.c				\
 			$(TESTS_DIR)/ft_math/tests_intrange.c				\
@@ -686,9 +691,11 @@ $(COVERAGE_DIR): $(TEST_NAME)
 # Rule to compile using debug flags
 debug:
 	@$(ECHO) $(GRAY) "Compiling debug, flags are" $(RESET) 		\
-	"$(CFLAGS) $(DEBUG_FLAGS)" $(RESET)							&& \
-	make -C ./ re CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"				&& \
-	make -C ./ so CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"				&& \
+	"$(CFLAGS) $(DEBUG_FLAGS)" $(RESET)						&& \
+	make --no-print-directory -C . re							\
+	CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"							&& \
+	make --no-print-directory -C .								\
+	so CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"						&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
@@ -735,7 +742,7 @@ Doxygen:
 
 # Rule to recompile
 re:	fclean
-	@$(ECHO) -n $(GRAY) "Recompiling ... " $(RESET)				&& \
+	@$(ECHO) -ne $(GRAY) "Recompiling ..." $(RESET) "\n"		&& \
 	make --no-print-directory all								&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
