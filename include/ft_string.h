@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/24 00:28:59 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:35:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
+// errno
+
+# include <errno.h>
 
 /* ************************************************************************** */
 /* **                     FT_MEM SUB MODULE                                ** */
@@ -518,6 +522,17 @@ bool		ft_str_isoct(const char *str);
 /// @file: src/ft_string/ft_char/ft_isvalid.c
 bool		ft_str_isvalid(const char *str, int (*f)(int));
 
+/// @brief Return a pointer to a constant string describing the error code
+/// @param errnum Error code
+/// @return A pointer to a constant string describing the error code
+/// @note The returned pointer can be null if errnum is out of range (0 - 133)
+const char	*ft_strerror(int errnum);
+
+/// @brief Print the string s if present to STDERR followed by the error code 
+/// as a string
+/// @param s String to print before the error code
+void		ft_perror(const char *s);
+
 /* ************************************************************************** */
 /*                        FT_GNL SUB MODULE                                   */
 /* ************************************************************************** */
@@ -531,8 +546,7 @@ bool		ft_str_isvalid(const char *str, int (*f)(int));
 char		*get_next_line(int fd);
 
 // printf
-
-// missing ...
+// missing ... todo
 
 /* ************************************************************************** */
 /*                        FT_STRING SUB MODULE                                */

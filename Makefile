@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/07/06 17:15:40 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/07/08 14:38:54 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,6 +167,7 @@ FT_STR_SRC	=	\
 			$(FT_STR_DIR)/ft_atoi_base.c		\
 			$(FT_STR_DIR)/ft_itoa.c				\
 			$(FT_STR_DIR)/ft_itoa_base.c		\
+			$(FT_STR_DIR)/ft_perror.c			\
 			$(FT_STR_DIR)/ft_putendl_fd.c		\
 			$(FT_STR_DIR)/ft_putnbr_fd.c		\
 			$(FT_STR_DIR)/ft_putstr_fd.c		\
@@ -194,6 +195,7 @@ FT_STR_SRC	=	\
 			$(FT_STR_DIR)/ft_strcspn.c			\
 			$(FT_STR_DIR)/ft_strdup.c			\
 			$(FT_STR_DIR)/ft_strend_with.c		\
+			$(FT_STR_DIR)/ft_strerror.c			\
 			$(FT_STR_DIR)/ft_striteri.c			\
 			$(FT_STR_DIR)/ft_strjoin.c			\
 			$(FT_STR_DIR)/ft_strlcat.c			\
