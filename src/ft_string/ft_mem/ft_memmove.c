@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:14:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/26 19:48:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:59:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include <stdio.h>
 
 static	void	*byte_memcpy(void *dest, const void *src, size_t n)
 {
@@ -58,12 +59,19 @@ static void	word_memcpy(void *dest, const void *src, size_t *n)
 	*n %= sizeof(size_t);
 }
 
+/*
+	* If src is not aligned then we copy byte by byte otherwise
+	* the compiler will need to align each time we pull from src
+*/
+
 static void	*ft_memmove_forward(void *dest, const void *src, size_t n)
 {
 	const void	*ret = dest;
 	size_t		align_offset;
 	size_t		prev_n;
 
+	if ((size_t)src % sizeof(size_t))
+		return (byte_memcpy(dest, src, n));
 	align_offset = (size_t)dest % sizeof(size_t);
 	byte_memcpy(dest, src, align_offset);
 	n -= align_offset;
@@ -83,6 +91,8 @@ static void	*ft_memmove_backward(void *dest, const void *src, size_t n)
 	const void	*ret = dest;
 	size_t		align_offset;
 
+	if ((size_t)src % sizeof(size_t))
+		return (byte_memcpy(dest, src, n));
 	align_offset = (size_t)(dest + n) % sizeof(size_t);
 	n -= align_offset;
 	byte_memcpy(dest + n, src + n, align_offset);
