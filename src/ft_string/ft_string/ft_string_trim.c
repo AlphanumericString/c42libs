@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:50:18 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 18:22:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:57:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_string_trim_chr(t_string *str, char c)
 
 // placing the null terminator at the end of the string
 // because str->str is not reset after.
-void	ft_string_trimstr(t_string *str, char *to_trim)
+void	ft_string_trimstr(t_string *str, const char *to_trim)
 {
 	size_t	rpad;
 	size_t	lpad;

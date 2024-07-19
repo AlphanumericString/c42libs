@@ -6,16 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 03:49:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:58:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:46:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string_types.h"
-#include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
 
-int	ft_string_put(t_string *str, int fd)
+int	ft_string_put(const t_string *str, int fd)
 {
 	int	ret;
 

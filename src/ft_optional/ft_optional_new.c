@@ -6,18 +6,21 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:06:55 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/18 15:39:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:15:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_optional.h"
+#include "ft_string.h"
 #include <stdlib.h>
 
 t_optional	*ft_optional_new(void)
 {
 	t_optional	*elem;
 
-	elem = malloc(sizeof(*elem));
+	elem = ft_malloc(sizeof(*elem));
+	if (!elem)
+		return (NULL);
 	elem->pres = OPT_NONE;
 	elem->val = NULL;
 	return (elem);

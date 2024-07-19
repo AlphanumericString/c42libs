@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:35:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:57:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:16:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static bool	setup(char **res, const char *targ, size_t targ_len, size_t sub_len)
 		occurence = ft_strnstr(occurence + 1, targ, ft_strlen(occurence + 1));
 		nb_occurence++;
 	}
-	*res = malloc(ft_strlen(*res) + (sub_len - targ_len) * nb_occurence + 1);
+	*res = ft_malloc(ft_strlen(*res) + (sub_len - targ_len) * nb_occurence + 1);
 	if (!*res)
 		return (false);
 	return (true);

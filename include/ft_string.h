@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/08 14:35:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:45:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ void		ft_apply_2d(void **array, t_data_apply f);
 /// @param n size of the memory
 /// @return void
 void		ft_bzero(void *s, size_t n);
+
+/// @brief allocate memory
+/// @param size size of the memory to allocate
+/// @return pointer to the allocated memory otherwise NULL
+void		*ft_malloc(size_t size);
 
 /// @brief allocate memory and fill it with 0
 /// @param nmemb number of elements
@@ -164,19 +169,19 @@ void		ft_qsort(void *array, size_t nmb, size_t size, t_data_cmp cmp);
 /// @param s string to print
 /// @param fd file descriptor to print on
 /// @return void
-void		ft_putendl_fd(const char *s, int fd);
+int			ft_putendl_fd(const char *s, int fd);
 
 /// @brief print the string on the specified file descriptor
 /// @param nbr string to print
 /// @param fd file descriptor to print on
 /// @return void
-void		ft_putnbr_fd(int nbr, int fd);
+int			ft_putnbr_fd(int nbr, int fd);
 
 /// @brief print the string on the specified file descriptor
 /// @param s string to print
 /// @param fd file descriptor to print on
 /// @return void
-void		ft_putstr_fd(const char *s, int fd);
+int			ft_putstr_fd(const char *s, int fd);
 
 /* ************************************************************************** */
 /* **                     FT_STR MAIN MODULE                               ** */
@@ -618,14 +623,14 @@ int			ft_string_put(t_string *str, int fd);
 /// @param str t_string to modify
 /// @param src string to append
 /// @return 1 if the string has been appended otherwise 0
-int			ft_string_append(t_string *str, char *src);
+int			ft_string_append(t_string *str, const char *src);
 
 /// @brief append at most n chars of the string src to the string str
 /// @param str t_string to modify
 /// @param src string to append
 /// @param n number of chars to append
 /// @return 1 if the string has been appended otherwise 0
-int			ft_string_append_n(t_string *str, char *src, size_t n);
+int			ft_string_append_n(t_string *str, const char *src, size_t n);
 
 /// @brief append the char c to the string str
 /// @param str t_string to modify
@@ -674,7 +679,7 @@ void		ft_string_destroy(t_string **str);
 /// @param src string to insert
 /// @param pos position to insert the string
 /// @return 1 if the string has been inserted otherwise 0
-int			ft_string_insert(t_string *str, char *src, size_t pos);
+int			ft_string_insert(t_string *str, const char *src, size_t pos);
 
 /// @brief insert at most n chars of the string src in the string str at the
 /// specified position
@@ -683,7 +688,7 @@ int			ft_string_insert(t_string *str, char *src, size_t pos);
 /// @param pos position to insert the string
 /// @param n number of chars to insert
 /// @return 1 if the string has been inserted otherwise 0
-int			ft_string_insert_n(t_string *str, char *src, size_t pos, size_t n);
+int			ft_string_insert_n(t_string *str, const char *src, size_t pos, size_t n);
 
 /// @brief insert the char c in the string str at the specified position
 /// @param str t_string to modify
@@ -784,7 +789,7 @@ void		ft_string_trim_chr(t_string *str, char c);
 /// @param to_trim chars to trim
 /// @return void
 /// @note the inner string is not freed but the content modified.
-void		ft_string_trimstr(t_string *str, char *to_trim);
+void		ft_string_trimstr(t_string *str, const char *to_trim);
 
 /* ************************************************************************** */
 /* **                     ft_string_cmp                                    ** */
@@ -904,8 +909,8 @@ char		*ft_string_rchr(const t_string *str, char c);
 /// @param to_replace string to search and replace
 /// @param replace_by string to replace with
 /// @return 1 if the string has been replaced otherwise 0
-int			ft_string_replace(t_string *str, char *to_replace,
-				char *replace_by);
+int			ft_string_replace(t_string *str, const char *to_replace,
+				const char *replace_by);
 
 /// @brief search and replace the string to_replace in the string str
 /// by the string replace_by

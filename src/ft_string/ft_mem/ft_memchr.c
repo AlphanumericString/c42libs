@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:15:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/11 11:44:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:19:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	*sword_memchr(const void *s, int c, size_t n)
 
 #ifdef __x86_64__
 
-static void constr_bword(size_t *target, size_t *rp_one,
-			size_t *rp_eight, char c)
+static void	constr_bword(size_t *target, size_t *rp_one, size_t *rp_eight,
+		char c)
 {
 	*target = (size_t)c;
 	*target |= *target << 8;
@@ -50,8 +50,8 @@ static void constr_bword(size_t *target, size_t *rp_one,
 
 #else 
 
-static void constr_bword(size_t *target, size_t *rp_one,
-			size_t *rp_eight, char c)
+static void	constr_bword(size_t *target, size_t *rp_one, size_t *rp_eight,
+		char c)
 {
 	*target = (size_t)c;
 	*target |= *target << 8;
@@ -107,7 +107,7 @@ static void	*bword_memchr(const void *s, int c, size_t n)
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char *res;
+	char	*res;
 
 	if (n < sizeof(n))
 		return (sword_memchr(s, c, n));

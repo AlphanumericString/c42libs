@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:21 by iron              #+#    #+#             */
-/*   Updated: 2024/06/23 19:00:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:36:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "ft_string.h"
 #include <stdlib.h>
 
 void	**ft_dl_get_datas(const t_dlist *src)
@@ -21,7 +22,7 @@ void	**ft_dl_get_datas(const t_dlist *src)
 	if (!src)
 		return (NULL);
 	size = ft_dl_size(src);
-	ret = malloc(sizeof(void *) * (size + 1));
+	ret = ft_calloc(sizeof(void *), (size + 1));
 	if (!ret)
 		return (NULL);
 	ret[size] = NULL;
@@ -43,7 +44,7 @@ t_dlist	**ft_dl_get_nodes(const t_dlist *src)
 	ret = NULL;
 	if (!src)
 		return (NULL);
-	ret = malloc(sizeof(t_dlist *) * (size + 1));
+	ret = ft_calloc(sizeof(t_dlist *), (size + 1));
 	if (!ret)
 		return (ret);
 	ret[size] = NULL;

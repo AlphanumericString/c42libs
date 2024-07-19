@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:27:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/13 16:53:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:16:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include <stdlib.h>
 
-// direct call to malloc as ft_bzero is not needed
+// direct call to ft_malloc as ft_bzero is not needed
 //  >> we are copying the content of ptr to new
 void	*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld)
 {
@@ -21,7 +21,7 @@ void	*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld)
 
 	if (sizeNew == sizeOld)
 		return (ptr);
-	new = malloc(sizeNew);
+	new = ft_malloc(sizeNew);
 	if (!new)
 		return (NULL);
 	if (sizeNew < sizeOld)

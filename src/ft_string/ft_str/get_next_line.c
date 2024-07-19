@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:02:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/28 07:58:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:16:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	split_from(char **dst, char *from, int pos, char delim)
 	if (*dst)
 		or_len += ft_strlen(*dst);
 	len = or_len + pos + 1;
-	ret = malloc(sizeof(char) * (len + 1));
+	ret = ft_malloc(sizeof(char) * (len + 1));
 	if (!ret)
 		return (-1);
 	ret[len] = 0;

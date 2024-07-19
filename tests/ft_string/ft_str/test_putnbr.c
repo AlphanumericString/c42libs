@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/26 19:29:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:29:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests.h"
 #include <limits.h>
+#include <unistd.h>
 
 static int	nb_to_file(const int *nbs, size_t size, const char *file_name)
 {

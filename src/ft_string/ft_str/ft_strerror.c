@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:43:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/08 14:01:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:19:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static const char	*block_2(int errnum)
 	static const char	*str[] = {\
 	"Level 2 halted", "Invalid exchange", "Invalid request descriptor", \
 	"Exchange full", "No anode", "Invalid request code", \
-	"Invalid slot", "Unknown error 58", 
+	"Invalid slot", "Unknown error 58", \
 	"Bad font file format", "Device not a stream", "No data available", \
 	"Timer expired", "Out of streams resources", \
 	"Machine is not on the network", "Package not installed", \

@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:01:18 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/12/30 12:59:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:18:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_vector.h"
 #include <stdlib.h>
 
@@ -20,7 +21,9 @@ bool	ft_vec_reserve(t_vector **vec, size_t size)
 
 	if ((*vec)->cappacity > size)
 		return (true);
-	ret.datas = malloc(sizeof(void *) * size);
+	ret.datas = ft_malloc(sizeof(void *) * size);
+	if (!ret.datas)
+		return (false);
 	i = 0;
 	while (i < (*vec)->count)
 	{

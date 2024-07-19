@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:06:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/24 11:48:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:24:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests_lambda_functions.h"
+#include <assert.h>
 #include <stdlib.h>
 
 int	t_dl_map(void)
