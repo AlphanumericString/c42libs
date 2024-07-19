@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/07/08 14:38:54 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/07/19 18:21:31 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -242,6 +242,7 @@ FT_MEM_SRC	=	\
 			$(FT_MEM_DIR)/ft_free.c			\
 			$(FT_MEM_DIR)/ft_free_2d.c		\
 			$(FT_MEM_DIR)/ft_len_2d.c		\
+			$(FT_MEM_DIR)/ft_malloc.c		\
 			$(FT_MEM_DIR)/ft_memchr.c		\
 			$(FT_MEM_DIR)/ft_memcmp.c		\
 			$(FT_MEM_DIR)/ft_memcpy.c		\
