@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 01:10:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 12:49:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/08/21 10:28:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_parse_args(const char **argv, void *usr_control_struct)
 	while (argv[i] && argv[i][0] == '-')
 	{
 		if (argv[i][1] == '-' && argv[i][2] == '\0')
-			return (EXIT_SUCCESS);
+			return (i + 1);
 		else if (argv[i][1] == '-')
 			opt_index = parse_long_opt(argv[i] + 2, opt);
 		else
@@ -62,7 +62,7 @@ int	ft_parse_args(const char **argv, void *usr_control_struct)
 		if (opt_index == -1)
 			return (arg_opt_err(argv[i]));
 		if (run_opt_func(opt[opt_index], usr_control_struct, argv, &i) != 0)
-			return (EXIT_FAILURE);
+			return (-1);
 	}
-	return (EXIT_SUCCESS);
+	return (i);
 }
