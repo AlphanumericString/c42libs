@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:22:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/06 17:32:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/08/21 21:49:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	test_free(void)
 	if (str)
 		return (1);
 	ft_free((void **)&str);
-	ft_free((void **)NULL);
+	ft_free((void **) NULL);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:20:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/06 17:28:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/08/21 21:48:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,22 @@ static int	test_ptr(void)
 
 static int	test_cmp(void)
 {
-	t_pair	pair_a;
-	t_pair	pair_b;
+	t_pair		pair_a;
+	t_pair		pair_b;
 	const char	*a = "a";
 	const char	*b = "b";
 	const char	*c = "c";
 
 	ft_pair_set(&pair_a, (void *)a, (void *)b);
 	ft_pair_set(&pair_b, (void *)c, (void *)a);
-	if (ft_pair_cmp_first(&pair_a, &pair_b, (t_data_cmp)&ft_strcmp) == 0)
+	if (ft_pair_cmp_first(&pair_a, &pair_b, (t_data_cmp) & ft_strcmp) == 0)
 		return (1);
 	return (0);
 }
 
 int	test_pair_cmp_first(void)
 {
-	int ret;
+	int	ret;
 
 	ret = test_ptr();
 	if (ret != 0)

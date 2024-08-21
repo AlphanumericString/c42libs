@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:20:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/06 17:21:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/08/21 21:43:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	test_cmp(void)
 
 int	test_pair_cmp(void)
 {
-	int ret;
+	int	ret;
 
 	ret = test_ptr();
 	if (ret != 0)

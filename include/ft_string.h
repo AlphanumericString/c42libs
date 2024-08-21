@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/19 18:45:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/08/21 21:42:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -688,7 +688,8 @@ int			ft_string_insert(t_string *str, const char *src, size_t pos);
 /// @param pos position to insert the string
 /// @param n number of chars to insert
 /// @return 1 if the string has been inserted otherwise 0
-int			ft_string_insert_n(t_string *str, const char *src, size_t pos, size_t n);
+int			ft_string_insert_n(t_string *str, const char *src, size_t pos, \
+				size_t n);
 
 /// @brief insert the char c in the string str at the specified position
 /// @param str t_string to modify
@@ -731,7 +732,7 @@ int			ft_string_reserve(t_string *str, size_t capacity);
 /// @brief resize the string to the specified size
 /// @param str t_string to modify
 /// @param size size to resize
-/// @return 1 if the string has been resized otherwise 0
+/// @return 1 if the string has been resized otherwise -1
 /// @note if the size is smaller than the current size, the string is truncated
 int			ft_string_resize(t_string *str, size_t size);
 
