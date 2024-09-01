@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:52:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/13 16:54:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/08/23 19:38:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static int	ft_is_valid(const char *base)
 	return (1);
 }
 
-int	ft_atoi_base(const char *str, const char *base)
+long long ft_atoll_base(const char *str, const char *base)
 {
 	const size_t	base_len = ft_strlen(base);
+	long long		nb;
 	int				i;
-	int				nb;
 	int				sign;
 
 	i = 0;
@@ -54,4 +54,14 @@ int	ft_atoi_base(const char *str, const char *base)
 	while (str[i] && ft_strchr(base, str[i]))
 		nb = nb * base_len + ft_strchr(base, str[i++]) - base;
 	return (nb * sign);
+}
+
+long	ft_atol_base(const char *str, const char *base)
+{
+	return ((long)ft_atoll_base(str, base));
+}
+
+int	ft_atoi_base(const char *str, const char *base)
+{
+	return ((int)ft_atoll_base(str, base));
 }

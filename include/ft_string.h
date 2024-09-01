@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/08/21 21:42:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/08/23 19:44:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,15 +192,37 @@ int			ft_putstr_fd(const char *s, int fd);
 /// @return the float converted from the string
 double		ft_atof(const char *str);
 
+/// @brief convert the string to an long long
+/// @param str string to convert
+/// @return the number converted from the string
+long long	ft_atoll(const char *str);
+
+/// @brief convert the string to a long
+/// @param str string to convert
+/// @return the number converted from the string
+long		ft_atol(const char *str);
+
 /// @brief convert the string to an int
 /// @param str string to convert
-/// @return the int converted from the string
+/// @return the number converted from the string
 int			ft_atoi(const char *str);
+
+/// @brief convert the string to a long long in the specified base
+/// @param str string to convert
+/// @param base base of the string
+/// @return the number converted from the string
+long long	ft_atoll_base(const char *str, const char *base);
+
+/// @brief convert the string to a long in the specified base
+/// @param str string to convert
+/// @param base base of the string
+/// @return the number converted from the string
+long		ft_atol_base(const char *str, const char *base);
 
 /// @brief convert the string to an int in the specified base
 /// @param str string to convert
 /// @param base base of the string
-/// @return the int converted from the string
+/// @return the number converted from the string
 int			ft_atoi_base(const char *str, const char *base);
 
 /// @brief convert a string with the int converted in ascii chars

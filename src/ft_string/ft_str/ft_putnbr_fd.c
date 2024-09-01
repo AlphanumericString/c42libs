@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:08:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/19 21:28:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/08/23 19:14:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 
 int	ft_putnbr_fd(int nb, int fd)
 {
-	char	result[13] = {0};
+	char	result[13];
 	int		it;
 	int		neg;
 
+	ft_bzero(result, 13);
 	neg = 0;
 	it = 12;
 	if (nb == INT_MIN)
