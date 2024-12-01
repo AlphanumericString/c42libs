@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/08/23 19:44:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/01 16:47:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void		*ft_malloc(size_t size);
 /// @param nmemb number of elements
 /// @param weight size of each element
 /// @return pointer to the allocated memory
+/// @note the memory is filled with 0
+/// @note If nmemb times weight is greater than SIZE_MAX, the function will
+/// return NULL and set errno to ENOMEM
 void		*ft_calloc(size_t nmemb, size_t weight);
 
 /// @brief load the content of the file descriptor into a string
@@ -79,15 +82,20 @@ char		*ft_fd_to_buff(int fd);
 /// @brief allocate memory and copy the content of the source memory
 /// @param ptr pointer to the source memory.
 /// @param sizeNew size of the destination memory
-/// @param sizeOld size of the source memory
 /// @return pointer to a larger chunk of allocated memory otherwise NULL
 /// @note WARNING: the pointer is FREE'ed after the copy in case of success
-void		*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld);
+void		*ft_realloc(void *ptr, size_t sizeNew);
 
 /// @brief free the memory
 /// @param ptr pointer to the memory to free (set to NULL after)
 /// @return void
-void		ft_free(void **ptr);
+void		ft_free(void *ptr);
+
+/// @brief free the memory and sets the pointer to NULL
+/// @param ptr the address of the pointer to free
+/// @return void
+void		ft_free_clear(void **ptr);
+
 
 /// @brief free the memory
 /// @param arr pointer to the 2d array to free.

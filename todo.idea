@@ -1,0 +1,9 @@
+add shift to parse args -- done
+	in cases of :
+	```sh
+	$> ./progr [optional flag][optional arg of said flag] mandatory_arg
+	```
+	it's annoying to parse.
+	or return the number of parsed option strings aka how much shoul i move the ac and av
+Finish the god damned arena
+	with narena supported

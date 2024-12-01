@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/08/21 21:38:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/09/30 10:08:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,19 @@
 # include "ft_math_types.h"
 # include <stddef.h>
 
+/// @brief Return the nearest aligned value of size on the multiple of 2
+/// @param size The size to align
+/// @param pow_2 The multiple to align with (2, 4, 8, 16, ...)
+/// @return The aligned value of size on the multiple
+/// @note This function is optimized for power of 2 multiple using bit magic
+/// for general multiple see ft_align
+size_t		ft_align_2_pow(size_t size, size_t pow_2);
+
 /// @brief Return the nearest aligned value of size on the alignment
 /// @param size The size to align
-/// @param alignment The alignment to use
 /// @return The aligned value of size on the alignment
 /// @note Optimized for power of 2 alignment
-size_t		ft_align_2(size_t size, size_t alignment);
+size_t		ft_align_2(size_t size);
 
 /// @brief Return the nearest aligned value of size on the alignment
 /// @param size The size to align

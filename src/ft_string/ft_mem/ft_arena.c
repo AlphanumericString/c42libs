@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:10:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/25 17:40:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/08/26 11:35:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_arena.h"
 
 void	*ft_arena_alloc(size_t size)
 {

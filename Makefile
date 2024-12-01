@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/07/19 18:21:31 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/12/01 12:45:37 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ PRINTF		=	$(shell which printf)
 SRC_DIR			=	src
 BUILD_DIR		=	build
 TESTS_DIR		=	tests
-INC_DIR			=	include
+INC_DIR			=	include include/internal
 COVERAGE_DIR	=	coverage
 
 FT_MAP_DIR		=	ft_map
@@ -59,20 +59,28 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 ##
 
 LDFLAGS		=	
-CPPFLAGS	=	-I$(INC_DIR) -MMD -MP
+CPPFLAGS	=\
+			-MMD -MP	\
+			-I./include -I./include/internal
+
+WFLAGS		=\
+			-Wall -Wextra -Werror -Wno-unused-parameter                        \
+			-Wno-unused-variable -Wno-unused-function                          \
+		    -Wno-unused-const-variable -Wno-unused-value -Wno-unused-label     \
+			-Wno-unused-local-typedefs -Wno-unused-result
 FFLAGS		=\
 			-fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined	   \
 			-fsanitize=leak -fsanitize=pointer-compare 						   \
 			-fsanitize=pointer-subtract										   \
 			-fsanitize-address-use-after-scope -fsanitize=pointer-overflow 
 CFLAGS		=\
-			-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color
+			$(WFLAGS) $(CPPFLAGS) -fPIC -fdiagnostics-color                    \
+			-g2
 TEST_FLAGS	=\
-		-g2	-DTEST \
-		-fprofile-instr-generate -ftest-coverage -fcoverage-mapping \
-
+			-g2	-DTEST \
+			-fprofile-instr-generate -ftest-coverage -fcoverage-mapping
 DEBUG_LEVEL	=\
-				0
+			0
 DEBUG_FLAGS	=\
 			-g2	-DDEBUG	$(FFLAGS) -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 
@@ -236,6 +244,7 @@ FT_T_STRING_SRC	=	\
 
 FT_MEM_SRC	=	\
 			$(FT_MEM_DIR)/ft_apply_2d.c		\
+			$(FT_MEM_DIR)/ft_arena.c		\
 			$(FT_MEM_DIR)/ft_bzero.c		\
 			$(FT_MEM_DIR)/ft_calloc.c		\
 			$(FT_MEM_DIR)/ft_fd_to_buff.c	\
@@ -249,6 +258,7 @@ FT_MEM_SRC	=	\
 			$(FT_MEM_DIR)/ft_memmap.c		\
 			$(FT_MEM_DIR)/ft_memmove.c		\
 			$(FT_MEM_DIR)/ft_memset.c		\
+			$(FT_MEM_DIR)/ft_narena.c		\
 			$(FT_MEM_DIR)/ft_qsort.c		\
 			$(FT_MEM_DIR)/ft_realloc.c		\
 			$(FT_MEM_DIR)/ft_swap.c
@@ -718,15 +728,12 @@ debug:
 	"CompileFlags:\n"														\
 	"  Compiler: clang\n"													\
 	"  Add:\n"																\
-	"	- \"-Wall -Wextra -Werror\"\n"										\
-	"	- \"-Wno-unused-parameter -Wno-unused-variable "					\
-		"-Wno-unused-function\"\n"											\
-	"	- \"-Wno-unused-but-set-variable -Wno-unused-value "				\
-		"-Wno-unused-label\"\n"												\
-	"	- \"-Wno-unused-local-typedefs\"\n"									\
-	"	- \"-Wno-unused-result\"\n"											\
-	"	- \"-xc\"\n"  > .clangd
-	@echo "    - \"-I " $(shell pwd)"/includes\"" >> .clangd
+	"   - \"-Wall -Wextra -Werror\"\n"										\
+	"   - \""$(WFLAGS)"\"\n"												\
+	"   - \"-xc\"\n"  > .clangd
+	@for file in $(INC_DIR); do												\
+		echo "    - \"-I"$(shell pwd)"/"$$file"\"" >> .clangd;				\
+	done
 	@$(ECHO) $(GREEN) "Done" $(RESET)
 
 # Rule to clean objects
