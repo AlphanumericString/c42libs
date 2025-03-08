@@ -65,16 +65,12 @@ To do so you can use the following flag at compile time.
 
 ## Documentation
 
-The documentation is generated using Doxygen.
-To generate the documentation you can run the following command in the root
-directory of the repository.
-
-```bash
-make Doxygen
-```
-
-This will generate the documentation in the Doxygen folder.
-
-
 For details please consult the respective Markdown files or the global [Markdown file](tools/Libs_c.md)
+For contribution please consult the [Markdown file](tools/Libs_c.md) in the tools directory.
+
 For usage please consult the respective usage file specified in epithath under each lib.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+tldr: you can use it for free but you must share your modifications.

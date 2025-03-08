@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 16:47:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:28:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 // malloc + free
 
 # include <stdlib.h>
+# include <sys/cdefs.h>
 # include <unistd.h>
 
 // errno
@@ -59,43 +60,43 @@ void		ft_apply_2d(void **array, t_data_apply f);
 /// @return void
 void		ft_bzero(void *s, size_t n);
 
-/// @brief allocate memory
-/// @param size size of the memory to allocate
-/// @return pointer to the allocated memory otherwise NULL
-void		*ft_malloc(size_t size);
-
-/// @brief allocate memory and fill it with 0
-/// @param nmemb number of elements
-/// @param weight size of each element
-/// @return pointer to the allocated memory
-/// @note the memory is filled with 0
-/// @note If nmemb times weight is greater than SIZE_MAX, the function will
-/// return NULL and set errno to ENOMEM
-void		*ft_calloc(size_t nmemb, size_t weight);
-
 /// @brief load the content of the file descriptor into a string
 /// @param fd file descriptor to read from
 /// @return pointer to the string otherwise NULL
 /// @note You must free the returned string
 char		*ft_fd_to_buff(int fd);
 
-/// @brief allocate memory and copy the content of the source memory
-/// @param ptr pointer to the source memory.
-/// @param sizeNew size of the destination memory
-/// @return pointer to a larger chunk of allocated memory otherwise NULL
-/// @note WARNING: the pointer is FREE'ed after the copy in case of success
-void		*ft_realloc(void *ptr, size_t sizeNew);
+void		*ft_malloc(size_t size);
+void		ft_free(void *ptr);
+void		*ft_calloc(size_t nmemb, size_t size);
+void		*ft_realloc(void *ptr, size_t size);
 
-/// @brief free the memory
+// -- /// @brief allocate memory
+// -- /// @param size size of the memory to allocate
+// -- /// @return pointer to the allocated memory otherwise NULL
+// -- //void		*ft_malloc(size_t size);
+// -- /// @brief allocate memory and fill it with 0
+// -- /// @param nmemb number of elements
+// -- /// @param weight size of each element
+// -- /// @return pointer to the allocated memory
+// -- //void		*ft_calloc(size_t nmemb, size_t weight);
+// -- /// @brief allocate memory and copy the content of the source memory
+// -- /// @param ptr pointer to the source memory.
+// -- /// @param sizeNew size of the destination memory
+// -- /// @param sizeOld size of the source memory
+// -- /// @return pointer to a larger chunk of allocated memory otherwise NULL
+// -- /// @note WARNING: the pointer is FREE'ed after the copy in case of
+// -- /// success
+// -- //void		*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld);
+// -- /// @brief free the memory and set ptr to NULL
+// -- /// @param ptr pointer to the memory to free (set to NULL after)
+// -- /// @return void
+// -- //void ft_free(void **ptr)
+
+/// @brief free the memory and set ptr to NULL
 /// @param ptr pointer to the memory to free (set to NULL after)
 /// @return void
-void		ft_free(void *ptr);
-
-/// @brief free the memory and sets the pointer to NULL
-/// @param ptr the address of the pointer to free
-/// @return void
 void		ft_free_clear(void **ptr);
-
 
 /// @brief free the memory
 /// @param arr pointer to the 2d array to free.
@@ -132,9 +133,11 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 /// @return pointer to the destination memory
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 
-/// @brief map memory region src to new region using f
+/// @brief copies then transform a memory array region pointed by src using a
+///  function f of form `void *(*f)(const void *) on a region delimited by
+///  the number of elements nb_e.
 /// @param src start of the source memory
-/// @param nb_e number of elements
+/// @param nb_e number of void* elements in the source array
 /// @param f function to apply
 /// @return pointer to the new memory or NULL
 void		**ft_memmap(void **src, size_t nb_e, t_data_tr f);
@@ -308,10 +311,11 @@ char		*ft_strjoin(char const *s1, char const *s2);
 /// @brief	Add up a char c at the end of a pre-existing and allocated string
 /// @param	str String to append to
 /// @param	c Char to append
-/// @return The new memory segment pointed by *str or null if re-allocation
-///	failed
+/// @return The new string with the char appended at the end
+///	@note	If the string fails to be allocated the string *str is not freed
+///	but NULL will be returned. Otherwise the string *str is replaced by the
+///	new string with the char appended at the end.
 ///	@note	You must free the returned string
-///	@note	Do no use this method to add two string, please use strjoin instead
 char		*ft_strappend_c(char **str, char c);
 
 /// @brief copy up to size - 1 characters from the NULL-terminated string src
@@ -341,6 +345,12 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 /// @return the length of the string str
 size_t		ft_strlen(const char *str);
 
+/// @brief Get the length of the string without exceeding max
+/// @param str String to get the length of
+/// @param max Maximum length of the string
+/// @return the length of the string str up to max
+size_t		ft_strnlen(const char *str, size_t max);
+
 /// @brief Get the length of the string str up to the first occurence of c
 /// @param str String to get the length of
 /// @param c Char to search
@@ -354,7 +364,7 @@ size_t		ft_strclen(char *str, char c);
 /// @return the number of occurance of char c in string str
 size_t		ft_strcnb(char *str, char c);
 
-/// @brief Calculate the length of the starting segment of str that contain 
+/// @brief Calculate the length of the starting segment of str that contain
 /// char from the accept string
 /// @param str String to search from
 /// @param accept String of the valid char
@@ -391,7 +401,7 @@ int			ft_strcmp(const char *s1, const char *s2);
 /// first different char (s1 - s2)
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
-/// @brief duplicate no more than n character of the string src into a 
+/// @brief duplicate no more than n character of the string src into a
 //  new allocated string
 /// @param str string to copy from
 /// @param n number of chars to copy
@@ -480,7 +490,7 @@ const char	*ft_shift_args(const char **args[], int *index);
 
 /// @brief Checks if the string str is composed only of alphabetical characters
 /// @param str string to check
-/// @return true if the string is composed only of alphabetical characters, 
+/// @return true if the string is composed only of alphabetical characters,
 /// false otherwise
 bool		ft_str_isalpha(const char *str);
 
@@ -499,7 +509,7 @@ bool		ft_str_isalnum(const char *str);
 /// and accepts negative symbols.
 bool		ft_str_isnum(const char *str);
 
-/// @brief Checks if the string str is a valid boolean value ("false" || 
+/// @brief Checks if the string str is a valid boolean value ("false" ||
 /// "true" || "0" || "1")
 /// @param str string to check
 /// @return true if it ;atches with any of the following: "false" "0" "true" "1"
@@ -551,7 +561,7 @@ bool		ft_str_isoct(const char *str);
 
 /// @brief Check if the string is valid using a function pointer
 /// @param str string to check
-/// @param f function pointer to check the string (takes a char c as int 
+/// @param f function pointer to check the string (takes a char c as int
 ///		and returns 0 if the char is invalid)
 /// @return 1 if the string is valid, 0 otherwise
 /// @file: src/ft_string/ft_char/ft_isvalid.c
@@ -563,10 +573,15 @@ bool		ft_str_isvalid(const char *str, int (*f)(int));
 /// @note The returned pointer can be null if errnum is out of range (0 - 133)
 const char	*ft_strerror(int errnum);
 
-/// @brief Print the string s if present to STDERR followed by the error code 
+/// @brief Print the string s if present to STDERR followed by the error code
 /// as a string
 /// @param s String to print before the error code
 void		ft_perror(const char *s);
+
+/// @brief Reverse the string s
+/// @param s string to reverse
+/// @return void
+void		ft_strrev(char *s);
 
 /* ************************************************************************** */
 /*                        FT_GNL SUB MODULE                                   */
@@ -610,7 +625,7 @@ t_string	*ft_string_from(const char *str);
 
 /// @brief create a new t_string from the string with at most n chars
 /// @param str string to copy from
-/// @param n number of chars to copy (including the '\0') "1234" with n = 3 
+/// @param n number of chars to copy (including the '\0') "1234" with n = 3
 ///  -> "123"
 /// @return a pointer to the new t_string
 /// @note You must free the returned string with ft_string_destroy
@@ -953,3 +968,21 @@ int			ft_string_replace_chr(t_string *str, char to_replace,
 				char replace_by);
 
 #endif // FT_STRING_H
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

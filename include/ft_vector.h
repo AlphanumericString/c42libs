@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/24 00:09:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:18:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ bool		ft_vec_destroy(t_vector **vec);
 /// @return void
 void		ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del);
 
-// ft_vector/ft_vec_get.c
+// ft_vector/ft_vec_find.c
 
 /// @brief Get an element from the vector
 /// @param vector vector to get the element from
@@ -94,7 +94,7 @@ void		ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del);
 /// key and the second is the element of the vector
 /// @return pointer to the element or NULL if not found
 /// @note If you want to get an element by index, use ft_vec_at
-void		*ft_vec_get(t_vector *vector, const void *key, t_data_cmp cmp);
+void		*ft_vec_find(t_vector *vector, const void *key, t_data_cmp cmp);
 
 // ft_vector/ft_vec_map.c
 
@@ -137,7 +137,8 @@ t_vector	*ft_vec_from_array(void **data, size_t count);
 
 /// @brief Create a new vector from an array and steals ownership of the array
 /// @param data data to create the vector from
-/// @param count count of the data array
+/// @param count count of the data array (if count is 0 will consider it 
+/// null ended)
 /// @return pointer to the new vector
 t_vector	*ft_vec_convert_alloccarray(void **data, size_t count);
 
@@ -216,3 +217,21 @@ void		ft_vec_swap(t_vector *vec, size_t a, size_t b);
 void		**ft_vec_to_array(t_vector **vec);
 
 #endif /* FT_VECTOR_H */
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

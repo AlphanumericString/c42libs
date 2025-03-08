@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 18:24:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:44:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	eval_base(int *t_cases, const char *bases, const char *expected_results[])
 	{
 		res = ft_itoa_base(t_cases[j], bases);
 		if (ft_strcmp(res, expected_results[j]) != 0)
-			return (free(res), j + 1);
-		free(res);
+			return (ft_free(res), j + 1);
+		ft_free(res);
 		j++;
 	}
 	return (0);
@@ -65,3 +65,21 @@ int	test_itoa_base(void)
 		return (j + check_base_error());
 	return (0);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

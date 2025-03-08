@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 11:23:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:37:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,42 @@ static const t_test	*load_tests01(void)
 	return (tb);
 }
 
+static const t_test	*load_tests02(void)
+{
+	static const t_test	tb[] = {
+	{"rev", test_strrev},
+	{NULL, NULL}
+	};
+
+	return (tb);
+}
+
 int	str_tests(void)
 {
 	int				collect;
 	const t_test	*tests = load_tests01();
+	const t_test	*tests2 = load_tests02();
 
 	collect = 0;
 	run_test(tests, &collect);
+	run_test(tests2, &collect);
 	return (collect);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

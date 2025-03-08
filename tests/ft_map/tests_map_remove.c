@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:18:53 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 18:31:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:40:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	test_map_remove_normal(void)
 	if (ret)
 		return (3);
 	ft_map_destroy(map);
-	free(str);
+	ft_free(str);
 	return (0);
 }
 
@@ -63,7 +63,7 @@ static int	test_map_remove_colision(void)
 		return (3);
 	if (ft_map_remove(map, keys[3], ft_strlen(keys[3])) != str[3])
 		return (4);
-	return (ft_map_destroy(map), ft_apply_2d((void **)str, free), 0);
+	return (ft_map_destroy(map), ft_apply_2d((void **)str, ft_free), 0);
 }
 
 int	test_map_remove(void)
@@ -78,3 +78,21 @@ int	test_map_remove(void)
 		return (ret + 10);
 	return (0);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

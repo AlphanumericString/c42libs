@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:02:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/23 19:01:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/10 23:48:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	*ft_ll_pop(t_list **lst)
 	tmp = *lst;
 	data = (*lst)->data;
 	*lst = (*lst)->next;
-	ft_free((void **)&tmp);
+	ft_free(tmp);
 	return (data);
 }
 
@@ -70,7 +70,25 @@ void	*ft_ll_pop_back(t_list **lst)
 	while (pre_last->next->next)
 		pre_last = pre_last->next;
 	data = pre_last->next->data;
-	free(pre_last->next);
+	ft_free(pre_last->next);
 	pre_last->next = NULL;
 	return (data);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

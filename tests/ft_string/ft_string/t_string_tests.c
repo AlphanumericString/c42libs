@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 12:36:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:37:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static const t_test	*loadtests01(void)
 	{"set_inplace", test_string_set_inplace}, {"shrink", test_string_shrink},
 	{"substr", test_string_substr}, {"to_str", test_string_to_str},
 	{"trim_chr", test_string_trim_chr}, {"trimstr", test_string_trimstr},
-	{"trim", test_string_trim}, {NULL, NULL}};
+	{"trim", test_string_trim},	{NULL, NULL}};
 
 	return (tests);
 }
@@ -58,3 +58,21 @@ int	t_string_tests(void)
 	run_test(tests, &sum);
 	return (sum);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

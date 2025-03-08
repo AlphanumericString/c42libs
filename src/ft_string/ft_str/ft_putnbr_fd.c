@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:08:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/08/23 19:14:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:34:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,46 @@
 
 int	ft_putnbr_fd(int nb, int fd)
 {
-	char	result[13];
-	int		it;
-	int		neg;
+	char	res[13];
+	int		i;
+	int		sign;
 
-	ft_bzero(result, 13);
-	neg = 0;
-	it = 12;
+	i = 0;
+	sign = 1;
+	ft_bzero(res, sizeof(res) / sizeof(res[0]));
 	if (nb == INT_MIN)
-		return (ft_putstr_fd("-2147483648", fd));
+		return (write(fd, "-2147483648", 11));
+	if (nb == INT_MAX)
+		return (write(fd, "2147483647", 10));
 	if (nb < 0)
+		sign = -1;
+	if (nb == 0)
+		res[i++] = '0';
+	while (nb != 0)
 	{
-		neg = 1;
-		nb = -nb;
-	}
-	while (nb >= 10)
-	{
-		result[--it] = nb % 10 + '0';
+		res[i++] = (nb % 10) * sign + '0';
 		nb /= 10;
 	}
-	result[--it] = nb + '0';
-	if (neg)
-		result[--it] = '-';
-	return (ft_putstr_fd(result + it, fd));
+	if (sign == -1)
+		res[i++] = '-';
+	ft_strrev(res);
+	return (write(fd, res, i));
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

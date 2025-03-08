@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:25:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 11:41:24 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:48:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,33 @@ int	test_vec_get(void)
 	ft_vec_add(&vector, "this");
 	ft_vec_add(&vector, "is");
 	ft_vec_add(&vector, "Zod");
-	data_ret = ft_vec_get(vector, "world", cmp_fun);
+	data_ret = ft_vec_find(vector, "world", cmp_fun);
 	if (ft_strcmp(data_ret, "world") != 0)
 		return (1);
-	data_ret = ft_vec_get(vector, "Zod", cmp_fun);
+	data_ret = ft_vec_find(vector, "Zod", cmp_fun);
 	if (ft_strcmp(data_ret, "Zod") != 0)
 		return (1);
-	data_ret = ft_vec_get(vector, "not here", cmp_fun);
+	data_ret = ft_vec_find(vector, "not here", cmp_fun);
 	if (data_ret)
 		return (1);
 	ft_vec_destroy(&vector);
 	return (0);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

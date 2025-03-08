@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/24 00:05:19 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:22:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 /// @brief Create a new map
 /// @param capacity possible number of elements in the map
-/// @return a pointer to the new map
 /// @file ft_map/ft_map_create.c
+/// @return a pointer to the new map
 t_map		*ft_map_create(size_t capacity);
 
 /// @brief Destroy a map and free the nodes
@@ -81,6 +81,7 @@ void		ft_map_set_hash(t_map *map, t_memhash hash);
 /// @param key key of the node
 /// @param size size of the key
 /// @file ft_map/ft_map_get.c
+/// @return 
 t_map_node	*ft_map_get_node(t_map *map, const void *key, size_t size);
 
 /// @brief Get a value from a map
@@ -142,3 +143,21 @@ size_t		ft_hash_fnv1a(const void *key, size_t size);
 size_t		ft_hash_dummy(const void *key, size_t size);
 
 #endif /* FT_MAP_H */
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

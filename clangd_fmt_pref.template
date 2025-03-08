@@ -1,0 +1,10 @@
+CompileFlags:
+   Compiler: clang
+   Add:
+     - "-Wall -Wextra -Werror"
+     - "-Wno-unused-parameter -Wno-unused-variable  -Wno-unused-function"
+     - "-Wno-unused-but-set-variable -Wno-unused-value  -Wno-unused-label"
+     - "-Wno-unused-local-typedefs"
+     - "-Wno-unused-result"
+     - "-xc"
+     - "-I/home/iron/Documents/code/42school/c42libs/include"

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:10:11 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/02 09:10:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:44:30 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static int	base_cases(void)
 	ret = ft_strlcpy(res, str, size);
 	if (ft_strcmp(res, "Hello World!") != 0 || ret != 12)
 		return (1);
-	free(res);
+	ft_free(res);
 	res = malloc(sizeof(char) * size);
 	ret = ft_strlcpy(res, "This is zod!", size);
 	if (ft_strcmp(res, "This is zod!") != 0 || ret != 12)
 		return (2);
-	return (free(res), 0);
+	return (ft_free(res), 0);
 }
 
 static int	error_cases(void)
@@ -46,7 +46,7 @@ static int	error_cases(void)
 	if (ft_strncmp(res, "This is too large!", size - 1) != 0 || \
 	ret != (int)ft_strlen("This is too large!"))
 		return (3);
-	free(res);
+	ft_free(res);
 	res = ft_calloc(sizeof(char), 1);
 	ret = ft_strlcpy(res, "Hello World!", 0);
 	if (ft_strcmp(res, "") != 0 || ret != 12)
@@ -57,7 +57,7 @@ static int	error_cases(void)
 	ret = ft_strlcpy(NULL, "Hello World!", 42);
 	if (ret != 42)
 		return (6);
-	return (free(res), 0);
+	return (ft_free(res), 0);
 }
 
 int	test_strlcpy(void)
@@ -72,3 +72,21 @@ int	test_strlcpy(void)
 		return (ret + 10);
 	return (0);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

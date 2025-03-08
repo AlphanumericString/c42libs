@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/19 21:29:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:44:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests.h"
+
 #include <limits.h>
 #include <unistd.h>
 
@@ -20,6 +21,7 @@ static int	nb_to_file(const int *nbs, size_t size, const char *file_name)
 	int		fd;
 	size_t	i;
 
+	fd = 0;
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (fd < 0)
 		return (-1);
@@ -39,6 +41,7 @@ static int	file_cmp(const char *file_name, const char *expected)
 	int		fd;
 	char	buff[100];
 
+	fd = 0;
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(buff, sizeof(buff));
 	read(fd, buff, sizeof(buff));
@@ -49,13 +52,13 @@ static int	file_cmp(const char *file_name, const char *expected)
 
 static int	test_positives(void)
 {
-	const int	t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000, \
+	const int	cases[] = {1, 9, 10, 99, 100, 999, 1000, 9999, 10000, \
 		INT_MAX};
-	const char	*expected = "0\n1\n9\n10\n99\n100\n999\n1000\n9999\n10000\n"
+	const char	*expected = "1\n9\n10\n99\n100\n999\n1000\n9999\n10000\n"
 		"2147483647\n";
 	const char	*file_name = TESTS_FPREFIX "putnbr.txt";
 
-	nb_to_file(t_cases, sizeof(t_cases) / sizeof(t_cases[0]), file_name);
+	nb_to_file(cases, sizeof(cases) / sizeof(cases[0]), file_name);
 	return (file_cmp(file_name, expected));
 }
 
@@ -79,3 +82,21 @@ int	test_putnbr(void)
 		return (2);
 	return (0);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

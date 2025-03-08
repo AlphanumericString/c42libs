@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_listdeletors.c                               :+:      :+:    :+:   */
+/*   tests_list_deletors.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:25:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 16:26:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/11 01:28:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //	ft_ll_delone(NULL, NULL); // null resiliency
 
+#include "ft_allocator__dev.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 int	t_ll_delone(void)
@@ -22,60 +24,80 @@ int	t_ll_delone(void)
 	t_list	*list;
 	int		*data;
 
-	data = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
 	*data = 42;
 	list = ft_ll_create(data);
 	ft_ll_delone(list, NULL);
 	list = ft_ll_create(data);
-	ft_ll_delone(list, free);
+	ft_ll_delone(list, ft_free);
 	ft_ll_delone(NULL, NULL);
 	return (0);
 }
 
-/*
-	ft_ll_add_back(&list, ft_ll_create(data2)); // (42)-> (21)-> NULL
-	list2 = list->next;
-	nb_deleted = ft_ll_delete_range(list, list->next, NULL); 
-	// (42)-> (21)-> NULL
-	nb_deleted2 = ft_ll_delete_range(list, list->next, free); 
-	// (21)-> NULL
-	// we use list2 to check if the list is still valid
-	// list was destroyed by ft_ll_delete_range
-	---
-	ft_ll_clear(&list2, free); // NULL
-	---
-	nb_deleted = ft_ll_delete_range(NULL, NULL, free); // null resiliency
-	---
-	list = ft_ll_create(data); // (42)-> NULL
-	nb_deleted = ft_ll_delete_range(list, NULL, free); // NULL
-	---
-	
-*/
-
 int	t_ll_delete_range(void)
 {
 	t_list	*list;
-	t_list	*list2;
+	t_list	*nxt;
 	int		*data;
 	int		*data2;
-	int		nb_del[2];
+	int		nb_deleted;
 
-	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	list2 = list->next;
-	nb_del[0] = ft_ll_delete_range(list, list->next, NULL);
-	nb_del[1] = ft_ll_delete_range(list, list->next, free);
-	if ((nb_del[0] != 0 || nb_del[1] != 1) || \
-	(list2->data != data2 || list2->next))
-		return (__LINE__);
-	ft_ll_clear(&list2, free);
-	nb_del[0] = ft_ll_delete_range(NULL, NULL, free);
-	if (nb_del[0] != 0)
-		return (__LINE__);
-	data = malloc(sizeof(int));
-	*data = 42;
+	data = ft_malloc(sizeof(int));
+	data2 = ft_malloc(sizeof(int));
 	list = ft_ll_create(data);
-	nb_del[0] = ft_ll_delete_range(list, NULL, free);
-	if (nb_del[0] != 1)
-		return (__LINE__);
+	ft_ll_add_back(&list, ft_ll_create(data2));
+	nxt = list->next;
+	nb_deleted = ft_ll_delete_range(list, list->next, ft_free);
+	if (nb_deleted != 1)
+		return (1);
+	nb_deleted = ft_ll_delete_range(NULL, nxt, ft_free);
+	if (nb_deleted != 0)
+		return (2);
+	ft_ll_delete(&nxt, ft_free);
 	return (0);
 }
+
+int t_ll_delete(void)
+{
+	t_list	*list;
+	int		*data;
+	int		*data2;
+	int		nb_del;
+
+	create_2elem_list(&list, (void **)&data, (void **)&data2);
+	nb_del = ft_ll_delete(&list, NULL);
+	if (nb_del != 2 || list)
+		return (
+		printf("nb_del = %d\tlist = %p\n", nb_del, (void *)list),
+		1);
+	list = ft_ll_create(data);
+	ft_ll_push_back(&list, data2);
+	nb_del = ft_ll_delete(&list, ft_free);
+	if (list || nb_del != 2)
+		return (2);
+	nb_del = ft_ll_delete(NULL, NULL);
+	if (nb_del != 0)
+		return (3);
+	nb_del = ft_ll_delete(&list, ft_free);
+	if (nb_del != 0)
+		return (4);
+	return (0);
+}
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

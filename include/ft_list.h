@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/24 00:04:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/11 00:14:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 # include "ft_list_types.h"
 # include "ft_defs.h"
+#include <stddef.h>
 
 /* ************************************************************************** */
 /*                                    ADD                                     */
@@ -163,6 +164,8 @@ t_list	*ft_ll_create(const void *const data);
 /// @brief Copy a node
 /// @param other The node to copy
 /// @return The new node
+/// @note Warning: this returns an ABSOLUTE copy of the t_list node given
+/// as such bothe the data ptr AND the next ptr are the same.
 t_list	*ft_ll_copy_node(const t_list *const other);
 
 /// @brief Copy a list
@@ -217,8 +220,11 @@ void	ft_ll_delone(t_list *lst, t_data_apply del);
 /// @return void
 size_t	ft_ll_delete_range(t_list *lst, const t_list *end, t_data_apply del);
 
-// TODO: implement delete for ll
-// delete should delete the whole list
+/// @brief Delete a simply linked list entirely
+/// @param lst The head of the list
+/// @param del The function to delete the data
+/// @return The number of nodes deleted
+size_t	ft_ll_delete(t_list **lst, t_data_apply del);
 
 // TODO: implement delete dup for ll
 // not currently implemented - idea of the function:
@@ -448,3 +454,21 @@ t_dlist	*ft_dl_subrange(const t_dlist *src, const t_dlist *to);
 t_list	*ft_ll_subrange(const t_list *lst, const t_list *end);
 
 #endif /* FT_LIST_H */
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/12/01 12:45:37 by bgoulard         ###   ########.fr        #
+#    Updated: 2025/03/08 12:33:59 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ BOLD		= "\\e[1m"
 
 # Commands
 CC			=	clang
-NAME		=	ft_personal
+NAME		=	c42lib
 TEST_NAME	=	tests_run
 AR			=	ar
 COV			=	llvm-cov
@@ -58,27 +58,26 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 ## To change debug level run make DEBUG_LEVEL=xxx
 ##
 
-LDFLAGS		=	
-CPPFLAGS	=\
-			-MMD -MP	\
-			-I./include -I./include/internal
+WFLAGS		= -Wall -Wextra -Werror
+LDFLAGS		=
 
-WFLAGS		=\
-			-Wall -Wextra -Werror -Wno-unused-parameter                        \
-			-Wno-unused-variable -Wno-unused-function                          \
-		    -Wno-unused-const-variable -Wno-unused-value -Wno-unused-label     \
-			-Wno-unused-local-typedefs -Wno-unused-result
+CPPFLAGS	=	-I$(INC_DIR) -MMD -MP -O0
 FFLAGS		=\
 			-fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined	   \
 			-fsanitize=leak -fsanitize=pointer-compare 						   \
 			-fsanitize=pointer-subtract										   \
-			-fsanitize-address-use-after-scope -fsanitize=pointer-overflow 
+			-fsanitize-address-use-after-scope -fsanitize=pointer-overflow
+
 CFLAGS		=\
 			$(WFLAGS) $(CPPFLAGS) -fPIC -fdiagnostics-color                    \
 			-g2
+#			$(FFLAGS)
+
 TEST_FLAGS	=\
-			-g2	-DTEST \
-			-fprofile-instr-generate -ftest-coverage -fcoverage-mapping
+		-g2	-DTEST \
+		-fprofile-instr-generate -ftest-coverage -fcoverage-mapping \
+		-DFORK_TESTS=0 -O0
+
 DEBUG_LEVEL	=\
 			0
 DEBUG_FLAGS	=\
@@ -209,11 +208,13 @@ FT_STR_SRC	=	\
 			$(FT_STR_DIR)/ft_strlcat.c			\
 			$(FT_STR_DIR)/ft_strlcpy.c			\
 			$(FT_STR_DIR)/ft_strlen.c			\
+			$(FT_STR_DIR)/ft_strnlen.c			\
 			$(FT_STR_DIR)/ft_strmapi.c			\
 			$(FT_STR_DIR)/ft_strncmp.c			\
 			$(FT_STR_DIR)/ft_strndup.c			\
 			$(FT_STR_DIR)/ft_strnstr.c			\
 			$(FT_STR_DIR)/ft_strrchr.c			\
+			$(FT_STR_DIR)/ft_strrev.c			\
 			$(FT_STR_DIR)/ft_strspn.c			\
 			$(FT_STR_DIR)/ft_strstart_with.c	\
 			$(FT_STR_DIR)/ft_strtok.c			\
@@ -243,15 +244,16 @@ FT_T_STRING_SRC	=	\
 			$(FT_T_STRING_DIR)/ft_string_set.c
 
 FT_MEM_SRC	=	\
+			$(FT_MEM_DIR)/ft_allocator_ft_memimpl.c	\
+   			$(FT_MEM_DIR)/ft_allocator_group.c		\
+			$(FT_MEM_DIR)/ft_allocator_hooks.c		\
 			$(FT_MEM_DIR)/ft_apply_2d.c		\
 			$(FT_MEM_DIR)/ft_arena.c		\
 			$(FT_MEM_DIR)/ft_bzero.c		\
-			$(FT_MEM_DIR)/ft_calloc.c		\
 			$(FT_MEM_DIR)/ft_fd_to_buff.c	\
-			$(FT_MEM_DIR)/ft_free.c			\
 			$(FT_MEM_DIR)/ft_free_2d.c		\
+			$(FT_MEM_DIR)/ft_free_clear.c	\
 			$(FT_MEM_DIR)/ft_len_2d.c		\
-			$(FT_MEM_DIR)/ft_malloc.c		\
 			$(FT_MEM_DIR)/ft_memchr.c		\
 			$(FT_MEM_DIR)/ft_memcmp.c		\
 			$(FT_MEM_DIR)/ft_memcpy.c		\
@@ -260,7 +262,6 @@ FT_MEM_SRC	=	\
 			$(FT_MEM_DIR)/ft_memset.c		\
 			$(FT_MEM_DIR)/ft_narena.c		\
 			$(FT_MEM_DIR)/ft_qsort.c		\
-			$(FT_MEM_DIR)/ft_realloc.c		\
 			$(FT_MEM_DIR)/ft_swap.c
 
 FT_CHR_SRC	=	\
@@ -286,7 +287,7 @@ FT_VEC_SRC	=	\
 			$(FT_VEC_DIR)/ft_vec_clear.c	\
 			$(FT_VEC_DIR)/ft_vec_destroy.c	\
 			$(FT_VEC_DIR)/ft_vec_filter.c	\
-			$(FT_VEC_DIR)/ft_vec_get.c		\
+			$(FT_VEC_DIR)/ft_vec_find.c		\
 			$(FT_VEC_DIR)/ft_vec_map.c		\
 			$(FT_VEC_DIR)/ft_vec_new.c		\
 			$(FT_VEC_DIR)/ft_vec_pop.c		\
@@ -436,6 +437,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_fd_to_buff.c	\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_free.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_free_2d.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_freecl.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_len_2d.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memchr.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_memcmp.c		\
@@ -489,6 +491,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/test_strndup.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_strnstr.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_strrchr.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_strrev.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_strspn.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_strstart_with.c		\
 			$(TESTS_DIR)/ft_string/ft_str/test_str_replace.c		\
@@ -571,6 +574,10 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tests_vec_to_array.c						\
 			$(TESTS_DIR)/ft_vector/vector_tests.c							\
 			\
+			$(TESTS_DIR)/tests_fixtures/talloc_failpoint.c					\
+			$(TESTS_DIR)/tests_fixtures/talloc_group.c						\
+			$(TESTS_DIR)/tests_fixtures/talloc_testimpl.c					\
+			\
 			$(TESTS_DIR)/main_tests.c							\
 			$(TESTS_DIR)/lambdas_for_tests.c					\
 			$(TESTS_DIR)/tests_utils.c
@@ -609,7 +616,7 @@ endif
 # Objects creation
 
 #   add prefix to sources to specify the directory src/
-SRCS		=	$(addprefix $(SRC_DIR)/, $(INNER_SRC))
+SRCS		=	$(sort $(addprefix $(SRC_DIR)/, $(INNER_SRC)))
 
 #   add prefix to sources to specify the directory build/ for objects
 OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(INNER_SRC)))
@@ -621,15 +628,20 @@ TOBJ		+=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(TESTS_SRC)))
 #  Inner variables for rules
 
 # Get the max length of the sources names to align the output
-MAX_FILE_LEN	=	$(shell $(PRINTF) "%s\n" $(SRCS) | \
-					awk '{print length}' | sort -n | tail -1)
+SRC_MAX_FILE_LEN	=\
+	$(shell $(PRINTF) "%s\n" $(SRCS) | \
+	awk '{print length}' | sort -n | tail -1)
+
+TEST_MAX_FILE_LEN	=\
+	$(shell $(PRINTF) "%s\n" $(TESTS_SRC) | \
+	awk '{print length}' | sort -n | tail -1)
 
 # Rules
 
 # Default rule for objects imported from src/
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(ECHO) -n	$(GRAY)	"building from "
-	@$(PRINTF) "%*s ... "$(RESET) $(MAX_FILE_LEN) $<
+	@$(PRINTF) "%-*s ... "$(RESET) $(SRC_MAX_FILE_LEN) $<
 	@mkdir -p $(dir $@)
 	@( $(CC) $(CFLAGS) -c $< -o $@ 2>> $(CLOG_FILE) 	&& \
 	$(ECHO) $(GREEN) "Success" $(RESET) )				|| \
@@ -638,7 +650,8 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 # Rule for tests objects imported from src/
 $(BUILD_DIR)/$(TESTS_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(ECHO) -n	$(GRAY)	"building from " $< "..." $(RESET)
+	@$(ECHO) -n	$(GRAY)	"building from "
+	@$(PRINTF) "%-*s ... "$(RESET) $(TEST_MAX_FILE_LEN) $<
 	@mkdir -p $(dir $@)
 	@( $(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@		\
 	2>>	$(CLOG_FILE) 									&& \
@@ -648,7 +661,8 @@ $(BUILD_DIR)/$(TESTS_DIR)/%.o: $(SRC_DIR)/%.c
 
 # Rule for tests objects imported from tests/
 $(BUILD_DIR)/$(TESTS_DIR)/%.o: $(TESTS_DIR)/%.c
-	@$(ECHO) -n	$(GRAY)	"building from " $< "..." $(RESET)
+	@$(ECHO) -n	$(GRAY)	"building from "
+	@$(PRINTF) "%-*s ... "$(RESET) $(TEST_MAX_FILE_LEN) $<
 	@mkdir -p $(dir $@)
 	@( $(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@		\
 	2>>	$(CLOG_FILE) 									&& \
@@ -671,7 +685,7 @@ lib$(NAME).so:	$(OBJ)
 	@( $(CC) -shared -o lib$(NAME).so $(OBJ) 2> /dev/null		&& \
 	$(ECHO) $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) )	|| \
 	$(ECHO) $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
-	
+
 # Rule for static library
 lib$(NAME).a:	$(OBJ)
 	@$(ECHO) -n $(GRAY) "Making ... " $(RESET) $(BOLD)				\
@@ -753,35 +767,10 @@ fclean: clean
 	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 
-# Rule to generate Doxygen documentation
-Doxygen:
-	@$(ECHO) -n $(GRAY) "Generating Doxygen ... " $(RESET)			&& \
-	( doxygen tools/doxyfile 2> /dev/null							&& \
-	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
-	$(ECHO) $(RED) "Failed" $(RESET)
-
 # Rule to recompile
 re:	fclean
 	@$(ECHO) -ne $(GRAY) "Recompiling ..." $(RESET) "\n"		&& \
 	make --no-print-directory all								&& \
-	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
-	$(ECHO) $(RED) "Failed" $(RESET)
-
-# rule to clean everything and make the project ready for 42 norm
-42ready: fclean
-	@$(ECHO) -n $(GRAY) "42ready ... " $(RESET)					&& \
-	$(RM) -rf $(COVERAGE_DIR) $(TESTS_DIR) tools README.md		\
-	.vscode 													&& \
-	awk '														\
-	BEGIN {to_del=0}											\
-    (/^TEST*/ || /^test*/ || /^coverage*/ || /so:/ || /^#/ && 	\
-	$$NF > 11 || /^debug/ || /^Doxygen/ || /^42ready/ ) 		\
-		{to_del=1}												\
-    (to_del == 0) 												\
-		{print}													\
-    (to_del==1 && /^$$/)										\
-		{to_del=0}' Makefile > Makefile.tmp						&& \
-	mv Makefile.tmp Makefile									&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 

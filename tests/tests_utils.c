@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 04:18:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/01 12:12:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:48:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#ifdef FORK_TESTS
-
-static int	run_t_test(t_test test, int *collect)
+static int	run_t_test_fork(t_test test, int *collect)
 {
 	int	ret;
 	int	pid;
@@ -26,29 +24,24 @@ static int	run_t_test(t_test test, int *collect)
 	pid = fork();
 	if (pid == 0)
 		exit(test.test());
+	waitpid(pid, &ret, 0);
+	ft_putstr_fd(test.name, STDOUT_FILENO);
+	if (WIFEXITED(ret) && ret == 0)
+		ft_putstr_fd(" \033[32mOK \033[0m", STDOUT_FILENO);
 	else
 	{
-		waitpid(pid, &ret, 0);
-		ft_putstr_fd(test.name, STDOUT_FILENO);
-		if (WIFEXITED(ret) && ret == 0)
-			ft_putstr_fd(" \033[32mOK \033[0m", STDOUT_FILENO);
+		ft_putstr_fd(" \033[31mKO\033[0m ret::", STDOUT_FILENO);
+		if (WIFEXITED(ret))
+			ft_putnbr_fd(WEXITSTATUS(ret), STDOUT_FILENO);
 		else
-		{
-			ft_putstr_fd(" \033[31mKO\033[0m ret::", STDOUT_FILENO);
-			if (WIFEXITED(ret))
-				ft_putnbr_fd(WEXITSTATUS(ret), STDOUT_FILENO);
-			else
-				ft_putstr_fd("crash", STDOUT_FILENO);
-		}
-		ft_putstr_fd("\n", STDOUT_FILENO);
-		*collect += ret;
+			ft_putstr_fd("crash", STDOUT_FILENO);
 	}
+	ft_putstr_fd("\n", STDOUT_FILENO);
+	*collect += ret;
 	return (ret);
 }
 
-#else
-
-static int	run_t_test(t_test test, int *collect)
+static int	run_t_test_nofork(t_test test, int *collect)
 {
 	int	ret;
 
@@ -66,8 +59,6 @@ static int	run_t_test(t_test test, int *collect)
 	return (ret);
 }
 
-#endif
-
 int	open_test_file(char **func_to_test)
 {
 	char	*file;
@@ -79,7 +70,7 @@ int	open_test_file(char **func_to_test)
 	{
 		ft_putstr_fd("Error: on oppening ", STDERR_FILENO);
 		ft_putstr_fd(file, STDERR_FILENO);
-		return (free(file), -1);
+		return (ft_free(file), -1);
 	}
 	*func_to_test = file;
 	return (fd);
@@ -93,6 +84,7 @@ void	destroy_test_file(int fd, const char *file)
 
 int	run_test(const t_test *test, int *collect)
 {
+	int		(*f[2])(t_test, int *);
 	size_t	i;
 	int		ret;
 	int		sum;
@@ -100,12 +92,32 @@ int	run_test(const t_test *test, int *collect)
 	ret = 0;
 	sum = 0;
 	i = 0;
+	f[0] = run_t_test_nofork;
+	f[1] = run_t_test_fork;
 	while (test[i].name)
 	{
-		ret = run_t_test(test[i], &sum);
+		ret = f[FORK_TESTS](test[i], &sum);
 		*collect += ret;
 		sum += ret;
 		i++;
 	}
 	return (sum);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

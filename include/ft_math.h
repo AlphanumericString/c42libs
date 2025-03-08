@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/09/30 10:08:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:31:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,19 @@
 # include "ft_math_types.h"
 # include <stddef.h>
 
-/// @brief Return the nearest aligned value of size on the multiple of 2
-/// @param size The size to align
-/// @param pow_2 The multiple to align with (2, 4, 8, 16, ...)
-/// @return The aligned value of size on the multiple
-/// @note This function is optimized for power of 2 multiple using bit magic
-/// for general multiple see ft_align
-size_t		ft_align_2_pow(size_t size, size_t pow_2);
-
-/// @brief Return the nearest aligned value of size on the alignment
-/// @param size The size to align
-/// @return The aligned value of size on the alignment
-/// @note Optimized for power of 2 alignment
-size_t		ft_align_2(size_t size);
-
-/// @brief Return the nearest aligned value of size on the alignment
-/// @param size The size to align
+/// @brief Return the nearest aligned value of nbr on the alignment
+/// @param nbr The nbr to align
 /// @param alignment The alignment to use
-/// @return The aligned value of size on the alignment
+/// @return The aligned value of nbr on the alignment
+/// @note Optimized for power of 2 alignment
+size_t		ft_align_2(size_t nbr, size_t alignment);
+
+/// @brief Return the nearest aligned value of nbr on the alignment
+/// @param nbr The nbr to align
+/// @param alignment The alignment to use
+/// @return The aligned value of nbr on the alignment
 /// @note See: ft_align_2 for an optimized version for power of 2
-size_t		ft_align(size_t size, size_t alignment);
+size_t		ft_align(size_t nbr, size_t alignment);
 
 /// @brief return the logaritm of the number in the specified base
 /// @param nbr number to get the logaritm
@@ -191,4 +184,22 @@ t_complex	ft_complex_mull(t_complex nb, long factor);
 /// @return The complex number multiplied by the factor
 t_complex	ft_complex_muld(t_complex nb, double factor);
 
-#endif
+#endif /* FT_MATH_H */
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

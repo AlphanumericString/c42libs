@@ -6,47 +6,41 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:39:35 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/26 12:28:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:16:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHAR_TESTS_H
 # define CHAR_TESTS_H
 
-/* @file: tests/ft_string/ft_char/test_tolower.c */
 int	test_ft_tolower(void);
-
-/* @file: tests/ft_string/ft_char/test_isalpha.c */
 int	test_ft_isalpha(void);
-
-/* @file: tests/ft_string/ft_char/test_isalnum.c */
 int	test_ft_isalnum(void);
-
-/* @file: tests/ft_string/ft_char/test_puchar.c */
 int	test_ft_putchar(void);
-
-/* @file: tests/ft_string/ft_char/test_ishexdigit.c */
 int	test_ft_ishexdigit(void);
-
-/* @file: tests/ft_string/ft_char/test_isspace.c */
 int	test_ft_isspace(void);
-
-/* @file: tests/ft_string/ft_char/test_isoctdigit.c */
 int	test_ft_isoctdigit(void);
-
-/* @file: tests/ft_string/ft_char/test_isprint.c */
 int	test_ft_isprint(void);
-
-/* @file: tests/ft_string/ft_char/test_toupper.c */
 int	test_ft_toupper(void);
-
-/* @file: tests/ft_string/ft_char/test_isascii.c */
 int	test_ft_isascii(void);
-
-/* @file: tests/ft_string/ft_char/ft_char_tests.c */
-int	char_tests(void);
-
-/* @file: tests/ft_string/ft_char/test_isdigit.c */
 int	test_ft_isdigit(void);
 
 #endif /* CHAR_TESTS_H */
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

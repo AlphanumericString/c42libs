@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:01:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 17:20:30 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:25:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ int	t_dl_delete_self(void)
 	ft_dl_delete_self(list->next, free);
 	if (list->next || list->data != data3)
 		return (1);
-	return (ft_dl_clear(&list, free), \
-	ft_dl_delete_self(NULL, NULL), 0);
+	ft_dl_clear(&list, free);
+	ft_dl_delete_self(NULL, NULL);
+	list = ft_dl_create(data3);
+	ft_dl_delete_self(list, NULL);
+	return (0);
 }
 /*
 	ft_dl_add_back(&list, ft_dl_create(data3));
@@ -77,8 +80,10 @@ int	t_dl_delete_range(void)
 	nb_deleted = ft_dl_delete_range(list->next, list->next->next, free);
 	if (nb_deleted != 1 || ft_dl_size(list) != 2 || *(int *)list2->data \
 	!= *data_array[0] || *(int *)list2->next->data != *data_array[2])
-		return (1);
-	return (ft_dl_clear(&list2, free), 0);
+		return (2);
+	ft_dl_clear(&list2, free);
+	ft_dl_delete_range(NULL, NULL, free);
+	return (0);
 }
 
 int	t_dl_delete(void)
@@ -97,14 +102,33 @@ int	t_dl_delete(void)
 	if (nb_deleted != 3)
 		return (1);
 	else if (list)
-		return (1);
+		return (2);
 	ft_dl_add_front(&list, ft_dl_create(data));
 	ft_dl_add_back(&list, ft_dl_create(data2));
 	ft_dl_add_back(&list, ft_dl_create(data3));
 	nb_deleted = ft_dl_delete(&list, free);
 	if (nb_deleted != 3)
-		return (1);
+		return (3);
 	else if (list)
-		return (1);
+		return (4);
+	ft_dl_delete(NULL, free);
 	return (0);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

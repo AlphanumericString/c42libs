@@ -6,59 +6,47 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:26:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/30 12:40:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/14 23:15:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STR__MEM_TESTS_H
 # define STR__MEM_TESTS_H
 
-/// @file: tests/ft_string/ft_mem/tests_apply_2d
 int	test_apply_2d(void);
-
-/// @file: tests/ft_string/ft_mem/tests_bzero.c
 int	test_bzero(void);
-
-/// @file: tests/ft_string/ft_mem/tests_calloc.c
 int	test_calloc(void);
-
-/// @file: tests/ft_string/ft_mem/tests_fd_to_buff.c
 int	test_fd_to_buff(void);
-
-/// @file: tests/ft_string/ft_mem/tests_free.c
 int	test_free(void);
-
-/// @file: tests/ft_string/ft_mem/tests_free_2d.c
 int	test_free_2d(void);
-
-/// @file: tests/ft_string/ft_mem/tests_len_2d.c
+int test_freecl(void);
 int	test_len_2d(void);
-
-/// @file: tests/ft_string/ft_mem/tests_memchr.c
 int	test_memchr(void);
-
-/// @file: tests/ft_string/ft_mem/tests_memcmp.c
 int	test_memcmp(void);
-
-/// @file: tests/ft_string/ft_mem/tests_memcpy.c
 int	test_memcpy(void);
-
-/// @file: tests/ft_string/ft_mem/tests_memmap.c
 int	test_memmap(void);
-
-/// @file: tests/ft_string/ft_mem/tests_memmove.c
 int	test_memmove(void);
-
-/// @file: tests/ft_string/ft_mem/tests_memset.c
 int	test_memset(void);
-
-/// @file: tests/ft_string/ft_mem/tests_qsort.c
 int	test_qsort(void);
-
-/// @file: tests/ft_string/ft_mem/tests_realloc.c
 int	test_realloc(void);
-
-/// @file: tests/ft_string/ft_mem/tests_swap.c
 int	test_swap(void);
 
 #endif /* STR__MEM_TESTS_H */
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

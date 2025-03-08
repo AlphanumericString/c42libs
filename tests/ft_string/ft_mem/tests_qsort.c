@@ -6,26 +6,74 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:20:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/25 12:20:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/14 23:26:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-	// non stable
-// 	int tab[10] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 9};
-// 	int tab2[10] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 9};
-// 	int tab3[10] = {1, 256, 3, 4, -6, 7, 81, 10, 9};
-// 	int tab4[10] = {1, 256, 3, 4, -6, 7, 81, 10, 9};
+#include "ft_string.h"
+#include "tests/tests_lambda_functions.h"
+#include <stdio.h>
 
-// 	ft_qsort(tab, 10, sizeof(int), cmp_int);
-// 	qsort(tab2, 10, sizeof(int), cmp_int);
-// 	if (memcmp(tab, tab2, 10) != 0)
-// 		return (1);
+#define SET_SIZE 10
+#define NB_TESTS 100
 
-// 	ft_qsort(tab3, 10, sizeof(int), cmp_int);
-// 	qsort(tab4, 10, sizeof(int), cmp_int);
-// 	if (memcmp(tab3, tab4, 10) != 0)
-// 		return (2);
-int	test_qsort(void)
+int	test_set(void)
 {
+	int	ar_out[SET_SIZE];
+	int	i;
+
+	i = 0;
+	while (i < SET_SIZE)
+		ar_out[i++] = rand() % 1000;
+	ft_qsort(ar_out, SET_SIZE, sizeof(int), cmp_int);
+	i = 0;
+	while (i < SET_SIZE - 1)
+	{
+		if (ar_out[i] > ar_out[i + 1])
+			return (i + 1);
+		i++;
+	}
 	return (0);
 }
+
+int	test_qsort(void)
+{
+	int	ar_err[3];
+	int	tot_err;
+	int	i;
+
+	tot_err = 0;
+	i = 0;
+	while (i < NB_TESTS)
+	{
+		if (test_set() == 1)
+			tot_err += 1;
+		i++;
+	}
+	if (tot_err != 0)
+		return (printf("total fail %d (%2.2f%%)", tot_err, \
+		(double) tot_err / NB_TESTS), 1);
+	ft_qsort(ar_err, 3, sizeof(ar_err[0]), NULL);
+	ft_qsort(ar_err, 3, 0, cmp_int);
+	ft_qsort(ar_err, 1, sizeof(int), cmp_int);
+	ft_qsort(NULL, 3, sizeof(ar_err[0]), cmp_int);
+	return (0);
+}
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

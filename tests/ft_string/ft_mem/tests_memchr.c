@@ -6,27 +6,64 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:22:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/31 15:18:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:36:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include <stddef.h>
+#include <stdio.h>
 
+# define STRTAB_SIZE 32
+
+// test 1: basic test - str aligned + search char in str
+// test 2: str not aligned at start, tests both chr in str and not in str
+// test 3: str not aligned at end, chr not in str
+// test 4: no chr in str + bad args + null test
 int	test_memchr(void)
 {
-	char	str[10];
+	char	str[STRTAB_SIZE + 1];
+	size_t	i;
 
-	ft_strlcpy(str, "1234567", 10);
-	ft_strlcat(str, "890", 10);
-	if (ft_memchr(str, '8', 10) != &str[7])
+	i = 0;
+	while (i < STRTAB_SIZE)
+	{
+		str[i] = '0' + (i % 10);
+		if (str[i++] == '9')
+			str[i - 1] = '8';
+	}
+	str[STRTAB_SIZE / 2] = '9';
+	str[STRTAB_SIZE] = 0;
+	if (ft_memchr(str, '8', STRTAB_SIZE) != &str[8] || \
+	ft_memchr(str, '7', STRTAB_SIZE) != &str[7] || \
+	ft_memchr(str, '9', STRTAB_SIZE) != &str[STRTAB_SIZE / 2])
 		return (1);
-	if (ft_memchr(str, '9', 10) != &str[8])
+	if (ft_memchr(str + 3, '8', STRTAB_SIZE - 3) != &str[8]	|| \
+	ft_memchr(str + 3, '9', STRTAB_SIZE - 3) != &str[STRTAB_SIZE / 2])
 		return (2);
-	if (ft_memchr(str, 'z', 10))
+	if (ft_memchr(str, 'z', sizeof(size_t) + 2) != NULL)
 		return (3);
-	if (ft_memchr(str, '7', 10) != &str[6])
+	if (ft_memchr(str, 'z', STRTAB_SIZE) != NULL || \
+	ft_memchr(str, '1', 0) != NULL || ft_memchr(str, 4242, 1) != NULL || \
+	ft_memchr(NULL, 42, 1) != NULL || ft_memchr(str, -42, 1) != NULL)
 		return (4);
-	if (ft_memchr(str, '7', 0))
-		return (5);
 	return (0);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

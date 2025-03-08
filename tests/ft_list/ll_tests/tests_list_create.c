@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_listcreate.c                                 :+:      :+:    :+:   */
+/*   tests_list_create.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:23:08 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 16:23:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:01:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include "tests/ll_tests.h"
+#include "tests/tests.h"
+
 #include <stdlib.h>
 
 int	t_ll_create(void)
 {
 	t_list	*list;
 	int		*data;
+	int		prev;
 
 	data = malloc(sizeof(int));
 	*data = 42;
@@ -25,10 +28,32 @@ int	t_ll_create(void)
 	if (!list)
 		return (1);
 	else if (list->data != data)
-		return (1);
+		return (2);
 	else if (list->next)
-		return (1);
-	free(data);
-	free(list);
+		return (3);
+	ft_ll_delete(&list, free);
+	prev = *talloc_get_failpoint();
+	talloc_set_failpoint(0);
+	if (ft_ll_create(data))
+		return (talloc_set_failpoint(prev), 4);
+	talloc_set_failpoint(prev);
 	return (0);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
