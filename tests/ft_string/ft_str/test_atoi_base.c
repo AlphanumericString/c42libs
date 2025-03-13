@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:44:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/13 08:03:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	test_atoi_base(void)
 		return (1);
 	if (ft_atoi_base("23", "011") || ft_atoi_base("23", "0") || \
 	ft_atoi_base("23", "1") || ft_atoi_base("23", "0123456789-") || \
-	ft_atoi_base("23", "0123456789+"))
+	ft_atoi_base("23", "0123456789+") || ft_atoi_base("23", " 23"))
 		return (2);
 	if (test_spaces())
 		return (3);

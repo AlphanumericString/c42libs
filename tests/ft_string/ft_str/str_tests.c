@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 12:37:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/13 08:20:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static const t_test	*load_tests01(void)
 static const t_test	*load_tests02(void)
 {
 	static const t_test	tb[] = {
-	{"rev", test_strrev},
+	{"rev", test_strrev}, {"perror", test_perror},
 	{NULL, NULL}
 	};
 

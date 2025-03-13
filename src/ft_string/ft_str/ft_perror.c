@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:09:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:34:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/13 08:52:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 void	ft_perror(const char *s)
 {
+	const char *msg = ft_strerror(errno);
+
 	if (s)
 	{
 		ft_putstr_fd(s, STDERR_FILENO);
 		ft_putstr_fd(": ", STDERR_FILENO);
 	}
-	ft_putstr_fd(ft_strerror(errno), STDERR_FILENO);
+	if (!msg)
+		msg = "Unkown error";
+	ft_putstr_fd(msg, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
 }
 /*
