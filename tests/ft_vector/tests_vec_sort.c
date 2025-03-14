@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:27:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:07:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,43 @@
 #include "ft_vector_types.h"
 #include "tests/tests_lambda_functions.h"
 
-int	test_vec_sort(void)
+static int	cmp_ptr(const void *a, const void *b)
+{
+	return (a-b);
+}
+
+static int	base_cases(void)
 {
 	t_vector	*vec;
-	int			nbrs[3];
+	const long	nbrs[3] = {\
+		44, 43, 42
+	};
 
-	nbrs[0] = 44;
 	vec = ft_vec_new();
-	ft_vec_add(&vec, (void *)&nbrs[0]);
-	nbrs[1] = 43;
-	ft_vec_add(&vec, (void *)&nbrs[1]);
-	nbrs[2] = 42;
-	ft_vec_add(&vec, (void *)&nbrs[2]);
-	ft_vec_sort(vec, cmp_int);
+	ft_vec_add(&vec, (void *)nbrs[0]);
+	ft_vec_add(&vec, (void *)nbrs[1]);
+	ft_vec_add(&vec, (void *)nbrs[2]);
+	ft_vec_sort(vec, cmp_ptr);
 	if (vec->count != 3)
 		return (1);
-	else if (*(int *)ft_vec_at(vec, 0) != 42)
+	else if (ft_vec_at(vec, 0) != (void *)42 || ft_vec_at(vec, 1) != \
+	(void *)43 || ft_vec_at(vec, 2) != (void *)44)
 		return (2);
-	else if (*(int *)ft_vec_at(vec, 1) != 43)
+	ft_vec_sort(vec, cmp_ptr);
+	if (ft_vec_at(vec, 0) != (void *)42 || ft_vec_at(vec, 1) != \
+		(void *)43 || ft_vec_at(vec, 2) != (void *)44)
 		return (3);
-	else if (*(int *)ft_vec_at(vec, 2) != 44)
-		return (4);
 	ft_vec_destroy(&vec);
+	return (0);
+}
+
+int	test_vec_sort(void)
+{
+	int	ret;
+
+	ret = base_cases();
+	if (ret)
+		return (ret);
 	return (0);
 }
 /*

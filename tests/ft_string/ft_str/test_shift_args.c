@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:44:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:22:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	test_shift_args(void)
 	const char	**test;
 	int			fake_argc;
 	const char	*ret;
-	const char	*fake_args[] = (const char *[]) \
-	{"test", "1", "2", "3", "4", NULL};
+	const char	*fake_args[] = {"test", "1", "2", "3", "4", NULL};
 
 	test = fake_args;
 	ret = NULL;

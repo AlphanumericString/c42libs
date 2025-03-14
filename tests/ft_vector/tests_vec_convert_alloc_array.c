@@ -6,39 +6,102 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:05:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "ft_vector.h"
 #include "ft_vector_types.h"
-#include <stdlib.h>
+
+#include "ft_string.h"
+#include "tests/tests.h"
+
+static int **create_tb_int(size_t *size)
+{
+	int **tab;
+	int	nb;
+	int i;
+
+	if (!size)
+		nb = 10;
+	else if (size && *size)
+		nb = *size;
+	else
+	{
+		*size = 10;
+		nb = *size;
+	}
+	i = 0;
+	tab = ft_calloc(sizeof(int *), nb);
+	while (i < nb - 1)
+	{
+		tab[i] = ft_calloc(sizeof(int), 1);
+		*(tab[i]) = 42 + i;
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
+}
 
 //	ft_vec_destroy(&vec);
 	//  free(data); -> segfault : double free or corruption.
 	// 	ft_vec_convert_alloccarray takes ownership of the data. refert to the 
 	// 	doc.
-
-int	test_vec_convert_alloc_array(void)
+static int base_case(void)
 {
-	void		**data;
 	t_vector	*vec;
-	int			arr[3];
+	int			**arr;
+	size_t		tb_size;
 
-	arr[0] = 42;
-	arr[1] = 43;
-	arr[2] = 44;
-	data = malloc(sizeof(void *) * 3);
-	data[0] = (void *)&arr[0];
-	data[1] = (void *)&arr[1];
-	data[2] = (void *)&arr[2];
-	vec = ft_vec_convert_alloccarray(data, 3);
-	if (vec->count != 3 || vec->cappacity != 3 || vec->datas != data)
+	tb_size = 0;
+	arr = create_tb_int(&tb_size);
+	vec = ft_vec_convert_alloccarray((void **)arr, 0);
+	if (vec->count != tb_size || vec->cappacity != tb_size || vec->datas != (void **)arr)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42 || *(int *)ft_vec_at(vec, 1) != \
 	43 || *(int *)ft_vec_at(vec, 2) != 44)
+		return (2);
+	(ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec));
+	arr = create_tb_int(&tb_size);
+	vec = ft_vec_convert_alloccarray((void**)arr, tb_size);
+	if (vec->count != tb_size || vec->cappacity != tb_size || vec->datas != (void **)arr)
+		return (2);
+	else if (*(int *)ft_vec_at(vec, 0) != 42 || *(int *)ft_vec_at(vec, 1) != \
+	43 || *(int *)ft_vec_at(vec, 2) != 44)
+		return (3);
+	return 	(ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
+}
+
+static int merror_case(void)
+{
+	int f_p;
+	int **arr;
+	t_vector *vec;
+
+	arr = create_tb_int(NULL);
+	f_p = *talloc_get_failpoint();
+	talloc_set_failpoint(0);
+	vec = ft_vec_convert_alloccarray((void *)arr, 0);
+	if (vec)
 		return (1);
-	ft_vec_destroy(&vec);
+	talloc_set_failpoint(f_p);
+	return (0);
+}
+
+int	test_vec_convert_alloc_array(void)
+{
+	int ret;
+
+	ret = base_case();
+	if (ret)
+		return (ret);
+	ret = merror_case();
+	if (ret)
+		return (ret + 10);
 	return (0);
 }
 /*

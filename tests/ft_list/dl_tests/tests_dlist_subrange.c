@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:10:08 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 14:59:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:21:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	t_dl_subrange(void)
 	ft_dl_clear(&sub, NULL);
 	sub = ft_dl_subrange(list, list->next->next);
 	if (ft_dl_size(sub) != 2 || sub->data != data1 || \
-	sub->next->data != data2 || ft_dl_clear(&sub, NULL), 0)
+	sub->next->data != data2 || (ft_dl_clear(&sub, NULL), 0))
 		return (2);
 	if (ft_dl_subrange(NULL, NULL))
 		return (3);

@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2025/03/08 12:33:59 by bgoulard         ###   ########.fr        #
+#    Updated: 2025/03/14 15:50:57 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,8 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 WFLAGS		= -Wall -Wextra -Werror
 LDFLAGS		=
 
-CPPFLAGS	=	-I$(INC_DIR) -MMD -MP -O0
+CPPFLAGS	=\
+			 $(addprefix -I, $(INC_DIR)) -MMD -MP -O0
 FFLAGS		=\
 			-fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined	   \
 			-fsanitize=leak -fsanitize=pointer-compare 						   \
@@ -260,7 +261,6 @@ FT_MEM_SRC	=	\
 			$(FT_MEM_DIR)/ft_memmap.c		\
 			$(FT_MEM_DIR)/ft_memmove.c		\
 			$(FT_MEM_DIR)/ft_memset.c		\
-			$(FT_MEM_DIR)/ft_narena.c		\
 			$(FT_MEM_DIR)/ft_qsort.c		\
 			$(FT_MEM_DIR)/ft_swap.c
 
@@ -459,6 +459,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/test_putendl.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_putnbr.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_putstr.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_perror.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_shift_args.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_split.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_splits.c				\

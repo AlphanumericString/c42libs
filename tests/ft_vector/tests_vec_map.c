@@ -6,16 +6,19 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:21:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:45:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "ft_vector_types.h"
+
+#include "tests/tests.h"
 #include "tests/tests_lambda_functions.h"
+
 #include <stdlib.h>
 
-int	test_vec_map(void)
+static int base_case(void)
 {
 	t_vector	*vec;
 	t_vector	*ret;
@@ -32,6 +35,37 @@ int	test_vec_map(void)
 	ft_vec_apply(ret, free);
 	ft_vec_destroy(&vec);
 	ft_vec_destroy(&ret);
+	return (0);
+}
+
+static int merror_case(void)
+{
+	t_vector	*vec;
+	t_vector	*ret;
+	int			**ar;
+	int			f_point;
+
+	ar = (int**)creat_tb();
+	vec = ft_vec_from_array((void **)ar, 3);
+	f_point = *talloc_get_failpoint();
+	talloc_set_failpoint(0);
+	ret = ft_vec_map(vec, add42_ret);
+	talloc_set_failpoint(f_point);
+	if (ret)
+		return (1);
+	return (ft_vec_destroy(&vec), 0);
+}
+
+int	test_vec_map(void)
+{
+	int ret;
+
+	ret = base_case();
+	if (ret)
+		return (ret);
+	ret = merror_case();
+	if (ret)
+		return (ret + 10);
 	return (0);
 }
 /*

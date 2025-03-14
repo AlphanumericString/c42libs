@@ -164,30 +164,39 @@ link:
 
 ## todo
 - [ ]   libs
-    - [ ]   tests for all *finished* libs
-    - [ ]   const nazi it. '(grep "^[a-zA-Z]" include/*.h | grep -v "const .*\*.*,.*")'
+    - [ ]   tests for all functions of *finished* libs module
+    - [ ]   const nazi it. 'grep "^[a-zA-Z].*\*.*" --recursive include/*.h | grep -v "const .*\*.*,.*" | less'
+                                line starting with chars containing a '*' inside of include
+                                filter by removing any line not containing 'const *,'
 - [x]   Makefile
 - [ ]   Tests
     - [ ]   Add tests for all *finished* libs
-        - [~]   ft_map
-        - [ ]   ft_string
-            - [ ]   t_string
+        - [x]   ft_map
+            - [ ]   map_set is kind of in a weird state, fix it
+        - [~]   ft_string
+            - [~]   t_string
             - [x]   str
             - [x]   mem
-    - [ ]   Add test fixture to test memory fail
-        - [ ]   ft_args
-        - [ ]   ft_list
-        - [ ]   ft_map
-        - [ ]   ft_math
-        - [ ]   ft_optional
-        - [ ]   ft_pair
+    - [x]   Add test fixture to test memory fail
+        - [x]   ft_args
+        - [x]   ft_list
+        - [x]   ft_map
+        - [x]   ft_math
+        - [x]   ft_optional
+        - [x]   ft_pair
         - [ ]   ft_string
-        - [ ]   ft_vector
-    - [ ]   Up the coverage percentage (fell lower due to new funcs)
-        - [ ]   80% for all modules
+            - [ ]   str
+            - [ ]   string
+            - [x]   mem
+            - [x]   chr
+        - [X]   ft_vector
+    - [ ]   Up the coverage percentage (line + branch)(fell lower due to new funcs)
+        - [x]   80% for all modules
         - [ ]   90% for all modules
+            - [x] lines
+            - [ ] branches
         - [ ]   95% for all modules
-        - [ ]   100% for all modules
+        - [ ]   100% for all modules (unachievable, but still goal)
 - [x]   License
     - [x]   Add license to all files
 
@@ -201,6 +210,7 @@ link:
     - [ ]   ft_tree : Binary tree (avl, red-black, splay, ...)
     - [ ]   ft_thread : Thread management for c (thread pool, mutex, ...)
     - [ ]   ft_net : Network functions (socket, http, ...)
+    - [ ]   ft_fs : Handle files and directory
 
 ## to fix:
 - Sub-Modules to create
@@ -258,6 +268,7 @@ link:
             - [ ]   regex
             - [x]  Gnl
                 - [x]  Update gnl
+                - [ ]  Rename get_next_line -> ft_gnl
                 - [ ]  Optimise gnl to use func from lib (culd be pushed further)
             - [ ]  Printf
                 - [ ]   basic printf
@@ -265,16 +276,28 @@ link:
         - mem
             - [ ]   finish the god damn arena
             - [ ]   finish the god damn ft_malloc_impl
+            - [ ]   Add search functions
+                - [ ]   bsearch lsearch lfind
+            - [ ]   Add sort functions
+                - [ ]   mergesort heapsort (bsd)
         - t_string
-            - [ ]   remove the stupid +1.
+            - [ ]   remove the stupid +1 ? might be util to keep to have access to base 'const char *' functions
+                - [ ]   remove the +1 everywhere and re-implement all str function while using length attribute
+                    - or -
+                - [ ]   add a to_cstr function
             - [ ]   Implement ‘hard’ function to t_string
-            - [ ]   kinda done but wanna optimise lib to return/use vars from t_string
+                - [ ]   kinda done but wanna optimise lib to return/use vars from t_string
     - map
         - [ ]   Re - implement maps to be growable
                 - n linked lists (n being the number of ll starts)
                 - save the hash in the node to be able to resize map aka n+=10%
+                -> put node in node->hash % map->nb_lists
         - [ ]   Destroy should take a db ptr to struct and set to null like
                 the rest of the lib
+    - math
+        - [ ]   Add bindings for __builtin_***_overflow functions
+            - [ ]   bindings are clang compliant
+            - [ ]   bindings are gcc compliant
     - Diverses::
         - [ ]   Optimise functions from ft_lib
             - [ ]   Add more re-link in-between function lib cf. Don't add a loc_strlen nor do a basic while loop to get char name but use ft_strlen; don't loop to add char in str but use ft_strlcat…

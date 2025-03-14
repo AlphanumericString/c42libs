@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 08:04:30 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/13 08:56:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:05:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int	test_perror(void)
 		ft_free_clear((void **)&rd_buff);
 	}
 	destroy_test_file(fd, file);
+	free(file);
 	return (0);
 }

@@ -6,20 +6,45 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:20:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:41:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "ft_vector.h"
 #include "ft_vector_types.h"
-#include "tests/tests_lambda_functions.h"
-#include <stdlib.h>
 
-int	test_vec_filter(void)
+#include "ft_string.h"
+
+#include "tests/tests_lambda_functions.h"
+
+static int **create_tb_int(int *size)
+{
+	int **tab;
+	int i;
+
+	if (size)
+		*size = 10;
+	i = 10;
+	tab = ft_calloc(sizeof(int *), i + 1);
+	i = 0;
+	while (i < 10)
+	{
+		tab[i] = ft_calloc(sizeof(int), 1);
+		*(tab[i]) = 42 + i;
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
+}
+
+static int base_case(void)
 {
 	const int	arr[3] = {21, 42, 63};
 	t_vector	*vec;
-	int			*pp[3];
+	int			**pp;
 
 	vec = ft_vec_new();
 	ft_vec_add(&vec, (void *)&arr[0]);
@@ -28,20 +53,26 @@ int	test_vec_filter(void)
 	ft_vec_filter(vec, is42, NULL);
 	if (vec->count != 1 || *(int *)ft_vec_at(vec, 0) != 42)
 		return (1);
-	ft_vec_clear(vec);
-	pp[0] = malloc(sizeof(int));
-	*pp[0] = 21;
-	pp[1] = malloc(sizeof(int));
-	*pp[1] = 42;
-	pp[2] = malloc(sizeof(int));
-	*pp[2] = 63;
-	ft_vec_add(&vec, pp[0]);
-	ft_vec_add(&vec, pp[1]);
-	ft_vec_add(&vec, pp[2]);
+	ft_vec_destroy(&vec);
+	pp = (int **)create_tb_int(NULL);
+	*(pp[8]) = 42;
+	*(pp[3]) = 42;
+	*(pp[4]) = 42;
+	vec = ft_vec_convert_alloccarray((void **)pp, 0);
 	ft_vec_filter(vec, is42, free);
-	if (vec->count != 1 || ft_vec_at(vec, 0) != pp[1])
-		return (1);
+	if (ft_vec_at(vec, 0) != pp[0])
+		return (2);
 	return (ft_vec_apply(vec, free), ft_vec_destroy(&vec), 0);
+}
+
+int	test_vec_filter(void)
+{
+	int ret;
+
+	ret = base_case();
+	if (ret)
+		return (ret);
+	return (0);
 }
 /*
 GPL-3.0 License:
