@@ -697,6 +697,7 @@ lib$(NAME).a:	$(OBJ)
 
 # Rule to compile and run tests
 $(TEST_NAME): $(TOBJ)
+	@$(RM) -f $(TEST_NAME)
 	@$(ECHO) -n $(GRAY) "Compiling tests ... " $(RESET)
 	@$(CC) $(CFLAGS) $(TOBJ) -o $(TEST_NAME) $(TEST_FLAGS)		\
 	$(LDFLAGS) -lgcov								\
