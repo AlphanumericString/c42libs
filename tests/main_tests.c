@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2025/02/11 00:21:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:55:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,6 @@ const t_test	*get_tests(void)
 	return (tests);
 }
 
-static int	exit_msg(int collect)
-{
-	if (collect == 0)
-		ft_putendl_fd("\033[32mAll tests passed\033[0m", STDOUT_FILENO);
-	else
-		ft_putendl_fd("\033[31mSome tests failed\033[0m", STDOUT_FILENO);
-	return (collect != 0);
-}
-
 #if defined(true_random)
 # if defined(__linux__)
 #  define SRAND_OK true
@@ -59,7 +50,7 @@ static int	exit_msg(int collect)
 // setup stuff for tests
 static void	setup(const char *av[])
 {
-	ft_setup_prog((char const * const *)av);
+	ft_setup_prog((char const *const *)av);
 	if (SRAND_OK)
 		srand(time(NULL));
 	ft_set_gnu_alloc();
@@ -131,7 +122,11 @@ int	main(int ac, const char *av[])
 		}
 		collect += run_module(tests[i++]);
 	}
-	return (exit_msg(collect));
+	if (collect == 0)
+		return (ft_putendl_fd("\033[32mAll tests passed\033[0m", \
+			STDOUT_FILENO), EXIT_SUCCESS);
+	return (ft_putendl_fd("\033[31mSome tests failed\033[0m", STDOUT_FILENO), \
+		EXIT_FAILURE);
 }
 /*
 GPL-3.0 License:

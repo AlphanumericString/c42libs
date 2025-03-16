@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:31:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/13 18:01:48 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:05:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	test_optional_map(void)
 {
 	t_optional			opt;
 	t_optional			ret;
-	const t_data_tr_i	f_list[] = { add_4, add_4, NULL };
+	const t_data_tr_i	f_list[] = {add_4, add_4, NULL };
 
 	opt.pres = OPT_SOME;
 	opt.val = (void *)42;

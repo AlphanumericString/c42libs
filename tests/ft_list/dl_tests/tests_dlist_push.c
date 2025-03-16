@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:07:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 14:58:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:29:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -75,65 +76,49 @@ int	t_dl_pop_back(void)
 int	t_dl_push(void)
 {
 	t_dlist	*list;
-	int		*data1;
-	int		*data2;
 	int		prev;
 
-	data1 = malloc(sizeof(int));
-	data2 = malloc(sizeof(int));
-	*data1 = 42;
 	list = NULL;
-	ft_dl_push(&list, data1);
-	if (!list)
+	ft_dl_push(&list, (void *)42);
+	if (!list || list->data != (void *)42)
 		return (1);
-	else if (list->data != data1)
-		return (2);
 	else if (list->next)
-		return (3);
+		return (2);
 	prev = *talloc_get_failpoint();
-	ft_dl_push(&list, data2);
+	ft_dl_push(&list, (void *)84);
 	if (!list || !list->next)
 		return (5);
-	else if (list->next->data != data1 || list->data != data2)
+	else if (list->next->data != (void *)42 || list->data != (void *)84)
 		return (6);
 	talloc_set_failpoint(0);
-	if (ft_dl_push(&list, data1))
+	if (ft_dl_push(&list, (void *)126))
 		return (talloc_set_failpoint(prev), 4);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, NULL);
 	return (0);
 }
 
 int	t_dl_push_back(void)
 {
 	t_dlist	*list;
-	int		*data1;
-	int		*data2;
-	int		*data3;
 	int		prev;
 
-	data1 = malloc(sizeof(int));
-	*data1 = 42;
 	list = NULL;
-	data2 = malloc(sizeof(int));
-	*data2 = 21;
-	data3 = malloc(sizeof(int));
-	*data3 = 63;
-	ft_dl_push_back(&list, data1);
-	ft_dl_push_back(&list, data2);
-	ft_dl_push_back(&list, data3);
+	ft_dl_push_back(&list, (void *)42);
+	ft_dl_push_back(&list, (void *)84);
+	ft_dl_push_back(&list, (void *)126);
 	if (ft_dl_size(list) != 3)
 		return (1);
-	else if (list->data != data1 || list->next->data != data2 || \
-	list->next->next->data != data3)
+	else if (list->data != (void *)42 || list->next->data != (void *)84 || \
+	list->next->next->data != (void *)126)
 		return (2);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	ft_dl_push_back(&list, data1);
+	ft_dl_push_back(&list, (void *)42);
 	if (ft_dl_size(list) != 3)
 		return (talloc_set_failpoint(prev), 3);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, NULL);
 	return (0);
 }
 /*

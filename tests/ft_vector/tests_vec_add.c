@@ -6,11 +6,9 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:13:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/14 14:40:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:57:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 #include "ft_vector.h"
 #include "ft_vector_types.h"
@@ -42,7 +40,7 @@ static int	bases_case(void)
 	return (0);
 }
 
-static int merror_case(void)
+static int	merror_case(void)
 {
 	t_vector	*vec;
 	int			f_po;
@@ -55,16 +53,14 @@ static int merror_case(void)
 	ft_vec_add(&vec, (void *)43);
 	talloc_set_failpoint(f_po);
 	if (vec->count != 1)
-		return (
-		printf("vec -> count %zu, data -> %p, cappacity -> %zu\n", vec->count, vec->datas, vec->cappacity),
-			1);
+		return (1);
 	ft_vec_destroy(&vec);
 	return (0);
 }
 
 int	test_vec_add(void)
 {
-	int ret;
+	int	ret;
 
 	ret = bases_case();
 	if (ret)

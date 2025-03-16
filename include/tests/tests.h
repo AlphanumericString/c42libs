@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 11:15:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 13:09:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:58:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_test
 	char	*name;
 	int		(*test)(void);
 }			t_test;
+
+typedef int	(*t_function_test_runner)(t_test, int *, int);
 
 // test main frame
 int		run_test(const t_test *test, int *collect);

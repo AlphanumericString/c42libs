@@ -6,17 +6,20 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 04:18:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 18:08:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests.h"
+#include "ft_math.h"
+#include "ft_char.h"
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
 
-static int	run_t_test_fork(t_test test, int *collect)
+static int	run_t_test_fork(t_test test, int *collect, int mx_flen)
 {
 	int	ret;
 	int	pid;
@@ -25,6 +28,7 @@ static int	run_t_test_fork(t_test test, int *collect)
 	if (pid == 0)
 		exit(test.test());
 	waitpid(pid, &ret, 0);
+	ft_putnchar_fd(' ', STDOUT_FILENO, mx_flen - ft_strlen(test.name));
 	ft_putstr_fd(test.name, STDOUT_FILENO);
 	if (WIFEXITED(ret) && ret == 0)
 		ft_putstr_fd(" \033[32mOK \033[0m", STDOUT_FILENO);
@@ -41,10 +45,11 @@ static int	run_t_test_fork(t_test test, int *collect)
 	return (ret);
 }
 
-static int	run_t_test_nofork(t_test test, int *collect)
+static int	run_t_test_nofork(t_test test, int *collect, int mx_flen)
 {
 	int	ret;
 
+	(void)mx_flen;
 	ret = test.test();
 	*collect += ret;
 	if (ret != 0)
@@ -84,19 +89,22 @@ void	destroy_test_file(int fd, const char *file)
 
 int	run_test(const t_test *test, int *collect)
 {
-	int		(*f[2])(t_test, int *);
-	size_t	i;
-	int		ret;
-	int		sum;
+	const t_function_test_runner	f[2] = {run_t_test_nofork, run_t_test_fork};
+	size_t							i;
+	int								ret;
+	int								sum;
+	int								mx_flen;
 
 	ret = 0;
 	sum = 0;
 	i = 0;
-	f[0] = run_t_test_nofork;
-	f[1] = run_t_test_fork;
+	mx_flen = 0;
+	while (test[i].name)
+		mx_flen = ft_max(mx_flen, ft_strlen(test[i++].name));
+	i = 0;
 	while (test[i].name)
 	{
-		ret = f[FORK_TESTS](test[i], &sum);
+		ret = f[FORK_TESTS](test[i], &sum, mx_flen);
 		*collect += ret;
 		sum += ret;
 		i++;

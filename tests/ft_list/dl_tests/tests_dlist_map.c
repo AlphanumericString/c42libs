@@ -6,26 +6,27 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:06:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 15:17:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:13:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
 
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "ft_string.h"
+
 #include "tests/lists_test_utils.h"
 #include "tests/tests_lambda_functions.h"
 #include "tests/tests.h"
-#include <stdlib.h>
 
-int	t_dl_map(void)
+static int	base_case(void)
 {
 	t_dlist	*list;
 	t_dlist	*map;
 	t_dlist	*map2;
 	int		*data1;
 	int		*data2;
-	int		prev;
 
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
 	map2 = ft_dl_map(list, NULL, free);
@@ -45,14 +46,38 @@ int	t_dl_map(void)
 	map2 = ft_dl_map(NULL, NULL, NULL);
 	if (map2)
 		return (7);
-								prev = *talloc_get_failpoint();
-								talloc_set_failpoint(0);
-								map2 = ft_dl_map(list, add42_ret, free);
-								if (map2)
-									return (talloc_set_failpoint(prev), 8);
-								talloc_set_failpoint(prev);
-	ft_dl_clear(&list, free);
-	ft_dl_delete(&map, ft_free);
+	return (ft_dl_clear(&list, free), ft_dl_delete(&map, ft_free), 0);
+}
+
+static int	merror_case(void)
+{
+	t_dlist	*list;
+	t_dlist	*map;
+	int		prev;
+	int		*data1;
+	int		*data2;
+
+	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
+	prev = *talloc_get_failpoint();
+	talloc_set_failpoint(0);
+	map = ft_dl_map(list, add42_ret, free);
+	if (map)
+		return (talloc_set_failpoint(prev), 8);
+	talloc_set_failpoint(prev);
+	ft_dl_clear(&list, ft_free);
+	return (0);
+}
+
+int	t_dl_map(void)
+{
+	int	ret;
+
+	ret = base_case();
+	if (ret)
+		return (ret);
+	ret = merror_case();
+	if (ret)
+		return (ret + 10);
 	return (0);
 }
 /*

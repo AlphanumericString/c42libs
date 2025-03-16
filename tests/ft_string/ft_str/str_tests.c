@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/13 08:20:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:43:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,7 @@ static const t_test	*load_tests01(void)
 	{"cnb", test_strcnb}, {"cspn", test_strcspn}, \
 	{"end_with", test_strend_with}, {"start_with", test_strstart_with}, \
 	{"spn", test_strspn}, {"append_c", test_strappend_c},
-	{NULL, NULL}};
-
-	return (tb);
-}
-
-static const t_test	*load_tests02(void)
-{
-	static const t_test	tb[] = {
-	{"rev", test_strrev}, {"perror", test_perror},
-	{NULL, NULL}
-	};
+	{"rev", test_strrev}, {"perror", test_perror}, {NULL, NULL}};
 
 	return (tb);
 }
@@ -56,11 +46,9 @@ int	str_tests(void)
 {
 	int				collect;
 	const t_test	*tests = load_tests01();
-	const t_test	*tests2 = load_tests02();
 
 	collect = 0;
 	run_test(tests, &collect);
-	run_test(tests2, &collect);
 	return (collect);
 }
 /*

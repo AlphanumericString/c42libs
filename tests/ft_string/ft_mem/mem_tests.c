@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/14 23:11:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:29:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int	mem_tests(void)
 	{"memchr", test_memchr}, {"memcmp", test_memcmp},
 	{"memcpy", test_memcpy}, {"memmap", test_memmap}, {"memmove", test_memmove},
 	{"memset", test_memset}, {"swap", test_swap}, {"qsort", test_qsort},
+	{"allocator_ctl", test_membd_allocator}, {"calloc", test_membd_calloc},
+	{"realloc", test_membd_realloc}, {"reallocarray", test_membd_reallocarray},
+	{"malloc", test_membd_malloc}, {"free", test_membd_free},
 	{NULL, NULL}
 	};
 

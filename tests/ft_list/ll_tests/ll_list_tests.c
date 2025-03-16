@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:17:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 00:27:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:33:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	tests_linked_list_all(void)
 {
 	int				collect;
-	const t_test	test[] = { \
+	const t_test	test[] = {\
 	{"add_front", t_ll_add_front}, {"add_back", t_ll_add_back}, \
 	{"apply", t_ll_apply},	{"apply_range", t_ll_apply_range}, \
 	{"apply_range_node", t_ll_apply_range_node}, {"clear", t_ll_clear}, \

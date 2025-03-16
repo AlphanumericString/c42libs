@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:27:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/14 14:07:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:03:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static int	cmp_ptr(const void *a, const void *b)
 {
-	return (a-b);
+	return (a - b);
 }
 
 static int	base_cases(void)

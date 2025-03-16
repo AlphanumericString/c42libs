@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:09:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/13 08:52:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:40:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_perror(const char *s)
 {
-	const char *msg = ft_strerror(errno);
+	const char	*msg = ft_strerror(errno);
 
 	if (s)
 	{

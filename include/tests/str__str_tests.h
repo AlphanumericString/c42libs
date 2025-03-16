@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:28:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/13 08:22:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:52:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ int	test_itoa_base(void);
 int	test_itoa(void);
 int	test_utoa(void);
 
-
 int	test_gnl(void);
 int	test_shift_args(void);
 
-int test_perror(void);
+int	test_perror(void);
 int	test_putendl(void);
 int	test_putnbr(void);
 int	test_putstr(void);

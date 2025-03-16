@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:20:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/14 15:41:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:57:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 #include "tests/tests_lambda_functions.h"
 
-static int **create_tb_int(int *size)
+static int	**create_tb_int(int *size)
 {
-	int **tab;
-	int i;
+	int	**tab;
+	int	i;
 
 	if (size)
 		*size = 10;
@@ -40,7 +40,7 @@ static int **create_tb_int(int *size)
 	return (tab);
 }
 
-static int base_case(void)
+static int	base_case(void)
 {
 	const int	arr[3] = {21, 42, 63};
 	t_vector	*vec;
@@ -67,7 +67,7 @@ static int base_case(void)
 
 int	test_vec_filter(void)
 {
-	int ret;
+	int	ret;
 
 	ret = base_case();
 	if (ret)

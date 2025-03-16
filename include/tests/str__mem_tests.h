@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:26:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/14 23:15:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:57:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@ int	test_apply_2d(void);
 int	test_bzero(void);
 int	test_calloc(void);
 int	test_fd_to_buff(void);
-int	test_free(void);
 int	test_free_2d(void);
-int test_freecl(void);
+int	test_freecl(void);
+int	test_free(void);
 int	test_len_2d(void);
+int	test_membd_allocator(void);
+int	test_membd_calloc(void);
+int	test_membd_free(void);
+int	test_membd_malloc(void);
+int	test_membd_realloc(void);
+int	test_membd_reallocarray(void);
 int	test_memchr(void);
 int	test_memcmp(void);
 int	test_memcpy(void);

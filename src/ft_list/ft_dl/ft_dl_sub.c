@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:45 by iron              #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:49:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_dlist	*ft_dl_subrange(const t_dlist *src, const t_dlist *to)
 	{
 		new_node = ft_dl_create(it->data);
 		if (!new_node)
-			return (ft_dl_delete(&prev, NULL), NULL);
+			return (ft_dl_delete(&ret, NULL), NULL);
 		new_node->prev = prev;
 		new_node->next = NULL;
 		prev->next = new_node;

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:56:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/08 12:30:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:40:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	*ft_memimpl_malloc(size_t size)
 
 void	*ft_memimpl_reallocarray(void *ptr, size_t nmemb, size_t size)
 {
+	if (!ptr)
+		return (ft_memimpl_calloc(nmemb, size));
 	if (nmemb == 0 || size == 0)
 		return (ft_free(ptr), NULL);
 	if (nmemb >= SIZE_MAX / size)

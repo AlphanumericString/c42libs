@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:58:55 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 14:17:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:18:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ int	t_dl_copy_node(void)
 	if (ft_dl_copy_node(list))
 		return (talloc_set_failpoint(prev), 5);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, free);
-	ft_dl_clear(&copy, NULL);
-	return (0);
+	return (ft_dl_clear(&list, free), ft_dl_clear(&copy, NULL), 0);
 }
 
 int	t_dl_copy_list(void)
@@ -57,13 +55,9 @@ int	t_dl_copy_list(void)
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	copy = ft_dl_copy_list(list);
-	if (!copy)
+	if (!copy || copy->data != list->data)
 		return (1);
-	else if (copy->data != list->data)
-		return (2);
-	else if (!copy->next)
-		return (3);
-	else if (copy->next->data != list->next->data)
+	else if (!copy->next || copy->next->data != list->next->data)
 		return (4);
 	else if (copy->next->next)
 		return (5);
@@ -74,9 +68,7 @@ int	t_dl_copy_list(void)
 	if (ft_dl_copy_list(list))
 		return (talloc_set_failpoint(prev), 7);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, free);
-	ft_dl_clear(&copy, NULL);
-	return (0);
+	return (ft_dl_clear(&list, free), ft_dl_clear(&copy, NULL), 0);
 }
 /*
 GPL-3.0 License:

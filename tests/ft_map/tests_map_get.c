@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:14:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 14:46:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:54:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,29 @@ static int	test_map_normal(void)
 	return (0);
 }
 
+static int	test_map_get_null(void)
+{
+	t_map		*map;
+	t_map_node	*node;
+	void		*ret;
+
+	map = ft_map_create(10);
+	ret = ft_map_get(map, "key", ft_strlen("key"));
+	if (ret)
+		return (1);
+	ret = ft_map_get(NULL, "key", ft_strlen("key"));
+	if (ret)
+		return (2);
+	ret = ft_map_get(map, NULL, ft_strlen("key"));
+	if (ret)
+		return (3);
+	node = ft_map_get_node(NULL, "key", ft_strlen("key"));
+	if (node)
+		return (4);
+	ft_map_destroy(map);
+	return (0);
+}
+
 int	test_map_get(void)
 {
 	int	ret;
@@ -86,6 +109,9 @@ int	test_map_get(void)
 	ret = test_map_normal();
 	if (ret != 0)
 		return (ret + 10 * 1);
+	ret = test_map_get_null();
+	if (ret != 0)
+		return (ret + 10 * 2);
 	return (0);
 }
 /*

@@ -6,19 +6,21 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:10:08 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/14 14:21:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:45:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include "ft_list_types.h"
+#include "ft_string.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 
 //	int		prev; // set alloc fail -> TODO
-int	t_dl_subrange(void)
+static int	base_cases(void)
 {
 	t_dlist	*list;
 	t_dlist	*sub;
@@ -26,7 +28,7 @@ int	t_dl_subrange(void)
 	int		*data2;
 	int		*data3;
 
-	data3 = malloc(sizeof(int));
+	data3 = ft_malloc(sizeof(int));
 	*data3 = 63;
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
 	ft_dl_push_back(&list, data3);
@@ -43,10 +45,43 @@ int	t_dl_subrange(void)
 	sub = ft_dl_subrange(list, list);
 	if (ft_dl_size(sub) != 1 || sub->data != data1)
 		return (4);
-	ft_dl_clear(&sub, NULL);
-	ft_dl_clear(&list, free);
+	return (ft_dl_clear(&sub, NULL), ft_dl_clear(&list, ft_free), 0);
+}
+
+static int	merror_cases(void)
+{
+	t_dlist		*lists[2];
+	int			*_datas[3];
+	const int	f_point = *talloc_get_failpoint();
+	int			*cur_ap;
+
+	_datas[2] = ft_malloc(sizeof(int));
+	*_datas[2] = 63;
+	create_2elem_dlist(&lists[0], (void **) &_datas[0], (void **) &_datas[1]);
+	ft_dl_push_back(&lists[0], _datas[2]);
+	cur_ap = talloc_get_currentpoint();
+	talloc_set_failpoint(*cur_ap + 1);
+	lists[1] = ft_dl_subrange(lists[0], lists[0]->next->next);
+	talloc_set_failpoint(f_point);
+	if (lists[1])
+		return (ft_dl_clear(&lists[0], ft_free), 1);
+	ft_dl_clear(&lists[0], ft_free);
 	return (0);
 }
+
+int	t_dl_subrange(void)
+{
+	int	ret;
+
+	ret = base_cases();
+	if (ret)
+		return (ret);
+	ret = merror_cases();
+	if (ret)
+		return (ret + 10);
+	return (0);
+}
+
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

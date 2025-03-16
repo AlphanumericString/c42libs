@@ -6,36 +6,37 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:17:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 12:15:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/14 22:31:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATH_TESTS_H
 # define MATH_TESTS_H
 
-int	test_ft_complex_abs(void);
-int	test_ft_complex_add(void);
-int	test_ft_complex_addl(void);
-int	test_ft_complex_mull(void);
-int	test_ft_complex_muld(void);
-int	test_ft_log(void);
-int	test_ft_llogof(void);
-int	test_ft_ullogof(void);
-int	test_ft_logof(void);
-int	test_ft_range(void);
-int	test_ft_range_f(void);
-int	test_ft_range_d(void);
-int	test_ft_sqrt(void);
-int	test_ft_min(void);
-int	test_ft_max(void);
-int	test_ft_pow(void);
-int	test_ft_round(void);
-int	test_ft_clamp(void);
-int	test_ft_clamp_f(void);
-int	test_ft_clamp_d(void);
 int	test_ft_abs(void);
+int	test_ft_align_2_multiple(void);
 int	test_ft_align_2(void);
 int	test_ft_align(void);
+int	test_ft_clamp_d(void);
+int	test_ft_clamp_f(void);
+int	test_ft_clamp(void);
+int	test_ft_complex_abs(void);
+int	test_ft_complex_addl(void);
+int	test_ft_complex_add(void);
+int	test_ft_complex_muld(void);
+int	test_ft_complex_mull(void);
+int	test_ft_llogof(void);
+int	test_ft_logof(void);
+int	test_ft_log(void);
+int	test_ft_max(void);
+int	test_ft_min(void);
+int	test_ft_pow(void);
+int	test_ft_range_d(void);
+int	test_ft_range_f(void);
+int	test_ft_range(void);
+int	test_ft_round(void);
+int	test_ft_sqrt(void);
+int	test_ft_ullogof(void);
 
 #endif /* MATH_TESTS_H */
 /*

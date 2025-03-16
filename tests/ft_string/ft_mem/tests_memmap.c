@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:21:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/14 16:16:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:41:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "tests/tests.h"
 
-static int base_cases(void)
+static int	base_cases(void)
 {
 	const char	*tb[3] = {"Hello", "World", "!"};
 	char		**str2;
@@ -36,11 +36,11 @@ static int base_cases(void)
 	return (0);
 }
 
-static int merror_cases(void)
+static int	merror_cases(void)
 {
 	const char	*tb[3] = {"Hello", "World", "!"};
 	char		**str2;
-	int			f_p = *talloc_get_failpoint();
+	const int	f_p = *talloc_get_failpoint();
 
 	talloc_set_failpoint(0);
 	str2 = (char **) ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]),

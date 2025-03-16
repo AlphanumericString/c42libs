@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:25:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 01:28:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:30:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	t_ll_delete_range(void)
 	return (0);
 }
 
-int t_ll_delete(void)
+int	t_ll_delete(void)
 {
 	t_list	*list;
 	int		*data;
@@ -67,9 +67,7 @@ int t_ll_delete(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	nb_del = ft_ll_delete(&list, NULL);
 	if (nb_del != 2 || list)
-		return (
-		printf("nb_del = %d\tlist = %p\n", nb_del, (void *)list),
-		1);
+		return (1);
 	list = ft_ll_create(data);
 	ft_ll_push_back(&list, data2);
 	nb_del = ft_ll_delete(&list, ft_free);

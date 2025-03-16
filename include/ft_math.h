@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/08 12:31:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:50:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,14 @@
 /// @param alignment The alignment to use
 /// @return The aligned value of nbr on the alignment
 /// @note Optimized for power of 2 alignment
-size_t		ft_align_2(size_t nbr, size_t alignment);
+size_t		ft_align_multiple_2(size_t size, size_t pow_2);
+
+/// @brief Return the nearest aligned value of nbr on the alignment
+/// @param nbr The nbr to align
+/// @param alignment The alignment to use
+/// @return The aligned value of nbr on the alignment
+/// @note Optimized for power of 2 alignment
+size_t		ft_align_2(size_t nbr);
 
 /// @brief Return the nearest aligned value of nbr on the alignment
 /// @param nbr The nbr to align

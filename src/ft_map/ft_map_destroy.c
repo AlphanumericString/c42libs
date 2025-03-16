@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:32:38 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 13:53:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 15:37:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ static void	rsv_del(void *data)
 	t_list	*node;
 
 	node = (t_list *)data;
-	if (node && node->data)
-		wrapper_destroy(node->data);
+	wrapper_destroy(node->data);
 	ft_free(node);
 }
 

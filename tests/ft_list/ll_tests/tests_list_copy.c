@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:24:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 00:15:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:31:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,9 @@ int	t_ll_copy_list(void)
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	copy = ft_ll_copy_list(list);
-	if (!copy)
+	if (!copy || copy->data != list->data)
 		return (1);
-	else if (copy->data != list->data)
-		return (2);
-	else if (!copy->next)
-		return (3);
-	else if (copy->next->data != list->next->data)
+	else if (!copy->next || copy->next->data != list->next->data)
 		return (4);
 	else if (copy->next->next)
 		return (5);

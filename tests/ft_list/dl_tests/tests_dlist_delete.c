@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:01:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 14:25:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:15:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,13 @@ int	t_dl_delete_self(void)
 	ft_dl_delete_self(list->next, free);
 	if (list->next || list->data != data3)
 		return (1);
-	ft_dl_clear(&list, free);
-	ft_dl_delete_self(NULL, NULL);
-	list = ft_dl_create(data3);
-	ft_dl_delete_self(list, NULL);
-	return (0);
+	return (ft_dl_clear(&list, free), ft_dl_delete_self(NULL, NULL), \
+	ft_dl_delete_self(ft_dl_create(data3), NULL), 0);
 }
 /*
 	ft_dl_add_back(&list, ft_dl_create(data3));
 		// NULL <-(42)<=>(21)<=>(63)-> NULL
-	list2 = list->next;                                          
+	list2 = list->next;
 		// 42 <-(21)<=>(63)-> NULL
 	nb_deleted = ft_dl_delete_range(list, list->next, NULL);
 		// NULL <-(21)<=>(63)-> NULL

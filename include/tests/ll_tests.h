@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:10:07 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 00:27:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:51:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	t_ll_create(void);
 int	t_ll_copy_node(void);
 int	t_ll_copy_list(void);
 int	t_ll_delone(void);
-int t_ll_delete(void);
+int	t_ll_delete(void);
 int	t_ll_delete_range(void);
 int	t_ll_find(void);
 int	t_ll_get_datas(void);

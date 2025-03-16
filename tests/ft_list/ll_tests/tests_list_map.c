@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:36:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 13:33:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:32:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@
 int	t_ll_map(void)
 {
 	t_list	*list;
-	int		*data;
-	int		*data2;
+	int		*datas[2];
 	t_list	*map;
 	t_list	*map_err[3];
 	int		prev;
 
-	create_2elem_list(&list, (void **)&data, (void **)&data2);
+	create_2elem_list(&list, (void **)&datas[0], (void **)&datas[1]);
 	map = ft_ll_map(list, add42_ret, free);
 	map_err[0] = ft_ll_map(list, NULL, ft_free);
 	map_err[1] = ft_ll_map(NULL, add42_ret, ft_free);
@@ -45,9 +44,7 @@ int	t_ll_map(void)
 	if (ft_ll_map(list, add42_ret, ft_free))
 		return (talloc_set_failpoint(prev), 5);
 	talloc_set_failpoint(prev);
-	ft_ll_clear(&list, ft_free);
-	ft_ll_clear(&map, ft_free);
-	return (0);
+	return (ft_ll_clear(&list, ft_free), ft_ll_clear(&map, ft_free), 0);
 }
 /*
 GPL-3.0 License:

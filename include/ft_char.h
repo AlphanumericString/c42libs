@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:59:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:31:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ int		ft_isprint(int c);
 /// @param fd file descriptor to print on
 /// @return 1 if the char was printed, -1 otherwise
 int		ft_putchar_fd(char c, int fd);
+
+/// @brief print the char on the specified file descriptor
+/// @param c char to print
+/// @param fd file descriptor to print on
+/// @param n number of time to print the char
+/// @return n if the chars were printed, -1 otherwise
+int		ft_putnchar_fd(char c, int fd, int n);
 
 /// @brief pass a char to lower case
 /// @param c char to pass to lower case

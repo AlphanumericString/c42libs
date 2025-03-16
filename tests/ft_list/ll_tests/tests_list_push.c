@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:37:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 13:39:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:27:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,21 @@ int	t_ll_push(void)
 	t_list			*list_rep1;
 	t_list			*list_rep2;
 	int				prev;
-	const int		data[][1] = {
-	{42},
-	{21}
-	};
 
 	list = NULL;
-	list_rep1 = ft_ll_push(&list, &data[0]);
-	list_rep2 = ft_ll_push(&list, &data[1]);
+	list_rep1 = ft_ll_push(&list, (void *)42);
+	list_rep2 = ft_ll_push(&list, (void *)84);
 	if (!list || !list_rep1 || !list_rep2)
 		return (1);
 	else if (list != list_rep2)
 		return (2);
-	else if (list->next != list_rep1)
+	else if (list->next != list_rep1 || ft_ll_size(list) != 2)
 		return (3);
-	else if (ft_ll_size(list) != 2)
-		return (4);
-	else if (list->data != &data[1] || list->next->data != &data[0])
+	else if (list->data != (void *)84 || list->next->data != (void *)42)
 		return (5);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_ll_push(&list, &data[0]))
+	if (ft_ll_push(&list, (void *)42))
 		return (talloc_set_failpoint(prev), 6);
 	talloc_set_failpoint(prev);
 	ft_ll_clear(&list, NULL);
@@ -54,29 +48,23 @@ int	t_ll_push(void)
 int	t_ll_push_back(void)
 {
 	t_list	*list;
-	int		*data;
-	int		*data2;
 	int		prev;
 
-	data = ft_malloc(sizeof(int));
-	*data = 42;
-	data2 = ft_malloc(sizeof(int));
-	*data2 = 21;
 	list = NULL;
-	ft_ll_push_back(&list, data);
-	ft_ll_push_back(&list, data2);
+	ft_ll_push_back(&list, (void *)42);
+	ft_ll_push_back(&list, (void *)84);
 	if (ft_ll_size(list) != 2)
 		return (1);
-	else if (list->data != data)
+	else if (list->data != (void *)42)
 		return (2);
-	else if (list->next->data != data2)
+	else if (list->next->data != (void *)84)
 		return (3);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_ll_push_back(&list, data))
+	if (ft_ll_push_back(&list, (void *)42))
 		return (talloc_set_failpoint(prev), 4);
 	talloc_set_failpoint(prev);
-	ft_ll_clear(&list, ft_free);
+	ft_ll_clear(&list, NULL);
 	ft_ll_push_back(NULL, NULL);
 	return (0);
 }

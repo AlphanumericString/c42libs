@@ -6,14 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:15:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/22 17:29:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:45:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <limits.h>
 #include <stdio.h>
-
 
 static void	*sword_memchr(const void *s, int c, size_t n)
 {
@@ -147,7 +146,6 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-
 	if (c < 0 || c > UCHAR_MAX || !s)
 		return (NULL);
 	return (sword_memchr(s, c, n));

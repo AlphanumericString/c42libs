@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2025/03/14 15:50:57 by bgoulard         ###   ########.fr        #
+#    Updated: 2025/03/16 17:21:23 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,12 +77,15 @@ CFLAGS		=\
 TEST_FLAGS	=\
 		-g2	-DTEST \
 		-fprofile-instr-generate -ftest-coverage -fcoverage-mapping \
-		-DFORK_TESTS=0 -O0
+		-DFORK_TESTS=1 -O0
+# do not optimize tests
+TEST_FLAGS	+=\
+		-fno-inline -fno-inline-functions
 
 DEBUG_LEVEL	=\
-			0
+		0
 DEBUG_FLAGS	=\
-			-g2	-DDEBUG	$(FFLAGS) -DDEBUG_LEVEL=$(DEBUG_LEVEL)
+		-g2	-DDEBUG	$(FFLAGS) -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 
 # Inner variables
 
@@ -276,6 +279,7 @@ FT_CHR_SRC	=	\
 			$(FT_CHR_DIR)/ft_isspace.c		\
 			$(FT_CHR_DIR)/ft_isupper.c		\
 			$(FT_CHR_DIR)/ft_putchar_fd.c	\
+			$(FT_CHR_DIR)/ft_putnchar_fd.c	\
 			$(FT_CHR_DIR)/ft_tolower.c		\
 			$(FT_CHR_DIR)/ft_toupper.c
 
@@ -431,24 +435,30 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_char/tests_toupper.c		\
 			$(TESTS_DIR)/ft_string/ft_char/ft_char_tests.c		\
 			\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_apply_2d.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_bzero.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_calloc.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_fd_to_buff.c	\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_free.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_free_2d.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_freecl.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_len_2d.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_memchr.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_memcmp.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_memcpy.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_memmap.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_memmove.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_memset.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_qsort.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_realloc.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/tests_swap.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_apply_2d.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_bzero.c					\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_calloc.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_fd_to_buff.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_free.c					\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_free_2d.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_freecl.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_len_2d.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_membd_allocator.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_membd_calloc.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_membd_free.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_membd_malloc.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_membd_realloc.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_membd_reallocarray.c	\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memchr.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memcmp.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memcpy.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memmap.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memmove.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_memset.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_qsort.c					\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_realloc.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/tests_swap.c					\
+			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c					\
 			\
 			$(TESTS_DIR)/ft_string/ft_str/test_atoi_base.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_atoi.c				\

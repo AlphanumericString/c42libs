@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:21:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/14 14:45:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:04:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #include <stdlib.h>
 
-static int base_case(void)
+static int	base_case(void)
 {
 	t_vector	*vec;
 	t_vector	*ret;
@@ -38,14 +38,14 @@ static int base_case(void)
 	return (0);
 }
 
-static int merror_case(void)
+static int	merror_case(void)
 {
 	t_vector	*vec;
 	t_vector	*ret;
 	int			**ar;
 	int			f_point;
 
-	ar = (int**)creat_tb();
+	ar = (int **)creat_tb();
 	vec = ft_vec_from_array((void **)ar, 3);
 	f_point = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
@@ -58,7 +58,7 @@ static int merror_case(void)
 
 int	test_vec_map(void)
 {
-	int ret;
+	int	ret;
 
 	ret = base_case();
 	if (ret)

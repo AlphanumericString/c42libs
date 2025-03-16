@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:22:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/22 17:36:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:40:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,35 @@
 #include <stddef.h>
 #include <stdio.h>
 
-# define STRTAB_SIZE 32
-
 // test 1: basic test - str aligned + search char in str
 // test 2: str not aligned at start, tests both chr in str and not in str
 // test 3: str not aligned at end, chr not in str
 // test 4: no chr in str + bad args + null test
 int	test_memchr(void)
 {
-	char	str[STRTAB_SIZE + 1];
+	char	str[32 + 1];
 	size_t	i;
 
 	i = 0;
-	while (i < STRTAB_SIZE)
+	while (i < 32)
 	{
 		str[i] = '0' + (i % 10);
 		if (str[i++] == '9')
 			str[i - 1] = '8';
 	}
-	str[STRTAB_SIZE / 2] = '9';
-	str[STRTAB_SIZE] = 0;
-	if (ft_memchr(str, '8', STRTAB_SIZE) != &str[8] || \
-	ft_memchr(str, '7', STRTAB_SIZE) != &str[7] || \
-	ft_memchr(str, '9', STRTAB_SIZE) != &str[STRTAB_SIZE / 2])
+	str[32 / 2] = '9';
+	str[32] = 0;
+	if (ft_memchr(str, '8', 32) != &str[8] || ft_memchr(str, '7', 32) \
+	!= &str[7] || ft_memchr(str, '9', 32) != &str[32 / 2])
 		return (1);
-	if (ft_memchr(str + 3, '8', STRTAB_SIZE - 3) != &str[8]	|| \
-	ft_memchr(str + 3, '9', STRTAB_SIZE - 3) != &str[STRTAB_SIZE / 2])
+	if (ft_memchr(str + 3, '8', 32 - 3) != &str[8] || ft_memchr \
+	(str + 3, '9', 32 - 3) != &str[32 / 2])
 		return (2);
 	if (ft_memchr(str, 'z', sizeof(size_t) + 2) != NULL)
 		return (3);
-	if (ft_memchr(str, 'z', STRTAB_SIZE) != NULL || \
-	ft_memchr(str, '1', 0) != NULL || ft_memchr(str, 4242, 1) != NULL || \
-	ft_memchr(NULL, 42, 1) != NULL || ft_memchr(str, -42, 1) != NULL)
+	if (ft_memchr(str, 'z', 32) != NULL || ft_memchr(str, '1', 0) != NULL || \
+	ft_memchr(str, 4242, 1) != NULL || ft_memchr(NULL, 42, 1) != NULL || \
+	ft_memchr(str, -42, 1) != NULL)
 		return (4);
 	return (0);
 }

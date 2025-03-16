@@ -6,25 +6,44 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:53:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/13 18:12:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:35:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math.h"
+
+int	test_ft_align_2_multiple(void)
+{
+	size_t	nbr;
+
+	nbr = 42;
+	if (ft_align_multiple_2(nbr, 1) != nbr)
+		return (1);
+	if (ft_align_multiple_2(nbr, 8) != 48)
+		return (2);
+	if (ft_align_multiple_2(nbr, 16) != 48)
+		return (3);
+	nbr = 275;
+	if (ft_align_multiple_2(nbr, 4) != 276)
+		return (4);
+	return (0);
+}
 
 int	test_ft_align_2(void)
 {
 	size_t	nbr;
 
 	nbr = 42;
-	if (ft_align_2(nbr, 1) != nbr)
+	if (ft_align_2(nbr) != nbr)
 		return (1);
-	if (ft_align_2(nbr, 8) != 48)
+	nbr = 47;
+	if (ft_align_2(nbr) != 48)
 		return (2);
-	if (ft_align_2(nbr, 16) != 48)
+	nbr = 251;
+	if (ft_align_2(nbr) != 252)
 		return (3);
 	nbr = 275;
-	if (ft_align_2(nbr, 4) != 276)
+	if (ft_align_2(nbr) != 276)
 		return (4);
 	return (0);
 }

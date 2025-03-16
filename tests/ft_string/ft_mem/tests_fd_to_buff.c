@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:15:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/13 18:20:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:36:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	base_case(void)
 	destroy_test_file(fd, TESTS_FPREFIX "test_fd_to_buff.txt");
 	return (ft_free(ret), 0);
 }
-
 
 // semi uncheckable case on errors with the check for read in the loop
 // without using either a wraper for read or a secondary thread to invalidate

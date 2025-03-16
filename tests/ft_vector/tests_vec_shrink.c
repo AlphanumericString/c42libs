@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:28:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/14 13:57:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:03:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 #include "tests/tests.h"
 
-static int base_cases(void)
+static int	base_cases(void)
 {
 	t_vector	*vec;
 	void		*data[3];
 
-	data[0] = (void*)42;
-	data[1] = (void*)43;
-	data[2] = (void*)44;
+	data[0] = (void *)42;
+	data[1] = (void *)43;
+	data[2] = (void *)44;
 	vec = ft_vec_from_array(data, sizeof(data) / sizeof(data[0]));
 	ft_vec_shrink(vec);
 	if (vec->count != 3 || vec->cappacity != 3)
 		return (1);
-	else if (ft_vec_at(vec, 0) != (void*) 42 || ft_vec_at(vec, 1) != \
-	(void *) 43 || ft_vec_at(vec, 2) != (void*) 44)
+	else if (ft_vec_at(vec, 0) != (void *) 42 || ft_vec_at(vec, 1) != \
+	(void *) 43 || ft_vec_at(vec, 2) != (void *) 44)
 		return (2);
 	ft_vec_shrink(vec);
 	if (!vec || !vec->datas || !vec->cappacity || !vec->count || \
@@ -38,15 +38,15 @@ static int base_cases(void)
 	return (0);
 }
 
-static int merror_cases(void)
+static int	merror_cases(void)
 {
 	t_vector	*vec;
 	void		*data[3];
 	int			f_point;
 
-	data[0] = (void*)42;
-	data[1] = (void*)43;
-	data[2] = (void*)44;
+	data[0] = (void *)42;
+	data[1] = (void *)43;
+	data[2] = (void *)44;
 	vec = ft_vec_from_array(data, sizeof(data) / sizeof(data[0]));
 	f_point = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
@@ -59,7 +59,7 @@ static int merror_cases(void)
 
 int	test_vec_shrink(void)
 {
-	int ret;
+	int	ret;
 
 	ret = base_cases();
 	if (ret)

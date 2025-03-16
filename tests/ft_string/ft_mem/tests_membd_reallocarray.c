@@ -1,0 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_membd_reallocarray.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/16 16:59:55 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/03/16 17:49:24 by bgoulard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_allocator__dev.h"
+
+static void	reset_allocator(const t_allocator_group prev)
+{
+	t_allocator_group	*group_test;
+
+	group_test = ft_get_allocator();
+	group_test->ptr_free = prev.ptr_free;
+	group_test->ptr_alloc = prev.ptr_alloc;
+	group_test->ptr_calloc = prev.ptr_calloc;
+	group_test->ptr_realloc = prev.ptr_realloc;
+	group_test->ptr_reallocarray = prev.ptr_reallocarray;
+}
+
+int	test_membd_reallocarray(void)
+{
+	const t_allocator_group	prev = *ft_get_allocator();
+	t_allocator_group		*group_test;
+	int						*array;
+
+	ft_set_ft_alloc();
+	group_test = ft_get_allocator();
+	if (group_test->ptr_reallocarray != &ft_memimpl_reallocarray)
+		return (1);
+	array = ft_calloc(10, sizeof(int));
+	array[4] = 42;
+	if (!array)
+		return (2);
+	array = ft_reallocarray(array, 20, sizeof(int));
+	if (!array || array[4] != 42)
+		return (3);
+	array = ft_reallocarray(array, 0, sizeof(int));
+	if (array)
+		return (4);
+	array = ft_reallocarray(array, 20, sizeof(int));
+	if (!array)
+		return (5);
+	return (ft_free(array), reset_allocator(prev), 0);
+}
