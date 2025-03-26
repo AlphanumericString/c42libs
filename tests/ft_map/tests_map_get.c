@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:14:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/16 17:54:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 	map = ft_map_create(1);
 */
 
+#include "tests/tests__all_modules_tests.h"
 #include "ft_map.h"
 #include "ft_map_types.h"
 #include "ft_string.h"

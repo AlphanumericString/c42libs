@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:01:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:43:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:35:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "tests/tests__all_modules_tests.h"
 
 int	test_ft_putchar(void)
 {

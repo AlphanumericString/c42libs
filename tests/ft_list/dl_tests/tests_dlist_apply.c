@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:55:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:38:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "tests/lists_test_utils.h"
 #include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
+#include "tests/tests__all_modules_tests.h"
 
 static void	dnode_add42(t_dlist *node)
 {

@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:30:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:38:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests/tests.h"
 #include "tests/vector_tests.h"
+#include "tests/tests__all_modules_tests.h"
 
 int	tests_vector(void)
 {

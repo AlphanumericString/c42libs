@@ -6,9 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:15:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 18:45:18 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_string.h"
 
 #include <stddef.h>
 #include <limits.h>

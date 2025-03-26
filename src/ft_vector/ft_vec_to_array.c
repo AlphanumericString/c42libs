@@ -6,11 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 23:39:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:37:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector_types.h"
+#include "ft_vector.h"
+
 #include <stdlib.h>
 
 void	**ft_vec_to_array(t_vector **vec)

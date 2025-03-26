@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:56:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:43:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:35:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_char.h"
+#include "tests/tests__all_modules_tests.h"
 
 int	test_ft_isascii(void)
 {

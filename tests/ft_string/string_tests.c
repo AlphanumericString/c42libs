@@ -6,17 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:36:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/22 18:20:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:45:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests.h"
-
-int		t_string_tests(void);
-int		mem_tests(void);
-int		str_tests(void);
-int		char_tests(void);
 
 static const t_test	*load_submodules_tests(void)
 {

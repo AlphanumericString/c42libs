@@ -6,9 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:14:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:29:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_char.h"
 
 int	ft_islower(int c)
 {

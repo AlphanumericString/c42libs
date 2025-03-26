@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:18:53 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:40:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "tests/tests__all_modules_tests.h"
 #include "ft_map.h"
 #include "ft_string.h"
 #include "ft_map_types.h"

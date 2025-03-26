@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:41:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:40:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:40:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math.h"
+#include "tests/tests__all_modules_tests.h"
 
-int	test_ft_range_errors(void)
+static int	test_ft_range_errors(void)
 {
 	const int	min = 9;
 	const int	max = 42;
@@ -87,7 +88,7 @@ int	test_ft_range_f(void)
 	return (0);
 }
 
-int	test_ft_range_d_errors(void)
+static int	test_ft_range_d_errors(void)
 {
 	const double	min = 9.0;
 	const double	max = 42.0;

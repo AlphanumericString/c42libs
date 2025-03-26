@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:15:10 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:38:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_args.h"
+#include "tests/tests__all_modules_tests.h"
 
 static bool	loc_checker(const void *arg)
 {

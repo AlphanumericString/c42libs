@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 11:15:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/16 17:58:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:45:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ int		tests_optional(void);
 int		tests_pair(void);
 int		tests_string(void);
 int		tests_vector(void);
+
+// sub modules tests
+// - string
+int		t_string_tests(void);
+int		mem_tests(void);
+int		str_tests(void);
+int		char_tests(void);
 
 // to see utils and such see : test_lambda_functions.h
 

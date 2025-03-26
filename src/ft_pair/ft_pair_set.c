@@ -6,19 +6,21 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:55:07 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:25:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pair_types.h"
 #include "ft_pair.h"
 
-void	ft_pair_set(t_pair *pair, void *first, void *second)
+// yes we are discarding const qualifier, easier to manipulate in the struct
+//	without it
+void	ft_pair_set(t_pair *pair, const void *first, const void *second)
 {
 	if (!pair)
 		return ;
-	pair->first = first;
-	pair->second = second;
+	pair->first = (void *)first;
+	pair->second = (void *)second;
 }
 /*
 GPL-3.0 License:

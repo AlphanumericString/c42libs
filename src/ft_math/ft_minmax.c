@@ -6,9 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:23:07 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:21:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_math.h"
 
 int	ft_min(int a, int b)
 {

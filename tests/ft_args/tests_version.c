@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:37:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:38:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_args.h"
 #include "ft_string.h"
 #include <unistd.h>
+#include "tests/tests__all_modules_tests.h"
 
 int	getset_version_test(void)
 {

@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:00:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:37:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector_types.h"
+#include "ft_vector.h"
 
 void	*ft_vec_pop(t_vector *vec)
 {

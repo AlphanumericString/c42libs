@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocator_failpoint.c                              :+:      :+:    :+:   */
+/*   talloc_failpoint.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:55:07 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 12:57:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:52:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include "tests/tests.h"
 
 int	*talloc_get_failpoint(void)
 {

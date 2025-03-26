@@ -6,9 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:23:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 13:20:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_char.h"
 
 int	ft_isascii(int c)
 {

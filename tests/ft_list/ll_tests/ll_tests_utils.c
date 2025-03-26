@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:08:48 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 13:28:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:47:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "ft_string.h"
+#include "tests/lists_test_utils.h"
 #include <stdlib.h>
 
 void	create_2elem_list(t_list **list, void **data1, void **data2)

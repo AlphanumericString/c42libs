@@ -6,16 +6,19 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:14:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:29:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_char.h"
+
 #include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
-	return ;
+	if (write(fd, &c, 1) == -1)
+		return (-1);
+	return (1);
 }
 /*
 GPL-3.0 License:

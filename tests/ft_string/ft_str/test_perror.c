@@ -6,19 +6,20 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 08:04:30 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/14 14:05:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:49:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_errno.h"
 #include "ft_string.h"
+#include "tests/tests__all_modules_tests.h"
 
 #include "tests/tests.h"
 
 #include <unistd.h>
 #include <stdio.h>
 
-void	write_lines(void)
+static void	write_lines(void)
 {
 	errno = EPERM;
 	ft_perror("toto");

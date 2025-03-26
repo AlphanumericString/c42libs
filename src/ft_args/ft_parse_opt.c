@@ -6,16 +6,18 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:06:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_args_types.h"
+#include "internal/args_helper.h"
 #include "ft_math.h"
 #include "ft_string.h"
+
 #include <sys/types.h>
 
-ssize_t	parse_short_opt(char *str_op, const t_opt *opt_list)
+ssize_t	parse_short_opt(const char *str_op, const t_opt *opt_list)
 {
 	ssize_t	i;
 
@@ -30,7 +32,7 @@ ssize_t	parse_short_opt(char *str_op, const t_opt *opt_list)
 	return (-1);
 }
 
-ssize_t	parse_long_opt(char *str_op, const t_opt *opt_list)
+ssize_t	parse_long_opt(const char *str_op, const t_opt *opt_list)
 {
 	ssize_t	i;
 	ssize_t	offset;

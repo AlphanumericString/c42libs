@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:22:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 12:55:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:35:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_allocator__dev.h"
+#include "tests/tests__all_modules_tests.h"
 #include <stdio.h>
 
 	// todo :: fix crash here::

@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/13 08:03:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:35:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "tests/tests__all_modules_tests.h"
 #include "ft_string.h"
 
 static int	test_base_resps(const char *base, const int *expected_results,

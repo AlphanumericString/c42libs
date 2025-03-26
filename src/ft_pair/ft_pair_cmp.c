@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:58:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:25:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pair.h"
 
-int	ft_pair_cmp(t_pair *pair1, t_pair *pair2, t_data_cmp cmp)
+int	ft_pair_cmp(const t_pair *pair1, const t_pair *pair2, const t_data_cmp cmp)
 {
 	if (!pair1 && !pair2)
 		return (0);
@@ -25,7 +25,7 @@ int	ft_pair_cmp(t_pair *pair1, t_pair *pair2, t_data_cmp cmp)
 	return (pair1 - pair2);
 }
 
-int	ft_pair_cmp_first(t_pair *pair1, t_pair *pair2, t_data_cmp cmp)
+int	ft_pair_cmp_first(const t_pair *pair1, const t_pair *pair2, const t_data_cmp cmp)
 {
 	if (!pair1 && !pair2)
 		return (0);
@@ -38,7 +38,7 @@ int	ft_pair_cmp_first(t_pair *pair1, t_pair *pair2, t_data_cmp cmp)
 	return (pair1->first - pair2->first);
 }
 
-int	ft_pair_cmp_second(t_pair *pair1, t_pair *pair2, t_data_cmp cmp)
+int	ft_pair_cmp_second(const t_pair *pair1, const t_pair *pair2, const t_data_cmp cmp)
 {
 	if (!pair1 && !pair2)
 		return (0);

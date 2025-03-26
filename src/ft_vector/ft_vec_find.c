@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:24:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:37:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector_types.h"
+#include "ft_vector.h"
 
 void	*ft_vec_find(t_vector *vector, const void *key, \
 					int (*cmp)(const void *v_data, const void *key))

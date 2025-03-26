@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:04:21 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 14:27:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests.h"
+#include "tests/tests__all_modules_tests.h"
 
 #include <stdlib.h>
 

@@ -6,14 +6,15 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:19:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:51:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "ft_vector_types.h"
+#include "tests/tests__all_modules_tests.h"
 
-int	checks_01(t_vector *vec, void **data)
+static int	checks_01(t_vector *vec, void **data)
 {
 	if (vec->count != 3 || vec->cappacity != FT_VECTOR_BASE_LEN
 		|| !vec->datas)
@@ -24,7 +25,7 @@ int	checks_01(t_vector *vec, void **data)
 	return (0);
 }
 
-int	checks_02(t_vector *vec, void **data)
+static int	checks_02(t_vector *vec, void **data)
 {
 	if (vec->count != 6 || vec->cappacity != 6 || !vec->datas)
 		return (3);

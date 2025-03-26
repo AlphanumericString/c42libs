@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:53:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 19:35:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math.h"
+#include "tests/tests__all_modules_tests.h"
 
 int	test_ft_align_2_multiple(void)
 {

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:31:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 19:05:59 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ft_optional.h"
 #include "ft_optional_types.h"
 #include "tests/optional_test.h"
+#include "tests/tests__all_modules_tests.h"
 
 int	test_optional_map(void)
 {

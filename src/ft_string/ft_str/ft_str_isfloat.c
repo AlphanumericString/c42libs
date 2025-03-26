@@ -6,12 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:45:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:34:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
+
+#include "ft_string.h"
 #include "ft_char.h"
 
 // no value check like isint due to the fact that it's a floating point

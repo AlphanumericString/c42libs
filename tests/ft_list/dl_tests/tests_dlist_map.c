@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:06:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 19:13:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 #include "tests/lists_test_utils.h"
 #include "tests/tests_lambda_functions.h"
+#include "tests/tests__all_modules_tests.h"
 #include "tests/tests.h"
 
 static int	base_case(void)

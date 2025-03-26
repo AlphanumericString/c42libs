@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:37:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 19:27:56 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ft_string.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests.h"
+#include "tests/tests__all_modules_tests.h"
 #include <stdlib.h>
 
 int	t_ll_push(void)

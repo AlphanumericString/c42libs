@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:15:21 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:52:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "ft_vector_types.h"
+#include "tests/tests__all_modules_tests.h"
 #include <stdbool.h>
 
 /*
@@ -28,7 +29,7 @@
 	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
 */
 
-void	init_vec_cat(t_vector **vec_a, t_vector **vec_b)
+static void	init_vec_cat(t_vector **vec_a, t_vector **vec_b)
 {
 	*vec_a = ft_vec_from_size(6);
 	ft_vec_add(vec_a, (void *)42);

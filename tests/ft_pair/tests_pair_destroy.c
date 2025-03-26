@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 17:09:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:41:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 #include "tests/pair_tests.h"
 #include "ft_pair_types.h"
 #include "ft_pair.h"
+#include "tests/tests__all_modules_tests.h"
 
 int	tests_pair_destroy(void)
 {
 	t_pair	*pair;
 
 	pair = ft_pair_new("key", "value");
-	ft_pair_destroy(&pair, NULL, NULL);
+	ft_pair_destroy_2(&pair, NULL, NULL);
 	if (pair != NULL)
 		return (1);
 	pair = ft_pair_new(ft_strdup("key"), ft_strdup("value"));
-	ft_pair_destroy(&pair, &ft_free, &ft_free);
+	ft_pair_destroy_2(&pair, &ft_free, &ft_free);
 	if (pair != NULL)
 		return (2);
-	ft_pair_destroy(NULL, NULL, NULL);
+	ft_pair_destroy_2(NULL, NULL, NULL);
 	pair = NULL;
-	ft_pair_destroy(&pair, NULL, NULL);
+	ft_pair_destroy_2(&pair, NULL, NULL);
 	return (0);
 }
 /*

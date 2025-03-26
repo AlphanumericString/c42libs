@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:55:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:38:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_args.h"
 #include "ft_string.h"
+#include "tests/tests__all_modules_tests.h"
 
 int	tests_setup_prog(void)
 {

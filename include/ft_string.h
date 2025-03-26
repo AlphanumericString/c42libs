@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/08 12:28:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -658,7 +658,7 @@ t_string	*ft_string_from_s_n(const t_string *str, size_t n);
 /// @param str t_string to write
 /// @param fd file descriptor to write on
 /// @return the return of write if the fd and str are valid otherwise -1
-int			ft_string_put(t_string *str, int fd);
+int			ft_string_put(const t_string *str, int fd);
 
 /* ************************************************************************** */
 /* **                     ft_string_append                                 ** */

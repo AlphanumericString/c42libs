@@ -33,23 +33,46 @@ And some notes on the function if judged necessary.
 
 How to use the library:
 - Include the header file in your code.
+(Warning: only the ft_c42lib.h file is guaranteed
+to work with c++).
+```c
+#include "ft_c42lib.h"
+```
+Alternatively if you want only functions from a specific module you can
+include the header file of the module. e.g. for the string module:
 ```c
 #include "ft_string.h"
 ```
 
 - Compile the library.
 ```bash
-cd [PATH_TO_LIB] ; make
+cd PATH/TO/C42LIB ; make
 ```
 
 - Link the library to your project.
+
+
 ```bash
-gcc -o my_program my_program.c -L[PATH_TO_LIB] -lc42libs
+gcc -o my_program [my sources] -I PATH/TO/C42LIB/include -LPATH/TO/C42LIB -lc42libs
 ```
+Warrning:If you use `.o` compilation you dont need to provide the library to
+compile at this stage. However library need to be present for the linking step.
+In such case it would look like something like that :
+```bash
+gcc my_source_code.o -c my_source_code.c -I PATH/TO/C42LIB/include [MY_OTHER_FLAGS]
+gcc my_source_code_file_2.o -c my_source_code_file_2.c -I PATH/TO/C42LIB/include [MY_OTHER_FLAGS]
+
+# for all source files
+
+gcc -o my_program [.o files generated] -I PATH/TO/C42LIB/include [MY_OTHER_FLAGS] -L PATH/TO/C42LIB -lc42libs
+```
+
+We heavily recommend using the .o way to compile your program coupled with a
+Makefile to compile your program.
 
 - Run your program.
 ```bash
-./my_program
+./my_program [my_program_args]
 ```
 
 ## ft_args
@@ -62,8 +85,8 @@ The **ft_list** module contains all basic operations one should expect of a
 linked list library with support for simply linked list and doubly linked list.
 
 The following list types:
-    - Queue 
-    - Stack 
+    - Queue
+    - Stack
     - Circular list
 Should be here but are not et implemented.
 
@@ -211,6 +234,12 @@ link:
     - [ ]   ft_thread : Thread management for c (thread pool, mutex, ...)
     - [ ]   ft_net : Network functions (socket, http, ...)
     - [ ]   ft_fs : Handle files and directory
+- **NEW** category to add
+    - [ ]   examples of library use @ root/examples (maybe 42 projects)
+        - [ ]   hangman game
+        - [ ]   dummy_ls (ls clone)
+        - [ ]   dummy_cat (cat clone)
+    - [ ]   shell tests of all examples for no intempestives SIGSEGV
 
 ## to fix:
 - Sub-Modules to create
@@ -238,11 +267,11 @@ link:
     - vector
         - [ ]   Compatibility
             - [ ]    lists
-                - [ ]   add from_ll + from_dl
-                - [ ]   add to_ll + to_dl
+                - [ ]   from_ll + from_dl
+                - [ ]   to_ll + to_dl
             - [ ]   maps (not sure, map are not ordered)
-                - [ ]   add from_map
-                - [ ]   add to_map
+                - [ ]   from_map
+                - [ ]   to_map
         - [ ]   Algorithm functions
             - [ ]   sort -> call qsort :D
             - [x]   find
@@ -254,15 +283,15 @@ link:
             - [ ]   sort
         - [ ]   Compatibility
             - [ ]   with ft_vector
-                - [ ]   add from_vector
-                - [ ]   add to_vector
+                - [ ]   from_vector
+                - [ ]   to_vector
             - [ ]   ? with ft_map (not sure, map are not ordered)
-                - [ ]   add from_map
-                - [ ]   add to_map
+                - [ ]   from_map
+                - [ ]   to_map
             - [ ]   with c-style arrays
-                - [ ]   add from_array
-                - [ ]   add from_array with size
-                - [ ]   add to_array
+                - [ ]   from_array
+                - [ ]   from_array with size
+                - [ ]   to_array
     - string
         - str
             - [ ]   regex
@@ -289,9 +318,9 @@ link:
                 - [ ]   kinda done but wanna optimise lib to return/use vars from t_string
     - map
         - [ ]   Re - implement maps to be growable
-                - n linked lists (n being the number of ll starts)
-                - save the hash in the node to be able to resize map aka n+=10%
-                -> put node in node->hash % map->nb_lists
+	                - n linked lists (n being the number of ll starts)
+	                - save the hash in the node to be able to resize map aka n+=10%
+	                -> put node in node->hash % map->nb_lists
         - [ ]   Destroy should take a db ptr to struct and set to null like
                 the rest of the lib
     - math

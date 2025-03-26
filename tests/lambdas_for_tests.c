@@ -6,11 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:08:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 23:53:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:53:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/tests_lambda_functions.h"
+
 #include <stdbool.h>
 
 void	**creat_tb(void)

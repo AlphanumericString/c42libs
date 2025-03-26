@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 10:47:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:44:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:36:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include <stdio.h>
+#include "tests/tests__all_modules_tests.h"
 
 int	test_strcnb(void)
 {

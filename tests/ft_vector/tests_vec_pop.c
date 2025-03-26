@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:47:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:38:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_vector.h"
+#include "tests/tests__all_modules_tests.h"
 #include <stdio.h>
 
 int	test_vec_pop(void)

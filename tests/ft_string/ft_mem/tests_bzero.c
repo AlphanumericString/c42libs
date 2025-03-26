@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:24:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/13 18:16:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:35:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/tests__all_modules_tests.h"
 
 int	test_bzero(void)
 {

@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:46:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:40:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math.h"
 #include "ft_math_types.h"
+#include "tests/tests__all_modules_tests.h"
 
 int	test_ft_complex_abs(void)
 {

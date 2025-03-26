@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:10:11 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:44:30 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:36:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include <stdio.h>
+#include "tests/tests__all_modules_tests.h"
 #include <stdlib.h>
 
 static int	base_cases(void)

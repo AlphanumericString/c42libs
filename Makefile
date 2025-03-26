@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2025/03/16 17:21:23 by bgoulard         ###   ########.fr        #
+#    Updated: 2025/03/26 15:46:13 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 ## To change debug level run make DEBUG_LEVEL=xxx
 ##
 
-WFLAGS		= -Wall -Wextra -Werror
+WFLAGS		= -Wall -Wextra -Werror -Wmissing-prototypes
 LDFLAGS		=
 
 CPPFLAGS	=\
@@ -433,7 +433,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_char/tests_puchar.c		\
 			$(TESTS_DIR)/ft_string/ft_char/tests_tolower.c		\
 			$(TESTS_DIR)/ft_string/ft_char/tests_toupper.c		\
-			$(TESTS_DIR)/ft_string/ft_char/ft_char_tests.c		\
+			$(TESTS_DIR)/ft_string/ft_char/char_tests.c			\
 			\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_apply_2d.c				\
 			$(TESTS_DIR)/ft_string/ft_mem/tests_bzero.c					\

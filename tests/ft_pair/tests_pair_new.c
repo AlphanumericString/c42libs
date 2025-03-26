@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:14:03 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/13 18:06:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	test_pair_new(void)
 	if (ft_pair_new(NULL, NULL))
 		return (4);
 	talloc_set_failpoint(prev);
-	ft_pair_destroy(&pair, NULL, NULL);
+	ft_pair_destroy_2(&pair, NULL, NULL);
 	return (0);
 }
 /*

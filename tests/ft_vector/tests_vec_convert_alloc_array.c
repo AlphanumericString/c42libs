@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 19:12:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:38:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdlib.h>
+#include "tests/tests__all_modules_tests.h"
 #include <stdio.h>
 
 #include "ft_vector.h"

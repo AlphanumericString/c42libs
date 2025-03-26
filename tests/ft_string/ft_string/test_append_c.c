@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:57:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/22 18:16:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:37:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_string_types.h"
+#include "tests/tests__all_modules_tests.h"
 
 // second test for ft_string_append_c is to check in case buffer is greater
 // than current lenght that char will be indeed appended

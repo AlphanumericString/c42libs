@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:07:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 19:29:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
+#include "tests/tests__all_modules_tests.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests.h"
 #include <stdlib.h>

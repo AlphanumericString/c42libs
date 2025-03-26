@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:05:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 13:59:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:36:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
+#include "tests/tests__all_modules_tests.h"
 int	test_strrev(void)
 {
 	const char	*str_ref = "Hello World!";

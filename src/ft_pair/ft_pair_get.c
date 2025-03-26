@@ -6,21 +6,22 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:57:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:25:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pair_types.h"
+#include "ft_pair.h"
+
 #include <stddef.h>
 
-void	*ft_pair_first(t_pair *pair)
+void	*ft_pair_first(const t_pair *pair)
 {
 	if (!pair)
 		return (NULL);
 	return (pair->first);
 }
 
-void	*ft_pair_second(t_pair *pair)
+void	*ft_pair_second(const t_pair *pair)
 {
 	if (!pair)
 		return (NULL);

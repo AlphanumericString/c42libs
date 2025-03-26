@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:58:55 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 19:18:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "tests/lists_test_utils.h"
 #include "tests/tests.h"
+#include "tests/tests__all_modules_tests.h"
 
 int	t_dl_copy_node(void)
 {

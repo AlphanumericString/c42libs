@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:25:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:38:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_vector.h"
+#include "tests/tests__all_modules_tests.h"
 
 static int	cmp_fun(const void *v_data, const void *key)
 {

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2025/03/15 18:55:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:46:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <stdbool.h>
 #include <limits.h>
 
-const t_test	*get_tests(void)
+static const t_test	*get_tests(void)
 {
 	static const t_test	tests[] = {
 	{"string", tests_string},
@@ -59,7 +59,7 @@ static void	setup(const char *av[])
 	talloc_set_currentpoint(0);
 }
 
-int	run_module(const t_test module)
+static int	run_module(const t_test module)
 {
 	int	collect;
 

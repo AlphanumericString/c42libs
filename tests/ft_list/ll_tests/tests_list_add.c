@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:15:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:39:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:29:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include "ft_list_types.h"
+#include "tests/tests__all_modules_tests.h"
 #include <stdlib.h>
 
 /*

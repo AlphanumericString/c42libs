@@ -6,10 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:36:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:35:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:23:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
+
+// almost hesitated to put it in the mem sub-module
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
 	unsigned int	index;

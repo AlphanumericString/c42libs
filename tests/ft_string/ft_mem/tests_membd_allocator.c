@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 17:03:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/16 17:53:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:35:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
 #include "ft_allocator_types.h"
+#include "tests/tests__all_modules_tests.h"
 
 static void	reset_allocator(const t_allocator_group prev)
 {

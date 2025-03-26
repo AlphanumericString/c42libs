@@ -6,18 +6,19 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:20:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/14 23:26:55 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:48:30 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests_lambda_functions.h"
+#include "tests/tests__all_modules_tests.h"
 #include <stdio.h>
 
 #define SET_SIZE 10
 #define NB_TESTS 100
 
-int	test_set(void)
+static int	test_set(void)
 {
 	int	ar_out[SET_SIZE];
 	int	i;
