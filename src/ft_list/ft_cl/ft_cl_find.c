@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_version.c                                       :+:      :+:    :+:   */
+/*   ft_dl_find.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 23:57:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/10 13:05:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/04/04 22:33:20 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_args.h"
-#include <stddef.h>
+#include "ft_list.h"
 
-static const char	*singleton_version(const char *version)
+t_clist	*ft_cl_find(const t_clist *head, const void *data,
+		int (*cmp)(const void *, const void *))
 {
-	static const char	*singleton_version = NULL;
+	t_clist	*it;
 
-	if (version)
-		singleton_version = version;
-	return (singleton_version);
-}
-
-void	ft_set_version(const char *version)
-{
-	if (version)
-		singleton_version(version);
-	else
-		singleton_version(VERSION);
-	return ;
-}
-
-const char	*ft_progversion(void)
-{
-	return (singleton_version(NULL));
+	it = (t_clist *)head;
+	while (it)
+	{
+		if (it->next == head)
+			break ;
+		if (data == it->data || (cmp && !cmp(it->data, data)))
+			return (it);
+		it = it->next;
+	}
+	return (NULL);
 }
 /*
 GPL-3.0 License:

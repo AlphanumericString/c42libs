@@ -6,15 +6,16 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:14:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 22:38:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_char.h"
 
+#include <stddef.h>
 #include <unistd.h>
 
-int	ft_putnchar_fd(char c, int fd, int n)
+int	ft_putnchar_fd(char c, int fd, size_t n)
 {
 	const int	target = n;
 	int			ret;

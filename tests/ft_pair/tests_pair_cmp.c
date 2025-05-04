@@ -61,7 +61,7 @@ static int	test_cmp(void)
 	return (0);
 }
 
-int	test_pair_cmp(void)
+int	tp_cmp(void)
 {
 	int	ret;
 

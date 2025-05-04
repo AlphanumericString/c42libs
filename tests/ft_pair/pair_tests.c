@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:53:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:41:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:56:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,11 @@ int	tests_pair(void)
 {
 	int				collect;
 	const t_test	test[] = {
-	{"test_pair_set", test_pair_set},
-	{"test_pair_new", test_pair_new},
-	{"test_pair_second", test_pair_second},
-	{"test_pair_first", test_pair_first},
-	{"test_pair_cmp", test_pair_cmp},
-	{"test_pair_cmp_first", test_pair_cmp_first},
-	{"test_pair_cmp_second", test_pair_cmp_second},
-	{"tests_pair_destroy", tests_pair_destroy},
+	{"tp_set", tp_set}, {"tp_new", tp_new},
+	{"tp_first", tp_first}, {"tp_second", tp_second},
+	{"tp_cmp", tp_cmp}, {"tp_cmp_first", tp_cmp_first},
+	{"tp_cmp_second", tp_cmp_second},
+	{"tp_destroy", tp_destroy}, {"tp_destroy", tp_destroy_sep},
 	{NULL, NULL}
 	};
 

@@ -186,9 +186,9 @@ link:
 [MIT License](https://opensource.org/licenses/MIT)
 
 ## todo
-- [ ]   libs
-    - [ ]   tests for all functions of *finished* libs module
-    - [ ]   const nazi it. 'grep "^[a-zA-Z].*\*.*" --recursive include/*.h | grep -v "const .*\*.*,.*" | less'
+- [x]   libs
+    - [x]   tests for all functions of *finished* libs module
+    - [x]   const nazi it. 'grep "^[a-zA-Z].*\*.*" --recursive include/*.h | grep -v "const .*\*.*,.*" | less'
                                 line starting with chars containing a '*' inside of include
                                 filter by removing any line not containing 'const *,'
 - [x]   Makefile
@@ -196,8 +196,8 @@ link:
     - [ ]   Add tests for all *finished* libs
         - [x]   ft_map
             - [ ]   map_set is kind of in a weird state, fix it
-        - [~]   ft_string
-            - [~]   t_string
+        - [ ]   ft_string
+            - [ ]   t_string
             - [x]   str
             - [x]   mem
     - [x]   Add test fixture to test memory fail
@@ -212,7 +212,7 @@ link:
             - [ ]   string
             - [x]   mem
             - [x]   chr
-        - [X]   ft_vector
+        - [x]   ft_vector
     - [ ]   Up the coverage percentage (line + branch)(fell lower due to new funcs)
         - [x]   80% for all modules
         - [ ]   90% for all modules
@@ -249,10 +249,10 @@ link:
         - [ ]  ctx relative to program
         - [x]  cli args parser
     - list
-        - [ ]   circular
+        - [x]   circular
         - [ ]   stack
         - [ ]   queue
-    - vector
+    - math 
         - [ ]   matrix
     - map
         - [x]   hash_map (current map (not resizable))

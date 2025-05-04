@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 17:02:31 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:38:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/05 21:34:24 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,23 @@ int	parse_args_test(void)
 	return (0);
 }
 
+static const t_test	*init_tests(void)
+{
+	static const t_test	var[] = {
+	{"ac", targ_ac}, {"av", targ_av}, {"ev", targ_ev}, \
+	{"setup_prog", targ_setup_prog}, {"version", targ_version_test}, \
+	{"prog_name", targ_program_name_test}, \
+	{"opt_list", targ_opt_list_test}, \
+	{"custom checker", targ_custom_checker_test},
+	{NULL, NULL}};
+
+	return (var);
+}
+
 int	tests_args(void)
 {
 	int				collect;
-	const t_test	test[] = {
-	{"getset_version", getset_version_test}, {"getset_progname", \
-		getset_program_name_test}, {"getset_opt_list", getset_opt_list_test},
-	{"parse_args", parse_args_test}, {"setup_prog", tests_setup_prog},
-	{"getset_custom_parser", getset_custom_checker_test}, {NULL, NULL}};
+	const t_test	*test = init_tests();
 
 	collect = 0;
 	run_test(test, &collect);

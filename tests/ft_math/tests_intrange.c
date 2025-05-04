@@ -13,7 +13,7 @@
 #include "ft_math.h"
 #include "tests/tests__all_modules_tests.h"
 
-static int	test_ft_range_errors(void)
+static int	mt_range_errors(void)
 {
 	const int	min = 9;
 	const int	max = 42;
@@ -32,7 +32,7 @@ static int	test_ft_range_errors(void)
 	return (0);
 }
 
-int	test_ft_range(void)
+int	mt_range(void)
 {
 	const int	min = 9;
 	const int	max = 42;
@@ -57,10 +57,10 @@ int	test_ft_range(void)
 	if (ft_range(x, min, max, new_max) != (int)(((double)(x - min) / \
 	(max - min)) * new_max))
 		return (6);
-	return (test_ft_range_errors());
+	return (mt_range_errors());
 }
 
-int	test_ft_range_f(void)
+int	mt_range_f(void)
 {
 	const float	min = 9.0f;
 	const float	max = 42.0f;
@@ -88,7 +88,7 @@ int	test_ft_range_f(void)
 	return (0);
 }
 
-static int	test_ft_range_d_errors(void)
+static int	mt_range_d_errors(void)
 {
 	const double	min = 9.0;
 	const double	max = 42.0;
@@ -107,7 +107,7 @@ static int	test_ft_range_d_errors(void)
 	return (0);
 }
 
-int	test_ft_range_d(void)
+int	mt_range_d(void)
 {
 	const double	min = 9.0;
 	const double	max = 42.0;
@@ -131,7 +131,7 @@ int	test_ft_range_d(void)
 	x = 21;
 	if (ft_range_d(x, min, max, new_max) != ((x - min) / (max - min)) * new_max)
 		return (6);
-	return (test_ft_range_d_errors());
+	return (mt_range_d_errors());
 }
 /*
 GPL-3.0 License:

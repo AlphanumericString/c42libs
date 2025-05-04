@@ -28,7 +28,7 @@ int	t_ll_map(void)
 	int		prev;
 
 	create_2elem_list(&list, (void **)&datas[0], (void **)&datas[1]);
-	map = ft_ll_map(list, add42_ret, free);
+	map = ft_ll_map(list, add42_ret, ft_free);
 	map_err[0] = ft_ll_map(list, NULL, ft_free);
 	map_err[1] = ft_ll_map(NULL, add42_ret, ft_free);
 	map_err[2] = ft_ll_map(list, add42_ret, NULL);

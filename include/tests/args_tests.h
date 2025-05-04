@@ -6,19 +6,24 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:39:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 12:16:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 17:17:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARGS_TESTS_H
 # define ARGS_TESTS_H
 
+// TODO: parse_arg tests :eyes: :sus:
 int	parse_args_test(void);
-int	getset_custom_checker_test(void);
-int	getset_opt_list_test(void);
-int	tests_setup_prog(void);
-int	getset_version_test(void);
-int	getset_program_name_test(void);
+int	targ_custom_checker_test(void);
+int	targ_opt_list_test(void);
+
+int	targ_setup_prog(void);
+int	targ_ac(void);
+int	targ_av(void);
+int	targ_ev(void);
+int	targ_version_test(void);
+int	targ_program_name_test(void);
 
 #endif /* ARGS_TESTS_H */
 /*

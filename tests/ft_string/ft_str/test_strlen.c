@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:26:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:36:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/29 00:19:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-
 #include "tests/tests__all_modules_tests.h"
+
 int	test_strlen(void)
 {
 	char	*str;

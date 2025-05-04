@@ -6,16 +6,24 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:43:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 19:29:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
+#include "ft_string.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests_lambda_functions.h"
 #include "tests/tests__all_modules_tests.h"
+
 #include <stdlib.h>
+
+static int	cmp_string_length(const void *s1, const void *s2)
+{
+	return (ft_strlen(s1) - ft_strlen(s2));
+}
 
 int	t_ll_size(void)
 {
@@ -34,7 +42,7 @@ int	t_ll_size(void)
 		return (1);
 	if (size_ret[2] != 2)
 		return (1);
-	ft_ll_clear(&list, free);
+	ft_ll_clear(&list, ft_free);
 	return (0);
 }
 
@@ -46,16 +54,36 @@ int	t_ll_size_match(void)
 	size_t	size_ret[3];
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	size_ret[0] = ft_ll_size_match(NULL, is42);
-	size_ret[1] = ft_ll_size_match(list, is42);
-	size_ret[2] = ft_ll_size_match(list->next, is42);
+	size_ret[0] = ft_ll_size_data_is(NULL, is42);
+	size_ret[1] = ft_ll_size_data_is(list, is42);
+	size_ret[2] = ft_ll_size_data_is(list->next, is42);
 	if (size_ret[0] != 0)
 		return (1);
 	if (size_ret[1] != 1)
 		return (1);
 	if (size_ret[2] != 0)
 		return (1);
-	ft_ll_clear(&list, free);
+	ft_ll_clear(&list, ft_free);
+	return (0);
+}
+
+int	t_ll_size_cmp(void)
+{
+	const char	*datas[] = {"this", "is", "a", "test", "zod", NULL};
+	t_list		*list;
+	size_t		offset;
+
+	offset = 0;
+	list = NULL;
+	while (datas[offset])
+		ft_ll_push_back(&list, datas[offset++]);
+	if (ft_ll_size_cmp(list, "test", cmp_string_length) != 2)
+		return (1);
+	if (ft_ll_size_cmp(list, "this", (t_data_cmp)ft_strcmp) != 1)
+		return (2);
+	if (ft_ll_size_cmp(list, "zod", (t_data_cmp)ft_strcmp) != 1)
+		return (3);
+	ft_ll_clear(&list, NULL);
 	return (0);
 }
 /*

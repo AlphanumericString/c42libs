@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_gnl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 11:02:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:36:01 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/04/14 00:32:20 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/04/14 00:32:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	split_from(char **dst, char *from, int pos, char delim)
 	return (*dst = ret, (mvstr(from, pos, delim) || 0));
 }
 
-char	*get_next_line(int fd)
+char	*ft_gnl(int fd)
 {
 	static char	loc_buff[1024][BUFFER_SIZE + 1] = {0};
 	char		*ret;

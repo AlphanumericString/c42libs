@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:15:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:18:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/tests__all_modules_tests.h"
@@ -21,7 +22,7 @@
 	ft_ll_add_front(&list, ft_ll_create(data)); // (42)-> (21)-> NULL
 	---
 	ft_ll_add_front(NULL, list); // null resiliency
-	ft_ll_clear(&list, free);
+	ft_ll_clear(&list, ft_free);
 */
 
 int	t_ll_add_front(void)
@@ -41,7 +42,7 @@ int	t_ll_add_front(void)
 		|| list->next->data != data2 || list->next->next)
 		return (1);
 	ft_ll_add_front(NULL, list);
-	ft_ll_clear(&list, free);
+	ft_ll_clear(&list, ft_free);
 	return (0);
 }
 
@@ -61,7 +62,7 @@ int	t_ll_add_back(void)
 		return (1);
 	else if (list->next->data != data2 || list->next->next)
 		return (1);
-	ft_ll_clear(&list, free);
+	ft_ll_clear(&list, ft_free);
 	return (0);
 }
 /*

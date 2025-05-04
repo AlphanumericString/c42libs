@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_set_progname.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:14:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:34:42 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/01/14 00:00:49 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/04/05 18:00:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include <unistd.h>
+#include "ft_args.h"
+#include <stddef.h>
 
-int	ft_putendl_fd(const char *s, int fd)
+static const char	*singleton_progname(const char *progname)
 {
-	int	ret;
+	static const char	*singleton_progname = NULL;
 
-	if (!s)
-		return (-1);
-	ret = ft_putstr_fd(s, fd);
-	if (ret < 0)
-		return (ret);
-	if (write(fd, "\n", 1) < 0)
-		return (-1);
-	return (ret + 1);
+	if (progname)
+		singleton_progname = progname;
+	return (singleton_progname);
+}
+
+void	ft_set_progname(const char *progname)
+{
+	if (progname)
+		singleton_progname(progname);
+	else
+		singleton_progname("a.out");
+}
+
+const char	*ft_progname(void)
+{
+	return (singleton_progname(NULL));
 }
 /*
 GPL-3.0 License:

@@ -6,13 +6,28 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:10:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/04 23:27:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math.h"
+#include <stdio.h>
 
 int	ft_abs(int x)
+{
+	if (x < 0)
+		return (-x);
+	return (x);
+}
+
+long	ft_abs_l(long x)
+{
+	if (x < 0)
+		return (-x);
+	return (x);
+}
+
+ssize_t	ft_abs_ssize_t(ssize_t x)
 {
 	if (x < 0)
 		return (-x);

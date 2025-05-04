@@ -6,14 +6,47 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:20:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 16:53:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math.h"
 #include "tests/tests__all_modules_tests.h"
+#include <sys/types.h>
 
-int	test_ft_abs(void)
+int	mt_abs_l(void)
+{
+	long	x;
+
+	x = -42;
+	if (ft_abs_l(x) != 42)
+		return (1);
+	x = 42;
+	if (ft_abs_l(x) != 42)
+		return (1);
+	x = 0;
+	if (ft_abs_l(x) != 0)
+		return (1);
+	return (0);
+}
+
+int	mt_abs_ssize(void)
+{
+	ssize_t	x;
+
+	x = -42;
+	if (ft_abs_ssize_t(x) != 42)
+		return (1);
+	x = 42;
+	if (ft_abs_ssize_t(x) != 42)
+		return (1);
+	x = 0;
+	if (ft_abs_ssize_t(x) != 0)
+		return (1);
+	return (0);
+}
+
+int	mt_abs(void)
 {
 	int	x;
 

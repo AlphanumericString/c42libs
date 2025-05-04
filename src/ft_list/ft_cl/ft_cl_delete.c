@@ -1,38 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_progname.c                                      :+:      :+:    :+:   */
+/*   ft_cl_delete.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 00:00:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/27 21:34:10 by iron              #+#    #+#             */
+/*   Updated: 2025/04/06 17:07:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_args.h"
-#include <stddef.h>
+#include "ft_list.h"
+#include "ft_list_types.h"
+#include "ft_string.h"
+#include <stdlib.h>
 
-static const char	*singleton_progname(const char *progname)
+size_t	ft_cl_delete_range(t_clist *start, const t_clist *target,
+		t_data_apply del)
 {
-	static const char	*singleton_progname = NULL;
+	t_clist	*prev_r;
+	t_clist	*next_r;
+	t_clist	*nxt_it;
+	int		i;
 
-	if (progname)
-		singleton_progname = progname;
-	return (singleton_progname);
+	i = 0;
+	prev_r = start->prev;
+	next_r = target->next;
+	while (start != target)
+	{
+		i++;
+		if (del)
+			del(start->data);
+		nxt_it = start->next;
+		ft_free(start);
+		start = nxt_it;
+	}
+	prev_r->next = next_r;
+	next_r->prev = prev_r;
+	return (i);
 }
 
-void	ft_set_progname(const char *progname)
+size_t	ft_cl_delete(t_clist **head, t_data_apply del)
 {
-	if (progname)
-		singleton_progname(progname);
-	else
-		singleton_progname("a.out");
-}
+	int		ret;
+	void	*data;
 
-const char	*ft_progname(void)
-{
-	return (singleton_progname(NULL));
+	ret = 0;
+	while (*head)
+	{
+		data = ft_cl_pop(head);
+		if (del)
+			del(data);
+		ret++;
+	}
+	return (ret);
 }
 /*
 GPL-3.0 License:

@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:04:21 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:19:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -40,9 +41,9 @@ int	t_dl_get_datas(void)
 	talloc_set_failpoint(0);
 	if (ft_dl_get_datas(list))
 		return (talloc_set_failpoint(prev), \
-		ft_dl_clear(&list, free), 5);
+		ft_dl_clear(&list, ft_free), 5);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, ft_free);
 	free(datas);
 	return (0);
 }
@@ -69,9 +70,9 @@ int	t_dl_get_nodes(void)
 	talloc_set_failpoint(0);
 	if (ft_dl_get_nodes(list))
 		return (talloc_set_failpoint(prev), \
-		ft_dl_clear(&list, free), 5);
+		ft_dl_clear(&list, ft_free), 5);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, ft_free);
 	free(nodes);
 	return (0);
 }

@@ -14,7 +14,7 @@
 #include "ft_math_types.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_ft_complex_abs(void)
+int	mt_complex_abs(void)
 {
 	const t_complex	x = {42, 0};
 	const t_complex	y = {0, 42};
@@ -33,7 +33,7 @@ int	test_ft_complex_abs(void)
 	return (0);
 }
 
-int	test_ft_complex_addl(void)
+int	mt_complex_addl(void)
 {
 	const t_complex	x = {42, 0};
 	const t_complex	y = {0, 42};
@@ -48,7 +48,7 @@ int	test_ft_complex_addl(void)
 	return (0);
 }
 
-int	test_ft_complex_mull(void)
+int	mt_complex_mull(void)
 {
 	const t_complex	x = {42, 0};
 	const t_complex	y = {0, 42};
@@ -63,7 +63,7 @@ int	test_ft_complex_mull(void)
 	return (0);
 }
 
-int	test_ft_complex_muld(void)
+int	mt_complex_muld(void)
 {
 	const t_complex	x = {42, 0};
 	const t_complex	y = {0, 42};

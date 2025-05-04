@@ -6,15 +6,38 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:33:48 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:17:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests__all_modules_tests.h"
 #include <stdlib.h>
+
+int	t_ll_begin(void)
+{
+	t_list	*list;
+	int		*data;
+	int		*data2;
+	t_list	*first;
+
+	create_2elem_list(&list, (void **)&data, (void **)&data2);
+	first = ft_ll_begin(list);
+	if (!first)
+		return (1);
+	else if (first->data != data)
+		return (2);
+	else if (first->next != list->next)
+		return (3);
+	first = ft_ll_begin(NULL);
+	if (first)
+		return (4);
+	ft_ll_clear(&list, ft_free);
+	return (0);
+}
 
 int	t_ll_end(void)
 {
@@ -28,13 +51,13 @@ int	t_ll_end(void)
 	if (!last)
 		return (1);
 	else if (last->data != data2)
-		return (1);
+		return (2);
 	else if (last->next)
-		return (1);
+		return (3);
 	last = ft_ll_end(NULL);
 	if (last)
-		return (1);
-	ft_ll_clear(&list, free);
+		return (4);
+	ft_ll_clear(&list, ft_free);
 	return (0);
 }
 
@@ -47,15 +70,18 @@ int	t_ll_at(void)
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	at = ft_ll_at(list, 1);
-	if (!at || at->data != data2 || at->next)
+	if (!at || at == list)
 		return (1);
-	at = ft_ll_at(list, 456);
-	if (at)
-		return (1);
-	at = ft_ll_at(NULL, 0);
-	if (at)
-		return (1);
-	ft_ll_clear(&list, free);
+	else if (at->data != data2 || at->next)
+		return (2);
+	at = ft_ll_at(list, 0);
+	if (!at || at != list)
+		return (3);
+	else if (at->data != data || at->next != list->next)
+		return (4);
+	if (ft_ll_at(list, 32) || ft_ll_at(NULL, 0))
+		return (5);
+	ft_ll_clear(&list, ft_free);
 	return (0);
 }
 /*

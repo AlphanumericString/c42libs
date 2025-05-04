@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:08:55 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:37:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:32:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 
-t_vector	*ft_vec_map(t_vector *vec, t_data_tr func)
+t_vector	*ft_vec_map(const t_vector *restrict vec, const t_data_tr func)
 {
 	t_vector	*ret;
 	size_t		i;

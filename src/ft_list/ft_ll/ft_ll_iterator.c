@@ -6,11 +6,19 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:43:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 23:48:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 01:28:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "ft_list_types.h"
+
+t_list	*ft_ll_begin(const t_list *lst)
+{
+	if (!lst)
+		return (NULL);
+	return ((t_list *)lst);
+}
 
 t_list	*ft_ll_end(const t_list *lst)
 {

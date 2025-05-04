@@ -1,30 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_cl_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 20:05:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:34:11 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/27 21:34:05 by iron              #+#    #+#             */
+/*   Updated: 2025/04/06 17:04:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_list.h"
+#include "ft_list_types.h"
 
-long long	ft_atoll(const char *str)
+t_clist	*ft_cl_create(const void *data)
 {
-	return (ft_atoll_base(str, "0123456789"));
+	t_clist	*ret;
+
+	ret = ft_cl_new();
+	if (!ret)
+		return (ret);
+	ret->data = (void *)data;
+	return (ret);
 }
 
-long	ft_atol(const char *str)
+t_clist	*ft_cl_copy_node(const t_clist *const other)
 {
-	return ((long)ft_atoll_base(str, "0123456789"));
+	t_clist	*ret;
+
+	ret = ft_cl_new();
+	if (!ret)
+		return (ret);
+	ret->data = (void *)other->data;
+	ret->next = (t_clist *)other->next;
+	ret->prev = (t_clist *)other->prev;
+	return (ret);
 }
 
-int	ft_atoi(const char *str)
+t_clist	*ft_cl_copy_list(const t_clist *const other)
 {
-	return (ft_atoi_base(str, "0123456789"));
+	const t_clist	*it;
+	t_clist			*ret;
+	t_clist			*r_head;
+
+	ret = NULL;
+	it = other;
+	while (it)
+	{
+		ret = ft_cl_copy_node(it);
+		if (!ret)
+			return (ft_cl_clear(&r_head, NULL), NULL);
+		ft_cl_add_back(&r_head, ret);
+		if (it->next == other)
+			break ;
+	}
+	return (r_head);
 }
 /*
 GPL-3.0 License:

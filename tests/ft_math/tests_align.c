@@ -13,7 +13,7 @@
 #include "ft_math.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_ft_align_2_multiple(void)
+int	mt_align_2_multiple(void)
 {
 	size_t	nbr;
 
@@ -30,7 +30,7 @@ int	test_ft_align_2_multiple(void)
 	return (0);
 }
 
-int	test_ft_align_2(void)
+int	mt_align_2(void)
 {
 	size_t	nbr;
 
@@ -49,7 +49,7 @@ int	test_ft_align_2(void)
 	return (0);
 }
 
-int	test_ft_align(void)
+int	mt_align(void)
 {
 	size_t	value;
 

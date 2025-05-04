@@ -6,16 +6,19 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:31:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:01:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_args.h"
+#include "internal/args_helper.h"
 
-void	ft_setup_prog(const char *const *av)
+void	ft_setup_prog(const char *const *const av)
 {
 	ft_set_progname(av[0]);
 	ft_set_version(VERSION);
+	ft_set_av(av);
+	ft_set_ev_from_av(av, ft_ac());
 }
 /*
 GPL-3.0 License:

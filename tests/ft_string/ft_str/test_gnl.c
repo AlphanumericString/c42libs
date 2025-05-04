@@ -64,12 +64,12 @@ int	test_gnl(void)
 	i = 0;
 	while (i < lines_count)
 	{
-		line = get_next_line(fd);
+		line = ft_gnl(fd);
 		if (ft_strcmp(line, test_lines[i++]) != 0)
 			return (i + 1);
 		ft_free(line);
 	}
-	line = get_next_line(fd);
+	line = ft_gnl(fd);
 	if (line)
 		return (2);
 	return (ft_free(line), destroy_test_file(fd, TESTS_FPREFIX "gnl.txt"), 0);

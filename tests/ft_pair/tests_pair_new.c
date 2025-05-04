@@ -15,7 +15,7 @@
 #include "tests/pair_tests.h"
 #include "tests/tests.h"
 
-int	test_pair_new(void)
+int	tp_new(void)
 {
 	t_pair	*pair;
 	void	*a;
@@ -37,7 +37,7 @@ int	test_pair_new(void)
 	if (ft_pair_new(NULL, NULL))
 		return (4);
 	talloc_set_failpoint(prev);
-	ft_pair_destroy_2(&pair, NULL, NULL);
+	ft_pair_destroy_sep(&pair, NULL, NULL);
 	return (0);
 }
 /*

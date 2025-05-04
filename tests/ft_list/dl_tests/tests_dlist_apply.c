@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:55:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:19:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -36,7 +37,7 @@ int	t_dl_apply(void)
 		return (2);
 	else if (*(int *)list->next->data != 63)
 		return (3);
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, ft_free);
 	return (0);
 }
 
@@ -53,7 +54,7 @@ int	t_dl_apply_range(void)
 	else if (*(int *)list->data != 84 || \
 	*(int *)list->next->data != 21)
 		return (1);
-	return (ft_dl_clear(&list, free), 0);
+	return (ft_dl_clear(&list, ft_free), 0);
 }
 
 int	t_dl_apply_range_node(void)
@@ -69,7 +70,7 @@ int	t_dl_apply_range_node(void)
 	else if (*(int *)list->data != 84 || \
 	*(int *)list->next->data != 21)
 		return (1);
-	return (ft_dl_clear(&list, free), 0);
+	return (ft_dl_clear(&list, ft_free), 0);
 }
 /*
 GPL-3.0 License:

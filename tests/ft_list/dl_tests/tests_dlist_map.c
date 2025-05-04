@@ -30,8 +30,8 @@ static int	base_case(void)
 	int		*data2;
 
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
-	map2 = ft_dl_map(list, NULL, free);
-	map = ft_dl_map(list, add42_ret, free);
+	map2 = ft_dl_map(list, NULL, ft_free);
+	map = ft_dl_map(list, add42_ret, ft_free);
 	if (!map)
 		return (1);
 	else if (*(int *)map->data != 84)
@@ -47,7 +47,7 @@ static int	base_case(void)
 	map2 = ft_dl_map(NULL, NULL, NULL);
 	if (map2)
 		return (7);
-	return (ft_dl_clear(&list, free), ft_dl_delete(&map, ft_free), 0);
+	return (ft_dl_clear(&list, ft_free), ft_dl_delete(&map, ft_free), 0);
 }
 
 static int	merror_case(void)
@@ -61,7 +61,7 @@ static int	merror_case(void)
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	map = ft_dl_map(list, add42_ret, free);
+	map = ft_dl_map(list, add42_ret, ft_free);
 	if (map)
 		return (talloc_set_failpoint(prev), 8);
 	talloc_set_failpoint(prev);

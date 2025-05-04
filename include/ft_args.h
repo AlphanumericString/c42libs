@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 17:15:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,30 @@
 # include "ft_args_types.h"
 
 /* @file: src/ft_args/ft_arg_custom_checker.c */
-void		ft_arg_set_custom_checker(t_data_is custom_checker);
-t_data_is	ft_arg_get_custom_checker(void);
+void				ft_arg_set_custom_checker(t_data_is custom_checker);
+t_data_is			ft_arg_get_custom_checker(void);
 
 /* @file: src/ft_args/ft_setup_prog.c */
-void		ft_setup_prog(const char *const *av);
+void				ft_setup_prog(const char *const *const av);
 
 /// @file: src/ft_args/ft_parse_args
-int			ft_parse_args(const char **argv, void *usr_control_struct);
+int					ft_parse_args(const char **argv, void *usr_control_struct);
 
-void		ft_set_opt_list(const t_opt *opt_list);
-const t_opt	*ft_get_opt_list(void);
+void				ft_set_opt_list(const t_opt *opt_list);
+const t_opt			*ft_get_opt_list(void);
 
-void		ft_set_progname(const char *program_name);
-const char	*ft_progname(void);
-
-void		ft_set_version(const char *version);
-const char	*ft_progversion(void);
+// getters for vals
+int					ft_ac(void);
+const char *const	*ft_av(void);
+const char *const	*ft_ev(void);
+const char			*ft_progname(void);
+const char			*ft_version(void);
+// set vals
+void				ft_set_progname(const char *program_name);
+void				ft_set_version(const char *version);
+int					ft_set_av(const char *const *const av);
+int					ft_set_ac(int ac);
+int					ft_set_ev(const char *const *const ev);
 
 #endif /* FT_ARGS_H */
 /*

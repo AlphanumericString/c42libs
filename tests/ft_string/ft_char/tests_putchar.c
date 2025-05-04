@@ -1,33 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_progname.c                                   :+:      :+:    :+:   */
+/*   tests_putchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 22:37:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 16:01:41 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/04/06 23:00:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_args.h"
+#include "ft_char.h"
 #include "ft_string.h"
+#include "tests/tests.h"
+#include <fcntl.h>
 #include "tests/tests__all_modules_tests.h"
 
-int	getset_program_name_test(void)
+static int	test_bad_fd(char *file)
 {
-	char	*s1;
-	char	*s2;
+	const int	fd = -1;
 
-	s1 = "toto";
-	s2 = 0;
-	ft_set_progname(s1);
-	if (ft_progname() != s1)
-		return (ft_putstr_fd(ft_progname(), 2), 1);
-	ft_set_progname(s2);
-	if (ft_progname() == s2)
-		return (2);
+	if (ft_putchar_fd('a', fd) != -1)
+		return (11);
+	if (ft_putchar_fd('\n', fd) != -1)
+		return (12);
+	ft_free(file);
 	return (0);
+}
+
+int	test_ft_putchar(void)
+{
+	const char	*file = "ft_putchar";
+	char		buf[256];
+	char		c;
+	int			fd;
+	int			ret;
+
+	c = 0;
+	fd = open_test_file((char **)&file);
+	if (fd < 0)
+		return (1);
+	while ((unsigned char)c < 255)
+		if (ft_putchar_fd(c++, fd) == -1)
+			return (2);
+	fd = (close(fd), open(file, O_RDONLY));
+	if (fd < 0)
+		return (3);
+	ret = read(fd, buf, 256);
+	if (ret != 255)
+		return (4);
+	buf[255] = 0;
+	while (ret--)
+		if (buf[ret] != --c)
+			return (5);
+	return (destroy_test_file(fd, (char *)file), test_bad_fd((char *)file));
 }
 /*
 GPL-3.0 License:

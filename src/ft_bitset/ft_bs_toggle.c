@@ -1,0 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bs_toggle.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 15:06:59 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/04/10 12:44:46 by bgoulard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_bitset.h"
+#include "ft_bitset_types.h"
+
+bool		ft_bs_toggle(t_bitset *bitset, size_t idx)
+{
+	if (idx >= bitset->_capacity * 8)
+		return (false);
+	bitset->bits[idx / 8].raw ^= (1 << (idx % 8));
+	return (true);
+}
+
+bool		ft_bs_toggle_raw(t_bitset *bitset, size_t index)
+{
+	if (index % 8)
+		return (false);
+	bitset->bits[index / 8].raw ^= 0xFF;
+	return (true);
+}
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

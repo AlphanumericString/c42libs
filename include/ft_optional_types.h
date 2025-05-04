@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:07:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/29 15:00:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef enum e_optional_type
 
 typedef struct s_optional
 {
-	t_optional_type	pres;
-	void			*val;
+	t_optional_type				pres;
+	void			*restrict	val;
 }				t_optional;
 
 #endif /* FT_OPTIONAL_TYPES_H */

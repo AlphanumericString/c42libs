@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:39:35 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 12:16:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 22:41:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	test_ft_tolower(void);
 int	test_ft_isalpha(void);
 int	test_ft_isalnum(void);
 int	test_ft_putchar(void);
+int	test_ft_putnchar(void);
 int	test_ft_ishexdigit(void);
 int	test_ft_isspace(void);
 int	test_ft_isoctdigit(void);

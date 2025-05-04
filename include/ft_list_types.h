@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 10:37:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:24:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FT_LIST_TYPES_H
 
 # include <stdbool.h>
-# define FTLIST_SUCCESS 0
-# define FTLIST_FAILURE 1
+# define FTLIST_SUCCESS EXIT_SUCCESS
+# define FTLIST_FAILURE EXIT_FAILURE
 
 /// @brief Structure representing a node in a list
 /// @param data The data of the node
@@ -36,6 +36,11 @@ typedef struct s_dl_list
 	struct s_dl_list	*prev;
 	void				*data;
 }						t_dlist;
+
+typedef t_dlist			t_clist;
+
+/// @brief Type of function to apply on a doubly linked list node
+typedef void			(*t_cnode_apply)(t_clist *);
 
 /// @brief Type of function to apply on a doubly linked list node
 typedef void			(*t_dnode_apply)(t_dlist *);

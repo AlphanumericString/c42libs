@@ -60,10 +60,10 @@ static int	base_case(void)
 	*(pp[3]) = 42;
 	*(pp[4]) = 42;
 	vec = ft_vec_convert_alloccarray((void **)pp, 0);
-	ft_vec_filter(vec, is42, free);
+	ft_vec_filter(vec, is42, ft_free);
 	if (ft_vec_at(vec, 0) != pp[0])
 		return (2);
-	return (ft_vec_apply(vec, free), ft_vec_destroy(&vec), 0);
+	return (ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
 }
 
 int	test_vec_filter(void)

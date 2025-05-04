@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:15:10 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/05 21:34:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	loc_checker(const void *arg)
 	return (false);
 }
 
-int	getset_custom_checker_test(void)
+int	targ_custom_checker_test(void)
 {
 	ft_arg_set_custom_checker(loc_checker);
 	if (ft_arg_get_custom_checker() != loc_checker)

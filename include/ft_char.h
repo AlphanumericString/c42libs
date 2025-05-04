@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:59:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/16 16:31:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 22:52:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 /* ************************************************************************** */
 
 # include <stdbool.h>
+# include <stddef.h>
 
 /// @file: src/ft_string/ft_char/ft_isoctdigit.c
 int		ft_isoctdigit(int c);
@@ -97,7 +98,7 @@ int		ft_putchar_fd(char c, int fd);
 /// @param fd file descriptor to print on
 /// @param n number of time to print the char
 /// @return n if the chars were printed, -1 otherwise
-int		ft_putnchar_fd(char c, int fd, int n);
+int		ft_putnchar_fd(char c, int fd, size_t n);
 
 /// @brief pass a char to lower case
 /// @param c char to pass to lower case

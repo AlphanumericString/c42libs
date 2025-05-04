@@ -6,15 +6,29 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:55:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/29 20:14:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:44:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DEFS_H
 # define FT_DEFS_H
 
-# include <stdbool.h>
+// stddef -> size_t
+// stdbool -> boolean types
+// sys/types -> ssize_t
 # include <stddef.h>
+# include <stdbool.h>
+# include <sys/types.h>
+
+/// @brief	interface for string hashes.
+/// @param	str	The string to hash
+/// @param	str_len	The lenght of the string to hash, if -1 hashes until '\0'
+typedef size_t		(*t_strhash)(const char *str, ssize_t str_len);
+
+/// @brief Interface for string hashes.
+/// @param str	The string to hash
+/// @param data_len	The lenght of the string to hash, if -1 hashes until '\0'
+typedef size_t		(*t_memhash)(const void *data, size_t data_len);
 
 /// @brief	Type of function to compare two elements
 /// @param	A The first element to compare

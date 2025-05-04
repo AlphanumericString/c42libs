@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:21:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:38:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:22:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_vector.h"
 #include "ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
@@ -33,7 +34,7 @@ static int	base_case(void)
 	else if (*(int *)ft_vec_at(ret, 0) != 84 || *(int *)ft_vec_at(ret, 1) != 85
 		|| *(int *)ft_vec_at(ret, 2) != 86)
 		return (2);
-	ft_vec_apply(ret, free);
+	ft_vec_apply(ret, ft_free);
 	ft_vec_destroy(&vec);
 	ft_vec_destroy(&ret);
 	return (0);

@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:39:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/16 16:43:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 23:07:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "tests/str__str_tests.h"
 #include "tests/tests.h"
 #include <stddef.h>
@@ -17,9 +18,7 @@
 static const t_test	*load_tests01(void)
 {
 	static t_test	tb[] = {{"putstr", test_putstr}, {"putendl", test_putendl},
-	{"putnbr", test_putnbr}, {"itoa", test_itoa}, {"utoa", test_utoa}, \
-	{"itoa_base", test_itoa_base}, {"atoi", test_atoi}, {"atoi_base", \
-	test_atoi_base}, {"tok", test_strtok}, {"split", test_split},
+	{"putnbr", test_putnbr}, {"tok", test_strtok}, {"split", test_split},
 	{"splits", tests_splits}, {"chr", test_strchr}, {"dup", test_strdup}, \
 	{"iteri", test_striteri}, {"join", test_strjoin}, {"lcat", test_strlcat}, \
 	{"lcpy", test_strlcpy}, {"len", test_strlen}, {"mapi", test_strmapi}, \
@@ -37,7 +36,18 @@ static const t_test	*load_tests01(void)
 	{"cnb", test_strcnb}, {"cspn", test_strcspn}, \
 	{"end_with", test_strend_with}, {"start_with", test_strstart_with}, \
 	{"spn", test_strspn}, {"append_c", test_strappend_c},
-	{"rev", test_strrev}, {"perror", test_perror}, {NULL, NULL}};
+	{"rev", test_strrev}, {"perror", test_perror}, \
+	{"atol_base", test_atol_base}, {NULL, NULL}};
+
+	return (tb);
+}
+
+static const t_test	*load_tests02(void)
+{
+	static t_test	tb[] = {{"itoa", test_itoa}, {"utoa", test_utoa}, \
+	{"itoa_base", test_itoa_base}, {"atoi", test_atoi}, \
+	{"atoi_base", test_atoi_base}, {"atol", test_atol}, {"atoll", test_atoll}, \
+	{"atol_base", test_atol_base}, {NULL, NULL}};
 
 	return (tb);
 }
@@ -45,8 +55,19 @@ static const t_test	*load_tests01(void)
 int	str_tests(void)
 {
 	int				collect;
-	const t_test	*tests = load_tests01();
+	const t_test	*tests_tb[] = {load_tests01(), load_tests02(), NULL};
+	t_test			tests[999];
+	int				it[3];
 
+	ft_bzero(tests, sizeof(tests));
+	ft_bzero(it, sizeof(it));
+	while (tests_tb[it[0]])
+	{
+		while (tests_tb[it[0]][it[1]].name)
+			tests[it[2]++] = tests_tb[it[0]][it[1]++];
+		it[1] = 0;
+		it[0]++;
+	}
 	collect = 0;
 	run_test(tests, &collect);
 	return (collect);

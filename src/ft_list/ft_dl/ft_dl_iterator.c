@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:27 by iron              #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/31 01:40:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_dlist	*ft_dl_at(const t_dlist *head, size_t index)
 
 	it = (t_dlist *)head;
 	i = 0;
-	while (i != index)
+	while (i != index && it)
 	{
 		i++;
 		it = it->next;

@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:22:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:36:19 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/29 00:21:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-
 #include "tests/tests__all_modules_tests.h"
+
 int	test_str_isbool(void)
 {
 	if (ft_str_isbool("1") != 1 || ft_str_isbool("true") != 1)

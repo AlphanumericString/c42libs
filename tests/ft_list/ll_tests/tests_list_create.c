@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:23:08 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 15:01:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:17:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "tests/ll_tests.h"
 #include "tests/tests.h"
@@ -31,7 +32,7 @@ int	t_ll_create(void)
 		return (2);
 	else if (list->next)
 		return (3);
-	ft_ll_delete(&list, free);
+	ft_ll_delete(&list, ft_free);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_ll_create(data))

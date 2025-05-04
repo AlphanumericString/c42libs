@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:58:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:18:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
+#include "ft_string.h"
 #include "tests/tests.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
@@ -39,7 +40,7 @@ int	t_dl_create(void)
 	if (ft_dl_create(data))
 		return (talloc_set_failpoint(prev), 5);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, ft_free);
 	return (0);
 }
 /*

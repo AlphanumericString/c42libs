@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 15:18:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:39:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/05 17:32:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "tests/args_tests.h"
 # include "tests/char_tests.h"
+# include "tests/cl_tests.h"
 # include "tests/dl_tests.h"
 # include "tests/ll_tests.h"
 # include "tests/map_tests.h"

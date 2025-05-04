@@ -16,7 +16,7 @@
 # include <stddef.h>
 
 // maximum number of file descriptors
-//  - get_next_line
+//  - ft_gnl
 # ifndef MAX_FD
 #  ifdef TEST
 #   define MAX_FD 5
@@ -36,7 +36,7 @@
 # endif
 
 // buffer size for temporary read buffers
-//  - get_next_line
+//  - ft_gnl
 //  - ft_fd_to_buff
 # ifndef BUFFER_SIZE
 #  ifdef TEST

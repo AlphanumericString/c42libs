@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 23:04:56 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 23:23:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "ft_defs.h"
 #include "ft_string.h"
 #include "ft_pair.h"
-
 
 void	ft_pair_destroy(t_pair **pair, const t_data_apply del_f)
 {
@@ -30,7 +29,8 @@ void	ft_pair_destroy(t_pair **pair, const t_data_apply del_f)
 	return (ft_free_clear((void **)pair));
 }
 
-void	ft_pair_destroy_2(t_pair **pair, const t_data_apply del_f, const t_data_apply del_s)
+void	ft_pair_destroy_sep(t_pair **pair, const t_data_apply del_f, \
+		const t_data_apply del_s)
 {
 	if (!pair)
 		return ;

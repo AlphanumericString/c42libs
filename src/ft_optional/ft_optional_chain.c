@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:06:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/13 18:02:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:33:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	ft_optional_chain(t_optional *opt, const t_data_tr_i *f)
 	return (true);
 }
 
-t_optional	ft_optional_map(t_optional *opt, void *(**f)(void *))
+t_optional	ft_optional_map(t_optional *restrict opt, const t_data_tr_i f[])
 {
 	t_optional	ret;
 

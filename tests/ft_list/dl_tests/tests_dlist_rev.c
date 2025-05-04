@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:08:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:19:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -32,7 +33,7 @@ int	t_dl_rev(void)
 		return (1);
 	else if (list->data != original_data2 || list->next->data != original_data1)
 		return (1);
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, ft_free);
 	if (ft_dl_rev(NULL))
 		return (1);
 	list = NULL;

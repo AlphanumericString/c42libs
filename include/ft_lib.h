@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:29:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/22 19:58:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 23:30:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_C42LIB_H
-# define FT_C42LIB_H
+#ifndef FT_LIB_H
+# define FT_LIB_H
 
 /* ************************************************************************** */
 /* 					                                                          */
@@ -48,12 +48,10 @@ extern "C" {
 # include "ft_vector.h"
 
 # ifdef __cplusplus
-
 }
-
 # endif
 
-#endif /* FT_C42LIB_H */
+#endif /* FT_LIB_H */
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

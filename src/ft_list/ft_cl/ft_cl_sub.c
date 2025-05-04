@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_dl_sub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:14:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:34:44 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/27 21:34:45 by iron              #+#    #+#             */
+/*   Updated: 2025/04/05 05:47:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include <unistd.h>
+#include "ft_list.h"
 
-int	ft_putstr_fd(const char *s, int fd)
+t_clist	*ft_cl_subrange(const t_clist *src, const t_clist *restrict end)
 {
-	if (!s)
-		return (-1);
-	return (write(fd, s, ft_strlen(s)));
+	const t_clist	*it;
+	t_clist			*new_list;
+
+	if (!src)
+		return (NULL);
+	if (!end)
+		return (ft_cl_copy_list(src));
+	if (src == end)
+		return (ft_cl_create(src->data));
+	it = src;
+	while (it && it != end)
+	{
+		if (ft_cl_push_back(&new_list, it->data) == NULL)
+			return (ft_cl_clear(&new_list, NULL), NULL);
+		if (it->next == src)
+			break ;
+		it = it->next;
+	}
+	if (it == end)
+		return (new_list);
+	return (ft_cl_clear(&new_list, NULL), NULL);
 }
 /*
 GPL-3.0 License:

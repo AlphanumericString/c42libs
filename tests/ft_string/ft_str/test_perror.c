@@ -52,7 +52,7 @@ int	test_perror(void)
 	i = 0;
 	while (i < sizeof(expected) / sizeof(expected[0]))
 	{
-		rd_buff = get_next_line(fd);
+		rd_buff = ft_gnl(fd);
 		if (ft_strcmp(rd_buff, expected[i++]))
 			return (i);
 		ft_free_clear((void **)&rd_buff);

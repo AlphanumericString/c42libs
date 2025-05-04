@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:44:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:17:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -50,7 +51,7 @@ int	t_ll_subrange(void)
 	sub = ft_ll_subrange(list, list);
 	if (ft_ll_size(sub) != 1 || sub->data != data2)
 		return (5);
-	return (ft_ll_clear(&sub, NULL), ft_ll_clear(&list, free), 0);
+	return (ft_ll_clear(&sub, NULL), ft_ll_clear(&list, ft_free), 0);
 }
 /*
 GPL-3.0 License:

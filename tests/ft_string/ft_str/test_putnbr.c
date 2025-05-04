@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:36:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 23:22:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static int	file_cmp(const char *file_name, const char *expected)
 
 static int	test_positives(void)
 {
-	const int	cases[] = {1, 9, 10, 99, 100, 999, 1000, 9999, 10000, \
+	const int	cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000, \
 		INT_MAX};
-	const char	*expected = "1\n9\n10\n99\n100\n999\n1000\n9999\n10000\n"
+	const char	*expected = "0\n1\n9\n10\n99\n100\n999\n1000\n9999\n10000\n"
 		"2147483647\n";
 	const char	*file_name = TESTS_FPREFIX "putnbr.txt";
 

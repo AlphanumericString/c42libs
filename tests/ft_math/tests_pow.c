@@ -13,7 +13,7 @@
 #include "ft_math.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_ft_pow(void)
+int	mt_pow(void)
 {
 	size_t	x;
 	size_t	y;

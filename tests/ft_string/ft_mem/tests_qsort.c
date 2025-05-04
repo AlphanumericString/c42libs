@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:20:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:48:30 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 01:20:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int	test_qsort(void)
 		i++;
 	}
 	if (tot_err != 0)
-		return (printf("total fail %d (%2.2f%%)", tot_err, \
-		(double) tot_err / NB_TESTS), 1);
+		return (1);
 	ft_qsort(ar_err, 3, sizeof(ar_err[0]), NULL);
 	ft_qsort(ar_err, 3, 0, cmp_int);
 	ft_qsort(ar_err, 1, sizeof(int), cmp_int);

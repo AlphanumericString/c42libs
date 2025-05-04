@@ -6,23 +6,30 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:55:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/05 21:35:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_args.h"
 #include "ft_string.h"
 #include "tests/tests__all_modules_tests.h"
+#include <stdio.h>
 
-int	tests_setup_prog(void)
+int	targ_setup_prog(void)
 {
-	const char	*argv[] = {"dummy_prog", "--test", NULL};
+	const char	*argv[] = {"dummy_prog", "--test", NULL, "ev_start", NULL};
 
 	ft_setup_prog(argv);
 	if (ft_progname() != argv[0])
 		return (1);
-	if (ft_strcmp(ft_progversion(), VERSION) != 0)
+	if (ft_strcmp(ft_version(), VERSION) != 0)
 		return (2);
+	if (ft_ac() != 2)
+		return (3);
+	if (ft_ev() != &(argv[3]) || ft_ev()[0] != argv[3])
+		return (4);
+	if (ft_av()[1] != argv[1])
+		return (5);
 	return (0);
 }
 /*

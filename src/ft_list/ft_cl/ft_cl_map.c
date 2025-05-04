@@ -1,49 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_puchar.c                                     :+:      :+:    :+:   */
+/*   ft_dl_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:01:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:35:34 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/10 12:21:43 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/04/05 05:37:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/tests.h"
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include "tests/tests__all_modules_tests.h"
+#include "ft_list.h"
+#include "ft_list_types.h"
 
-int	test_ft_putchar(void)
+t_clist	*ft_cl_map(const t_clist *lst, t_data_tr f, t_data_apply del)
 {
-	const char	*file;
-	char		buf[256];
-	char		c;
-	int			fd;
-	int			ret;
+	const t_clist	*it;
+	t_clist			*ret;
+	t_clist			*tmp;
 
-	file = "ft_putchar";
-	c = 0;
-	fd = open_test_file((char **)&file);
-	if (fd < 0)
-		return (1);
-	while ((unsigned char)c < 255)
-		ft_putchar_fd(c++, fd);
-	close(fd);
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (2);
-	ret = read(fd, buf, 256);
-	if (ret != 255)
-		return (3);
-	buf[255] = 0;
-	while (ret--)
-		if (buf[ret] != --c)
-			return (4);
-	return (destroy_test_file(fd, (char *)file), free((char *)file), 0);
+	if (!lst || !f)
+		return (NULL);
+	ret = NULL;
+	it = lst;
+	while (it)
+	{
+		tmp = ft_cl_create(f(it->data));
+		if (!tmp)
+			return (ft_cl_clear(&ret, del), NULL);
+		ft_cl_add_back(&ret, tmp);
+		if (it->next == lst)
+			break ;
+		it = it->next;
+	}
+	return (ret);
 }
 /*
 GPL-3.0 License:

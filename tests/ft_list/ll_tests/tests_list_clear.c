@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:21:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:39:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:17:24 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "ft_string.h"
 #include "tests/ll_tests.h"
 #include <stdlib.h>
 
@@ -24,7 +25,7 @@ int	t_ll_clear(void)
 	list = ft_ll_create(data);
 	ft_ll_clear(&list, NULL);
 	list = ft_ll_create(data);
-	ft_ll_clear(&list, free);
+	ft_ll_clear(&list, ft_free);
 	ft_ll_clear(NULL, NULL);
 	return (0);
 }

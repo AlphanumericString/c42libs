@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 17:09:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:00:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,55 @@
 #include "ft_pair.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	tests_pair_destroy(void)
+int	tp_destroy(void)
 {
 	t_pair	*pair;
 
 	pair = ft_pair_new("key", "value");
-	ft_pair_destroy_2(&pair, NULL, NULL);
+	ft_pair_destroy(&pair, NULL);
 	if (pair != NULL)
 		return (1);
 	pair = ft_pair_new(ft_strdup("key"), ft_strdup("value"));
-	ft_pair_destroy_2(&pair, &ft_free, &ft_free);
+	ft_pair_destroy(&pair, &ft_free);
 	if (pair != NULL)
 		return (2);
-	ft_pair_destroy_2(NULL, NULL, NULL);
+	pair = ft_pair_new(ft_strdup("key"), NULL);
+	ft_pair_destroy(&pair, &ft_free);
+	if (pair != NULL)
+		return (3);
+	pair = ft_pair_new(NULL, ft_strdup("value"));
+	ft_pair_destroy(&pair, &ft_free);
+	if (pair != NULL)
+		return (4);
+	ft_pair_destroy(NULL, NULL);
 	pair = NULL;
-	ft_pair_destroy_2(&pair, NULL, NULL);
+	ft_pair_destroy(&pair, NULL);
+	return (0);
+}
+
+int	tp_destroy_sep(void)
+{
+	t_pair	*pair;
+
+	pair = ft_pair_new("key", "value");
+	ft_pair_destroy_sep(&pair, NULL, NULL);
+	if (pair != NULL)
+		return (1);
+	pair = ft_pair_new(ft_strdup("key"), ft_strdup("value"));
+	ft_pair_destroy_sep(&pair, &ft_free, &ft_free);
+	if (pair != NULL)
+		return (2);
+	pair = ft_pair_new(ft_strdup("key"), NULL);
+	ft_pair_destroy_sep(&pair, &ft_free, &ft_free);
+	if (pair)
+		return (3);
+	pair = ft_pair_new(NULL, ft_strdup("val"));
+	ft_pair_destroy_sep(&pair, &ft_free, &ft_free);
+	if (pair)
+		return (4);
+	ft_pair_destroy_sep(NULL, NULL, NULL);
+	pair = NULL;
+	ft_pair_destroy_sep(&pair, NULL, NULL);
 	return (0);
 }
 /*

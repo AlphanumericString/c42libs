@@ -14,7 +14,7 @@
 #include "ft_pair_types.h"
 #include "tests/pair_tests.h"
 
-int	test_pair_set(void)
+int	tp_set(void)
 {
 	t_pair	pair;
 	void	*a;

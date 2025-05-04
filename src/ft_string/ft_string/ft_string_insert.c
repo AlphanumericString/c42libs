@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:22:33 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:36:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/29 00:05:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	ft_string_insert_c(t_string *str, char insert, size_t index)
 	return (1);
 }
 
-int	ft_string_insert_s(t_string *str, t_string *insert, size_t index)
+int	ft_string_insert_s(t_string *restrict str, \
+	const t_string *restrict insert, size_t index)
 {
 	size_t	new_len;
 	char	*new_str;
@@ -109,8 +110,8 @@ int	ft_string_insert_s(t_string *str, t_string *insert, size_t index)
 	return (1);
 }
 
-int	ft_string_insert_s_n(t_string *str, t_string *insert, size_t index,
-		size_t n)
+int	ft_string_insert_s_n(t_string *restrict str, \
+	const t_string *restrict insert, size_t index, size_t n)
 {
 	size_t	new_len;
 	char	*new_str;

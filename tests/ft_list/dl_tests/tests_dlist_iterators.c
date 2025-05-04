@@ -6,14 +6,16 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:04:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:18:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests__all_modules_tests.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 int	t_dl_at(void)
@@ -25,15 +27,19 @@ int	t_dl_at(void)
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	at = ft_dl_at(list, 1);
-	if (!at)
+	if (!at || at == list)
 		return (1);
-	else if (at->data != data2)
-		return (1);
-	else if (at->next)
-		return (1);
-	else if (at->prev != list)
-		return (1);
-	ft_dl_clear(&list, free);
+	else if (at->data != data2 || at->next || at->prev != list)
+		return (2);
+	at = ft_dl_at(list, 0);
+	if (!at || at != list)
+		return (3);
+	else if (at->data != data || at->next != list->next || at->prev)
+		return (4);
+	at = ft_dl_at(list, 32);
+	if (at)
+		return (5);
+	ft_dl_clear(&list, ft_free);
 	return (0);
 }
 
@@ -49,14 +55,14 @@ int	t_dl_begin(void)
 	if (!begin)
 		return (1);
 	else if (begin != list)
-		return (1);
+		return (2);
 	else if (begin->data != data)
-		return (1);
+		return (3);
 	else if (begin->next != list->next)
-		return (1);
+		return (4);
 	else if (begin->prev)
-		return (1);
-	ft_dl_clear(&list, free);
+		return (5);
+	ft_dl_clear(&list, ft_free);
 	return (0);
 }
 
@@ -72,12 +78,12 @@ int	t_dl_end(void)
 	if (!end)
 		return (1);
 	else if (end->data != data2)
-		return (1);
+		return (2);
 	else if (end->next)
-		return (1);
+		return (3);
 	else if (end->prev != list)
-		return (1);
-	ft_dl_clear(&list, free);
+		return (4);
+	ft_dl_clear(&list, ft_free);
 	return (0);
 }
 /*

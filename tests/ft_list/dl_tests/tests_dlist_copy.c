@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:58:55 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:18:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 
@@ -43,7 +44,7 @@ int	t_dl_copy_node(void)
 	if (ft_dl_copy_node(list))
 		return (talloc_set_failpoint(prev), 5);
 	talloc_set_failpoint(prev);
-	return (ft_dl_clear(&list, free), ft_dl_clear(&copy, NULL), 0);
+	return (ft_dl_clear(&list, ft_free), ft_dl_clear(&copy, NULL), 0);
 }
 
 int	t_dl_copy_list(void)
@@ -69,7 +70,7 @@ int	t_dl_copy_list(void)
 	if (ft_dl_copy_list(list))
 		return (talloc_set_failpoint(prev), 7);
 	talloc_set_failpoint(prev);
-	return (ft_dl_clear(&list, free), ft_dl_clear(&copy, NULL), 0);
+	return (ft_dl_clear(&list, ft_free), ft_dl_clear(&copy, NULL), 0);
 }
 /*
 GPL-3.0 License:

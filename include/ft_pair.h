@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:14:08 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 14:39:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 23:24:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,27 @@
 /// @note avoid this function if you can, use ft_pair_set instead with a
 /// stack allocated pair.
 /// @note Free with basic free call.
-t_pair	*ft_pair_new(const void *first, const void *second);
+t_pair	*ft_pair_new(const void *restrict first, const void *restrict second);
 
 /// @brief Set the first and second element of the pair
 /// @param pair The pointer to the pair to set
 /// @param first The first element of the pair
 /// @param second The second element of the pair
 /// @return void
-void	ft_pair_set(t_pair *const pair, const void *first, const void *second);
+void	ft_pair_set(t_pair *const pair, const void *restrict first, \
+		const void *restrict second);
 
 /// @brief Get the first element of the pair
 /// @param pair The pointer to the pair
 /// @return The first element of the pair
 /// @note Null safe.
-void	*ft_pair_first(const t_pair *pair);
+void	*ft_pair_first(const t_pair *restrict pair);
 
 /// @brief Get the second element of the pair
 /// @param pair The pointer to the pair
 /// @return The second element of the pair
 /// @note Null safe.
-void	*ft_pair_second(const t_pair *pair);
+void	*ft_pair_second(const t_pair *restrict pair);
 
 /// @brief Frees the pair
 /// @param pair The pointer to the pair to free.
@@ -68,7 +69,8 @@ void	ft_pair_destroy(t_pair **pair, const t_data_apply del_g);
 /// freeing the pair.
 /// @note The pair pointer is set to NULL.
 /// @note If del_f and del_s are the same use ft_pair_destroy instead.
-void	ft_pair_destroy_2(t_pair **pair, const t_data_apply del_f, const t_data_apply del_s);
+void	ft_pair_destroy_sep(t_pair **pair, const t_data_apply del_f, \
+		const t_data_apply del_s);
 
 /// @brief Compare two pairs
 /// @param pair1 The first pair to compare
@@ -80,7 +82,8 @@ void	ft_pair_destroy_2(t_pair **pair, const t_data_apply del_f, const t_data_app
 ///	 respectively.
 ///	@note If no comparison function is provided, the comparison will be done
 ///	 on the pointer value.
-int		ft_pair_cmp(const t_pair *pair1, const t_pair *pair2, const t_data_cmp cmp);
+int		ft_pair_cmp(const t_pair *restrict pair1, \
+		const t_pair *restrict pair2, const t_data_cmp cmp);
 
 /// @brief Compare two pairs
 /// @param pair1 The first pair to compare
@@ -88,7 +91,8 @@ int		ft_pair_cmp(const t_pair *pair1, const t_pair *pair2, const t_data_cmp cmp)
 /// @param cmp The comparison function to use
 /// @return The result of the comparison
 /// @note Same as ft_pair_cmp but compare the first element of the pair
-int		ft_pair_cmp_first(const t_pair *pair1, const t_pair *pair2, const t_data_cmp cmp);
+int		ft_pair_cmp_first(const t_pair *restrict pair1, \
+		const t_pair *restrict pair2, const t_data_cmp cmp);
 
 /// @brief Compare two pairs
 /// @param pair1 The first pair to compare
@@ -96,7 +100,8 @@ int		ft_pair_cmp_first(const t_pair *pair1, const t_pair *pair2, const t_data_cm
 /// @param cmp The comparison function to use
 /// @return The result of the comparison
 /// @note Same as ft_pair_cmp but compare the second element of the pair
-int		ft_pair_cmp_second(const t_pair *pair1, const t_pair *pair2, const t_data_cmp cmp);
+int		ft_pair_cmp_second(const t_pair *restrict pair1, \
+		const t_pair *restrict pair2, const t_data_cmp cmp);
 
 #endif /* FT_PAIR_H */
 /*

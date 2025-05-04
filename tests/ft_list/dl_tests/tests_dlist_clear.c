@@ -6,9 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:56:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:19:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -25,7 +27,7 @@ int	t_dl_clear(void)
 	list = ft_dl_create(data);
 	ft_dl_clear(&list, NULL);
 	list = ft_dl_create(data);
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, ft_free);
 	return (0);
 }
 
@@ -36,7 +38,7 @@ int	t_dl_clear(void)
 //	data -> NULL -> data3
 //ft_dl_add_back(&list, ft_dl_create(data2))
 //	data -> NULL -> data3 -> data2
-//ft_dl_clear_range(list->next->next, NULL, free)
+//ft_dl_clear_range(list->next->next, NULL, ft_free)
 //	data -> NULL -> NULL -> NULL
 //ft_dl_delete_range(list, NULL, NULL)
 //	delete nodes
@@ -58,12 +60,12 @@ int	t_dl_clear_range(void)
 	list->next->data || list->next->next->data != data3))
 		return (1);
 	ft_dl_add_back(&list, ft_dl_create(data2));
-	ft_dl_clear_range(list->next->next, NULL, free);
+	ft_dl_clear_range(list->next->next, NULL, ft_free);
 	if (ft_dl_size(list) != 4 || list->data != data \
 	|| list->next->data || list->next->next->data)
 		return (2);
-	ft_dl_clear_range(list, NULL, free);
-	ft_dl_clear_range(NULL, NULL, free);
+	ft_dl_clear_range(list, NULL, ft_free);
+	ft_dl_clear_range(NULL, NULL, ft_free);
 	ft_dl_delete_range(list, NULL, NULL);
 	return (0);
 }

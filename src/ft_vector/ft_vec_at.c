@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:03:56 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:37:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:28:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 
 // return elem n
-void	*ft_vec_at(t_vector *vec, size_t n)
+void	*ft_vec_at(const t_vector *restrict vec, size_t n)
 {
 	return (vec->datas[n]);
 }

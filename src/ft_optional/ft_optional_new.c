@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:06:55 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:24:59 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:35:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_optional	*ft_optional_new(void)
 	return (elem);
 }
 
-t_optional	*ft_optional_from_val(void *ptr)
+t_optional	*ft_optional_from_val(const void *restrict ptr)
 {
 	t_optional	*elem;
 
@@ -34,14 +34,14 @@ t_optional	*ft_optional_from_val(void *ptr)
 	if (!elem)
 		return (elem);
 	elem->pres = OPT_SOME;
-	elem->val = ptr;
+	elem->val = (void *)ptr;
 	return (elem);
 }
 
 // As this function can fail it should never be called,
 // the type t_optional is supposed to be ultra reliable.
 // Carefull use is preconized.
-t_optional	*ft_optional_dup(t_optional *org)
+t_optional	*ft_optional_dup(const t_optional *restrict org)
 {
 	t_optional	*ret;
 

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 11:15:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:45:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 17:17:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ typedef struct s_test
 	char	*name;
 	int		(*test)(void);
 }			t_test;
+
+typedef struct s_module
+{
+	char	*full_name;
+	char	*short_name;
+	int		(*test)(void);
+}			t_module;
 
 typedef int	(*t_function_test_runner)(t_test, int *, int);
 
@@ -60,6 +67,7 @@ void	*talloc_reallocarray(void *p, size_t a, size_t b);
 int		tests_args(void);
 int		tests_doubly_linked_list_all(void);
 int		tests_linked_list_all(void);
+int		tests_circular_linked_list_all(void);
 int		tests_map(void);
 int		tests_math(void);
 int		tests_optional(void);

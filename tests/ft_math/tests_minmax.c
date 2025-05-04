@@ -13,7 +13,7 @@
 #include "ft_math.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_ft_min(void)
+int	mt_min(void)
 {
 	const int	a = 1;
 	const int	b = 2;
@@ -28,7 +28,7 @@ int	test_ft_min(void)
 	return (0);
 }
 
-int	test_ft_max(void)
+int	mt_max(void)
 {
 	const int	a = 1;
 	const int	b = 2;

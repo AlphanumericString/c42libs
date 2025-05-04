@@ -1,83 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 15:03:11 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:34:40 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/11/07 20:05:24 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/03/28 23:12:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_math.h"
-#include <stdlib.h>
-#include "ft_char.h"
 
-static int	ft_is_valid(const char *base)
+long long	ft_atoll(const char *str)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	if (ft_strlen(base) < 2)
-		return (0);
-	while (base[i])
-	{
-		if (base[i] == '+' || base[i] == '-' || ft_isspace(base[i]))
-			return (0);
-		j = i + 1;
-		while (base[j])
-			if (base[i] == base[j++])
-				return (0);
-		i++;
-	}
-	return (1);
+	return (ft_atoll_base(str, "0123456789"));
 }
 
-static int	loc_getlen(long long nbr, size_t blen)
+long	ft_atol(const char *str)
 {
-	size_t	nbr_len;
-
-	nbr_len = 0;
-	if (nbr == 0)
-		return (1);
-	if (nbr < 0)
-	{
-		nbr *= -1;
-		nbr_len++;
-	}
-	nbr_len += ft_llogof(nbr, blen) + 1;
-	return (nbr_len);
+	return ((long)ft_atoll_base(str, "0123456789"));
 }
 
-char	*ft_itoa_base(int nbr, const char *base)
+int	ft_atoi(const char *str)
 {
-	char			*ret;
-	size_t			off;
-	long long		srcnbr;
-	const size_t	blen = ft_strlen(base);
-	const int		nbrlen = loc_getlen((long long)nbr, blen);
-
-	srcnbr = (long long)nbr;
-	if (!ft_is_valid(base))
-		return (NULL);
-	ret = ft_calloc(sizeof(char), (nbrlen + 1));
-	if (!ret)
-		return (NULL);
-	if (srcnbr <= 0)
-	{
-		ret[0] = (srcnbr == 0) * '0' + (srcnbr < 0) * '-';
-		srcnbr *= -1;
-	}
-	off = 0;
-	while (srcnbr)
-	{
-		ret[nbrlen - ++off] = base[srcnbr % blen];
-		srcnbr /= blen;
-	}
-	return (ret);
+	return (ft_atoi_base(str, "0123456789"));
 }
 /*
 GPL-3.0 License:

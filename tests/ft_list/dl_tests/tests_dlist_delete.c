@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:01:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:18:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -31,16 +32,16 @@ int	t_dl_delete_self(void)
 	if (!list || list->data != data || !list->next || \
 	list->next->data != data3 || list->next->next)
 		return (1);
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, ft_free);
 	data3 = malloc(sizeof(int));
 	*data3 = 63;
 	*data2 = 21;
 	list = ft_dl_create(data3);
 	ft_dl_add_back(&list, ft_dl_create(data2));
-	ft_dl_delete_self(list->next, free);
+	ft_dl_delete_self(list->next, ft_free);
 	if (list->next || list->data != data3)
 		return (1);
-	return (ft_dl_clear(&list, free), ft_dl_delete_self(NULL, NULL), \
+	return (ft_dl_clear(&list, ft_free), ft_dl_delete_self(NULL, NULL), \
 	ft_dl_delete_self(ft_dl_create(data3), NULL), 0);
 }
 /*
@@ -53,7 +54,7 @@ int	t_dl_delete_self(void)
 	ft_dl_add_front(&list2, ft_dl_create(data));
 		// NULL <-(42)<=>(21)<=>(63)-> NULL
 	list = list2;
-	nb_deleted = ft_dl_delete_range(list->next, list->next->next, free);
+	nb_deleted = ft_dl_delete_range(list->next, list->next->next, ft_free);
 		// NULL <-(42)<=>(63)-> NULL
 */
 
@@ -75,12 +76,12 @@ int	t_dl_delete_range(void)
 		return (1);
 	ft_dl_add_front(&list2, ft_dl_create(data_array[0]));
 	list = list2;
-	nb_deleted = ft_dl_delete_range(list->next, list->next->next, free);
+	nb_deleted = ft_dl_delete_range(list->next, list->next->next, ft_free);
 	if (nb_deleted != 1 || ft_dl_size(list) != 2 || *(int *)list2->data \
 	!= *data_array[0] || *(int *)list2->next->data != *data_array[2])
 		return (2);
-	ft_dl_clear(&list2, free);
-	ft_dl_delete_range(NULL, NULL, free);
+	ft_dl_clear(&list2, ft_free);
+	ft_dl_delete_range(NULL, NULL, ft_free);
 	return (0);
 }
 
@@ -104,12 +105,12 @@ int	t_dl_delete(void)
 	ft_dl_add_front(&list, ft_dl_create(data));
 	ft_dl_add_back(&list, ft_dl_create(data2));
 	ft_dl_add_back(&list, ft_dl_create(data3));
-	nb_deleted = ft_dl_delete(&list, free);
+	nb_deleted = ft_dl_delete(&list, ft_free);
 	if (nb_deleted != 3)
 		return (3);
 	else if (list)
 		return (4);
-	ft_dl_delete(NULL, free);
+	ft_dl_delete(NULL, ft_free);
 	return (0);
 }
 /*

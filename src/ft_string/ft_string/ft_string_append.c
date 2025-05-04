@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 22:24:43 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:36:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/29 00:04:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_string_append_c(t_string *str, char c)
 	return (0);
 }
 
-int	ft_string_append_s(t_string *str, t_string *append)
+int	ft_string_append_s(t_string *restrict str, const t_string *restrict append)
 {
 	if (str->length + append->length + 1 >= str->capacity)
 	{
@@ -66,7 +66,8 @@ int	ft_string_append_s(t_string *str, t_string *append)
 	return (0);
 }
 
-int	ft_string_append_s_n(t_string *str, t_string *append, size_t n)
+int	ft_string_append_s_n(t_string *restrict str, \
+	const t_string *restrict append, size_t n)
 {
 	if (str->length + n + 1 >= str->capacity)
 	{

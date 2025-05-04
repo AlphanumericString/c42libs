@@ -6,13 +6,36 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:36:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 23:35:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests.h"
 #include "tests/tests__all_modules_tests.h"
+
+static int error_cases(int fd, const char *const f_name)
+{
+	int bread;
+	char buff[100];
+
+	fd = open(f_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	if (ft_putendl_fd(NULL, fd) != -1)
+		return (1);
+	fd = (close(fd), open(f_name, O_RDONLY));
+	bread = read(fd, buff, 100);
+	if (bread != 0)
+		return (2);
+	destroy_test_file(fd, f_name);
+	fd = -1;
+	if (ft_putendl_fd("bad fd", fd) != -1)
+		return (3);
+	fd = open(f_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	bread = read(fd, buff, 100);
+	if (bread != 0)
+		return (4);
+	return (destroy_test_file(fd, f_name), EXIT_SUCCESS);
+}
 
 int	test_putendl(void)
 {
@@ -32,15 +55,7 @@ int	test_putendl(void)
 		|| buff[ft_strlen(str)] != '\n')
 		return (1);
 	destroy_test_file(fd, file_name);
-	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
-	ft_putendl_fd(NULL, fd);
-	close(fd);
-	fd = open(file_name, O_RDONLY);
-	bread = read(fd, buff, 100);
-	if (bread != 0)
-		return (2);
-	destroy_test_file(fd, file_name);
-	return (0);
+	return (error_cases(fd, file_name));
 }
 /*
 GPL-3.0 License:

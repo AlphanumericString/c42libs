@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:28:40 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 18:52:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 17:46:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int	str_tests(void);
 int	test_atof(void);
 int	test_atoi_base(void);
 int	test_atoi(void);
+int	test_atol(void);
+int	test_atoll(void);
+int	test_atol_base(void);
 int	test_itoa_base(void);
 int	test_itoa(void);
 int	test_utoa(void);

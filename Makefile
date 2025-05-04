@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2025/03/26 15:46:13 by bgoulard         ###   ########.fr        #
+#    Updated: 2025/04/24 15:14:30 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,13 +43,18 @@ FT_OPTIONAL_DIR	=	ft_optional
 FT_ARGS_DIR		=	ft_args
 FT_MATH_DIR		=	ft_math
 FT_PAIR_DIR		=	ft_pair
+FT_BITSET_DIR	=	ft_bitset
 
 # Counpound directories
 
 FT_LIST_LL_DIR	=	$(FT_LIST_DIR)/ft_ll
 FT_LIST_DL_DIR	=	$(FT_LIST_DIR)/ft_dl
+FT_LIST_CL_DIR	=	$(FT_LIST_DIR)/ft_cl
+
 FT_CHR_DIR		=	$(FT_STRING_DIR)/ft_chr
 FT_MEM_DIR		=	$(FT_STRING_DIR)/ft_mem
+FT_NUM_DIR		=	$(FT_STRING_DIR)/ft_num
+FT_PUT_DIR		=	$(FT_STRING_DIR)/ft_put
 FT_STR_DIR		=	$(FT_STRING_DIR)/ft_str
 FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 
@@ -112,6 +117,16 @@ endif
 
 # Sources
 
+FT_BITSET_SRC	=	\
+			$(FT_BITSET_DIR)/ft_bs_append.c		\
+			$(FT_BITSET_DIR)/ft_bs_free.c		\
+			$(FT_BITSET_DIR)/ft_bs_get.c		\
+			$(FT_BITSET_DIR)/ft_bs_new.c		\
+			$(FT_BITSET_DIR)/ft_bs_print.c		\
+			$(FT_BITSET_DIR)/ft_bs_remove.c		\
+			$(FT_BITSET_DIR)/ft_bs_set.c		\
+			$(FT_BITSET_DIR)/ft_bs_toggle.c
+
 FT_PAIR_SRC	=	\
 			$(FT_PAIR_DIR)/ft_pair_cmp.c		\
 			$(FT_PAIR_DIR)/ft_pair_destroy.c	\
@@ -143,9 +158,10 @@ FT_MAP_SRC	=	\
 FT_LIST_LL_SRC	=	\
 			$(FT_LIST_LL_DIR)/ft_ll_find.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_add.c			\
-			$(FT_LIST_LL_DIR)/ft_ll_clear.c		\
+			$(FT_LIST_LL_DIR)/ft_ll_clear.c			\
+			$(FT_LIST_LL_DIR)/ft_ll_check.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_delete.c		\
-			$(FT_LIST_LL_DIR)/ft_ll_apply.c		\
+			$(FT_LIST_LL_DIR)/ft_ll_apply.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_iterator.c		\
 			$(FT_LIST_LL_DIR)/ft_ll_map.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_new.c			\
@@ -159,6 +175,7 @@ FT_LIST_LL_SRC	=	\
 FT_LIST_DL_SRC	=	\
 			$(FT_LIST_DL_DIR)/ft_dl_apply.c		\
 			$(FT_LIST_DL_DIR)/ft_dl_clear.c		\
+			$(FT_LIST_DL_DIR)/ft_dl_check.c		\
 			$(FT_LIST_DL_DIR)/ft_dl_create.c		\
 			$(FT_LIST_DL_DIR)/ft_dl_delete.c		\
 			$(FT_LIST_DL_DIR)/ft_dl_getters.c		\
@@ -172,116 +189,22 @@ FT_LIST_DL_SRC	=	\
 			$(FT_LIST_DL_DIR)/ft_dl_new.c			\
 			$(FT_LIST_DL_DIR)/ft_dl_find.c			\
 
-FT_STR_SRC	=	\
-			$(FT_STR_DIR)/ft_atof.c				\
-			$(FT_STR_DIR)/ft_atoi.c				\
-			$(FT_STR_DIR)/ft_atoi_base.c		\
-			$(FT_STR_DIR)/ft_itoa.c				\
-			$(FT_STR_DIR)/ft_itoa_base.c		\
-			$(FT_STR_DIR)/ft_perror.c			\
-			$(FT_STR_DIR)/ft_putendl_fd.c		\
-			$(FT_STR_DIR)/ft_putnbr_fd.c		\
-			$(FT_STR_DIR)/ft_putstr_fd.c		\
-			$(FT_STR_DIR)/ft_shift_args.c		\
-			$(FT_STR_DIR)/ft_split.c			\
-			$(FT_STR_DIR)/ft_splits.c			\
-			$(FT_STR_DIR)/ft_str_isalpha.c		\
-			$(FT_STR_DIR)/ft_str_isalnum.c		\
-			$(FT_STR_DIR)/ft_str_isbool.c		\
-			$(FT_STR_DIR)/ft_str_isdigit.c		\
-			$(FT_STR_DIR)/ft_str_isfloat.c		\
-			$(FT_STR_DIR)/ft_str_ishex.c		\
-			$(FT_STR_DIR)/ft_str_isdouble.c		\
-			$(FT_STR_DIR)/ft_str_isint.c		\
-			$(FT_STR_DIR)/ft_str_islong.c		\
-			$(FT_STR_DIR)/ft_str_isnum.c		\
-			$(FT_STR_DIR)/ft_str_isoct.c		\
-			$(FT_STR_DIR)/ft_str_isvalid.c		\
-			$(FT_STR_DIR)/ft_str_replace.c		\
-			$(FT_STR_DIR)/ft_strappend_c.c		\
-			$(FT_STR_DIR)/ft_strchr.c			\
-			$(FT_STR_DIR)/ft_strclen.c			\
-			$(FT_STR_DIR)/ft_strcmp.c			\
-			$(FT_STR_DIR)/ft_strcnb.c			\
-			$(FT_STR_DIR)/ft_strcspn.c			\
-			$(FT_STR_DIR)/ft_strdup.c			\
-			$(FT_STR_DIR)/ft_strend_with.c		\
-			$(FT_STR_DIR)/ft_strerror.c			\
-			$(FT_STR_DIR)/ft_striteri.c			\
-			$(FT_STR_DIR)/ft_strjoin.c			\
-			$(FT_STR_DIR)/ft_strlcat.c			\
-			$(FT_STR_DIR)/ft_strlcpy.c			\
-			$(FT_STR_DIR)/ft_strlen.c			\
-			$(FT_STR_DIR)/ft_strnlen.c			\
-			$(FT_STR_DIR)/ft_strmapi.c			\
-			$(FT_STR_DIR)/ft_strncmp.c			\
-			$(FT_STR_DIR)/ft_strndup.c			\
-			$(FT_STR_DIR)/ft_strnstr.c			\
-			$(FT_STR_DIR)/ft_strrchr.c			\
-			$(FT_STR_DIR)/ft_strrev.c			\
-			$(FT_STR_DIR)/ft_strspn.c			\
-			$(FT_STR_DIR)/ft_strstart_with.c	\
-			$(FT_STR_DIR)/ft_strtok.c			\
-			$(FT_STR_DIR)/ft_strtrim.c			\
-			$(FT_STR_DIR)/ft_substr.c			\
-			$(FT_STR_DIR)/ft_utoa.c				\
-			$(FT_STR_DIR)/get_next_line.c		\
-
-FT_T_STRING_SRC	=	\
-			$(FT_T_STRING_DIR)/ft_string_append.c	\
-			$(FT_T_STRING_DIR)/ft_string_new.c		\
-			$(FT_T_STRING_DIR)/ft_string_put.c		\
-			$(FT_T_STRING_DIR)/ft_string_from.c		\
-			$(FT_T_STRING_DIR)/ft_string_clear.c	\
-			$(FT_T_STRING_DIR)/ft_string_destroy.c	\
-			$(FT_T_STRING_DIR)/ft_string_insert.c	\
-			$(FT_T_STRING_DIR)/ft_string_reserve.c	\
-			$(FT_T_STRING_DIR)/ft_string_resize.c	\
-			$(FT_T_STRING_DIR)/ft_string_shrink.c	\
-			$(FT_T_STRING_DIR)/ft_string_substr.c	\
-			$(FT_T_STRING_DIR)/ft_string_to_str.c	\
-			$(FT_T_STRING_DIR)/ft_string_trim.c		\
-			$(FT_T_STRING_DIR)/ft_string_cmp.c		\
-			$(FT_T_STRING_DIR)/ft_string_get.c		\
-			$(FT_T_STRING_DIR)/ft_string_chr.c		\
-			$(FT_T_STRING_DIR)/ft_string_replace.c	\
-			$(FT_T_STRING_DIR)/ft_string_set.c
-
-FT_MEM_SRC	=	\
-			$(FT_MEM_DIR)/ft_allocator_ft_memimpl.c	\
-   			$(FT_MEM_DIR)/ft_allocator_group.c		\
-			$(FT_MEM_DIR)/ft_allocator_hooks.c		\
-			$(FT_MEM_DIR)/ft_apply_2d.c		\
-			$(FT_MEM_DIR)/ft_arena.c		\
-			$(FT_MEM_DIR)/ft_bzero.c		\
-			$(FT_MEM_DIR)/ft_fd_to_buff.c	\
-			$(FT_MEM_DIR)/ft_free_2d.c		\
-			$(FT_MEM_DIR)/ft_free_clear.c	\
-			$(FT_MEM_DIR)/ft_len_2d.c		\
-			$(FT_MEM_DIR)/ft_memchr.c		\
-			$(FT_MEM_DIR)/ft_memcmp.c		\
-			$(FT_MEM_DIR)/ft_memcpy.c		\
-			$(FT_MEM_DIR)/ft_memmap.c		\
-			$(FT_MEM_DIR)/ft_memmove.c		\
-			$(FT_MEM_DIR)/ft_memset.c		\
-			$(FT_MEM_DIR)/ft_qsort.c		\
-			$(FT_MEM_DIR)/ft_swap.c
-
-FT_CHR_SRC	=	\
-			$(FT_CHR_DIR)/ft_isalnum.c		\
-			$(FT_CHR_DIR)/ft_isalpha.c		\
-			$(FT_CHR_DIR)/ft_isascii.c		\
-			$(FT_CHR_DIR)/ft_isdigit.c		\
-			$(FT_CHR_DIR)/ft_ishexdigit.c	\
-			$(FT_CHR_DIR)/ft_islower.c		\
-			$(FT_CHR_DIR)/ft_isoctdigit.c	\
-			$(FT_CHR_DIR)/ft_isprint.c		\
-			$(FT_CHR_DIR)/ft_isspace.c		\
-			$(FT_CHR_DIR)/ft_isupper.c		\
-			$(FT_CHR_DIR)/ft_putchar_fd.c	\
-			$(FT_CHR_DIR)/ft_putnchar_fd.c	\
-			$(FT_CHR_DIR)/ft_tolower.c		\
-			$(FT_CHR_DIR)/ft_toupper.c
+FT_LIST_CL_SRC	=	\
+			$(FT_LIST_CL_DIR)/ft_cl_add.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_apply.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_check.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_clear.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_create.c		\
+			$(FT_LIST_CL_DIR)/ft_cl_delete.c		\
+			$(FT_LIST_CL_DIR)/ft_cl_find.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_getters.c		\
+			$(FT_LIST_CL_DIR)/ft_cl_iterator.c		\
+			$(FT_LIST_CL_DIR)/ft_cl_map.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_new.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_pushpop.c		\
+			$(FT_LIST_CL_DIR)/ft_cl_rev.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_size.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_sub.c			\
 
 FT_VEC_SRC	=	\
 			$(FT_VEC_DIR)/ft_vec_add.c		\
@@ -316,32 +239,39 @@ FT_ARGS_SRC		=	\
 			$(FT_ARGS_DIR)/ft_parse_args.c			\
 			$(FT_ARGS_DIR)/ft_parse_err.c			\
 			$(FT_ARGS_DIR)/ft_parse_opt.c			\
-			$(FT_ARGS_DIR)/ft_progname.c			\
-			$(FT_ARGS_DIR)/ft_set_opt_args.c		\
+			$(FT_ARGS_DIR)/ft_parse_opt_args.c		\
+			$(FT_ARGS_DIR)/ft_set_ac.c				\
+			$(FT_ARGS_DIR)/ft_set_av.c				\
+			$(FT_ARGS_DIR)/ft_set_ev.c				\
+			$(FT_ARGS_DIR)/ft_set_progname.c		\
+			$(FT_ARGS_DIR)/ft_set_version.c			\
 			$(FT_ARGS_DIR)/ft_setup_prog.c			\
-			$(FT_ARGS_DIR)/ft_version.c
 
 # Counpound sources
 
 FT_LIST_SRC		=	\
 			$(FT_LIST_LL_SRC)	\
 			$(FT_LIST_DL_SRC)	\
+			$(FT_LIST_CL_SRC)	\
 
 FT_STRING_SRC	=	\
 			$(FT_CHR_SRC)		\
 			$(FT_MEM_SRC)		\
+			$(FT_NUM_SRC)		\
+			$(FT_PUT_SRC)		\
 			$(FT_STR_SRC)		\
 			$(FT_T_STRING_SRC)
 
 # Tests sources
 
 TESTS_SRC	=\
-			$(TESTS_DIR)/ft_args/tests_custom_checker.c		\
-			$(TESTS_DIR)/ft_args/tests_optlist.c				\
-			$(TESTS_DIR)/ft_args/tests_progname.c				\
-			$(TESTS_DIR)/ft_args/tests_version.c				\
-			$(TESTS_DIR)/ft_args/tests_setup_prog.c				\
 			$(TESTS_DIR)/ft_args/args_tests.c					\
+			$(TESTS_DIR)/ft_args/tests__ac_av_ev.c				\
+			$(TESTS_DIR)/ft_args/tests__progname.c				\
+			$(TESTS_DIR)/ft_args/tests__version.c				\
+			$(TESTS_DIR)/ft_args/tests_custom_checker.c			\
+			$(TESTS_DIR)/ft_args/tests_optlist.c				\
+			$(TESTS_DIR)/ft_args/tests_setup_prog.c				\
 			\
 			$(TESTS_DIR)/ft_list/ll_tests/ll_tests_utils.c			\
 			$(TESTS_DIR)/ft_list/ll_tests/ll_list_tests.c			\
@@ -353,6 +283,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_apply.c		\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_iterators.c	\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_clear.c		\
+			$(TESTS_DIR)/ft_list/ll_tests/tests_list_check.c		\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_copy.c			\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_create.c		\
 			$(TESTS_DIR)/ft_list/ll_tests/tests_list_deletors.c		\
@@ -364,6 +295,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/dl_tests/dl_list_tests.c			\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_add.c			\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_clear.c		\
+			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_check.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_copy.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_create.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_delete.c		\
@@ -377,6 +309,8 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_sizers.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_apply.c		\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_find.c		\
+			$(TESTS_DIR)/ft_list/cl_tests/cl_list_tests.c			\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_add.c			\
 			\
 			$(TESTS_DIR)/ft_map/map_tests.c						\
 			$(TESTS_DIR)/ft_map/tests_map_remove.c				\
@@ -430,7 +364,8 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_char/tests_isoctdigit.c	\
 			$(TESTS_DIR)/ft_string/ft_char/tests_isspace.c		\
 			$(TESTS_DIR)/ft_string/ft_char/tests_isprint.c		\
-			$(TESTS_DIR)/ft_string/ft_char/tests_puchar.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_putchar.c		\
+			$(TESTS_DIR)/ft_string/ft_char/tests_putnchar.c		\
 			$(TESTS_DIR)/ft_string/ft_char/tests_tolower.c		\
 			$(TESTS_DIR)/ft_string/ft_char/tests_toupper.c		\
 			$(TESTS_DIR)/ft_string/ft_char/char_tests.c			\
@@ -461,7 +396,10 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c					\
 			\
 			$(TESTS_DIR)/ft_string/ft_str/test_atoi_base.c			\
+			$(TESTS_DIR)/ft_string/ft_str/test_atol_base.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_atoi.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_atol.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_atoll.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_atof.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_gnl.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_itoa_base.c			\
@@ -593,39 +531,17 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/lambdas_for_tests.c					\
 			$(TESTS_DIR)/tests_utils.c
 
-# Inner variables for targets
-
-STABLE		=	\
-			$(FT_MATH_SRC)		\
-			$(FT_LIST_SRC)		\
-			$(FT_VEC_SRC)		\
-			$(FT_STRING_SRC)	\
-			$(FT_MAP_SRC)		\
-			$(FT_OPTIONAL_SRC)	\
-			$(FT_ARGS_SRC)		\
-			$(FT_PAIR_SRC)		\
-
-UNSTABLE	=	\
-
-INNER_SRC   = \
-			$(STABLE)
-
-# Check if user wants to compile unstable sources
-#   to compile unstable sources run make with TARGET=UNSTABLE
-ifeq (UNSTABLE, $(findstring UNSTABLE, $(TARGET)))
-INNER_SRC   += \
-			$(UNSTABLE)
-endif
-# Check if user wants to compile all sources
-#   to compile all sources run make with TARGET=ALL
-ifeq (ALL, $(findstring ALL, $(TARGET)))
-INNER_SRC   = \
-			$(STABLE)	\
-			$(UNSTABLE)
-endif
+INNER_SRC=\
+		$(FT_MATH_SRC)          \
+		$(FT_LIST_SRC)          \
+		$(FT_VEC_SRC)           \
+		$(FT_STRING_SRC)        \
+		$(FT_MAP_SRC)           \
+		$(FT_OPTIONAL_SRC)      \
+		$(FT_ARGS_SRC)          \
+		$(FT_PAIR_SRC)          \
 
 # Objects creation
-
 #   add prefix to sources to specify the directory src/
 SRCS		=	$(sort $(addprefix $(SRC_DIR)/, $(INNER_SRC)))
 
@@ -710,7 +626,7 @@ $(TEST_NAME): $(TOBJ)
 	@$(RM) -f $(TEST_NAME)
 	@$(ECHO) -n $(GRAY) "Compiling tests ... " $(RESET)
 	@$(CC) $(CFLAGS) $(TOBJ) -o $(TEST_NAME) $(TEST_FLAGS)		\
-	$(LDFLAGS) -lgcov								\
+	$(LDFLAGS) -lgcov											\
 	2>> $(CLOG_FILE)											&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
@@ -731,9 +647,8 @@ $(COVERAGE_DIR): $(TEST_NAME)
 	$(COV) show -format=html									\
 	-instr-profile=$(TEST_NAME).profdata						\
 	-ignore-filename-regex=$(TESTS_DIR)/*						\
-	--show-branches=count										\
-	./$(TEST_NAME) -output-dir=$(COVERAGE_DIR) > /dev/null		&& \
-	$(RM) *.profraw *.profdata									&& \
+	--show-branches=count	--show-directory-coverage			\
+	./$(TEST_NAME) -output-dir=$(COVERAGE_DIR)					&& \
 	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
 	$(ECHO) $(RED) "Failed" $(RESET)
 

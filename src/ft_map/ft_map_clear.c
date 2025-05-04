@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:29:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:22:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:09:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_map.h"
 #include "ft_vector.h"
 
-void	ft_map_clear(t_map *map)
+void	ft_map_clear(t_map *restrict map)
 {
 	size_t	i;
 	t_list	*cur;

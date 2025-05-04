@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_char_tests.c                                    :+:      :+:    :+:   */
+/*   char_tests.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:31:03 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:42:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 22:41:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	char_tests(void)
 	{"toupper", test_ft_toupper}, {"isalnum", test_ft_isalnum},
 	{"putchar", test_ft_putchar}, {"ishexdigit", test_ft_ishexdigit},
 	{"isoctdigit", test_ft_isoctdigit}, {"isspace", test_ft_isspace},
-	{NULL, NULL}};
+	{"putnchar", test_ft_putnchar}, {NULL, NULL}};
 
 	i = 0;
 	run_test(tests, &i);

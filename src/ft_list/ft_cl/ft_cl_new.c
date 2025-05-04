@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_version.c                                    :+:      :+:    :+:   */
+/*   ft_cl_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 22:37:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Created: 2023/12/10 12:42:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/04/05 05:42:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_args.h"
+#include "ft_list.h"
 #include "ft_string.h"
-#include <unistd.h>
-#include "tests/tests__all_modules_tests.h"
 
-int	getset_version_test(void)
+t_clist	*ft_cl_new(void)
 {
-	char	*s1;
-	char	*s2;
+	t_clist	*ret;
 
-	s1 = "toto";
-	s2 = 0;
-	ft_set_version(s1);
-	if (ft_progversion() != s1)
-		return (ft_putstr_fd(ft_progversion(), STDERR_FILENO), 1);
-	ft_set_version(s2);
-	if (ft_progversion() == s2)
-		return (2);
-	return (0);
+	ret = ft_calloc(1, sizeof(t_clist));
+	if (!ret)
+		return (ret);
+	ret->data = NULL;
+	ret->prev = ret;
+	ret->next = ret;
+	return (ret);
 }
 /*
 GPL-3.0 License:

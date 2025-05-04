@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:18:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:16:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/ll_tests.h"
@@ -40,7 +41,7 @@ int	t_ll_apply(void)
 	if (!list || !list->next || list->next->next
 		|| *(int *)list->data != data4 || *(int *)list->next->data != data3)
 		return (1);
-	ft_ll_clear(&list, free);
+	ft_ll_clear(&list, ft_free);
 	return (0);
 }
 
@@ -67,7 +68,7 @@ int	t_ll_apply_range(void)
 	else if (*(int *)list->next->data != 21)
 		return (1);
 	ft_ll_apply_range(NULL, NULL, add42);
-	ft_ll_clear(&list, free);
+	ft_ll_clear(&list, ft_free);
 	return (0);
 }
 
@@ -88,7 +89,7 @@ int	t_ll_apply_range_node(void)
 		|| *(int *)list->next->data != 21 || list->next->next)
 		return (1);
 	ft_ll_apply_range_node(NULL, NULL, lnode_add42);
-	ft_ll_clear(&list, free);
+	ft_ll_clear(&list, ft_free);
 	return (0);
 }
 /*

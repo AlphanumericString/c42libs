@@ -1,69 +1,67 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*   ft_cl_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 17:52:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 13:14:57 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/03/31 02:11:47 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/04/06 17:05:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "ft_char.h"
+#include "ft_list_types.h"
+#include "ft_list.h"
+#include <stdbool.h>
 
-static int	ft_is_valid(const char *base)
+bool	ft_cl_check_circular(const t_clist *lst)
 {
-	int	i;
-	int	j;
+	return (ft_dl_check_circular((const t_dlist *)lst));
+}
 
-	i = 0;
-	if (ft_strlen(base) < 2)
-		return (0);
-	while (base[i])
+bool	ft_cl_check_sorted(const t_clist *lst, const t_data_cmp cmp)
+{
+	const t_clist	*it;
+
+	if (!lst || !cmp || lst->next == lst || lst->prev == lst)
+		return (true);
+	it = (t_clist *)lst;
+	while (it)
 	{
-		if (base[i] == '+' || base[i] == '-' || ft_isspace(base[i]))
-			return (0);
-		j = i + 1;
-		while (base[j])
-			if (base[i] == base[j++])
-				return (0);
-		i++;
+		if (it->next == lst)
+			break ;
+		if (cmp(it->data, it->next->data) > 0)
+			return (false);
+		it = it->next;
 	}
-	return (1);
+	return (true);
 }
 
-long long	ft_atoll_base(const char *str, const char *base)
+bool	ft_cl_check_health(const t_clist *_lst)
 {
-	const size_t	base_len = ft_strlen(base);
-	long long		nb;
-	int				i;
-	int				sign;
+	const t_clist	*lst_prev;
+	const t_clist	*lst_next;
+	const t_clist	*lst;
 
-	i = 0;
-	nb = 0;
-	sign = 1;
-	if (!ft_is_valid(base))
-		return (0);
-	while (ft_isspace(str[i]))
-		i++;
-	while (str[i] == '+' || str[i] == '-')
-		if (str[i++] == '-')
-			sign *= -1;
-	while (str[i] && ft_strchr(base, str[i]))
-		nb = nb * base_len + ft_strchr(base, str[i++]) - base;
-	return (nb * sign);
-}
-
-long	ft_atol_base(const char *str, const char *base)
-{
-	return ((long)ft_atoll_base(str, base));
-}
-
-int	ft_atoi_base(const char *str, const char *base)
-{
-	return ((int)ft_atoll_base(str, base));
+	if (!_lst)
+		return (true);
+	lst = _lst;
+	while (lst)
+	{
+		lst_prev = lst;
+		lst = lst->next;
+		if (lst->prev != lst_prev)
+			return (false);
+	}
+	lst = _lst;
+	while (lst)
+	{
+		lst_next = lst;
+		lst = lst->prev;
+		if (lst->next != lst_next)
+			return (false);
+	}
+	return (true);
 }
 /*
 GPL-3.0 License:

@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:59:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:37:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:27:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 
-bool	ft_vec_add(t_vector **vec, void *data)
+bool	ft_vec_add(t_vector **vec, const void *restrict data)
 {
 	size_t	nw_size;
 
@@ -22,8 +22,7 @@ bool	ft_vec_add(t_vector **vec, void *data)
 		if (ft_vec_reserve(vec, nw_size) == false)
 			return (false);
 	}
-	(*vec)->datas[(*vec)->count++] = data;
-	return (true);
+	return ((*vec)->datas[(*vec)->count++] = (void *)data, true);
 }
 /*
 GPL-3.0 License:

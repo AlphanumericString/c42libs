@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:36:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/29 00:21:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-
 #include "tests/tests__all_modules_tests.h"
+
 int	test_str_isdouble(void)
 {
 	if (ft_str_isdouble("23.3") != 1 || ft_str_isdouble("42") != 1 || \

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:38:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 23:48:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 23:18:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	ft_ll_size(const t_list *lst)
 	return (i);
 }
 
-size_t	ft_ll_size_match(const t_list *lst, t_data_is function)
+size_t	ft_ll_size_data_is(const t_list *lst, t_data_is function)
 {
 	size_t	i;
 	t_list	*it;
@@ -37,6 +37,23 @@ size_t	ft_ll_size_match(const t_list *lst, t_data_is function)
 	while (it)
 	{
 		if (function(it->data))
+			i++;
+		it = it->next;
+	}
+	return (i);
+}
+
+size_t	ft_ll_size_cmp(const t_list *lst, const void *restrict data, \
+	const t_data_cmp cmp)
+{
+	size_t	i;
+	t_list	*it;
+
+	i = 0;
+	it = (t_list *)lst;
+	while (it)
+	{
+		if (cmp(it->data, data) == 0)
 			i++;
 		it = it->next;
 	}

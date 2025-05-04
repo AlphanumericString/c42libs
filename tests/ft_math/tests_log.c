@@ -13,7 +13,7 @@
 #include "ft_math.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_ft_log(void)
+int	mt_log(void)
 {
 	int	x;
 
@@ -35,7 +35,7 @@ int	test_ft_log(void)
 	return (0);
 }
 
-int	test_ft_llogof(void)
+int	mt_llogof(void)
 {
 	if (ft_llogof(0, 2) != -1)
 		return (1);
@@ -50,7 +50,7 @@ int	test_ft_llogof(void)
 	return (0);
 }
 
-int	test_ft_ullogof(void)
+int	mt_ullogof(void)
 {
 	if (ft_ullogof(0, 2) != -1)
 		return (1);
@@ -61,7 +61,7 @@ int	test_ft_ullogof(void)
 	return (0);
 }
 
-int	test_ft_logof(void)
+int	mt_logof(void)
 {
 	if (ft_logof(0, 2) != -1)
 		return (1);

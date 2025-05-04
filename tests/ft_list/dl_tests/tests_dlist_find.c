@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:01:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:19:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -42,7 +43,7 @@ int	t_dl_find(void)
 		return (1);
 	else if (ft_dl_size(found_ret[2]) != 1 || found_ret[2]->data != data2)
 		return (1);
-	return (ft_dl_clear(&list, free), free(data3), 0);
+	return (ft_dl_clear(&list, ft_free), free(data3), 0);
 }
 /*
 GPL-3.0 License:

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:49:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/29 00:17:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #define MAGIC 42
 
-static int	eval_base(int *t_cases, const char *bases, const char *expected_results[])
+static int	eval_base(int *t_cases, const char *bases, const char *exp_res[])
 {
 	char	*res;
 	size_t	j;
@@ -25,7 +25,7 @@ static int	eval_base(int *t_cases, const char *bases, const char *expected_resul
 	while (t_cases[j] != MAGIC)
 	{
 		res = ft_itoa_base(t_cases[j], bases);
-		if (ft_strcmp(res, expected_results[j]) != 0)
+		if (ft_strcmp(res, exp_res[j]) != 0)
 			return (ft_free(res), j + 1);
 		ft_free(res);
 		j++;

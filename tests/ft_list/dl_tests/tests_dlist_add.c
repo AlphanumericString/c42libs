@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:48:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:18:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_list.h"
 #include "ft_list_types.h"
 #include <stdlib.h>
@@ -39,7 +40,7 @@ int	t_dl_add_front(void)
 		else if (list->next->prev != list)
 			return (1);
 	}
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, ft_free);
 	ft_dl_add_front(NULL, NULL);
 	return (0);
 }
@@ -68,7 +69,7 @@ int	t_dl_add_back(void)
 		else if (list->next->next || list->next->prev != list)
 			return (1);
 	}
-	ft_dl_clear(&list, free);
+	ft_dl_clear(&list, ft_free);
 	ft_dl_add_back(NULL, NULL);
 	return (0);
 }

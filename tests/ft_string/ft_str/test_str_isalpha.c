@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:36:18 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/29 00:21:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-
 #include "tests/tests__all_modules_tests.h"
+
 int	test_str_isalpha(void)
 {
 	if (ft_str_isalpha("HelloWorld") != 1)

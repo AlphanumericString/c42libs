@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 10:13:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:38:24 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:22:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_vector.h"
 #include "ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
-#include <stdlib.h>
 
 // tests vector has removed the arr[2]orrect element
 // and
@@ -61,14 +61,14 @@ int	test_vec_remove(void)
 	vec = ft_vec_new();
 	while (i < 3)
 	{
-		ptr = (int *)malloc(sizeof(int));
+		ptr = (int *)ft_malloc(sizeof(int));
 		*ptr = arr[i++];
 		ft_vec_add(&vec, (void *)ptr);
 	}
-	ft_vec_remove(vec, 1, free);
+	ft_vec_remove(vec, 1, ft_free);
 	if (checks_02(vec, arr))
 		return (checks_02(vec, arr));
-	return (ft_vec_apply(vec, free), ft_vec_destroy(&vec), 0);
+	return (ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
 }
 /*
 GPL-3.0 License:

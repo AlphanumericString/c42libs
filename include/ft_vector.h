@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:19:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 /// @param vec pointer to the vector
 /// @param data data to add
 /// @return true if the element was added, false otherwise
-bool		ft_vec_add(t_vector **vec, void *data);
+bool		ft_vec_add(t_vector **vec, const void *restrict data);
 
 // ft_vector/ft_vec_apply.c
 
@@ -40,7 +40,7 @@ bool		ft_vec_add(t_vector **vec, void *data);
 /// @param vec pointer to the vector
 /// @param func function to apply
 /// @return void
-void		ft_vec_apply(t_vector *vec, t_data_apply func);
+void		ft_vec_apply(t_vector *vec, const t_data_apply func);
 
 // ft_vector/ft_vec_at.c
 
@@ -48,7 +48,7 @@ void		ft_vec_apply(t_vector *vec, t_data_apply func);
 /// @param vec pointer to the vector
 /// @param n index of the element
 /// @return pointer to the element
-void		*ft_vec_at(t_vector *vec, size_t n);
+void		*ft_vec_at(const t_vector *restrict vec, size_t n);
 
 // ft_vector/ft_vec_cat.c
 
@@ -58,7 +58,7 @@ void		*ft_vec_at(t_vector *vec, size_t n);
 /// @return true if the vectors were concatenated, false otherwise
 /// @note the second vector is not modified therefore it is not cleared.
 /// Be careful with double free.
-bool		ft_vec_cat(t_vector **vec_a, const t_vector *vec_b);
+bool		ft_vec_cat(t_vector **vec_a, const t_vector *restrict vec_b);
 
 // ft_vector/ft_vec_clear.c
 
@@ -67,7 +67,7 @@ bool		ft_vec_cat(t_vector **vec_a, const t_vector *vec_b);
 /// @return void
 /// @note the data is not freed, cappacity is not changed. if you want to free
 //  the data / reduce the cappacity use ft_vec_clear, then ft_vec_shrink.
-void		ft_vec_clear(t_vector *vec);
+void		ft_vec_clear(t_vector *restrict vec);
 
 // ft_vector/ft_vec_destroy.c
 
@@ -83,7 +83,8 @@ bool		ft_vec_destroy(t_vector **vec);
 /// @param func function to filter the vector
 /// @param del function to delete the elements filtered
 /// @return void
-void		ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del);
+void		ft_vec_filter(t_vector *restrict vec, const t_data_is func, \
+			const t_data_apply del);
 
 // ft_vector/ft_vec_find.c
 
@@ -94,7 +95,8 @@ void		ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del);
 /// key and the second is the element of the vector
 /// @return pointer to the element or NULL if not found
 /// @note If you want to get an element by index, use ft_vec_at
-void		*ft_vec_find(t_vector *vector, const void *key, t_data_cmp cmp);
+void		*ft_vec_find(const t_vector *restrict vector, \
+			const void *restrict key, const t_data_cmp cmp);
 
 // ft_vector/ft_vec_map.c
 
@@ -109,7 +111,7 @@ void		*ft_vec_find(t_vector *vector, const void *key, t_data_cmp cmp);
 //	the new vector will be a collection of pointers to the
 //  data of the old vector. If you want to do that and change the
 //  value of the data, use ft_vec_apply instead.
-t_vector	*ft_vec_map(t_vector *vec, t_data_tr func);
+t_vector	*ft_vec_map(const t_vector *restrict vec, const t_data_tr func);
 
 // ft_vector/ft_vec_new.c
 
@@ -122,7 +124,7 @@ t_vector	*ft_vec_new(void);
 /// @brief Pop an element from the vector's end
 /// @param vec pointer to the vector
 /// @return pointer to the element
-void		*ft_vec_pop(t_vector *vec);
+void		*ft_vec_pop(t_vector *restrict vec);
 
 /// @brief Create a new vector with a given capacity
 /// @param n capacity of the new vector
@@ -137,8 +139,8 @@ t_vector	*ft_vec_from_array(void **data, size_t count);
 
 /// @brief Create a new vector from an array and steals ownership of the array
 /// @param data data to create the vector from
-/// @param count count of the data array (if count is 0 will consider it 
-/// null ended)
+/// @param count count of the data array (if count is 0 will consider it
+///		null ended)
 /// @return pointer to the new vector
 t_vector	*ft_vec_convert_alloccarray(void **data, size_t count);
 
@@ -148,7 +150,8 @@ t_vector	*ft_vec_convert_alloccarray(void **data, size_t count);
 /// @param vector vector to remove the element from
 /// @param n index of the element to remove
 /// @param del function to delete the elements data
-void		ft_vec_remove(t_vector *vector, size_t n, t_data_apply del);
+void		ft_vec_remove(t_vector *restrict vector, size_t n, \
+			const t_data_apply del);
 
 /// @brief Remove an element from the vector
 /// @param vector vector to remove the element from
@@ -156,8 +159,8 @@ void		ft_vec_remove(t_vector *vector, size_t n, t_data_apply del);
 /// @param del function to delete the elements data
 /// @return void
 /// @note Similar to ft_vec_filter
-void		ft_vec_remove_if(t_vector *vector, t_data_is func,
-				t_data_apply del);
+void		ft_vec_remove_if(t_vector *restrict vector, const t_data_is func, \
+			const t_data_apply del);
 
 // ft_vector/ft_vec_reserve.c
 
@@ -173,7 +176,7 @@ bool		ft_vec_reserve(t_vector **vec, size_t size);
 /// @brief Reverse a vector
 /// @param vector vector to reverse
 /// @return void
-void		ft_vec_reverse(t_vector *vector);
+void		ft_vec_reverse(t_vector *restrict vector);
 
 // ft_vector/ft_vec_shift.c
 
@@ -182,7 +185,7 @@ void		ft_vec_reverse(t_vector *vector);
 /// @param start index to start the shift
 /// @param shift number of elements to shift
 /// @return void
-void		ft_vec_shift(t_vector *vec, size_t start, size_t shift);
+void		ft_vec_shift(t_vector *restrict vec, size_t start, size_t shift);
 
 // ft_vector/ft_vec_sort.c
 
@@ -206,7 +209,7 @@ bool		ft_vec_shrink(t_vector *vec);
 /// @param a index of the first element
 /// @param b index of the second element
 /// @return void
-void		ft_vec_swap(t_vector *vec, size_t a, size_t b);
+void		ft_vec_swap(t_vector *restrict vec, size_t a, size_t b);
 
 // ft_vector/ft_vec_to_array.c
 

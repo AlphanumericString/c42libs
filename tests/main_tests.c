@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2025/03/26 15:46:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 16:52:24 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,20 @@
 #include <stdbool.h>
 #include <limits.h>
 
-static const t_test	*get_tests(void)
+static const t_module	*get_tests(void)
 {
-	static const t_test	tests[] = {
-	{"string", tests_string},
-	{"vec", tests_vector},
-	{"map", tests_map},
-	{"simply linked lists", tests_linked_list_all},
-	{"doubly linked lists", tests_doubly_linked_list_all},
-	{"optional", tests_optional},
-	{"args", tests_args},
-	{"math", tests_math},
-	{"pair", tests_pair},
-	{NULL, NULL}
+	static const t_module	tests[] = {
+	{"string", "str", tests_string},
+	{"vector", "vec", tests_vector},
+	{"hashmaps", "map", tests_map},
+	{"simply linked lists", "sll", tests_linked_list_all},
+	{"doubly linked lists", "dll", tests_doubly_linked_list_all},
+	{"circular linked lists", "cll", tests_circular_linked_list_all},
+	{"optional", "opt", tests_optional},
+	{"arguments", "arg", tests_args},
+	{"math", "math", tests_math},
+	{"pair", "pair", tests_pair},
+	{NULL, NULL, NULL}
 	};
 
 	return (tests);
@@ -59,16 +60,16 @@ static void	setup(const char *av[])
 	talloc_set_currentpoint(0);
 }
 
-static int	run_module(const t_test module)
+static int	run_module(const t_module module)
 {
 	int	collect;
 
 	collect = 0;
 	ft_putstr_fd("\n\nTesting ", STDOUT_FILENO);
-	ft_putendl_fd(module.name, STDOUT_FILENO);
+	ft_putendl_fd(module.full_name, STDOUT_FILENO);
 	collect = module.test();
 	ft_putstr_fd("\nModule:: ", STDOUT_FILENO);
-	ft_putstr_fd(module.name, STDOUT_FILENO);
+	ft_putstr_fd(module.full_name, STDOUT_FILENO);
 	if (collect == 0)
 		ft_putstr_fd(" \033[32mOK\033[0m\n", STDOUT_FILENO);
 	else
@@ -76,7 +77,7 @@ static int	run_module(const t_test module)
 	return (collect);
 }
 
-static int	print_help_tests(const t_test *tests)
+static int	print_help_tests(const t_module *tests)
 {
 	size_t	i;
 
@@ -85,10 +86,10 @@ static int	print_help_tests(const t_test *tests)
 	ft_putstr_fd(ft_progname(), STDOUT_FILENO);
 	ft_putendl_fd(" [module_name]", STDOUT_FILENO);
 	ft_putendl_fd("Available modules:", STDOUT_FILENO);
-	while (tests[i].name)
+	while (tests[i].full_name)
 	{
 		ft_putstr_fd(" '", STDOUT_FILENO);
-		ft_putstr_fd(tests[i++].name, STDOUT_FILENO);
+		ft_putstr_fd(tests[i++].full_name, STDOUT_FILENO);
 		ft_putendl_fd("'", STDOUT_FILENO);
 	}
 	ft_putendl_fd("Or use 'all' to run all tests", STDOUT_FILENO);
@@ -104,7 +105,7 @@ int	main(int ac, const char *av[])
 {
 	int				collect;
 	size_t			i;
-	const t_test	*tests = get_tests();
+	const t_module	*tests = get_tests();
 
 	i = 0;
 	collect = 0;
@@ -113,14 +114,12 @@ int	main(int ac, const char *av[])
 		return (print_help_tests(tests), EXIT_SUCCESS);
 	if (ac > 1 && !ft_strcmp(av[1], "all"))
 		av[1] = NULL;
-	while (tests[i].name)
+	while (tests[i].full_name)
 	{
-		if (ac > 1 && ft_strcmp(av[1], tests[i].name))
-		{
-			i++;
-			continue ;
-		}
-		collect += run_module(tests[i++]);
+		if (ac < 2 || (!ft_strcmp(av[1], tests[i].short_name) || \
+		!ft_strcmp(av[1], tests[i].full_name)))
+			collect += run_module(tests[i]);
+		i++;
 	}
 	if (collect == 0)
 		return (ft_putendl_fd("\033[32mAll tests passed\033[0m", \

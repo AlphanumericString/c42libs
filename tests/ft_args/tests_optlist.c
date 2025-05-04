@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:52:31 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/05 21:34:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	empty(void *ar, char *arg)
 	(void)arg;
 }
 
-int	getset_opt_list_test(void)
+int	targ_opt_list_test(void)
 {
 	const t_opt	*op2 = NULL;
 	const t_opt	op1[] = {

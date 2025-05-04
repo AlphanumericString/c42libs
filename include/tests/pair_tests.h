@@ -6,22 +6,23 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 00:30:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:18:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:53:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PAIR_TESTS_H
 # define PAIR_TESTS_H
 
-int	tests_pair_destroy(void);
-int	test_pair_set(void);
-int	test_pair_new(void);
-int	test_pair_second(void);
-int	test_pair_first(void);
-int	test_pair_destroy(void);
-int	test_pair_cmp(void);
-int	test_pair_cmp_first(void);
-int	test_pair_cmp_second(void);
+int	tp_destroy(void);
+int	tp_destroy_sep(void);
+int	tp_set(void);
+int	tp_new(void);
+int	tp_second(void);
+int	tp_first(void);
+int	tp_destroy(void);
+int	tp_cmp(void);
+int	tp_cmp_first(void);
+int	tp_cmp_second(void);
 
 #endif /* PAIR_TESTS_H */
 /*

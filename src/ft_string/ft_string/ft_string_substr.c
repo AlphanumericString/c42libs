@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:42:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:37:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/03/29 00:10:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-t_string	*ft_string_substr(t_string *str, size_t start, size_t len)
+t_string	*ft_string_substr(const t_string *restrict str, size_t start, \
+	size_t len)
 {
 	t_string	*new;
 

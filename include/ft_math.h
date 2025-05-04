@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 18:50:18 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/04/24 13:50:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 /* ************************************************************************** */
 
 # include "ft_math_types.h"
-# include <stddef.h>
+# include "ft_defs.h"
 
 /// @brief Return the nearest aligned value of nbr on the alignment
 /// @param nbr The nbr to align
@@ -74,6 +74,9 @@ int			ft_logof(int nbr, int base);
 /// @return the logaritm of the number in the specified base. in case of error
 /// return -1
 int			ft_log(int nbr);
+
+int	ft_nbrlen_base(ssize_t nbr, size_t blen);
+int	ft_nbrlen(ssize_t nbr);
 
 /// @brief returns the minimum of a and b
 /// @param a first number
@@ -145,6 +148,16 @@ double		ft_range_d(double value, double min, double max, double new_max);
 /// @param a The value to get the absolute value
 /// @return The absolute value of a
 int			ft_abs(int a);
+
+/// @brief Return the absolute value of a
+/// @param a The value to get the absolute value
+/// @return The absolute value of a
+long		ft_abs_l(long x);
+
+/// @brief Return the absolute value of a
+/// @param a The value to get the absolute value
+/// @return The absolute value of a
+ssize_t		ft_abs_ssize_t(ssize_t x);
 
 /// @brief Return the rounded value of x
 /// @param x The value to round

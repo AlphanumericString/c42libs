@@ -13,7 +13,7 @@
 #include "ft_math.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_ft_clamp(void)
+int	mt_clamp(void)
 {
 	const int	max = 42;
 	const int	min = 21;
@@ -37,7 +37,7 @@ int	test_ft_clamp(void)
 	return (0);
 }
 
-int	test_ft_clamp_f(void)
+int	mt_clamp_f(void)
 {
 	const float	max = 42.0;
 	const float	min = 21.0;
@@ -61,7 +61,7 @@ int	test_ft_clamp_f(void)
 	return (0);
 }
 
-int	test_ft_clamp_d(void)
+int	mt_clamp_d(void)
 {
 	const double	max = 42.0;
 	const double	min = 21.0;
