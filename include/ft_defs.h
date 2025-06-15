@@ -6,29 +6,79 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:55:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/11 21:44:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/12 16:50:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DEFS_H
 # define FT_DEFS_H
+# include <stddef.h>
 
+// linux:
 // stddef -> size_t
 // stdbool -> boolean types
 // sys/types -> ssize_t
-# include <stddef.h>
-# include <stdbool.h>
-# include <sys/types.h>
+
+# ifdef __APPLE__
+#  define INVALID_SPE_CHARS "/:\""
+#  define NEWLINE_SEQ "\n"
+#  define PATH_SEPARATORS "/:"
+#  define ENV_SEPARATORS ":"
+#  include <stddef.h>
+#  include <stdbool.h>
+#  include <sys/types.h>
+# elif defined(__linux__)
+#  define INVALID_SPE_CHARS "?*/"
+#  define NEWLINE_SEQ "\n"
+#  define PATH_SEPARATORS "/"
+#  define ENV_SEPARATORS ":"
+#  include <stdbool.h>
+#  include <sys/types.h>
+# elif defined(_WIN32) || defined(_WIN64)
+#  define INVALID_SPE_CHARS "\\:*?\"<>|"
+#  define NEWLINE_SEQ "\r\n"
+#  define PATH_SEPARATORS "\\/"
+#  define ENV_SEPARATORS ";"
+# else
+#  define INVALID_SPE_CHARS ""
+#  define NEWLINE_SEQ "\n"
+#  define PATH_SEPARATORS "/"
+#  define ENV_SEPARATORS ":"
+#  include <stdbool.h>
+#  include <sys/types.h>
+# endif
+
+# if defined(__APPLE__) || defined(__linux__)
+
+typedef bool			t_bool;
+typedef ssize_t			t_ssize;
+
+# elif defined(_WIN32) || defined(_WIN64)
+
+typedef enum e_bool
+{
+	false = 0,
+	true = 1
+}	t_bool;
+
+typedef signed size_t	t_ssize;
+
+# else
+
+typedef bool			t_bool;
+typedef ssize_t			t_ssize;
+
+# endif
 
 /// @brief	interface for string hashes.
 /// @param	str	The string to hash
 /// @param	str_len	The lenght of the string to hash, if -1 hashes until '\0'
-typedef size_t		(*t_strhash)(const char *str, ssize_t str_len);
+typedef size_t			(*t_strhash)(const char *str, ssize_t str_len);
 
 /// @brief Interface for string hashes.
 /// @param str	The string to hash
 /// @param data_len	The lenght of the string to hash, if -1 hashes until '\0'
-typedef size_t		(*t_memhash)(const void *data, size_t data_len);
+typedef size_t			(*t_memhash)(const void *data, size_t data_len);
 
 /// @brief	Type of function to compare two elements
 /// @param	A The first element to compare

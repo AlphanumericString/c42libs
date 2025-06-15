@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:58:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/14 21:36:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include <stddef.h>
 
-size_t	ft_strcnb(char *str, char c)
+size_t	ft_strcnb(const char *str, char c)
 {
 	size_t	i;
 	size_t	nb;

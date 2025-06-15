@@ -6,11 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:09:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/15 18:40:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:46:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include <errno.h>
+#include <unistd.h>
 
 void	ft_perror(const char *s)
 {

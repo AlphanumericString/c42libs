@@ -31,14 +31,14 @@
 // int8_t - int16_t - uint32_t ... INT_MAX - INT_MIN
 # include <stdint.h>
 
-# include "ft_args_types.h"
-# include "ft_list_types.h"
-# include "ft_map_types.h"
-# include "ft_math_types.h"
-# include "ft_optional_types.h"
-# include "ft_pair_types.h"
-# include "ft_string_types.h"
-# include "ft_vector_types.h"
+# include "types/ft_args_types.h"
+# include "types/ft_list_types.h"
+# include "types/ft_map_types.h"
+# include "types/ft_math_types.h"
+# include "types/ft_optional_types.h"
+# include "types/ft_pair_types.h"
+# include "types/ft_string_types.h"
+# include "types/ft_vector_types.h"
 
 #endif /* FT_TYPES_H */
 /*

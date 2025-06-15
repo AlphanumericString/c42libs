@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:34:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:37:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:26:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_string_types.h"
+#include "types/ft_string_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 int	test_string_ncmp_str(void)
@@ -26,14 +26,14 @@ int	test_string_ncmp_str(void)
 	str3 = ft_string_from("Hello Worla");
 	str4 = ft_string_from("Hello");
 	if (ft_string_ncmpstr(str, str2, 10) != 0 || \
-	ft_string_ncmpstr(str, str3, 10) != 0)
+ft_string_ncmpstr(str, str3, 10) != 0)
 		return (1);
 	if (ft_string_ncmpstr(str, str2, 11) == 0 || \
-	ft_string_ncmpstr(str, str3, 11) == 0 || \
-	ft_string_ncmpstr(str3, str, 11) == 0)
+ft_string_ncmpstr(str, str3, 11) == 0 || \
+ft_string_ncmpstr(str3, str, 11) == 0)
 		return (2);
 	if (ft_string_ncmpstr(str2, str, 99) == 0 || \
-	ft_string_ncmpstr(str3, str4, 9) == 0)
+ft_string_ncmpstr(str3, str4, 9) == 0)
 		return (6);
 	return (ft_string_destroy(&str), ft_string_destroy(&str2),
 		ft_string_destroy(&str3), ft_string_destroy(&str4), 0);

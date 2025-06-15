@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:25:07 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/10 13:49:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 03:33:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_bitset_types.h"
 # include <stddef.h>
+# include <stdint.h>
+# include <stdbool.h>
+# include "types/ft_bitset_types.h"
 
 /* ************************************************************************** */
 /*                               CREATE BITSET                                */
@@ -47,7 +49,7 @@ t_bitset	ft_bs_create(size_t size);
 /// @param str The string to create the bitset from
 /// @param n The size of the string
 /// @return A pointer to the new bitset allocated in memory
-t_bitset *ft_bs_new_from_str(const char *str, size_t n);
+t_bitset	*ft_bs_new_from_str(const char *str, size_t n);
 
 /* ************************************************************************** */
 /*                               DELETE BITSET                                */

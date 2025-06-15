@@ -6,21 +6,38 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:08:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/24 13:53:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:44:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
+#include <stdio.h>
 #include <unistd.h>
-#include "ft_math.h"
 #include "ft_string.h"
+#include "types/ft_string_types.h"
 
-int ft_putunbr_base_fd(size_t nb, const char *base, int fd)
+int	ft_putunbr_base_fd(size_t nb, const char *base, int fd)
 {
+	char	*s;
+	int		ret;
+
+	s = ft_stoa_base(nb, base);
+	if (!s || fd < 0 || fd > MAX_FD)
+		return (-1);
+	ret = ft_putstr_fd(s, fd);
+	return (ft_free(s), ret);
 }
 
 int	ft_putnbr_base_fd(ssize_t nb, const char *base, int fd)
 {
+	char	*s;
+	int		ret;
+
+	s = ft_sstoa_base(nb, base);
+	if (!s || fd < 0 || fd > MAX_FD)
+		return (-1);
+	ret = ft_putstr_fd(s, fd);
+	return (ft_free(s), ret);
 }
 /*
 GPL-3.0 License:

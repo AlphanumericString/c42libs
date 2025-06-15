@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:13:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:38:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:33:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
-#include "ft_vector_types.h"
+#include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 #include "tests/tests.h"
@@ -34,8 +34,8 @@ static int	bases_case(void)
 	if (vec->count != 6)
 		return (3);
 	if (vec->datas[0] != (void *)42 || vec->datas[1] != (void *)43 || \
-	vec->datas[2] != (void *)44 || vec->datas[3] != (void *)45 || \
-	vec->datas[4] != (void *)46 || vec->datas[5] != (void *)47)
+vec->datas[2] != (void *)44 || vec->datas[3] != (void *)45 || \
+vec->datas[4] != (void *)46 || vec->datas[5] != (void *)47)
 		return (4);
 	ft_vec_destroy(&vec);
 	return (0);

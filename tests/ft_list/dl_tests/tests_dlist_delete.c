@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:01:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 14:18:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:36:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
 #include <stdlib.h>
 #include "tests/tests__all_modules_tests.h"
@@ -30,7 +30,7 @@ int	t_dl_delete_self(void)
 	ft_dl_add_back(&list, ft_dl_create(data3));
 	ft_dl_delete_self(list->next, NULL);
 	if (!list || list->data != data || !list->next || \
-	list->next->data != data3 || list->next->next)
+list->next->data != data3 || list->next->next)
 		return (1);
 	ft_dl_clear(&list, ft_free);
 	data3 = malloc(sizeof(int));
@@ -42,7 +42,7 @@ int	t_dl_delete_self(void)
 	if (list->next || list->data != data3)
 		return (1);
 	return (ft_dl_clear(&list, ft_free), ft_dl_delete_self(NULL, NULL), \
-	ft_dl_delete_self(ft_dl_create(data3), NULL), 0);
+ft_dl_delete_self(ft_dl_create(data3), NULL), 0);
 }
 /*
 	ft_dl_add_back(&list, ft_dl_create(data3));
@@ -72,13 +72,13 @@ int	t_dl_delete_range(void)
 	list2 = list->next;
 	nb_deleted = ft_dl_delete_range(list, list->next, NULL);
 	if (nb_deleted != 1 || ft_dl_size(list2) != 2 || *(int *)list2->data \
-	!= *data_array[1] || *(int *)list2->next->data != *data_array[2])
+!= *data_array[1] || *(int *)list2->next->data != *data_array[2])
 		return (1);
 	ft_dl_add_front(&list2, ft_dl_create(data_array[0]));
 	list = list2;
 	nb_deleted = ft_dl_delete_range(list->next, list->next->next, ft_free);
 	if (nb_deleted != 1 || ft_dl_size(list) != 2 || *(int *)list2->data \
-	!= *data_array[0] || *(int *)list2->next->data != *data_array[2])
+!= *data_array[0] || *(int *)list2->next->data != *data_array[2])
 		return (2);
 	ft_dl_clear(&list2, ft_free);
 	ft_dl_delete_range(NULL, NULL, ft_free);

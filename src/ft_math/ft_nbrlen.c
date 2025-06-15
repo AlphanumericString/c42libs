@@ -6,12 +6,23 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 01:01:11 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/14 01:05:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/24 04:22:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math.h"
 #include "ft_string.h"
+
+int	ft_unbrlen_base(size_t nbr, size_t blen)
+{
+	size_t	nbr_len;
+
+	nbr_len = 0;
+	if (nbr == 0)
+		return (1);
+	nbr_len += ft_ullogof(nbr, blen) + 1;
+	return (nbr_len);
+}
 
 int	ft_nbrlen_base(ssize_t nbr, size_t blen)
 {

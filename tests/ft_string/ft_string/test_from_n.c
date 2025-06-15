@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_string_types.h"
+#include "types/ft_string_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 int	test_string_from_n(void)

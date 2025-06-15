@@ -6,11 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 02:11:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 17:05:19 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 00:10:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "ft_list.h"
 #include <stdbool.h>
 
@@ -46,15 +46,14 @@ bool	ft_cl_check_health(const t_clist *_lst)
 	if (!_lst)
 		return (true);
 	lst = _lst;
-	while (lst)
+	while (lst && lst->next != _lst)
 	{
 		lst_prev = lst;
 		lst = lst->next;
 		if (lst->prev != lst_prev)
 			return (false);
 	}
-	lst = _lst;
-	while (lst)
+	while (lst && lst->prev != _lst)
 	{
 		lst_next = lst;
 		lst = lst->prev;

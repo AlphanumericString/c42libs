@@ -1,0 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_allocator_group.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/03 15:55:40 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/11 01:04:09 by bgoulard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_allocator__dev.h"
+#include <malloc.h> // reallocarray
+#include <stdbool.h> // true
+
+t_allocator_group	*ft_get_allocator(void)
+{
+	static t_allocator_group	alloc = {0};
+
+	return (&alloc);
+}
+
+void	ft_set_allocator(void)
+{
+	if (SELF_ALLOC == true)
+		ft_set_ft_alloc();
+	else
+		ft_set_gnu_alloc();
+}
+
+void	ft_set_ft_alloc(void)
+{
+	t_allocator_group	*alloc;
+
+	alloc = ft_get_allocator();
+	alloc->ptr_alloc = ft_memimpl_malloc;
+	alloc->ptr_calloc = ft_memimpl_calloc;
+	alloc->ptr_free = ft_memimpl_free;
+	alloc->ptr_realloc = ft_memimpl_realloc;
+	alloc->ptr_reallocarray = ft_memimpl_reallocarray;
+}
+
+#if __GNUC__ && __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 26)
+# define REALLOCARRAY reallocarray
+#else
+# define REALLOCARRAY 0
+#endif
+
+void	ft_set_gnu_alloc(void)
+{
+	t_allocator_group	*alloc;
+
+	alloc = ft_get_allocator();
+	alloc->ptr_alloc = malloc;
+	alloc->ptr_calloc = calloc;
+	alloc->ptr_free = free;
+	alloc->ptr_realloc = realloc;
+	alloc->ptr_reallocarray = (void *(*)(void *, size_t, size_t))REALLOCARRAY;
+}
+
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

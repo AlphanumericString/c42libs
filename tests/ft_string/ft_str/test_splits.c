@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:22:48 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/29 00:18:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:26:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	tests_splits(void)
 	str = "path/to/file:another/path:yet/another/path";
 	res = ft_splits(str, " /:");
 	if (ft_strcmp(res[0], "path") != 0 || ft_strcmp(res[1], "to") != 0 || \
-	ft_strcmp(res[2], "file") != 0 || ft_strcmp(res[3], "another") != 0 || \
-	ft_strcmp(res[4], "path") != 0 || ft_strcmp(res[5], "yet") != 0 || \
-	ft_strcmp(res[6], "another") != 0 || ft_strcmp(res[7], "path") != 0 || \
-	res[8])
+ft_strcmp(res[2], "file") != 0 || ft_strcmp(res[3], "another") != 0 || \
+ft_strcmp(res[4], "path") != 0 || ft_strcmp(res[5], "yet") != 0 || \
+ft_strcmp(res[6], "another") != 0 || ft_strcmp(res[7], "path") != 0 || res[8])
 		return (1);
 	i = 0;
 	while (res[i])

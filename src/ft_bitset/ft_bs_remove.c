@@ -6,16 +6,16 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 09:40:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/10 13:05:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:19:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_bitset_types.h"
+#include "types/ft_bitset_types.h"
 #include "ft_bitset.h"
 #include "ft_string.h"
 #include <stddef.h>
 
-void		ft_bs_remove(t_bitset *bitset, size_t nbr)
+void	ft_bs_remove(t_bitset *bitset, size_t nbr)
 {
 	if (!bitset || !nbr)
 		return ;
@@ -26,14 +26,14 @@ void		ft_bs_remove(t_bitset *bitset, size_t nbr)
 	return ;
 }
 
-void		ft_bs_remove_front(t_bitset *bitset, uint8_t nbr)
+void	ft_bs_remove_front(t_bitset *bitset, uint8_t nbr)
 {
 	if (!bitset || !nbr)
 		return ;
 	if (bitset->_capacity < nbr)
 		nbr = bitset->_capacity;
 	ft_bzero(bitset->bits, nbr);
-	ft_memmove(bitset->bits, bitset->bits + nbr, \
+	ft_memmove(bitset->bits, bitset->bits + nbr,
 		bitset->_capacity - nbr);
 	bitset->_capacity -= nbr;
 	return ;

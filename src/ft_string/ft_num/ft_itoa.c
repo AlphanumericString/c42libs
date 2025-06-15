@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:20:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:34:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/24 14:40:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 char	*ft_itoa(int nbr)
 {
 	return (ft_itoa_base(nbr, "0123456789"));
+}
+
+char	*ft_itoa_base(int nbr, const char *base)
+{
+	return (ft_sstoa_base((ssize_t)nbr, base));
 }
 /*
 GPL-3.0 License:

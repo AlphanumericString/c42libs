@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:30:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:38:19 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:28:24 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 
 #include "ft_vector.h"
-#include "ft_vector_types.h"
+#include "types/ft_vector_types.h"
 
 #include "ft_string.h"
 #include "tests/tests.h"
@@ -64,7 +64,7 @@ static int	base_case(void)
 	if (vec->count != len || vec->cappacity != len || vec->datas != (void **)a)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42 || *(int *)ft_vec_at(vec, 1) != \
-	43 || *(int *)ft_vec_at(vec, 2) != 44)
+43 || *(int *)ft_vec_at(vec, 2) != 44)
 		return (2);
 	(ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec));
 	a = create_tb_int(&len);
@@ -72,7 +72,7 @@ static int	base_case(void)
 	if (vec->count != len || vec->cappacity != len || vec->datas != (void **)a)
 		return (2);
 	else if (*(int *)ft_vec_at(vec, 0) != 42 || *(int *)ft_vec_at(vec, 1) != \
-	43 || *(int *)ft_vec_at(vec, 2) != 44)
+43 || *(int *)ft_vec_at(vec, 2) != 44)
 		return (3);
 	return (ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
 }
@@ -90,7 +90,7 @@ static int	merror_case(void)
 	if (vec)
 		return (1);
 	talloc_set_failpoint(f_p);
-	ft_free_2d((void **)arr);
+	ft_arr_free((void **)arr);
 	return (0);
 }
 

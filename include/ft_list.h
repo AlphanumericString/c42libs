@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 17:15:55 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 03:36:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@
 /*																			  */
 /* ************************************************************************** */
 
-# include "ft_list_types.h"
+# include <stdbool.h>
+# include <stddef.h>
+# include <sys/types.h>
+
+# include "types/ft_list_types.h"
 # include "ft_defs.h"
 
 /* ************************************************************************** */
@@ -206,8 +210,8 @@ size_t	ft_dl_clear(t_dlist **head, const t_data_apply del);
 /// @param end The end of the list
 /// @param del The function to delete the data
 /// @return The number of nodes deleted
-size_t	ft_dl_clear_range(t_dlist *start, const t_dlist *end, \
-		const t_data_apply del);
+size_t	ft_dl_clear_range(t_dlist *start, const t_dlist *end,
+			const t_data_apply del);
 
 /// @brief Clear a list
 /// @param lst The list
@@ -216,7 +220,7 @@ size_t	ft_dl_clear_range(t_dlist *start, const t_dlist *end, \
 void	ft_ll_clear(t_list **lst, const t_data_apply del);
 
 // TODO: implement clear range for ll
-// size_t	ft_ll_clear_range(t_dlist *start, const t_dlist *end, \
+// size_t	ft_ll_clear_range(t_dlist *start, const t_dlist *end,
 //						 const t_data_apply del);
 
 /// @brief Clear a list
@@ -231,8 +235,8 @@ size_t	ft_cl_clear(t_clist **head, const t_data_apply del);
 /// @param end The end of the list
 /// @param del The function to delete the data
 /// @return The number of nodes deleted
-size_t	ft_cl_clear_range(t_clist *start, const t_clist *end, \
-		const t_data_apply del);
+size_t	ft_cl_clear_range(t_clist *start, const t_clist *end,
+			const t_data_apply del);
 
 /* ************************************************************************** */
 /*                              CREATE & COPY                                 */
@@ -337,8 +341,8 @@ void	ft_ll_delone(t_list *lst, const t_data_apply del);
 /// @param target The node until which to delete
 /// @param del The function to delete the data
 /// @return void
-size_t	ft_ll_delete_range(t_list *lst, const t_list *restrict end, \
-		const t_data_apply del);
+size_t	ft_ll_delete_range(t_list *lst, const t_list *restrict end,
+			const t_data_apply del);
 
 /// @brief Delete a simply linked list entirely
 /// @param lst The head of the list
@@ -376,24 +380,24 @@ size_t	ft_cl_delete(t_dlist **head, const t_data_apply del);
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
-t_dlist	*ft_dl_find(const t_dlist *head, const void *restrict data, \
-		const t_data_cmp cmp);
+t_dlist	*ft_dl_find(const t_dlist *head, const void *restrict data,
+			const t_data_cmp cmp);
 
 /// @brief Find a node in a list
 /// @param list The list
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
-void	*ft_ll_find(const t_list *list, const void *restrict data, \
-		const t_data_cmp cmp);
+void	*ft_ll_find(const t_list *list, const void *restrict data,
+			const t_data_cmp cmp);
 
 /// @brief Find a node in a list
 /// @param head The head of the list
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
-t_dlist	*ft_cl_find(const t_dlist *head, const void *restrict data, \
-		const t_data_cmp cmp);
+t_dlist	*ft_cl_find(const t_dlist *head, const void *restrict data,
+			const t_data_cmp cmp);
 
 /* ************************************************************************** */
 /*                                 GETTERS                                    */
@@ -467,7 +471,7 @@ t_list	*ft_ll_end(const t_list *lst);
 /// @param lst The list
 /// @param index The index of the node
 /// @return The node at index or NULL
-t_list	*ft_ll_at(const t_list *lst, size_t index);
+t_list	*ft_ll_at(const t_list *const lst, size_t index);
 
 /// @brief Get the first node of a list
 /// @param head The head of the list
@@ -643,8 +647,8 @@ size_t	ft_dl_size_data_is(const t_dlist *head, const t_data_is function);
 /// @param lst The list
 /// @param function The function to check if the data is something
 /// @return The size of the list
-size_t	ft_dl_size_cmp(const t_dlist *lst, const void *restrict data, \
-		const t_data_cmp function);
+size_t	ft_dl_size_cmp(const t_dlist *lst, const void *restrict data,
+			const t_data_cmp function);
 
 /// @brief Get the size of a list
 /// @param lst The list
@@ -661,8 +665,8 @@ size_t	ft_ll_size_data_is(const t_list *lst, const t_data_is function);
 /// @param lst The list
 /// @param function The function to check if the data is something
 /// @return The size of the list
-size_t	ft_ll_size_cmp(const t_list *lst, const void *restrict data, \
-		const t_data_cmp function);
+size_t	ft_ll_size_cmp(const t_list *lst, const void *restrict data,
+			const t_data_cmp function);
 
 /// @brief Get the size of a list
 /// @param head The head of the list
@@ -679,8 +683,8 @@ size_t	ft_cl_size_data_is(const t_clist *head, const t_data_is function);
 /// @param lst The list
 /// @param function The function to check if the data is something
 /// @return The size of the list
-size_t	ft_cl_size_cmp(const t_clist *lst, const void *restrict data, \
-		const t_data_cmp function);
+size_t	ft_cl_size_cmp(const t_clist *lst, const void *restrict data,
+			const t_data_cmp function);
 
 /* ************************************************************************** */
 /*                                  SUB									      */

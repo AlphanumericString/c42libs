@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:21:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:35:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:20:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ static int	base_cases(void)
 	str2 = (char **) ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]),
 			(t_data_tr)ft_strdup);
 	if (ft_strcmp(str2[0], "Hello") || ft_strcmp(str2[1], "World") || \
-	ft_strcmp(str2[2], "!"))
+ft_strcmp(str2[2], "!"))
 		return (1);
 	ft_free(str2[0]);
 	ft_free(str2[1]);
 	ft_free(str2[2]);
 	ft_free(str2);
 	if (ft_memmap(NULL, 0, (t_data_tr)ft_strdup) != NULL || \
-	ft_memmap((void *)tb, 0, (t_data_tr)ft_strdup) != NULL || \
-	ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]), NULL))
+ft_memmap((void *)tb, 0, (t_data_tr)ft_strdup) != NULL || \
+ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]), NULL))
 		return (2);
 	return (0);
 }

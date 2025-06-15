@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 23:22:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:18:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "tests/tests.h"
 #include "tests/tests__all_modules_tests.h"
 
+#include <fcntl.h>
 #include <limits.h>
 #include <unistd.h>
 
@@ -54,9 +55,9 @@ static int	file_cmp(const char *file_name, const char *expected)
 static int	test_positives(void)
 {
 	const int	cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000, \
-		INT_MAX};
-	const char	*expected = "0\n1\n9\n10\n99\n100\n999\n1000\n9999\n10000\n"
-		"2147483647\n";
+INT_MAX};
+	const char	*expected = "0\n1\n9\n10\n99\n100\n999\n1000\n9999\n10000\n" \
+"2147483647\n";
 	const char	*file_name = TESTS_FPREFIX "putnbr.txt";
 
 	nb_to_file(cases, sizeof(cases) / sizeof(cases[0]), file_name);
@@ -66,9 +67,9 @@ static int	test_positives(void)
 static int	test_negatives(void)
 {
 	const int	nbs[] = {-1, -9, -10, -99, -100, -999, -1000, -9999, -10000, \
-		INT_MIN};
-	const char	*exp = "-1\n-9\n-10\n-99\n-100\n-999\n-1000\n-9999\n-10000\n"
-		"-2147483648\n";
+INT_MIN};
+	const char	*exp = "-1\n-9\n-10\n-99\n-100\n-999\n-1000\n-9999\n-10000\n" \
+"-2147483648\n";
 	const char	*file_name = TESTS_FPREFIX "putnbr.txt";
 
 	nb_to_file(nbs, sizeof(nbs) / sizeof(nbs[0]), file_name);

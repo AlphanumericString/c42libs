@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:56:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 14:19:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:50:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
 #include <stdlib.h>
 #include "tests/tests__all_modules_tests.h"
@@ -56,13 +56,13 @@ int	t_dl_clear_range(void)
 	*data3 = 63;
 	ft_dl_add_back(&list, ft_dl_create(data3));
 	ft_dl_clear_range(list->next, list->next->next, NULL);
-	if ((ft_dl_size(list) != 3) || (list->data != data || \
-	list->next->data || list->next->next->data != data3))
+	if ((ft_dl_size(list) != 3) || (list->data != data || list->next->data \
+|| list->next->next->data != data3))
 		return (1);
 	ft_dl_add_back(&list, ft_dl_create(data2));
 	ft_dl_clear_range(list->next->next, NULL, ft_free);
 	if (ft_dl_size(list) != 4 || list->data != data \
-	|| list->next->data || list->next->next->data)
+|| list->next->data || list->next->next->data)
 		return (2);
 	ft_dl_clear_range(list, NULL, ft_free);
 	ft_dl_clear_range(NULL, NULL, ft_free);

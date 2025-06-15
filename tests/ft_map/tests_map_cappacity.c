@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_map.h"
-#include "ft_map_types.h"
+#include "types/ft_map_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 int	test_map_capacity(void)

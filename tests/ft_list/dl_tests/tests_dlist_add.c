@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:48:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 14:18:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:35:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include <stdlib.h>
 #include "tests/tests__all_modules_tests.h"
 
@@ -64,7 +64,7 @@ int	t_dl_add_back(void)
 	{
 		ft_dl_add_back(&list, ft_dl_create(data2));
 		if (!list || list->data != data || !list->next || \
-		list->next->data != data2)
+list->next->data != data2)
 			return (1);
 		else if (list->next->next || list->next->prev != list)
 			return (1);

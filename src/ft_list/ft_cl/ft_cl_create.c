@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:05 by iron              #+#    #+#             */
-/*   Updated: 2025/04/06 17:04:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/24 22:21:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 
 t_clist	*ft_cl_create(const void *data)
 {
@@ -21,6 +21,8 @@ t_clist	*ft_cl_create(const void *data)
 	if (!ret)
 		return (ret);
 	ret->data = (void *)data;
+	ret->next = ret;
+	ret->prev = ret;
 	return (ret);
 }
 

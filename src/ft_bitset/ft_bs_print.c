@@ -6,19 +6,19 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:09:55 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/10 13:23:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 17:47:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_bitset_types.h"
+#include "types/ft_bitset_types.h"
 #include "ft_bitset.h"
 #include "ft_string.h"
 #include <stdio.h>
 
-static void print_bitset8(t_bitset8 b8, int fd, const char *fmt[3])
+static void	print_bitset8(t_bitset8 b8, int fd, const char *fmt[3])
 {
-	const bool	bit[8] = {b8.b0, b8.b1, b8.b2, b8.b3, b8.b4, b8.b5, b8.b6, \
-	b8.b7};
+	const bool	bit[8] = {b8.b0, b8.b1, b8.b2, b8.b3, b8.b4, b8.b5, b8.b6,
+		b8.b7};
 	size_t		i;
 
 	i = 0;

@@ -6,13 +6,15 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:56:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:35:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/12 23:27:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include <stddef.h>
 
+// if/elseif/else for !str1||!str2
+// mandatory to not overflow in case of high ptr + NULL
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	const unsigned char	*str1 = (const unsigned char *)s1;
@@ -22,6 +24,15 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	index = 0;
 	if (n == 0)
 		return (0);
+	if (!str1 || !str2)
+	{
+		index = str1 - str2;
+		if (index < 0)
+			return (-1);
+		else if (index > 0)
+			return (1);
+		return (index);
+	}
 	while (str1[index] == str2[index] && str1[index] && index < n - 1)
 		index++;
 	return (str1[index] - str2[index]);

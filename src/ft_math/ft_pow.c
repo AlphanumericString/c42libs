@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:04:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/11 04:15:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@ size_t	ft_pow(size_t x, size_t y)
 	if (x == 0)
 		return (0);
 	while (y > 0)
+	{
+		res *= x;
+		y--;
+	}
+	return (res);
+}
+
+double	ft_pow_d(double x, double y)
+{
+	double	res;
+
+	res = 1.0;
+	if (y == 0.0)
+		return (1.0);
+	if (x == 0.0)
+		return (0.0);
+	while (y > 0.0)
 	{
 		res *= x;
 		y--;

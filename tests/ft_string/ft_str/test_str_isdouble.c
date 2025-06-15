@@ -6,33 +6,34 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/29 00:21:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 14:53:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests__all_modules_tests.h"
+#include <stddef.h>
+#include <stdio.h>
 
 int	test_str_isdouble(void)
 {
-	if (ft_str_isdouble("23.3") != 1 || ft_str_isdouble("42") != 1 || \
-	ft_str_isdouble(".22") != 1 || ft_str_isdouble("0.0") != 1 || \
-	ft_str_isdouble("2.000000") != 1 || ft_str_isdouble("0.000000") != 1)
-		return (1);
-	if (ft_str_isdouble("34..4") != 0)
-		return (2);
-	if (ft_str_isdouble("0a.0") != 0 || ft_str_isdouble("0.0a") != 0)
-		return (3);
-	if (ft_str_isdouble("0.0.0") != 0)
-		return (4);
-	if (ft_str_isdouble("-") != 0 || ft_str_isdouble("+") != 0 || \
-	ft_str_isdouble("-.") != 0 || ft_str_isdouble("+.") != 0)
-		return (5);
-	if (ft_str_isdouble("94308243208523048750743") != 0 || \
-	ft_str_isdouble("") != 0 || ft_str_isdouble(".") != 0)
-		return (6);
+	size_t		i;
+	const char	*valid_str[20] = {
+		"23.3", "42", "0.0", "2.0000", "0.00000", "+0e+00", "43.32e-12", NULL};
+	const char	*err_str[20] = {
+		"34..4", "0a.0", "a0.0", "0.0a", "0a0", "0.a0", "1.0.0", "0.0.0",
+		"+.", "+", "-", ".", "++0", "+-32.12e+12", "", NULL};
+
+	i = 0;
+	while (valid_str[i])
+		if (ft_str_isdouble(valid_str[i++]) != true)
+			return (i);
+	i = 0;
+	while (err_str[i])
+		if (ft_str_isdouble(err_str[i++]) != false)
+			return (20 + i);
 	if (ft_str_isdouble(NULL) != false)
-		return (7);
+		return (40);
 	return (0);
 }
 /*

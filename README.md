@@ -82,3 +82,4 @@ For usage please consult the respective usage file specified in epithath under e
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 tldr: you can use it for free but you must share your modifications.
+norminette 3.3.58, Python 3.12.9, Linux-6.12.26-x86_64-with-glibc2.40

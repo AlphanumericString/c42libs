@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dl_size.c                                       :+:      :+:    :+:   */
+/*   ft_cl_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:50 by iron              #+#    #+#             */
-/*   Updated: 2025/04/04 22:35:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:23:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ size_t	ft_cl_size(const t_clist *head)
 	t_clist	*it;
 	size_t	i;
 
-	i = 0;
-	it = (t_clist *)head;
-	while (it)
+	if (!head)
+		return (0);
+	i = 1;
+	it = (t_clist *)head->next;
+	while (it != head)
 	{
+		i++;
 		if (it->next == head)
 			break ;
 		it = it->next;
-		i++;
 	}
 	return (i);
 }
@@ -47,8 +49,8 @@ size_t	ft_cl_size_data_is(const t_clist *head, const t_data_is function)
 	return (i);
 }
 
-size_t	ft_cl_size_cmp(const t_clist *lst, const void *restrict data, \
-		const t_data_cmp cmp)
+size_t	ft_cl_size_cmp(const t_clist *lst, const void *restrict data,
+			const t_data_cmp cmp)
 {
 	t_clist	*it;
 	size_t	i;

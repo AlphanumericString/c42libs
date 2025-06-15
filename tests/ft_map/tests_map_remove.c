@@ -13,7 +13,7 @@
 #include "tests/tests__all_modules_tests.h"
 #include "ft_map.h"
 #include "ft_string.h"
-#include "ft_map_types.h"
+#include "types/ft_map_types.h"
 #include "ft_string.h"
 #include <stdlib.h>
 
@@ -64,7 +64,7 @@ static int	test_map_remove_colision(void)
 		return (3);
 	if (ft_map_remove(map, keys[3], ft_strlen(keys[3])) != str[3])
 		return (4);
-	return (ft_map_destroy(map), ft_apply_2d((void **)str, ft_free), 0);
+	return (ft_map_destroy(map), ft_arr_apply((void **)str, ft_free), 0);
 }
 
 int	test_map_remove(void)

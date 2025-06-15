@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 05:52:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/05 17:32:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/24 19:15:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,9 @@
 
 int	t_cl_add_front(void);
 int	t_cl_add_back(void);
+
+int	t_cl_apply(void);
+int	t_cl_apply_range(void);
+int	t_cl_apply_range_node(void);
 
 #endif /* CL_TESTS_H */

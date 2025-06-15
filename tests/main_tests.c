@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2025/04/06 16:52:24 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/11 00:40:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ft_args.h"
 #include "ft_string.h"
 #include "tests/tests.h"
+#include "unistd.h"
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
@@ -77,6 +78,8 @@ static int	run_module(const t_module module)
 	return (collect);
 }
 
+//we only use putstr_fd and putendl_fd to avoid any error in the test
+//	infrastructure itself
 static int	print_help_tests(const t_module *tests)
 {
 	size_t	i;
@@ -88,13 +91,13 @@ static int	print_help_tests(const t_module *tests)
 	ft_putendl_fd("Available modules:", STDOUT_FILENO);
 	while (tests[i].full_name)
 	{
-		ft_putstr_fd(" '", STDOUT_FILENO);
-		ft_putstr_fd(tests[i++].full_name, STDOUT_FILENO);
+		ft_putstr_fd(" - '", STDOUT_FILENO);
+		ft_putstr_fd(tests[i++].short_name, STDOUT_FILENO);
 		ft_putendl_fd("'", STDOUT_FILENO);
 	}
 	ft_putendl_fd("Or use 'all' to run all tests", STDOUT_FILENO);
-	ft_putendl_fd("If no argument is passed, all tests will be run", \
-	STDOUT_FILENO);
+	ft_putendl_fd("If no argument is passed, all tests will be run",
+		STDOUT_FILENO);
 	ft_putendl_fd("Use -h to display this help", STDOUT_FILENO);
 	return (EXIT_SUCCESS);
 }
@@ -117,15 +120,15 @@ int	main(int ac, const char *av[])
 	while (tests[i].full_name)
 	{
 		if (ac < 2 || (!ft_strcmp(av[1], tests[i].short_name) || \
-		!ft_strcmp(av[1], tests[i].full_name)))
+!ft_strcmp(av[1], tests[i].full_name)))
 			collect += run_module(tests[i]);
 		i++;
 	}
 	if (collect == 0)
 		return (ft_putendl_fd("\033[32mAll tests passed\033[0m", \
-			STDOUT_FILENO), EXIT_SUCCESS);
+STDOUT_FILENO), EXIT_SUCCESS);
 	return (ft_putendl_fd("\033[31mSome tests failed\033[0m", STDOUT_FILENO), \
-		EXIT_FAILURE);
+EXIT_FAILURE);
 }
 /*
 GPL-3.0 License:

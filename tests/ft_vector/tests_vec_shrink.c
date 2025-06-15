@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:28:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:38:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:27:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
-#include "ft_vector_types.h"
+#include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 #include "tests/tests.h"
@@ -29,11 +29,11 @@ static int	base_cases(void)
 	if (vec->count != 3 || vec->cappacity != 3)
 		return (1);
 	else if (ft_vec_at(vec, 0) != (void *) 42 || ft_vec_at(vec, 1) != \
-	(void *) 43 || ft_vec_at(vec, 2) != (void *) 44)
+(void *) 43 || ft_vec_at(vec, 2) != (void *) 44)
 		return (2);
 	ft_vec_shrink(vec);
 	if (!vec || !vec->datas || !vec->cappacity || !vec->count || \
-	vec->count != vec->cappacity || vec->count != 3)
+vec->count != vec->cappacity || vec->count != 3)
 		return (3);
 	ft_vec_destroy(&vec);
 	return (0);

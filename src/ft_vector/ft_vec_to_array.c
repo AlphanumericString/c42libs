@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector_types.h"
+#include "types/ft_vector_types.h"
 #include "ft_vector.h"
 
 #include <stdlib.h>

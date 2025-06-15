@@ -6,19 +6,16 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 11:15:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 17:17:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 03:44:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TESTS_H
 # define TESTS_H
 
-# include <fcntl.h>
 # include <stdbool.h>
-# include <sys/stat.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <unistd.h>
+# include <stddef.h>
+
 # define TESTS_FPREFIX "build/test_"
 
 # ifndef FORK_TESTS

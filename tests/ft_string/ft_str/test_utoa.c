@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:17:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:37:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:21:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	test_utoa(void)
 	size_t				i;
 	const unsigned int	t_cases[] = {0, 123, 456, 7890, 12345};
 	const char			*expected_results[] = \
-	{"0", "123", "456", "7890", "12345"};
+{"0", "123", "456", "7890", "12345"};
 
 	i = 0;
 	while (i < sizeof(t_cases) / sizeof(t_cases[0]))

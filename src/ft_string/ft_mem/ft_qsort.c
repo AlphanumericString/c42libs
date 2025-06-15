@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:31:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:47:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <stddef.h>
 #include <stdio.h>
 
-static bool	is_sorted(void *array, size_t nmb, size_t size, \
-	int (*cmp)(const void *, const void *))
+static bool	is_sorted(void *array, size_t nmb, size_t size,
+		int (*cmp)(const void *, const void *))
 {
 	size_t	i;
 
@@ -57,14 +57,14 @@ static void	ft_qsort_swap(void *array, size_t size, size_t left, size_t right)
 **
 */
 
-void	ft_qsort(void *array, size_t nmb, size_t size, \
-	int (*cmp)(const void *, const void *))
+void	ft_qsort(void *array, size_t nmb, size_t size,
+		int (*cmp)(const void *, const void *))
 {
 	size_t	left;
 	size_t	right;
 
-	if (nmb < 2 || size < 1 || cmp == NULL || array == NULL || \
-		is_sorted(array, nmb, size, cmp))
+	if (nmb < 2 || size < 1 || cmp == NULL || array == NULL || is_sorted
+		(array, nmb, size, cmp))
 		return ;
 	left = 0;
 	right = nmb - 1;

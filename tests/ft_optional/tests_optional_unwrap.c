@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_optional.h"
-#include "ft_optional_types.h"
+#include "types/ft_optional_types.h"
 #include "tests/tests__all_modules_tests.h"
 #include <stdio.h>
 #include <stdlib.h>

@@ -57,7 +57,7 @@ char	**ft_splits(const char *str, const char *delim)
 	{
 		words[offset_words++] = ft_strdup(s);
 		if (!words[offset_words - 1])
-			return (ft_free_2d((void **)words), NULL);
+			return (ft_arr_free((void **)words), NULL);
 		s = ft_strtok(NULL, delim);
 	}
 	ft_free(str_cpy);

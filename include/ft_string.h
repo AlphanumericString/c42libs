@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/24 13:56:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 15:21:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,13 @@
 /* ************************************************************************** */
 
 // sys types
+# include <stdlib.h>
 # include <stddef.h>
 # include <stdbool.h>
+# include <sys/types.h>
 // self types
 # include "ft_defs.h"
-# include "ft_string_types.h"
-
-// malloc + free
-
-# include <stdlib.h>
-# include <sys/cdefs.h>
-# include <unistd.h>
-
-// errno
-
-# include <errno.h>
+# include "types/ft_string_types.h"
 
 /* ************************************************************************** */
 /* **                     FT_MEM SUB MODULE                                ** */
@@ -52,7 +44,7 @@
 /// @param f function to apply
 /// @return void
 /// @note the memory is modified in place
-void		ft_apply_2d(void **array, t_data_apply f);
+void		ft_arr_apply(void **array, t_data_apply f);
 
 /// @brief fill the memory with 0
 /// @param s start of the memory
@@ -71,28 +63,6 @@ void		ft_free(void *ptr);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		*ft_realloc(void *ptr, size_t size);
 
-// -- /// @brief allocate memory
-// -- /// @param size size of the memory to allocate
-// -- /// @return pointer to the allocated memory otherwise NULL
-// -- //void		*ft_malloc(size_t size);
-// -- /// @brief allocate memory and fill it with 0
-// -- /// @param nmemb number of elements
-// -- /// @param weight size of each element
-// -- /// @return pointer to the allocated memory
-// -- //void		*ft_calloc(size_t nmemb, size_t weight);
-// -- /// @brief allocate memory and copy the content of the source memory
-// -- /// @param ptr pointer to the source memory.
-// -- /// @param sizeNew size of the destination memory
-// -- /// @param sizeOld size of the source memory
-// -- /// @return pointer to a larger chunk of allocated memory otherwise NULL
-// -- /// @note WARNING: the pointer is FREE'ed after the copy in case of
-// -- /// success
-// -- //void		*ft_realloc(void *ptr, size_t sizeNew, size_t sizeOld);
-// -- /// @brief free the memory and set ptr to NULL
-// -- /// @param ptr pointer to the memory to free (set to NULL after)
-// -- /// @return void
-// -- //void ft_free(void **ptr)
-
 /// @brief free the memory and set ptr to NULL
 /// @param ptr pointer to the memory to free (set to NULL after)
 /// @return void
@@ -103,13 +73,13 @@ void		ft_free_clear(void **ptr);
 /// @return void
 /// @note the array is not set to NULL after as memory is freed and no longer
 /// valid to write to.
-void		ft_free_2d(void **arr);
+void		ft_arr_free(void **arr);
 
 /// @brief return the length of the 2d array
 /// @param array pointer to the 2d array
 /// @return the length of the 2d array
 /// @note the array must be NULL terminated
-size_t		ft_len_2d(const void *const *array);
+size_t		ft_arr_len(const void *const *array);
 
 /// @brief search for the first occurence of c in the memory
 /// @param s start of the memory
@@ -175,6 +145,11 @@ void		ft_qsort(void *array, size_t nmb, size_t size, t_data_cmp cmp);
 /* **                     FT_PUT SUB MODULE                                ** */
 /* ************************************************************************** */
 
+/// @brief Print the string s if present to STDERR followed by the error code
+/// as a string
+/// @param s String to print before the error code
+void		ft_perror(const char *restrict s);
+
 /// @brief print the string on the specified file descriptor followed by a new
 /// line
 /// @param s string to print
@@ -187,60 +162,58 @@ int			ft_putendl_fd(const char *restrict s, int fd);
 /// @param fd file descriptor to print on
 /// @return void
 int			ft_putnbr_fd(int nbr, int fd);
+int			ft_putnbr_base_fd(ssize_t nb, const char *base, int fd);
+int			ft_putunbr_base_fd(size_t nb, const char *base, int fd);
+
+/// @brief returns either a string representation of the double value
+/// or NULL if the value is not a special value (inf, -inf, nan)
+/// @param maj true if the string should be in upper case, false otherwise
+/// @param val double value to check
+/// @return a pointer to a constant string representing the special value
+const char	*flt_spevals(bool maj, double val);
+
+/// @brief print the double value on the specified file descriptor
+/// @param value double value to print
+/// @param fd file descriptor to print on
+int			ft_putdbl_fd(double value, int fd);
 
 /// @brief print the string on the specified file descriptor
 /// @param s string to print
 /// @param fd file descriptor to print on
-/// @return void
+/// @return The value returned bu the write syscall
+/// @note Does minimal processing to not change the errno values in case of
+///  error.
 int			ft_putstr_fd(const char *restrict s, int fd);
 
 /* ************************************************************************** */
-/* **                     FT_STR MAIN MODULE                               ** */
+/* **                     FT_NUM MAIN MODULE                               ** */
 /* ************************************************************************** */
-
-/// @brief convert the string to a float
-/// @param str string to convert
-/// @return the float converted from the string
-double		ft_atof(const char *restrict str);
-
-/// @brief convert the string to an long long
-/// @param str string to convert
-/// @return the number converted from the string
-long long	ft_atoll(const char *restrict str);
 
 /// @brief convert the string to a long
 /// @param str string to convert
 /// @return the number converted from the string
-long		ft_atol(const char *restrict str);
-
-/// @brief convert the string to an int
-/// @param str string to convert
-/// @return the number converted from the string
 int			ft_atoi(const char *restrict str);
-
-/// @brief convert the string to a long long in the specified base
-/// @param str string to convert
-/// @param base base of the string
-/// @return the number converted from the string
-long long	ft_atoll_base(const char *restrict str, const char *restrict base);
+double		ft_atod(const char *restrict str);
+long		ft_atol(const char *restrict str);
+long long	ft_atoll(const char *restrict str);
+// missing u f
 
 /// @brief convert the string to a long in the specified base
 /// @param str string to convert
 /// @param base base of the string
 /// @return the number converted from the string
-long		ft_atol_base(const char *restrict str, const char *restrict base);
-
-/// @brief convert the string to an int in the specified base
-/// @param str string to convert
-/// @param base base of the string
-/// @return the number converted from the string
 int			ft_atoi_base(const char *restrict str, const char *restrict base);
+long		ft_atol_base(const char *restrict str, const char *restrict base);
+long long	ft_atoll_base(const char *restrict str, const char *restrict base);
+// missing f u
 
 /// @brief convert a string with the int converted in ascii chars
 /// @param nbr number to convert
 /// @return pointer to the string.
 /// @note You must free the returned string
 char		*ft_itoa(int nbr);
+char		*ft_utoa(unsigned int nbr);
+// missing: f l ll
 
 /// @brief convert the int to a string in the specified base
 /// @param nbr number to convert
@@ -248,19 +221,27 @@ char		*ft_itoa(int nbr);
 /// @return pointer to the string.
 /// @note You must free the returned string
 char		*ft_itoa_base(int nbr, const char *restrict base);
+char		*ft_sstoa_base(ssize_t nbr, const char *restrict base);
+char		*ft_stoa_base(size_t nbr, const char *restrict base);
 
-/// @brief convert the signed size_t to a string in the specified base
-/// @param nbr number to convert
-/// @param base base of the string to return.
-/// @return pointer to the string.
-/// @note You must free the returned string
-char		*ft_stoa_base(ssize_t nbr, const char *restrict base);
+/// @brief convert the signed size_t to a pointed array in the specified base
+/// @param nbr	number to convert
+/// @param base	base of the string to return with ordered digits
+/// @param ptr	The pointer to the array to write to
+/// @param max	The maximum size of the array buffer
+bool		ft_stopa_base(size_t nbr, const char *base, char *ptr,\
+				size_t max);
+bool		ft_sstopa_base(ssize_t nbr, const char *base, char *ptr,\
+				size_t max);
 
-/// @brief convert the unsigned int to a string
-/// @param nbr number to convert
-/// @return pointer to the string.
-/// @note You must free the returned string
-char		*ft_utoa(unsigned int nbr);
+/// @brief Check if a string is a valid base for numbers
+/// @param base string to check
+/// @return true if the base is valid, false otherwise
+bool		ft_base_valid(const char *base);
+
+/* ************************************************************************** */
+/* **                     FT_STR MAIN MODULE                               ** */
+/* ************************************************************************** */
 
 /// @brief Return a pointer to the first occurrence of any character contained
 /// in the string delims in the string str
@@ -333,8 +314,8 @@ char		*ft_strappend_c(char **str, char c);
 /// @param size maximum number of characters in destination string, including
 /// the terminating null character.
 /// @return returns the total length of the string they tried to create.
-size_t		ft_strlcat(char *restrict dst, const char *restrict src, \
-			size_t size);
+size_t		ft_strlcat(char *restrict dst, const char *restrict src,
+				size_t size);
 
 /// @brief Copies up to size - 1 characters from the NULL-terminated string src
 /// to dst, NULL-terminating the result.
@@ -346,8 +327,8 @@ size_t		ft_strlcat(char *restrict dst, const char *restrict src, \
 /// @return returns the total length of the string they tried to create.
 /// @note If the length of src is greater than or equal to size, the string
 /// will be truncated.
-size_t		ft_strlcpy(char *restrict dst, const char *restrict src, \
-			size_t size);
+size_t		ft_strlcpy(char *restrict dst, const char *restrict src,
+				size_t size);
 
 /// @brief Get the length of the string str
 /// @param str String to get the length of
@@ -371,7 +352,7 @@ size_t		ft_strclen(char *restrict str, char c);
 /// @param str String to search from
 /// @param c Char to search
 /// @return the number of occurance of char c in string str
-size_t		ft_strcnb(char *restrict str, char c);
+size_t		ft_strcnb(const char *restrict str, char c);
 
 /// @brief Calculate the length of the starting segment of str that contain
 /// char from the accept string
@@ -408,8 +389,8 @@ int			ft_strcmp(const char *restrict s1, const char *restrict s2);
 /// @param n number of chars to compare maximum
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-int			ft_strncmp(const char *restrict s1, const char *restrict s2, \
-			size_t n);
+int			ft_strncmp(const char *restrict s1, const char *restrict s2,
+				size_t n);
 
 /// @brief duplicate no more than n character of the string src into a
 //  new allocated string
@@ -434,8 +415,8 @@ char		*ft_strdup(const char *restrict src);
 /// appear after a `\0' character are not searched.
 /// @note The returned pointer is from str and has the same constness as str
 ///  it was left as non-const to align with glibc's strnstr
-char		*ft_strnstr(const char *restrict big, const char *restrict small, \
-			size_t n);
+char		*ft_strnstr(const char *restrict big, const char *restrict small,
+				size_t n);
 
 /// @brief search for the last occurence of c in the string
 /// @param str string to search from
@@ -468,8 +449,9 @@ char		*ft_substr(char const *restrict s, unsigned int start, size_t len);
 /// @return the string with the modified chars otherwise NULL
 /// @note to_replace and replace_by must not be NULL
 /// @note You must free the returned string !
-char		*ft_str_replace(const char *restrict str, \
-			const char *restrict to_replace, const char *restrict replace_by);
+char		*ft_str_replace(const char *restrict str,
+				const char *restrict to_replace,
+				const char *restrict replace_by);
 
 /// @brief search if the string str ends with the string end
 /// @param str string to search from
@@ -481,8 +463,8 @@ int			ft_strend_with(const char *restrict str, const char *restrict end);
 /// @param str string to search from
 /// @param start string to search
 /// @return 1 if the string str starts with the string start, 0 otherwise
-int			ft_strstart_with(const char *restrict str, \
-			const char *restrict start);
+int			ft_strstart_with(const char *restrict str,
+				const char *restrict start);
 
 /// @brief replace the chars to_replace in the string by the char replace_by
 /// @param str string to in which the char will be replaced
@@ -490,17 +472,8 @@ int			ft_strstart_with(const char *restrict str, \
 /// @param replace_by char to replace by
 /// @return A pointer to the string str
 /// @note The string is modified in place
-char		*ft_str_replace_chr(char *restrict str, char to_replace, \
-			char replace_by);
-
-/// @brief Returns a pointer to the first string pointed to by args
-/// @param args Pointer to a list of const char pointer
-/// @param index Number of elements in Args
-/// @return if index is negative or the first string of args
-/// is null fails and return null otherwise return the first
-/// const char pointed to by args
-/// TODO: dogshit ?
-const char	*ft_shift_args(const char **args[], int *index);
+char		*ft_str_replace_chr(char *restrict str, char to_replace,
+				char replace_by);
 
 /// @brief Checks if the string str is composed only of alphabetical characters
 /// @param str string to check
@@ -587,19 +560,10 @@ bool		ft_str_isvalid(const char *restrict str, int (*f)(int));
 /// @note The returned pointer can be null if errnum is out of range (0 - 133)
 const char	*ft_strerror(int errnum);
 
-/// @brief Print the string s if present to STDERR followed by the error code
-/// as a string
-/// @param s String to print before the error code
-void		ft_perror(const char *restrict s);
-
 /// @brief Reverse the string s
 /// @param s string to reverse
 /// @return void
 void		ft_strrev(char *restrict s);
-
-/* ************************************************************************** */
-/*                        FT_GNL SUB MODULE                                   */
-/* ************************************************************************** */
 
 /// @brief Read the next line from the file descriptor
 /// @param fd file descriptor to read from
@@ -608,17 +572,21 @@ void		ft_strrev(char *restrict s);
 /// @note You can see the number of supported file descriptor in the macro
 /// MAX_FD
 char		*ft_gnl(int fd);
-bool		ft_base_valid(const char *base);
 
-// printf
-// missing ... TODO
+/* ************************************************************************** */
+/*                        FT_PRT SUB MODULE                                   */
+/* ************************************************************************** */
+
+/// @brief Print the string str on the specified file descriptor with the
+/// specified format (only sdiuxXcspfFeEm)
+/// @param fd file descriptor to print on
+/// @param str string to print
+/// @param ... variable arguments to format the string
+int			ft_print_fd(int fd, const char *str, ...);
+// TODO: ft_print -> auto STDOUT_FILENO + ft_print_err -> auto STDERR_FILENO
 
 /* ************************************************************************** */
 /*                        FT_STRING SUB MODULE                                */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/* **                     ft_string_new                                    ** */
 /* ************************************************************************** */
 
 /// @brief create a new t_string
@@ -626,10 +594,6 @@ bool		ft_base_valid(const char *base);
 /// @return a pointer to the new t_string
 /// @note You must free the returned string with ft_string_destroy
 t_string	*ft_string_new(size_t capacity);
-
-/* ************************************************************************** */
-/* **                     ft_string_from                                   ** */
-/* ************************************************************************** */
 
 /// @brief create a new t_string from the string
 /// @param str string to copy from
@@ -665,19 +629,11 @@ t_string	*ft_string_from_s(const t_string *restrict str);
 /// @note You must free the returned string with ft_string_destroy
 t_string	*ft_string_from_s_n(const t_string *restrict str, size_t n);
 
-/* ************************************************************************** */
-/* **                     ft_string_put                                    ** */
-/* ************************************************************************** */
-
 /// @brief write the string on the specified file descriptor
 /// @param str t_string to write
 /// @param fd file descriptor to write on
 /// @return the return of write if the fd and str are valid otherwise -1
 int			ft_string_put(const t_string *restrict str, int fd);
-
-/* ************************************************************************** */
-/* **                     ft_string_append                                 ** */
-/* ************************************************************************** */
 
 /// @brief append the string src to the string str
 /// @param str t_string to modify
@@ -690,8 +646,8 @@ int			ft_string_append(t_string *restrict str, const char *src);
 /// @param src string to append
 /// @param n number of chars to append
 /// @return 1 if the string has been appended otherwise 0
-int			ft_string_append_n(t_string *restrict str, const char *src, \
-			size_t n);
+int			ft_string_append_n(t_string *restrict str, const char *src,
+				size_t n);
 
 /// @brief append the char c to the string str
 /// @param str t_string to modify
@@ -703,20 +659,16 @@ int			ft_string_append_c(t_string *restrict str, char c);
 /// @param str t_string to modify
 /// @param src string to append
 /// @return 1 if the string has been appended otherwise 0
-int			ft_string_append_s(t_string *restrict str, \
-			const t_string *restrict src);
+int			ft_string_append_s(t_string *restrict str,
+				const t_string *restrict src);
 
 /// @brief append at most n chars of the string src to the string str
 /// @param str t_string to modify
 /// @param src string to append
 /// @param n number of chars to append
 /// @return 1 if the string has been appended otherwise 0
-int			ft_string_append_s_n(t_string *restrict str, \
-			const t_string *restrict src, size_t n);
-
-/* ************************************************************************** */
-/* **                     ft_string_clear                                  ** */
-/* ************************************************************************** */
+int			ft_string_append_s_n(t_string *restrict str,
+				const t_string *restrict src, size_t n);
 
 /// @brief clear the string
 /// @param str t_string to clear
@@ -724,26 +676,18 @@ int			ft_string_append_s_n(t_string *restrict str, \
 /// @note the string is not freed but the content is cleared
 void		ft_string_clear(t_string *restrict str);
 
-/* ************************************************************************** */
-/* **                     ft_string_destroy                                ** */
-/* ************************************************************************** */
-
 /// @brief free the string
 /// @param str pointer to the t_string to free
 /// @return void
 void		ft_string_destroy(t_string **str);
-
-/* ************************************************************************** */
-/* **                     ft_string_insert                                 ** */
-/* ************************************************************************** */
 
 /// @brief insert the string src in the string str at the specified position
 /// @param str t_string to modify
 /// @param src string to insert
 /// @param pos position to insert the string
 /// @return 1 if the string has been inserted otherwise 0
-int			ft_string_insert(t_string *str, const char *restrict src, \
-			size_t pos);
+int			ft_string_insert(t_string *str, const char *restrict src,
+				size_t pos);
 
 /// @brief insert at most n chars of the string src in the string str at the
 /// specified position
@@ -752,8 +696,8 @@ int			ft_string_insert(t_string *str, const char *restrict src, \
 /// @param pos position to insert the string
 /// @param n number of chars to insert
 /// @return 1 if the string has been inserted otherwise 0
-int			ft_string_insert_n(t_string *str, const char *restrict src, \
-			size_t pos, size_t n);
+int			ft_string_insert_n(t_string *str, const char *restrict src,
+				size_t pos, size_t n);
 
 /// @brief insert the char c in the string str at the specified position
 /// @param str t_string to modify
@@ -767,8 +711,8 @@ int			ft_string_insert_c(t_string *str, char c, size_t pos);
 /// @param src string to insert
 /// @param pos position to insert the string
 /// @return 1 if the string has been inserted otherwise 0
-int			ft_string_insert_s(t_string *str, const t_string *restrict src, \
-			size_t pos);
+int			ft_string_insert_s(t_string *str, const t_string *restrict src,
+				size_t pos);
 
 /// @brief insert at most n chars of the string src in the string str at the
 /// specified position
@@ -777,22 +721,14 @@ int			ft_string_insert_s(t_string *str, const t_string *restrict src, \
 /// @param pos position to insert the string
 /// @param n number of chars to insert
 /// @return 1 if the string has been inserted otherwise 0
-int			ft_string_insert_s_n(t_string *str, const t_string *src, \
-			size_t pos, size_t n);
-
-/* ************************************************************************** */
-/* **						ft_string_reserve                              ** */
-/* ************************************************************************** */
+int			ft_string_insert_s_n(t_string *str, const t_string *src,
+				size_t pos, size_t n);
 
 /// @brief reserve the specified capacity for the string
 /// @param str t_string to modify
 /// @param capacity capacity to reserve
 /// @return 1 if the string has been reserved otherwise 0
 int			ft_string_reserve(t_string *str, size_t capacity);
-
-/* ************************************************************************** */
-/* **                     ft_string_resize                                 ** */
-/* ************************************************************************** */
 
 /// @brief resize the string to the specified size
 /// @param str t_string to modify
@@ -801,18 +737,10 @@ int			ft_string_reserve(t_string *str, size_t capacity);
 /// @note if the size is smaller than the current size, the string is truncated
 int			ft_string_resize(t_string *str, size_t size);
 
-/* ************************************************************************** */
-/* **                     ft_string_shrink                                 ** */
-/* ************************************************************************** */
-
 /// @brief shrink the string to the minimum size
 /// @param str t_string to modify
 /// @return 1 if the string has been shrinked otherwise 0
 int			ft_string_shrink(t_string *restrict str);
-
-/* ************************************************************************** */
-/* **                     ft_string_substr                                 ** */
-/* ************************************************************************** */
 
 /// @brief return a substring of the string str from the specified position
 /// @param str t_string to get the substring
@@ -820,12 +748,8 @@ int			ft_string_shrink(t_string *restrict str);
 /// @param len length of the substring
 /// @return allocated string with the substring otherwise NULL
 /// @note You must free the returned string. use ft_string_destroy.
-t_string	*ft_string_substr(const t_string *restrict str, \
-			size_t start, size_t len);
-
-/* ************************************************************************** */
-/* **                     ft_string_to_str                                 ** */
-/* ************************************************************************** */
+t_string	*ft_string_substr(const t_string *restrict str,
+				size_t start, size_t len);
 
 /// @brief convert the t_string to a string
 /// @param str t_string to convert
@@ -833,10 +757,6 @@ t_string	*ft_string_substr(const t_string *restrict str, \
 /// @note You must free the returned string.
 /// @note The t_string is not freed or modified.
 char		*ft_string_to_str(t_string *restrict str);
-
-/* ************************************************************************** */
-/* **                     ft_string_trim                                   ** */
-/* ************************************************************************** */
 
 /// @brief trim the characters ' ' from the string
 /// @param str t_string to trim
@@ -858,17 +778,13 @@ void		ft_string_trim_chr(t_string *restrict str, char c);
 /// @note The inner string is not freed but the content modified.
 void		ft_string_trimstr(t_string *restrict str, const char *to_trim);
 
-/* ************************************************************************** */
-/* **                     ft_string_cmp                                    ** */
-/* ************************************************************************** */
-
 /// @brief compare the string with the string cmp
 /// @param str t_string to compare
 /// @param cmp string to compare
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-int			ft_string_cmp(const t_string *restrict str, \
-			const char *restrict cmp);
+int			ft_string_cmp(const t_string *restrict str,
+				const char *restrict cmp);
 
 /// @brief compare the string with the string cmp up to n chars
 /// @param str t_string to compare
@@ -876,16 +792,16 @@ int			ft_string_cmp(const t_string *restrict str, \
 /// @param n number of chars to compare
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-int			ft_string_ncmp(const t_string *restrict str, \
-			const char *restrict cmp, size_t n);
+int			ft_string_ncmp(const t_string *restrict str,
+				const char *restrict cmp, size_t n);
 
 /// @brief compare the string with the string cmp
 /// @param str t_string to compare
 /// @param cmp string to compare
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-int			ft_string_cmpstr(const t_string *restrict str, \
-			const t_string *restrict cmp);
+int			ft_string_cmpstr(const t_string *restrict str,
+				const t_string *restrict cmp);
 
 /// @brief compare the string with the string cmp up to n chars
 /// @param str t_string to compare
@@ -893,12 +809,8 @@ int			ft_string_cmpstr(const t_string *restrict str, \
 /// @param n number of chars to compare
 /// @return 0 if the strings are identical, otherwise the difference between the
 /// first different char (s1 - s2)
-int			ft_string_ncmpstr(const t_string *restrict str, \
-			const t_string *restrict cmp, size_t n);
-
-/* ************************************************************************** */
-/* **                     ft_string_get                                    ** */
-/* ************************************************************************** */
+int			ft_string_ncmpstr(const t_string *restrict str,
+				const t_string *restrict cmp, size_t n);
 
 /// @brief get the length of the string
 /// @param str t_string to get the length
@@ -915,10 +827,6 @@ size_t		ft_string_cap(const t_string *restrict str);
 /// @return the content of the string
 const char	*ft_string_get(const t_string *restrict str);
 
-/* ************************************************************************** */
-/* **                     ft_string_set                                    ** */
-/* ************************************************************************** */
-
 /// @brief replace the content of the string with the new string src
 /// @param str t_string to modify
 /// @param src string to copy from
@@ -932,8 +840,8 @@ int			ft_string_set(t_string *restrict str, const char *restrict src);
 /// @param n number of chars to set (including the '\0') "1234" with n = 3
 /// -> "123"
 /// @return 1 if the string has been set otherwise 0
-int			ft_string_set_n(t_string *restrict str, \
-			const char *restrict src, size_t n);
+int			ft_string_set_n(t_string *restrict str,
+				const char *restrict src, size_t n);
 
 /// @brief replace the content of the string with the new string src
 /// @param str t_string to modify
@@ -941,10 +849,6 @@ int			ft_string_set_n(t_string *restrict str, \
 /// @return 1 if the string has been set otherwise 0
 /// @note This function takes ownership of the string src and does no alloc.
 int			ft_string_set_inplace(t_string *restrict str, char *restrict src);
-
-/* ************************************************************************** */
-/* **                     ft_string_chr                                    ** */
-/* ************************************************************************** */
 
 /// @brief search for the first occurence of c in the string
 /// @param str t_string to search from
@@ -970,18 +874,15 @@ char		*ft_string_chr(const t_string *restrict str, char c);
 /// @return a pointer to the last occurence of c in the string otherwise NULL
 char		*ft_string_rchr(const t_string *restrict str, char c);
 
-/* ************************************************************************** */
-/* **                     ft_string_replace                                ** */
-/* ************************************************************************** */
-
 /// @brief search and replace the string to_replace in the string str
 /// by the string replace_by
 /// @param str t_string to in which the string will be searched and replaced
 /// @param to_replace string to search and replace
 /// @param replace_by string to replace with
 /// @return 1 if the string has been replaced otherwise 0
-int			ft_string_replace(t_string *restrict str, \
-			const char *restrict to_replace, const char *restrict replace_by);
+int			ft_string_replace(t_string *restrict str,
+				const char *restrict to_replace,
+				const char *restrict replace_by);
 
 /// @brief search and replace the string to_replace in the string str
 /// by the string replace_by

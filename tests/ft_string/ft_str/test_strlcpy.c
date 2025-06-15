@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:10:11 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:36:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:25:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	error_cases(void)
 	res = ft_calloc(sizeof(char), size);
 	ret = ft_strlcpy(res, "This is too large!", size);
 	if (ft_strncmp(res, "This is too large!", size - 1) != 0 || \
-	ret != (int)ft_strlen("This is too large!"))
+ret != (int)ft_strlen("This is too large!"))
 		return (3);
 	ft_free(res);
 	res = ft_calloc(sizeof(char), 1);

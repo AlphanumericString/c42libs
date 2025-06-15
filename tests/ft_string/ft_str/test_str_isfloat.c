@@ -6,27 +6,34 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/29 00:21:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 14:53:30 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "tests/tests__all_modules_tests.h"
+#include <stddef.h>
+#include <stdio.h>
 
 int	test_str_isfloat(void)
 {
-	if (ft_str_isfloat("23.3") != 1 || ft_str_isfloat("42") != 1 || \
-	ft_str_isfloat(".22") != 1 || ft_str_isfloat("0.0") != 1 || \
-	ft_str_isfloat("2.000000") != 1 || ft_str_isfloat("0.000000") != 1 || \
-	ft_str_isfloat("-2") != 1 || ft_str_isfloat("2") != 1 || \
-	ft_str_isfloat("2.") != 1 || ft_str_isfloat(".2") != 1)
-		return (1);
-	if (ft_str_isfloat("23.3.3") != 0 || \
-	ft_str_isfloat("-") != 0 || ft_str_isfloat("+") != 0 || \
-	ft_str_isfloat("") != 0)
-		return (2);
+	const char	*valid_str[20] = {
+		"23.3", "42", "0.0", "2.0000", "0.00000", "+0e+00", "43.32e-12", NULL};
+	const char	*err_str[20] = {
+		"34..4", "0a.0", "a0.0", "0.0a", "0a0", "0.a0", "1.0.0", "0.0.0",
+		"+.", "+", "-", ".", "++0", "+-32.12e+12", "", NULL};
+	size_t		i;
+
+	i = 0;
+	while (valid_str[i])
+		if (ft_str_isfloat(valid_str[i++]) != true)
+			return (i);
+	i = 0;
+	while (err_str[i])
+		if (ft_str_isfloat(err_str[i++]) != false)
+			return (i + 20);
 	if (ft_str_isfloat(NULL) != false)
-		return (3);
+		return (40);
 	return (0);
 }
 /*

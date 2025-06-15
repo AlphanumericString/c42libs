@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 23:21:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:24:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 #include "tests/tests.h"
 #include "tests/tests__all_modules_tests.h"
 #include <limits.h>
+#include <stdio.h>
 
-static int merror_cases(void)
+static int	merror_cases(void)
 {
 	char		*res;
 	const int	p_fp = *talloc_get_failpoint();
@@ -27,11 +28,11 @@ static int merror_cases(void)
 	ft_free(res);
 	res = ft_itoa(INT_MIN);
 	if (res == NULL || ft_strcmp(res, "-2147483648") != 0)
-		return (3);
+		return (printf("DBG: res '%s' exp '%s'\n", res, "-2147483648"), 3);
 	ft_free(res);
 	talloc_set_failpoint(0);
 	if (ft_itoa(42) != NULL || ft_itoa(-42) != NULL)
-		return (4);	
+		return (4);
 	talloc_set_failpoint(p_fp);
 	return (0);
 }

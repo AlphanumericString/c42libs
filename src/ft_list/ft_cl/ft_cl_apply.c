@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 18:59:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 17:04:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/24 20:20:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
+#include <stdio.h>
 
 size_t	ft_cl_apply(const t_clist *start, t_data_apply applied)
 {

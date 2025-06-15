@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "ft_list.h"
 #include <stdio.h>
 

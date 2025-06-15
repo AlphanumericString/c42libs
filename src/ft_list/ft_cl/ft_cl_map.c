@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 
 t_clist	*ft_cl_map(const t_clist *lst, t_data_tr f, t_data_apply del)
 {

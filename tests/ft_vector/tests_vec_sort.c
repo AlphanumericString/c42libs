@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:27:57 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:38:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:32:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
-#include "ft_vector_types.h"
+#include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 #include "tests/tests_lambda_functions.h"
 
@@ -23,9 +23,7 @@ static int	cmp_ptr(const void *a, const void *b)
 static int	base_cases(void)
 {
 	t_vector	*vec;
-	const long	nbrs[3] = {\
-		44, 43, 42
-	};
+	const long	nbrs[3] = {44, 43, 42};
 
 	vec = ft_vec_new();
 	ft_vec_add(&vec, (void *)nbrs[0]);
@@ -35,11 +33,11 @@ static int	base_cases(void)
 	if (vec->count != 3)
 		return (1);
 	else if (ft_vec_at(vec, 0) != (void *)42 || ft_vec_at(vec, 1) != \
-	(void *)43 || ft_vec_at(vec, 2) != (void *)44)
+(void *)43 || ft_vec_at(vec, 2) != (void *)44)
 		return (2);
 	ft_vec_sort(vec, cmp_ptr);
 	if (ft_vec_at(vec, 0) != (void *)42 || ft_vec_at(vec, 1) != \
-		(void *)43 || ft_vec_at(vec, 2) != (void *)44)
+(void *)43 || ft_vec_at(vec, 2) != (void *)44)
 		return (3);
 	ft_vec_destroy(&vec);
 	return (0);

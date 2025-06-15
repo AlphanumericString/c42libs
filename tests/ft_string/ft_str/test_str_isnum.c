@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/29 00:21:51 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:21:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 int	test_str_isnum(void)
 {
 	if (ft_str_isnum("-23") != 1 || ft_str_isnum("+42") != 1 || \
-	ft_str_isnum("0") != 1 || ft_str_isnum("2345865785645643532453") != 1 || \
-	ft_str_isnum("2147483647") != 1)
+ft_str_isnum("0") != 1 || ft_str_isnum("2345865785645643532453") != 1 || \
+ft_str_isnum("2147483647") != 1)
 		return (1);
 	if (ft_str_isnum("23.3") != 0 || ft_str_isnum("42.0") != 0 || \
-	ft_str_isnum("0.0") != 0 || ft_str_isnum("2.000000") != 0 || \
-	ft_str_isnum("0.000000") != 0 || ft_str_isnum("--2147483648") != 0 || \
-	ft_str_isnum("++2147483648") != 0)
+ft_str_isnum("0.0") != 0 || ft_str_isnum("2.000000") != 0 || \
+ft_str_isnum("0.000000") != 0 || ft_str_isnum("--2147483648") != 0 || \
+ft_str_isnum("++2147483648") != 0)
 		return (2);
 	if (ft_str_isnum("") != 0 || ft_str_isnum("+") != 0 || \
-	ft_str_isnum("-") != 0)
+ft_str_isnum("-") != 0)
 		return (3);
 	if (ft_str_isnum(NULL) != false)
 		return (4);

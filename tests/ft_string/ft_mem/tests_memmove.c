@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:21:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:35:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:20:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	test_memmove(void)
 	if (ft_memcmp(str, "3434567a9", 10) != 0)
 		return (4);
 	if (ft_memmove(str, str, 999) != str || ft_memmove(NULL, str, 99) != NULL \
-	|| ft_memmove(str, NULL, 99) != str || ft_memmove(str, str, 0) != str)
+|| ft_memmove(str, NULL, 99) != str || ft_memmove(str, str, 0) != str)
 		return (5);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:58:55 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 22:54:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:33:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "ft_list.h"
 #include "ft_string.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 
 #include "tests/lists_test_utils.h"
 #include "tests/tests.h"
@@ -39,7 +39,7 @@ static int	local_check_circular_special_cases(void)
 	lst = NULL;
 	ft_dl_push(&lst, (void *)1);
 	if (ft_dl_check_circular(NULL) != false || \
-	ft_dl_check_circular(lst) != false)
+ft_dl_check_circular(lst) != false)
 		return (1);
 	lst->next = lst;
 	if (ft_dl_check_circular(lst) != true)
@@ -61,7 +61,7 @@ static int	local_check_circular_special_cases(void)
 int	t_dl_check_circular(void)
 {
 	t_dlist	*lst;
-	t_dlist	*nodes[10];
+	t_dlist	*nodes[11];
 	size_t	i;
 
 	lst = NULL;
@@ -75,15 +75,15 @@ int	t_dl_check_circular(void)
 		return (1);
 	nodes[5]->next = nodes[0];
 	if (ft_dl_check_circular(lst) != true || \
-	ft_dl_check_circular(nodes[4]) != true)
+ft_dl_check_circular(nodes[4]) != true)
 		return (2);
 	nodes[5]->next = nodes[6];
 	nodes[3]->prev = nodes[6];
 	if (ft_dl_check_circular(nodes[7]) != true || \
-	ft_dl_check_circular(lst) != true)
+ft_dl_check_circular(lst) != true)
 		return (3);
-	return (ft_apply_2d((void **)nodes, ft_free), \
-	local_check_circular_special_cases());
+	return (ft_arr_apply((void **)nodes, ft_free), \
+local_check_circular_special_cases());
 }
 
 int	t_dl_check_sorted(void)
@@ -109,7 +109,7 @@ int	t_dl_check_sorted(void)
 int	t_dl_check_health(void)
 {
 	t_dlist	*lst;
-	t_dlist	*nodes[10];
+	t_dlist	*nodes[11];
 	size_t	i;
 
 	lst = NULL;
@@ -123,16 +123,16 @@ int	t_dl_check_health(void)
 		return (1);
 	nodes[5]->next = nodes[0];
 	if (ft_dl_check_health(lst) != false || \
-	ft_dl_check_health(nodes[4]) != false)
+ft_dl_check_health(nodes[4]) != false)
 		return (2);
 	nodes[5]->next = nodes[6];
 	nodes[3]->prev = nodes[6];
 	if (ft_dl_check_health(nodes[7]) != false || \
-	ft_dl_check_health(lst) != false)
+ft_dl_check_health(lst) != false)
 		return (3);
 	if (ft_dl_check_health(NULL) != true)
 		return (4);
-	return (ft_apply_2d((void **)nodes, ft_free), EXIT_SUCCESS);
+	return (ft_arr_apply((void **)nodes, ft_free), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

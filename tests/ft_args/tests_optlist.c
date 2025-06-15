@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:52:31 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/05 21:34:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 02:27:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "internal/args_helper.h"
 #include "ft_args.h"
-#include "ft_args_types.h"
+#include "types/ft_args_types.h"
 #include "tests/tests__all_modules_tests.h"
 #include <stddef.h>
 
@@ -25,7 +26,7 @@ int	targ_opt_list_test(void)
 {
 	const t_opt	*op2 = NULL;
 	const t_opt	op1[] = {
-	{"--test", 't', &empty, 0},
+	{"--test", 't', &empty, 0, NULL},
 	};
 
 	ft_set_opt_list(op1);

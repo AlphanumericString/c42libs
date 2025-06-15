@@ -6,49 +6,75 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:03:11 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/24 13:56:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:51:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "ft_math.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
+
+#include "ft_string.h"
 #include "ft_math.h"
 
-char	*ft_itoa_base(int nbr, const char *base)
+char	*ft_stoa_base(size_t nbr, const char *base)
 {
-	return (ft_stoa_base((ssize_t)nbr, base));
-}
+	t_uint	blen;
+	t_uint	nblen;
+	char	*res;
 
-char	*ft_stoa_base(ssize_t nbr, const char *base)
-{
-	char		*ret;
-	size_t		off;
-	long long	srcnbr;
-	size_t		blen;
-	int			nbrlen;
-
-	srcnbr = (long long)nbr;
-	if (!ft_base_valid(base))
+	if (!base || ft_base_valid(base) != true)
 		return (NULL);
 	blen = ft_strlen(base);
-	nbrlen = ft_nbrlen_base(nbr, blen);
-	ret = ft_calloc(sizeof(char), (nbrlen + 1));
-	if (!ret)
+	nblen = ft_unbrlen_base(nbr, blen);
+	res = ft_calloc((nblen + 1), sizeof(char));
+	if (!res)
+		return (res);
+	if (!nbr)
+		return (res[0] = base[0], res);
+	res[--nblen] = base[nbr % blen];
+	nbr /= blen;
+	while (nbr)
+	{
+		res[--nblen] = base[nbr % blen];
+		nbr /= blen;
+	}
+	return (res);
+}
+
+static void	loop(ssize_t nbr, const char *base, t_uint pass[2], char *res)
+{
+	while (nbr)
+	{
+		res[--pass[1]] = base[ft_mod(nbr, pass[0])];
+		nbr /= pass[0];
+	}
+}
+
+char	*ft_sstoa_base(ssize_t nbr, const char *base)
+{
+	t_uint	blen;
+	t_uint	nblen;
+	char	*res;
+
+	if (!base || ft_base_valid(base) != true)
 		return (NULL);
-	if (srcnbr <= 0)
+	blen = ft_strlen(base);
+	nblen = ft_nbrlen_base(nbr, blen);
+	res = ft_calloc((nblen + 1), sizeof(char));
+	if (!res)
+		return (res);
+	if (!nbr)
+		return (res[0] = base[0], res);
+	res[--nblen] = base[ft_mod(nbr, blen)];
+	nbr /= blen;
+	if (nbr < 0)
 	{
-		ret[0] = (srcnbr == 0) * '0' + (srcnbr < 0) * '-';
-		srcnbr *= -1;
+		nbr = -nbr;
+		res[0] = '-';
 	}
-	off = 0;
-	while (srcnbr)
-	{
-		ret[nbrlen - ++off] = base[srcnbr % blen];
-		srcnbr /= blen;
-	}
-	return (ret);
+	loop(nbr, base, (t_uint [2]){blen, nblen}, res);
+	return (res);
 }
 /*
 GPL-3.0 License:

@@ -12,7 +12,7 @@
 
 #include "ft_allocator__dev.h"
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "tests/tests.h"
 #include "tests/tests__all_modules_tests.h"
 

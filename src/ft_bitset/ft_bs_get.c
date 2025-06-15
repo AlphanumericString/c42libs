@@ -6,21 +6,21 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:54:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/10 13:49:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:21:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_bitset.h"
-#include "ft_bitset_types.h"
+#include "types/ft_bitset_types.h"
 
-uint8_t		ft_bs_get_raw(t_bitset *bitset, size_t index)
+uint8_t	ft_bs_get_raw(t_bitset *bitset, size_t index)
 {
 	if (index >= bitset->_capacity)
 		return (0);
 	return (bitset->bits[index].raw);
 }
 
-bool		ft_bs_get(t_bitset *bitset, size_t index)
+bool	ft_bs_get(t_bitset *bitset, size_t index)
 {
 	if (index >= bitset->_capacity * 8)
 		return (false);

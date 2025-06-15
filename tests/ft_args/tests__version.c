@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:37:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/05 21:35:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 02:28:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "internal/args_helper.h"
 #include "ft_args.h"
 #include "ft_string.h"
 #include <unistd.h>

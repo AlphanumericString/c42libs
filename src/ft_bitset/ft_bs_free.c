@@ -6,15 +6,15 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:04:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/10 12:43:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 03:55:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_bitset_types.h"
+#include "types/ft_bitset_types.h"
 #include "ft_bitset.h"
 #include "ft_string.h"
 
-void		ft_bs_clear(t_bitset *bitset)
+void	ft_bs_clear(t_bitset *bitset)
 {
 	if (!bitset)
 		return ;
@@ -22,7 +22,7 @@ void		ft_bs_clear(t_bitset *bitset)
 	return ;
 }
 
-void		ft_bs_free(t_bitset **bitset)
+void	ft_bs_free(t_bitset **bitset)
 {
 	if (!bitset || !*bitset)
 		return ;
@@ -33,7 +33,7 @@ void		ft_bs_free(t_bitset **bitset)
 	return ;
 }
 
-void		ft_bs_free_inner(t_bitset *bitset)
+void	ft_bs_free_inner(t_bitset *bitset)
 {
 	if (!bitset)
 		return ;

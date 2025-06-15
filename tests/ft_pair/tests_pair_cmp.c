@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_pair.h"
-#include "ft_pair_types.h"
+#include "types/ft_pair_types.h"
 #include "tests/pair_tests.h"
 #include "tests/tests_lambda_functions.h"
 #include "tests/tests__all_modules_tests.h"

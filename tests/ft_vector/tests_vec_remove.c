@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 10:13:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 14:22:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:30:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_vector.h"
-#include "ft_vector_types.h"
+#include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 // tests vector has removed the arr[2]orrect element
@@ -23,7 +23,7 @@ static int	checks_01(t_vector *vec)
 	if (vec->count != 2)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42 || \
-	*(int *)ft_vec_at(vec, 1) != 44)
+*(int *)ft_vec_at(vec, 1) != 44)
 		return (2);
 	ft_vec_remove(vec, 42, NULL);
 	if (vec->count != 2)
@@ -37,7 +37,7 @@ static int	checks_02(t_vector *vec, const int *arr)
 	if (vec->count != 2)
 		return (1);
 	if (*(int *)ft_vec_at(vec, 0) != arr[0] || *(int *)ft_vec_at(vec, 1) != \
-	arr[2])
+arr[2])
 		return (1);
 	return (0);
 }

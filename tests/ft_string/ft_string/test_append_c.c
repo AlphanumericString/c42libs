@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_string_types.h"
+#include "types/ft_string_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 // second test for ft_string_append_c is to check in case buffer is greater

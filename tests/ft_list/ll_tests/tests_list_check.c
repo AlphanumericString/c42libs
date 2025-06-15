@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:21:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 22:54:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:42:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "ft_defs.h"
 #include "ft_list.h"
 #include "ft_string.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 
 #include "tests/lists_test_utils.h"
 #include "tests/tests.h"
@@ -37,25 +37,25 @@ static int	cmp_raw_ptr(const void *ptrL, const void *ptrR)
 int	t_ll_check_circular(void)
 {
 	t_list	*lst;
-	t_list	*nodes[10];
+	t_list	*nodes[11];
 	size_t	i;
 
 	lst = NULL;
 	i = 10;
-	while (i)
-		ft_ll_push(&lst, (void *)i--);
+	while (i--)
+		ft_ll_push(&lst, (void *)i);
 	i = 11;
 	while (i--)
 		nodes[i] = ft_ll_at(lst, i);
 	if (ft_ll_check_circular(lst) == true)
 		return (1);
 	nodes[5]->next = nodes[0];
-	i = 11;
+	i = 10;
 	while (i--)
 		if ((ft_ll_check_circular(nodes[i]) != true && i < 6) || \
-		(ft_ll_check_circular(nodes[i]) != false && i >= 6))
+(ft_ll_check_circular(nodes[i]) != false && i >= 6))
 			return (i + 1);
-	return (ft_apply_2d((void **)nodes, ft_free), EXIT_SUCCESS);
+	return (ft_arr_apply((void **)nodes, ft_free), EXIT_SUCCESS);
 }
 
 int	t_ll_check_sorted(void)

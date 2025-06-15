@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:19:56 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/29 00:20:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:22:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	test_strtrim(void)
 	res[5] = ft_strtrim("   ", " ");
 	res[6] = ft_strtrim(NULL, " ");
 	if (ft_strcmp(res[0], "Hello World!") != 0 || ft_strcmp(res[1], \
-	"Hello World!") != 0 || ft_strcmp(res[2], "Hello World!") != 0 || \
-	ft_strcmp(res[3], "Hello Worl") != 0 || ft_strcmp(res[4], str_ugly) \
-	!= 0 || ft_strcmp(res[5], "") != 0 || res[6])
+"Hello World!") != 0 || ft_strcmp(res[2], "Hello World!") != 0 || \
+ft_strcmp(res[3], "Hello Worl") != 0 || ft_strcmp(res[4], str_ugly) \
+!= 0 || ft_strcmp(res[5], "") != 0 || res[6])
 		return (1);
-	ft_apply_2d((void **)res, ft_free);
+	ft_arr_apply((void **)res, ft_free);
 	return (0);
 }
 /*

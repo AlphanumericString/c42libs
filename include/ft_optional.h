@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:07:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/28 22:22:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:10:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 /* ************************************************************************** */
 
 # include "ft_defs.h"
-# include "ft_optional_types.h"
+# include "types/ft_optional_types.h"
 # include <stdbool.h>
 
 /// @brief Create a new empty optional
@@ -45,8 +45,8 @@ t_optional	*ft_optional_from_val(const void *restrict ptr);
 /// @brief Copies the value of an optional into another
 /// @param dest The destination optional
 /// @param src The source optional
-void		ft_optional_copy(t_optional *restrict dest, \
-			const t_optional *restrict src);
+void		ft_optional_copy(t_optional *restrict dest,
+				const t_optional *restrict src);
 
 /// @brief Chain functions calls on an optional until either there are no more
 /// functions to call or one of the functions returns NULL

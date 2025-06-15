@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:15:10 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/05 21:34:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 02:32:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "internal/args_helper.h"
 #include "ft_args.h"
 #include "tests/tests__all_modules_tests.h"
 

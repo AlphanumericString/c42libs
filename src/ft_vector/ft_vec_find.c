@@ -6,15 +6,15 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:24:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/28 23:17:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:45:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector_types.h"
+#include "types/ft_vector_types.h"
 #include "ft_vector.h"
 
-void	*ft_vec_find(const t_vector *restrict vector, \
-		const void *restrict key, const t_data_cmp cmp)
+void	*ft_vec_find(const t_vector *restrict vector,
+			const void *restrict key, const t_data_cmp cmp)
 {
 	size_t	i;
 

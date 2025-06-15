@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:16:35 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 13:49:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:57:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	tests_math(void)
 	{"range", mt_range}, {"range_f", mt_range_f},
 	{"range_d", mt_range_d}, {"log", mt_log},
 	{"llogof", mt_llogof}, {"ullogof", mt_ullogof},
-	{"logof", mt_logof}, {"min", mt_min},
-	{"max", mt_max}, {"pow", mt_pow}, {"round", mt_round},
+	{"logof", mt_logof}, {"min", mt_min}, {"max", mt_max},
+	{"nbrlen", mt_nbrlen}, {"unbrlen", mt_unbrlen_base},
+	{"nbrlen_base", mt_nbrlen_base},
+	{"pow", mt_pow}, {"round", mt_round},
 	{"sqrt", mt_sqrt}, {"clamp_f", mt_clamp_f},
 	{"clamp_d", mt_clamp_d}, {"align", mt_align},
 	{"align_2", mt_align_2}, {"align_2_mul", mt_align_2_multiple},

@@ -15,7 +15,7 @@
 #include "ft_string.h"
 #include "tests/tests.h"
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 int	t_dl_create(void)

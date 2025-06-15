@@ -6,9 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:36:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:55:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <fcntl.h>
+#include <unistd.h>
 
 #include "ft_string.h"
 #include "tests/tests.h"

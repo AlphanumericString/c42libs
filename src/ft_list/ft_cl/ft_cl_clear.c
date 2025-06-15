@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:33:59 by iron              #+#    #+#             */
-/*   Updated: 2025/04/03 21:14:24 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/24 20:27:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include <stdio.h>
 
 size_t	ft_cl_clear(t_clist **head, t_data_apply del)
 {
@@ -23,18 +24,17 @@ size_t	ft_cl_clear(t_clist **head, t_data_apply del)
 
 size_t	ft_cl_clear_range(t_clist *start, const t_clist *end, t_data_apply del)
 {
-	size_t	i;
+	const t_clist	*head = start;
+	size_t			i;
 
 	i = 0;
-	if (!start)
-		return (0);
-	while (start != end)
+	while (start && start != end)
 	{
 		if (del)
 			del(start->data);
-		if (!end && start->next == start)
-			break ;
 		start->data = NULL;
+		if (end == NULL && start->next == head)
+			break ;
 		start = start->next;
 		i++;
 	}

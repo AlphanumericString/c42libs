@@ -12,7 +12,7 @@
 
 #include "ft_string.h"
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "tests/ll_tests.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests_lambda_functions.h"

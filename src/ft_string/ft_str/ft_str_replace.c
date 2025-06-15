@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:35:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:34:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 22:38:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	setup(char **res, const char *targ, size_t targ_len, size_t sub_len)
 	return (true);
 }
 
-char	*ft_str_replace(const char *str, const char *target, \
+char	*ft_str_replace(const char *str, const char *target,
 					const char *substitute)
 {
 	char			*res;

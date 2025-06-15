@@ -15,7 +15,7 @@
 
 #include "ft_list.h"
 #include "ft_map.h"
-#include "ft_map_types.h"
+#include "types/ft_map_types.h"
 #include "ft_string.h"
 #include "ft_vector.h"
 

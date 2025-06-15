@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:35:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:23:24 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int	test_atoi_base(void)
 	};
 
 	if (test_base_resps(bases[0], expected_results[0], strs[0]) || \
-	test_base_resps(bases[1], expected_results[1], strs[1]) || \
-	test_base_resps(bases[2], expected_results[2], strs[2]))
+test_base_resps(bases[1], expected_results[1], strs[1]) || \
+test_base_resps(bases[2], expected_results[2], strs[2]))
 		return (1);
 	if (ft_atoi_base("23", "011") || ft_atoi_base("23", "0") || \
-	ft_atoi_base("23", "1") || ft_atoi_base("23", "0123456789-") || \
-	ft_atoi_base("23", "0123456789+") || ft_atoi_base("23", " 23"))
+ft_atoi_base("23", "1") || ft_atoi_base("23", "0123456789-") || \
+ft_atoi_base("23", "0123456789+") || ft_atoi_base("23", " 23"))
 		return (2);
 	if (test_spaces())
 		return (3);

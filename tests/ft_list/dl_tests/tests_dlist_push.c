@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:07:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:37:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "tests/tests__all_modules_tests.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests.h"
@@ -111,7 +111,7 @@ int	t_dl_push_back(void)
 	if (ft_dl_size(list) != 3)
 		return (1);
 	else if (list->data != (void *)42 || list->next->data != (void *)84 || \
-	list->next->next->data != (void *)126)
+list->next->next->data != (void *)126)
 		return (2);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);

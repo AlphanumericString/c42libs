@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:08:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/28 22:12:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 03:36:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+# include <stdbool.h>
+# include <stddef.h>
+
 # include "ft_defs.h"
-# include "ft_map_types.h"
+# include "types/ft_map_types.h"
 
 /// @brief Create a new map
 /// @param capacity possible number of elements in the map
@@ -59,8 +62,8 @@ void		ft_map_clear(t_map *restrict map);
 /// @param size size of the key
 /// @file ft_map/ft_map_set.c
 /// @return true if the value was set, otherwise if key creation failed false
-bool		ft_map_set(t_map *map, const void *restrict key, \
-			const void *restrict value,	size_t size);
+bool		ft_map_set(t_map *map, const void *restrict key,
+				const void *restrict value,	size_t size);
 
 /// @brief Set the compare function of a map
 /// @param map map to set the compare function
@@ -82,8 +85,8 @@ void		ft_map_set_hash(t_map *restrict map, t_memhash hash);
 /// @param size size of the key
 /// @file ft_map/ft_map_get.c
 /// @return a map_node if found, NULL otherwise
-t_map_node	*ft_map_get_node(t_map *restrict map, const void *restrict key, \
-			size_t size);
+t_map_node	*ft_map_get_node(t_map *restrict map, const void *restrict key,
+				size_t size);
 
 /// @brief Get a value from a map
 /// @param map map to get the value from
@@ -91,8 +94,8 @@ t_map_node	*ft_map_get_node(t_map *restrict map, const void *restrict key, \
 /// @param key_size size of the key
 /// @file ft_map/ft_map_get.c
 /// @return a pointer to the user data or NULL if the key is not found
-void		*ft_map_get(t_map *restrict map, const void *restrict key, \
-			size_t key_size);
+void		*ft_map_get(t_map *restrict map, const void *restrict key,
+				size_t key_size);
 
 /// @brief Get the number of elements in a map
 /// @param map map to get the size from
@@ -112,8 +115,8 @@ size_t		ft_map_capacity(const t_map *restrict map);
 /// @param size size of the key
 /// @file ft_map/ft_map_remove.c
 /// @return the value removed or NULL if the key is not found
-void		*ft_map_remove(t_map *restrict map, const void *restrict key, \
-			size_t size);
+void		*ft_map_remove(t_map *restrict map, const void *restrict key,
+				size_t size);
 
 /// @brief Hash a key
 /// @param key key to hash

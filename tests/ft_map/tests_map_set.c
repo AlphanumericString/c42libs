@@ -12,7 +12,7 @@
 
 #include "tests/tests__all_modules_tests.h"
 #include "ft_map.h"
-#include "ft_map_types.h"
+#include "types/ft_map_types.h"
 #include "ft_string.h"
 
 int	test_map_set(void)

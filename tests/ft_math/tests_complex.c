@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_math.h"
-#include "ft_math_types.h"
+#include "types/ft_math_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 int	mt_complex_abs(void)

@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:37:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:41:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "ft_string.h"
 #include "tests/lists_test_utils.h"
 #include "tests/tests.h"
@@ -132,7 +132,7 @@ int	t_ll_pop_back(void)
 		return (3);
 	pop = ft_ll_pop_back(&list);
 	if (list || pop != data3 || ft_ll_size(list) != 0 || \
-	ft_ll_pop_back(&list) || ft_ll_pop_back(NULL))
+ft_ll_pop_back(&list) || ft_ll_pop_back(NULL))
 		return (4);
 	return (free(data), free(data2), free(data3), 0);
 }

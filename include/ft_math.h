@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:59:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/24 13:50:55 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/11 17:10:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_math_types.h"
-# include "ft_defs.h"
+# include <stddef.h>
+# include <sys/types.h>
+
+# include "types/ft_math_types.h"
 
 /// @brief Return the nearest aligned value of nbr on the alignment
 /// @param nbr The nbr to align
@@ -75,8 +77,10 @@ int			ft_logof(int nbr, int base);
 /// return -1
 int			ft_log(int nbr);
 
-int	ft_nbrlen_base(ssize_t nbr, size_t blen);
-int	ft_nbrlen(ssize_t nbr);
+ssize_t		ft_mod(ssize_t nbr, ssize_t modulus);
+int			ft_unbrlen_base(size_t nbr, size_t blen);
+int			ft_nbrlen_base(ssize_t nbr, size_t blen);
+int			ft_nbrlen(ssize_t nbr);
 
 /// @brief returns the minimum of a and b
 /// @param a first number
@@ -170,6 +174,7 @@ double		ft_round(double x);
 /// @param y The power
 /// @return The result of x to the power of y
 size_t		ft_pow(size_t x, size_t y);
+double		ft_pow_d(double x, double y);
 
 /// @brief Return the root square of a number
 /// @param nb The number to get the root square

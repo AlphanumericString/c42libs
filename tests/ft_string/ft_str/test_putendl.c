@@ -6,18 +6,21 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 23:35:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:20:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <fcntl.h>
+#include <unistd.h>
 
 #include "ft_string.h"
 #include "tests/tests.h"
 #include "tests/tests__all_modules_tests.h"
 
-static int error_cases(int fd, const char *const f_name)
+static int	error_cases(int fd, const char *const f_name)
 {
-	int bread;
-	char buff[100];
+	int		bread;
+	char	buff[100];
 
 	fd = open(f_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (ft_putendl_fd(NULL, fd) != -1)

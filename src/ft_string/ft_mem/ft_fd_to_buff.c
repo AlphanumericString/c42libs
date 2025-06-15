@@ -14,7 +14,7 @@
 #include <unistd.h>
 
 #include "ft_string.h"
-#include "ft_string_types.h"
+#include "types/ft_string_types.h"
 
 char	*ft_fd_to_buff(int fd)
 {

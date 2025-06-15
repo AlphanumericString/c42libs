@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:16:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 13:45:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 00:15:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #  define SELF_ALLOC false
 # endif
 
-# include "ft_allocator_types.h"
+# include "types/ft_allocator_types.h"
 
 // basic idea is that ft_set_alloc gets called first in the programs and set
 //  the allocator_group to the correct variable then any call to ft_malloc is
@@ -49,24 +49,24 @@ void				*ft_memimpl_malloc(size_t size);
 void				ft_memimpl_free(void *ptr);
 void				*ft_memimpl_calloc(size_t nmemb, size_t size);
 void				*ft_memimpl_realloc(void *ptr, size_t size);
-void				*ft_memimpl_reallocarray(void *ptr, size_t nmemb, \
-					size_t size);
+void				*ft_memimpl_reallocarray(void *ptr, size_t nmemb,
+						size_t size);
 
 /// dev (not sorted)
 t_memory_block		**ft_get_memory_block(void);
 bool				is_block_valid(void *ptr);
-void				merge_blocks(t_memory_block *block1, \
-					t_memory_block *block2);
+void				merge_blocks(t_memory_block *block1,
+						t_memory_block *block2);
 
 // usefull ::
 t_memory_block		*search_block(size_t size);
 t_memory_block		*create_block(size_t size);
 t_memory_block		*split_block(t_memory_block *block, size_t size);
 void				*realoc_create_block(size_t size);
-bool				addable_blocks(t_memory_block *block, size_t size, \
-					t_memory_block *bound[2]);
-void				*add_blocks(t_memory_block *block, size_t size, \
-					t_memory_block *bounds[2]);
+bool				addable_blocks(t_memory_block *block, size_t size,
+						t_memory_block *bound[2]);
+void				*add_blocks(t_memory_block *block, size_t size,
+						t_memory_block *bounds[2]);
 void				move_block_data(t_memory_block *dst, t_memory_block *src);
 void				free_block(t_memory_block *block);
 

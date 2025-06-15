@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:10:08 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:35:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "ft_string.h"
 #include "tests/tests__all_modules_tests.h"
 #include "tests/lists_test_utils.h"
@@ -39,7 +39,7 @@ static int	base_cases(void)
 	ft_dl_clear(&sub, NULL);
 	sub = ft_dl_subrange(list, list->next->next);
 	if (ft_dl_size(sub) != 2 || sub->data != data1 || \
-	sub->next->data != data2 || (ft_dl_clear(&sub, NULL), 0))
+sub->next->data != data2 || (ft_dl_clear(&sub, NULL), 0))
 		return (2);
 	if (ft_dl_subrange(NULL, NULL))
 		return (3);

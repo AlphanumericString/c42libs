@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:58:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/28 23:23:18 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 17:54:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	ft_pair_cmp(const t_pair *pair1, const t_pair *pair2, const t_data_cmp cmp)
 	return (pair1 - pair2);
 }
 
-int	ft_pair_cmp_first(const t_pair *pair1, const t_pair *pair2, \
-	const t_data_cmp cmp)
+int	ft_pair_cmp_first(const t_pair *pair1, const t_pair *pair2,
+		const t_data_cmp cmp)
 {
 	if (!pair1 && !pair2)
 		return (0);
@@ -39,8 +39,8 @@ int	ft_pair_cmp_first(const t_pair *pair1, const t_pair *pair2, \
 	return (pair1->first - pair2->first);
 }
 
-int	ft_pair_cmp_second(const t_pair *pair1, const t_pair *pair2, \
-	const t_data_cmp cmp)
+int	ft_pair_cmp_second(const t_pair *pair1, const t_pair *pair2,
+		const t_data_cmp cmp)
 {
 	if (!pair1 && !pair2)
 		return (0);

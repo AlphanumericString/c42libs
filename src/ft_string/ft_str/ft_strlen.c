@@ -6,20 +6,54 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:46:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:35:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:04:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include <stddef.h>
+
+#define MAGIC_LO 0x0101010101010101
+#define MAGIC_HI 0x8080808080808080
+
+#define L_WORD 0
+#define HI_MGC 1
+#define LO_MGC 2
+
+static int	_slen(const char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
 
 size_t	ft_strlen(const char *str)
 {
-	int	i;
+	const char	*src = str;
+	size_t		*ptr_s;
+	size_t		i;
+	size_t		magic[3];
 
+	while (*str && (size_t)str % sizeof(size_t))
+		str++;
+	if (!*str)
+		return (str - src);
 	i = 0;
-	while (str[i])
+	ptr_s = (size_t *)str;
+	magic[HI_MGC] = MAGIC_HI;
+	magic[LO_MGC] = MAGIC_LO;
+	magic[L_WORD] = ptr_s[0];
+	while (1)
+	{
+		magic[L_WORD] = ptr_s[i];
+		if ((magic[L_WORD] - magic[LO_MGC]) & ~magic[L_WORD] & magic[HI_MGC])
+			break ;
 		i++;
-	return (i);
+	}
+	return (_slen((char *)(&ptr_s[i])) + (str - src) + i * sizeof(size_t));
 }
 /*
 GPL-3.0 License:

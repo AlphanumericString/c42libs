@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 23:42:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 17:15:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 15:19:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,69 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// Change version with -DVERSION="x.y.z-W" via Makefile
+// Change version with -DVERSION="x.y.z" at compile time
 # ifndef VERSION
 #  define VERSION "1.0.0"
 # endif
+# ifndef AUTHOR
+#  define AUTHOR "bgoulard <bgoulard@student.42.fr>"
+# endif
+
+# ifndef FT_VERSION
+#  define FT_VERSION "0.0.12"
+# endif
+
+// [idea shellved] : pb was to ugly to resolve in core and complexified
+// for minimum benefits
+// // [CARG:common Args]
+// // Auto handle common args options such as 'v'|"version" 'h'|"help"
+// // 0 -> no.
+// // !0 -> yes.
+// // pb: either malloc the t_opt list or mixup in core logic
+// # ifndef FT_AUTO_HANDLE_CARGS
+// #  define FT_AUTO_HANDLE_CARGS 1
+// # endif
 
 # include "ft_defs.h"
-# include <sys/types.h>
-# include "ft_args_types.h"
+# include "types/ft_args_types.h"
 
-/* @file: src/ft_args/ft_arg_custom_checker.c */
-void				ft_arg_set_custom_checker(t_data_is custom_checker);
-t_data_is			ft_arg_get_custom_checker(void);
+// args parser
+//
+/// @brief argument parser
+int					ft_arg_set_custom_checker(t_data_is custom_checker);
+int					ft_set_opt_list(const t_opt *opt_list);
+int					ft_parse_args(const char **argv,
+						void *usr_control_struct);
 
-/* @file: src/ft_args/ft_setup_prog.c */
+/// @brief setup program vars -> ac, av, ev
 void				ft_setup_prog(const char *const *const av);
 
-/// @file: src/ft_args/ft_parse_args
-int					ft_parse_args(const char **argv, void *usr_control_struct);
-
-void				ft_set_opt_list(const t_opt *opt_list);
-const t_opt			*ft_get_opt_list(void);
-
-// getters for vals
+/// @brief getters for vals
 int					ft_ac(void);
 const char *const	*ft_av(void);
 const char *const	*ft_ev(void);
 const char			*ft_progname(void);
 const char			*ft_version(void);
-// set vals
-void				ft_set_progname(const char *program_name);
-void				ft_set_version(const char *version);
-int					ft_set_av(const char *const *const av);
-int					ft_set_ac(int ac);
-int					ft_set_ev(const char *const *const ev);
+size_t				ft_get_nbparg(void);
+
+/// @brief	Return the value of '$key'
+/// @param	key the key to search in env
+/// @return	return either null if not found/invalid-key otherwise the value
+/// associated with $key (already truncate the 'key=' part)
+const char			*ft_get_env(const char *key);
+
+/// @brief	Returns a pointer to the first string pointed to by args
+/// @param	args Pointer to a list of const char pointer
+/// @param	index Number of elements in Args
+/// @return	The first string in args or NULL if it fails.
+/// fail reasons might be: bad `args` pointer, `index` is 0 or negative.
+const char			*ft_consume_args(const char **args[], int *ac);
+
+/// @brief Moves the first arg to the nth element and decrease ac accordingly
+/// @param av Pointer to a list of const char pointer (program arguments)
+/// @param ac Pointer to the number of elements in Args
+/// @param nb Number of elements to shift
+void				ft_shift_args(const char *const **av, int *ac, int nb);
 
 #endif /* FT_ARGS_H */
 /*

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pair_types.h"
+#include "types/ft_pair_types.h"
 #include "ft_pair.h"
 
 // yes we are discarding const qualifier, easier to manipulate in the struct

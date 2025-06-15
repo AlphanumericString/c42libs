@@ -6,19 +6,19 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:01:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/10 13:50:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:19:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_bitset.h"
-#include "ft_bitset_types.h"
+#include "types/ft_bitset_types.h"
 #include "ft_allocator__dev.h"
 #include "ft_string.h"
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 
-t_bitset *ft_bs_new(size_t size)
+t_bitset	*ft_bs_new(size_t size)
 {
 	t_bitset	*bitset;
 
@@ -32,7 +32,7 @@ t_bitset *ft_bs_new(size_t size)
 	return (bitset);
 }
 
-t_bitset ft_bs_create(size_t size)
+t_bitset	ft_bs_create(size_t size)
 {
 	t_bitset	bitset;
 
@@ -43,7 +43,7 @@ t_bitset ft_bs_create(size_t size)
 	return (bitset);
 }
 
-t_bitset *ft_bs_new_from_str(const char *str, size_t n)
+t_bitset	*ft_bs_new_from_str(const char *str, size_t n)
 {
 	t_bitset	*bitset;
 	size_t		i;

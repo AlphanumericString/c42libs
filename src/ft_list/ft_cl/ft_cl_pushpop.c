@@ -6,24 +6,30 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:38 by iron              #+#    #+#             */
-/*   Updated: 2025/04/06 17:06:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:22:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "types/ft_list_types.h"
 #include "ft_string.h"
 #include <stdlib.h>
 
 t_clist	*ft_cl_push(t_clist **node, const void *data)
 {
 	t_clist	*added;
+	t_clist	*last;
 
 	added = ft_cl_create(data);
 	if (!added)
 		return (NULL);
+	if (!node || !*node)
+		return (*node = added, added);
+	last = (*node)->prev;
 	added->next = *node;
-	if (*node)
-		(*node)->prev = added;
+	(*node)->prev = added;
+	added->prev = last;
+	last->next = added;
 	*node = added;
 	return (added);
 }

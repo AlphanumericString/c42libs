@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string_types.h"
+#include "types/ft_string_types.h"
 #include "ft_string.h"
 
 #include <unistd.h>

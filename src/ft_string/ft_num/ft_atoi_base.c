@@ -6,14 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:52:58 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/16 10:59:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 22:28:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "ft_char.h"
-
-
 
 long long	ft_atoll_base(const char *str, const char *base)
 {

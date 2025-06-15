@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 00:32:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/14 00:32:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:47:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string_types.h"
+#include "types/ft_string_types.h"
 #include "ft_string.h"
+#include <unistd.h>
 
 static int	ft_strchr_index(const char *from, char c)
 {
@@ -83,8 +84,8 @@ char	*ft_gnl(int fd)
 	ret = NULL;
 	while (ft_strchr_index(loc_buff[fd], '\n') == -1)
 	{
-		if (loc_buff[fd][0] && \
-		split_from(&ret, loc_buff[fd], ft_strlen(loc_buff[fd]), '\n'))
+		if (loc_buff[fd][0] && split_from(&ret, loc_buff[fd],
+			ft_strlen(loc_buff[fd]), '\n'))
 			return (NULL);
 		rep = read(fd, loc_buff[fd], BUFFER_SIZE);
 		if (rep <= 0)

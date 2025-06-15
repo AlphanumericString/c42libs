@@ -20,7 +20,7 @@ int	test_free_2d(void)
 	char	**tab;
 
 	tab = ft_split("Hello World", ' ');
-	ft_free_2d((void **)tab);
+	ft_arr_free((void **)tab);
 	return (0);
 }
 /*

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:58:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 12:57:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:17:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*talloc_reallocarray(void *p, size_t a, size_t b)
 {
 	if (talloc_is_ok())
 		return (((t_allocator_group *)talloc_prev_group())->ptr_reallocarray \
-		(p, a, b));
+(p, a, b));
 	return (NULL);
 }
 

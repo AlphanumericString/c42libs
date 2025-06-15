@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_vector.h"
-#include "ft_vector_types.h"
+#include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 
 int	test_vec_swap(void)

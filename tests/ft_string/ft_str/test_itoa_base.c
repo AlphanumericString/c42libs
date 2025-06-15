@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/29 00:17:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:24:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static int	eval_base(int *t_cases, const char *bases, const char *exp_res[])
 static int	check_base_error(void)
 {
 	if (ft_itoa_base(0, "0") || ft_itoa_base(0, "010") || \
-	ft_itoa_base(0, "0123456789+") || ft_itoa_base(0, "0123456789a-") \
-	|| ft_itoa_base(0, "0123456789a1") || ft_itoa_base(0, "0123456789a ") \
-	|| ft_itoa_base(0, "0123456789\t"))
+ft_itoa_base(0, "0123456789+") || ft_itoa_base(0, "0123456789a-") \
+|| ft_itoa_base(0, "0123456789a1") || ft_itoa_base(0, "0123456789a ") \
+|| ft_itoa_base(0, "0123456789\t"))
 		return (15);
 	return (0);
 }

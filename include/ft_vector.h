@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:37:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/28 22:19:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 03:42:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@
 /* 																		      */
 /* ************************************************************************** */
 
+# include <stdbool.h>
+# include <stddef.h>
+
 # include "ft_defs.h"
-# include "ft_vector_types.h"
+# include "types/ft_vector_types.h"
 
 // ft_vector/ft_vec_add.c
 
@@ -83,8 +86,8 @@ bool		ft_vec_destroy(t_vector **vec);
 /// @param func function to filter the vector
 /// @param del function to delete the elements filtered
 /// @return void
-void		ft_vec_filter(t_vector *restrict vec, const t_data_is func, \
-			const t_data_apply del);
+void		ft_vec_filter(t_vector *restrict vec, const t_data_is func,
+				const t_data_apply del);
 
 // ft_vector/ft_vec_find.c
 
@@ -95,8 +98,8 @@ void		ft_vec_filter(t_vector *restrict vec, const t_data_is func, \
 /// key and the second is the element of the vector
 /// @return pointer to the element or NULL if not found
 /// @note If you want to get an element by index, use ft_vec_at
-void		*ft_vec_find(const t_vector *restrict vector, \
-			const void *restrict key, const t_data_cmp cmp);
+void		*ft_vec_find(const t_vector *restrict vector,
+				const void *restrict key, const t_data_cmp cmp);
 
 // ft_vector/ft_vec_map.c
 
@@ -150,8 +153,8 @@ t_vector	*ft_vec_convert_alloccarray(void **data, size_t count);
 /// @param vector vector to remove the element from
 /// @param n index of the element to remove
 /// @param del function to delete the elements data
-void		ft_vec_remove(t_vector *restrict vector, size_t n, \
-			const t_data_apply del);
+void		ft_vec_remove(t_vector *restrict vector, size_t n,
+				const t_data_apply del);
 
 /// @brief Remove an element from the vector
 /// @param vector vector to remove the element from
@@ -159,8 +162,8 @@ void		ft_vec_remove(t_vector *restrict vector, size_t n, \
 /// @param del function to delete the elements data
 /// @return void
 /// @note Similar to ft_vec_filter
-void		ft_vec_remove_if(t_vector *restrict vector, const t_data_is func, \
-			const t_data_apply del);
+void		ft_vec_remove_if(t_vector *restrict vector, const t_data_is func,
+				const t_data_apply del);
 
 // ft_vector/ft_vec_reserve.c
 

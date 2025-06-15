@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:43:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 01:28:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:25:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 
 t_list	*ft_ll_begin(const t_list *lst)
 {
@@ -29,19 +29,21 @@ t_list	*ft_ll_end(const t_list *lst)
 	return ((t_list *)lst);
 }
 
-t_list	*ft_ll_at(const t_list *lst, size_t index)
+t_list	*ft_ll_at(const t_list *const lst, size_t index)
 {
-	size_t	i;
+	const t_list	*it;
+	size_t			i;
 
 	i = 0;
-	while (lst && i < index)
+	it = lst;
+	while (it && i < index)
 	{
-		lst = lst->next;
+		it = it->next;
 		i++;
 	}
 	if (i != index)
 		return (NULL);
-	return ((t_list *)lst);
+	return ((t_list *)it);
 }
 /*
 GPL-3.0 License:

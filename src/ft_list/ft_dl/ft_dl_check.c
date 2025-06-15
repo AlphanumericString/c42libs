@@ -6,11 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 02:11:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 22:06:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 17:45:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "ft_list.h"
 #include <stdbool.h>
 #include <stdio.h>
@@ -60,8 +60,8 @@ static bool	ft_dl_check_circular_fward(const t_dlist *_lst)
 
 bool	ft_dl_check_circular(const t_dlist *_lst)
 {
-	if (_lst && (_lst->prev == _lst || _lst->next == _lst || \
-	ft_dl_check_circular_fward(_lst)))
+	if (_lst && (_lst->prev == _lst || _lst->next == _lst
+			|| ft_dl_check_circular_fward(_lst)))
 		return (true);
 	return (false);
 }

@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 17:03:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:35:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/11 00:35:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
-#include "ft_allocator_types.h"
+#include "types/ft_allocator_types.h"
 #include "tests/tests__all_modules_tests.h"
+#include <malloc.h>
 
 static void	reset_allocator(const t_allocator_group prev)
 {
@@ -34,16 +35,34 @@ int	test_membd_allocator(void)
 	ft_set_gnu_alloc();
 	group_test = ft_get_allocator();
 	if (group_test->ptr_free != &free || group_test->ptr_alloc != &malloc || \
-	group_test->ptr_calloc != &calloc || group_test->ptr_realloc != &realloc \
-	|| group_test->ptr_reallocarray != &reallocarray)
+group_test->ptr_calloc != &calloc || group_test->ptr_realloc != &realloc \
+|| group_test->ptr_reallocarray != &reallocarray)
 		return (1);
 	ft_set_ft_alloc();
 	group_test = ft_get_allocator();
 	if (group_test->ptr_free != &ft_memimpl_free || group_test->ptr_alloc != \
-	&ft_memimpl_malloc || group_test->ptr_calloc != &ft_memimpl_calloc || \
-	group_test->ptr_realloc != &ft_memimpl_realloc || \
-	group_test->ptr_reallocarray != &ft_memimpl_reallocarray)
+&ft_memimpl_malloc || group_test->ptr_calloc != &ft_memimpl_calloc || \
+group_test->ptr_realloc != &ft_memimpl_realloc || \
+group_test->ptr_reallocarray != &ft_memimpl_reallocarray)
 		return (2);
 	reset_allocator(prev);
 	return (0);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

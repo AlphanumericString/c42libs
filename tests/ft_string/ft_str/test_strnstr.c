@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:24:10 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:36:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:23:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	test_strnstr(void)
 	if (ft_strnstr(str, "hidden", 100))
 		return (5);
 	if (ft_strnstr(NULL, "hidden", 10) || \
-	ft_strnstr(str, NULL, 10))
+ft_strnstr(str, NULL, 10))
 		return (6);
 	return (0);
 }

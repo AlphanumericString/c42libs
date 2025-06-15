@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:15:21 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:52:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:32:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
-#include "ft_vector_types.h"
+#include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 #include <stdbool.h>
 
@@ -52,9 +52,9 @@ int	test_vec_cat(void)
 	if (ret != true || vec_a->count != 6)
 		return (1);
 	else if (ft_vec_at(vec_a, 0) != (void *)42 || ft_vec_at(vec_a, 1) != \
-	(void *)43 || ft_vec_at(vec_a, 2) != (void *)44 || ft_vec_at(vec_a, 3) != \
-	(void *)45 || ft_vec_at(vec_a, 4) != (void *)46 || ft_vec_at(vec_a, 5) != \
-	(void *)47)
+(void *)43 || ft_vec_at(vec_a, 2) != (void *)44 || ft_vec_at(vec_a, 3) != \
+(void *)45 || ft_vec_at(vec_a, 4) != (void *)46 || ft_vec_at(vec_a, 5) != \
+(void *)47)
 		return (2);
 	ft_vec_destroy(&vec_a);
 	vec_a = ft_vec_new();
@@ -65,7 +65,7 @@ int	test_vec_cat(void)
 	if (ret != false || vec_a->count != 3)
 		return (3);
 	else if (ft_vec_at(vec_a, 0) != (void *)42 || ft_vec_at(vec_a, 1) != \
-		(void *)43 || ft_vec_at(vec_a, 2) != (void *)44)
+(void *)43 || ft_vec_at(vec_a, 2) != (void *)44)
 		return (4);
 	return (ft_vec_destroy(&vec_a), ft_vec_destroy(&vec_b), 0);
 }

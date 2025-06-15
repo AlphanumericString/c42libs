@@ -13,7 +13,7 @@
 #include <stdlib.h>
 
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include "ft_string.h"
 
 #include "tests/lists_test_utils.h"

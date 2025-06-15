@@ -6,37 +6,63 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 17:47:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/05 17:50:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 15:50:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARGS_HELPER_H
 # define ARGS_HELPER_H
 
-# include "ft_args_types.h"
 # include <stddef.h>
 # include <sys/types.h>
 
+# include "internal/args_helper_types.h"
+# include "types/ft_args_types.h"
+# include "ft_defs.h"
+
 // Setup
+// -----
 //
 // set ev internal
-int		ft_set_ev_from_av(const char *const *const av, int ac);
+int			ft_set_ev_from_av(const char *const *const av, int ac);
+// set vals (don't use please)
+void		ft_set_progname(const char *program_name);
+// Change version with -DVERSION="x.y.z" at compile time
+void		ft_set_version(const char *version);
+int			ft_set_av(const char *const *const av);
+int			ft_set_ac(int ac);
+int			ft_set_ev(const char *const *const ev);
 
-// PARSER options
+// PARSER
+// ------
 //
-// Parse long option
-ssize_t	parse_long_opt(const char *str_op, const t_opt *opt_list);
-// Parse short option
-ssize_t	parse_short_opt(const char *str_op, const t_opt *opt_list);
-// Check if the argument is valid
-int		checker_arg(t_opt_type type, const char *arg);
-// Run the function associated with the option
-int		run_opt_func(const t_opt opt, void *usr_control_struct, \
-		const char **arg, int *i);
-// Error: Print error message for option
-int		arg_opt_err(const char *opt);
-// Error: Print error message for argument type
-int		arg_type_err(const t_opt opt, const char *arg);
+// private holders
+t_data_is	ft_arg_get_custom_checker(void);
+const t_opt	*ft_get_opt_list(void);
+// private parser setters
+void		ft_set_nbparg(size_t nb);
+// private parser utils
+const char	*get_arg(enum e_separator sep_flag, t_parser_state *state,
+				const char **args);
+int			check_arg(enum e_arg_types type, t_parser_state *state,
+				const char *arg);
+void		perror_pa_state(t_parser_state *st, const char *error);
+//
+// Parse utils (semi-private)
+//
+void		print_opt(const t_opt opt, int fd);
+void		put_type_fd(uint16_t type, int fd);
+void		disp_loaded(void);
+//
+// Parse long option only funcs
+//
+void		v2_parse_long_opt(t_parser_state *state, const char **args,
+				void *data);
+//
+// Parse short option only func
+//
+void		v2_parse_short_opts(t_parser_state *state, const char **args,
+				void *data);
 
 #endif
 /*

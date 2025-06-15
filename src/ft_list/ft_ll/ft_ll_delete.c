@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 03:09:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/28 23:19:18 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:25:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -25,8 +25,8 @@ void	ft_ll_delone(t_list *lst, t_data_apply del)
 	ft_free(lst);
 }
 
-size_t	ft_ll_delete_range(t_list *lst, const t_list *restrict end, \
-	const t_data_apply del)
+size_t	ft_ll_delete_range(t_list *lst, const t_list *restrict end,
+		const t_data_apply del)
 {
 	t_list	*tmp;
 	size_t	i;

@@ -15,7 +15,7 @@
 
 int	str_tests(void);
 
-int	test_atof(void);
+int	test_atod(void);
 int	test_atoi_base(void);
 int	test_atoi(void);
 int	test_atol(void);

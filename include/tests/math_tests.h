@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:17:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 13:46:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:01:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int	mt_logof(void);
 int	mt_log(void);
 int	mt_max(void);
 int	mt_min(void);
+int	mt_nbrlen(void);
+int	mt_unbrlen_base(void);
+int	mt_nbrlen_base(void);
 int	mt_pow(void);
 int	mt_range_d(void);
 int	mt_range_f(void);

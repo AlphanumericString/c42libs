@@ -6,13 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:32:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:29:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:42:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
 #include "ft_list.h"
-#include "ft_list_types.h"
+#include "types/ft_list_types.h"
 
 #include "tests/lists_test_utils.h"
 #include "tests/tests__all_modules_tests.h"
@@ -32,7 +32,7 @@ int	t_ll_get_datas(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	datas = ft_ll_get_datas(list);
 	if (!datas || datas[2] || datas[0] != data || \
-		datas[1] != data2)
+datas[1] != data2)
 		return (1);
 	if (ft_ll_get_datas(NULL))
 		return (2);
@@ -57,7 +57,7 @@ int	t_ll_get_nodes(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	nodes = ft_ll_get_nodes(list);
 	if (!nodes || nodes[2] || nodes[0] != list || \
-		nodes[1] != list->next)
+nodes[1] != list->next)
 		return (1);
 	if (ft_ll_get_nodes(NULL))
 		return (2);

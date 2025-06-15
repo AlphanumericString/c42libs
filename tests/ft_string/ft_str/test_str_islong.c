@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/29 00:21:48 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:23:24 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 int	test_str_islong(void)
 {
 	if (ft_str_islong("23") != 1 || ft_str_islong("42") != 1 || \
-	ft_str_islong("0") != 1 || ft_str_islong("2") != 1 || \
-	ft_str_islong("-34") != 1 || ft_str_islong("42") != 1 || \
-	ft_str_islong("9223372036854775807") != 1 || \
-	ft_str_islong("-9223372036854775808") != 1)
+ft_str_islong("0") != 1 || ft_str_islong("2") != 1 || \
+ft_str_islong("-34") != 1 || ft_str_islong("42") != 1 || \
+ft_str_islong("9223372036854775807") != 1 || \
+ft_str_islong("-9223372036854775808") != 1)
 		return (1);
 	if (ft_str_islong("9223372036854775808") != 0 || \
-	ft_str_islong("-9223372036854775809") != 0 || \
-	ft_str_islong("92233720368547758070") != 0 || \
-	ft_str_islong("-92233720368547758080") != 0 || \
-	ft_str_islong("9223372036854775807a") != 0 || \
-	ft_str_islong("-9223372036854775808a") != 0 || \
-	ft_str_islong("9223372036854775807 ") != 0 || \
-	ft_str_islong("-9223372036854775808 ") != 0 || \
-	ft_str_islong("-+0") != 0 || ft_str_islong("+-0") != 0 || \
-	ft_str_islong("0-") != 0 || ft_str_islong("0+") != 0)
+ft_str_islong("-9223372036854775809") != 0 || \
+ft_str_islong("92233720368547758070") != 0 || \
+ft_str_islong("-92233720368547758080") != 0 || \
+ft_str_islong("9223372036854775807a") != 0 || \
+ft_str_islong("-9223372036854775808a") != 0 || \
+ft_str_islong("9223372036854775807 ") != 0 || \
+ft_str_islong("-9223372036854775808 ") != 0 || \
+ft_str_islong("-+0") != 0 || ft_str_islong("+-0") != 0 || \
+ft_str_islong("0-") != 0 || ft_str_islong("0+") != 0)
 		return (2);
 	if (ft_str_islong("") != 0 || ft_str_islong("-") != 0)
 		return (3);

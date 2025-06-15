@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:59:45 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/10 13:49:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:21:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_bitset.h"
-#include "ft_bitset_types.h"
+#include "types/ft_bitset_types.h"
 
-bool		ft_bs_set_raw(t_bitset *bitset, size_t index, uint8_t value)
+bool	ft_bs_set_raw(t_bitset *bitset, size_t index, uint8_t value)
 {
 	if (index >= bitset->_capacity)
 		return (false);
@@ -21,7 +21,7 @@ bool		ft_bs_set_raw(t_bitset *bitset, size_t index, uint8_t value)
 	return (true);
 }
 
-bool		ft_bs_set(t_bitset *bitset, size_t index, bool value)
+bool	ft_bs_set(t_bitset *bitset, size_t index, bool value)
 {
 	uint8_t		mask;
 

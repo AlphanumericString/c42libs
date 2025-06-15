@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:50 by iron              #+#    #+#             */
-/*   Updated: 2025/04/05 05:57:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:24:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ size_t	ft_dl_size_data_is(const t_dlist *head, const t_data_is function)
 	return (i);
 }
 
-size_t	ft_dl_size_cmp(const t_dlist *lst, const void *restrict data, \
-		const t_data_cmp cmp)
+size_t	ft_dl_size_cmp(const t_dlist *lst, const void *restrict data,
+			const t_data_cmp cmp)
 {
 	t_dlist	*it;
 	size_t	i;

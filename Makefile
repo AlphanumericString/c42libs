@@ -6,46 +6,54 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2025/04/24 15:14:30 by bgoulard         ###   ########.fr        #
+#    Updated: 2025/06/15 15:13:32 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Colors
-GRAY		= "\\e[90m"
-GREEN		= "\\e[42m"
-RED			= "\\e[41m"
-RESET		= "\\e[0m"
-BOLD		= "\\e[1m"
+GRAY		= \e[90m
+GREEN		= \e[42m
+RED			= \e[41m
+RESET		= \e[0m
+BOLD		= \e[1m
+YELLOW		= \e[33m
 
-# Commands
+ERROR_COLOR	= $(RED)$(BOLD)
+GOOD_COLOR	= $(GREEN)$(BOLD)
+INFO_COLOR	= $(YELLOW)$(BOLD)
+BG_INFO		= $(GRAY)
+LOG_INFO	= $(RESET)$(BOLD)
+
+# Commands - dependancies
 CC			=	clang
 NAME		=	c42lib
 TEST_NAME	=	tests_run
+QTEST_NAME	=	quick_tests_run
 AR			=	ar
 COV			=	llvm-cov
 PRD			=	llvm-profdata
-ECHO		=	$(shell which echo) -e
-PRINTF		=	$(shell which printf)
+ECHO		=	$(shell which echo		2>/dev/null) -e
+PRINTF		=	$(shell which printf	2>/dev/null)
+BEAR		=	$(shell which bear		2>/dev/null)
+CTAGS		=	$(shell which ctags		2>/dev/null)
 
 # Directories
 
 SRC_DIR			=	src
 BUILD_DIR		=	build
 TESTS_DIR		=	tests
-INC_DIR			=	include include/internal
+INC_DIR			=	include
 COVERAGE_DIR	=	coverage
 
-FT_MAP_DIR		=	ft_map
-FT_LIST_DIR		=	ft_list
-FT_STRING_DIR	=	ft_string
-FT_VEC_DIR		=	ft_vector
-FT_OPTIONAL_DIR	=	ft_optional
-FT_ARGS_DIR		=	ft_args
-FT_MATH_DIR		=	ft_math
-FT_PAIR_DIR		=	ft_pair
-FT_BITSET_DIR	=	ft_bitset
-
-# Counpound directories
+FT_MAP_DIR		=	$(SRC_DIR)/ft_map
+FT_LIST_DIR		=	$(SRC_DIR)/ft_list
+FT_STRING_DIR	=	$(SRC_DIR)/ft_string
+FT_VEC_DIR		=	$(SRC_DIR)/ft_vector
+FT_OPTIONAL_DIR	=	$(SRC_DIR)/ft_optional
+FT_ARGS_DIR		=	$(SRC_DIR)/ft_args
+FT_MATH_DIR		=	$(SRC_DIR)/ft_math
+FT_PAIR_DIR		=	$(SRC_DIR)/ft_pair
+FT_BITSET_DIR	=	$(SRC_DIR)/ft_bitset
 
 FT_LIST_LL_DIR	=	$(FT_LIST_DIR)/ft_ll
 FT_LIST_DL_DIR	=	$(FT_LIST_DIR)/ft_dl
@@ -65,9 +73,10 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 
 WFLAGS		= -Wall -Wextra -Werror -Wmissing-prototypes
 LDFLAGS		=
+STDFLAGS	= -std=c99
 
 CPPFLAGS	=\
-			 $(addprefix -I, $(INC_DIR)) -MMD -MP -O0
+			 $(addprefix -I, $(INC_DIR)) -MMD -MP
 FFLAGS		=\
 			-fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined	   \
 			-fsanitize=leak -fsanitize=pointer-compare 						   \
@@ -76,26 +85,29 @@ FFLAGS		=\
 
 CFLAGS		=\
 			$(WFLAGS) $(CPPFLAGS) -fPIC -fdiagnostics-color                    \
-			-g2
-#			$(FFLAGS)
+			-fno-inline -fno-inline-functions ${STDFLAGS}
 
 TEST_FLAGS	=\
-		-g2	-DTEST \
-		-fprofile-instr-generate -ftest-coverage -fcoverage-mapping \
-		-DFORK_TESTS=1 -O0
+			-g2	-DTEST														\
+			-fprofile-instr-generate -ftest-coverage -fcoverage-mapping		\
+			-fno-inline -fno-inline-functions -DFORK_TESTS=1 -O0
+
+DEBUG_LEVEL	?=\
+		0
 # do not optimize tests
-TEST_FLAGS	+=\
+DEBUG_FLAGS	=\
+		-g2	-DDEBUG	-DDEBUG_LEVEL=$(DEBUG_LEVEL)	\
 		-fno-inline -fno-inline-functions
 
-DEBUG_LEVEL	=\
-		0
-DEBUG_FLAGS	=\
-		-g2	-DDEBUG	$(FFLAGS) -DDEBUG_LEVEL=$(DEBUG_LEVEL)
+ifeq ($(DEBUG_LEVEL), 0)
+	CFLAGS := $(CFLAGS)
+else
+	CFLAGS := $(CFLAGS) $(DEBUG_FLAGS)
+endif
 
 # Inner variables
 
 MAX_FILE_LEN	=	0
-TARGET			?=	"ALL"
 CLOG_FILE		=	./compilation.log
 
 # Check for llvm-cov and llvm-profdata
@@ -140,6 +152,8 @@ FT_MATH_SRC	=	\
 			$(FT_MATH_DIR)/ft_intrange.c	\
 			$(FT_MATH_DIR)/ft_log.c			\
 			$(FT_MATH_DIR)/ft_minmax.c		\
+			$(FT_MATH_DIR)/ft_mod.c			\
+			$(FT_MATH_DIR)/ft_nbrlen.c		\
 			$(FT_MATH_DIR)/ft_sqrt.c		\
 			$(FT_MATH_DIR)/ft_pow.c			\
 			$(FT_MATH_DIR)/ft_abs.c			\
@@ -235,17 +249,157 @@ FT_OPTIONAL_SRC	=	\
 			$(FT_OPTIONAL_DIR)/ft_optional_unwrap.c
 
 FT_ARGS_SRC		=	\
-			$(FT_ARGS_DIR)/ft_arg_custom_checker.c	\
-			$(FT_ARGS_DIR)/ft_parse_args.c			\
-			$(FT_ARGS_DIR)/ft_parse_err.c			\
-			$(FT_ARGS_DIR)/ft_parse_opt.c			\
-			$(FT_ARGS_DIR)/ft_parse_opt_args.c		\
-			$(FT_ARGS_DIR)/ft_set_ac.c				\
-			$(FT_ARGS_DIR)/ft_set_av.c				\
-			$(FT_ARGS_DIR)/ft_set_ev.c				\
-			$(FT_ARGS_DIR)/ft_set_progname.c		\
-			$(FT_ARGS_DIR)/ft_set_version.c			\
-			$(FT_ARGS_DIR)/ft_setup_prog.c			\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_hold_custom_checker.c	\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_hold_nbparg.c			\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_hold_opt_list.c			\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_parse_long_opt.c		\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_parse_perror.c			\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_parse_print_opt.c		\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_parse_print_type.c		\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_parse_short_opt.c		\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_parse_utils.c			\
+			$(FT_ARGS_DIR)/ft_parse_args/ft_parse_wrapper.c			\
+			$(FT_ARGS_DIR)/ft_set/ft_set_ac.c					\
+			$(FT_ARGS_DIR)/ft_set/ft_set_av.c					\
+			$(FT_ARGS_DIR)/ft_set/ft_set_ev.c					\
+			$(FT_ARGS_DIR)/ft_set/ft_set_progname.c		\
+			$(FT_ARGS_DIR)/ft_set/ft_set_version.c		\
+			$(FT_ARGS_DIR)/ft_consume_args.c			\
+			$(FT_ARGS_DIR)/ft_get_env.c					\
+			$(FT_ARGS_DIR)/ft_setup_prog.c				\
+			$(FT_ARGS_DIR)/ft_shift_args.c				\
+
+FT_CHR_SRC		=	\
+			$(FT_CHR_DIR)/ft_isalnum.c				\
+			$(FT_CHR_DIR)/ft_isalpha.c				\
+			$(FT_CHR_DIR)/ft_isascii.c				\
+			$(FT_CHR_DIR)/ft_isdigit.c				\
+			$(FT_CHR_DIR)/ft_ishexdigit.c			\
+			$(FT_CHR_DIR)/ft_islower.c				\
+			$(FT_CHR_DIR)/ft_isoctdigit.c			\
+			$(FT_CHR_DIR)/ft_isprint.c				\
+			$(FT_CHR_DIR)/ft_isspace.c				\
+			$(FT_CHR_DIR)/ft_isupper.c				\
+			$(FT_CHR_DIR)/ft_tolower.c				\
+			$(FT_CHR_DIR)/ft_toupper.c				\
+
+# TODO: add ft_arr functions:
+# ft_arrcat
+# ft_arrcmp
+# ft_arrdup
+# ft_arrfind + find_with
+# ft_arrclear
+
+FT_MEM_SRC		=\
+			$(FT_MEM_DIR)/ft_allocator/ft_al_arena.c	\
+			$(FT_MEM_DIR)/ft_allocator/ft_al_group.c	\
+			$(FT_MEM_DIR)/ft_allocator/ft_al_hooks.c	\
+			$(FT_MEM_DIR)/ft_allocator/ft_al_memimpl.c	\
+			$(FT_MEM_DIR)/ft_arr/ft_arrapply.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_arrfree.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_arrlen.c			\
+			$(FT_MEM_DIR)/ft_bzero.c				\
+			$(FT_MEM_DIR)/ft_fd_to_buff.c			\
+			$(FT_MEM_DIR)/ft_free_clear.c			\
+			$(FT_MEM_DIR)/ft_memchr.c				\
+			$(FT_MEM_DIR)/ft_memcmp.c				\
+			$(FT_MEM_DIR)/ft_memcpy.c				\
+			$(FT_MEM_DIR)/ft_memmap.c				\
+			$(FT_MEM_DIR)/ft_memmove.c				\
+			$(FT_MEM_DIR)/ft_memset.c				\
+			$(FT_MEM_DIR)/ft_qsort.c				\
+			$(FT_MEM_DIR)/ft_swap.c
+
+FT_NUM_SRC		=\
+			$(FT_NUM_DIR)/ft_atod.c			\
+			$(FT_NUM_DIR)/ft_atoi_base.c	\
+			$(FT_NUM_DIR)/ft_atoi.c			\
+			$(FT_NUM_DIR)/ft_base_valid.c	\
+			$(FT_NUM_DIR)/ft_itoa.c			\
+			$(FT_NUM_DIR)/ft_stoa_base.c	\
+			$(FT_NUM_DIR)/ft_stopa_base.c	\
+			$(FT_NUM_DIR)/ft_utoa.c
+
+FT_PUT_SRC		=\
+			$(FT_PUT_DIR)/processors/char.c				\
+			$(FT_PUT_DIR)/processors/doubles.c			\
+			$(FT_PUT_DIR)/processors/extentions.c		\
+			$(FT_PUT_DIR)/processors/integers.c			\
+			$(FT_PUT_DIR)/processors/integers_conv.c	\
+			$(FT_PUT_DIR)/processors/string.c			\
+			$(FT_PUT_DIR)/ft_perror.c			\
+			$(FT_PUT_DIR)/ft_print_fd.c			\
+			$(FT_PUT_DIR)/ft_putdbl_fd.c		\
+			$(FT_PUT_DIR)/ft_putendl_fd.c		\
+			$(FT_PUT_DIR)/ft_putnbr_base_fd.c	\
+			$(FT_PUT_DIR)/ft_putchar_fd.c		\
+			$(FT_PUT_DIR)/ft_putnchar_fd.c		\
+			$(FT_PUT_DIR)/ft_putnbr_fd.c		\
+			$(FT_PUT_DIR)/ft_putstr_fd.c
+
+FT_STR_SRC		=\
+			$(FT_STR_DIR)/ft_stris/ft_sis_alnum.c		\
+			$(FT_STR_DIR)/ft_stris/ft_sis_alpha.c		\
+			$(FT_STR_DIR)/ft_stris/ft_sis_bool.c		\
+			$(FT_STR_DIR)/ft_stris/ft_sis_digit.c		\
+			$(FT_STR_DIR)/ft_stris/ft_sis_double.c		\
+			$(FT_STR_DIR)/ft_stris/ft_sis_float.c		\
+			$(FT_STR_DIR)/ft_stris/ft_sis_hex.c			\
+			$(FT_STR_DIR)/ft_stris/ft_sis_int.c			\
+			$(FT_STR_DIR)/ft_stris/ft_sis_long.c		\
+			$(FT_STR_DIR)/ft_stris/ft_sis_num.c			\
+			$(FT_STR_DIR)/ft_stris/ft_sis_oct.c			\
+			$(FT_STR_DIR)/ft_stris/ft_sis_valid.c		\
+			$(FT_STR_DIR)/ft_gnl.c					\
+			$(FT_STR_DIR)/ft_split.c			\
+			$(FT_STR_DIR)/ft_splits.c			\
+			$(FT_STR_DIR)/ft_strappend_c.c		\
+			$(FT_STR_DIR)/ft_strchr.c			\
+			$(FT_STR_DIR)/ft_strclen.c			\
+			$(FT_STR_DIR)/ft_strcmp.c			\
+			$(FT_STR_DIR)/ft_strcnb.c			\
+			$(FT_STR_DIR)/ft_strcspn.c			\
+			$(FT_STR_DIR)/ft_strdup.c			\
+			$(FT_STR_DIR)/ft_strend_with.c		\
+			$(FT_STR_DIR)/ft_strerror.c			\
+			$(FT_STR_DIR)/ft_striteri.c			\
+			$(FT_STR_DIR)/ft_strjoin.c			\
+			$(FT_STR_DIR)/ft_strlcat.c			\
+			$(FT_STR_DIR)/ft_strlcpy.c			\
+			$(FT_STR_DIR)/ft_strlen.c			\
+			$(FT_STR_DIR)/ft_strmapi.c			\
+			$(FT_STR_DIR)/ft_strncmp.c			\
+			$(FT_STR_DIR)/ft_strndup.c			\
+			$(FT_STR_DIR)/ft_strnlen.c			\
+			$(FT_STR_DIR)/ft_strnstr.c			\
+			$(FT_STR_DIR)/ft_strrchr.c			\
+			$(FT_STR_DIR)/ft_str_replace.c		\
+			$(FT_STR_DIR)/ft_strrev.c			\
+			$(FT_STR_DIR)/ft_strspn.c			\
+			$(FT_STR_DIR)/ft_strstart_with.c	\
+			$(FT_STR_DIR)/ft_strtok.c			\
+			$(FT_STR_DIR)/ft_strtrim.c			\
+			$(FT_STR_DIR)/ft_substr.c			\
+
+FT_T_STRING_SRC	=\
+			$(FT_T_STRING_DIR)/ft_string_append.c	\
+			$(FT_T_STRING_DIR)/ft_string_chr.c		\
+			$(FT_T_STRING_DIR)/ft_string_clear.c	\
+			$(FT_T_STRING_DIR)/ft_string_cmp.c		\
+			$(FT_T_STRING_DIR)/ft_string_destroy.c	\
+			$(FT_T_STRING_DIR)/ft_string_from.c		\
+			$(FT_T_STRING_DIR)/ft_string_get.c		\
+			$(FT_T_STRING_DIR)/ft_string_insert.c	\
+			$(FT_T_STRING_DIR)/ft_string_new.c		\
+			$(FT_T_STRING_DIR)/ft_string_put.c		\
+			$(FT_T_STRING_DIR)/ft_string_replace.c	\
+			$(FT_T_STRING_DIR)/ft_string_reserve.c	\
+			$(FT_T_STRING_DIR)/ft_string_resize.c	\
+			$(FT_T_STRING_DIR)/ft_string_set.c		\
+			$(FT_T_STRING_DIR)/ft_string_shrink.c	\
+			$(FT_T_STRING_DIR)/ft_string_substr.c	\
+			$(FT_T_STRING_DIR)/ft_string_to_str.c	\
+			$(FT_T_STRING_DIR)/ft_string_trim.c		\
 
 # Counpound sources
 
@@ -263,6 +417,9 @@ FT_STRING_SRC	=	\
 			$(FT_T_STRING_SRC)
 
 # Tests sources
+
+QTEST_SRC	=\
+			$(TESTS_DIR)/quick_main_test.c
 
 TESTS_SRC	=\
 			$(TESTS_DIR)/ft_args/args_tests.c					\
@@ -311,6 +468,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/dl_tests/tests_dlist_find.c		\
 			$(TESTS_DIR)/ft_list/cl_tests/cl_list_tests.c			\
 			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_add.c			\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_apply.c		\
 			\
 			$(TESTS_DIR)/ft_map/map_tests.c						\
 			$(TESTS_DIR)/ft_map/tests_map_remove.c				\
@@ -331,6 +489,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_math/tests_intrange.c				\
 			$(TESTS_DIR)/ft_math/tests_log.c					\
 			$(TESTS_DIR)/ft_math/tests_minmax.c					\
+			$(TESTS_DIR)/ft_math/tests_nbrlen.c					\
 			$(TESTS_DIR)/ft_math/tests_pow.c					\
 			$(TESTS_DIR)/ft_math/tests_sqrt.c					\
 			$(TESTS_DIR)/ft_math/tests_round.c					\
@@ -400,7 +559,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/test_atoi.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_atol.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_atoll.c				\
-			$(TESTS_DIR)/ft_string/ft_str/test_atof.c				\
+			$(TESTS_DIR)/ft_string/ft_str/test_atod.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_gnl.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_itoa_base.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_itoa.c				\
@@ -408,7 +567,6 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/test_putnbr.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_putstr.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_perror.c				\
-			$(TESTS_DIR)/ft_string/ft_str/test_shift_args.c			\
 			$(TESTS_DIR)/ft_string/ft_str/test_split.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_splits.c				\
 			$(TESTS_DIR)/ft_string/ft_str/test_str_isalpha.c		\
@@ -527,11 +685,12 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/tests_fixtures/talloc_group.c						\
 			$(TESTS_DIR)/tests_fixtures/talloc_testimpl.c					\
 			\
-			$(TESTS_DIR)/main_tests.c							\
-			$(TESTS_DIR)/lambdas_for_tests.c					\
+			$(TESTS_DIR)/main_tests.c		\
+			$(TESTS_DIR)/lambdas_add.c		\
+			$(TESTS_DIR)/lambdas_general.c	\
 			$(TESTS_DIR)/tests_utils.c
 
-INNER_SRC=\
+SRCS	=\
 		$(FT_MATH_SRC)          \
 		$(FT_LIST_SRC)          \
 		$(FT_VEC_SRC)           \
@@ -543,14 +702,19 @@ INNER_SRC=\
 
 # Objects creation
 #   add prefix to sources to specify the directory src/
-SRCS		=	$(sort $(addprefix $(SRC_DIR)/, $(INNER_SRC)))
+SRCS		:=	$(sort $(SRCS))
 
+#OBJ - objects for the library
 #   add prefix to sources to specify the directory build/ for objects
-OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(INNER_SRC)))
-
+OBJ			=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(SRCS)))
+#TOBJ - objects for unit tests
 #   add prefix to sources to specify the directory build/tests/ for test objects
-TOBJ		=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/$(TESTS_DIR)/,$(INNER_SRC)))
-TOBJ		+=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/,$(TESTS_SRC)))
+TOBJ		=\
+			$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/$(TESTS_DIR)/,$(SRCS)))	\
+			$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/$(TESTS_DIR)/,$(TESTS_SRC)))
+#QOBJ - objects for quick tests
+#   add prefix to sources to specify the directory build/tests/ for quick test objects
+QTEST_OBJ	=	$(patsubst %.c, %.o, $(addprefix $(BUILD_DIR)/$(TESTS_DIR)/,$(QTEST_SRC)))
 
 #  Inner variables for rules
 
@@ -564,144 +728,151 @@ TEST_MAX_FILE_LEN	=\
 	awk '{print length}' | sort -n | tail -1)
 
 # Rules
+# Default rule for 'normal' objects
+$(BUILD_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(PRINTF) "$(BG_INFO)building from $(YELLOW)%-*s$(RESET) ..."	\
+	$(SRC_MAX_FILE_LEN) $< 											&& \
+	mkdir -p $(dir $@)												&& \
+	$(CC) $(CFLAGS) -c $< -o $@ 2>> $(CLOG_FILE) 					&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"						|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(LOG_INFO)\tSee:%s$(RESET)\n"	\
+	$(CLOG_FILE)
 
-# Default rule for objects imported from src/
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(ECHO) -n	$(GRAY)	"building from "
-	@$(PRINTF) "%-*s ... "$(RESET) $(SRC_MAX_FILE_LEN) $<
-	@mkdir -p $(dir $@)
-	@( $(CC) $(CFLAGS) -c $< -o $@ 2>> $(CLOG_FILE) 	&& \
-	$(ECHO) $(GREEN) "Success" $(RESET) )				|| \
-	$(ECHO) $(RED) "Failed" $(RESET)					\
-	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
+# Rule for tests objects
+$(BUILD_DIR)/$(TESTS_DIR)/%.o: %.c
+	@$(PRINTF) "$(BG_INFO)building from $(YELLOW)%-*s$(RESET) ..."	\
+	$(TEST_MAX_FILE_LEN) $<											&& \
+	mkdir -p $(dir $@)												&& \
+	$(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@						\
+	2>>	$(CLOG_FILE) 												&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"						|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(LOG_INFO)\tSee:%s$(RESET)\n"	\
+	$(CLOG_FILE)
 
-# Rule for tests objects imported from src/
-$(BUILD_DIR)/$(TESTS_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(ECHO) -n	$(GRAY)	"building from "
-	@$(PRINTF) "%-*s ... "$(RESET) $(TEST_MAX_FILE_LEN) $<
-	@mkdir -p $(dir $@)
-	@( $(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@		\
-	2>>	$(CLOG_FILE) 									&& \
-	$(ECHO) $(GREEN) "Success" $(RESET) )				|| \
-	$(ECHO) $(RED) "Failed" $(RESET)					\
-	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
-
-# Rule for tests objects imported from tests/
-$(BUILD_DIR)/$(TESTS_DIR)/%.o: $(TESTS_DIR)/%.c
-	@$(ECHO) -n	$(GRAY)	"building from "
-	@$(PRINTF) "%-*s ... "$(RESET) $(TEST_MAX_FILE_LEN) $<
-	@mkdir -p $(dir $@)
-	@( $(CC) $(CFLAGS) $(TEST_FLAGS) -c $< -o $@		\
-	2>>	$(CLOG_FILE) 									&& \
-	$(ECHO) $(GREEN) "Success" $(RESET) )				|| \
-	$(ECHO) $(RED) "Failed" $(RESET)					\
-	$(BOLD) "see:" $(CLOG_FILE) $(RESET)
-
-# Default rule
-all:	lib$(NAME).a
-
-tmp:
-	@echo $(SRCS)
+.DEFAULT_GOAL	:= lib$(NAME).a
+.PRECIOUS		: $(TEST_NAME)
+-include		$(OBJ:.o=.d)
 
 so: lib$(NAME).so
 
 # Rule for shared library
 lib$(NAME).so:	$(OBJ)
-	@$(ECHO) -n $(GRAY) "Making ... " $(RESET) $(BOLD) 			\
-	"lib$(NAME).so" $(RESET) $(GRAY) " ... " $(RESET)
-	@( $(CC) -shared -o lib$(NAME).so $(OBJ) 2> /dev/null		&& \
-	$(ECHO) $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) )	|| \
-	$(ECHO) $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	@$(PRINTF) "$(BG_INFO)Making ... $(LOG_INFO)%s$(BG_INFO) ... $(RESET)"	\
+	"lib$(NAME).so"															&& \
+	$(CC) -shared -o lib$(NAME).so $(OBJ) 2> $(CLOG_FILE)					&& \
+	$(RM) -- $(CLOG_FILE)													&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"								|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(LOG_INFO)\tSee:%s$(RESET)\n"			\
+	$(CLOG_FILE)
 
 # Rule for static library
 lib$(NAME).a:	$(OBJ)
-	@$(ECHO) -n $(GRAY) "Making ... " $(RESET) $(BOLD)				\
-	"lib$(NAME).a" $(RESET)	$(GRAY) " ... " $(RESET)
-	@( $(AR) -rcs lib$(NAME).a $(OBJ) 2> /dev/null					&& \
-	$(ECHO) $(GREEN) "Success" $(RESET) && $(RM) $(CLOG_FILE) ) 	|| \
-	$(ECHO) $(RED) "Failed" $(RESET) "see:" $(CLOG_FILE)
+	@$(PRINTF) "$(BG_INFO)Making ... $(LOG_INFO)%s$(BG_INFO) ... $(RESET)"	\
+	"lib$(NAME).a"															&& \
+	$(AR) -rcs lib$(NAME).a $(OBJ) 2>> $(CLOG_FILE)							&& \
+	$(RM) -- $(CLOG_FILE)													&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"								|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(LOG_INFO)\tSee:%s$(RESET)\n"			\
+	$(CLOG_FILE)
+
+$(QTEST_NAME): lib$(NAME).a	$(QTEST_OBJ)
+	@$(PRINTF) "$(BG_INFO)Compiling quick tests $(LOG_INFO)%-*s ...$(RESET)"	\
+	$(TEST_MAX_FILE_LEN) $(QTEST_NAME)											&& \
+	$(CC) $(CFLAGS) $(OBJ) $(QTEST_OBJ) -o $(QTEST_NAME) -L.	 				\
+	-l$(NAME) -lm $(LDFLAGS) 2>> $(CLOG_FILE)									&& \
+	$(RM) -- $(CLOG_FILE)														&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"									|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(LOG_INFO)\tSee:%s$(RESET)\n"				\
+	$(CLOG_FILE)
 
 # Rule to compile and run tests
 $(TEST_NAME): $(TOBJ)
 	@$(RM) -f $(TEST_NAME)
-	@$(ECHO) -n $(GRAY) "Compiling tests ... " $(RESET)
-	@$(CC) $(CFLAGS) $(TOBJ) -o $(TEST_NAME) $(TEST_FLAGS)		\
-	$(LDFLAGS) -lgcov											\
-	2>> $(CLOG_FILE)											&& \
-	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
-	$(ECHO) $(RED) "Failed" $(RESET)
-	@$(ECHO) -n $(GRAY) "Running tests ... " $(RESET)			&& \
-	./$(TEST_NAME) 												&& \
-	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
-	$(ECHO) $(RED) "Failed" $(RESET)
+	@$(PRINTF) "$(GRAY)Compiling tests %-*s... $(RESET)"			\
+	$(TEST_MAX_FILE_LEN) $(TEST_NAME)								&& \
+	$(CC) $(CFLAGS) $(TOBJ) -o $(TEST_NAME) $(TEST_FLAGS)			\
+	$(LDFLAGS) -lgcov 2>> $(CLOG_FILE)								&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"						|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(LOG_INFO)\tSee:%s$(RESET)\n"	\
+	$(CLOG_FILE)
+	@$(PRINTF) "$(GRAY)Running tests ... $(RESET)"					&& \
+	./$(TEST_NAME) 													&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"						|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"
 
 # Rule to generate coverage using llvm
 $(COVERAGE_DIR): $(TEST_NAME)
-	@$(ECHO) -n $(GRAY) "Generating profraw ... " $(RESET)		&& \
+	@$(PRINTF) "$(BG_INFO)Generating coverage ... $(RESET)"		&& \
+	$(PRINTF) "$(BG_INFO)profraw ... $(RESET)"					&& \
 	./$(TEST_NAME)												&& \
-	$(ECHO) -n $(GRAY) " profdata ... " $(RESET)				&& \
+	$(PRINTF) "$(BG_INFO)profdata ... $(RESET)"					&& \
 	$(PRD) merge -sparse default.profraw -o 					\
 	$(TEST_NAME).profdata										&& \
-	$(ECHO) -n $(GRAY) "coverage in html ... "					\
-	$(RESET)													&& \
+	$(PRINTF) "$(BG_INFO)coverage to html ... $(RESET)"			&& \
 	$(COV) show -format=html									\
 	-instr-profile=$(TEST_NAME).profdata						\
 	-ignore-filename-regex=$(TESTS_DIR)/*						\
 	--show-branches=count	--show-directory-coverage			\
 	./$(TEST_NAME) -output-dir=$(COVERAGE_DIR)					&& \
-	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
-	$(ECHO) $(RED) "Failed" $(RESET)
-
-# Rule to compile using debug flags
-debug:
-	@$(ECHO) $(GRAY) "Compiling debug, flags are" $(RESET) 		\
-	"$(CFLAGS) $(DEBUG_FLAGS)" $(RESET)						&& \
-	make --no-print-directory -C . re							\
-	CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"							&& \
-	make --no-print-directory -C .								\
-	so CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)"						&& \
-	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
-	$(ECHO) $(RED) "Failed" $(RESET)
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"					|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"
 
 .clangd: Makefile
-	@echo "Making clangd configuration file"
-	@$(ECHO) -n																\
-	"CompileFlags:\n"														\
-	"  Compiler: clang\n"													\
-	"  Add:\n"																\
-	"   - \"-Wall -Wextra -Werror\"\n"										\
-	"   - \""$(WFLAGS)"\"\n"												\
-	"   - \"-xc\"\n"  > .clangd
-	@for file in $(INC_DIR); do												\
-		echo "    - \"-I"$(shell pwd)"/"$$file"\"" >> .clangd;				\
-	done
-	@$(ECHO) $(GREEN) "Done" $(RESET)
+	@$(PRINTF) "$(BG_INFO)Making clangd configuration file$(RESET) "	&&\
+	$(ECHO) -n														\
+	"CompileFlags:\n"												\
+	"  Compiler: clang\n"											\
+	"  Add:\n"														\
+	"   - \"-Wall -Wextra -Werror\"\n"								\
+	"   - \""$(WFLAGS)"\"\n"										\
+	"   - \"-xc\"\n"  > .clangd										&& \
+	for file in $(INC_DIR); do										\
+		echo "    - \"-I"$(shell pwd)"/"$$file"\"" >> .clangd;		\
+	done															&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"						|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"
+
+tags: Makefile $(SRCS)
+	ctags	-Ra
+
+compile_commands.json: Makefile $(SRCS)
+	bear	-- make
+	bear	--append -- make tests_run
 
 # Rule to clean objects
 clean:
-	@$(ECHO) -n $(GRAY) "Clean ... " $(RESET)						&& \
-	( $(RM) -rf $(BUILD_DIR) $(CLOG_FILE) $(TEST_NAME) *.gcov			\
-	*.gcno *.gcda 2> /dev/null 										&& \
-	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
-	$(ECHO) $(RED) "Failed" $(RESET)
+	@$(PRINTF) "$(BG_INFO)Cleaning ... $(RESET)"				&& \
+	$(RM) -rf $(BUILD_DIR) $(CLOG_FILE)							\
+	*.gcov *.gcno *.gcda callgrind.out.* *.profraw *.profdata 	\
+	2> /dev/null 												&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"					|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"
 
 # Rule to clean objects and libraries/compiled files
 fclean: clean
-	@$(ECHO) -n $(GRAY) "FClean ... " $(RESET)						&& \
-	( $(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)			\
-	$(TEST_NAME)													\
-	*.profraw *.profdata Doxygen 2> /dev/null 						&& \
-	$(ECHO) $(GREEN) "Success" $(RESET) )							|| \
-	$(ECHO) $(RED) "Failed" $(RESET)
+	@$(PRINTF) "$(BG_INFO)FCleaning ... $(RESET)"				&& \
+	$(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)		\
+	$(TEST_NAME) $(QTEST_NAME) 2> /dev/null 					&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"					|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"
+
+uclean:
+	@$(PRINTF) "$(BG_INFO)Cleaning development environment ... $(RESET)"	&& \
+	$(RM) -rf .clangd compile_commands.json tags $(CLOG_FILE)		\
+	2> /dev/null 													&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"					|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"
 
 # Rule to recompile
 re:	fclean
-	@$(ECHO) -ne $(GRAY) "Recompiling ..." $(RESET) "\n"		&& \
-	make --no-print-directory all								&& \
-	$(ECHO) $(GREEN) "Success" $(RESET)							|| \
-	$(ECHO) $(RED) "Failed" $(RESET)
+	@$(PRINTF) "$(BG_INFO)Recompiling ... $(RESET)"				&& \
+	make --no-print-directory									&& \
+	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"					|| \
+	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"
 
--include $(OBJ:.o=.d)
+dev_env: .clangd compile_commands.json tags
+	@$(PRINTF) "$(BG_INFO)Development environment is ready!$(RESET)\n"	&& \
+	$(PRINTF) "$(BG_INFO)You can use 'make dev_env' to update it!$(RESET)\n"
 
 # rule to force rules to be executed even if files exist
 .PHONY: re fclean clean

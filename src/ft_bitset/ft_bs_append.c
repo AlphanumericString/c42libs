@@ -6,22 +6,23 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:20:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/10 12:43:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/15 17:48:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_bitset_types.h"
+#include "types/ft_bitset_types.h"
 #include "ft_bitset.h"
 #include "ft_string.h"
 #include <stddef.h>
 
-void		ft_bs_append(t_bitset *bitset, t_bitset *to_append)
+void	ft_bs_append(t_bitset *bitset, t_bitset *to_append)
 {
 	t_bitset8	*bs8;
 
 	if (!bitset || !to_append)
 		return ;
-	bs8 = ft_calloc(sizeof(t_bitset8), bitset->_capacity + to_append->_capacity);
+	bs8 = ft_calloc(sizeof(t_bitset8),
+			bitset->_capacity + to_append->_capacity);
 	if (!bs8)
 		return ;
 	ft_memcpy(bs8, bitset->bits, bitset->_capacity);

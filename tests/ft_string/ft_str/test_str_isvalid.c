@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/29 00:22:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/30 07:23:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static int	string_validator(int c)
 int	test_str_isvalid(void)
 {
 	if (ft_str_isvalid("abc", string_validator) != 1 || \
-	ft_str_isvalid("abcabc", string_validator) != 1 || \
-	ft_str_isvalid("aabbcc", string_validator) != 1)
+ft_str_isvalid("abcabc", string_validator) != 1 || \
+ft_str_isvalid("aabbcc", string_validator) != 1)
 		return (1);
 	if (ft_str_isvalid("abd", string_validator) != 0 || ft_str_isvalid("bap", \
-	string_validator) != 0 || ft_str_isvalid("ck", string_validator) != 0)
+string_validator) != 0 || ft_str_isvalid("ck", string_validator) != 0)
 		return (2);
 	if (ft_str_isvalid("", string_validator) != 0 || \
-	ft_str_isvalid(NULL, string_validator) != false)
+ft_str_isvalid(NULL, string_validator) != false)
 		return (3);
 	return (0);
 }

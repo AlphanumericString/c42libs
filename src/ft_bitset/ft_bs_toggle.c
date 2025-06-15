@@ -6,14 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:06:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/10 12:44:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:21:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_bitset.h"
-#include "ft_bitset_types.h"
+#include "types/ft_bitset_types.h"
 
-bool		ft_bs_toggle(t_bitset *bitset, size_t idx)
+bool	ft_bs_toggle(t_bitset *bitset, size_t idx)
 {
 	if (idx >= bitset->_capacity * 8)
 		return (false);
@@ -21,7 +21,7 @@ bool		ft_bs_toggle(t_bitset *bitset, size_t idx)
 	return (true);
 }
 
-bool		ft_bs_toggle_raw(t_bitset *bitset, size_t index)
+bool	ft_bs_toggle_raw(t_bitset *bitset, size_t index)
 {
 	if (index % 8)
 		return (false);

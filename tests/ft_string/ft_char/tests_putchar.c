@@ -6,14 +6,16 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:01:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 23:00:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:57:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <fcntl.h>
+#include <unistd.h>
 
 #include "ft_char.h"
 #include "ft_string.h"
 #include "tests/tests.h"
-#include <fcntl.h>
 #include "tests/tests__all_modules_tests.h"
 
 static int	test_bad_fd(char *file)

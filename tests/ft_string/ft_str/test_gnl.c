@@ -6,14 +6,16 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:35:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:53:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
+#include <fcntl.h>
 
 #include "tests/tests__all_modules_tests.h"
 #include "ft_string.h"
 #include "tests/tests.h"
-#include <fcntl.h>
 
 static int	write_lines(const char **lines, size_t n)
 {
