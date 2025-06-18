@@ -31,7 +31,7 @@ int	test_strtrim(void)
 ft_strcmp(res[3], "Hello Worl") != 0 || ft_strcmp(res[4], str_ugly) \
 != 0 || ft_strcmp(res[5], "") != 0 || res[6])
 		return (1);
-	ft_arr_apply((void **)res, ft_free);
+	ft_aapply((void **)res, ft_free);
 	return (0);
 }
 /*

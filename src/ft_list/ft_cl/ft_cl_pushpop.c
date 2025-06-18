@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:38 by iron              #+#    #+#             */
-/*   Updated: 2025/05/25 19:22:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 19:04:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,21 @@ t_clist	*ft_cl_push(t_clist **node, const void *data)
 	t_clist	*added;
 	t_clist	*last;
 
+	if (!node)
+		return (NULL);
 	added = ft_cl_create(data);
 	if (!added)
 		return (NULL);
-	if (!node || !*node)
+	if (!*node)
 		return (*node = added, added);
 	last = (*node)->prev;
+
 	added->next = *node;
 	(*node)->prev = added;
+
 	added->prev = last;
 	last->next = added;
+
 	*node = added;
 	return (added);
 }
@@ -37,18 +42,18 @@ t_clist	*ft_cl_push(t_clist **node, const void *data)
 t_clist	*ft_cl_push_back(t_clist **node, const void *data)
 {
 	t_clist	*added;
-	t_clist	*it;
 
-	it = *node;
+	if (!node)
+		return (NULL);
 	if (!*node)
 		return (ft_cl_push(node, data));
 	added = ft_cl_create(data);
 	if (!added)
 		return (NULL);
-	while (it->next)
-		it = it->next;
-	it->next = added;
-	added->prev = it;
+	added->next = *node;
+	added->prev = (*node)->prev;
+	(*node)->prev = added;
+	added->prev->next = added;
 	return (*node);
 }
 
@@ -62,7 +67,7 @@ void	*ft_cl_pop(t_clist **node)
 	if (!node || !*node)
 		return (NULL);
 	data = (*node)->data;
-	if ((*node)->next == *node || (*node)->prev == *node)
+	if ((*node)->next == *node | (*node)->prev == *node)
 		return (ft_free_clear((void **)node), (void *)data);
 	it = *node;
 	nxt = it->next;
@@ -83,7 +88,7 @@ void	*ft_cl_pop_back(t_clist **node)
 	data = NULL;
 	if (!node || !*node)
 		return (NULL);
-	if ((*node)->next == *node || (*node)->prev == *node)
+	if ((*node)->next == *node | (*node)->prev == *node)
 		return (ft_cl_pop(node));
 	it = (*node)->prev;
 	data = it->data;

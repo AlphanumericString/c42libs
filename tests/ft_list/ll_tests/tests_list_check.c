@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:21:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/30 07:42:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 19:25:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,22 @@ int	t_ll_check_circular(void)
 
 	lst = NULL;
 	i = 10;
+	if (ft_ll_check_circular(lst) == true)
+		return (1);
 	while (i--)
 		ft_ll_push(&lst, (void *)i);
 	i = 11;
 	while (i--)
 		nodes[i] = ft_ll_at(lst, i);
 	if (ft_ll_check_circular(lst) == true)
-		return (1);
+		return (2);
 	nodes[5]->next = nodes[0];
 	i = 10;
 	while (i--)
-		if ((ft_ll_check_circular(nodes[i]) != true && i < 6) || \
-(ft_ll_check_circular(nodes[i]) != false && i >= 6))
-			return (i + 1);
-	return (ft_arr_apply((void **)nodes, ft_free), EXIT_SUCCESS);
+		if ((ft_ll_check_circular(nodes[i]) != true && i < 6)
+			|| (ft_ll_check_circular(nodes[i]) != false && i >= 6))
+			return (i + 10);
+	return (ft_aapply((void **)nodes, ft_free), EXIT_SUCCESS);
 }
 
 int	t_ll_check_sorted(void)

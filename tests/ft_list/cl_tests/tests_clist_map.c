@@ -1,0 +1,117 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_clist_map.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/18 12:57:59 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/18 18:58:56 by bgoulard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "ft_list.h"
+#include "ft_string.h"
+#include "types/ft_list_types.h"
+
+#include "tests/lists_test_utils.h"
+#include "tests/tests.h"
+#include "tests/tests__all_modules_tests.h"
+
+static void	*double_data(const void *data)
+{
+	return ((void *)((long)data * 2));
+}
+
+static void	del_data(void *data)
+{
+	// Simple delete function for testing
+	(void)data;
+}
+
+static int	mt_clmap(void)
+{
+	t_clist	*lst;
+	t_clist	*mapped;
+	const int	fp = *talloc_get_failpoint();
+
+	lst = NULL;
+	ft_cl_push_back(&lst, (void *)42);
+	ft_cl_push_back(&lst, (void *)43);
+	ft_cl_push_back(&lst, (void *)44);
+	talloc_set_failpoint(0);
+	mapped = ft_cl_map(lst, double_data, NULL);
+	if (mapped)
+		return (1);
+	talloc_set_failpoint(fp);
+	ft_cl_delete(&lst, NULL);
+	return (EXIT_SUCCESS);
+}
+
+int	t_cl_map(void)
+{
+	t_clist	*lst;
+	t_clist	*mapped;
+	t_clist	*it;
+
+	lst = NULL;
+	// Test with NULL list
+	mapped = ft_cl_map(NULL, double_data, NULL);
+	if (mapped != NULL)
+		return (1);
+	// Test with single node
+	lst = ft_cl_create((void *)42);
+	if (!lst)
+		return (2);
+	mapped = ft_cl_map(lst, double_data, NULL);
+	if (!mapped || mapped->data != (void *)84)
+		return (3);
+	ft_cl_delete(&mapped, NULL);
+	// Test with multiple nodes
+	ft_cl_push_back(&lst, (void *)43);
+	ft_cl_push_back(&lst, (void *)44);
+	mapped = ft_cl_map(lst, double_data, NULL);
+	if (!mapped)
+		return (4);
+	// Verify mapped data
+	it = mapped;
+	if (it->data != (void *)84)
+		return (5);
+	it = it->next;
+	if (it->data != (void *)86)
+		return (6);
+	it = it->next;
+	if (it->data != (void *)88)
+		return (7);
+	ft_cl_delete(&mapped, NULL);
+	// Test with delete function
+	mapped = ft_cl_map(lst, double_data, del_data);
+	if (!mapped)
+		return (8);
+	mapped = ft_cl_map(lst, NULL, del_data);
+	if (mapped)
+		return (9);
+	return (ft_cl_delete(&lst, NULL), ft_cl_delete(&mapped, NULL), mt_clmap());
+}
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

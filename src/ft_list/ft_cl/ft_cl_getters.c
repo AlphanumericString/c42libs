@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dl_getters.c                                    :+:      :+:    :+:   */
+/*   ft_cl_getters.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:21 by iron              #+#    #+#             */
-/*   Updated: 2025/04/04 22:39:30 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 19:19:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	**ft_cl_get_datas(const t_clist *src)
 	ret[size] = NULL;
 	size = 0;
 	it = (const t_clist *)src;
-	while (it)
+	while (1)
 	{
+		ret[size++] = (void *)it->data;
 		if (it->next == src)
 			break ;
-		ret[size++] = (void *)it->data;
 		it = it->next;
 	}
 	return (ret);
@@ -56,11 +56,11 @@ t_clist	**ft_cl_get_nodes(const t_clist *src)
 	ret[size] = NULL;
 	size = 0;
 	it = src;
-	while (it)
+	while (1)
 	{
+		ret[size++] = (t_clist *)it;
 		if (it->next == src)
 			break ;
-		ret[size++] = (t_clist *)it;
 		it = it->next;
 	}
 	return (ret);

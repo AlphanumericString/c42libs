@@ -31,7 +31,7 @@ int	test_substr(void)
 	if (ft_strcmp(res[3], "") != 0 || ft_strcmp(res[4], "") != 0
 		|| ft_strcmp(res[5], "") != 0 || res[6])
 		return (2);
-	ft_arr_apply((void **)res, ft_free);
+	ft_aapply((void **)res, ft_free);
 	return (0);
 }
 /*

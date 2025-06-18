@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:10 by iron              #+#    #+#             */
-/*   Updated: 2025/04/06 17:07:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:19:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include "types/ft_list_types.h"
 #include "ft_string.h"
 #include <stdlib.h>
+
+// !target -> error list is circular, NULL is not the end of list
+// to delete the whole list use ->cl_delete
 
 size_t	ft_cl_delete_range(t_clist *start, const t_clist *target,
 		t_data_apply del)
@@ -24,6 +27,8 @@ size_t	ft_cl_delete_range(t_clist *start, const t_clist *target,
 	int		i;
 
 	i = 0;
+	if (!start || !target)
+		return (0);
 	prev_r = start->prev;
 	next_r = target->next;
 	while (start != target)
@@ -35,9 +40,12 @@ size_t	ft_cl_delete_range(t_clist *start, const t_clist *target,
 		ft_free(start);
 		start = nxt_it;
 	}
+	if (del)
+		del(start->data);
+	ft_free(start);
 	prev_r->next = next_r;
 	next_r->prev = prev_r;
-	return (i);
+	return (i + 1);
 }
 
 size_t	ft_cl_delete(t_clist **head, t_data_apply del)

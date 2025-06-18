@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dl_find.c                                       :+:      :+:    :+:   */
+/*   ft_cl_find.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 13:05:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/04 22:33:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:13:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_clist	*ft_cl_find(const t_clist *head, const void *data,
 	it = (t_clist *)head;
 	while (it)
 	{
-		if (it->next == head)
-			break ;
 		if (data == it->data || (cmp && !cmp(it->data, data)))
 			return (it);
+		if (it->next == head)
+			break ;
 		it = it->next;
 	}
 	return (NULL);

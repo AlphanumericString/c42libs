@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:33:59 by iron              #+#    #+#             */
-/*   Updated: 2025/05/24 20:27:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:16:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ size_t	ft_cl_clear(t_clist **head, t_data_apply del)
 	size_t	ret;
 
 	ret = ft_cl_clear_range(*head, NULL, del);
-	*head = NULL;
 	return (ret);
 }
 
@@ -33,10 +32,10 @@ size_t	ft_cl_clear_range(t_clist *start, const t_clist *end, t_data_apply del)
 		if (del)
 			del(start->data);
 		start->data = NULL;
+		i++;
 		if (end == NULL && start->next == head)
 			break ;
 		start = start->next;
-		i++;
 	}
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:45:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/15 14:51:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/16 03:30:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static bool	ft_str_isfloat_format(const char *str)
 	}
 	if (str[i] && ft_strchr("eE", str[i]) && i > 0)
 	{
+		i++;
 		if (str[i] && !ft_strchr("+-", str[i]) && !ft_isdigit(str[i]))
 			return (false);
 		i++;

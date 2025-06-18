@@ -77,7 +77,7 @@ static int	base_case(void)
 	return (ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
 }
 
-static int	merror_case(void)
+static int	mt_case(void)
 {
 	int			**arr;
 	t_vector	*vec;
@@ -90,7 +90,7 @@ static int	merror_case(void)
 	if (vec)
 		return (1);
 	talloc_set_failpoint(f_p);
-	ft_arr_free((void **)arr);
+	ft_afree((void **)arr);
 	return (0);
 }
 
@@ -101,7 +101,7 @@ int	test_vec_convert_alloc_array(void)
 	ret = base_case();
 	if (ret)
 		return (ret);
-	ret = merror_case();
+	ret = mt_case();
 	if (ret)
 		return (ret + 10);
 	return (0);

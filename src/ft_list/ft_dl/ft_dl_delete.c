@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:10 by iron              #+#    #+#             */
-/*   Updated: 2025/02/10 14:17:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:01:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "ft_string.h"
 #include <stdlib.h>
 
 int	ft_dl_delete_self(t_dlist *node, t_data_apply del)
@@ -23,7 +24,7 @@ int	ft_dl_delete_self(t_dlist *node, t_data_apply del)
 		node->prev->next = node->next;
 	if (node->next)
 		node->next->prev = node->prev;
-	free(node);
+	ft_free(node);
 	return (FTLIST_SUCCESS);
 }
 
@@ -44,7 +45,7 @@ size_t	ft_dl_delete_range(t_dlist *start, const t_dlist *target,
 		next = start->next;
 		if (del)
 			del(start->data);
-		free(start);
+		ft_free(start);
 		start = next;
 		i++;
 	}
@@ -96,7 +97,7 @@ size_t	ft_dl_delete_dup(t_dlist **src)
 			}
 		}
 	}
-	free(node_ptrs);
+	ft_free(node_ptrs);
 	return (nb_del);
 }
 */

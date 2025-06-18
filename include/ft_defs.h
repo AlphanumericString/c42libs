@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:55:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/12 16:50:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:28:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,21 @@ typedef bool			t_bool;
 typedef ssize_t			t_ssize;
 
 # endif
+
+/// @brief	Base array interface, maps to void **
+typedef void **t_arr;
+
+/// @brief	Array interface where inside and outside are consts, maps to
+///		const void *const *
+typedef const void *const *t_const_arr;
+
+/// @brief	Arrayinterface where the data inside the sub ptrs are consts,
+///		maps to const void **
+typedef const void **t_iconst_arr;
+
+/// @brief	Arrayinterface where the data inside the sub ptrs is not const but
+///		the holder to them is, maps to void *const *t_oconst_arr
+typedef void *const *t_oconst_arr;
 
 /// @brief	interface for string hashes.
 /// @param	str	The string to hash

@@ -67,3 +67,4 @@ coverage
 Doxygen
 tools
 *test*tmp*.c
+tags

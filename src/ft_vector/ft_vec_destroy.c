@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:03:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:37:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:00:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "ft_vector.h"
 #include <stdlib.h>
 
@@ -17,8 +18,8 @@ bool	ft_vec_destroy(t_vector **vec)
 {
 	(*vec)->count = 0;
 	(*vec)->cappacity = 0;
-	free((*vec)->datas);
-	free(*vec);
+	ft_free((*vec)->datas);
+	ft_free(*vec);
 	*vec = NULL;
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:05 by iron              #+#    #+#             */
-/*   Updated: 2025/05/24 22:21:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:00:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_clist	*ft_cl_copy_node(const t_clist *const other)
 {
 	t_clist	*ret;
 
+	if (!other)
+		return  (NULL);
 	ret = ft_cl_new();
 	if (!ret)
 		return (ret);
@@ -45,6 +47,7 @@ t_clist	*ft_cl_copy_list(const t_clist *const other)
 	t_clist			*ret;
 	t_clist			*r_head;
 
+	r_head = NULL;
 	ret = NULL;
 	it = other;
 	while (it)
@@ -55,6 +58,7 @@ t_clist	*ft_cl_copy_list(const t_clist *const other)
 		ft_cl_add_back(&r_head, ret);
 		if (it->next == other)
 			break ;
+		it = it->next;
 	}
 	return (r_head);
 }

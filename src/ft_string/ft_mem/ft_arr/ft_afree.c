@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_len_2d.c                                        :+:      :+:    :+:   */
+/*   ft_afree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 09:41:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/09 09:32:28 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/16 16:06:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arr.h"
 #include "ft_string.h"
 
-#include <stddef.h>
-
-size_t	ft_arr_len(const void *const *array)
+void	ft_afree(void **arr)
 {
-	size_t	len;
-
-	len = 0;
-	while (array[len])
-		len++;
-	return (len);
+	ft_aapply(arr, ft_free);
+	ft_free(arr);
 }
 /*
 GPL-3.0 License:

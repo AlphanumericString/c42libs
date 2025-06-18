@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:40:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/28 03:36:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:20:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* ************************************************************************** */
 /*																			  */
 /* Module: FT_LIST															  */
-/* Prefix: ft_dl, ft_ll														  */
+/* Prefix: ft_dl, ft_ll, ft_cl												  */
 /*																			  */
 /* The module FT_LIST provides a way to handle task related to linked		  */
 /*		lists whether the list happens to be simply linked, doubly linked.	  */
@@ -26,8 +26,11 @@
 /*		Currently supported types:											  */
 /*			-simply_linked,													  */
 /*			-doubly_linked.													  */
+/*			-doubly_circular_linked											  */
 /*																			  */
 /* ************************************************************************** */
+
+// TODO: Test cl
 
 # include <stdbool.h>
 # include <stddef.h>
@@ -35,6 +38,7 @@
 
 # include "types/ft_list_types.h"
 # include "ft_defs.h"
+
 
 /* ************************************************************************** */
 /*                                    ADD                                     */
@@ -142,7 +146,7 @@ size_t	ft_cl_apply_range(const t_clist *start, const t_clist *end,
 /// @param applied The function to apply
 /// @return The number of nodes applied
 size_t	ft_cl_apply_range_node(const t_clist *start, const t_clist *end,
-			const t_dnode_apply applied);
+			const t_cnode_apply applied);
 
 /* ************************************************************************** */
 /*                                  CHECKS                                    */
@@ -200,8 +204,8 @@ bool	ft_cl_check_health(const t_clist *lst);
 
 /// @brief Clear a list
 /// @param head The adress of head of the list to clear
-/// @param del The function to delete the data
-/// @return The number of nodes deleted
+/// @param del The function to clear the data befor setting to null (eg: free)
+/// @return The number of node set to null
 /// @note The head is set to NULL
 size_t	ft_dl_clear(t_dlist **head, const t_data_apply del);
 
@@ -235,6 +239,7 @@ size_t	ft_cl_clear(t_clist **head, const t_data_apply del);
 /// @param end The end of the list
 /// @param del The function to delete the data
 /// @return The number of nodes deleted
+/// @note The range is inclusive on start and exclusive on end [start, end[
 size_t	ft_cl_clear_range(t_clist *start, const t_clist *end,
 			const t_data_apply del);
 

@@ -26,7 +26,7 @@ void	ft_setup_prog(const char *const *const av)
 	if (!av || !*av)
 		ft_set_ac(0);
 	else
-		ft_set_ac(ft_arr_len((const void *const *)av));
+		ft_set_ac(ft_alen((const void *const *)av));
 	ft_set_ev_from_av(av, ft_ac());
 }
 /*

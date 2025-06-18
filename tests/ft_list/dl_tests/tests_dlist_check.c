@@ -82,7 +82,7 @@ ft_dl_check_circular(nodes[4]) != true)
 	if (ft_dl_check_circular(nodes[7]) != true || \
 ft_dl_check_circular(lst) != true)
 		return (3);
-	return (ft_arr_apply((void **)nodes, ft_free), \
+	return (ft_aapply((void **)nodes, ft_free), \
 local_check_circular_special_cases());
 }
 
@@ -132,7 +132,7 @@ ft_dl_check_health(lst) != false)
 		return (3);
 	if (ft_dl_check_health(NULL) != true)
 		return (4);
-	return (ft_arr_apply((void **)nodes, ft_free), EXIT_SUCCESS);
+	return (ft_aapply((void **)nodes, ft_free), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

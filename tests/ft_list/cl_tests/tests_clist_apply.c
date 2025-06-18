@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:55:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/30 07:51:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:01:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tests/tests__all_modules_tests.h"
+
+static void	add42_clnode(t_clist *node)
+{
+	if (node->data)
+		add42(node->data);
+}
 
 static void	create_2elem_clist(t_clist **cl, void *dtx, void *dty)
 {
@@ -93,9 +99,35 @@ ft_cl_at(list, i)->data != (int)(i + 42)))
 	return (ft_cl_delete(&list, NULL), 0);
 }
 
+#define NOT_IMPL
+
 int	t_cl_apply_range_node(void)
 {
-	return (1);
+	t_clist			*list;
+	t_clist			*pair[2];
+	int				nbrs[10];
+	size_t			i;
+
+	list = NULL;
+	i = sizeof(nbrs)/sizeof(nbrs[0]);
+	set_up_continuous_int_tab(nbrs, sizeof(nbrs) / sizeof(nbrs[0]));
+	while (i--)
+		ft_cl_push(&list, (void *)&nbrs[i]);
+	if (list && ft_cl_check_health(list) == false)
+		return (1);
+	pair[0] = ft_cl_at(list, 2);
+	pair[1] = ft_cl_at(list, 5);
+	ft_cl_apply_range_node(pair[0], pair[1], add42_clnode);
+	while (i < sizeof(nbrs)/sizeof(nbrs[0]))
+	{
+		if (((i >= 2 && i <= 5) && ft_cl_at(list, i) != (void *)(i + 42)) ||
+		(!(i >= 2 && i <= 5) && ft_cl_at(list, i) != (void *)(i)))
+			return (i);
+		i++;
+	}
+	ft_cl_apply_range_node(NULL, pair[1], add42_clnode);
+	ft_cl_apply_range_node(pair[0], pair[1], NULL);
+	return (ft_cl_delete(&list, NULL), 0);
 }
 /*
 GPL-3.0 License:

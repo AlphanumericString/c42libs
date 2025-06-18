@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:52:31 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/15 02:27:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:46:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	targ_opt_list_test(void)
 	const t_opt	*op2 = NULL;
 	const t_opt	op1[] = {
 	{"--test", 't', &empty, 0, NULL},
+	{NULL, 0, NULL, 0, NULL}
 	};
 
 	ft_set_opt_list(op1);

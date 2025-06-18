@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 18:59:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/24 20:20:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:15:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ size_t	ft_cl_apply_range_node(const t_clist *start, const t_clist *end,
 	size_t			i;
 
 	i = 0;
+	if (!applied || !start)
+		return (0);
 	it = (t_clist *)start;
 	if (!hold)
 		hold = it->prev;

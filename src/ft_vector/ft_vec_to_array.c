@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 23:39:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:01:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 #include "types/ft_vector_types.h"
 #include "ft_vector.h"
 
@@ -20,7 +21,7 @@ void	**ft_vec_to_array(t_vector **vec)
 	void	**array;
 
 	array = (*vec)->datas;
-	free(*vec);
+	ft_free(*vec);
 	return (array);
 }
 /*

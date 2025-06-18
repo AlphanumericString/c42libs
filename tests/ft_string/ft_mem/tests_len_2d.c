@@ -21,7 +21,7 @@ int	test_len_2d(void)
 	arr2d[1] = "World";
 	arr2d[2] = "!";
 	arr2d[3] = NULL;
-	if (ft_arr_len((const void *const *)arr2d) != 3)
+	if (ft_alen((const void *const *)arr2d) != 3)
 		return (1);
 	return (0);
 }

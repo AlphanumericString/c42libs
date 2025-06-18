@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 15:04:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/12 16:56:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:56:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@
 #include "ft_args.h"
 #include "types/ft_args_types.h"
 
+//
+// typedef struct s_dbl_fields
+// {
+// 	unsigned long	mantissa : 52;
+// 	unsigned long	exponent : 11;
+// 	unsigned int	sign : 1;
+// }					t_dbl_fields;
+//
+// typedef union s_double_explicit
+// {
+// 	double			value;
+// 	t_dbl_fields	fields;
+// }			t_double_explicit;
+//
+//
 // static double __attribute__((unused)) ieee754_to_double(t_dbl_fields f)
 // {
 //     double	sign = f.sign ? -1.0 : 1.0;
@@ -51,6 +66,42 @@
 //         exp = f.exponent - 1023;
 //     }
 // 	return sign * frac * pow(2, exp);
+// }
+
+// {
+// 	char buffer[256 + 1] = {0};
+// 	int fd = open("./test.txt", O_RDONLY | O_CLOEXEC);
+// 	int ret;
+//
+// 	if (fd < 0)
+// 		return (perror("Failed to open file"), EXIT_FAILURE);
+// 	ret = read(fd, buffer, 256);
+// 	if (ret < 0) {
+// 		return (perror("Failed to read file"), EXIT_FAILURE);
+// 	}
+// 	buffer[ret] = '\0'; // Null-terminate the string
+// 	printf("Read %d bytes: %s\n", ret, buffer);
+// 	lseek(fd, 0, SEEK_SET);
+// 	ret = read(fd, buffer, 256);
+// 	if (ret < 0) {
+// 		return (perror("Failed to read file again"), EXIT_FAILURE);
+// 	}
+// 	buffer[ret] = '\0'; // Null-terminate the string
+// 	printf("Read again %d bytes: %s\n", ret, buffer);
+// 	close(fd);
+//
+// 	FILE *file = fopen("./test.txt", "r");
+// 	char buffer_2[256 + 1] = {0};
+// 	if (!file) return (perror("Failed to open file with fopen"), EXIT_FAILURE);
+// 	printf("File opened: %p\n", file);
+// 	while (fgets(buffer_2, sizeof(buffer_2), file) != NULL) { printf("Read line: %s", buffer_2); }
+// 	if (ferror(file)) {
+// 		fclose(file);
+// 		return (perror("Error reading file with fgets"), EXIT_FAILURE);
+// 	}
+// 	if (feof(file)) printf("End of file reached.\n");
+// 	else printf("File not fully read.\n");
+// 	return (fclose(file), EXIT_SUCCESS);
 // }
 
 int	main(void)

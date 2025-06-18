@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2025/06/11 00:40:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:54:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,36 @@
 #include <time.h>
 #include <stdbool.h>
 #include <limits.h>
+
+// TODO: update tests files structure arboresence to reflect src
+/* Target:
+ ┌─ ft_math
+ ├─ ft_pair
+ ├─ ft_optional
+ │     ┌─ ft_stris
+ │  ┌─ ft_str
+ │  ├─ ft_chr
+ │  ├─ ft_string
+ │  │  ┌─ processors
+ │  ├─ ft_put
+ │  ├─ ft_num
+ │  │  ┌─ ft_arr
+ │  │  ├─ ft_arena
+ │  │  ├─ ft_allocator
+ │  ├─ ft_mem
+ ├─ ft_string
+ │  ┌─ ft_parse_args
+ │  ├─ ft_set
+ ├─ ft_args
+ ├─ ft_map
+ ├─ ft_vector
+ ├─ ft_bitset
+ │  ┌─ ft_dl
+ │  ├─ ft_cl
+ │  ├─ ft_ll
+ ├─ ft_list
+ tests
+*/
 
 static const t_module	*get_tests(void)
 {
@@ -63,7 +93,8 @@ static void	setup(const char *av[])
 
 static int	run_module(const t_module module)
 {
-	int	collect;
+	const char	*r_s[] = {" \033[32mOK\033[0m", " \033[31mKO\033[0m"};
+	int			collect;
 
 	collect = 0;
 	ft_putstr_fd("\n\nTesting ", STDOUT_FILENO);
@@ -71,10 +102,7 @@ static int	run_module(const t_module module)
 	collect = module.test();
 	ft_putstr_fd("\nModule:: ", STDOUT_FILENO);
 	ft_putstr_fd(module.full_name, STDOUT_FILENO);
-	if (collect == 0)
-		ft_putstr_fd(" \033[32mOK\033[0m\n", STDOUT_FILENO);
-	else
-		ft_putstr_fd(" \033[31mKO\033[0m\n", STDOUT_FILENO);
+	ft_putendl_fd(r_s[collect != 0], STDOUT_FILENO);
 	return (collect);
 }
 
@@ -85,16 +113,10 @@ static int	print_help_tests(const t_module *tests)
 	size_t	i;
 
 	i = 0;
-	ft_putstr_fd("Usage: ", STDOUT_FILENO);
-	ft_putstr_fd(ft_progname(), STDOUT_FILENO);
-	ft_putendl_fd(" [module_name]", STDOUT_FILENO);
-	ft_putendl_fd("Available modules:", STDOUT_FILENO);
+	ft_print_fd(STDOUT_FILENO, "Usage: %s [module_name]\n", ft_progname());
+	ft_print_fd(STDOUT_FILENO, "Available modules are:\n");
 	while (tests[i].full_name)
-	{
-		ft_putstr_fd(" - '", STDOUT_FILENO);
-		ft_putstr_fd(tests[i++].short_name, STDOUT_FILENO);
-		ft_putendl_fd("'", STDOUT_FILENO);
-	}
+		ft_print_fd(STDOUT_FILENO, " - '%s'\n", tests[i++].short_name);
 	ft_putendl_fd("Or use 'all' to run all tests", STDOUT_FILENO);
 	ft_putendl_fd("If no argument is passed, all tests will be run",
 		STDOUT_FILENO);
@@ -125,10 +147,10 @@ int	main(int ac, const char *av[])
 		i++;
 	}
 	if (collect == 0)
-		return (ft_putendl_fd("\033[32mAll tests passed\033[0m", \
-STDOUT_FILENO), EXIT_SUCCESS);
-	return (ft_putendl_fd("\033[31mSome tests failed\033[0m", STDOUT_FILENO), \
-EXIT_FAILURE);
+		return (ft_putendl_fd("\033[32mAll tests passed\033[0m",
+				STDOUT_FILENO), EXIT_SUCCESS);
+	return (ft_putendl_fd("\033[31mSome tests failed\033[0m", STDOUT_FILENO),
+		EXIT_FAILURE);
 }
 /*
 GPL-3.0 License:

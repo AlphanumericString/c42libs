@@ -64,7 +64,7 @@ static int	test_map_remove_colision(void)
 		return (3);
 	if (ft_map_remove(map, keys[3], ft_strlen(keys[3])) != str[3])
 		return (4);
-	return (ft_map_destroy(map), ft_arr_apply((void **)str, ft_free), 0);
+	return (ft_map_destroy(map), ft_aapply((void **)str, ft_free), 0);
 }
 
 int	test_map_remove(void)

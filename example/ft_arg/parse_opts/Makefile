@@ -27,14 +27,14 @@ LOG_MAJ	=	$(YELLOW)
 
 
 #  -- Dirs
-INCLUDES_DIRS	=	./include ./includes ./inc ./ ../../../../include
-LIB_DIRS		=	./lib ./libs ./lib64 ./       ../../../../
+INCLUDES_DIRS	=	./include ./includes ./inc ./ ../../../include
 SRC_DIR			=	src
 BUILD_DIR		=	build
 
 # -- Files
-LIBS_LIST		=	$(shell find $(LIB_DIRS) -name "*.a" -type f -or \
-							-name "*.so" -type f 2>/dev/null)
+LIBS_LIST		=	../../../libc42lib.a
+LIB_DIRS		=	../../../
+
 MAKE_SELF		=	$(abs_path $(lastword $(MAKEFILE_LIST)))
 LOGFILE			=	compilation.log
 
@@ -82,7 +82,7 @@ else
 	FLAGS	:=	$(FLAGS)	$(DBG_FLAGS) -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 endif
 
-NAME			=	parse_long_opt
+NAME			=	parse_opts
 
 # -- sources
 OBJS			=	$(addprefix $(BUILD_DIR)/, $(patsubst %.c, %.o, $(SRCS)))
@@ -105,23 +105,23 @@ $(BUILD_DIR)/%.o:%.cpp
 # -- Targets
 -include $(REQS)
 all:$(NAME)
-print:
-	@$(ECHO) $(OBJS)
-	@$(ECHO) $(SRCS)
-
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) make_libs
 	@$(PRINT) "$(LOG_MAJ)Linking $(NAME)...$(RESET)"	&& \
 	$(COMP) $(OBJS) $(FLAGS) -o $(NAME) $(LD_FLAGS)		&& \
 	$(PRINT) "$(OK)Success$(RESET)\n"					|| \
 	$(PRINT) "$(KO)Fail$(RESET)\n"
-dbg_make:
-	@$(ECHO) -e "$(LOG_MIN)SRCS:$(RESET)" $(SRCS)
-	@$(ECHO) -e "$(LOG_MIN)OBJS:$(RESET)" $(OBJS)
-	@$(ECHO) -e "$(LOG_MIN)REQS:$(RESET)" $(REQS)
-	@$(ECHO) -e "$(LOG_MIN)CFLAGS:$(RESET)" $(CFLAGS)
-	@$(ECHO) -e "$(LOG_MIN)CXXFLAGS:$(RESET)" $(CXXFLAGS)
-	@$(ECHO) -e "$(LOG_MIN)LD_FLAGS:$(RESET)" $(LD_FLAGS)
-	@$(ECHO) -e "$(LOG_MIN)MAKE_SELF:$(RESET)" $(MAKE_SELF)
+make_libs:
+	@$(PRINT) "$(LOG_MAJ)Compiling libraries...$(RESET)\n"		&& \
+	for lib in $(LIBS_LIST); do									\
+		if [ ! -f "$$lib" ]; then								\
+			$(PRINT) "\t$(LOG_MIN)Making $$(basename $$lib) $(RESET)"	&& \
+			$(MAKE_SL) -C $$(dirname $$lib) 2>> $(LOGFILE) >&2	&& \
+			$(PRINT) "$(OK)Success$(RESET)\n"					|| \
+			$(PRINT) "$(KO)Library $(notdir $$lib) not found!$(RESET)\n";	\
+		fi;													\
+	done													&& \
+	$(PRINT) "$(OK)Success$(RESET)\n"						|| \
+	$(PRINT) "$(KO)Fail$(RESET)\n"
 clean:
 	@$(PRINT) "$(LOG_MAJ)Cleaning build files...$(RESET)"	&& \
 	$(RM) -rf $(BUILD_DIR) $(LOGFILE)						&& \

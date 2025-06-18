@@ -49,7 +49,7 @@ sub->next->data != data2 || (ft_dl_clear(&sub, NULL), 0))
 	return (ft_dl_clear(&sub, NULL), ft_dl_clear(&list, ft_free), 0);
 }
 
-static int	merror_cases(void)
+static int	mt_cases(void)
 {
 	t_dlist		*lists[2];
 	int			*_datas[3];
@@ -77,7 +77,7 @@ int	t_dl_subrange(void)
 	ret = base_cases();
 	if (ret)
 		return (ret);
-	ret = merror_cases();
+	ret = mt_cases();
 	if (ret)
 		return (ret + 10);
 	return (0);

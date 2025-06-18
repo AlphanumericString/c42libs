@@ -50,7 +50,7 @@ static int	base_case(void)
 	return (ft_dl_clear(&list, ft_free), ft_dl_delete(&map, ft_free), 0);
 }
 
-static int	merror_case(void)
+static int	mt_case(void)
 {
 	t_dlist	*list;
 	t_dlist	*map;
@@ -76,7 +76,7 @@ int	t_dl_map(void)
 	ret = base_case();
 	if (ret)
 		return (ret);
-	ret = merror_case();
+	ret = mt_case();
 	if (ret)
 		return (ret + 10);
 	return (0);

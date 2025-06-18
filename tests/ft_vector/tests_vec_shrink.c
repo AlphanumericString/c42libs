@@ -39,7 +39,7 @@ vec->count != vec->cappacity || vec->count != 3)
 	return (0);
 }
 
-static int	merror_cases(void)
+static int	mt_cases(void)
 {
 	t_vector	*vec;
 	void		*data[3];
@@ -65,7 +65,7 @@ int	test_vec_shrink(void)
 	ret = base_cases();
 	if (ret)
 		return (ret);
-	ret = merror_cases();
+	ret = mt_cases();
 	if (ret)
 		return (ret + 10);
 	return (0);

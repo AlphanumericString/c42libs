@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/15 15:21:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/16 23:34:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,97 @@
 # include "types/ft_string_types.h"
 
 /* ************************************************************************** */
-/* **                     FT_MEM SUB MODULE                                ** */
+/* **						 FT_STR_IS MAIN MODULE						   ** */
 /* ************************************************************************** */
 
-/// @brief apply the function f on each byte of the memory
-/// @param s start of the memory
-/// @param n size of the memory
-/// @param f function to apply
-/// @return void
-/// @note the memory is modified in place
-void		ft_arr_apply(void **array, t_data_apply f);
+/// @brief Checks if the string str is composed only of alphabetical characters
+/// @param str string to check
+/// @return true if the string is composed only of alphabetical characters,
+/// false otherwise
+bool		ft_str_isalpha(const char *restrict str);
+
+/// @brief Checks if the string str is composed only of alphabetical and
+/// numerical characters
+/// @param str string to check
+/// @return true if the string is composed only of alphabetical and numerical
+/// characters, false otherwise
+bool		ft_str_isalnum(const char *restrict str);
+
+/// @brief Checks if the string str is comprised of only numbers.
+/// @param str string to check
+/// @return true if the string is composed only of numerical characters, false
+/// otherwise
+/// @note This function is not the same as ft_str_isdigit, as it checks for
+/// and accepts negative symbols.
+bool		ft_str_isnum(const char *restrict str);
+
+/// @brief Checks if the string str is a valid boolean value ("false" ||
+/// "true" || "0" || "1")
+/// @param str string to check
+/// @return true if it ;atches with any of the following: "false" "0" "true" "1"
+///  false otherwise
+bool		ft_str_isbool(const char *restrict str);
+
+/// @brief Checks if the string str is composed only of numerical characters
+/// @param str string to check
+/// @return true if the string is composed only of numerical characters, false
+/// otherwise
+/// @note This function is not the same as ft_str_isnum, as it does not accept
+/// ANYTHING other than numerical characters.
+bool		ft_str_isdigit(const char *restrict str);
+
+/// @brief Check if the string is a float
+/// @param str string to check
+/// @return 1 if the string is a float, 0 otherwise
+bool		ft_str_isfloat(const char *restrict str);
+
+/// @brief Check if the string is a float
+/// @param str string to check
+/// @return 1 if the string is a float, 0 otherwise
+/// @file: src/ft_string/ft_char/ft_isdouble.c
+bool		ft_str_isdouble(const char *restrict str);
+
+/// @brief Check if the string is an int valid value
+/// @param str string to check
+/// @return 1 if the string is an int, 0 otherwise
+bool		ft_str_isint(const char *restrict str);
+
+/// @brief Check if the string is a long
+/// @param str string to check
+///	@return 1 if the string is a number, 0 otherwise
+bool		ft_str_islong(const char *restrict str);
+
+/// @brief check if the string is a hex character
+/// @param c char to check
+/// @return 1 if the char is a hex character, 0 otherwise
+bool		ft_str_ishex(const char *restrict str);
+
+/// @brief check if the string is an octal number
+/// @param str string to check
+/// @return 1 if the string is an octal number, 0 otherwise
+bool		ft_str_isoct(const char *restrict str);
+
+/// @brief Check if the string is valid using a function pointer
+/// @param str string to check
+/// @param f function pointer to check the string (takes a char c as int
+///		and returns 0 if the char is invalid)
+/// @return 1 if the string is valid, 0 otherwise
+bool		ft_str_isvalid(const char *restrict str, int (*f)(int));
+
+/// @brief check if the string is a valid filename
+/// @param str string to check
+/// @return 1 if the string is a possible filename, 0 otherwise
+bool		ft_str_isfname(const char *fname);
+
+/* ************************************************************************** */
+/* **                     FT_ARR SUB MODULE                                ** */
+/* ************************************************************************** */
+
+#include "ft_arr.h"
+
+/* ************************************************************************** */
+/* **                     FT_MEM SUB MODULE                                ** */
+/* ************************************************************************** */
 
 /// @brief fill the memory with 0
 /// @param s start of the memory
@@ -67,19 +148,6 @@ void		*ft_realloc(void *ptr, size_t size);
 /// @param ptr pointer to the memory to free (set to NULL after)
 /// @return void
 void		ft_free_clear(void **ptr);
-
-/// @brief free the memory
-/// @param arr pointer to the 2d array to free.
-/// @return void
-/// @note the array is not set to NULL after as memory is freed and no longer
-/// valid to write to.
-void		ft_arr_free(void **arr);
-
-/// @brief return the length of the 2d array
-/// @param array pointer to the 2d array
-/// @return the length of the 2d array
-/// @note the array must be NULL terminated
-size_t		ft_arr_len(const void *const *array);
 
 /// @brief search for the first occurence of c in the memory
 /// @param s start of the memory
@@ -474,85 +542,6 @@ int			ft_strstart_with(const char *restrict str,
 /// @note The string is modified in place
 char		*ft_str_replace_chr(char *restrict str, char to_replace,
 				char replace_by);
-
-/// @brief Checks if the string str is composed only of alphabetical characters
-/// @param str string to check
-/// @return true if the string is composed only of alphabetical characters,
-/// false otherwise
-bool		ft_str_isalpha(const char *restrict str);
-
-/// @brief Checks if the string str is composed only of alphabetical and
-/// numerical characters
-/// @param str string to check
-/// @return true if the string is composed only of alphabetical and numerical
-/// characters, false otherwise
-bool		ft_str_isalnum(const char *restrict str);
-
-/// @brief Checks if the string str is comprised of only numbers.
-/// @param str string to check
-/// @return true if the string is composed only of numerical characters, false
-/// otherwise
-/// @note This function is not the same as ft_str_isdigit, as it checks for
-/// and accepts negative symbols.
-bool		ft_str_isnum(const char *restrict str);
-
-/// @brief Checks if the string str is a valid boolean value ("false" ||
-/// "true" || "0" || "1")
-/// @param str string to check
-/// @return true if it ;atches with any of the following: "false" "0" "true" "1"
-///  false otherwise
-bool		ft_str_isbool(const char *restrict str);
-
-/// @brief Checks if the string str is composed only of numerical characters
-/// @param str string to check
-/// @return true if the string is composed only of numerical characters, false
-/// otherwise
-/// @note This function is not the same as ft_str_isnum, as it does not accept
-/// ANYTHING other than numerical characters.
-bool		ft_str_isdigit(const char *restrict str);
-
-/// @brief Check if the string is a float
-/// @param str string to check
-/// @return 1 if the string is a float, 0 otherwise
-/// @file: src/ft_string/ft_char/ft_isfloat.c
-bool		ft_str_isfloat(const char *restrict str);
-
-/// @brief Check if the string is a float
-/// @param str string to check
-/// @return 1 if the string is a float, 0 otherwise
-/// @file: src/ft_string/ft_char/ft_isdouble.c
-bool		ft_str_isdouble(const char *restrict str);
-
-/// @brief Check if the string is an int valid value
-/// @param str string to check
-/// @return 1 if the string is an int, 0 otherwise
-/// @file: src/ft_string/ft_char/ft_isint.c
-bool		ft_str_isint(const char *restrict str);
-
-/// @brief Check if the string is a long
-/// @param str string to check
-///	@return 1 if the string is a number, 0 otherwise
-///	@file: src/ft_string/ft_char/ft_islong.c
-bool		ft_str_islong(const char *restrict str);
-
-/// @brief check if the string is a hex character
-/// @param c char to check
-/// @return 1 if the char is a hex character, 0 otherwise
-/// @file: src/ft_string/ft_char/ft_ishex.c
-bool		ft_str_ishex(const char *restrict str);
-
-/// @brief check if the string is an octal number
-/// @param str string to check
-/// @return 1 if the string is an octal number, 0 otherwise
-bool		ft_str_isoct(const char *restrict str);
-
-/// @brief Check if the string is valid using a function pointer
-/// @param str string to check
-/// @param f function pointer to check the string (takes a char c as int
-///		and returns 0 if the char is invalid)
-/// @return 1 if the string is valid, 0 otherwise
-/// @file: src/ft_string/ft_char/ft_isvalid.c
-bool		ft_str_isvalid(const char *restrict str, int (*f)(int));
 
 /// @brief Return a pointer to a constant string describing the error code
 /// @param errnum Error code

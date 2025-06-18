@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 17:02:31 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/29 10:16:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:44:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	parse_args_test(void)
 
 static const t_test	*init_tests(void)
 {
-	static const t_test	var[] = {\
-{"ac", targ_ac}, {"av", targ_av}, {"ev", targ_ev}, \
-{"setup_prog", targ_setup_prog}, {"version", targ_version_test}, \
-{"prog_name", targ_program_name_test}, \
-{"opt_list", targ_opt_list_test}, \
-{"custom checker", targ_custom_checker_test}, \
-{NULL, NULL}};
+	static const t_test	var[] = {
+	{"ac", targ_ac}, {"av", targ_av}, {"ev", targ_ev},
+	{"setup_prog", targ_setup_prog}, {"version", targ_version_test},
+	{"prog_name", targ_program_name_test},
+	{"opt_list", targ_opt_list_test},
+	{"custom checker", targ_custom_checker_test},
+	{NULL, NULL}};
 
 	return (var);
 }

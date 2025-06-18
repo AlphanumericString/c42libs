@@ -37,7 +37,7 @@ ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]), NULL))
 	return (0);
 }
 
-static int	merror_cases(void)
+static int	mt_cases(void)
 {
 	const char	*tb[3] = {"Hello", "World", "!"};
 	char		**str2;
@@ -59,7 +59,7 @@ int	test_memmap(void)
 	ret = base_cases();
 	if (ret)
 		return (ret);
-	ret = merror_cases();
+	ret = mt_cases();
 	if (ret)
 		return (ret + 10);
 	return (0);

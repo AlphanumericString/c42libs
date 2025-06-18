@@ -41,7 +41,7 @@ vec->datas[4] != (void *)46 || vec->datas[5] != (void *)47)
 	return (0);
 }
 
-static int	merror_case(void)
+static int	mt_case(void)
 {
 	t_vector	*vec;
 	int			f_po;
@@ -66,7 +66,7 @@ int	test_vec_add(void)
 	ret = bases_case();
 	if (ret)
 		return (ret);
-	ret = merror_case();
+	ret = mt_case();
 	if (ret)
 		return (ret + 10);
 	return (0);

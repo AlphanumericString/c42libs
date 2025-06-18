@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:06:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:25:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:00:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_optional.h"
+#include "ft_string.h"
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -19,7 +20,7 @@ bool	ft_optional_destroy(t_optional *opt)
 	if (!opt)
 		return (false);
 	if (opt->pres == OPT_NONE)
-		return (free(opt), true);
+		return (ft_free(opt), true);
 	return (false);
 }
 /*

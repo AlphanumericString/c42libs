@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_2d.c                                       :+:      :+:    :+:   */
+/*   ft_acat.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 09:32:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:30:42 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/16 14:54:11 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/16 16:02:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_arr.h"
 
-void	ft_arr_free(void **arr)
+void	ft_acat(t_iconst_arr ar_dst, t_const_arr ar_src)
 {
-	ft_arr_apply(arr, ft_free);
-	ft_free(arr);
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = ft_alen(ar_dst);
+	while (ar_src[i])
+		ar_dst[j++] = ar_src[i++];
+	return ;
 }
 /*
 GPL-3.0 License:

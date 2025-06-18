@@ -34,11 +34,11 @@ int	test_apply_2d(void)
 	while (i < 3)
 		arr2d[i++] = ft_strdup("Hello World");
 	arr2d[i] = NULL;
-	ft_arr_apply((void **)arr2d, to_a);
+	ft_aapply((void **)arr2d, to_a);
 	if (ft_strcmp(arr2d[0], "aaaaaaaaaaa") != 0 || ft_strcmp(arr2d[1],
 			"aaaaaaaaaaa") != 0 || ft_strcmp(arr2d[2], "aaaaaaaaaaa") != 0)
 		return (1);
-	return (ft_arr_apply((void **)arr2d, ft_free), 0);
+	return (ft_aapply((void **)arr2d, ft_free), 0);
 }
 /*
 GPL-3.0 License:

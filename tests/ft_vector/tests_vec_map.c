@@ -40,7 +40,7 @@ static int	base_case(void)
 	return (0);
 }
 
-static int	merror_case(void)
+static int	mt_case(void)
 {
 	t_vector	*vec;
 	t_vector	*ret;
@@ -65,7 +65,7 @@ int	test_vec_map(void)
 	ret = base_case();
 	if (ret)
 		return (ret);
-	ret = merror_case();
+	ret = mt_case();
 	if (ret)
 		return (ret + 10);
 	return (0);

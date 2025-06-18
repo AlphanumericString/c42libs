@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2025/06/15 15:13:32 by bgoulard         ###   ########.fr        #
+#    Updated: 2025/06/18 12:58:43 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -283,21 +283,27 @@ FT_CHR_SRC		=	\
 			$(FT_CHR_DIR)/ft_tolower.c				\
 			$(FT_CHR_DIR)/ft_toupper.c				\
 
-# TODO: add ft_arr functions:
-# ft_arrcat
-# ft_arrcmp
-# ft_arrdup
-# ft_arrfind + find_with
-# ft_arrclear
+# TODO: add array functions:
+# ft_adup_deep
+# ft_amap
+# ?ft_armap
+# ft_arev
 
 FT_MEM_SRC		=\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_arena.c	\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_group.c	\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_hooks.c	\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_memimpl.c	\
-			$(FT_MEM_DIR)/ft_arr/ft_arrapply.c			\
-			$(FT_MEM_DIR)/ft_arr/ft_arrfree.c			\
-			$(FT_MEM_DIR)/ft_arr/ft_arrlen.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_aapply.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_acat.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_aclear.c		\
+			$(FT_MEM_DIR)/ft_arr/ft_acmp.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_adup.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_afind.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_afree.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_alen.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_arfind.c		\
+			$(FT_MEM_DIR)/ft_arr/ft_atr.c			\
 			$(FT_MEM_DIR)/ft_bzero.c				\
 			$(FT_MEM_DIR)/ft_fd_to_buff.c			\
 			$(FT_MEM_DIR)/ft_free_clear.c			\
@@ -344,6 +350,7 @@ FT_STR_SRC		=\
 			$(FT_STR_DIR)/ft_stris/ft_sis_digit.c		\
 			$(FT_STR_DIR)/ft_stris/ft_sis_double.c		\
 			$(FT_STR_DIR)/ft_stris/ft_sis_float.c		\
+			$(FT_STR_DIR)/ft_stris/ft_sis_fname.c		\
 			$(FT_STR_DIR)/ft_stris/ft_sis_hex.c			\
 			$(FT_STR_DIR)/ft_stris/ft_sis_int.c			\
 			$(FT_STR_DIR)/ft_stris/ft_sis_long.c		\
@@ -469,6 +476,19 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/cl_tests/cl_list_tests.c			\
 			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_add.c			\
 			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_apply.c		\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_check.c		\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_clear.c		\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_create.c		\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_delete.c		\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_find.c		\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_get.c			\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_iterators.c	\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_map.c			\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_new.c			\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_push.c			\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_rev.c			\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_sizers.c		\
+			$(TESTS_DIR)/ft_list/cl_tests/tests_clist_subrange.c		\
 			\
 			$(TESTS_DIR)/ft_map/map_tests.c						\
 			$(TESTS_DIR)/ft_map/tests_map_remove.c				\
@@ -691,6 +711,8 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/tests_utils.c
 
 SRCS	=\
+		$(FT_FILEHANDLER_SRC)	\
+		$(FT_BITSET_SRC)		\
 		$(FT_MATH_SRC)          \
 		$(FT_LIST_SRC)          \
 		$(FT_VEC_SRC)           \

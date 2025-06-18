@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dl_rev.c                                        :+:      :+:    :+:   */
+/*   ft_cl_rev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iron <iron@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:20:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/05 05:40:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:51:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "types/ft_list_types.h"
+
+static void loc_switch(t_clist *node)
+{
+	t_clist *tmp;
+
+	tmp = node->prev;
+	node->prev = node->next;
+	node->next = tmp;
+}
 
 t_clist	*ft_cl_rev(t_clist **head)
 {
-	t_clist	*it;
-	t_clist	*tmp;
-
 	if (!head || !*head)
 		return (NULL);
-	it = *head;
-	while (it)
-	{
-		tmp = it->next;
-		it->next = it->prev;
-		it->prev = tmp;
-		if (!tmp)
-			*head = it;
-		it = tmp;
-		if (it->next == *head)
-			break ;
-	}
-	return (*head);
+	ft_cl_apply_range_node(*head, NULL, loc_switch);
+	return ((*head)->next);
 }
 /*
 GPL-3.0 License:

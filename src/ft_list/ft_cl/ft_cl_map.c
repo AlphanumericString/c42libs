@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dl_map.c                                        :+:      :+:    :+:   */
+/*   ft_cl_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:21:43 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/05 05:37:56 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 19:19:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ t_clist	*ft_cl_map(const t_clist *lst, t_data_tr f, t_data_apply del)
 		return (NULL);
 	ret = NULL;
 	it = lst;
-	while (it)
+	while (1)
 	{
 		tmp = ft_cl_create(f(it->data));
 		if (!tmp)
-			return (ft_cl_clear(&ret, del), NULL);
+			return (ft_cl_delete(&ret, del), NULL);
 		ft_cl_add_back(&ret, tmp);
 		if (it->next == lst)
 			break ;

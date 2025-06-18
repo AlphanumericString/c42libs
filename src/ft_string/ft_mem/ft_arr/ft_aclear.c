@@ -1,48 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrfind.c                                       :+:      :+:    :+:   */
+/*   ft_aclear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 20:51:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/15 15:42:56 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/16 14:54:13 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/16 16:02:30 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_arr.h"
 
-const void	*ft_find(void *const *const arr, const void *cmp_d)
+void	ft_aclear(t_iconst_arr arr)
 {
 	size_t	i;
 
+	if (!arr)
+		return ;
 	i = 0;
-	if (!arr || !arr[0] || !cmp_d)
-		return (NULL);
 	while (arr[i])
-	{
-		if (arr[i] == cmp_d)
-			return (arr[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-const void	*ft_find_with(void *const *const arr, const void *cmp_d,
-				t_data_cmp cmp)
-{
-	size_t	i;
-
-	i = 0;
-	if (!cmp || !arr || !arr[0] || !cmp_d)
-		return (NULL);
-	while (arr[i])
-	{
-		if (cmp(arr[i], cmp_d) == 0)
-			return (arr[i]);
-		i++;
-	}
-	return (NULL);
+		arr[i++] = NULL;
 }
 /*
 GPL-3.0 License:

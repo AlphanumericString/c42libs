@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dl_sub.c                                        :+:      :+:    :+:   */
+/*   ft_cl_sub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:34:45 by iron              #+#    #+#             */
-/*   Updated: 2025/04/05 05:47:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/18 19:20:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,15 @@ t_clist	*ft_cl_subrange(const t_clist *src, const t_clist *restrict end)
 		return (ft_cl_copy_list(src));
 	if (src == end)
 		return (ft_cl_create(src->data));
+	new_list = NULL;
 	it = src;
-	while (it && it != end)
+	while (it != end)
 	{
 		if (ft_cl_push_back(&new_list, it->data) == NULL)
 			return (ft_cl_clear(&new_list, NULL), NULL);
-		if (it->next == src)
-			break ;
 		it = it->next;
 	}
-	if (it == end)
-		return (new_list);
-	return (ft_cl_clear(&new_list, NULL), NULL);
+	return (new_list);
 }
 /*
 GPL-3.0 License:

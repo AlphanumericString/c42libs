@@ -80,7 +80,7 @@ char	**ft_split(const char *str, char delim)
 	{
 		words[offset_words++] = loc_cpy_til(str, delim, &offset_str);
 		if (!words[offset_words - 1])
-			return (ft_arr_free((void **)words), NULL);
+			return (ft_afree((void **)words), NULL);
 		while (str[offset_str] == delim && str[offset_str])
 			offset_str++;
 	}

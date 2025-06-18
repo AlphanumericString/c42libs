@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_apply_2d.c                                      :+:      :+:    :+:   */
+/*   ft_atr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 09:47:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/03/26 15:23:38 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/16 15:18:06 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/16 16:13:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arr.h"
 #include "ft_defs.h"
-#include "ft_string.h"
 
-#include <stddef.h>
-
-void	ft_arr_apply(void **array, t_data_apply f)
+void	ft_atr(t_arr arr, t_data_tr_i tr)
 {
 	size_t	i;
 
+	if (!tr || !arr)
+		return ;
 	i = 0;
-	while (array[i])
-		f(array[i++]);
+	while (arr[i])
+		arr[i] = tr(arr[i]);
 }
 /*
 GPL-3.0 License:

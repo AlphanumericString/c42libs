@@ -17,7 +17,7 @@
 #include <limits.h>
 #include <stdio.h>
 
-static int	merror_cases(void)
+static int	mt_cases(void)
 {
 	char		*res;
 	const int	p_fp = *talloc_get_failpoint();
@@ -52,7 +52,7 @@ int	test_itoa(void)
 			return (i);
 		ft_free(res);
 	}
-	return (merror_cases());
+	return (mt_cases());
 }
 /*
 GPL-3.0 License:
