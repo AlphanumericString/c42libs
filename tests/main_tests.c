@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2025/06/18 12:54:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 21:08:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static const t_module	*get_tests(void)
 	{"arguments", "arg", tests_args},
 	{"math", "math", tests_math},
 	{"pair", "pair", tests_pair},
+	{"bitset", "bs", tests_bitset},
 	{NULL, NULL, NULL}
 	};
 
@@ -97,11 +98,9 @@ static int	run_module(const t_module module)
 	int			collect;
 
 	collect = 0;
-	ft_putstr_fd("\n\nTesting ", STDOUT_FILENO);
-	ft_putendl_fd(module.full_name, STDOUT_FILENO);
+	ft_print_fd(STDOUT_FILENO, "\n\nTesting %s\n", module.full_name);
 	collect = module.test();
-	ft_putstr_fd("\nModule:: ", STDOUT_FILENO);
-	ft_putstr_fd(module.full_name, STDOUT_FILENO);
+	ft_print_fd(STDOUT_FILENO, "\nModule:: %s ", module.full_name);
 	ft_putendl_fd(r_s[collect != 0], STDOUT_FILENO);
 	return (collect);
 }
@@ -130,27 +129,29 @@ int	main(int ac, const char *av[])
 {
 	int				collect;
 	size_t			i;
+	const char		*target;
 	const t_module	*tests = get_tests();
+	const char		*res_str[2] = {"\033[32mAll tests passed\033[0m",
+		"\033[31mSome tests failed\033[0m"};
 
 	i = 0;
 	collect = 0;
 	setup(av);
 	if (ac > 1 && !ft_strcmp(av[1], "-h"))
 		return (print_help_tests(tests), EXIT_SUCCESS);
-	if (ac > 1 && !ft_strcmp(av[1], "all"))
-		av[1] = NULL;
+	if (ac < 2 || (av[1] && !ft_strcmp(av[1], "all")))
+		target = "all";
+	else
+		target = av[1];
 	while (tests[i].full_name)
 	{
-		if (ac < 2 || (!ft_strcmp(av[1], tests[i].short_name) || \
-!ft_strcmp(av[1], tests[i].full_name)))
+		if (ac < 2 || (!ft_strcmp(target, tests[i].short_name)
+				|| !ft_strcmp(target, tests[i].full_name)))
 			collect += run_module(tests[i]);
 		i++;
 	}
-	if (collect == 0)
-		return (ft_putendl_fd("\033[32mAll tests passed\033[0m",
-				STDOUT_FILENO), EXIT_SUCCESS);
-	return (ft_putendl_fd("\033[31mSome tests failed\033[0m", STDOUT_FILENO),
-		EXIT_FAILURE);
+	return (ft_putendl_fd(res_str[collect != 0], STDOUT_FILENO),
+		collect != 0);
 }
 /*
 GPL-3.0 License:

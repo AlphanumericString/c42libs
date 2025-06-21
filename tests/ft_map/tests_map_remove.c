@@ -17,7 +17,7 @@
 #include "ft_string.h"
 #include <stdlib.h>
 
-static int	test_map_remove_normal(void)
+static int	tm_remove_normal(void)
 {
 	char	*str;
 	void	*ret;
@@ -39,7 +39,7 @@ static int	test_map_remove_normal(void)
 	return (0);
 }
 
-static int	test_map_remove_colision(void)
+static int	tm_remove_colision(void)
 {
 	const char	*keys[] = {"key", "key2", "key3", "key4", NULL};
 	const char	*str[] = {
@@ -67,14 +67,14 @@ static int	test_map_remove_colision(void)
 	return (ft_map_destroy(map), ft_aapply((void **)str, ft_free), 0);
 }
 
-int	test_map_remove(void)
+int	tm_remove(void)
 {
 	int	ret;
 
-	ret = test_map_remove_normal();
+	ret = tm_remove_normal();
 	if (ret != 0)
 		return (ret);
-	ret = test_map_remove_colision();
+	ret = tm_remove_colision();
 	if (ret != 0)
 		return (ret + 10);
 	return (0);

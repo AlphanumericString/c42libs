@@ -14,7 +14,7 @@
 #include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_vec_reverse(void)
+int	tv_reverse(void)
 {
 	t_vector	*vec;
 	int			a;

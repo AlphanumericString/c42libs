@@ -41,7 +41,7 @@ static void	init_vec_cat(t_vector **vec_a, t_vector **vec_b)
 	ft_vec_add(vec_b, (void *)47);
 }
 
-int	test_vec_cat(void)
+int	tv_cat(void)
 {
 	bool		ret;
 	t_vector	*vec_a;

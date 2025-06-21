@@ -14,7 +14,7 @@
 #include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_vec_destroy(void)
+int	tv_destroy(void)
 {
 	t_vector	*vec;
 	int			a;

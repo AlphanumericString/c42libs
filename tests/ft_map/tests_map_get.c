@@ -24,7 +24,7 @@
 #include "ft_string.h"
 #include <stdlib.h>
 
-static int	test_map_get_ultra_small(void)
+static int	tm_get_ultra_small(void)
 {
 	char		*str[2];
 	t_map		*map;
@@ -49,7 +49,7 @@ static int	test_map_get_ultra_small(void)
 	return (0);
 }
 
-static int	test_map_normal(void)
+static int	tm_normal(void)
 {
 	char		*str;
 	t_map		*map;
@@ -77,7 +77,7 @@ static int	test_map_normal(void)
 	return (0);
 }
 
-static int	test_map_get_null(void)
+static int	tm_get_null(void)
 {
 	t_map		*map;
 	t_map_node	*node;
@@ -100,17 +100,17 @@ static int	test_map_get_null(void)
 	return (0);
 }
 
-int	test_map_get(void)
+int	tm_get(void)
 {
 	int	ret;
 
-	ret = test_map_get_ultra_small();
+	ret = tm_get_ultra_small();
 	if (ret != 0)
 		return (ret + 10 * 0);
-	ret = test_map_normal();
+	ret = tm_normal();
 	if (ret != 0)
 		return (ret + 10 * 1);
-	ret = test_map_get_null();
+	ret = tm_get_null();
 	if (ret != 0)
 		return (ret + 10 * 2);
 	return (0);

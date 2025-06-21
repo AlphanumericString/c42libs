@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:39:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/11 14:51:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 void	*add_4(void *val);
 void	*add_fail(void *val);
 
-int		test_optional_new(void);
-int		test_optional_dup(void);
-int		test_optional_copy(void);
-int		test_optional_unwrap(void);
-int		test_optional_from_val(void);
-int		test_optional_chain(void);
-int		test_optional_map(void);
-int		test_optional_destroy(void);
+int		to_new(void);
+int		to_dup(void);
+int		to_copy(void);
+int		to_unwrap(void);
+int		to_from_val(void);
+int		to_chain(void);
+int		to_map(void);
+int		to_destroy(void);
 
 #endif /* INCLUDE/TESTS/OPTIONAL_TEST_H */
 /*

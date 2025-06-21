@@ -58,7 +58,7 @@ static int	mt_case(void)
 	return (ft_vec_destroy(&vec), 0);
 }
 
-int	test_vec_map(void)
+int	tv_map(void)
 {
 	int	ret;
 

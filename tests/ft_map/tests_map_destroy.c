@@ -17,7 +17,7 @@
 #include <stdlib.h>
 
 // check valgrind for no memory leak
-int	test_map_destroy(void)
+int	tm_destroy(void)
 {
 	t_map	*map;
 
@@ -31,7 +31,7 @@ int	test_map_destroy(void)
 
 // accessing to key[0] and value[0] after the call to check
 // that no ft_free occured on the data at first call
-int	test_map_destroy_free(void)
+int	tm_destroy_free(void)
 {
 	t_map	*map;
 	char	*key;

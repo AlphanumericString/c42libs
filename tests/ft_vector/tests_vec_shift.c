@@ -14,7 +14,7 @@
 #include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_vec_shift(void)
+int	tv_shift(void)
 {
 	t_vector	*vec;
 	int			a;

@@ -16,7 +16,7 @@
 #include "ft_string.h"
 #include <stdlib.h>
 
-int	test_map_size(void)
+int	tm_size(void)
 {
 	char	*str;
 	t_map	*map;

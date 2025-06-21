@@ -14,7 +14,7 @@
 #include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_vec_swap(void)
+int	tv_swap(void)
 {
 	t_vector	*vec;
 	void		*data[3];

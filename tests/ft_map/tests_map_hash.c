@@ -18,7 +18,7 @@
 // we dont really test the hash function, we just test that
 // it doesn't overflow our map
 
-int	test_map_hash(void)
+int	tm_hash(void)
 {
 	size_t	ret;
 	size_t	ret2;

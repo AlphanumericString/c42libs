@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:27:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:40:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 04:01:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ int	tests_map(void)
 {
 	int				collect;
 	const t_test	test[] = {
-	{"create", test_map_create},
-	{"destroy", test_map_destroy}, // here
-	{"destroy_free", test_map_destroy_free},
-	{"clear", test_map_clear}, // here
-	{"set", test_map_set},
-	{"set_cmp", test_map_set_cmp},
-	{"set_hash", test_map_set_hash},
-	{"get", test_map_get},
-	{"size", test_map_size},
-	{"capacity", test_map_capacity},
-	{"remove", test_map_remove}, // here
-	{"hash", test_map_hash},
+	{"create", tm_create},
+	{"destroy", tm_destroy}, // here
+	{"destroy_free", tm_destroy_free},
+	{"clear", tm_clear}, // here
+	{"set", tm_set},
+	{"set_cmp", tm_set_cmp},
+	{"set_hash", tm_set_hash},
+	{"get", tm_get},
+	{"size", tm_size},
+	{"capacity", tm_capacity},
+	{"remove", tm_remove}, // here
+	{"hash", tm_hash},
 	{NULL, NULL}
 	};
 

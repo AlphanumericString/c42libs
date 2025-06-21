@@ -16,7 +16,7 @@
 #include "types/ft_map_types.h"
 #include "ft_map.h"
 
-int	test_map_create(void)
+int	tm_create(void)
 {
 	t_map	*map;
 	int		prev;

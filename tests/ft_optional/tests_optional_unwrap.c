@@ -18,7 +18,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-int	test_optional_unwrap(void)
+int	to_unwrap(void)
 {
 	t_optional	opt;
 	int			*ptr;

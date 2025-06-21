@@ -14,7 +14,7 @@
 #include "ft_map.h"
 #include "types/ft_map_types.h"
 
-int	test_map_set_cmp(void)
+int	tm_set_cmp(void)
 {
 	t_map	*map;
 
@@ -26,7 +26,7 @@ int	test_map_set_cmp(void)
 	return (0);
 }
 
-int	test_map_set_hash(void)
+int	tm_set_hash(void)
 {
 	t_map	*map;
 

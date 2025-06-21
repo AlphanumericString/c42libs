@@ -6,25 +6,25 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:23:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 12:15:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_TESTS_H
 # define MAP_TESTS_H
 
-int	test_map_capacity(void);
-int	test_map_clear(void);
-int	test_map_create(void);
-int	test_map_destroy(void);
-int	test_map_destroy_free(void);
-int	test_map_get(void);
-int	test_map_hash(void);
-int	test_map_remove(void);
-int	test_map_set(void);
-int	test_map_set_cmp(void);
-int	test_map_set_hash(void);
-int	test_map_size(void);
+int	tm_capacity(void);
+int	tm_clear(void);
+int	tm_create(void);
+int	tm_destroy(void);
+int	tm_destroy_free(void);
+int	tm_get(void);
+int	tm_hash(void);
+int	tm_remove(void);
+int	tm_set(void);
+int	tm_set_cmp(void);
+int	tm_set_hash(void);
+int	tm_size(void);
 
 #endif /* MAP_TESTS_H */
 /*

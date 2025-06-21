@@ -68,3 +68,4 @@ Doxygen
 tools
 *test*tmp*.c
 tags
+quick_tests_run

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:01:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/25 19:19:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 21:13:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ t_bitset	ft_bs_create(size_t size)
 	bitset._capacity = (size + 7) / 8;
 	bitset.bits = ft_calloc(sizeof(t_bitset8), bitset._capacity);
 	if (!bitset.bits)
-		ft_bzero(&bitset, sizeof(t_bitset));
+	{
+		bitset._capacity = 0;
+		return (bitset);
+	}
+	ft_bzero(bitset.bits, sizeof(t_bitset8) * bitset._capacity);
 	return (bitset);
 }
 

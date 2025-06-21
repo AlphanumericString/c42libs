@@ -59,7 +59,7 @@ static int	mt_case(void)
 	return (0);
 }
 
-int	test_vec_add(void)
+int	tv_add(void)
 {
 	int	ret;
 

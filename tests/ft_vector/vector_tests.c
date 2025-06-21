@@ -18,17 +18,17 @@ int	tests_vector(void)
 {
 	int				collect;
 	const t_test	tests[] = {
-	{"add", test_vec_add}, {"apply", test_vec_apply}, {"at", test_vec_at},
-	{"cat", test_vec_cat}, {"clear", test_vec_clear},
-	{"destroy", test_vec_destroy}, {"filter", test_vec_filter},
-	{"map", test_vec_map}, {"new", test_vec_new}, {"pop", test_vec_pop},
-	{"from_size", test_vec_from_size}, {"from_array", test_vec_from_array},
-	{"convert_alloc_array", test_vec_convert_alloc_array},
-	{"remove", test_vec_remove}, {"remove_if", test_vec_remove_if},
-	{"reserve", test_vec_reserve}, {"reverse", test_vec_reverse},
-	{"shift", test_vec_shift}, {"sort", test_vec_sort},
-	{"shrink", test_vec_shrink}, {"swap", test_vec_swap},
-	{"get", test_vec_get}, {"to_array", test_vec_to_array},
+	{"add", tv_add}, {"apply", tv_apply}, {"at", tv_at},
+	{"cat", tv_cat}, {"clear", tv_clear},
+	{"destroy", tv_destroy}, {"filter", tv_filter},
+	{"map", tv_map}, {"new", tv_new}, {"pop", tv_pop},
+	{"from_size", tv_from_size}, {"from_array", tv_from_array},
+	{"convert_alloc_array", tv_convert_alloc_array},
+	{"remove", tv_remove}, {"remove_if", tv_remove_if},
+	{"reserve", tv_reserve}, {"reverse", tv_reverse},
+	{"shift", tv_shift}, {"sort", tv_sort},
+	{"shrink", tv_shrink}, {"swap", tv_swap},
+	{"get", tv_get}, {"to_array", tv_to_array},
 	{NULL, NULL}
 	};
 

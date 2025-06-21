@@ -15,7 +15,7 @@
 #include "tests/tests.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_optional_new(void)
+int	to_new(void)
 {
 	t_optional	*opt;
 	int			prev;

@@ -94,7 +94,7 @@ static int	mt_case(void)
 	return (0);
 }
 
-int	test_vec_convert_alloc_array(void)
+int	tv_convert_alloc_array(void)
 {
 	int	ret;
 

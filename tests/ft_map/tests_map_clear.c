@@ -18,7 +18,7 @@
 // clear the map and check if the value is still present
 // try to double clear the map
 
-int	test_map_clear(void)
+int	tm_clear(void)
 {
 	t_map	*map;
 

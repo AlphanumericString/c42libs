@@ -15,7 +15,7 @@
 #include "types/ft_map_types.h"
 #include "ft_string.h"
 
-int	test_map_set(void)
+int	tm_set(void)
 {
 	char		*str;
 	char		*str2;

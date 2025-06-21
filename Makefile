@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2025/06/18 12:58:43 by bgoulard         ###   ########.fr        #
+#    Updated: 2025/06/21 22:01:03 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -294,6 +294,8 @@ FT_MEM_SRC		=\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_group.c	\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_hooks.c	\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_memimpl.c	\
+			$(FT_MEM_DIR)/ft_arena/ft_arena.c		\
+			$(FT_MEM_DIR)/ft_arena/ft_narena.c		\
 			$(FT_MEM_DIR)/ft_arr/ft_aapply.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_acat.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_aclear.c		\
@@ -436,6 +438,27 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_args/tests_custom_checker.c			\
 			$(TESTS_DIR)/ft_args/tests_optlist.c				\
 			$(TESTS_DIR)/ft_args/tests_setup_prog.c				\
+			\
+			$(TESTS_DIR)/ft_bitset/bitset_tests.c				\
+			$(TESTS_DIR)/ft_bitset/tb_append.c					\
+			$(TESTS_DIR)/ft_bitset/tb_clear.c					\
+			$(TESTS_DIR)/ft_bitset/tb_create.c					\
+			$(TESTS_DIR)/ft_bitset/tb_free.c					\
+			$(TESTS_DIR)/ft_bitset/tb_free_inner.c				\
+			$(TESTS_DIR)/ft_bitset/tb_get.c						\
+			$(TESTS_DIR)/ft_bitset/tb_get_raw.c					\
+			$(TESTS_DIR)/ft_bitset/tb_new.c						\
+			$(TESTS_DIR)/ft_bitset/tb_new_from_str.c			\
+			$(TESTS_DIR)/ft_bitset/tb_print_binary.c			\
+			$(TESTS_DIR)/ft_bitset/tb_print.c					\
+			$(TESTS_DIR)/ft_bitset/tb_print_decimal.c			\
+			$(TESTS_DIR)/ft_bitset/tb_print_hex.c				\
+			$(TESTS_DIR)/ft_bitset/tb_remove.c					\
+			$(TESTS_DIR)/ft_bitset/tb_remove_front.c			\
+			$(TESTS_DIR)/ft_bitset/tb_set.c						\
+			$(TESTS_DIR)/ft_bitset/tb_set_raw.c					\
+			$(TESTS_DIR)/ft_bitset/tb_toggle.c					\
+			$(TESTS_DIR)/ft_bitset/tb_toggle_raw.c				\
 			\
 			$(TESTS_DIR)/ft_list/ll_tests/ll_tests_utils.c			\
 			$(TESTS_DIR)/ft_list/ll_tests/ll_list_tests.c			\
@@ -809,7 +832,6 @@ $(QTEST_NAME): lib$(NAME).a	$(QTEST_OBJ)
 
 # Rule to compile and run tests
 $(TEST_NAME): $(TOBJ)
-	@$(RM) -f $(TEST_NAME)
 	@$(PRINTF) "$(GRAY)Compiling tests %-*s... $(RESET)"			\
 	$(TEST_MAX_FILE_LEN) $(TEST_NAME)								&& \
 	$(CC) $(CFLAGS) $(TOBJ) -o $(TEST_NAME) $(TEST_FLAGS)			\

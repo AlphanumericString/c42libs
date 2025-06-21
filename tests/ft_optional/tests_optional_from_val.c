@@ -17,7 +17,7 @@
 #include "tests/tests__all_modules_tests.h"
 #include <stdlib.h>
 
-int	test_optional_from_val(void)
+int	to_from_val(void)
 {
 	int			*ptr;
 	t_optional	*opt;

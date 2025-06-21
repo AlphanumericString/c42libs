@@ -16,7 +16,7 @@
 #include "tests/optional_test.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_optional_map(void)
+int	to_map(void)
 {
 	t_optional			opt;
 	t_optional			ret;

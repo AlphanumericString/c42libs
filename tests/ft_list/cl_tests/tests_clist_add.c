@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:48:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/30 07:45:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 04:04:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int	t_cl_add_front(void)
 	if (!node[0] || !node[1] || !node[2])
 		return (1);
 	ft_cl_add_front(&cl, node[0]);
-	if (!cl || cl->data != (void *)42 || cl->next != cl || \
-cl->prev != cl)
+	if (!cl || cl->data != (void *)42 || cl->next != cl
+		|| cl->prev != cl)
 		return (2);
 	ft_cl_add_front(&cl, node[1]);
-	if (!cl || cl->data != (void *)43 || cl->next != node[0] || \
-cl->prev != node[0])
+	if (!cl || cl->data != (void *)43 || cl->next != node[0]
+		|| cl->prev != node[0])
 		return (3);
 	ft_cl_add_front(&cl, node[2]);
-	if (!cl || cl->data != (void *)44 || cl->next != node[1] || \
-cl->prev != node[0])
+	if (!cl || cl->data != (void *)44 || cl->next != node[1]
+		|| cl->prev != node[0])
 		return (4);
 	ft_cl_add_front(&cl, NULL);
 	ft_cl_add_front(NULL, node[0]);
@@ -58,16 +58,16 @@ int	t_cl_add_back(void)
 	if (!node[0] || !node[1] || !node[2])
 		return (1);
 	ft_cl_add_back(&cl, node[0]);
-	if (!cl || cl->data != (void *)42 || cl->next != cl || \
-cl->prev != cl)
+	if (!cl || cl->data != (void *)42 || cl->next != cl
+		|| cl->prev != cl)
 		return (2);
 	ft_cl_add_back(&cl, node[1]);
-	if (!cl || cl->data != (void *)42 || cl->next != node[1] || \
-cl->prev != node[1])
+	if (!cl || cl->data != (void *)42 || cl->next != node[1]
+		|| cl->prev != node[1])
 		return (3);
 	ft_cl_add_back(&cl, node[2]);
-	if (!cl || cl->data != (void *)42 || cl->next != node[1] || \
-cl->prev != node[2])
+	if (!cl || cl->data != (void *)42 || cl->next != node[1]
+		|| cl->prev != node[2])
 		return (4);
 	ft_cl_add_back(&cl, NULL);
 	ft_cl_add_back(NULL, node[0]);

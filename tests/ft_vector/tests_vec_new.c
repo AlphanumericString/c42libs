@@ -14,7 +14,7 @@
 #include "types/ft_vector_types.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_vec_new(void)
+int	tv_new(void)
 {
 	t_vector	*vec;
 

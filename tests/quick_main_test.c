@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 15:04:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/18 12:56:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:51:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 #include "ft_lib.h"
 #include "ft_args.h"
+#include "ft_arena.h"
 #include "types/ft_args_types.h"
 
 //
@@ -106,5 +107,16 @@
 
 int	main(void)
 {
+	char *test;
+	size_t	i;
+
+	test = ft_strdup("test:1:2:3");
+	char *ret = ft_strtok(test, ":");
+	i = 10;
+	while (i --)
+	{
+		ret = ft_strtok(NULL, ":");
+		printf("%p %s\n", ret, ret);
+	}
 	return (EXIT_SUCCESS);
 }

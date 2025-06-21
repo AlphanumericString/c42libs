@@ -42,7 +42,7 @@ arr[2])
 	return (0);
 }
 
-int	test_vec_remove(void)
+int	tv_remove(void)
 {
 	t_vector	*vec;
 	const int	arr[3] = {42, 43, 44};

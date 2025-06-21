@@ -43,7 +43,7 @@ static int	base_cases(void)
 	return (0);
 }
 
-int	test_vec_sort(void)
+int	tv_sort(void)
 {
 	int	ret;
 

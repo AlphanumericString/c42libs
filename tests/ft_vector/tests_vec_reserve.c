@@ -16,7 +16,7 @@
 
 #include "tests/tests.h"
 
-int	test_vec_reserve(void)
+int	tv_reserve(void)
 {
 	t_vector	*vec;
 	int			f_point;

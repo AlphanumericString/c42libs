@@ -14,7 +14,7 @@
 #include "types/ft_optional_types.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_optional_destroy(void)
+int	to_destroy(void)
 {
 	t_optional	*opt_a;
 

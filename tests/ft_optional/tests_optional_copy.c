@@ -15,7 +15,7 @@
 #include "tests/tests__all_modules_tests.h"
 #include <stdlib.h>
 
-int	test_optional_copy(void)
+int	to_copy(void)
 {
 	int			*ptr;
 	t_optional	opt_a;

@@ -14,7 +14,7 @@
 #include "ft_vector.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_vec_to_array(void)
+int	tv_to_array(void)
 {
 	t_vector	*vector;
 	const char	**array;

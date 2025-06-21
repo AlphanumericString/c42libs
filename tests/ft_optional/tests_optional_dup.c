@@ -15,7 +15,7 @@
 #include "tests/tests.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	test_optional_dup(void)
+int	to_dup(void)
 {
 	t_optional	opt_a;
 	t_optional	*opt_b;

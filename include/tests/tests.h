@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 11:15:14 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/28 03:44:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:48:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ void	*talloc_reallocarray(void *p, size_t a, size_t b);
 
 // hook for modules tests
 int		tests_args(void);
+// int		tests_arena(void);
+// int		tests_array(void);
+int		tests_bitset(void);
 int		tests_doubly_linked_list_all(void);
 int		tests_linked_list_all(void);
 int		tests_circular_linked_list_all(void);

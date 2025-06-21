@@ -66,7 +66,7 @@ static int	base_case(void)
 	return (ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
 }
 
-int	test_vec_filter(void)
+int	tv_filter(void)
 {
 	int	ret;
 

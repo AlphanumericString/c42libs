@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:36:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/28 15:02:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/21 00:20:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	tests_string(void)
 	size_t			i;
 	int				collect;
 	int				prev;
+	const char		*sf_string[2] = {"\033[31mKO\033[0m", "\033[32mOK\033[0m"};
 	const t_test	*tests = load_submodules_tests();
 
 	i = 0;
@@ -40,15 +41,11 @@ int	tests_string(void)
 	while (tests[i].name)
 	{
 		prev = collect;
-		ft_putendl_fd("\nTesting::", STDOUT_FILENO);
-		ft_putendl_fd(tests[i].name, STDOUT_FILENO);
-		collect += tests[i++].test();
-		ft_putstr_fd("\nTesting sub-module ", STDOUT_FILENO);
-		ft_putstr_fd(tests[i - 1].name, STDOUT_FILENO);
-		if (prev != collect)
-			ft_putendl_fd(" \033[31mKO\033[0m", STDOUT_FILENO);
-		else
-			ft_putendl_fd(" \033[32mOK\033[0m", STDOUT_FILENO);
+		ft_print_fd(STDOUT_FILENO, "\nTesting sub-module::%s::\n",
+			tests[i].name);
+		collect += tests[i].test();
+		ft_print_fd(STDOUT_FILENO, "Result sub-module::%s::\t%s",
+			tests[i++].name, sf_string[prev == collect]);
 	}
 	return (collect);
 }

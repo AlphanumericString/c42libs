@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lambdas_for_tests.c                                :+:      :+:    :+:   */
+/*   lambdas_general.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:08:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/25 17:42:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 04:12:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	**creat_tb(void)
 	static int	a;
 	static int	b;
 	static int	c;
-	static int	*tab[3] = {0};
+	static int	*tab[3] = { &a, &b, &c };
 
 	a = 42;
 	b = 43;

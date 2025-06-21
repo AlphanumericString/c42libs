@@ -58,7 +58,7 @@ static int	mt_cases(void)
 	return (0);
 }
 
-int	test_vec_shrink(void)
+int	tv_shrink(void)
 {
 	int	ret;
 

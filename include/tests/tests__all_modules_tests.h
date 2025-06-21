@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 15:18:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/05 17:32:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 04:01:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TESTS__ALL_MODULES_TESTS_H
 
 # include "tests/args_tests.h"
+# include "tests/bitset_tests.h"
 # include "tests/char_tests.h"
 # include "tests/cl_tests.h"
 # include "tests/dl_tests.h"

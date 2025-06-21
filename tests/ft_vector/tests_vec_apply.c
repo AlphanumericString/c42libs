@@ -15,7 +15,7 @@
 #include "tests/tests__all_modules_tests.h"
 #include "tests/tests_lambda_functions.h"
 
-int	test_vec_apply(void)
+int	tv_apply(void)
 {
 	t_vector	*vec;
 	int			i;

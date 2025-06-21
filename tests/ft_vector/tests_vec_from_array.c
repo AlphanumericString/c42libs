@@ -36,7 +36,7 @@ static int	checks_02(t_vector *vec, void **data)
 	return (0);
 }
 
-int	test_vec_from_array(void)
+int	tv_from_array(void)
 {
 	void		*data[3];
 	void		*data2[6];

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:55:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/18 15:01:39 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/20 04:16:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,15 @@ int	t_cl_apply_range(void)
 	set_up_continuous_int_tab(nbrs, sizeof(nbrs) / sizeof(nbrs[0]));
 	while (i--)
 		ft_cl_push(&list, (void *)&nbrs[i]);
-	if (list && ft_cl_check_health(list) == false)
-		return (1);
 	pair[0] = ft_cl_at(list, pair_idx[0]);
 	pair[1] = ft_cl_at(list, pair_idx[1]);
 	ft_cl_apply_range(pair[0], pair[1], add42);
 	while (i < 10)
 	{
-		if (((i < pair_idx[0] || i > pair_idx[1]) && *(int *)ft_cl_at(list, i)\
-->data != (int)i) || ((pair_idx[0] < i && i < pair_idx[1]) && *(int *) \
-ft_cl_at(list, i)->data != (int)(i + 42)))
+		if (((i < pair_idx[0] || i > pair_idx[1])
+				&& *(int *)ft_cl_at(list, i)->data != (int)i)
+			|| ((pair_idx[0] < i && i < pair_idx[1])
+				&& *(int *)ft_cl_at(list, i)->data != (int)(i + 42)))
 			return (i);
 		i++;
 	}
@@ -109,7 +108,7 @@ int	t_cl_apply_range_node(void)
 	size_t			i;
 
 	list = NULL;
-	i = sizeof(nbrs)/sizeof(nbrs[0]);
+	i = sizeof(nbrs) / sizeof(nbrs[0]);
 	set_up_continuous_int_tab(nbrs, sizeof(nbrs) / sizeof(nbrs[0]));
 	while (i--)
 		ft_cl_push(&list, (void *)&nbrs[i]);
@@ -118,7 +117,7 @@ int	t_cl_apply_range_node(void)
 	pair[0] = ft_cl_at(list, 2);
 	pair[1] = ft_cl_at(list, 5);
 	ft_cl_apply_range_node(pair[0], pair[1], add42_clnode);
-	while (i < sizeof(nbrs)/sizeof(nbrs[0]))
+	while (i < sizeof(nbrs) / sizeof(nbrs[0]))
 	{
 		if (((i >= 2 && i <= 5) && ft_cl_at(list, i) != (void *)(i + 42)) ||
 		(!(i >= 2 && i <= 5) && ft_cl_at(list, i) != (void *)(i)))

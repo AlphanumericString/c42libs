@@ -15,7 +15,7 @@
 #include "tests/optional_test.h"
 #include "ft_defs.h"
 
-int	test_optional_chain(void)
+int	to_chain(void)
 {
 	t_optional			opt;
 	bool				ret;

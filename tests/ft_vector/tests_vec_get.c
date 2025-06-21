@@ -19,7 +19,7 @@ static int	cmp_fun(const void *v_data, const void *key)
 	return (ft_strcmp(v_data, key));
 }
 
-int	test_vec_get(void)
+int	tv_get(void)
 {
 	t_vector	*vector;
 	void		*data_ret;

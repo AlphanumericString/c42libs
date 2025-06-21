@@ -32,14 +32,14 @@ int	tests_optional(void)
 {
 	int				collect;
 	const t_test	test[] = {
-	{"copy", test_optional_copy},
-	{"new", test_optional_new},
-	{"from_val", test_optional_from_val},
-	{"dup", test_optional_dup},
-	{"chain", test_optional_chain},
-	{"map", test_optional_map},
-	{"unwrap", test_optional_unwrap},
-	{"destroy", test_optional_destroy},
+	{"copy", to_copy},
+	{"new", to_new},
+	{"from_val", to_from_val},
+	{"dup", to_dup},
+	{"chain", to_chain},
+	{"map", to_map},
+	{"unwrap", to_unwrap},
+	{"destroy", to_destroy},
 	{NULL, NULL}
 	};
 

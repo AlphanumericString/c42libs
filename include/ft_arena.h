@@ -6,20 +6,26 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:35:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/09/01 15:06:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/21 22:00:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
+#ifndef FT_ARENA_H
+# define FT_ARENA_H
+
+# include "ft_defs.h"
+# include "types/ft_list_types.h"
+
+# define FT_NARENA_MAX 1 << 6 // 64 arenas contexts max
 
 // base
 void	*ft_arena_alloc(size_t size);
-void	*ft_arena_realloc(void *ptr, size_t size);
 void	*ft_arena_calloc(size_t count, size_t size);
-void	ft_arena_free(void *ptr);
+void	ft_arena_free(void);
 
 // n version
-void	*ft_narena_alloc(size_t	request, int arena);
-void	*ft_narena_realloc(void *ptr, size_t request, int arena);
-void	*ft_narena_calloc(size_t count, size_t size, int arena);
-void	ft_narena_free(void *ptr, int arena);
+void	*ft_narena_alloc(int arena, size_t request);
+void	*ft_narena_calloc(int arena, size_t count, size_t size);
+void	ft_narena_free(int arena);
+
+#endif

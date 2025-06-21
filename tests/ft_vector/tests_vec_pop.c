@@ -15,7 +15,7 @@
 #include "tests/tests__all_modules_tests.h"
 #include <stdio.h>
 
-int	test_vec_pop(void)
+int	tv_pop(void)
 {
 	t_vector	*vec;
 	const char	*str;
