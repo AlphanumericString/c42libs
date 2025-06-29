@@ -20,12 +20,6 @@
 #include <stdlib.h>
 #include "tests/tests__all_modules_tests.h"
 
-static void	add42_clnode(t_clist *node)
-{
-	if (node->data)
-		add42(node->data);
-}
-
 static void	create_2elem_clist(t_clist **cl, void *dtx, void *dty)
 {
 	t_clist	*ret;
@@ -97,8 +91,6 @@ int	tcl_apply_range(void)
 	}
 	return (ft_cl_delete(&list, NULL), 0);
 }
-
-#define NOT_IMPL
 
 int	tcl_apply_range_node(void)
 {

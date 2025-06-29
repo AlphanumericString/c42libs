@@ -16,58 +16,28 @@
 int	tb_toggle_raw(void)
 {
 	t_bitset	*bitset;
-	bool		result;
 
-	// Test 1: Create bitset and test toggling raw values from 0
 	bitset = ft_bs_new(16);
-	if (!bitset)
-		return (1);
-
-	// Toggle first byte from 0 to 255 (all bits)
-	if (!ft_bs_toggle_raw(bitset, 0))
+	if (!bitset || !ft_bs_toggle_raw(bitset, 0)
+		|| ft_bs_get_raw(bitset, 0) != 0xFF
+		|| ft_bs_get_raw(bitset, 1) != 0x00)
+		return (ft_bs_free(&bitset), 1);
+	if (!ft_bs_toggle_raw(bitset, 1)
+		|| ft_bs_get_raw(bitset, 0) != 0xFF
+		|| ft_bs_get_raw(bitset, 1) != 0xFF)
 		return (ft_bs_free(&bitset), 2);
-
-	// Test 2: Toggle first byte back to 0
-	if (!ft_bs_toggle_raw(bitset, 0))
+	ft_bs_set_raw(bitset, 0, 0b00110101);
+	if (!ft_bs_toggle_raw(bitset, 0)
+		|| ft_bs_get_raw(bitset, 0) != 0b11001010
+		|| ft_bs_get_raw(bitset, 1) != 0xFF)
 		return (ft_bs_free(&bitset), 3);
-
-	// Test 3: Set specific pattern and toggle
-	ft_bs_set_raw(bitset, 0, 0xAA); // 0b10101010 (170)
-
-	// Toggle to 0b01010101 (85)
-	if (!ft_bs_toggle_raw(bitset, 0))
+	if (ft_bs_toggle_raw(bitset, 2) != false
+		|| ft_bs_toggle_raw(bitset, 100) != false
+		|| ft_bs_toggle_raw(NULL, 0) != false)
 		return (ft_bs_free(&bitset), 4);
-
-	// Test 4: Toggle second byte
-	if (!ft_bs_toggle_raw(bitset, 1))
-		return (ft_bs_free(&bitset), 5);
-
-	// Test 5: Test out-of-bounds access (should return false)
-	result = ft_bs_toggle_raw(bitset, 2);
-	if (result != false)
-		return (ft_bs_free(&bitset), 6);
-
-	result = ft_bs_toggle_raw(bitset, 100);
-	if (result != false)
-		return (ft_bs_free(&bitset), 7);
-
-	// Test 6: Test with NULL bitset (should return false)
-	result = ft_bs_toggle_raw(NULL, 0);
-	if (result != false)
-		return (ft_bs_free(&bitset), 8);
-
-	// Test 7: Test multiple toggles
-	// Set to 0xAA, toggle to 0x55, toggle back to 0xAA
-	ft_bs_set_raw(bitset, 0, 0xAA);
-	if (!ft_bs_toggle_raw(bitset, 0))
-		return (ft_bs_free(&bitset), 9);
-	if (!ft_bs_toggle_raw(bitset, 0))
-		return (ft_bs_free(&bitset), 10);
-
 	ft_bs_free_inner(bitset);
 	if (ft_bs_toggle_raw(bitset, 0) != false)
-		return (ft_bs_free(&bitset), 11);
-
+		return (ft_bs_free(&bitset), 5);
 	return (ft_bs_free(&bitset), 0);
 }
 

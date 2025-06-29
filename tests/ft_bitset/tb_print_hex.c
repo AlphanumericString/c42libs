@@ -18,16 +18,11 @@
 #include "tests/tests.h"
 #include <unistd.h>
 
-int	tb_print_hex(void)
+static void	loc_print_to_fd(int fd)
 {
-	const char	file_name[] = TESTS_FPREFIX "bs_print_hex.txt";
-	const char	*expecteds = "0xde\n\n0xaf, 0x19\n";
 	t_bitset	*bs;
-	int			fd;
-	char 		buff[512];
 
 	bs = ft_bs_new(8);
-	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_bs_set_raw(bs, 0, 0xDE);
 	ft_bs_print_hex(bs, fd);
 	ft_bs_free(&bs);
@@ -42,6 +37,17 @@ int	tb_print_hex(void)
 	ft_bs_print_hex(bs, fd);
 	ft_bs_free(&bs);
 	ft_bs_print_hex(bs, fd);
+}
+
+int	tb_print_hex(void)
+{
+	const char	file_name[] = TESTS_FPREFIX "bs_print_hex.txt";
+	const char	*expecteds = "0xde\n\n0xaf, 0x19\n";
+	int			fd;
+	char		buff[512];
+
+	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	loc_print_to_fd(fd);
 	close(fd);
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(buff, (sizeof buff / sizeof buff[0]));
@@ -50,9 +56,7 @@ int	tb_print_hex(void)
 		return (1);
 	destroy_test_file(fd, file_name);
 	return (0);
-
 }
-
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

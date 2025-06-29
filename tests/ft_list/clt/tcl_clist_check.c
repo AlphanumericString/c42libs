@@ -30,47 +30,31 @@ static int	cmp_raw_ptr(const void *ptrL, const void *ptrR)
 		return (1);
 }
 
-static int	local_check_circular_special_cases(void)
-{
-	t_clist	*lst;
-
-	lst = NULL;
-	ft_cl_push(&lst, (void *)1);
-	if (ft_cl_check_circular(NULL) != false || \
-ft_cl_check_circular(lst) != true)
-		return (1);
-	ft_cl_push(&lst, (void *)2);
-	if (ft_cl_check_circular(lst) != true)
-		return (2);
-	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
-}
-
+// maybe answer circular yes due to bward links ?
 int	tcl_check_circular(void)
 {
 	t_clist	*lst;
-	t_clist	*nodes[10];
+	t_clist	**nodes;
 	size_t	i;
 
 	lst = NULL;
 	i = 10;
 	while (i)
 		ft_cl_push(&lst, (void *)i--);
-	i = 0;
-	while (i < 10)
-	{
-		nodes[i] = ft_cl_at(lst, i);
-		i++;
-	}
-	if (ft_cl_check_circular(lst) != true)
+	if (!lst)
 		return (1);
-	// Test with a broken circular link
+	nodes = ft_cl_get_nodes(lst);
+	if (!nodes || ft_cl_check_circular(lst) != true)
+		return (2);
 	nodes[5]->next = nodes[0];
 	if (ft_cl_check_circular(lst) != true)
-		return (2);
-	i = 0;
-	while (i < 10) // TODO: should be able to call ft_cl_delete >:(
-		ft_free(nodes[i++]);
-	return (local_check_circular_special_cases());
+		return (3);
+	nodes[5]->next = NULL;
+	nodes[5]->prev = NULL;
+	if (ft_cl_check_circular(lst) != false)
+		return (4);
+	ft_afree((void **)nodes);
+	return (0);
 }
 
 int	tcl_check_sorted(void)
@@ -94,6 +78,23 @@ int	tcl_check_sorted(void)
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 
+static int	tcl_check_health_p2(t_clist *lst, t_clist **nodes)
+{
+	if (ft_cl_check_health(NULL) != true)
+		return (4);
+	nodes[5]->next = NULL;
+	if (ft_cl_check_health(nodes[7]) != false
+		|| ft_cl_check_health(lst) != false)
+		return (5);
+	nodes[5]->next = nodes[6];
+	nodes[5]->prev = NULL;
+	if (ft_cl_check_health(nodes[7]) != false
+		|| ft_cl_check_health(lst) != false)
+		return (6);
+	nodes[5]->prev = nodes[4];
+	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
+}
+
 int	tcl_check_health(void)
 {
 	t_clist	*lst;
@@ -109,7 +110,6 @@ int	tcl_check_health(void)
 		nodes[i] = ft_cl_at(lst, i);
 	if (ft_cl_check_health(lst) != true)
 		return (1);
-	// Test with broken prev/next links
 	nodes[5]->next = nodes[0];
 	if (ft_cl_check_health(lst) != false
 		|| ft_cl_check_health(nodes[7]) != false)
@@ -119,20 +119,8 @@ int	tcl_check_health(void)
 	if (ft_cl_check_health(nodes[7]) != false
 		|| ft_cl_check_health(lst) != false)
 		return (3);
-	if (ft_cl_check_health(NULL) != true)
-		return (4);
 	nodes[3]->prev = nodes[2];
-	nodes[5]->next = NULL;
-	if (ft_cl_check_health(nodes[7]) != false
-		|| ft_cl_check_health(lst) != false)
-		return (3);
-	nodes[5]->next = nodes[6];
-	nodes[5]->prev = NULL;
-	if (ft_cl_check_health(nodes[7]) != false
-		|| ft_cl_check_health(lst) != false)
-		return (3);
-	nodes[5]->prev = nodes[4];
-	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
+	return (tcl_check_health_p2(lst, nodes));
 }
 /*
 GPL-3.0 License:

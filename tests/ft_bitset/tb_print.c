@@ -18,43 +18,44 @@
 #include "types/ft_bitset_types.h"
 #include <unistd.h>
 
-int	tb_print(void)
+static void	loc_print_to_fd(int fd)
 {
-	const char	file_name[] = TESTS_FPREFIX "bs_print.txt";
-	const char	*expecteds =
-		"false, true, false, false, false, true, true, true\n\n"
-		"true, true, true, true, true, true, true, true\n"
-		"false, false, false, false, false, false, false, false\n";
 	t_bitset	*bs;
-	int			fd;
-	char 		buff[512];
 
 	bs = ft_bs_new(8);
-	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_bs_set_raw(bs, 0, 0b01000111);
 	ft_bs_print(bs, fd);
-	ft_bs_free(&bs);
-	ft_putendl_fd("", fd);
+	(ft_bs_free(&bs), ft_putendl_fd("", fd));
 	bs = ft_bs_new(16);
-	ft_bs_set_raw(bs, 1, 0xFF);
-	ft_bs_set_raw(bs, 0, 0x00);
+	(ft_bs_set_raw(bs, 1, 0xFF), ft_bs_set_raw(bs, 0, 0x00));
 	ft_bs_print(bs, fd);
-	ft_bs_print(NULL, -1);
-	ft_bs_print(NULL, fd);
+	(ft_bs_print(NULL, -1), ft_bs_print(NULL, fd));
 	ft_bs_free_inner(bs);
 	ft_bs_print(bs, fd);
 	ft_bs_free(&bs);
 	ft_bs_print(bs, fd);
+}
+
+int	tb_print(void)
+{
+	const char	file_name[] = TESTS_FPREFIX "bs_print.txt";
+	const char	*expecteds = ""
+		"false, true, false, false, false, true, true, true\n\n"
+		"true, true, true, true, true, true, true, true\n"
+		"false, false, false, false, false, false, false, false\n";
+	int			fd;
+	char		buff[512];
+
+	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	loc_print_to_fd(fd);
 	close(fd);
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(buff, (sizeof buff / sizeof buff[0]));
 	if (read(fd, buff, (sizeof buff / sizeof buff[0]) - 1) < 0
 		|| ft_strcmp(buff, expecteds))
-		return (1);
-	destroy_test_file(fd, file_name);
-	return (0);
+		return (destroy_test_file(fd, file_name), 1);
+	return (destroy_test_file(fd, file_name), 0);
 }
-
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

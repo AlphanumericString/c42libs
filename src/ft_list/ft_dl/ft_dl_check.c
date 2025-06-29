@@ -33,7 +33,7 @@ static bool	ft_dl_check_circular_bward(const t_dlist *_lst)
 		else
 			it2 = NULL;
 	}
-	if (it2 == lst)
+	if (it2 == lst && it2 != NULL)
 		return (true);
 	return (false);
 }
@@ -53,7 +53,7 @@ static bool	ft_dl_check_circular_fward(const t_dlist *_lst)
 		else
 			it2 = NULL;
 	}
-	if (it2 == lst)
+	if (it2 == lst && it2 != NULL)
 		return (true);
 	return (ft_dl_check_circular_bward(lst));
 }

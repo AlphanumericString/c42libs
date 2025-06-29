@@ -20,11 +20,12 @@
 
 int	targ_shift_args(void)
 {
-	char		**_args = ft_split("pname|a1|a2|a3", '|');
+	char		**_args;
 	char		**av;
 	char		**p_args;
 	int			ac;
 
+	_args = ft_split("pname|a1|a2|a3", '|');
 	ac = ft_alen((t_const_arr)_args);
 	ft_set_av((void *)_args);
 	p_args = _args;
@@ -32,19 +33,18 @@ int	targ_shift_args(void)
 	av = (char **)ft_av();
 	if (ac != 2 || ft_strcmp(_args[0], "a2") || av != _args)
 		return (ft_afree((t_arr)p_args), 1);
-	ft_shift_args((t_any)&_args, &ac, -1);
-	ft_shift_args((t_any)NULL, &ac, 1);
-	ft_shift_args((t_any)&_args, NULL, 1);
-	ft_shift_args((t_any)&_args, &ac, 2);
-	ft_shift_args((t_any)&_args, &ac, 2);
+	ft_shift_args((t_any) & _args, &ac, -1);
+	ft_shift_args((t_any) NULL, &ac, 1);
+	ft_shift_args((t_any) & _args, NULL, 1);
+	ft_shift_args((t_any) & _args, &ac, 4);
 	_args = NULL;
-	ft_shift_args((t_any)&_args, &ac, 2);
+	ft_shift_args((t_any) & _args, &ac, 2);
 	_args = p_args;
 	ac = 0;
-	ft_shift_args((t_any)&_args, &ac, 2);
+	ft_shift_args((t_any) & _args, &ac, 2);
 	ac = ft_alen((t_const_arr)_args);
-	ft_shift_args((t_any)&_args, &ac, ac + 1);
-	return (ft_afree((t_arr)p_args), 0);
+	return (ft_shift_args((t_any) & _args, &ac, ac + 1),
+		ft_afree((t_arr) p_args), 0);
 }
 /*
 GPL-3.0 License:

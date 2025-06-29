@@ -25,56 +25,41 @@ static int	cmp_data(const void *data1, const void *data2)
 	return ((long)data1 - (long)data2);
 }
 
+static int	tcl_find2(t_clist *lst)
+{
+	t_clist	*found;
+
+	ft_cl_push(&lst, ft_strdup("42"));
+	found = ft_cl_find(lst, "42", (t_data_cmp)ft_strcmp);
+	if (!found || !found->data || ft_strcmp(found->data, "42") != 0)
+		return (ft_cl_delete(&lst, NULL), 5);
+	return (ft_free(found->data), ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
+}
+
 int	tcl_find(void)
 {
 	t_clist	*lst;
 	t_clist	*found;
 
-	lst = NULL;
-	// Test with NULL list
-	found = ft_cl_find(NULL, (void *)42, cmp_data);
-	if (found != NULL)
-		return (1);
-	// Test with empty list
 	lst = ft_cl_new();
-	if (!lst)
-		return (2);
-	found = ft_cl_find(lst, (void *)42, cmp_data);
-	if (found != NULL)
-		return (3);
-	ft_free(lst);
-	// Test with single node - found
+	if (ft_cl_find(NULL, (void *)42, cmp_data) != NULL
+		|| ft_cl_find(lst, (void *)42, cmp_data) != NULL || !lst)
+		return (1);
+	ft_cl_delete(&lst, NULL);
 	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (4);
 	found = ft_cl_find(lst, (void *)42, cmp_data);
-	if (!found || found->data != (void *)42)
-		return (5);
-	// Test with single node - not found
+	if (!found || found->data != (void *)42 || !lst
+		|| ft_cl_find(lst, (void *)43, cmp_data) != NULL)
+		return (ft_cl_delete(&lst, NULL), 2);
+	(ft_cl_push(&lst, (void *)43), ft_cl_push(&lst, (void *)44));
 	found = ft_cl_find(lst, (void *)43, cmp_data);
-	if (found != NULL)
-		return (6);
-	// Test with multiple nodes - found
-	ft_cl_push(&lst, (void *)43);
-	ft_cl_push(&lst, (void *)44);
-	found = ft_cl_find(lst, (void *)43, cmp_data);
-	if (!found || found->data != (void *)43)
-		return (7);
-	// Test with multiple nodes - not found
-	found = ft_cl_find(lst, (void *)45, cmp_data);
-	if (found != NULL)
-		return (8);
-	// Test with NULL comparator (raw ptrs)
+	if (!found || found->data != (void *)43
+		|| ft_cl_find(lst, (void *)45, cmp_data) != NULL)
+		return (ft_cl_delete(&lst, NULL), 3);
 	found = ft_cl_find(lst, (void *)42, NULL);
 	if (!found || found->data != (void *)42)
-		return (9);
-	char *str = ft_strdup("42");
-	ft_cl_push(&lst, str);
-	found = ft_cl_find(lst, "42", (t_data_cmp)ft_strcmp);
-	if (!found || found->data != str)
-		return (10);
-	ft_free(str);
-	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
+		return (ft_cl_delete(&lst, NULL), 4);
+	return (tcl_find2(lst));
 }
 /*
 GPL-3.0 License:

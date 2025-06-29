@@ -16,15 +16,12 @@
 
 #include "ft_list.h"
 #include "ft_string.h"
+#include "tests/lists_test_utils.h"
+#include "tests/tests_lambda_functions.h"
 #include "types/ft_list_types.h"
 
 #include "tests/tests__all_modules_tests.h"
 
-static void	del_data(void *data)
-{
-	// Simple delete function for testing
-	(void)data;
-}
 //
 // static void	clnode_print(t_clist *node)
 // {
@@ -40,11 +37,9 @@ int	tcl_clear(void)
 	size_t	size;
 
 	lst = NULL;
-	// Test with NULL list
 	size = ft_cl_clear(&lst, NULL);
 	if (size != 0 || lst != NULL)
 		return (1);
-	// Test with empty list
 	lst = ft_cl_new();
 	if (!lst)
 		return (2);
@@ -52,25 +47,17 @@ int	tcl_clear(void)
 	if (size != 1 || lst == NULL || lst->data != NULL)
 		return (3);
 	ft_cl_delete(&lst, NULL);
-	// Test with populated list
-	lst = NULL;
-	ft_cl_push(&lst, (void *)1);
-	ft_cl_push(&lst, (void *)2);
-	ft_cl_push(&lst, (void *)3);
+	lst = a_to_cl((int []){1, 2, 3}, 3);
 	size = ft_cl_clear(&lst, NULL);
 	if (size != 3 || lst == NULL || lst->data != NULL
-	|| lst->next->data != NULL || lst->prev->data != NULL)
+		|| lst->next->data != NULL || lst->prev->data != NULL)
 		return (4);
 	ft_cl_delete(&lst, NULL);
-	// Test with delete function
-	lst = NULL;
-	ft_cl_push(&lst, (void *)1);
-	ft_cl_push(&lst, (void *)2);
-	size = ft_cl_clear(&lst, del_data);
+	lst = a_to_cl((int []){1, 2}, 2);
+	size = ft_cl_clear(&lst, do_nothing);
 	if (size != 2 || lst == NULL || lst->data != NULL)
 		return (5);
-	ft_cl_delete(&lst, NULL);
-	return (EXIT_SUCCESS);
+	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 
 int	tcl_clear_range(void)
@@ -78,41 +65,23 @@ int	tcl_clear_range(void)
 	t_clist	*lst;
 	t_clist	*start;
 	t_clist	*end;
-	size_t	size;
 
-	lst = NULL;
-	// Test with NULL start
-	size = ft_cl_clear_range(NULL, NULL, NULL);
-	if (size != 0)
+	if (ft_cl_clear_range(NULL, NULL, NULL) != 0)
 		return (1);
-	// Test with single node
 	lst = ft_cl_new();
-	if (!lst)
-		return (2);
-	size = ft_cl_clear_range(lst, NULL, NULL);
-	if (size != 1)
-		return (3);
+	if (ft_cl_clear_range(lst, NULL, NULL) != 1)
+		return (ft_cl_delete(&lst, NULL), 2);
 	ft_cl_delete(&lst, NULL);
-	// Test with multiple nodes
-	lst = NULL;
-	ft_cl_push(&lst, (void *)1);
-	ft_cl_push(&lst, (void *)2);
-	ft_cl_push(&lst, (void *)3);
-	ft_cl_push(&lst, (void *)4);
+	lst = a_to_cl((int []){1, 2, 3, 4}, 4);
 	start = lst->next;
 	end = lst->prev;
-	size = ft_cl_clear_range(start, end, NULL);
-	if (size != 2)
-		return (4);
+	if (ft_cl_clear_range(start, end, NULL) != 2)
+		return (ft_cl_delete(&lst, NULL), 3);
 	ft_cl_delete(&lst, NULL);
-	// Test with delete function
-	lst = NULL;
-	ft_cl_push(&lst, (void *)1);
-	ft_cl_push(&lst, (void *)2);
-	ft_cl_push(&lst, (void *)3);
-	size = ft_cl_clear_range(lst, lst->next, del_data);
-	if (size != 1 || lst == NULL || lst->data != NULL)
-		return (5);
+	lst = a_to_cl((int []){1, 2, 3}, 3);
+	if (ft_cl_clear_range(lst, lst->next, do_nothing) != 1
+		|| lst == NULL || lst->data != NULL)
+		return (ft_cl_delete(&lst, NULL), 4);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 /*

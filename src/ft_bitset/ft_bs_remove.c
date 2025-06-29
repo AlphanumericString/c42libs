@@ -19,7 +19,7 @@ void	ft_bs_remove(t_bitset *bitset, size_t nbr)
 {
 	if (!bitset || !nbr)
 		return ;
-	if (bitset->_capacity <= nbr / 8)
+	if (bitset->_capacity <= nbr)
 		return (ft_bs_free_inner(bitset));
 	ft_bzero(bitset->bits + bitset->_capacity - nbr, nbr);
 	bitset->_capacity -= nbr;

@@ -15,6 +15,11 @@
 
 #include <stdbool.h>
 
+void	do_nothing(void *data)
+{
+	(void)data;
+}
+
 void	**creat_tb(void)
 {
 	static int	a;

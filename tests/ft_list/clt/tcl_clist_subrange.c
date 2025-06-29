@@ -16,6 +16,7 @@
 
 #include "ft_list.h"
 #include "ft_string.h"
+#include "tests/lists_test_utils.h"
 #include "tests/tests.h"
 #include "types/ft_list_types.h"
 
@@ -40,60 +41,50 @@ static int	mt_clsubrange(void)
 	return (EXIT_SUCCESS);
 }
 
+static int	tcl_subrange_partial(t_clist *lst)
+{
+	t_clist	*subrange;
+
+	subrange = ft_cl_subrange(lst, NULL);
+	if (!subrange || ft_cl_size(subrange) != 3
+		|| subrange->data != (void *)42
+		|| subrange->next->data != (void *)43
+		|| subrange->next->next->data != (void *)44)
+		return (4);
+	ft_cl_delete(&subrange, NULL);
+	subrange = ft_cl_subrange(lst, lst->next->next);
+	if (!subrange || ft_cl_size(subrange) != 2
+		|| subrange->data != (void *)42
+		|| subrange->next->data != (void *)43
+		|| subrange->next->next != subrange)
+		return (5);
+	return (ft_cl_delete(&subrange, NULL), EXIT_SUCCESS);
+}
+
 int	tcl_subrange(void)
 {
 	t_clist	*lst;
 	t_clist	*subrange;
-	t_clist	*it;
+	int		err;
 
-	lst = NULL;
-	// Test with NULL list
-	subrange = ft_cl_subrange(NULL, NULL);
-	if (subrange != NULL)
+	if (ft_cl_subrange(NULL, NULL) != NULL)
 		return (1);
-	// Test with single node
 	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (2);
 	subrange = ft_cl_subrange(lst, NULL);
-	if (!subrange || subrange->data != (void *)42)
+	if (!subrange || subrange->data != (void *)42 || !lst)
+		return (2);
+	ft_cl_delete(&subrange, NULL);
+	ft_cl_delete(&lst, NULL);
+	lst = a_to_cl((int []){42, 43, 44}, 3);
+	subrange = ft_cl_subrange(lst, lst);
+	if (!subrange || subrange->next != subrange
+		|| subrange->prev != subrange
+		|| subrange->data != (void *)42 || lst->data != (void *)42)
 		return (3);
 	ft_cl_delete(&subrange, NULL);
-	// Test with multiple nodes - single node
-	ft_cl_push_back(&lst, (void *)43);
-	ft_cl_push_back(&lst, (void *)44);
-	subrange = ft_cl_subrange(lst, lst);
-	if (!subrange)
-		return (4);
-	if (subrange->data != (void *)42)
-		return (5);
-	ft_cl_delete(&subrange, NULL);
-	// Test with multiple nodes - full range
-	subrange = ft_cl_subrange(lst, NULL);
-	if (!subrange)
-		return (4);
-	it = subrange;
-	if (it->data != (void *)42)
-		return (5);
-	it = it->next;
-	if (it->data != (void *)43)
-		return (6);
-	it = it->next;
-	if (it->data != (void *)44)
-		return (7);
-	ft_cl_delete(&subrange, NULL);
-	// Test with partial range
-	subrange = ft_cl_subrange(lst, lst->next->next);
-	if (!subrange)
-		return (8);
-	it = subrange;
-	if (it->data != (void *)42)
-		return (9);
-	it = it->next;
-	if (it->data != (void *)43)
-		return (10);
-	if (it->next != subrange)
-		return (11);
+	err = tcl_subrange_partial(lst);
+	if (err != 0)
+		return (err);
 	return (ft_cl_delete(&lst, NULL), ft_cl_delete(&subrange, NULL),
 		mt_clsubrange());
 }

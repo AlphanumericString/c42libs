@@ -17,67 +17,30 @@ int	tb_new_from_mem(void)
 {
 	t_bitset	*bitset;
 
-	// Test 1: Create bitset from simple string
-	bitset = ft_bs_new_from_mem("10101010", 8);
-	if (!bitset)
+	bitset = ft_bs_new_from_mem("01bin", 5);
+	if (!bitset || ft_bs_get_raw(bitset, 0) != '0'
+		|| ft_bs_get_raw(bitset, 1) != '1' || ft_bs_get_raw(bitset, 2) != 'b'
+		|| ft_bs_get_raw(bitset, 3) != 'i' || ft_bs_get_raw(bitset, 4) != 'n')
 		return (1);
 	ft_bs_free(&bitset);
-
-	// Test 2: Create bitset from all ones
-	bitset = ft_bs_new_from_mem("11111111", 8);
-	if (!bitset)
-		return (2);
-	ft_bs_free(&bitset);
-
-	// Test 3: Create bitset from all zeros
-	bitset = ft_bs_new_from_mem("00000000", 8);
-	if (!bitset)
-		return (3);
-	ft_bs_free(&bitset);
-
-	// Test 4: Create bitset from mixed pattern
-	bitset = ft_bs_new_from_mem("11001100", 8);
-	if (!bitset)
-		return (4);
-	ft_bs_free(&bitset);
-
-	// Test 5: Create bitset with size less than string length
 	bitset = ft_bs_new_from_mem("11111111", 4);
-	if (!bitset)
-		return (5);
+	if (!bitset || bitset->_capacity != 4)
+		return (ft_bs_free(&bitset), 2);
 	ft_bs_free(&bitset);
-
-	// Test 6: Create bitset with size greater than string length
 	bitset = ft_bs_new_from_mem("1010", 8);
-	if (!bitset)
-		return (6);
+	if (!bitset || bitset->_capacity != 8
+		|| ft_bs_get_raw(bitset, 0) != '1' || ft_bs_get_raw(bitset, 1) != '0'
+		|| ft_bs_get_raw(bitset, 2) != '1' || ft_bs_get_raw(bitset, 3) != '0'
+		|| ft_bs_get_raw(bitset, 4) != 0 || ft_bs_get_raw(bitset, 5) != 0
+		|| ft_bs_get_raw(bitset, 6) != 0 || ft_bs_get_raw(bitset, 7) != 0)
+		return (ft_bs_free(&bitset), 3);
 	ft_bs_free(&bitset);
-
-	// Test 7: Test with NULL string (should return NULL)
-	bitset = ft_bs_new_from_mem(NULL, 8);
-	if (bitset != NULL)
-		return (7);
-
-	// Test 8: Test with size 0 (should return NULL)
-	bitset = ft_bs_new_from_mem("1010", 0);
-	if (bitset != NULL)
-		return (8);
-
-	// Test 9: Test with single bit
-	bitset = ft_bs_new_from_mem("1", 1);
-	if (!bitset)
-		return (9);
-	ft_bs_free(&bitset);
-
-	// Test 10: Test with larger bitset
-	bitset = ft_bs_new_from_mem("1010101010101010", 16);
-	if (!bitset)
-		return (10);
-	ft_bs_free(&bitset);
-
+	if (ft_bs_new_from_mem(NULL, 8) != NULL)
+		return (4);
+	if (ft_bs_new_from_mem("10101010", 0) != NULL)
+		return (5);
 	return (0);
 }
-
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

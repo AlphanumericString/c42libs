@@ -61,6 +61,7 @@ size_t	ft_cl_delete(t_clist **head, t_data_apply del)
 			del(data);
 		ret++;
 	}
+	*head = NULL;
 	return (ret);
 }
 /*

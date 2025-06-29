@@ -17,16 +17,11 @@
 #include "tests/tests.h"
 #include <unistd.h>
 
-int	tb_print_binary(void)
+static void	loc_print_to_fd(int fd)
 {
-	const char	file_name[] = TESTS_FPREFIX "bs_print_binary.txt";
-	const char	*expecteds = "11001010\n\n11110011\n11001111\n";
 	t_bitset	*bs;
-	int			fd;
-	char 		buff[512];
 
 	bs = ft_bs_new(8);
-	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_bs_set_raw(bs, 0, 0b11001010);
 	ft_bs_print_binary(bs, fd);
 	ft_bs_free(&bs);
@@ -41,18 +36,26 @@ int	tb_print_binary(void)
 	ft_bs_print_binary(bs, fd);
 	ft_bs_free(&bs);
 	ft_bs_print_binary(bs, fd);
+}
+
+int	tb_print_binary(void)
+{
+	const char	file_name[] = TESTS_FPREFIX "bs_print_binary.txt";
+	const char	*expecteds = "11001010\n\n11110011\n11001111\n";
+	int			fd;
+	char		buff[512];
+
+	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	loc_print_to_fd(fd);
 	close(fd);
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(buff, (sizeof buff / sizeof buff[0]));
 	if (read(fd, buff, (sizeof buff / sizeof buff[0]) - 1) < 0
 		|| ft_strcmp(buff, expecteds))
-		return (
-		1);
+		return (1);
 	destroy_test_file(fd, file_name);
 	return (0);
-
 }
-
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

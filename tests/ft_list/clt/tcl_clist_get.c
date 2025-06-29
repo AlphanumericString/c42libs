@@ -21,12 +21,12 @@
 #include "tests/tests__all_modules_tests.h"
 #include "tests/tests.h"
 
-static int mt_cl_getnodes(void)
+static int	mt_cl_getnodes(void)
 {
 	const int	fp = *talloc_get_failpoint();
-	t_clist	**datas;
-	t_clist	*set1;
-	size_t	i;
+	t_clist		**datas;
+	t_clist		*set1;
+	size_t		i;
 
 	i = 0;
 	set1 = NULL;
@@ -41,12 +41,12 @@ static int mt_cl_getnodes(void)
 	return (EXIT_SUCCESS);
 }
 
-static int mt_cl_getdatas(void)
+static int	mt_cl_getdatas(void)
 {
 	const int	fp = *talloc_get_failpoint();
-	void	**datas;
-	t_clist	*set1;
-	size_t	i;
+	void		**datas;
+	t_clist		*set1;
+	size_t		i;
 
 	i = 0;
 	set1 = NULL;
@@ -65,33 +65,21 @@ int	tcl_get_datas(void)
 {
 	t_clist	*lst;
 	void	**datas;
-	size_t	i;
 
 	lst = NULL;
-	// Test with NULL list
-	datas = ft_cl_get_datas(NULL);
-	if (datas != NULL)
+	if (ft_cl_get_datas(NULL) != NULL)
 		return (1);
-	// Test with single node
 	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (2);
 	datas = ft_cl_get_datas(lst);
 	if (!datas || datas[0] != (void *)42 || datas[1] != NULL)
 		return (3);
 	ft_free(datas);
-	// Test with multiple nodes
-	ft_cl_push_back(&lst, (void *)43);
-	ft_cl_push_back(&lst, (void *)44);
+	(ft_cl_push_back(&lst, (void *)43), ft_cl_push_back(&lst, (void *)44));
 	datas = ft_cl_get_datas(lst);
-	if (!datas)
-		return (4);
-	i = 0;
-	while (datas[i])
-		i++;
-	if (i != 3)
-		return (5);
-	if (datas[0] != (void *)42 || datas[1] != (void *)43 || datas[2] != (void *)44)
+	if (!datas || ft_cl_size(lst) != 3
+		|| datas[0] != (void *)42
+		|| datas[1] != (void *)43
+		|| datas[2] != (void *)44)
 		return (6);
 	return (ft_free(datas), ft_cl_delete(&lst, NULL), mt_cl_getdatas());
 }
@@ -100,34 +88,21 @@ int	tcl_get_nodes(void)
 {
 	t_clist	*lst;
 	t_clist	**nodes;
-	size_t	i;
 
 	lst = NULL;
-	// Test with NULL list
-	nodes = ft_cl_get_nodes(NULL);
-	if (nodes != NULL)
+	if (ft_cl_get_nodes(NULL) != NULL)
 		return (1);
-	// Test with single node
 	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (2);
 	nodes = ft_cl_get_nodes(lst);
 	if (!nodes || nodes[0] != lst || nodes[1] != NULL)
 		return (3);
 	ft_free(nodes);
-	// Test with multiple nodes
-	ft_cl_push_back(&lst, (void *)43);
-	ft_cl_push_back(&lst, (void *)44);
+	(ft_cl_push_back(&lst, (void *)43), ft_cl_push_back(&lst, (void *)44));
 	nodes = ft_cl_get_nodes(lst);
-	if (!nodes)
-		return (4);
-	i = 0;
-	while (nodes[i])
-		i++;
-	if (i != 3)
-		return (5);
-	// Verify the nodes are in correct order
-	if (nodes[0]->data != (void *)42 || nodes[1]->data != (void *)43 || nodes[2]->data != (void *)44)
+	if (!nodes || ft_cl_size(lst) != 3
+		|| nodes[0]->data != (void *)42
+		|| nodes[1]->data != (void *)43
+		|| nodes[2]->data != (void *)44)
 		return (6);
 	return (ft_free(nodes), ft_cl_delete(&lst, NULL), mt_cl_getnodes());
 }

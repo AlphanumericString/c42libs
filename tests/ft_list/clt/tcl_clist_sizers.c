@@ -33,25 +33,15 @@ static int	cmp_data(const void *data1, const void *data2)
 int	tcl_size(void)
 {
 	t_clist	*lst;
-	size_t	size;
 
-	lst = NULL;
-	// Test with NULL list
-	size = ft_cl_size(NULL);
-	if (size != 0)
+	if (ft_cl_size(NULL) != 0)
 		return (1);
-	// Test with single node
 	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (2);
-	size = ft_cl_size(lst);
-	if (size != 1)
+	if (ft_cl_size(lst) != 1)
 		return (3);
-	// Test with multiple nodes
 	ft_cl_push(&lst, (void *)43);
 	ft_cl_push(&lst, (void *)44);
-	size = ft_cl_size(lst);
-	if (size != 3)
+	if (ft_cl_size(lst) != 3)
 		return (4);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
@@ -59,34 +49,19 @@ int	tcl_size(void)
 int	tcl_size_data_is(void)
 {
 	t_clist	*lst;
-	size_t	size;
 
-	lst = NULL;
-	// Test with NULL list
-	size = ft_cl_size_data_is(NULL, is_even);
-	if (size != 0)
+	if (ft_cl_size_data_is(NULL, is_even) != 0)
 		return (1);
-	// Test with single node - even
 	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (2);
-	size = ft_cl_size_data_is(lst, is_even);
-	if (size != 1)
-		return (3);
-	// Test with single node - odd
+	if (ft_cl_size_data_is(lst, is_even) != 1)
+		return (ft_cl_delete(&lst, NULL), 2);
 	ft_cl_delete(&lst, NULL);
 	lst = ft_cl_create((void *)43);
-	if (!lst)
-		return (4);
-	size = ft_cl_size_data_is(lst, is_even);
-	if (size != 0)
+	if (ft_cl_size_data_is(lst, is_even) != 0)
 		return (5);
-	// Test with multiple nodes
-	ft_cl_push(&lst, (void *)44);
-	ft_cl_push(&lst, (void *)45);
+	(ft_cl_push(&lst, (void *)44), ft_cl_push(&lst, (void *)45));
 	ft_cl_push(&lst, (void *)46);
-	size = ft_cl_size_data_is(lst, is_even);
-	if (size != 2)
+	if (ft_cl_size_data_is(lst, is_even) != 2)
 		return (6);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
@@ -94,33 +69,19 @@ int	tcl_size_data_is(void)
 int	tcl_size_cmp(void)
 {
 	t_clist	*lst;
-	size_t	size;
 
-	lst = NULL;
-	// Test with NULL list
-	size = ft_cl_size_cmp(NULL, (void *)42, cmp_data);
-	if (size != 0)
+	if (ft_cl_size_cmp(NULL, (void *)42, cmp_data) != 0)
 		return (1);
-	// Test with single node - match
 	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (2);
-	size = ft_cl_size_cmp(lst, (void *)42, cmp_data);
-	if (size != 1)
+	if (ft_cl_size_cmp(lst, (void *)42, cmp_data) != 1)
 		return (3);
-	// Test with single node - no match
-	size = ft_cl_size_cmp(lst, (void *)43, cmp_data);
-	if (size != 0)
+	if (ft_cl_size_cmp(lst, (void *)43, cmp_data) != 0)
 		return (4);
-	// Test with multiple nodes
+	(ft_cl_push(&lst, (void *)42), ft_cl_push(&lst, (void *)43));
 	ft_cl_push(&lst, (void *)42);
-	ft_cl_push(&lst, (void *)43);
-	ft_cl_push(&lst, (void *)42);
-	size = ft_cl_size_cmp(lst, (void *)42, cmp_data);
-	if (size != 3)
+	if (ft_cl_size_cmp(lst, (void *)42, cmp_data) != 3)
 		return (5);
-	size = ft_cl_size_cmp(lst, (void *)43, cmp_data);
-	if (size != 1)
+	if (ft_cl_size_cmp(lst, (void *)43, cmp_data) != 1)
 		return (6);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }

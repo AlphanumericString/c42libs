@@ -14,6 +14,10 @@
 # define LISTS_TEST_UTILS_H
 
 # include "types/ft_list_types.h"
+# include <stddef.h>
+
+t_clist	*a_to_cl(int *arr, size_t size);
+void	add42_clnode(t_clist *node);
 
 void	create_2elem_dlist(t_dlist **list, void **data1, void **data2);
 void	create_2elem_list(t_list **list, void **data1, void **data2);

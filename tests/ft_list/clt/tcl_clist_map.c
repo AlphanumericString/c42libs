@@ -17,6 +17,7 @@
 #include "ft_list.h"
 #include "ft_string.h"
 #include "internal/debug_defs.h"
+#include "tests/tests_lambda_functions.h"
 #include "types/ft_list_types.h"
 
 #include "tests/lists_test_utils.h"
@@ -28,16 +29,10 @@ static void	*double_data(const void *data)
 	return ((void *)((long)data * 2));
 }
 
-static void	del_data(void *data)
-{
-	// Simple delete function for testing
-	(void)data;
-}
-
 static int	mt_clmap(void)
 {
-	t_clist	*lst;
-	t_clist	*mapped;
+	t_clist		*lst;
+	t_clist		*mapped;
 	const int	fp = *talloc_get_failpoint();
 
 	lst = NULL;
@@ -57,46 +52,27 @@ int	tcl_map(void)
 {
 	t_clist	*lst;
 	t_clist	*mapped;
-	t_clist	*it;
 
-	lst = NULL;
-	// Test with NULL list
-	mapped = ft_cl_map(NULL, double_data, NULL);
-	if (mapped != NULL)
+	if (ft_cl_map(NULL, double_data, NULL) != NULL)
 		return (1);
-	// Test with single node
 	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (2);
 	mapped = ft_cl_map(lst, double_data, NULL);
 	if (!mapped || mapped->data != (void *)84)
 		return (3);
 	ft_cl_delete(&mapped, NULL);
-	// Test with multiple nodes
-	ft_cl_push_back(&lst, (void *)43);
-	ft_cl_push_back(&lst, (void *)44);
+	(ft_cl_push_back(&lst, (void *)43), ft_cl_push_back(&lst, (void *)44));
 	mapped = ft_cl_map(lst, double_data, NULL);
-	if (!mapped)
+	if (!mapped || ft_cl_size(mapped) != 3 || mapped->data != (void *)84
+		|| mapped->next->data != (void *)86
+		|| mapped->next->next->data != (void *)88)
 		return (4);
-	// Verify mapped data
-	it = mapped;
-	if (it->data != (void *)84)
-		return (5);
-	it = it->next;
-	if (it->data != (void *)86)
-		return (6);
-	it = it->next;
-	if (it->data != (void *)88)
-		return (7);
 	ft_cl_delete(&mapped, NULL);
-	// Test with delete function
-	mapped = ft_cl_map(lst, double_data, del_data);
+	mapped = ft_cl_map(lst, double_data, do_nothing);
 	if (!mapped)
-		return (8);
+		return (5);
 	ft_cl_delete(&mapped, NULL);
-	mapped = ft_cl_map(lst, NULL, del_data);
-	if (mapped)
-		return (9);
+	if (ft_cl_map(lst, NULL, do_nothing) != NULL)
+		return (6);
 	return (ft_cl_delete(&lst, NULL), ft_cl_delete(&mapped, NULL), mt_clmap());
 }
 /*

@@ -18,9 +18,9 @@
 
 int	targ_getenvp(void)
 {
-	const char *s;
-	const char *const *prev_ev = ft_ev();
-	const char *test_ev[] = {
+	const char			*s;
+	const char *const	*prev_ev = ft_ev();
+	const char			*test_ev[] = {
 		"TOTO=TITI", "HOME=notapath", "user=tests", NULL
 	};
 

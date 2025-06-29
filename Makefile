@@ -465,10 +465,12 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_bitset/tb_toggle_raw.c			\
 			\
 			$(TESTS_DIR)/ft_list/clt/cl_list_tests.c			\
+			$(TESTS_DIR)/ft_list/clt/cl_tests_utils.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_add.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_apply.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_check.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_clear.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_clist_copy.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_create.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_delete.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_find.c			\
@@ -476,6 +478,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_iterators.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_map.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_new.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_clist_pop.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_push.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_rev.c			\
 			$(TESTS_DIR)/ft_list/clt/tcl_clist_sizers.c			\
@@ -844,6 +847,7 @@ $(QTEST_NAME): lib$(NAME).a	$(QTEST_OBJ)
 
 # Rule to compile and run tests
 $(TEST_NAME): $(TOBJ)
+	@$(RM) -rf -- $(TEST_NAME)
 	@$(PRINTF) "$(GRAY)Compiling tests %-*s... $(RESET)"			\
 	$(TEST_MAX_FILE_LEN) $(TEST_NAME)								&& \
 	$(CC) $(CFLAGS) $(TOBJ) -o $(TEST_NAME) $(TEST_FLAGS)			\
@@ -931,4 +935,4 @@ dev_env: .clangd compile_commands.json tags
 	$(PRINTF) "$(BG_INFO)You can use 'make dev_env' to update it!$(RESET)\n"
 
 # rule to force rules to be executed even if files exist
-.PHONY: re fclean clean
+.PHONY: re fclean clean $(TEST_NAME)

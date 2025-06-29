@@ -16,15 +16,11 @@
 
 #include "ft_list.h"
 #include "ft_string.h"
+#include "tests/lists_test_utils.h"
+#include "tests/tests_lambda_functions.h"
 #include "types/ft_list_types.h"
 
 #include "tests/tests__all_modules_tests.h"
-
-static void	del_data(void *data)
-{
-	// Simple delete function for testing
-	(void)data;
-}
 
 int	tcl_delete(void)
 {
@@ -32,30 +28,19 @@ int	tcl_delete(void)
 	size_t	deleted;
 
 	lst = NULL;
-	// Test with NULL list
 	deleted = ft_cl_delete(&lst, NULL);
 	if (deleted != 0 || lst != NULL)
 		return (1);
-	// Test with single node
 	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (2);
 	deleted = ft_cl_delete(&lst, NULL);
 	if (deleted != 1 || lst != NULL)
 		return (3);
-	// Test with multiple nodes
-	lst = NULL;
-	ft_cl_push(&lst, (void *)1);
-	ft_cl_push(&lst, (void *)2);
-	ft_cl_push(&lst, (void *)3);
+	lst = a_to_cl((int []){1, 2, 3}, 3);
 	deleted = ft_cl_delete(&lst, NULL);
 	if (deleted != 3 || lst != NULL)
 		return (4);
-	// Test with delete function
-	lst = NULL;
-	ft_cl_push(&lst, (void *)1);
-	ft_cl_push(&lst, (void *)2);
-	deleted = ft_cl_delete(&lst, del_data);
+	lst = a_to_cl((int []){1, 2}, 2);
+	deleted = ft_cl_delete(&lst, do_nothing);
 	if (deleted != 2 || lst != NULL)
 		return (5);
 	return (EXIT_SUCCESS);
@@ -67,7 +52,6 @@ int	tcl_delete_range(void)
 	size_t	deleted;
 
 	lst = NULL;
-	// Test with NULL start
 	deleted = ft_cl_delete_range(NULL, NULL, NULL);
 	if (deleted != 0)
 		return (1);
@@ -84,7 +68,7 @@ int	tcl_delete_range(void)
 		return (4);
 	ft_cl_push_back(&lst, (void *)4);
 	ft_cl_push_back(&lst, (void *)5);
-	deleted = ft_cl_delete_range(lst->next, lst->prev, del_data);
+	deleted = ft_cl_delete_range(lst->next, lst->prev, do_nothing);
 	if (deleted != 2 || lst->next != lst || lst->prev != lst)
 		return (5);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);

@@ -65,11 +65,13 @@ t_bitset	*ft_bs_new_from_mem(const void *str_p, size_t n)
 		return (NULL);
 	bitset = ft_bs_new(n * 8);
 	i = 0;
-	while (i < n)
+	while (i < n && str[i])
 	{
 		ft_bs_set_raw(bitset, i, str[i]);
 		i++;
 	}
+	while (i < n)
+		ft_bs_set_raw(bitset, i++, 0);
 	return (bitset);
 }
 /*

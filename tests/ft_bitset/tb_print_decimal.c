@@ -17,16 +17,11 @@
 #include "tests/tests.h"
 #include <unistd.h>
 
-int	tb_print_decimal(void)
+static void	loc_print_to_fd(int fd)
 {
-	const char	file_name[] = TESTS_FPREFIX "bs_print_decimal.txt";
-	const char	*expecteds = "240\n\n042, 021\n";
 	t_bitset	*bs;
-	int			fd;
-	char 		buff[512];
 
 	bs = ft_bs_new(8);
-	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_bs_set_raw(bs, 0, 240);
 	ft_bs_print_decimal(bs, fd);
 	ft_bs_free(&bs);
@@ -41,17 +36,26 @@ int	tb_print_decimal(void)
 	ft_bs_print_decimal(bs, fd);
 	ft_bs_free(&bs);
 	ft_bs_print_decimal(bs, fd);
+}
+
+int	tb_print_decimal(void)
+{
+	const char	file_name[] = TESTS_FPREFIX "bs_print_decimal.txt";
+	const char	*expecteds = "240\n\n042, 021\n";
+	int			fd;
+	char		buff[512];
+
+	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	loc_print_to_fd(fd);
 	close(fd);
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(buff, (sizeof buff / sizeof buff[0]));
 	if (read(fd, buff, (sizeof buff / sizeof buff[0]) - 1) < 0
 		|| ft_strcmp(buff, expecteds))
-		return (
-		1);
+		return (1);
 	destroy_test_file(fd, file_name);
 	return (0);
 }
-
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

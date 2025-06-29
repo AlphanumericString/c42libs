@@ -1,51 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tcl_clist_rev.c                                    :+:      :+:    :+:   */
+/*   tcl_clist_pop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/18 12:58:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:03:22 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/29 23:30:48 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 23:30:48 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 #include "ft_list.h"
-#include "ft_string.h"
 #include "types/ft_list_types.h"
 
+#include "tests/lists_test_utils.h"
 #include "tests/tests__all_modules_tests.h"
 
-// lst => 42,43,44
-// rev => 44,43,42
-int	tcl_rev(void)
+int	tcl_pop(void)
 {
 	t_clist	*lst;
-	t_clist	*reversed;
+	void	*data;
 
 	lst = NULL;
-	if (ft_cl_rev(NULL) != NULL || ft_cl_rev(&lst) != NULL)
+	data = ft_cl_pop(NULL);
+	if (data != NULL)
 		return (1);
+	data = ft_cl_pop(&lst);
+	if (data != NULL || lst != NULL)
+		return (2);
 	lst = ft_cl_create((void *)42);
-	reversed = ft_cl_rev(&lst);
-	if (!reversed || reversed->data != (void *)42)
-		return (ft_cl_delete(&lst, NULL), 2);
-	(ft_cl_push_back(&lst, (void *)43), ft_cl_push_back(&lst, (void *)44));
-	reversed = ft_cl_rev(&lst);
-	if (!reversed || ft_cl_size(reversed) != 3
-		|| reversed->data != (void *)44
-		|| reversed->next->data != (void *)43
-		|| reversed->next->next->data != (void *)42)
-		return (ft_cl_delete(&lst, NULL), 3);
-	if (reversed->next->next->next != reversed
-		|| reversed->prev->data != (void *)42
-		|| reversed->prev->prev->data != (void *)43
-		|| reversed->prev->prev->prev != reversed)
-		return (ft_cl_delete(&lst, NULL), 4);
+	data = ft_cl_pop(&lst);
+	if (data != (void *)42 || lst != NULL)
+		return (3);
+	lst = a_to_cl((int []){44, 43, 42}, 3);
+	data = ft_cl_pop(&lst);
+	if (data != (void *)44 || lst->data != (void *)43)
+		return (4);
+	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
+}
+
+int	tcl_pop_back(void)
+{
+	t_clist	*lst;
+	void	*data;
+
+	lst = NULL;
+	data = ft_cl_pop_back(NULL);
+	if (data != NULL)
+		return (1);
+	data = ft_cl_pop_back(&lst);
+	if (data != NULL || lst != NULL)
+		return (2);
+	lst = ft_cl_create((void *)42);
+	data = ft_cl_pop_back(&lst);
+	if (data != (void *)42 || lst != NULL)
+		return (3);
+	lst = a_to_cl((int []){44, 43, 42}, 3);
+	data = ft_cl_pop_back(&lst);
+	if (data != (void *)42 || lst->data != (void *)44)
+		return (4);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 /*

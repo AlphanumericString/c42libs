@@ -36,7 +36,6 @@ static int	mt_clpush_back(void)
 	talloc_set_failpoint(fp);
 	ft_cl_delete(&lst, NULL);
 	return (EXIT_SUCCESS);
-
 }
 
 static int	mt_clpush(void)
@@ -54,7 +53,6 @@ static int	mt_clpush(void)
 	talloc_set_failpoint(fp);
 	ft_cl_delete(&lst, NULL);
 	return (EXIT_SUCCESS);
-
 }
 
 int	tcl_push(void)
@@ -63,25 +61,21 @@ int	tcl_push(void)
 	void	*data;
 
 	lst = NULL;
-		// Test with NULL node
 	data = ft_cl_push(NULL, (void *)42);
-		if (data != NULL)
+	if (data != NULL)
 		return (1);
-	// Test with NULL data
 	lst = ft_cl_push(&lst, NULL);
 	if (!lst || lst->data != NULL)
 		return (2);
 	ft_cl_delete(&lst, NULL);
-	// Test with valid data
-		lst = ft_cl_push(&lst, (void *)42);
+	lst = ft_cl_push(&lst, (void *)42);
 	if (!lst || lst->data != (void *)42)
 		return (3);
-	// Test multiple pushes
 	lst = ft_cl_push(&lst, (void *)43);
 	if (!lst || lst->data != (void *)43)
 		return (4);
 	lst = ft_cl_push(&lst, (void *)44);
-		if (!lst || lst->data != (void *)44)
+	if (!lst || lst->data != (void *)44)
 		return (5);
 	return (ft_cl_delete(&lst, NULL), mt_clpush());
 }
@@ -92,94 +86,25 @@ int	tcl_push_back(void)
 	t_clist	*result;
 
 	lst = NULL;
-	// Test with NULL node
 	result = ft_cl_push_back(NULL, (void *)42);
 	if (result != NULL)
 		return (1);
-	// Test with NULL data
 	result = ft_cl_push_back(&lst, NULL);
 	if (!result || result->data != NULL)
 		return (2);
 	ft_cl_delete(&lst, NULL);
-	// Test with valid data
 	result = ft_cl_push_back(&lst, (void *)42);
 	if (!result || result->data != (void *)42)
 		return (3);
-	// Test multiple pushes
 	result = ft_cl_push_back(&lst, (void *)43);
 	if (!result || result->data != (void *)42)
 		return (4);
 	result = ft_cl_push_back(&lst, (void *)44);
 	if (!result || result->data != (void *)42)
 		return (5);
-	// Verify the last element
 	if (lst->prev->data != (void *)44)
 		return (6);
 	return (ft_cl_delete(&lst, NULL), mt_clpush_back());
-}
-
-int	tcl_pop(void)
-{
-	t_clist	*lst;
-	void	*data;
-
-	lst = NULL;
-	// Test with NULL node
-	data = ft_cl_pop(NULL);
-	if (data != NULL)
-		return (1);
-	// Test with empty list
-	data = ft_cl_pop(&lst);
-	if (data != NULL || lst != NULL)
-		return (2);
-	// Test with single node
-	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (3);
-	data = ft_cl_pop(&lst);
-	if (data != (void *)42 || lst != NULL)
-		return (4);
-	// Test with multiple nodes
-	lst = NULL;
-	ft_cl_push(&lst, (void *)42);
-	ft_cl_push(&lst, (void *)43);
-	ft_cl_push(&lst, (void *)44);
-	data = ft_cl_pop(&lst);
-	if (data != (void *)44 || lst->data != (void *)43)
-		return (5);
-	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
-}
-
-int	tcl_pop_back(void)
-{
-	t_clist	*lst;
-	void	*data;
-
-	lst = NULL;
-	// Test with NULL node
-	data = ft_cl_pop_back(NULL);
-	if (data != NULL)
-		return (1);
-	// Test with empty list
-	data = ft_cl_pop_back(&lst);
-	if (data != NULL || lst != NULL)
-		return (2);
-	// Test with single node
-	lst = ft_cl_create((void *)42);
-	if (!lst)
-		return (3);
-	data = ft_cl_pop_back(&lst);
-	if (data != (void *)42 || lst != NULL)
-		return (4);
-	// Test with multiple nodes
-	lst = NULL;
-	ft_cl_push(&lst, (void *)42);
-	ft_cl_push(&lst, (void *)43);
-	ft_cl_push(&lst, (void *)44);
-	data = ft_cl_pop_back(&lst);
-	if (data != (void *)42 || lst->data != (void *)44)
-		return (5);
-	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

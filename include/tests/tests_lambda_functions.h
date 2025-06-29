@@ -14,6 +14,7 @@
 # define TESTS_LAMBDA_FUNCTIONS_H
 # include <stdbool.h>
 
+void	do_nothing(void *data);
 bool	is42(const void *data);
 void	add42(void *data);
 void	*add42_ret(const void *data);
