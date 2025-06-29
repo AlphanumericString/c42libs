@@ -46,10 +46,12 @@ t_bitset	*ft_bs_new(size_t size);
 t_bitset	ft_bs_create(size_t size);
 
 /// @brief Create a new bitset from a string
-/// @param str The string to create the bitset from
-/// @param n The size of the string
+/// @param ptr The pointer to where to sample bytes from
+/// @param n The size number of bytes to sample from the pointer ptr
 /// @return A pointer to the new bitset allocated in memory
-t_bitset	*ft_bs_new_from_str(const char *str, size_t n);
+/// @note Samples with multiple of 8 underneath, you can visualize ptr as a
+///		`uint8_t *` and n as the number of 'uint8_t' read.
+t_bitset	*ft_bs_new_from_mem(const void *ptr, size_t n);
 
 /* ************************************************************************** */
 /*                               DELETE BITSET                                */
@@ -76,7 +78,7 @@ void		ft_bs_free_inner(t_bitset *bitset);
 /// @param index The index of the raw to get
 /// @return The value of the raw at this index
 /// @note If the index is out of bounds, the function will return 0
-uint8_t		ft_bs_get_raw(t_bitset *bitset, size_t index);
+uint8_t		ft_bs_get_raw(t_bitset *bitset, size_t raw_index);
 
 /// @brief Get the value of a bit in the bitset
 /// @param bitset The bitset to get the value from
@@ -90,7 +92,7 @@ bool		ft_bs_get(t_bitset *bitset, size_t index);
 /// @param index The index of the raw to set (will be multed by 8)
 /// @param value The value of the raw to set
 /// @return False if out of bounds, True otherwise
-bool		ft_bs_set_raw(t_bitset *bitset, size_t index, uint8_t value);
+bool		ft_bs_set_raw(t_bitset *bitset, size_t raw_index, uint8_t value);
 
 /// @brief Set the value of a bool in the bitset
 /// @param bitset The bitset to set the value in
@@ -125,6 +127,9 @@ bool		ft_bs_toggle_raw(t_bitset *bitset, size_t index);
 ///   with the number of lines being the number of t_bitset8 in the bitset
 /// @param bitset The bitset to print
 /// @param fd The file descriptor to print to
+/// @note	The MSB is the first print and then decreases until the
+///		LSB. Same is multiple bytes are present inside, byte n will be printed
+///		before byte n - 1.
 void		ft_bs_print(t_bitset *bitset, int fd);
 
 /// @brief Print the bitset in a human readable format where the bits are
@@ -134,6 +139,9 @@ void		ft_bs_print(t_bitset *bitset, int fd);
 ///   with the number of lines being the number of t_bitset8 in the bitset
 /// @param bitset The bitset to print
 /// @param fd The file descriptor to print to
+/// @note	The MSB is the first print and then decreases until the
+///		LSB. Same is multiple bytes are present inside, byte n will be printed
+///		before byte n - 1.
 void		ft_bs_print_binary(t_bitset *bitset, int fd);
 
 /// @brief Print the bitset in a human readable format where the bits are
@@ -142,6 +150,9 @@ void		ft_bs_print_binary(t_bitset *bitset, int fd);
 ///   where n is the number of t_bitset8 in the bitset (single line)
 /// @param bitset The bitset to print
 /// @param fd The file descriptor to print to
+/// @note	The MSB is the first print and then decreases until the
+///		LSB. Same is multiple bytes are present inside, byte n will be printed
+///		before byte n - 1.
 void		ft_bs_print_hex(t_bitset *bitset, int fd);
 
 /// @brief Print the bitset in a human readable format where the bits are
@@ -150,6 +161,9 @@ void		ft_bs_print_hex(t_bitset *bitset, int fd);
 ///  where n is the number of t_bitset8 in the bitset (single line)
 /// @param bitset The bitset to print
 /// @param fd The file descriptor to print to
+/// @note	The MSB is the first print and then decreases until the
+///		LSB. Same is multiple bytes are present inside, byte n will be printed
+///		before byte n - 1.
 void		ft_bs_print_decimal(t_bitset *bitset, int fd);
 
 /* ************************************************************************** */
@@ -159,22 +173,23 @@ void		ft_bs_print_decimal(t_bitset *bitset, int fd);
 /// @brief Append a bitset to another bitset
 /// @param bitset The bitset to append to
 /// @param to_append The bitset to append
+/// @return true - successful append call, false otherwise
 /// @note To append to the front of the bistet, reverse the order of the
 ///   parameters
-void		ft_bs_append(t_bitset *bitset, t_bitset *to_append);
+bool		ft_bs_append(t_bitset *bitset, t_bitset *to_append);
 
 /* ************************************************************************** */
 /*								 REMOVE BITSET								  */
 /* ************************************************************************** */
 
-/// @brief Remove the last Nth bits from the back of the bitset
-/// @param bitset The bitset to remove the bit from
-/// @param nbr The number of bits to remove
+/// @brief Remove the last Nth bytes from the back of the bitset
+/// @param bitset The bitset to remove the bytes from
+/// @param nbr The number of bytes to remove
 void		ft_bs_remove(t_bitset *bitset, size_t nbr);
 
-/// @brief Remove front Nth bits from the back of the bitset
-/// @param bitset The bitset to remove the bit from
-/// @param nbr The number of bits to remove
+/// @brief Remove front Nth bytes from the back of the bitset
+/// @param bitset The bitset to remove the byte from
+/// @param nbr The number of bytes to remove
 void		ft_bs_remove_front(t_bitset *bitset, uint8_t nbr);
 
 #endif /* FT_BITSET_H */

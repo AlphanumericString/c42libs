@@ -12,14 +12,15 @@
 
 #include "ft_args.h"
 #include "internal/args_helper.h"
+#include "ft_defs.h"
 
 #include <stdlib.h>
 
-static const char *const	*ft_ev_singleton(const char *const *ev)
+static const char *const	*ft_ev_singleton(const char *const *ev, bool set)
 {
 	static const char *const	*ev_st = NULL;
 
-	if (ev)
+	if (set)
 		ev_st = ev;
 	return (ev_st);
 }
@@ -30,20 +31,18 @@ static const char *const	*ft_ev_singleton(const char *const *ev)
 int	ft_set_ev_from_av(const char *const *av, int ac)
 {
 	if (!av || !ac || av[ac] != NULL)
-		return (EXIT_FAILURE);
+		return (ft_set_ev(NULL));
 	return (ft_set_ev((const char *const *)(&av[ac + 1])));
 }
 
 int	ft_set_ev(const char *const *const ev)
 {
-	if (!ev)
-		return (EXIT_FAILURE);
-	return (ft_ev_singleton(ev), EXIT_SUCCESS);
+	return (ft_ev_singleton(ev, true), EXIT_SUCCESS);
 }
 
 const char *const	*ft_ev(void)
 {
-	return (ft_ev_singleton(NULL));
+	return (ft_ev_singleton(NULL, false));
 }
 /*
 GPL-3.0 License:

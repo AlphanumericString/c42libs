@@ -17,19 +17,18 @@ int	mem_tests(void)
 {
 	int				collect;
 	const t_test	tests[] = {
-	{"apply_2d", test_apply_2d}, {"free_2d", test_free_2d},
-	{"len_2d", test_len_2d}, {"fd_to_buff", test_fd_to_buff},
-	{"bzero", test_bzero},
-	{"calloc", test_calloc}, {"realloc", test_realloc}, {"free", test_free},
-	{"free_clear", test_freecl},
-	{"memchr", test_memchr}, {"memcmp", test_memcmp},
-	{"memcpy", test_memcpy}, {"memmap", test_memmap}, {"memmove", test_memmove},
-	{"memset", test_memset}, {"swap", test_swap}, {"qsort", test_qsort},
-	{"allocator_ctl", test_membd_allocator}, {"calloc", test_membd_calloc},
-	{"realloc", test_membd_realloc}, {"reallocarray", test_membd_reallocarray},
-	{"malloc", test_membd_malloc}, {"free", test_membd_free},
-	{NULL, NULL}
-	};
+	{"apply_2d", tca_apply_2d}, {"free_2d", tca_free_2d},
+	{"len_2d", tca_len_2d},
+	{"fd_to_buff", tm_fd_to_buff}, {"bzero", tm_bzero},
+	{"calloc", tm_calloc}, {"realloc", tm_realloc}, {"free", tm_free},
+	{"free_clear", tm_freecl}, {"memchr", tm_memchr}, {"memcmp", tm_memcmp},
+	{"memcpy", tm_memcpy}, {"memmap", tm_memmap}, {"memmove", tm_memmove},
+	{"memset", tm_memset}, {"swap", tm_swap}, {"qsort", tm_qsort},
+	{"allocator_ctl", tmal_allocator}, {"calloc", tmal_calloc},
+	{"realloc", tmal_realloc}, {"reallocarray", tmal_reallocarray},
+	{"malloc", tmal_malloc}, {"free", tmal_free},
+	{"arena", tma_arena}, {"narena", tma_narena},
+	{NULL, NULL}};
 
 	collect = 0;
 	run_test(tests, &collect);

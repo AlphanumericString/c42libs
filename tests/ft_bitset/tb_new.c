@@ -24,6 +24,10 @@ static int	mt_bsnew(void)
 	bs = ft_bs_new(12);
 	if (bs)
 		return (1);
+	talloc_set_failpoint(*talloc_get_currentpoint() + 1);
+	bs = ft_bs_new(12);
+	if (bs)
+		return (2);
 	talloc_set_failpoint(fp);
 	return (0);
 }

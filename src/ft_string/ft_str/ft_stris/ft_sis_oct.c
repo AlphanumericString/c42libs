@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isoct.c                                     :+:      :+:    :+:   */
+/*   ft_sis_oct.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:49:53 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:34:56 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/29 14:02:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	ft_str_isoct(const char *str)
 {
 	if (!str)
 		return (false);
-	if (!ft_strstart_with(str, "0o") && !ft_strstart_with(str, "0O"))
-		return (false);
-	return (ft_str_isvalid(str + 2, ft_isoctdigit));
+	if (ft_strstart_with(str, "0o") || ft_strstart_with(str, "0O"))
+		str += 2;
+	return (ft_str_isvalid(str, ft_isoctdigit));
 }
 /*
 GPL-3.0 License:

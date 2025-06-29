@@ -17,11 +17,11 @@ int	tests_pair(void)
 {
 	int				collect;
 	const t_test	test[] = {
-	{"tp_set", tp_set}, {"tp_new", tp_new},
-	{"tp_first", tp_first}, {"tp_second", tp_second},
-	{"tp_cmp", tp_cmp}, {"tp_cmp_first", tp_cmp_first},
-	{"tp_cmp_second", tp_cmp_second},
-	{"tp_destroy", tp_destroy}, {"tp_destroy", tp_destroy_sep},
+	{"set", tp_set}, {"new", tp_new},
+	{"first", tp_first}, {"second", tp_second},
+	{"cmp", tp_cmp}, {"cmp_first", tp_cmp_first},
+	{"cmp_second", tp_cmp_second},
+	{"destroy", tp_destroy}, {"destroy", tp_destroy_sep},
 	{NULL, NULL}
 	};
 

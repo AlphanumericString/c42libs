@@ -15,9 +15,9 @@
 
 void	ft_shift_args(const char *const **av, int *ac, int nb)
 {
-	if (nb > *ac || nb <= 0)
+	if (!av || !ac || !*av || !*ac)
 		return ;
-	if (!av || !*av || !*ac)
+	if (nb > *ac || nb <= 0)
 		return ;
 	*ac -= nb;
 	*av = (*av) + nb;

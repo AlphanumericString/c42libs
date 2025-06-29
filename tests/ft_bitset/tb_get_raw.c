@@ -5,17 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 03:59:34 by bgoulard          #+#    #+#             */
+/*   Created: 2025/06/20 04:00:15 by bgoulard          #+#    #+#             */
 /*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_bitset.h"
 #include "tests/bitset_tests.h"
+#include "internal/debug_defs.h"
 
 int	tb_get_raw(void)
 {
-	return (1);
+	t_bitset	*bitset;
+
+	bitset = ft_bs_new(16);
+	if (!bitset)
+		return (1);
+	if (ft_bs_get_raw(bitset, 0) != 0 || ft_bs_get_raw(bitset, 1) != 0)
+		return (ft_bs_free(&bitset), 2);
+	ft_bs_set_raw(bitset, 0, 0xDE);
+	ft_bs_set_raw(bitset, 1, 0xAD);
+	if (ft_bs_get_raw(bitset, 0) != 0xDE || ft_bs_get_raw(bitset, 1) != 0xAD)
+		return (ft_bs_free(&bitset), 3);
+	if (ft_bs_get_raw(bitset, 2) != 0 || ft_bs_get_raw(bitset, 100) != 0)
+		return (ft_bs_free(&bitset), 4);
+	ft_bs_free_inner(bitset);
+	if (ft_bs_get_raw(NULL, 0) != 0 || ft_bs_get_raw(bitset, 0) != 0)
+		return (ft_bs_free(&bitset), 6);
+	return (ft_bs_free(&bitset), 0);
 }
 
 /*

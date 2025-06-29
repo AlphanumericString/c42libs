@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_args.h"
+#include "internal/debug_defs.h"
 #include "types/ft_args_types.h"
 #include "internal/args_helper.h"
 #include "internal/args_helper_types.h"
@@ -69,7 +70,7 @@ static void	v2_parse_long_opt_inner(t_parser_state *st, size_t op,
 			check_arg(o_lst[op].type & FT_AT_MASK, st, value);
 		if (st->err)
 			return ;
-		st->arg_it = (st->arg_it + 1) + (value != NULL);
+		st->arg_it += 1 + (value != NULL) * (sep_flag != FT_AS_EQSIGN);
 		st->err = ((int (*)(void *, const char *))o_lst[op].func)(data, value);
 		return ;
 	}
@@ -94,10 +95,12 @@ void	v2_parse_long_opt(t_parser_state *st, const char **av, void *data)
 	st->mode = FTPA_LONG;
 	str_o = av[st->arg_it] + 2;
 	while (ls[op].func
-		&& !(ls[op].long_name && !ft_strcmp(ls[op].long_name, str_o)))
+		&& !(ls[op].long_name
+			&& !ft_strncmp(ls[op].long_name, str_o, ft_strclen(str_o, '='))))
 		op++;
-	if (!ls[op].func || (ls[op].long_name
-			&& ft_strcmp(ls[op].long_name, str_o)))
+	if (!ls[op].func
+		|| !(ls[op].long_name
+			&& !ft_strncmp(ls[op].long_name, str_o, ft_strclen(str_o, '='))))
 	{
 		st->err = 1;
 		return (explain(av[st->arg_it]));

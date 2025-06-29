@@ -13,9 +13,9 @@
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 
-static void loc_switch(t_clist *node)
+static void	loc_switch(t_clist *node)
 {
-	t_clist *tmp;
+	t_clist	*tmp;
 
 	tmp = node->prev;
 	node->prev = node->next;

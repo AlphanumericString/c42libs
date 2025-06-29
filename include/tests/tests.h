@@ -18,6 +18,16 @@
 
 # define TESTS_FPREFIX "build/test_"
 
+# if defined(true_random)
+#  if defined(__linux__)
+#   define SRAND_OK true
+#  else
+#   define SRAND_OK false
+#  endif
+# else
+#  define SRAND_OK false
+# endif
+
 # ifndef FORK_TESTS
 #  define FORK_TESTS 1
 # endif

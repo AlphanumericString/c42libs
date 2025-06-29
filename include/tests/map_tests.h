@@ -13,18 +13,18 @@
 #ifndef MAP_TESTS_H
 # define MAP_TESTS_H
 
-int	tm_capacity(void);
-int	tm_clear(void);
-int	tm_create(void);
-int	tm_destroy(void);
-int	tm_destroy_free(void);
-int	tm_get(void);
-int	tm_hash(void);
-int	tm_remove(void);
-int	tm_set(void);
-int	tm_set_cmp(void);
-int	tm_set_hash(void);
-int	tm_size(void);
+int	tmap_capacity(void);
+int	tmap_clear(void);
+int	tmap_create(void);
+int	tmap_destroy(void);
+int	tmap_destroy_free(void);
+int	tmap_get(void);
+int	tmap_hash(void);
+int	tmap_remove(void);
+int	tmap_set(void);
+int	tmap_set_cmp(void);
+int	tmap_set_hash(void);
+int	tmap_size(void);
 
 #endif /* MAP_TESTS_H */
 /*

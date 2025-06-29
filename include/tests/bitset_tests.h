@@ -18,7 +18,7 @@
 
 int	tb_new(void);
 int	tb_create(void);
-int	tb_new_from_str(void);
+int	tb_new_from_mem(void);
 int	tb_clear(void);
 int	tb_free(void);
 int	tb_free_inner(void);

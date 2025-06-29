@@ -12,25 +12,48 @@
 
 #include "ft_bitset.h"
 #include "types/ft_bitset_types.h"
+#include "internal/debug_defs.h"
 
 bool	ft_bs_set_raw(t_bitset *bitset, size_t index, uint8_t value)
 {
+	if (!bitset || !bitset->bits)
+		return (false);
 	if (index >= bitset->_capacity)
 		return (false);
 	bitset->bits[index].raw = value;
 	return (true);
 }
 
+	// mask = 0xFF & ~(1 << (index % 8));
+	// if (value)
+	// 	mask = 0x00 | (1 << (index % 8));
+	// LOG_VAR("0x%02X", mask);
+	// bitset->bits[index / 8].raw &= mask;
 bool	ft_bs_set(t_bitset *bitset, size_t index, bool value)
 {
 	uint8_t		mask;
 
+	(void) mask;
+	if (!bitset || !bitset->bits)
+		return (false);
 	if (index >= bitset->_capacity * 8)
 		return (false);
-	mask = 0xFF & ~(1 << (index % 8));
-	if (value)
-		mask = 0x00 | (1 << (index % 8));
-	bitset->bits[index / 8].raw &= mask;
+	if (index % 8 == 0)
+		bitset->bits[index / 8].b0 = value;
+	if (index % 8 == 1)
+		bitset->bits[index / 8].b1 = value;
+	if (index % 8 == 2)
+		bitset->bits[index / 8].b2 = value;
+	if (index % 8 == 3)
+		bitset->bits[index / 8].b3 = value;
+	if (index % 8 == 4)
+		bitset->bits[index / 8].b4 = value;
+	if (index % 8 == 5)
+		bitset->bits[index / 8].b5 = value;
+	if (index % 8 == 6)
+		bitset->bits[index / 8].b6 = value;
+	if (index % 8 == 7)
+		bitset->bits[index / 8].b7 = value;
 	return (true);
 }
 /*

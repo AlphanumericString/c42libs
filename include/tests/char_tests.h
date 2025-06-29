@@ -13,18 +13,18 @@
 #ifndef CHAR_TESTS_H
 # define CHAR_TESTS_H
 
-int	test_ft_tolower(void);
-int	test_ft_isalpha(void);
-int	test_ft_isalnum(void);
-int	test_ft_putchar(void);
-int	test_ft_putnchar(void);
-int	test_ft_ishexdigit(void);
-int	test_ft_isspace(void);
-int	test_ft_isoctdigit(void);
-int	test_ft_isprint(void);
-int	test_ft_toupper(void);
-int	test_ft_isascii(void);
-int	test_ft_isdigit(void);
+int	tc_tolower(void);
+int	tc_isalpha(void);
+int	tc_isalnum(void);
+int	tc_putchar(void);
+int	tc_putnchar(void);
+int	tc_ishexdigit(void);
+int	tc_isspace(void);
+int	tc_isoctdigit(void);
+int	tc_isprint(void);
+int	tc_toupper(void);
+int	tc_isascii(void);
+int	tc_isdigit(void);
 
 #endif /* CHAR_TESTS_H */
 /*

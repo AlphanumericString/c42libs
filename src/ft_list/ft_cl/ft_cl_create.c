@@ -31,7 +31,7 @@ t_clist	*ft_cl_copy_node(const t_clist *const other)
 	t_clist	*ret;
 
 	if (!other)
-		return  (NULL);
+		return (NULL);
 	ret = ft_cl_new();
 	if (!ret)
 		return (ret);

@@ -28,13 +28,10 @@ t_clist	*ft_cl_push(t_clist **node, const void *data)
 	if (!*node)
 		return (*node = added, added);
 	last = (*node)->prev;
-
 	added->next = *node;
 	(*node)->prev = added;
-
 	added->prev = last;
 	last->next = added;
-
 	*node = added;
 	return (added);
 }

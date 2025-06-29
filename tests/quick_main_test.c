@@ -29,6 +29,7 @@
 #include "ft_arena.h"
 #include "types/ft_args_types.h"
 
+// iee754 tests
 //
 // typedef struct s_dbl_fields
 // {
@@ -69,6 +70,7 @@
 // 	return sign * frac * pow(2, exp);
 // }
 
+// lseek test
 // {
 // 	char buffer[256 + 1] = {0};
 // 	int fd = open("./test.txt", O_RDONLY | O_CLOEXEC);
@@ -95,7 +97,8 @@
 // 	char buffer_2[256 + 1] = {0};
 // 	if (!file) return (perror("Failed to open file with fopen"), EXIT_FAILURE);
 // 	printf("File opened: %p\n", file);
-// 	while (fgets(buffer_2, sizeof(buffer_2), file) != NULL) { printf("Read line: %s", buffer_2); }
+// 	while (fgets(buffer_2, sizeof(buffer_2), file) != NULL)
+//		{ printf("Read line: %s", buffer_2); }
 // 	if (ferror(file)) {
 // 		fclose(file);
 // 		return (perror("Error reading file with fgets"), EXIT_FAILURE);
@@ -105,18 +108,7 @@
 // 	return (fclose(file), EXIT_SUCCESS);
 // }
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	char *test;
-	size_t	i;
-
-	test = ft_strdup("test:1:2:3");
-	char *ret = ft_strtok(test, ":");
-	i = 10;
-	while (i --)
-	{
-		ret = ft_strtok(NULL, ":");
-		printf("%p %s\n", ret, ret);
-	}
 	return (EXIT_SUCCESS);
 }

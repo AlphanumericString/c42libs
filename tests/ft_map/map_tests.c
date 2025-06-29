@@ -18,18 +18,18 @@ int	tests_map(void)
 {
 	int				collect;
 	const t_test	test[] = {
-	{"create", tm_create},
-	{"destroy", tm_destroy}, // here
-	{"destroy_free", tm_destroy_free},
-	{"clear", tm_clear}, // here
-	{"set", tm_set},
-	{"set_cmp", tm_set_cmp},
-	{"set_hash", tm_set_hash},
-	{"get", tm_get},
-	{"size", tm_size},
-	{"capacity", tm_capacity},
-	{"remove", tm_remove}, // here
-	{"hash", tm_hash},
+	{"create", tmap_create},
+	{"destroy", tmap_destroy}, // here
+	{"destroy_free", tmap_destroy_free},
+	{"clear", tmap_clear}, // here
+	{"set", tmap_set},
+	{"set_cmp", tmap_set_cmp},
+	{"set_hash", tmap_set_hash},
+	{"get", tmap_get},
+	{"size", tmap_size},
+	{"capacity", tmap_capacity},
+	{"remove", tmap_remove}, // here
+	{"hash", tmap_hash},
 	{NULL, NULL}
 	};
 

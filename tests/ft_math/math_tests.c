@@ -17,22 +17,22 @@ int	tests_math(void)
 {
 	int				i;
 	const t_test	tests[] = {
-	{"abs", mt_abs}, {"abs_l", mt_abs_l}, {"abs_ssize", mt_abs_ssize},
-	{"clamp", mt_clamp},
-	{"complex_abs", mt_complex_abs},
-	{"complex_addl", mt_complex_addl},
-	{"complex_mull", mt_complex_mull},
-	{"complex_muld", mt_complex_muld},
-	{"range", mt_range}, {"range_f", mt_range_f},
-	{"range_d", mt_range_d}, {"log", mt_log},
-	{"llogof", mt_llogof}, {"ullogof", mt_ullogof},
-	{"logof", mt_logof}, {"min", mt_min}, {"max", mt_max},
-	{"nbrlen", mt_nbrlen}, {"unbrlen", mt_unbrlen_base},
-	{"nbrlen_base", mt_nbrlen_base},
-	{"pow", mt_pow}, {"round", mt_round},
-	{"sqrt", mt_sqrt}, {"clamp_f", mt_clamp_f},
-	{"clamp_d", mt_clamp_d}, {"align", mt_align},
-	{"align_2", mt_align_2}, {"align_2_mul", mt_align_2_multiple},
+	{"abs", tm_abs}, {"abs_l", tm_abs_l}, {"abs_ssize", tm_abs_ssize},
+	{"clamp", tm_clamp},
+	{"complex_abs", tm_complex_abs},
+	{"complex_addl", tm_complex_addl},
+	{"complex_mull", tm_complex_mull},
+	{"complex_muld", tm_complex_muld},
+	{"range", tm_range}, {"range_f", tm_range_f},
+	{"range_d", tm_range_d}, {"log", tm_log},
+	{"llogof", tm_llogof}, {"ullogof", tm_ullogof},
+	{"logof", tm_logof}, {"min", tm_min}, {"max", tm_max},
+	{"nbrlen", tm_nbrlen}, {"unbrlen", tm_unbrlen_base},
+	{"nbrlen_base", tm_nbrlen_base},
+	{"powd", tm_powd}, {"pow", tm_pow}, {"round", tm_round},
+	{"sqrt", tm_sqrt}, {"clamp_f", tm_clamp_f},
+	{"clamp_d", tm_clamp_d}, {"align", tm_align},
+	{"align_2", tm_align_2}, {"align_2_mul", tm_align_2_multiple},
 	{NULL, NULL}};
 
 	i = 0;

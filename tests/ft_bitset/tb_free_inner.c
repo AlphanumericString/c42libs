@@ -5,17 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 03:59:25 by bgoulard          #+#    #+#             */
+/*   Created: 2025/06/20 04:00:15 by bgoulard          #+#    #+#             */
 /*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "ft_bitset.h"
+#include "ft_string.h"
 #include "tests/bitset_tests.h"
+#include "types/ft_bitset_types.h"
+
+static	int	check_for_n(size_t	n)
+{
+	t_bitset	*bitset;
+
+	bitset = ft_bs_new(n);
+	if (!bitset)
+		return (n != 0);
+	// ft_Free inner fields
+	ft_bs_free_inner(bitset);
+	// Verify bits field is NULL
+	if (bitset->bits != NULL)
+		return (ft_free(bitset), 2);
+	// ft_Free the bitset pointer
+	ft_free(bitset);
+	return (0);
+}
 
 int	tb_free_inner(void)
 {
-	return (1);
+	t_bitset	*bitset;
+
+	// Test 0: try to Create bitset(0)
+	if (check_for_n(0))
+		return (1);
+	// Test 1: Create bitset (8 and 16 ) and check works
+	if (check_for_n(8) != 0 || check_for_n(16) != 0)
+		return (2);
+	// Test 2: ft_bs_free_inner with NULL
+	ft_bs_free_inner(NULL);
+	// Test 3: Create bitset from string and ft_free inner fields
+	bitset = ft_bs_new_from_mem("10101010", 8);
+	if (!bitset)
+		return (4);
+	ft_bs_free_inner(bitset);
+	// Verify bits field is NULL
+	if (bitset->bits != NULL)
+		return (ft_free(bitset), 5);
+	ft_free(bitset);
+	// Test 4: Test with stupid sizes
+	if (check_for_n(100) != 0 || check_for_n(1000) != 0
+		|| check_for_n(10000) != 0 || check_for_n(100000) != 0)
+		return (6);
+	return (0);
 }
 
 /*

@@ -13,7 +13,7 @@
 #include "ft_string.h"
 #include <stddef.h>
 
-size_t	ft_strclen(char *str, char c)
+size_t	ft_strclen(const char *str, char c)
 {
 	size_t	i;
 

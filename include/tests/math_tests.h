@@ -13,35 +13,36 @@
 #ifndef MATH_TESTS_H
 # define MATH_TESTS_H
 
-int	mt_abs(void);
-int	mt_abs_l(void);
-int	mt_abs_ssize(void);
-int	mt_align_2_multiple(void);
-int	mt_align_2(void);
-int	mt_align(void);
-int	mt_clamp_d(void);
-int	mt_clamp_f(void);
-int	mt_clamp(void);
-int	mt_complex_abs(void);
-int	mt_complex_addl(void);
-int	mt_complex_add(void);
-int	mt_complex_muld(void);
-int	mt_complex_mull(void);
-int	mt_llogof(void);
-int	mt_logof(void);
-int	mt_log(void);
-int	mt_max(void);
-int	mt_min(void);
-int	mt_nbrlen(void);
-int	mt_unbrlen_base(void);
-int	mt_nbrlen_base(void);
-int	mt_pow(void);
-int	mt_range_d(void);
-int	mt_range_f(void);
-int	mt_range(void);
-int	mt_round(void);
-int	mt_sqrt(void);
-int	mt_ullogof(void);
+int	tm_abs(void);
+int	tm_abs_l(void);
+int	tm_abs_ssize(void);
+int	tm_align_2_multiple(void);
+int	tm_align_2(void);
+int	tm_align(void);
+int	tm_clamp_d(void);
+int	tm_clamp_f(void);
+int	tm_clamp(void);
+int	tm_complex_abs(void);
+int	tm_complex_addl(void);
+int	tm_complex_add(void);
+int	tm_complex_muld(void);
+int	tm_complex_mull(void);
+int	tm_llogof(void);
+int	tm_logof(void);
+int	tm_log(void);
+int	tm_max(void);
+int	tm_min(void);
+int	tm_nbrlen(void);
+int	tm_unbrlen_base(void);
+int	tm_nbrlen_base(void);
+int	tm_pow(void);
+int	tm_powd(void);
+int	tm_range_d(void);
+int	tm_range_f(void);
+int	tm_range(void);
+int	tm_round(void);
+int	tm_sqrt(void);
+int	tm_ullogof(void);
 
 #endif /* MATH_TESTS_H */
 /*

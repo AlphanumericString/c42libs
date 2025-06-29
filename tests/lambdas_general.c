@@ -20,7 +20,7 @@ void	**creat_tb(void)
 	static int	a;
 	static int	b;
 	static int	c;
-	static int	*tab[3] = { &a, &b, &c };
+	static int	*tab[3] = {&a, &b, &c};
 
 	a = 42;
 	b = 43;

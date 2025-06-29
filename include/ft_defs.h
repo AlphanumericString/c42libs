@@ -50,8 +50,8 @@
 
 # if defined(__APPLE__) || defined(__linux__)
 
-typedef bool			t_bool;
-typedef ssize_t			t_ssize;
+typedef bool				t_bool;
+typedef ssize_t				t_ssize;
 
 # elif defined(_WIN32) || defined(_WIN64)
 
@@ -61,63 +61,70 @@ typedef enum e_bool
 	true = 1
 }	t_bool;
 
-typedef signed size_t	t_ssize;
+typedef signed size_t		t_ssize;
 
 # else
 
-typedef bool			t_bool;
-typedef ssize_t			t_ssize;
+typedef bool				t_bool;
+typedef ssize_t				t_ssize;
 
 # endif
 
+# define FT_HEXBASE			"0123456789abcdef"
+# define FT_HEXBASE_CAP		"0123456789ABCDEF"
+# define FT_OCTBASE			"01234567"
+
+/// @brief	Type maping to remove checks on type on any ptrs
+typedef void				*t_any;
+
 /// @brief	Base array interface, maps to void **
-typedef void **t_arr;
+typedef void				**t_arr;
 
 /// @brief	Array interface where inside and outside are consts, maps to
 ///		const void *const *
-typedef const void *const *t_const_arr;
+typedef const void *const	*t_const_arr;
 
 /// @brief	Arrayinterface where the data inside the sub ptrs are consts,
 ///		maps to const void **
-typedef const void **t_iconst_arr;
+typedef const void			**t_iconst_arr;
 
 /// @brief	Arrayinterface where the data inside the sub ptrs is not const but
 ///		the holder to them is, maps to void *const *t_oconst_arr
-typedef void *const *t_oconst_arr;
+typedef void *const			*t_oconst_arr;
 
 /// @brief	interface for string hashes.
 /// @param	str	The string to hash
 /// @param	str_len	The lenght of the string to hash, if -1 hashes until '\0'
-typedef size_t			(*t_strhash)(const char *str, ssize_t str_len);
+typedef size_t				(*t_strhash)(const char *str, ssize_t str_len);
 
 /// @brief Interface for string hashes.
 /// @param str	The string to hash
 /// @param data_len	The lenght of the string to hash, if -1 hashes until '\0'
-typedef size_t			(*t_memhash)(const void *data, size_t data_len);
+typedef size_t				(*t_memhash)(const void *data, size_t data_len);
 
 /// @brief	Type of function to compare two elements
 /// @param	A The first element to compare
 /// @param	B The second element to compare
 /// @return	Standard cmp c function ( < 0, 0, > 0 for a < b, a == b, a > b)
-typedef int				(*t_data_cmp)(const void *, const void *);
+typedef int					(*t_data_cmp)(const void *, const void *);
 
 /// @brief	Type of function to apply on a node data
 /// @param	Data The data to apply the function on
 /// @return Void
-typedef void			(*t_data_apply)(void *);
+typedef void				(*t_data_apply)(void *);
 
 /// @brief	Type of function to see if a node data is something
 /// @return	True if the data is what we are looking for, false otherwise
-typedef bool			(*t_data_is)(const void *);
+typedef bool				(*t_data_is)(const void *);
 
 /// @brief	Type of function to transform a data into something else
 /// @return	The new data
-typedef void			*(*t_data_tr)(const void *);
+typedef void				*(*t_data_tr)(const void *);
 
 /// @brief	Type of function to transform inplace a data into some other data
 /// @return	pointer to the data (think of strcat or memcpy, returns a pointer
 ///	to dst)
-typedef void			*(*t_data_tr_i)(void *);
+typedef void				*(*t_data_tr_i)(void *);
 
 #endif /* FT_DEFS_H */
 /*

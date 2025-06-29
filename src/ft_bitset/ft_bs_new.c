@@ -25,6 +25,8 @@ t_bitset	*ft_bs_new(size_t size)
 	bitset = ft_calloc(sizeof(t_bitset), 1);
 	if (!bitset)
 		return (NULL);
+	if (!size)
+		return (bitset);
 	bitset->_capacity = (size + 7) / 8;
 	bitset->bits = ft_calloc(sizeof(t_bitset8), bitset->_capacity);
 	if (!bitset->bits)
@@ -36,6 +38,12 @@ t_bitset	ft_bs_create(size_t size)
 {
 	t_bitset	bitset;
 
+	if (!size)
+	{
+		bitset._capacity = 0;
+		bitset.bits = NULL;
+		return (bitset);
+	}
 	bitset._capacity = (size + 7) / 8;
 	bitset.bits = ft_calloc(sizeof(t_bitset8), bitset._capacity);
 	if (!bitset.bits)
@@ -47,10 +55,11 @@ t_bitset	ft_bs_create(size_t size)
 	return (bitset);
 }
 
-t_bitset	*ft_bs_new_from_str(const char *str, size_t n)
+t_bitset	*ft_bs_new_from_mem(const void *str_p, size_t n)
 {
 	t_bitset	*bitset;
 	size_t		i;
+	const char	*str = str_p;
 
 	if (!str || !n)
 		return (NULL);
@@ -58,7 +67,7 @@ t_bitset	*ft_bs_new_from_str(const char *str, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		ft_bs_set_raw(bitset, i, (uint8_t)str[i]);
+		ft_bs_set_raw(bitset, i, str[i]);
 		i++;
 	}
 	return (bitset);

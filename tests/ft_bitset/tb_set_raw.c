@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 04:00:18 by bgoulard          #+#    #+#             */
+/*   Created: 2025/06/20 04:00:15 by bgoulard          #+#    #+#             */
 /*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -15,7 +15,26 @@
 
 int	tb_set_raw(void)
 {
-	return (1);
+	t_bitset	*bitset;
+
+	bitset = ft_bs_new(4 * 8);
+	if (!bitset)
+		return (1);
+	if (!ft_bs_set_raw(bitset, 0, 170) || !ft_bs_set_raw(bitset, 1, 240)
+		|| !ft_bs_set_raw(bitset, 2, 255) || !ft_bs_set_raw(bitset, 3, 0))
+		return (ft_bs_free(&bitset), 2);
+	if (ft_bs_get_raw(bitset, 0) != 170 || ft_bs_get_raw(bitset, 1) != 240
+		|| ft_bs_get_raw(bitset, 2) != 255 || ft_bs_get_raw(bitset, 3) != 0)
+		return (ft_bs_free(&bitset), 3);
+	if ((!ft_bs_set_raw(bitset, 0, 0b10100000) || ft_bs_set(bitset, 7, true))
+	&& ft_bs_get_raw(bitset, 0) != 160)
+		return (3);
+	if (ft_bs_set_raw(bitset, 99, 42) || ft_bs_set_raw(bitset, 100, 42))
+		return (ft_bs_free(&bitset), 4);
+	ft_bs_free_inner(bitset);
+	if (ft_bs_set_raw(NULL, 0, 42) || ft_bs_set_raw(bitset, 0, 42))
+		return (ft_bs_free(&bitset), 5);
+	return (ft_bs_free(&bitset), 0);
 }
 
 /*

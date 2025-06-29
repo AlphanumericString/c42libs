@@ -18,10 +18,15 @@ int	parse_args_test(void);
 int	targ_custom_checker_test(void);
 int	targ_opt_list_test(void);
 
+int	targ_shift_args(void);
+int	targ_consume_args_test(void);
+
 int	targ_setup_prog(void);
 int	targ_ac(void);
 int	targ_av(void);
 int	targ_ev(void);
+int	targ_parse(void);
+int	targ_getenvp(void);
 int	targ_version_test(void);
 int	targ_program_name_test(void);
 

@@ -3,19 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   tb_set.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 04:00:15 by bgoulard          #+#    #+#             */
 /*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_bitset.h"
+#include "internal/debug_defs.h"
 #include "tests/bitset_tests.h"
 
 int	tb_set(void)
 {
-	return (1);
+	t_bitset	*bitset;
+	bool		result;
+
+	// Test 1: Create bitset and test setting bits to true
+	bitset = ft_bs_new(16);
+	if (!bitset)
+		return (1);
+	// Set various bits to true
+	if (!ft_bs_set(bitset, 0, true) || !ft_bs_set(bitset, 7, true)
+		|| !ft_bs_set(bitset, 8, true) || !ft_bs_set(bitset, 15, true))
+		return (ft_bs_free(&bitset), 2);
+	// Test 2: Set bits to false
+	if (!ft_bs_set(bitset, 0, false) || !ft_bs_set(bitset, 7, false))
+		return (ft_bs_free(&bitset), 3);
+	// Test 3: Test out-of-bounds access (should return false)
+	result = ft_bs_set(bitset, 16, true);
+	if (result != false)
+		return (ft_bs_free(&bitset), 4);
+	result = ft_bs_set(bitset, 100, false);
+	if (result != false)
+		return (ft_bs_free(&bitset), 5);
+	// Test 4: Test with NULL bitset (should return false)
+	result = ft_bs_set(NULL, 0, true);
+	if (result != false)
+		return (ft_bs_free(&bitset), 6);
+	// Test 5: Test setting all bits in a byte
+	for (size_t i = 0; i < 8; i++)
+		if (!ft_bs_set(bitset, i, true))
+			return (ft_bs_free(&bitset), 7);
+	ft_bs_free_inner(bitset);
+	result = ft_bs_set(bitset, 2, false);
+	if (result != false)
+		return (ft_bs_free(&bitset), 8);
+	return (ft_bs_free(&bitset), 0);
 }
 
 /*

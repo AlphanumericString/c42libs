@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_allocator_hooks.c                               :+:      :+:    :+:   */
+/*   ft_al_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:55:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/05 16:28:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/06/29 14:02:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
+#include "internal/debug_defs.h"
 
 void	*ft_malloc(size_t size)
 {

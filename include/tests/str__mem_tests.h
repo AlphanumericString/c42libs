@@ -13,29 +13,42 @@
 #ifndef STR__MEM_TESTS_H
 # define STR__MEM_TESTS_H
 
-int	test_apply_2d(void);
-int	test_bzero(void);
-int	test_calloc(void);
-int	test_fd_to_buff(void);
-int	test_free_2d(void);
-int	test_freecl(void);
-int	test_free(void);
-int	test_len_2d(void);
-int	test_membd_allocator(void);
-int	test_membd_calloc(void);
-int	test_membd_free(void);
-int	test_membd_malloc(void);
-int	test_membd_realloc(void);
-int	test_membd_reallocarray(void);
-int	test_memchr(void);
-int	test_memcmp(void);
-int	test_memcpy(void);
-int	test_memmap(void);
-int	test_memmove(void);
-int	test_memset(void);
-int	test_qsort(void);
-int	test_realloc(void);
-int	test_swap(void);
+// test array
+// tca -> test c-style array
+int	tca_apply_2d(void);
+int	tca_free_2d(void);
+int	tca_len_2d(void);
+
+// test memory allocator
+// tmal -> test memory allocator
+int	tmal_allocator(void);
+int	tmal_calloc(void);
+int	tmal_free(void);
+int	tmal_malloc(void);
+int	tmal_realloc(void);
+int	tmal_reallocarray(void);
+
+// test memory arena
+// tma -> test memory arena
+int	tma_arena(void);
+int	tma_narena(void);
+
+// global test memory functions
+// tm -> test memory
+int	tm_bzero(void);
+int	tm_calloc(void);
+int	tm_fd_to_buff(void);
+int	tm_freecl(void);
+int	tm_free(void);
+int	tm_memchr(void);
+int	tm_memcmp(void);
+int	tm_memcpy(void);
+int	tm_memmap(void);
+int	tm_memmove(void);
+int	tm_memset(void);
+int	tm_qsort(void);
+int	tm_realloc(void);
+int	tm_swap(void);
 
 #endif /* STR__MEM_TESTS_H */
 /*

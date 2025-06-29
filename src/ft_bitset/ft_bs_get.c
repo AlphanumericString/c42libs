@@ -15,14 +15,14 @@
 
 uint8_t	ft_bs_get_raw(t_bitset *bitset, size_t index)
 {
-	if (index >= bitset->_capacity)
+	if (!bitset || !bitset->bits || index >= bitset->_capacity)
 		return (0);
 	return (bitset->bits[index].raw);
 }
 
 bool	ft_bs_get(t_bitset *bitset, size_t index)
 {
-	if (index >= bitset->_capacity * 8)
+	if (!bitset || !bitset->bits || index >= bitset->_capacity * 8)
 		return (false);
 	return (bitset->bits[index / 8].raw & (1 << (index % 8)));
 }

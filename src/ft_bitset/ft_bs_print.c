@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "internal/debug_defs.h"
 #include "types/ft_bitset_types.h"
 #include "ft_bitset.h"
 #include "ft_string.h"
@@ -21,18 +22,15 @@ static void	print_bitset8(t_bitset8 b8, int fd, const char *fmt[3])
 		b8.b7};
 	size_t		i;
 
-	i = 0;
-	if (fd < 0 || !fmt || !fmt[0] || !fmt[1])
-		return ;
-	while (i < 8)
+	i = 8;
+	while (i)
 	{
-		if (bit[i])
+		if (bit[--i])
 			ft_putstr_fd(fmt[0], fd);
 		else
 			ft_putstr_fd(fmt[1], fd);
-		if (i != 7 && fmt[2])
+		if (i != 0 && fmt[2])
 			ft_putstr_fd(fmt[2], fd);
-		i++;
 	}
 }
 
@@ -42,14 +40,13 @@ void	ft_bs_print(t_bitset *bitset, int fd)
 	const char	*fmt[3] = {"true", "false", ", "};
 	size_t		i;
 
-	if (fd < 0 || !bitset)
+	if (fd < 0 || !bitset || !bitset->bits)
 		return ;
-	i = 0;
-	while (i < bitset->_capacity)
+	i = bitset->_capacity;
+	while (i)
 	{
-		print_bitset8(bitset->bits[i], fd, fmt);
+		print_bitset8(bitset->bits[--i], fd, fmt);
 		ft_putstr_fd("\n", fd);
-		i++;
 	}
 }
 
@@ -59,14 +56,13 @@ void	ft_bs_print_binary(t_bitset *bitset, int fd)
 	const char	*fmt[3] = {"1", "0", NULL};
 	size_t		i;
 
-	if (fd < 0 || !bitset)
+	if (fd < 0 || !bitset || !bitset->bits)
 		return ;
-	i = 0;
-	while (i < bitset->_capacity)
+	i = bitset->_capacity;
+	while (i)
 	{
-		print_bitset8(bitset->bits[i], fd, fmt);
+		print_bitset8(bitset->bits[--i], fd, fmt);
 		ft_putstr_fd("\n", fd);
-		i++;
 	}
 }
 
@@ -78,19 +74,18 @@ void	ft_bs_print_hex(t_bitset *bitset, int fd)
 	char		str[3];
 	size_t		i;
 
-	if (fd < 0 || !bitset)
+	if (fd < 0 || !bitset || !bitset->bits)
 		return ;
-	i = 0;
+	i = bitset->_capacity;
 	ft_bzero(str, 3);
-	while (i < bitset->_capacity)
+	while (i)
 	{
-		str[1] = base[bitset->bits[i].raw % 16];
+		str[1] = base[bitset->bits[--i].raw % 16];
 		str[0] = base[bitset->bits[i].raw / 16];
 		ft_putstr_fd(prepend, fd);
 		ft_putstr_fd(str, fd);
-		if (i != bitset->_capacity - 1)
-			ft_putstr_fd(" ", fd);
-		i++;
+		if (i)
+			ft_putstr_fd(", ", fd);
 	}
 	ft_putstr_fd("\n", fd);
 }
@@ -101,19 +96,18 @@ void	ft_bs_print_decimal(t_bitset *bitset, int fd)
 	char	str[4];
 	size_t	i;
 
-	if (fd < 0 || !bitset)
+	if (fd < 0 || !bitset || !bitset->bits)
 		return ;
-	i = 0;
+	i = bitset->_capacity;
 	ft_bzero(str, 4);
-	while (i < bitset->_capacity)
+	while (i)
 	{
-		str[0] = (bitset->bits[i].raw / 100) + '0';
+		str[0] = (bitset->bits[--i].raw / 100) + '0';
 		str[1] = ((bitset->bits[i].raw / 10) % 10) + '0';
 		str[2] = (bitset->bits[i].raw % 10) + '0';
 		ft_putstr_fd(str, fd);
-		if (i != bitset->_capacity - 1)
+		if (i)
 			ft_putstr_fd(", ", fd);
-		i++;
 	}
 	ft_putstr_fd("\n", fd);
 }

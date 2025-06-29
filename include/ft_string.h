@@ -35,6 +35,12 @@
 # include "types/ft_string_types.h"
 
 /* ************************************************************************** */
+/* **                     FT_ARR SUB MODULE                                ** */
+/* ************************************************************************** */
+
+# include "ft_arr.h"
+
+/* ************************************************************************** */
 /* **						 FT_STR_IS MAIN MODULE						   ** */
 /* ************************************************************************** */
 
@@ -116,12 +122,6 @@ bool		ft_str_isvalid(const char *restrict str, int (*f)(int));
 /// @param str string to check
 /// @return 1 if the string is a possible filename, 0 otherwise
 bool		ft_str_isfname(const char *fname);
-
-/* ************************************************************************** */
-/* **                     FT_ARR SUB MODULE                                ** */
-/* ************************************************************************** */
-
-#include "ft_arr.h"
 
 /* ************************************************************************** */
 /* **                     FT_MEM SUB MODULE                                ** */
@@ -414,7 +414,7 @@ size_t		ft_strnlen(const char *restrict str, size_t max);
 /// @param c Char to search
 /// @return the length of the string str up to the first c, if c is not found
 /// the length of the string str
-size_t		ft_strclen(char *restrict str, char c);
+size_t		ft_strclen(const char *restrict str, char c);
 
 /// @brief Get the number of occurance of char c in string str
 /// @param str String to search from

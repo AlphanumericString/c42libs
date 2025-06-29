@@ -16,7 +16,7 @@
 # include "ft_defs.h"
 # include "types/ft_list_types.h"
 
-# define FT_NARENA_MAX 1 << 6 // 64 arenas contexts max
+# define FT_NARENA_MAX 64 // 64 arenas contexts max
 
 // base
 void	*ft_arena_alloc(size_t size);

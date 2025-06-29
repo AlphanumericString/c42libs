@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 03:59:20 by bgoulard          #+#    #+#             */
+/*   Created: 2025/06/20 04:00:15 by bgoulard          #+#    #+#             */
 /*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -15,7 +15,23 @@
 
 int	tb_free(void)
 {
-	return (1);
+	t_bitset	*bitset;
+
+	bitset = ft_bs_new(8);
+	if (!bitset)
+		return (1);
+	ft_bs_free(&bitset);
+	if (bitset != NULL)
+		return (2);
+	ft_bs_free(&bitset);
+	ft_bs_free(NULL);
+	bitset = ft_bs_new(16);
+	ft_bs_set_raw(bitset, 0, 129);
+	ft_bs_set_raw(bitset, 1, 129);
+	ft_bs_free(&bitset);
+	if (bitset != NULL)
+		return (4);
+	return (0);
 }
 
 /*

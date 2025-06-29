@@ -38,6 +38,9 @@ int	tb_create(void)
 	if (!bitset.bits)
 		return (2);
 	ft_bs_free_inner(&bitset);
+	bitset = ft_bs_create(0);
+	if (bitset._capacity != 0 || bitset.bits != NULL)
+		return (3);
 	return (mt_bsnew());
 }
 /*

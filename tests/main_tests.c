@@ -70,16 +70,6 @@ static const t_module	*get_tests(void)
 	return (tests);
 }
 
-#if defined(true_random)
-# if defined(__linux__)
-#  define SRAND_OK true
-# else
-#  define SRAND_OK false
-# endif
-#else
-# define SRAND_OK false
-#endif
-
 // setup stuff for tests
 static void	setup(const char *av[])
 {

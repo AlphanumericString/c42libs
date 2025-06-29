@@ -15,6 +15,8 @@
 
 bool	ft_bs_toggle(t_bitset *bitset, size_t idx)
 {
+	if (!bitset || !bitset->bits)
+		return (false);
 	if (idx >= bitset->_capacity * 8)
 		return (false);
 	bitset->bits[idx / 8].raw ^= (1 << (idx % 8));
@@ -23,9 +25,11 @@ bool	ft_bs_toggle(t_bitset *bitset, size_t idx)
 
 bool	ft_bs_toggle_raw(t_bitset *bitset, size_t index)
 {
-	if (index % 8)
+	if (!bitset || !bitset->bits)
 		return (false);
-	bitset->bits[index / 8].raw ^= 0xFF;
+	if (index >= bitset->_capacity)
+		return (false);
+	bitset->bits[index].raw ^= 0xFF;
 	return (true);
 }
 /*

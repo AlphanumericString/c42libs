@@ -13,6 +13,7 @@
 #include "internal/args_helper_types.h"
 #include "internal/args_helper.h"
 
+#include "internal/debug_defs.h"
 #include "types/ft_args_types.h"
 #include <stdlib.h>
 #include <stddef.h>

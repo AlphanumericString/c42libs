@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_args.h"
+#include "internal/debug_defs.h"
 #include "types/ft_args_types.h"
 #include "ft_string.h"
 #include "internal/args_helper.h"
@@ -49,9 +50,9 @@ int	ft_parse_args(const char **argv, void *usr_control_struct)
 	size_t		i;
 	uint16_t	j;
 
-	ft_setup_prog(argv);
 	if (!argv || !*argv)
-		return (-1);
+		return (ft_set_nbparg(0), -1);
+	ft_setup_prog(argv);
 	opt_list = ft_get_opt_list();
 	if (!opt_list)
 		return (-1);

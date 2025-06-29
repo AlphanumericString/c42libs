@@ -18,7 +18,7 @@
 t_iconst_arr	ft_adup(t_const_arr arr)
 {
 	t_iconst_arr	ret;
-	size_t	i;
+	size_t			i;
 
 	ret = NULL;
 	if (!arr)

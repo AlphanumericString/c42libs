@@ -33,12 +33,19 @@ enum e_separator
 	FT_AS_MASK = 3 << 2, // mask for separator
 };
 
+// TODO: maybe split the range (eg: int long uint ...)
+//	and format (eg: hex, oct, nbr...).
+// In that case what of str formats? we keep str as 'range' and specify
+//	fname / alnum / str / alonly at format? seems silly
+//	will introduce user error on stupid stuff like "int | fname"...
+//	maybe a 'separate' falg for ints (like a plage for them and their format)?
+
 // << by the amount of bits used by the previous enum in the union
 // max : 2^5 -> 32
 enum e_arg_types
 {
 	FT_AT_UNSPECIFIED = 0 << 4, // default : keep first defined (used in code)
-	FT_AT_INT = 1 << 4,
+	FT_AT_INT = 1 << 4,	// todo: maybe add uint ?
 	FT_AT_LONG = 2 << 4,
 	FT_AT_NBR = 3 << 4,
 	FT_AT_HEX = 4 << 4,

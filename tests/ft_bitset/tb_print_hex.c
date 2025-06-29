@@ -5,17 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 03:59:58 by bgoulard          #+#    #+#             */
+/*   Created: 2025/06/20 04:00:15 by bgoulard          #+#    #+#             */
 /*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fcntl.h"
 #include "ft_bitset.h"
+#include "ft_string.h"
+#include "internal/debug_defs.h"
 #include "tests/bitset_tests.h"
+#include "tests/tests.h"
+#include <unistd.h>
 
 int	tb_print_hex(void)
 {
-	return (1);
+	const char	file_name[] = TESTS_FPREFIX "bs_print_hex.txt";
+	const char	*expecteds = "0xde\n\n0xaf, 0x19\n";
+	t_bitset	*bs;
+	int			fd;
+	char 		buff[512];
+
+	bs = ft_bs_new(8);
+	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	ft_bs_set_raw(bs, 0, 0xDE);
+	ft_bs_print_hex(bs, fd);
+	ft_bs_free(&bs);
+	ft_putendl_fd("", fd);
+	bs = ft_bs_new(16);
+	ft_bs_set_raw(bs, 1, 0xAF);
+	ft_bs_set_raw(bs, 0, 0x19);
+	ft_bs_print_hex(bs, fd);
+	ft_bs_print_hex(NULL, -1);
+	ft_bs_print_hex(NULL, fd);
+	ft_bs_free_inner(bs);
+	ft_bs_print_hex(bs, fd);
+	ft_bs_free(&bs);
+	ft_bs_print_hex(bs, fd);
+	close(fd);
+	fd = open(file_name, O_RDONLY);
+	ft_bzero(buff, (sizeof buff / sizeof buff[0]));
+	if (read(fd, buff, (sizeof buff / sizeof buff[0]) - 1) < 0
+		|| ft_strcmp(buff, expecteds))
+		return (
+		LOG_VAR("%s", expecteds),
+		LOG_VAR("%s", buff),
+		1);
+	destroy_test_file(fd, file_name);
+	return (0);
+
 }
 
 /*

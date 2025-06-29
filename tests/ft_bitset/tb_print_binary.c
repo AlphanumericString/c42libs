@@ -5,17 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 03:59:48 by bgoulard          #+#    #+#             */
+/*   Created: 2025/06/20 04:00:15 by bgoulard          #+#    #+#             */
 /*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fcntl.h"
 #include "ft_bitset.h"
+#include "ft_string.h"
 #include "tests/bitset_tests.h"
+#include "tests/tests.h"
+#include <unistd.h>
 
 int	tb_print_binary(void)
 {
-	return (1);
+	const char	file_name[] = TESTS_FPREFIX "bs_print_binary.txt";
+	const char	*expecteds = "11001010\n\n11110011\n11001111\n";
+	t_bitset	*bs;
+	int			fd;
+	char 		buff[512];
+
+	bs = ft_bs_new(8);
+	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	ft_bs_set_raw(bs, 0, 0b11001010);
+	ft_bs_print_binary(bs, fd);
+	ft_bs_free(&bs);
+	ft_putendl_fd("", fd);
+	bs = ft_bs_new(16);
+	ft_bs_set_raw(bs, 1, 0b11110011);
+	ft_bs_set_raw(bs, 0, 0b11001111);
+	ft_bs_print_binary(bs, fd);
+	ft_bs_print_binary(NULL, -1);
+	ft_bs_print_binary(NULL, fd);
+	ft_bs_free_inner(bs);
+	ft_bs_print_binary(bs, fd);
+	ft_bs_free(&bs);
+	ft_bs_print_binary(bs, fd);
+	close(fd);
+	fd = open(file_name, O_RDONLY);
+	ft_bzero(buff, (sizeof buff / sizeof buff[0]));
+	if (read(fd, buff, (sizeof buff / sizeof buff[0]) - 1) < 0
+		|| ft_strcmp(buff, expecteds))
+		return (
+		1);
+	destroy_test_file(fd, file_name);
+	return (0);
+
 }
 
 /*

@@ -24,26 +24,14 @@
 static const t_test	*init_tests(void)
 {
 	static const t_test	var[] = {
-	{"new", tb_new},
-	{"create", tb_create},
-	{"new_from_str", tb_new_from_str},
-	{"clear", tb_clear},
-	{"free", tb_free},
-	{"free_inner", tb_free_inner},
-	{"get_raw", tb_get_raw},
-	{"get", tb_get},
-	{"set_raw", tb_set_raw},
-	{"set", tb_set},
-	{"toggle", tb_toggle},
-	{"toggle_raw", tb_toggle_raw},
-	{"print", tb_print},
-	{"print_binary", tb_print_binary},
-	{"print_hex", tb_print_hex},
-	{"print_decimal", tb_print_decimal},
-	{"append", tb_append},
-	{"remove", tb_remove},
-	{"remove_front", tb_remove_front},
-	{NULL, NULL}};
+	{"new", tb_new}, {"create", tb_create}, {"new_from_mem", tb_new_from_mem},
+	{"clear", tb_clear}, {"free", tb_free}, {"free_inner", tb_free_inner},
+	{"get_raw", tb_get_raw}, {"get", tb_get}, {"set_raw", tb_set_raw},
+	{"set", tb_set}, {"toggle", tb_toggle}, {"toggle_raw", tb_toggle_raw},
+	{"print", tb_print}, {"print_binary", tb_print_binary},
+	{"print_hex", tb_print_hex}, {"print_decimal", tb_print_decimal},
+	{"append", tb_append}, {"remove", tb_remove},
+	{"remove_front", tb_remove_front}, {NULL, NULL}};
 
 	return (var);
 }

@@ -21,12 +21,12 @@ int	parse_args_test(void)
 static const t_test	*init_tests(void)
 {
 	static const t_test	var[] = {
-	{"ac", targ_ac}, {"av", targ_av}, {"ev", targ_ev},
+	{"ac", targ_ac}, {"av", targ_av}, {"ev", targ_ev}, {"getenv", targ_getenvp},
 	{"setup_prog", targ_setup_prog}, {"version", targ_version_test},
-	{"prog_name", targ_program_name_test},
-	{"opt_list", targ_opt_list_test},
+	{"prog_name", targ_program_name_test}, {"opt_list", targ_opt_list_test},
 	{"custom checker", targ_custom_checker_test},
-	{NULL, NULL}};
+	{"consume_args", targ_consume_args_test}, {"shift_args", targ_shift_args},
+	{"parse_args", targ_parse}, {NULL, NULL}};
 
 	return (var);
 }

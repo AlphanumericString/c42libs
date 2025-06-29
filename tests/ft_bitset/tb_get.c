@@ -12,12 +12,27 @@
 
 #include "ft_bitset.h"
 #include "tests/bitset_tests.h"
+#include "types/ft_bitset_types.h"
 
 int	tb_get(void)
 {
-	return (1);
-}
+	t_bitset	*bs;
 
+	bs = ft_bs_new(8);
+	if (!bs)
+		return (1);
+	if (ft_bs_get(bs, 0) || ft_bs_get(bs, 1) || ft_bs_get(bs, 7))
+		return (ft_bs_free(&bs), 2);
+	ft_bs_set_raw(bs, 0, 0b11110110);
+	if (ft_bs_get(bs, 0) != false && ft_bs_get(bs, 1) != true)
+		return (ft_bs_free(&bs), 3);
+	if (ft_bs_get(bs, 16) != false || ft_bs_get(bs, 100) != false)
+		return (ft_bs_free(&bs), 4);
+	ft_bs_free_inner(bs);
+	if (ft_bs_get(NULL, 0) != 0 || ft_bs_get(bs, 0) != 0)
+		return (ft_bs_free(&bs), 6);
+	return (ft_bs_free(&bs), 0);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

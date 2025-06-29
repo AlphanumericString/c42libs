@@ -25,7 +25,7 @@ const char	*ft_get_env(const char *key)
 	len = ft_strlen(key);
 	while (envp[i])
 	{
-		if (!ft_strcmp(envp[i], key) && envp[i][len] == '=')
+		if (ft_strcmp(envp[i], key) == '=')
 			return (envp[i] + len + 1);
 		i++;
 	}

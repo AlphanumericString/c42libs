@@ -15,22 +15,22 @@
 #include "ft_string.h"
 #include <stddef.h>
 
-void	ft_bs_append(t_bitset *bitset, t_bitset *to_append)
+bool	ft_bs_append(t_bitset *bitset, t_bitset *to_append)
 {
 	t_bitset8	*bs8;
 
 	if (!bitset || !to_append)
-		return ;
+		return (false);
 	bs8 = ft_calloc(sizeof(t_bitset8),
 			bitset->_capacity + to_append->_capacity);
 	if (!bs8)
-		return ;
+		return (false);
 	ft_memcpy(bs8, bitset->bits, bitset->_capacity);
 	ft_memcpy(bs8 + bitset->_capacity, to_append->bits, to_append->_capacity);
 	bitset->_capacity += to_append->_capacity;
 	ft_free(bitset->bits);
 	bitset->bits = bs8;
-	return ;
+	return (true);
 }
 /*
 GPL-3.0 License:

@@ -19,21 +19,19 @@ static int	ft_ac_singleton(int ac)
 {
 	static int	ac_st = 0;
 
-	if (ac)
+	if (ac >= 0)
 		ac_st = ac;
 	return (ac_st);
 }
 
 int	ft_set_ac(int ac)
 {
-	if (ac < 1)
-		return (EXIT_FAILURE);
 	return (ft_ac_singleton(ac), EXIT_SUCCESS);
 }
 
 int	ft_ac(void)
 {
-	return (ft_ac_singleton(0));
+	return (ft_ac_singleton(-1));
 }
 /*
 GPL-3.0 License:
