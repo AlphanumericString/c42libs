@@ -27,7 +27,6 @@ bool	ft_bs_set_raw(t_bitset *bitset, size_t index, uint8_t value)
 	// mask = 0xFF & ~(1 << (index % 8));
 	// if (value)
 	// 	mask = 0x00 | (1 << (index % 8));
-	// LOG_VAR("0x%02X", mask);
 	// bitset->bits[index / 8].raw &= mask;
 bool	ft_bs_set(t_bitset *bitset, size_t index, bool value)
 {

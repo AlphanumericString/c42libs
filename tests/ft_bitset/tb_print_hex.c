@@ -47,10 +47,7 @@ int	tb_print_hex(void)
 	ft_bzero(buff, (sizeof buff / sizeof buff[0]));
 	if (read(fd, buff, (sizeof buff / sizeof buff[0]) - 1) < 0
 		|| ft_strcmp(buff, expecteds))
-		return (
-		LOG_VAR("%s", expecteds),
-		LOG_VAR("%s", buff),
-		1);
+		return (1);
 	destroy_test_file(fd, file_name);
 	return (0);
 
