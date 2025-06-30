@@ -20,6 +20,24 @@
 # include <stdbool.h>
 # include <sys/types.h>
 
+// Change version with -DVERSION="x.y.z" at compile time
+# ifndef VERSION
+#  define VERSION "1.0.0"
+# endif
+# ifndef AUTHOR
+#  define AUTHOR "bgoulard <bgoulard@student.42.fr>"
+# endif
+
+# ifndef FT_VERSION
+#  define FT_VERSION "0.0.12"
+# endif
+
+// maybe add a hash to the prefix to avoid collisions?
+// sed in Makefile to replace _COMPILETIME_HASH_
+# ifndef FT_COMPILETIME_HASH
+#  define FT_COMPILETIME_HASH "13"
+# endif
+
 // Paths and separators
 # define FT_PATH_INVALID_SPE_CHARS "?*/"
 # define FT_NEWLINE_SEQ "\n"

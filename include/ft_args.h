@@ -23,18 +23,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// Change version with -DVERSION="x.y.z" at compile time
-# ifndef VERSION
-#  define VERSION "1.0.0"
-# endif
-# ifndef AUTHOR
-#  define AUTHOR "bgoulard <bgoulard@student.42.fr>"
-# endif
-
-# ifndef FT_VERSION
-#  define FT_VERSION "0.0.12"
-# endif
-
 // [idea shellved] : pb was to ugly to resolve in core and complexified
 // for minimum benefits
 // // [CARG:common Args]

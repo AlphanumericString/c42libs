@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_args.h"
+#include "ft_defs.h"
 #include "internal/args_helper.h"
 
 #include <stddef.h>

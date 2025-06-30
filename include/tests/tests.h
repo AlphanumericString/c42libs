@@ -18,18 +18,11 @@
 
 # define TESTS_FPREFIX		"build/test_"
 # define TESTS_FPREFIX_TMP	"/tmp/c42libs_test_"
-// maybe add a hash to the prefix to avoid collisions?
-// sed in Makefile to replace _COMPILETIME_HASH_
-# define COMPILETIME_HASH	0
 
-# if defined(true_random)
-#  if defined(__linux__)
+# if defined(__linux__)
 #   define SRAND_OK true
-#  else
-#   define SRAND_OK false
-#  endif
 # else
-#  define SRAND_OK false
+#   define SRAND_OK false
 # endif
 
 # ifndef FORK_TESTS

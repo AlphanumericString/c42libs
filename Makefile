@@ -71,12 +71,22 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 ## To change debug level run make DEBUG_LEVEL=xxx
 ##
 
+# vars
+COMPILE_TIME_HASH	:= $(shell date +%Y%m%d%H%M%S | shasum -a 256)
+#VERSION				:= $(shell echo "0.0.0")
+
+# flags
 WFLAGS		= -Wall -Wextra -Werror -Wmissing-prototypes
 LDFLAGS		=
 STDFLAGS	= -std=c99
 
+VAR_FLAGS	=\
+			-DCOMPILE_TIME_HASH="$(COMPILE_TIME_HASH)"	\
+
+#			-DVERSION="$(VERSION)"
+
 CPPFLAGS	=\
-			 $(addprefix -I, $(INC_DIR)) -MMD -MP
+			$(addprefix -I, $(INC_DIR)) -MMD -MP
 FFLAGS		=\
 			-fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined	   \
 			-fsanitize=leak -fsanitize=pointer-compare 						   \
@@ -84,8 +94,9 @@ FFLAGS		=\
 			-fsanitize-address-use-after-scope -fsanitize=pointer-overflow
 
 CFLAGS		=\
-			$(WFLAGS) $(CPPFLAGS) -fPIC -fdiagnostics-color                    \
-			-fno-inline -fno-inline-functions ${STDFLAGS}
+			$(WFLAGS) $(CPPFLAGS) -fPIC -fdiagnostics-color					\
+			-fno-inline -fno-inline-functions ${STDFLAGS}					\
+			$(VAR_FLAGS)
 
 TEST_FLAGS	=\
 			-g2	-DTEST														\
