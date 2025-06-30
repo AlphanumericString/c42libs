@@ -15,7 +15,7 @@
 
 ssize_t	ft_mod(ssize_t nbr, ssize_t modulus)
 {
-	return (ft_abs_ssize_t(nbr %= modulus));
+	return (ft_abs_ssize_t(nbr % modulus));
 }
 /*
 GPL-3.0 License:

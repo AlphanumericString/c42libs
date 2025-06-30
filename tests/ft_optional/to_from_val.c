@@ -26,18 +26,16 @@ int	to_from_val(void)
 	ptr = malloc(sizeof(int));
 	*ptr = 42;
 	opt = ft_optional_from_val(ptr);
-	if (!opt)
-		return (1);
+	if (!opt || !opt->val || opt->val != ptr)
+		return (ft_free(ptr), ft_free(opt), 1);
 	if (opt->pres != OPT_SOME)
-		return (2);
-	if (opt->val != ptr)
-		return (3);
+		return (ft_optional_destroy(opt), ft_free(ptr), 2);
 	opt->pres = OPT_NONE;
 	ft_optional_destroy(opt);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_optional_from_val(ptr))
-		return (4);
+		return (talloc_set_failpoint(prev), 3);
 	talloc_set_failpoint(prev);
 	ft_free(ptr);
 	return (0);

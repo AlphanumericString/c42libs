@@ -26,12 +26,10 @@ int	t_ll_create(void)
 	data = malloc(sizeof(int));
 	*data = 42;
 	list = ft_ll_create(data);
-	if (!list)
-		return (1);
-	else if (list->data != data)
-		return (2);
+	if (!list || !list->data || list->data != data)
+		return (ft_free(data), ft_free(list), 1);
 	else if (list->next)
-		return (3);
+		return (ft_free(data), ft_free(list), 2);
 	ft_ll_delete(&list, ft_free);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);

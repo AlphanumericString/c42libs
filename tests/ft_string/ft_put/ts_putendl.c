@@ -33,11 +33,7 @@ static int	error_cases(int fd, const char *const f_name)
 	fd = -1;
 	if (ft_putendl_fd("bad fd", fd) != -1)
 		return (3);
-	fd = open(f_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
-	bread = read(fd, buff, 100);
-	if (bread != 0)
-		return (4);
-	return (destroy_test_file(fd, f_name), EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
 int	test_putendl(void)

@@ -16,7 +16,11 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-# define TESTS_FPREFIX "build/test_"
+# define TESTS_FPREFIX		"build/test_"
+# define TESTS_FPREFIX_TMP	"/tmp/c42libs_test_"
+// maybe add a hash to the prefix to avoid collisions?
+// sed in Makefile to replace _COMPILETIME_HASH_
+# define COMPILETIME_HASH	0
 
 # if defined(true_random)
 #  if defined(__linux__)

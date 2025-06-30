@@ -12,8 +12,10 @@
 
 #include "ft_string.h"
 #include "ft_list.h"
+#include "tests/tests_lambda_functions.h"
 #include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include "tests/tests__all_modules_tests.h"
 
@@ -26,8 +28,10 @@ int	t_dl_clear(void)
 	*data = 42;
 	list = ft_dl_create(data);
 	ft_dl_clear(&list, NULL);
-	list = ft_dl_create(data);
+	list = ft_dl_create((void *)data);
 	ft_dl_clear(&list, ft_free);
+	list = ft_dl_create((void *)42);
+	ft_dl_clear(&list, do_nothing);
 	return (0);
 }
 
@@ -44,28 +48,42 @@ int	t_dl_clear(void)
 //	delete nodes
 //
 
+static t_dlist	*a_to_dl(const int *a, int size)
+{
+	t_dlist	*ret;
+	int		i;
+
+	ret = NULL;
+	i = 0;
+	while (i < size)
+	{
+		ft_dl_push_back(&ret, (void *)((long)a[i]));
+		i++;
+	}
+	return (ret);
+}
+
 int	t_dl_clear_range(void)
 {
-	t_dlist	*list;
-	int		*data;
-	int		*data2;
-	int		*data3;
+	t_dlist		*list;
+	const int	data[] = {42, 21, 63};
 
-	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
-	data3 = malloc(sizeof(int));
-	*data3 = 63;
-	ft_dl_add_back(&list, ft_dl_create(data3));
+	list = a_to_dl(data, 3);
 	ft_dl_clear_range(list->next, list->next->next, NULL);
-	if ((ft_dl_size(list) != 3) || (list->data != data || list->next->data \
-|| list->next->next->data != data3))
-		return (1);
-	ft_dl_add_back(&list, ft_dl_create(data2));
-	ft_dl_clear_range(list->next->next, NULL, ft_free);
-	if (ft_dl_size(list) != 4 || list->data != data \
-|| list->next->data || list->next->next->data)
+	if ((ft_dl_size(list) != 3)
+		|| list->data != (void *)42
+		|| list->next->data != NULL
+		|| list->next->next->data != (void *)63)
+		return (ft_dl_clear(&list, NULL), 1);
+	ft_dl_push_back(&list, (void *)21);
+	ft_dl_clear_range(list->next->next, NULL, do_nothing);
+	if (ft_dl_size(list) != 4
+		|| list->data != (void *)42
+		|| list->next->data
+		|| list->next->next->data)
 		return (2);
-	ft_dl_clear_range(list, NULL, ft_free);
-	ft_dl_clear_range(NULL, NULL, ft_free);
+	ft_dl_clear_range(list, NULL, do_nothing);
+	ft_dl_clear_range(NULL, NULL, do_nothing);
 	ft_dl_delete_range(list, NULL, NULL);
 	return (0);
 }

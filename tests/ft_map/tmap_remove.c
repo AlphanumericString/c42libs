@@ -46,16 +46,15 @@ static int	tmap_remove_colision(void)
 		ft_strdup("value"), ft_strdup("value2"), ft_strdup("value3"),
 		ft_strdup("value4"), NULL};
 	t_map		*map;
-	int			ret;
+	int			i;
 
 	map = ft_map_create(1);
-	ret = 0;
-	while (str[ret])
+	i = 0;
+	while (str[i])
 	{
-		ft_map_set(map, keys[ret], str[ret], ft_strlen(keys[ret]));
-		ret++;
+		ft_map_set(map, keys[i], str[i], ft_strlen(keys[i]));
+		i++;
 	}
-	ret = 0;
 	if (ft_map_remove(map, keys[2], ft_strlen(keys[2])) != str[2])
 		return (1);
 	if (ft_map_remove(map, keys[1], ft_strlen(keys[1])) != str[1])

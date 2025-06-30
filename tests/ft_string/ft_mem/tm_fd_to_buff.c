@@ -19,25 +19,25 @@
 
 static int	base_case(void)
 {
-	char	buff[100];
-	char	*ret;
-	int		fd;
+	const char	*fname = TESTS_FPREFIX "test_fd_to_buff.txt";
+	char		buff[100];
+	char		*ret;
+	int			fd;
 
 	ft_bzero(buff, 100);
 	ft_strlcat(buff, "Hello World\n\n\n\n\tv\vjkldqskjfsldfjsmldfkj\n", 100);
-	fd = open(TESTS_FPREFIX "tm_fd_to_buff.txt", O_RDWR | O_CREAT, 0644);
+	fd = open(fname, O_RDWR | O_CREAT, 0644);
 	if (fd < 0)
 		return (1);
 	write(fd, buff, ft_strlen(buff));
 	close(fd);
-	fd = open(TESTS_FPREFIX "tm_fd_to_buff.txt", O_RDONLY | O_CREAT);
+	fd = open(fname, O_RDONLY);
 	if (fd < 0)
 		return (2);
 	ret = ft_fd_to_buff(fd);
 	if (ft_strcmp(ret, buff) != 0)
-		return (3);
-	destroy_test_file(fd, TESTS_FPREFIX "test_fd_to_buff.txt");
-	return (ft_free(ret), 0);
+		return (destroy_test_file(fd, fname), ft_free(ret), 3);
+	return (destroy_test_file(fd, fname), ft_free(ret), 0);
 }
 
 // semi uncheckable case on errors with the check for read in the loop

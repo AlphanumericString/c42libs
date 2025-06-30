@@ -96,7 +96,6 @@ int	run_test(const t_test *test, int *collect)
 	int								sum;
 	int								mx_flen;
 
-	ret = 0;
 	sum = 0;
 	i = 0;
 	mx_flen = 0;

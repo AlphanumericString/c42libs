@@ -36,6 +36,27 @@ int	targ_ac(void)
 	return (0);
 }
 
+int	targ_ev_from_acav(void)
+{
+	const char			*av_fake[] = {
+		"toto", "prout", NULL, "pipi", "caca", NULL};
+	const char *const	*prev_ev = ft_ev();
+	const char *const	*prev_av = ft_av();
+	const int			prev_ac = ft_ac();
+
+	ft_set_ev_from_av(av_fake, 2);
+	if (ft_ev() != av_fake + 3)
+		return (1);
+	ft_set_ev_from_av(av_fake, 1);
+	if (ft_ev() == av_fake + 1)
+		return (2);
+	if (ft_set_ev_from_av(NULL, 0) != EXIT_FAILURE
+		|| ft_ev() != av_fake + 3)
+		return (3);
+	return (ft_set_ev(prev_ev), ft_set_av(prev_av),
+		ft_set_ac(prev_ac), 0);
+}
+
 int	targ_ev(void)
 {
 	const char			*evs[][2] = {{"toto", "prout"}, {"pipi", "caca"}};

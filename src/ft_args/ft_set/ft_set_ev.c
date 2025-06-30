@@ -28,10 +28,11 @@ static const char *const	*ft_ev_singleton(const char *const *ev, bool set)
 // Dependant on c abi - lol
 // ev are always sotred after av in mem acording to c std abi
 // we use this property to access ev by just reading after the first NULL;;
+// @return 0 on success, 1 on error
 int	ft_set_ev_from_av(const char *const *av, int ac)
 {
 	if (!av || !ac || av[ac] != NULL)
-		return (ft_set_ev(NULL));
+		return (EXIT_FAILURE);
 	return (ft_set_ev((const char *const *)(&av[ac + 1])));
 }
 

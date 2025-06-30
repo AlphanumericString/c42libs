@@ -12,6 +12,7 @@
 
 #include "ft_args.h"
 #include "ft_string.h"
+#include "internal/args_helper.h"
 #include "tests/tests__all_modules_tests.h"
 #include <stdio.h>
 
@@ -26,12 +27,10 @@ int	targ_setup_prog(void)
 		return (1);
 	if (ft_strcmp(ft_version(), VERSION) != 0)
 		return (2);
-	if (ft_ac() != 2)
+	if (ft_ac() != 2 || ft_ev() != &(argv[3]) || ft_ev()[0] != argv[3]
+		|| ft_av()[1] != argv[1])
 		return (3);
-	if (ft_ev() != &(argv[3]) || ft_ev()[0] != argv[3])
-		return (4);
-	if (ft_av()[1] != argv[1])
-		return (5);
+	ft_set_ev(NULL);
 	ft_setup_prog(argv2);
 	if (!ft_progname() || ft_strcmp(ft_progname(), "a.out"))
 		return (6);

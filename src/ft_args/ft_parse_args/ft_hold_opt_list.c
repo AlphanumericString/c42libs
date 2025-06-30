@@ -32,10 +32,10 @@ int	ft_set_opt_list(const t_opt *opt_list_c)
 		return (EXIT_FAILURE);
 	ol_it = 0;
 	opt_list = (t_opt *)opt_list_c;
-	while (opt_list && opt_list[ol_it].func)
+	while (opt_list[ol_it].func)
 	{
-		if (opt_list[ol_it].type != 0 && (opt_list[ol_it].type & FT_AH_MASK)
-			== FT_AH_NO)
+		if (opt_list[ol_it].type != 0
+			&& (opt_list[ol_it].type & FT_AH_MASK) == FT_AH_NO)
 		{
 			opt_list[ol_it].type = (opt_list[ol_it].type | FT_AH_YES);
 		}

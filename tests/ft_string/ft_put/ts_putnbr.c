@@ -23,7 +23,6 @@ static int	nb_to_file(const int *nbs, size_t size, const char *file_name)
 	int		fd;
 	size_t	i;
 
-	fd = 0;
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (fd < 0)
 		return (-1);
@@ -43,7 +42,6 @@ static int	file_cmp(const char *file_name, const char *expected)
 	int		fd;
 	char	buff[100];
 
-	fd = 0;
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(buff, sizeof(buff));
 	read(fd, buff, sizeof(buff));

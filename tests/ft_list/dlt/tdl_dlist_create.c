@@ -27,21 +27,16 @@ int	t_dl_create(void)
 	data = malloc(sizeof(int));
 	*data = 42;
 	list = ft_dl_create(data);
-	if (!list)
-		return (1);
-	else if (list->data != data)
-		return (2);
-	else if (list->next)
-		return (3);
-	else if (list->prev)
-		return (4);
+	if (!list || !list->data || list->data != data)
+		return (ft_free(data), ft_free(list), 1);
+	else if (list->next || list->prev)
+		return (ft_free(data), ft_free(list), 2);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_dl_create(data))
 		return (talloc_set_failpoint(prev), 5);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, ft_free);
-	return (0);
+	return (ft_dl_clear(&list, ft_free), 0);
 }
 /*
 GPL-3.0 License:

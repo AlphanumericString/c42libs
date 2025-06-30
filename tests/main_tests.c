@@ -87,7 +87,6 @@ static int	run_module(const t_module module)
 	const char	*r_s[] = {" \033[32mOK\033[0m", " \033[31mKO\033[0m"};
 	int			collect;
 
-	collect = 0;
 	ft_print_fd(STDOUT_FILENO, "\n\nTesting %s\n", module.full_name);
 	collect = module.test();
 	ft_print_fd(STDOUT_FILENO, "\nModule:: %s ", module.full_name);

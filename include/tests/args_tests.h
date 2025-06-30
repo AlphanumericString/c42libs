@@ -24,6 +24,7 @@ int	targ_consume_args_test(void);
 int	targ_setup_prog(void);
 int	targ_ac(void);
 int	targ_av(void);
+int	targ_ev_from_acav(void);
 int	targ_ev(void);
 int	targ_parse(void);
 int	targ_getenvp(void);

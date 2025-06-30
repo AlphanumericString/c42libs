@@ -38,12 +38,14 @@ int	t_ll_add_front(void)
 	list = NULL;
 	ft_ll_add_front(&list, ft_ll_create(data2));
 	ft_ll_add_front(&list, ft_ll_create(data));
-	if (!list || list->data != data || !list->next
+	if (!list)
+		return (ft_free(data), ft_free(data2), 1);
+	if (list->data != data || !list->next
 		|| list->next->data != data2 || list->next->next)
-		return (1);
+		return (ft_free(data), ft_free(data2), ft_free(list->next),
+			ft_free(list), 2);
 	ft_ll_add_front(NULL, list);
-	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (ft_ll_clear(&list, ft_free), 0);
 }
 
 int	t_ll_add_back(void)
@@ -58,10 +60,13 @@ int	t_ll_add_back(void)
 	*data2 = 21;
 	list = ft_ll_create(data);
 	ft_ll_add_back(&list, ft_ll_create(data2));
-	if (!list || list->data != data || !list->next)
-		return (1);
+	if (!list)
+		return (ft_free(data), ft_free(data2), 1);
+	if (list->data != data || !list->next)
+		return (ft_free(data), ft_free(data2), ft_free(list->next),
+			ft_free(list), 2);
 	else if (list->next->data != data2 || list->next->next)
-		return (1);
+		return (ft_free(data), ft_free(data2), ft_ll_clear(&list, NULL), 3);
 	ft_ll_clear(&list, ft_free);
 	return (0);
 }

@@ -29,17 +29,14 @@ int	t_dl_add_front(void)
 	list = ft_dl_create(data2);
 	ft_dl_add_front(&list, NULL);
 	if (!list || list->next)
-		return (1);
-	else
-	{
-		ft_dl_add_front(&list, ft_dl_create(data));
-		if (!list || list->data != data || !list->next)
-			return (1);
-		else if (list->next->data != data2 || list->next->next)
-			return (1);
-		else if (list->next->prev != list)
-			return (1);
-	}
+		return (ft_free(data), ft_free(data2), ft_dl_clear(&list, NULL), 1);
+	ft_dl_add_front(&list, ft_dl_create(data));
+	if (!list || list->data != data || !list->next)
+		return (ft_free(data), ft_free(data2), ft_dl_clear(&list, NULL), 2);
+	else if (list->next->data != data2 || list->next->next)
+		return (ft_free(data), ft_free(data2), ft_dl_clear(&list, NULL), 3);
+	else if (list->next->prev != list)
+		return (ft_free(data), ft_free(data2), ft_dl_clear(&list, NULL), 4);
 	ft_dl_clear(&list, ft_free);
 	ft_dl_add_front(NULL, NULL);
 	return (0);
@@ -59,16 +56,13 @@ int	t_dl_add_back(void)
 	ft_dl_add_back(&list, ft_dl_create(data));
 	ft_dl_add_back(&list, NULL);
 	if (!list || list->next)
-		return (1);
-	else
-	{
-		ft_dl_add_back(&list, ft_dl_create(data2));
-		if (!list || list->data != data || !list->next || \
-list->next->data != data2)
-			return (1);
-		else if (list->next->next || list->next->prev != list)
-			return (1);
-	}
+		return (ft_free(data), ft_free(data2), ft_dl_clear(&list, NULL), 1);
+	ft_dl_add_back(&list, ft_dl_create(data2));
+	if (!list || list->data != data || !list->next
+		|| list->next->data != data2)
+		return (ft_free(data), ft_free(data2), ft_dl_clear(&list, NULL), 2);
+	else if (list->next->next || list->next->prev != list)
+		return (ft_free(data), ft_free(data2), ft_dl_clear(&list, NULL), 3);
 	ft_dl_clear(&list, ft_free);
 	ft_dl_add_back(NULL, NULL);
 	return (0);

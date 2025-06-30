@@ -22,7 +22,7 @@ bool	ft_str_isfname(const char *fname)
 		return (false);
 	while (fname[i])
 	{
-		if (!ft_isalnum(fname[i]) && !ft_strchr(INVALID_SPE_CHARS, fname[i]))
+		if (!ft_strchr(FT_PATH_INVALID_SPE_CHARS, fname[i]))
 			return (false);
 		i++;
 	}

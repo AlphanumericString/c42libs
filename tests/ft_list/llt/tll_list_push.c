@@ -29,21 +29,20 @@ int	t_ll_push(void)
 	list_rep1 = ft_ll_push(&list, (void *)42);
 	list_rep2 = ft_ll_push(&list, (void *)84);
 	if (!list || !list_rep1 || !list_rep2)
-		return (1);
+		return (ft_free(list_rep1), ft_free(list_rep2), 1);
 	else if (list != list_rep2)
-		return (2);
+		return (ft_free(list_rep1), ft_free(list_rep2), 2);
 	else if (list->next != list_rep1 || ft_ll_size(list) != 2)
-		return (3);
+		return (ft_free(list_rep1), ft_free(list_rep2), 3);
 	else if (list->data != (void *)84 || list->next->data != (void *)42)
-		return (5);
+		return (ft_free(list_rep1), ft_free(list_rep2), 4);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_ll_push(&list, (void *)42))
 		return (talloc_set_failpoint(prev), 6);
 	talloc_set_failpoint(prev);
 	ft_ll_clear(&list, NULL);
-	ft_ll_push(NULL, NULL);
-	return (0);
+	return (ft_ll_push(NULL, NULL), 0);
 }
 
 int	t_ll_push_back(void)
@@ -66,8 +65,7 @@ int	t_ll_push_back(void)
 		return (talloc_set_failpoint(prev), 4);
 	talloc_set_failpoint(prev);
 	ft_ll_clear(&list, NULL);
-	ft_ll_push_back(NULL, NULL);
-	return (0);
+	return (ft_ll_push_back(NULL, NULL), 0);
 }
 
 int	t_ll_pop(void)

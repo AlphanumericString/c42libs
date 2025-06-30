@@ -12,63 +12,19 @@
 
 #ifndef FT_DEFS_H
 # define FT_DEFS_H
+
+// NULL    -> stddef.h
+// bools   -> stdbool.h
+// ssize_t -> stddef.h | sys/types.h (version dependent, idk, weird)
 # include <stddef.h>
+# include <stdbool.h>
+# include <sys/types.h>
 
-// linux:
-// stddef -> size_t
-// stdbool -> boolean types
-// sys/types -> ssize_t
-
-# ifdef __APPLE__
-#  define INVALID_SPE_CHARS "/:\""
-#  define NEWLINE_SEQ "\n"
-#  define PATH_SEPARATORS "/:"
-#  define ENV_SEPARATORS ":"
-#  include <stddef.h>
-#  include <stdbool.h>
-#  include <sys/types.h>
-# elif defined(__linux__)
-#  define INVALID_SPE_CHARS "?*/"
-#  define NEWLINE_SEQ "\n"
-#  define PATH_SEPARATORS "/"
-#  define ENV_SEPARATORS ":"
-#  include <stdbool.h>
-#  include <sys/types.h>
-# elif defined(_WIN32) || defined(_WIN64)
-#  define INVALID_SPE_CHARS "\\:*?\"<>|"
-#  define NEWLINE_SEQ "\r\n"
-#  define PATH_SEPARATORS "\\/"
-#  define ENV_SEPARATORS ";"
-# else
-#  define INVALID_SPE_CHARS ""
-#  define NEWLINE_SEQ "\n"
-#  define PATH_SEPARATORS "/"
-#  define ENV_SEPARATORS ":"
-#  include <stdbool.h>
-#  include <sys/types.h>
-# endif
-
-# if defined(__APPLE__) || defined(__linux__)
-
-typedef bool				t_bool;
-typedef ssize_t				t_ssize;
-
-# elif defined(_WIN32) || defined(_WIN64)
-
-typedef enum e_bool
-{
-	false = 0,
-	true = 1
-}	t_bool;
-
-typedef signed size_t		t_ssize;
-
-# else
-
-typedef bool				t_bool;
-typedef ssize_t				t_ssize;
-
-# endif
+// Paths and separators
+# define FT_PATH_INVALID_SPE_CHARS "?*/"
+# define FT_NEWLINE_SEQ "\n"
+# define FT_PATH_SEPARATORS "/"
+# define FT_ENV_SEPARATORS ":"
 
 # define FT_HEXBASE			"0123456789abcdef"
 # define FT_HEXBASE_CAP		"0123456789ABCDEF"
