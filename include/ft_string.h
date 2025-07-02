@@ -30,6 +30,8 @@
 # include <stddef.h>
 # include <stdbool.h>
 # include <sys/types.h>
+# include <stdarg.h>
+
 // self types
 # include "ft_defs.h"
 # include "types/ft_string_types.h"
@@ -571,8 +573,36 @@ char		*ft_gnl(int fd);
 /// @param fd file descriptor to print on
 /// @param str string to print
 /// @param ... variable arguments to format the string
+/// @return the number of printed characters
 int			ft_print_fd(int fd, const char *str, ...);
-// TODO: ft_print -> auto STDOUT_FILENO + ft_print_err -> auto STDERR_FILENO
+
+/// @brief Print the string str on the specified file descriptor with the
+/// specified format (only sdiuxXcspfFeEm)
+/// @param fd file descriptor to print on
+/// @param str string to print
+/// @param args	the va_list containing the arguments for the format string
+/// @return the number of printed characters
+int			ft_vaprint_fd(int fd, const char *str, va_list args);
+
+/// @brief Print the string str on STDOUT with the specified format
+///		(only sdiuxXcspfFeEm)
+/// @param str string to print
+/// @param ... variable arguments to format the string
+/// @return the number of printed characters
+int			ft_print(const char *str, ...);
+
+/// @brief Print the string str on STDERR with the specified format
+///		(only sdiuxXcspfFeEm)
+/// @param str string to print
+/// @param ... variable arguments to format the string
+/// @return the number of printed characters
+int			ft_print_err(const char *str, ...);
+
+//
+// no theres no printf function in this lib.
+// 1 this is a project @ 42, you're already lucky your getting ft_print and gnl
+// 2 this is largely sufficient for 99% of cases. specialy for 42 projects.
+//
 
 /* ************************************************************************** */
 /*                        FT_STRING SUB MODULE                                */

@@ -56,7 +56,7 @@ static int	lc_process_vaa(char c, va_list args, int fd)
 	return (processors[i].func(args, fd));
 }
 
-static int	ft_print_fd_internal(int fd, const char *str, va_list args)
+int	ft_vaprint_fd(int fd, const char *str, va_list args)
 {
 	char			*pos;
 	size_t			total;
@@ -92,7 +92,7 @@ int	ft_print_fd(int fd, const char *str, ...)
 	if (!str || fd < 0 || fd > MAX_FD)
 		return (-1);
 	va_start(args, str);
-	result = ft_print_fd_internal(fd, str, args);
+	result = ft_vaprint_fd(fd, str, args);
 	va_end(args);
 	return (result);
 }

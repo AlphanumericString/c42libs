@@ -21,34 +21,9 @@
 #include <limits.h>
 
 // TODO: update tests files structure arboresence to reflect src
-/* Target:
- ┌─ ft_math
- ├─ ft_pair
- ├─ ft_optional
- │     ┌─ ft_stris
- │  ┌─ ft_str
- │  ├─ ft_chr
- │  ├─ ft_string
- │  │  ┌─ processors
- │  ├─ ft_put
- │  ├─ ft_num
- │  │  ┌─ ft_arr
- │  │  ├─ ft_arena
- │  │  ├─ ft_allocator
- │  ├─ ft_mem
- ├─ ft_string
- │  ┌─ ft_parse_args
- │  ├─ ft_set
- ├─ ft_args
- ├─ ft_map
- ├─ ft_vector
- ├─ ft_bitset
- │  ┌─ ft_dl
- │  ├─ ft_cl
- │  ├─ ft_ll
- ├─ ft_list
- tests
-*/
+//	-done
+//	-> modify tests fixture to have tests && modules in modules
+//		eg: mem -> [ft_bzero, ... && [ft_arr [ft_aaply, ...], ft_arnea [...]]
 
 static const t_module	*get_tests(void)
 {
