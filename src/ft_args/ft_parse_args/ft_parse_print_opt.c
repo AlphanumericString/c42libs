@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: (problematic due to sys call function restriction @ 42)
 //		if (ls[i].desc)
 //			tabwidth - getenv TAB_WIDTH else 8;
 //			ioctl - get term width
 //			print by chunk of (width - 3*tabwidth)
 //			set in buffer
-// TODO:
-// maybe expose to pulic if they do their own help function?
 #include "ft_string.h"
 #include "internal/args_helper.h"
+#include "ft_args.h"
 
-void	print_opt(const t_opt opt, int fd)
+void	ft_print_opts(const t_opt opt, int fd)
 {
 	if (!opt.long_name && !opt.short_name)
 		return ;

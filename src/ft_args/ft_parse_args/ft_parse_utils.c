@@ -30,7 +30,7 @@ void	disp_loaded(void)
 	while (ls[i].func)
 	{
 		if (ls[i].short_name || ls[i].long_name)
-			print_opt(ls[i], STDERR_FILENO);
+			ft_print_opts(ls[i], STDERR_FILENO);
 		i++;
 	}
 }
@@ -57,6 +57,8 @@ const char	*get_arg(enum e_separator sep_flag, t_parser_state *state,
 		return (av_arg);
 }
 
+// {NULL, FT_AT_STR, "string"},
+// maybe add something to check non empty eg: ""
 static const struct s_local_table	*get_table(void)
 {
 	size_t						i;
@@ -72,8 +74,8 @@ static const struct s_local_table	*get_table(void)
 	{(t_data_is)ft_str_isdouble, FT_AT_DOUBLE, "double"},
 	{(t_data_is)ft_str_isbool, FT_AT_BOOL, "boolean"},
 	{(t_data_is)ft_str_isnum, FT_AT_NBR, "number"},
-	{(t_data_is)ft_str_isfname, FT_AT_FNAME, "file name"}, // todo!
-	{NULL, FT_AT_STR, "string"}, // todo! wtf this passes norme?
+	{(t_data_is)ft_str_isfname, FT_AT_FNAME, "file name"},
+	{NULL, FT_AT_STR, "string"}, // ?todo? see above
 	{NULL, 0, NULL}
 	};
 

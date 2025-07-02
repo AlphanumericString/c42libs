@@ -30,8 +30,6 @@
 /*																			  */
 /* ************************************************************************** */
 
-// TODO: Test cl
-
 # include <stdbool.h>
 # include <stddef.h>
 # include <sys/types.h>
@@ -374,6 +372,15 @@ size_t	ft_cl_delete_range(t_dlist *start, const t_dlist *restrict end,
 /// @param head The head of the list
 /// @return The number of nodes deleted
 size_t	ft_cl_delete(t_dlist **head, const t_data_apply del);
+
+// TODO: implement delete dup for cl
+// /// @brief Delete duplicates node
+// /// @param head The head of the list
+// /// @param cmp The compare function
+// /// @param del The function to delete the data
+// /// @return The number of nodes deleted
+// size_t	ft_cl_delete_dup(t_clist **src, t_data_cmp cmp,
+//  			const t_data_apply del);
 
 /* ************************************************************************** */
 /*                                  FIND                                      */

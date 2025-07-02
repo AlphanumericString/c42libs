@@ -23,8 +23,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// [idea shellved] : pb was to ugly to resolve in core and complexified
-// for minimum benefits
+// [idea shellved] : pb was to ugly to resolve in core and complexified the
+// logic for minimum benefits
 // // [CARG:common Args]
 // // Auto handle common args options such as 'v'|"version" 'h'|"help"
 // // 0 -> no.
@@ -42,6 +42,7 @@
 /// @brief argument parser
 int					ft_arg_set_custom_checker(t_data_is custom_checker);
 int					ft_set_opt_list(const t_opt *opt_list);
+void				ft_print_opts(const t_opt opt, int fd);
 int					ft_parse_args(const char **argv,
 						void *usr_control_struct);
 

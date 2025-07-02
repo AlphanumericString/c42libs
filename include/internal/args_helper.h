@@ -50,7 +50,6 @@ void		perror_pa_state(t_parser_state *st, const char *error);
 //
 // Parse utils (semi-private)
 //
-void		print_opt(const t_opt opt, int fd);
 void		put_type_fd(uint16_t type, int fd);
 void		disp_loaded(void);
 //

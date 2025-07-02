@@ -20,7 +20,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//	int		prev; // set alloc fail -> TODO
 static int	base_cases(void)
 {
 	t_dlist	*list;
@@ -38,8 +37,8 @@ static int	base_cases(void)
 		return (1);
 	ft_dl_clear(&sub, NULL);
 	sub = ft_dl_subrange(list, list->next->next);
-	if (ft_dl_size(sub) != 2 || sub->data != data1 || \
-sub->next->data != data2 || (ft_dl_clear(&sub, NULL), 0))
+	if (ft_dl_size(sub) != 2 || sub->data != data1
+		|| sub->next->data != data2 || (ft_dl_clear(&sub, NULL), 0))
 		return (2);
 	if (ft_dl_subrange(NULL, NULL))
 		return (3);
@@ -82,7 +81,6 @@ int	t_dl_subrange(void)
 		return (ret + 10);
 	return (0);
 }
-
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.
