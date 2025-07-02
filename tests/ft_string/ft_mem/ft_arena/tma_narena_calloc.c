@@ -36,7 +36,7 @@ int	tma_narena_calloc(void)
 		|| ft_narena_calloc(-1, 42, 1) != NULL)
 		return (1);
 	ptr = ft_narena_calloc(FT_NARENA_MAX / 2, 42, 1);
-	if (!ptr || ft_narena_belongs(ptr, FT_NARENA_MAX / 2) != true)
+	if (!ptr || ft_narena_belongs(FT_NARENA_MAX / 2, ptr) != true)
 		return (2);
 	ft_strlcpy(ptr, "toto", 42);
 	if (ft_strcmp(ptr, "toto"))

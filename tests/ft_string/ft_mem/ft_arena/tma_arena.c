@@ -15,8 +15,6 @@
 #include "tests/str__mem_tests.h"
 #include <stddef.h>
 
-	// This function is a placeholder for the arena tests.
-	// It used to tests related to memory arenas.
 int	tma_arena(void)
 {
 	const char	*str_src = "toto valid memory to write to test";
@@ -29,7 +27,7 @@ int	tma_arena(void)
 	ft_strlcpy(ptr, str_src, 42);
 	if (ft_strncmp(ptr, str_src, 41) != 0)
 		return (2);
-	if (ft_narena_belongs(ptr, FT_DEFAULT_ARENA) != true)
+	if (ft_narena_belongs(FT_DEFAULT_ARENA, ptr) != true)
 		return (3);
 	ft_arena_free();
 	ptr = ft_arena_calloc(42, sizeof(char));

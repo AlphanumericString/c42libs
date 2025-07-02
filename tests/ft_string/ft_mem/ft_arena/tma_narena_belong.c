@@ -21,14 +21,14 @@ int	tma_narena_belong(void)
 
 	ptr_1 = ft_narena_alloc(FT_NARENA_MAX - 1, 42);
 	ptr_2 = ft_narena_alloc(FT_NARENA_MAX - 1, 42);
-	if (ft_narena_belongs(ptr_1, FT_NARENA_MAX - 1) != true
-		|| ft_narena_belongs(ptr_2, FT_NARENA_MAX - 1) != true
-		|| ft_narena_belongs(ptr_3, FT_NARENA_MAX - 1) != false)
+	if (ft_narena_belongs(FT_NARENA_MAX - 1, ptr_1) != true
+		|| ft_narena_belongs(FT_NARENA_MAX - 1, ptr_2) != true
+		|| ft_narena_belongs(FT_NARENA_MAX - 1, ptr_3) != false)
 		return (ft_narena_free_all(), 1);
-	if (ft_narena_belongs(NULL, FT_NARENA_MAX - 1) != false
-		|| (ft_narena_belongs(ptr_2, 0) != false && FT_NARENA_MAX > 0)
-		|| ft_narena_belongs(ptr_2, FT_NARENA_MAX + 1) != false
-		|| ft_narena_belongs(ptr_2, -1) != false)
+	if (ft_narena_belongs(FT_NARENA_MAX - 1, NULL) != false
+		|| (ft_narena_belongs(0, ptr_2) != false && FT_NARENA_MAX > 0)
+		|| ft_narena_belongs(FT_NARENA_MAX + 1, ptr_2) != false
+		|| ft_narena_belongs(-1, ptr_2) != false)
 		return (ft_narena_free_all(), 2);
 	ft_narena_free_all();
 	return (0);

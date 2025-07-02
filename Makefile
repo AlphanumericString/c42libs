@@ -293,12 +293,6 @@ FT_CHR_SRC		=	\
 			$(FT_CHR_DIR)/ft_tolower.c				\
 			$(FT_CHR_DIR)/ft_toupper.c				\
 
-# TODO: add array functions:
-# ft_adup_deep
-# ft_amap
-# ?ft_armap
-# ft_arev
-
 FT_MEM_SRC		=\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_arena.c	\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_group.c	\
@@ -347,6 +341,7 @@ FT_PUT_SRC		=\
 			$(FT_PUT_DIR)/processors/integers_conv.c	\
 			$(FT_PUT_DIR)/processors/string.c			\
 			$(FT_PUT_DIR)/ft_perror.c			\
+			$(FT_PUT_DIR)/ft_print.c			\
 			$(FT_PUT_DIR)/ft_print_fd.c			\
 			$(FT_PUT_DIR)/ft_putdbl_fd.c		\
 			$(FT_PUT_DIR)/ft_putendl_fd.c		\

@@ -49,8 +49,7 @@ static t_dlist	**singleton_arena(int arena)
 // 	ft_dl_delete_self(node, ft_free);
 // }
 
-// todo: switch order
-bool	ft_narena_belongs(const void *ptr, int ar_nb)
+bool	ft_narena_belongs(int ar_nb, const void *ptr)
 {
 	t_dlist	**current_arena;
 

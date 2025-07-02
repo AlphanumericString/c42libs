@@ -33,7 +33,7 @@ void	ft_arena_free(void);
 void	*ft_narena_alloc(int arena, size_t request);
 void	*ft_narena_calloc(int arena, size_t count, size_t size);
 void	ft_narena_free(int arena);
-bool	ft_narena_belongs(const void *ptr, int ar_nb);
+bool	ft_narena_belongs(int ar_nb, const void *ptr);
 
 void	ft_narena_free_all(void) __attribute__((destructor(200)));
 
