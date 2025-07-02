@@ -12,6 +12,8 @@
 
 #include "ft_arr.h"
 
+// todo: maybe pos? return maybe int/void * with either the i/-1 where match
+//		or a valid adress of the array/null.
 const void	*ft_afind(t_const_arr arr, const void *cmp_d)
 {
 	size_t	i;

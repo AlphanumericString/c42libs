@@ -18,12 +18,13 @@ const void	*ft_arfind(t_const_arr arr, const void *cmp_d)
 
 	if (!arr || !cmp_d)
 		return (NULL);
+	if (arr[0] == NULL)
+		return (NULL);
 	i = ft_alen(arr);
-	while (arr[i])
+	while (i--)
 	{
 		if (arr[i] == cmp_d)
 			return (arr[i]);
-		i++;
 	}
 	return (NULL);
 }
@@ -36,11 +37,10 @@ const void	*ft_arfind_with(t_const_arr arr, const void *cmp_d,
 	if (!cmp || !arr || !cmp_d)
 		return (NULL);
 	i = ft_alen(arr);
-	while (arr[i])
+	while (i--)
 	{
 		if (cmp(arr[i], cmp_d) == 0)
 			return (arr[i]);
-		i--;
 	}
 	return (NULL);
 }

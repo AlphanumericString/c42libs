@@ -1,27 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atr.c                                           :+:      :+:    :+:   */
+/*   tca_acat.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:18:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/16 16:13:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "ft_arr.h"
 #include "ft_defs.h"
+#include "ft_string.h"
+#include "tests/tests.h"
+#include "tests/str__mem_tests.h"
 
-void	ft_atr(t_arr arr, t_data_tr_i tr)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int	tca_acat(void)
 {
-	ssize_t	i;
+	size_t		i;
+	const int	*arr[42] = {
+		(int *)1, (int *)2, (int *)3, (int *)4, (int *)5, NULL};
+	const int	*arr2[] = {
+		(int *)10, (int *)20, (int *)30, (int *)40, (int *)50, NULL};
 
-	if (!tr || !arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-		arr[i] = tr(arr[i]);
+	ft_acat((t_iconst_arr)arr, (t_const_arr)arr2);
+	if (ft_alen((t_const_arr)arr) != 10)
+		return (1);
+	i = 0;
+	while (i < 10)
+	{
+		if ((i < 5 && arr[i] != (int *)(i + 1))
+			|| (i >= 5 && arr[i] != (int *)((i + 1 - 5) * 10)))
+			return (2);
+		i++;
+	}
+	return (0);
 }
 /*
 GPL-3.0 License:

@@ -17,6 +17,8 @@ size_t	ft_alen(t_const_arr array)
 	size_t	len;
 
 	len = 0;
+	if (!array)
+		return (0);
 	while (array[len])
 		len++;
 	return (len);

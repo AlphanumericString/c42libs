@@ -17,6 +17,8 @@ void	ft_aapply(t_oconst_arr array, t_data_apply f)
 	size_t	i;
 
 	i = 0;
+	if (!array || !f)
+		return ;
 	while (array[i])
 		f(array[i++]);
 }

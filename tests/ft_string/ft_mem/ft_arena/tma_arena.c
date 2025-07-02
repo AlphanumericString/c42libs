@@ -10,13 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests/tests__all_modules_tests.h"
+#include "ft_arena.h"
+#include "ft_string.h"
+#include "tests/str__mem_tests.h"
+#include <stddef.h>
 
 	// This function is a placeholder for the arena tests.
 	// It used to tests related to memory arenas.
 int	tma_arena(void)
 {
-	return (0);
+	const char	*str_src = "toto valid memory to write to test";
+	char		*ptr;
+	size_t		i;
+
+	ptr = ft_arena_alloc(42);
+	if (!ptr)
+		return (1);
+	ft_strlcpy(ptr, str_src, 42);
+	if (ft_strncmp(ptr, str_src, 41) != 0)
+		return (2);
+	if (ft_narena_belongs(ptr, FT_DEFAULT_ARENA) != true)
+		return (3);
+	ft_arena_free();
+	ptr = ft_arena_calloc(42, sizeof(char));
+	if (!ptr)
+		return (4);
+	i = 0;
+	while (i < 42)
+		if (ptr[i++] != 0)
+			return (5);
+	return (ft_arena_free(), 0);
 }
 /*
 GPL-3.0 License:

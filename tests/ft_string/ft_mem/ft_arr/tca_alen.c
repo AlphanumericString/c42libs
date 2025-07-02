@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tca_len_2d.c                                       :+:      :+:    :+:   */
+/*   tca_alen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 00:11:07 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:10:03 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "tests/tests__all_modules_tests.h"
+#include "ft_arr.h"
+#include "tests/tests.h"
+#include "tests/str__mem_tests.h"
 
-int	tca_len_2d(void)
+int	tca_alen(void)
 {
-	char	*arr2d[4];
+	const int	*arr[] = {NULL};
+	const int	*ar2[] = {(int *)1, (int *)2, NULL};
+	const char	*ar3[] = {"a", "b", "c", NULL};
 
-	arr2d[0] = "Hello";
-	arr2d[1] = "World";
-	arr2d[2] = "!";
-	arr2d[3] = NULL;
-	if (ft_alen((const void *const *)arr2d) != 3)
+	if (ft_alen((t_const_arr)arr)
+		|| ft_alen(NULL)
+		|| ft_alen((t_const_arr)ar2) != 2
+		|| ft_alen((t_const_arr)ar3) != 3)
 		return (1);
 	return (0);
 }

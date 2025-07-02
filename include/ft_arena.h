@@ -16,16 +16,31 @@
 # include "ft_defs.h"
 # include "types/ft_list_types.h"
 
-# define FT_NARENA_MAX 64 // 64 arenas contexts max
+# define FT_NARENA_MAX		64 // 64 arenas contexts max
+# define FT_DEFAULT_ARENA	0
+
+// todo: typedef t_dlist **->t_arena
+// >> ft_get_arena -> obscure singleton + get benefits across multiple files
+//
+// todo: maybe rename [n]arena_free to [n]arena_destroy ? might be clearer
+// that you dont give the ptr to free it
 
 // base
 void	*ft_arena_alloc(size_t size);
 void	*ft_arena_calloc(size_t count, size_t size);
 void	ft_arena_free(void);
-
 // n version
 void	*ft_narena_alloc(int arena, size_t request);
 void	*ft_narena_calloc(int arena, size_t count, size_t size);
 void	ft_narena_free(int arena);
+bool	ft_narena_belongs(const void *ptr, int ar_nb);
+
+void	ft_narena_free_all(void) __attribute__((destructor(200)));
+
+// todo: maybe add a 'decl_arena_space' type of stuff, that intercept
+// any call to ft_malloc and auto register them in an arena?
+//
+// later patch idk maybe
+// seems good on paper but idk, will play with the idea
 
 #endif

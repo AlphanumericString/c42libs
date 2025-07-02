@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atr.c                                           :+:      :+:    :+:   */
+/*   tma_narena.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:18:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/16 16:13:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/29 13:42:22 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 13:52:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_arr.h"
-#include "ft_defs.h"
+#include "ft_arena.h"
+#include "tests/str__mem_tests.h"
 
-void	ft_atr(t_arr arr, t_data_tr_i tr)
+int	tma_narena_belong(void)
 {
-	ssize_t	i;
+	void		*ptr_1;
+	void		*ptr_2;
+	const void	*ptr_3 = (void *)0xDEADBEEF;
 
-	if (!tr || !arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-		arr[i] = tr(arr[i]);
+	ptr_1 = ft_narena_alloc(FT_NARENA_MAX - 1, 42);
+	ptr_2 = ft_narena_alloc(FT_NARENA_MAX - 1, 42);
+	if (ft_narena_belongs(ptr_1, FT_NARENA_MAX - 1) != true
+		|| ft_narena_belongs(ptr_2, FT_NARENA_MAX - 1) != true
+		|| ft_narena_belongs(ptr_3, FT_NARENA_MAX - 1) != false)
+		return (ft_narena_free_all(), 1);
+	if (ft_narena_belongs(NULL, FT_NARENA_MAX - 1) != false
+		|| (ft_narena_belongs(ptr_2, 0) != false && FT_NARENA_MAX > 0)
+		|| ft_narena_belongs(ptr_2, FT_NARENA_MAX + 1) != false
+		|| ft_narena_belongs(ptr_2, -1) != false)
+		return (ft_narena_free_all(), 2);
+	ft_narena_free_all();
+	return (0);
 }
 /*
 GPL-3.0 License:

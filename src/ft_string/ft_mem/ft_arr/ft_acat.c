@@ -21,6 +21,7 @@ void	ft_acat(t_iconst_arr ar_dst, t_const_arr ar_src)
 	j = ft_alen(ar_dst);
 	while (ar_src[i])
 		ar_dst[j++] = ar_src[i++];
+	ar_dst[j] = NULL;
 	return ;
 }
 /*

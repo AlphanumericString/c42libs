@@ -1,24 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tma_narena.c                                       :+:      :+:    :+:   */
+/*   tca_aapply.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/29 13:42:22 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 13:52:55 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests/tests__all_modules_tests.h"
+#include "ft_arr.h"
+#include "ft_defs.h"
+#include "internal/debug_defs.h"
+#include "tests/tests.h"
+#include "tests/str__mem_tests.h"
 
-	// This function is a placeholder for the narena tests.
-	// It used to tests related to memory arenas.
-int	tma_narena(void)
+#include <stdlib.h>
+
+static void	add_one(void *data)
 {
-	return (0);
+	int	*nb;
+
+	nb = (int *)data;
+	(*nb)++;
 }
 
+int	tca_aapply(void)
+{
+	int			arr_data[5];
+	const int	*arr_real[] = {
+		&arr_data[0], &arr_data[1], &arr_data[2],
+		&arr_data[3], &arr_data[4], NULL};
+	int			i;
+
+	i = 0;
+	while (i < 5)
+	{
+		arr_data[i] = i;
+		i++;
+	}
+	ft_aapply((t_oconst_arr)arr_real, add_one);
+	if (arr_data[0] != 1 || arr_data[1] != 2 || arr_data[2] != 3
+		|| arr_data[3] != 4 || arr_data[4] != 5)
+		return (1);
+	ft_aapply((t_oconst_arr) NULL, add_one);
+	return (ft_aapply((t_oconst_arr) arr_data, NULL), 0);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

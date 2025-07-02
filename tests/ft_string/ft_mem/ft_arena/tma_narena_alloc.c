@@ -1,27 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atr.c                                           :+:      :+:    :+:   */
+/*   tma_narena.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:18:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/16 16:13:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/29 13:42:22 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 13:52:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_arr.h"
-#include "ft_defs.h"
+#include "ft_arena.h"
+#include "ft_string.h"
+#include "tests/str__mem_tests.h"
+#include "tests/tests.h"
 
-void	ft_atr(t_arr arr, t_data_tr_i tr)
+static int	mt_narena_alloc(void)
 {
-	ssize_t	i;
+	const int	fp = *talloc_get_failpoint();
+	char		*ptr;
 
-	if (!tr || !arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-		arr[i] = tr(arr[i]);
+	talloc_set_failpoint(0);
+	ptr = ft_narena_alloc(FT_NARENA_MAX / 3, 42);
+	if (ptr)
+		return (1 + 10);
+	talloc_set_failpoint(fp);
+	return (0);
+}
+
+int	tma_narena_alloc(void)
+{
+	void	*ptr;
+
+	if (ft_narena_alloc(FT_NARENA_MAX + 1, 42) != NULL
+		|| ft_narena_alloc(-1, 42) != NULL)
+		return (1);
+	ptr = ft_narena_alloc(FT_NARENA_MAX / 2, 42);
+	if (!ptr || ft_narena_belongs(ptr, FT_NARENA_MAX / 2) != true)
+		return (2);
+	ft_strlcpy(ptr, "toto", 42);
+	if (ft_strcmp(ptr, "toto"))
+		return (3);
+	ft_narena_free(FT_NARENA_MAX / 2);
+	return (mt_narena_alloc());
 }
 /*
 GPL-3.0 License:

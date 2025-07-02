@@ -17,8 +17,14 @@ int	mem_tests(void)
 {
 	int				collect;
 	const t_test	tests[] = {
-	{"apply_2d", tca_apply_2d}, {"free_2d", tca_free_2d},
-	{"len_2d", tca_len_2d},
+	{"aapply", tca_aapply}, {"acat", tca_acat}, {"aclear", tca_aclear},
+	{"acmp", tca_acmp}, {"acmpwith", tca_acmpwith}, {"adup", tca_adup},
+	{"afind", tca_afind}, {"afindwith", tca_afindwith}, {"afree", tca_afree},
+	{"alen", tca_alen}, {"arfind", tca_arfind}, {"arfindwith", tca_arfindwith},
+	{"atr", tca_atr},
+	{"arena", tma_arena}, {"narena_alloc", tma_narena_alloc},
+	{"narena_calloc", tma_narena_calloc}, {"narena_belong", tma_narena_belong},
+	{"narena_free", tma_narena_free},
 	{"fd_to_buff", tm_fd_to_buff}, {"bzero", tm_bzero},
 	{"calloc", tm_calloc}, {"realloc", tm_realloc}, {"free", tm_free},
 	{"free_clear", tm_freecl}, {"memchr", tm_memchr}, {"memcmp", tm_memcmp},
@@ -27,7 +33,6 @@ int	mem_tests(void)
 	{"allocator_ctl", tmal_allocator}, {"calloc", tmal_calloc},
 	{"realloc", tmal_realloc}, {"reallocarray", tmal_reallocarray},
 	{"malloc", tmal_malloc}, {"free", tmal_free},
-	{"arena", tma_arena}, {"narena", tma_narena},
 	{NULL, NULL}};
 
 	collect = 0;

@@ -14,10 +14,14 @@
 
 #include "ft_arr.h"
 
-bool	ft_acmp(t_const_arr a1, t_const_arr a2)
+// if-elif tree at the end to casts as int otherwise some truncation could
+//		invert signs
+int	ft_acmp(t_const_arr a1, t_const_arr a2)
 {
 	size_t	i;
 
+	if ((!a1 && !a2) || a1 == a2)
+		return (0);
 	if (!a1 || !a2)
 		return (1 * (a2 == NULL) - 1 * (a1 == NULL));
 	i = 0;
@@ -27,10 +31,14 @@ bool	ft_acmp(t_const_arr a1, t_const_arr a2)
 			break ;
 		i++;
 	}
-	return (a1[i] - a2[i]);
+	if (a1[i] == a2[i])
+		return (0);
+	else if (a1[i] - a2[i] < 0)
+		return (-1);
+	return (1);
 }
 
-bool	ft_acmp_with(t_const_arr a1, t_const_arr a2, t_data_cmp cmp)
+int	ft_acmp_with(t_const_arr a1, t_const_arr a2, t_data_cmp cmp)
 {
 	size_t	i;
 
@@ -45,7 +53,11 @@ bool	ft_acmp_with(t_const_arr a1, t_const_arr a2, t_data_cmp cmp)
 			break ;
 		i++;
 	}
-	return (a1[i] - a2[i]);
+	if (a1[i] == a2[i])
+		return (0);
+	else if (a1[i] - a2[i] < 0)
+		return (-1);
+	return (1);
 }
 /*
 GPL-3.0 License:

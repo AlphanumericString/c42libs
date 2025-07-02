@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atr.c                                           :+:      :+:    :+:   */
+/*   tca_aclear.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:18:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/16 16:13:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_arr.h"
-#include "ft_defs.h"
+#include "tests/tests.h"
+#include "tests/str__mem_tests.h"
 
-void	ft_atr(t_arr arr, t_data_tr_i tr)
+#include <stdlib.h>
+
+int	tca_aclear(void)
 {
-	ssize_t	i;
+	int			*arr[42];
+	const int	*arr_2[] = {
+		(int *)1, (int *)2, (int *)3, (int *)4, (int *)5, NULL};
 
-	if (!tr || !arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-		arr[i] = tr(arr[i]);
+	arr[0] = NULL;
+	ft_acat((t_iconst_arr)arr, (t_const_arr)arr_2);
+	ft_aclear((t_iconst_arr)arr);
+	if (ft_alen((t_const_arr)arr) != 0)
+		return (1);
+	ft_aclear((t_iconst_arr) NULL);
+	arr[2] = (int *)42;
+	ft_aclear((t_iconst_arr)arr);
+	if (ft_alen((t_const_arr)arr) != 0 || arr[2] != (int *)42)
+		return (2);
+	return (0);
 }
 /*
 GPL-3.0 License:

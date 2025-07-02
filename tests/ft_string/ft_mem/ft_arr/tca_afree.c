@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atr.c                                           :+:      :+:    :+:   */
+/*   tca_afree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:18:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/16 16:13:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_arr.h"
-#include "ft_defs.h"
+#include "ft_string.h"
+#include "tests/tests.h"
+#include "tests/str__mem_tests.h"
 
-void	ft_atr(t_arr arr, t_data_tr_i tr)
+#include <stdlib.h>
+
+// check if leaked memory, otherwise cant really check lol
+int	tca_afree(void)
 {
-	ssize_t	i;
+	void	**arr;
 
-	if (!tr || !arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-		arr[i] = tr(arr[i]);
+	arr = (void **)ft_split("this|is|a|test", '|');
+	if (!arr || ft_alen((t_const_arr)arr) != 4)
+		return (1);
+	ft_afree(arr);
+	ft_afree(NULL);
+	return (0);
 }
 /*
 GPL-3.0 License:

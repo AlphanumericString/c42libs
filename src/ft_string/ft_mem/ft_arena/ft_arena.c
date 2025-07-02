@@ -15,18 +15,24 @@
 
 void	*ft_arena_alloc(size_t size)
 {
-	return (ft_narena_alloc(0, size));
+	return (ft_narena_alloc(FT_DEFAULT_ARENA, size));
 }
 
 void	*ft_arena_calloc(size_t count, size_t size)
 {
-	return (ft_narena_calloc(0, count, size));
+	return (ft_narena_calloc(FT_DEFAULT_ARENA, count, size));
 }
 
 void	ft_arena_free(void)
 {
-	ft_narena_free(0);
+	ft_narena_free(FT_DEFAULT_ARENA);
 }
+
+// go see ft_narena_remove comments
+// void	ft_arena_remove(const void *ptr)
+// {
+// 	ft_narena_remove(FT_DEFAULT_ARENA, ptr);
+// }
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

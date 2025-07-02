@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atr.c                                           :+:      :+:    :+:   */
+/*   ft_narena_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:18:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/16 16:13:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/07/02 20:53:51 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/02 20:53:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_arr.h"
-#include "ft_defs.h"
+#include "ft_arena.h"
 
-void	ft_atr(t_arr arr, t_data_tr_i tr)
+void	ft_narena_free_all(void)
 {
-	ssize_t	i;
+	size_t	i;
 
-	if (!tr || !arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-		arr[i] = tr(arr[i]);
+	i = 0;
+	while (i < FT_NARENA_MAX)
+		ft_narena_free(i++);
 }
 /*
 GPL-3.0 License:

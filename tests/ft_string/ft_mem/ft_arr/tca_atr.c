@@ -1,26 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tca_free_2d.c                                      :+:      :+:    :+:   */
+/*   tca_atr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 23:42:53 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:10:02 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arr.h"
+#include "ft_char.h"
+#include "ft_defs.h"
 #include "ft_string.h"
-#include "tests/tests__all_modules_tests.h"
+#include "tests/tests.h"
+#include "tests/str__mem_tests.h"
 
-// we assume that free_2d is working,
-// checking if memory is freed properly is not possible in this context
-int	tca_free_2d(void)
+#include <stdlib.h>
+
+static char	*loc_strtoupper(void *data)
 {
-	char	**tab;
+	char	*str;
+	int		i;
 
-	tab = ft_split("Hello World", ' ');
-	ft_afree((void **)tab);
+	if (!data)
+		return (NULL);
+	i = 0;
+	str = data;
+	while (str[i])
+		if (ft_isalpha(str[i++]))
+			str[i - 1] = ft_toupper(str[i - 1]);
+	return (str);
+}
+
+int	tca_atr(void)
+{
+	char	**arr;
+
+	arr = ft_split("Hello|World|42", '|');
+	ft_atr((t_arr)arr, (t_data_tr_i)loc_strtoupper);
+	if (ft_strcmp(arr[0], "HELLO") != 0
+		|| ft_strcmp(arr[1], "WORLD") != 0
+		|| ft_strcmp(arr[2], "42") != 0)
+		return (ft_afree((void **)arr), 2);
+	ft_afree((void **)arr);
+	ft_atr((t_arr)arr, (t_data_tr_i) NULL);
+	ft_atr((t_arr) NULL, (t_data_tr_i)loc_strtoupper);
 	return (0);
 }
 /*

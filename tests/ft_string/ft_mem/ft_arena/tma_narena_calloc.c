@@ -1,44 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tca_apply_2d.c                                     :+:      :+:    :+:   */
+/*   tma_narena.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 16:05:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:10:01 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/29 13:42:22 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 13:52:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arena.h"
 #include "ft_string.h"
-#include "tests/tests__all_modules_tests.h"
+#include "tests/str__mem_tests.h"
+#include "tests/tests.h"
 
-static void	to_a(void *ptr)
+static int	mt_narena_calloc(void)
 {
-	char	*sptr;
+	const int	fp = *talloc_get_failpoint();
+	char		*ptr;
 
-	sptr = (char *)ptr;
-	while (*sptr)
-	{
-		*sptr = 'a';
-		sptr++;
-	}
+	talloc_set_failpoint(0);
+	ptr = ft_narena_calloc(FT_NARENA_MAX / 3, 42, 1);
+	if (ptr)
+		return (1 + 10);
+	talloc_set_failpoint(fp);
+	return (0);
 }
 
-int	tca_apply_2d(void)
+int	tma_narena_calloc(void)
 {
-	char	*arr2d[4];
-	size_t	i;
+	void	*ptr;
 
-	i = 0;
-	while (i < 3)
-		arr2d[i++] = ft_strdup("Hello World");
-	arr2d[i] = NULL;
-	ft_aapply((void **)arr2d, to_a);
-	if (ft_strcmp(arr2d[0], "aaaaaaaaaaa") != 0 || ft_strcmp(arr2d[1],
-			"aaaaaaaaaaa") != 0 || ft_strcmp(arr2d[2], "aaaaaaaaaaa") != 0)
+	if (ft_narena_calloc(FT_NARENA_MAX + 1, 42, 1) != NULL
+		|| ft_narena_calloc(-1, 42, 1) != NULL)
 		return (1);
-	return (ft_aapply((void **)arr2d, ft_free), 0);
+	ptr = ft_narena_calloc(FT_NARENA_MAX / 2, 42, 1);
+	if (!ptr || ft_narena_belongs(ptr, FT_NARENA_MAX / 2) != true)
+		return (2);
+	ft_strlcpy(ptr, "toto", 42);
+	if (ft_strcmp(ptr, "toto"))
+		return (3);
+	ft_narena_free(FT_NARENA_MAX / 2);
+	return (mt_narena_calloc());
 }
 /*
 GPL-3.0 License:

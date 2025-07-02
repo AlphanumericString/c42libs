@@ -1,27 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atr.c                                           :+:      :+:    :+:   */
+/*   tca_adup.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:18:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/16 16:13:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "ft_arr.h"
-#include "ft_defs.h"
+#include "tests/tests.h"
+#include "tests/str__mem_tests.h"
 
-void	ft_atr(t_arr arr, t_data_tr_i tr)
+#include <stdlib.h>
+#include <string.h>
+
+static int	mt_adup(void)
 {
-	ssize_t	i;
+	const int		fp = *talloc_get_failpoint();
+	t_iconst_arr	dst;
+	const char		*src[] = {(void *)"a", (void *)"b", (void *)"c", NULL};
 
-	if (!tr || !arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-		arr[i] = tr(arr[i]);
+	talloc_set_failpoint(0);
+	dst = ft_adup((t_const_arr)src);
+	talloc_set_failpoint(fp);
+	if (dst)
+		return (10);
+	return (0);
+}
+
+int	tca_adup(void)
+{
+	const char		*arr1[] = {"Hello", "World", "42", NULL};
+	t_iconst_arr	dup;
+
+	dup = ft_adup((t_const_arr)arr1);
+	if (!dup || ft_alen((t_const_arr)dup) != 3)
+		return (1);
+	ft_free((t_any)dup);
+	dup = ft_adup((t_const_arr) NULL);
+	if (dup)
+		return (2);
+	return (mt_adup());
 }
 /*
 GPL-3.0 License:

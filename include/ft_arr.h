@@ -42,8 +42,8 @@ size_t			ft_alen(t_const_arr array);
 
 void			ft_aclear(t_iconst_arr arr);
 
-bool			ft_acmp(t_const_arr a1, t_const_arr a2);
-bool			ft_acmp_with(t_const_arr a1, t_const_arr a2, t_data_cmp cmp);
+int				ft_acmp(t_const_arr a1, t_const_arr a2);
+int				ft_acmp_with(t_const_arr a1, t_const_arr a2, t_data_cmp cmp);
 
 t_iconst_arr	ft_adup(t_const_arr arr);
 

@@ -72,8 +72,8 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 ##
 
 # vars
-COMPILE_TIME_HASH	:= $(shell date +%Y%m%d%H%M%S | shasum -a 256)
-#VERSION				:= $(shell echo "0.0.0")
+FT_COMPILE_TIME_HASH	:= $(shell date +%Y%m%d%H%M%S | shasum -a 256)
+FT_VERSION				:= $(shell git describe --tags --dirty 2> /dev/null || echo "0.0.0")
 
 # flags
 WFLAGS		= -Wall -Wextra -Werror -Wmissing-prototypes
@@ -81,9 +81,8 @@ LDFLAGS		=
 STDFLAGS	= -std=c99
 
 VAR_FLAGS	=\
-			-DCOMPILE_TIME_HASH="$(COMPILE_TIME_HASH)"	\
-
-#			-DVERSION="$(VERSION)"
+			-DFT_COMPILE_TIME_HASH="$(FT_COMPILE_TIME_HASH)"	\
+			-DFT_VERSION="$(FT_VERSION)"
 
 CPPFLAGS	=\
 			$(addprefix -I, $(INC_DIR)) -MMD -MP
@@ -307,6 +306,7 @@ FT_MEM_SRC		=\
 			$(FT_MEM_DIR)/ft_allocator/ft_al_memimpl.c	\
 			$(FT_MEM_DIR)/ft_arena/ft_arena.c		\
 			$(FT_MEM_DIR)/ft_arena/ft_narena.c		\
+			$(FT_MEM_DIR)/ft_arena/ft_narena_utils.c	\
 			$(FT_MEM_DIR)/ft_arr/ft_aapply.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_acat.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_aclear.c		\
@@ -590,17 +590,29 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_chr/tc_tolower.c			\
 			$(TESTS_DIR)/ft_string/ft_chr/tc_toupper.c			\
 			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_allocator.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_calloc.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_allocator.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_calloc.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_free.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_malloc.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_realloc.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_reallocarray.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_malloc.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_realloc.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_reallocarray.c	\
+			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_arena.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_apply_2d.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_free_2d.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_len_2d.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_alloc.c	\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_calloc.c	\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_belong.c	\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_free.c	\
+			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aapply.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acat.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aclear.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acmp.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_adup.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_afind.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_afree.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_alen.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_arfind.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_atr.c			\
 			\
 			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/tm_bzero.c			\

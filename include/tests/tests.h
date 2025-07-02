@@ -20,9 +20,9 @@
 # define TESTS_FPREFIX_TMP	"/tmp/c42libs_test_"
 
 # if defined(__linux__)
-#   define SRAND_OK true
+#  define SRAND_OK true
 # else
-#   define SRAND_OK false
+#  define SRAND_OK false
 # endif
 
 # ifndef FORK_TESTS
