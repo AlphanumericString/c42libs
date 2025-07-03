@@ -1,38 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tca_afree.c                                        :+:      :+:    :+:   */
+/*   ft_acpy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/07/03 01:10:14 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/03 01:10:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include "ft_arr.h"
-#include "ft_string.h"
-#include "tests/tests.h"
-#include "tests/str__mem_tests.h"
 
-#include <stdlib.h>
-
-// check if leaked memory, otherwise cant really check lol
-int	tca_afree(void)
+void	ft_acpy(t_iconst_arr dst, t_const_arr src)
 {
-	void	**arr;
-	t_arr	empty;
+	size_t	i;
 
-	arr = (void **)ft_split("this|is|a|test", '|');
-	if (!arr || ft_alen((t_const_arr)arr) != 4)
-		return (1);
-	ft_afree(arr);
-	ft_afree(NULL);
-	ft_afree((t_arr) NULL);
-	empty = ft_malloc(sizeof(*empty) * 1);
-	empty[0] = NULL;
-	ft_afree(empty);
-	return (0);
+	if (!dst || !src)
+		return ((void) 0);
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = NULL;
+	return ((void)i);
+}
+
+void	ft_alcpy(t_iconst_arr dst, size_t size, t_const_arr src)
+{
+	size_t	src_len;
+	size_t	dst_len;
+
+	if (!dst)
+		return ((void) size);
+	if (!src)
+		return ((void) ft_alen(dst));
+	if (!size)
+		return ((void) ft_alen(src));
+	src_len = ft_alen(src);
+	dst_len = 0;
+	while (dst_len < size - 1 && src[dst_len])
+	{
+		dst[dst_len] = src[dst_len];
+		dst_len++;
+	}
+	dst[dst_len] = NULL;
+	return ((void)src_len);
 }
 /*
 GPL-3.0 License:

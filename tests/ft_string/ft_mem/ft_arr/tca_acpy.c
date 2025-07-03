@@ -1,37 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tca_afree.c                                        :+:      :+:    :+:   */
+/*   tca_acpy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/07/03 01:14:28 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/03 01:14:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
+#include "ft_defs.h"
 #include "ft_arr.h"
 #include "ft_string.h"
-#include "tests/tests.h"
 #include "tests/str__mem_tests.h"
 
-#include <stdlib.h>
-
-// check if leaked memory, otherwise cant really check lol
-int	tca_afree(void)
+int	tca_acpy(void)
 {
-	void	**arr;
-	t_arr	empty;
+	t_arr			dst;
+	const char		*src[] = {"hello", "world", NULL};
 
-	arr = (void **)ft_split("this|is|a|test", '|');
-	if (!arr || ft_alen((t_const_arr)arr) != 4)
+	dst = ft_malloc(sizeof(char *) * 4);
+	ft_acpy((t_iconst_arr)dst, (t_const_arr)src);
+	if (ft_acmp((t_const_arr)dst, (t_const_arr)src) != 0)
 		return (1);
-	ft_afree(arr);
-	ft_afree(NULL);
-	ft_afree((t_arr) NULL);
-	empty = ft_malloc(sizeof(*empty) * 1);
-	empty[0] = NULL;
-	ft_afree(empty);
+	ft_acpy(NULL, (t_const_arr)src);
+	ft_acpy((t_iconst_arr)dst, NULL);
+	ft_free(dst);
+	return (0);
+}
+
+int	tca_alcpy(void)
+{
+	t_arr			dst;
+	const char		*src[] = {"hello", "world", NULL};
+
+	dst = ft_malloc(sizeof(char *) * 4);
+	ft_alcpy((t_iconst_arr)dst, 4, (t_const_arr)src);
+	if (ft_acmp((t_const_arr)dst, (t_const_arr)src) != 0)
+		return (1);
+	ft_alcpy((t_iconst_arr)dst, 2, (t_const_arr)src);
+	if (ft_strcmp(dst[0], src[0]) != 0)
+		return (2);
+	ft_alcpy((t_iconst_arr)dst, 0, (t_const_arr)src);
+	ft_alcpy(NULL, 4, (t_const_arr)src);
+	ft_alcpy((t_iconst_arr)dst, 0, NULL);
+	ft_free(dst);
 	return (0);
 }
 /*

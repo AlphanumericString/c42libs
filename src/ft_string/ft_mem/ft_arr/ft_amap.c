@@ -1,38 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tca_afree.c                                        :+:      :+:    :+:   */
+/*   ft_amap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/07/03 01:45:42 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/03 01:45:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "ft_arr.h"
-#include "ft_string.h"
-#include "tests/tests.h"
-#include "tests/str__mem_tests.h"
+#include <stddef.h>
 
-#include <stdlib.h>
-
-// check if leaked memory, otherwise cant really check lol
-int	tca_afree(void)
+t_arr	ft_amap(t_const_arr array, t_data_tr f)
 {
-	void	**arr;
-	t_arr	empty;
+	size_t	i;
+	t_arr	result;
 
-	arr = (void **)ft_split("this|is|a|test", '|');
-	if (!arr || ft_alen((t_const_arr)arr) != 4)
-		return (1);
-	ft_afree(arr);
-	ft_afree(NULL);
-	ft_afree((t_arr) NULL);
-	empty = ft_malloc(sizeof(*empty) * 1);
-	empty[0] = NULL;
-	ft_afree(empty);
-	return (0);
+	if (!array || !f)
+		return (NULL);
+	result = ft_malloc(sizeof(*result) * (ft_alen(array) + 1));
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (array[i])
+	{
+		result[i] = f(array[i]);
+		i++;
+	}
+	result[i] = NULL;
+	return (result);
+}
+
+t_arr	ft_anmap(t_const_arr array, size_t n, t_data_tr f)
+{
+	size_t	i;
+	t_arr	result;
+
+	if (!array || !f)
+		return (NULL);
+	if (n > ft_alen(array))
+		n = ft_alen(array);
+	else if (n == 0)
+		return (ft_calloc(1, sizeof(*result)));
+	result = ft_malloc(sizeof(*result) * (n + 1));
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (array[i] && i < n)
+	{
+		result[i] = f(array[i]);
+		i++;
+	}
+	result[i] = NULL;
+	return (result);
 }
 /*
 GPL-3.0 License:

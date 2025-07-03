@@ -16,11 +16,6 @@
 # include "ft_defs.h"
 
 // # TODO: add the following array functions:
-// # ft_alcat	- strlcat for array
-// # ft_acpy	- strcpy for array
-// # ft_alcpy	- strlcpy for array
-// # ft_amap	- see other map type function on other modules
-// # ft_anmap	- n version of map
 // # ft_arev	- reverse any array
 // # ft_ancmp	- n version of cmp
 // # ft_andup	- n version of dup
@@ -54,6 +49,26 @@ void			ft_aapply(t_oconst_arr array, t_data_apply f);
 /// @param ar_dst, the destination array
 /// @param ar_src, the source array
 void			ft_acat(t_iconst_arr ar_dst, t_const_arr ar_src);
+
+/// @brief function the same way as a strlcat would, append to the end of
+///	 array ar_dst the array ar_src but only if there is enough space
+///	 in ar_dst.
+/// @param ar_dst, the destination array
+/// @param mx, the maximum size of the destination array
+/// @param ar_src, the source array
+void			ft_alcat(t_iconst_arr ar_dst, size_t mx, t_const_arr ar_src);
+
+/// @brief	copies the content of array src into dst
+/// @param	dst, the destination array
+/// @param	src, the source array
+void			ft_acpy(t_iconst_arr dst, t_const_arr src);
+
+/// @brief	copies the content of array src into dst but only if there is
+///	 enough space in dst.
+///	 @param	dst, the destination array
+///	 @param	mx, the maximum size of the destination array
+///	 @param	src, the source array
+void			ft_alcpy(t_iconst_arr dst, size_t mx, t_const_arr src);
 
 /// @brief	returns the length of an array
 /// @param	array, the array to gets the length of.
@@ -134,5 +149,22 @@ void			ft_afree(void **arr);
 ///	@param	arr, the array holding the elements to call the function on.
 ///	@note	if your array is const use ft_adup to copy it before calling this.
 void			ft_atr(t_arr arr, t_data_tr_i tr);
+
+/// @brief	allocate a new array and populate it with the result of
+///		function f applied to each element of arr.
+///	@param	arr, the array to map
+///	@param	f, the function to apply to each element of arr
+/// @return	a new array with the result of f applied to each element of arr or
+///		NULL if allocation failed.
+t_arr			ft_amap(t_const_arr arr, t_data_tr f);
+
+/// @brief	allocate a new array and populate it with the result of
+///		function f applied up to n elements of arr.
+///	@param	arr, the array to map
+///	@param	n, the number of max elements to map
+///	@param	f, the function to apply to each element of arr
+/// @return	a new array with the result of f applied up to n element of arr or
+///		NULL if allocation failed.
+t_arr			ft_anmap(t_const_arr array, size_t n, t_data_tr f);
 
 #endif /* FT_ARR_H */

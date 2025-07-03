@@ -15,7 +15,10 @@
 
 void	ft_afree(void **arr)
 {
-	ft_aapply(arr, ft_free);
+	if (!arr)
+		return ;
+	if (*arr)
+		ft_aapply(arr, ft_free);
 	ft_free(arr);
 }
 /*

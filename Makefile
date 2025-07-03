@@ -72,7 +72,7 @@ FT_T_STRING_DIR	=	$(FT_STRING_DIR)/ft_string
 ##
 
 # vars
-FT_COMPILE_TIME_HASH	:= $(shell date +%Y%m%d%H%M%S | shasum -a 256)
+FT_COMPILE_TIME_HASH	:= $(shell date +%Y%m%d%H%M%S | shasum -a 256 | awk '{print $1}')
 FT_VERSION				:= $(shell git describe --tags --dirty 2> /dev/null || echo "0.0.0")
 
 # flags
@@ -305,10 +305,12 @@ FT_MEM_SRC		=\
 			$(FT_MEM_DIR)/ft_arr/ft_acat.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_aclear.c		\
 			$(FT_MEM_DIR)/ft_arr/ft_acmp.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_acpy.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_adup.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_afind.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_afree.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_alen.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_amap.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_arfind.c		\
 			$(FT_MEM_DIR)/ft_arr/ft_atr.c			\
 			$(FT_MEM_DIR)/ft_bzero.c				\
@@ -602,12 +604,14 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acat.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aclear.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acmp.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acpy.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_adup.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_afind.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_afree.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_alen.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_arfind.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_atr.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_amap.c			\
 			\
 			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/tm_bzero.c			\

@@ -17,14 +17,19 @@
 // tca -> test c-style array
 int	tca_aapply(void);
 int	tca_acat(void);
+int	tca_alcat(void);
 int	tca_aclear(void);
 int	tca_acmp(void);
 int	tca_acmpwith(void);
+int	tca_acpy(void);
+int	tca_alcpy(void);
 int	tca_adup(void);
 int	tca_afind(void);
 int	tca_afindwith(void);
 int	tca_afree(void);
 int	tca_alen(void);
+int	tca_amap(void);
+int	tca_anmap(void);
 int	tca_arfind(void);
 int	tca_arfindwith(void);
 int	tca_atr(void);

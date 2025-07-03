@@ -17,7 +17,6 @@
 #include "tests/tests.h"
 #include "tests/str__mem_tests.h"
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -41,6 +40,32 @@ int	tca_acat(void)
 		i++;
 	}
 	return (0);
+}
+
+int	tca_alcat(void)
+{
+	t_arr			dst;
+	const char		*src[] = {"hello", "world", NULL};
+
+	dst = ft_calloc(sizeof(char *), 4);
+	ft_alcat((t_iconst_arr)dst, 4, (t_const_arr)src);
+	if (ft_acmp((t_const_arr)dst, (t_const_arr)src) != 0)
+		return (1);
+	ft_alcat((t_iconst_arr)dst, 2, (t_const_arr)src);
+	if (ft_strcmp(dst[0], src[0]) != 0
+		|| ft_alen((t_const_arr)dst) != 2)
+		return (2);
+	dst[0] = NULL;
+	ft_alcat((t_iconst_arr)dst, 4, (t_const_arr)src);
+	ft_alcat((t_iconst_arr)dst, 4, (t_const_arr)src);
+	if (ft_strcmp(dst[0], src[0]) != 0
+		|| ft_strcmp(dst[1], src[1]) != 0 || ft_strcmp(dst[2], src[0]) != 0
+		|| dst[3] != NULL || ft_alen((t_const_arr)dst) != 3)
+		return (3);
+	ft_alcat((t_iconst_arr)dst, 0, (t_const_arr)src);
+	ft_alcat(NULL, 4, (t_const_arr)src);
+	ft_alcat((t_iconst_arr)dst, 4, NULL);
+	return (ft_free(dst), 0);
 }
 /*
 GPL-3.0 License:

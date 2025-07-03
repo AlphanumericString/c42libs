@@ -62,6 +62,7 @@ Todo
 ./build/
 .vscode
 .clangd
+.cache
 tests_run
 coverage
 Doxygen

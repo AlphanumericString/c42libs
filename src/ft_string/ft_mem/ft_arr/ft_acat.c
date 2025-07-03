@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_arr.h"
+#include <stddef.h>
 
 void	ft_acat(t_iconst_arr ar_dst, t_const_arr ar_src)
 {
@@ -22,7 +23,31 @@ void	ft_acat(t_iconst_arr ar_dst, t_const_arr ar_src)
 	while (ar_src[i])
 		ar_dst[j++] = ar_src[i++];
 	ar_dst[j] = NULL;
-	return ;
+	return ((void) i);
+}
+
+void	ft_alcat(t_iconst_arr dst, size_t size, t_const_arr src)
+{
+	size_t	dst_len;
+	size_t	src_len;
+	size_t	i;
+
+	if (!size || !dst)
+		return ((void) 0);
+	if (!src)
+		return ((void) ft_alen(dst));
+	dst_len = ft_alen(dst);
+	src_len = ft_alen(src);
+	if (dst_len >= size)
+		return ((void)(size + src_len));
+	i = 0;
+	while (src[i] && dst_len + i < size - 1)
+	{
+		dst[dst_len + i] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = NULL;
+	return ((void)(dst_len + src_len));
 }
 /*
 GPL-3.0 License:

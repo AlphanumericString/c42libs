@@ -17,11 +17,12 @@ int	mem_tests(void)
 {
 	int				collect;
 	const t_test	tests[] = {
-	{"aapply", tca_aapply}, {"acat", tca_acat}, {"aclear", tca_aclear},
-	{"acmp", tca_acmp}, {"acmpwith", tca_acmpwith}, {"adup", tca_adup},
+	{"aapply", tca_aapply}, {"acat", tca_acat}, {"alcat", tca_alcat},
+	{"aclear", tca_aclear}, {"acmp", tca_acmp}, {"acmpwith", tca_acmpwith},
+	{"adup", tca_adup}, {"acpy", tca_acpy}, {"alcpy", tca_alcpy},
 	{"afind", tca_afind}, {"afindwith", tca_afindwith}, {"afree", tca_afree},
 	{"alen", tca_alen}, {"arfind", tca_arfind}, {"arfindwith", tca_arfindwith},
-	{"atr", tca_atr},
+	{"atr", tca_atr}, {"amap", tca_amap}, {"anmap", tca_anmap},
 	{"arena", tma_arena}, {"narena_alloc", tma_narena_alloc},
 	{"narena_calloc", tma_narena_calloc}, {"narena_belong", tma_narena_belong},
 	{"narena_free", tma_narena_free},
