@@ -13,7 +13,7 @@
 #include "tests/tests.h"
 #include "tests/math_tests.h"
 
-int	tests_math(void)
+int	tests_math(int depth)
 {
 	int				i;
 	const t_test	tests[] = {
@@ -36,7 +36,7 @@ int	tests_math(void)
 	{NULL, NULL}};
 
 	i = 0;
-	run_test(tests, &i);
+	run_test(tests, &i, depth);
 	return (i);
 }
 /*

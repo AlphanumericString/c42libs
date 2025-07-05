@@ -36,13 +36,13 @@ static const t_test	*init_tests(void)
 	return (var);
 }
 
-int	tests_doubly_linked_list_all(void)
+int	tests_doubly_linked_list_all(int depth)
 {
 	int				collect;
 	const t_test	*test = init_tests();
 
 	collect = 0;
-	run_test(test, &collect);
+	run_test(test, &collect, depth);
 	return (collect);
 }
 /*

@@ -13,7 +13,7 @@
 #include "tests/pair_tests.h"
 #include "tests/tests.h"
 
-int	tests_pair(void)
+int	tests_pair(int depth)
 {
 	int				collect;
 	const t_test	test[] = {
@@ -26,7 +26,7 @@ int	tests_pair(void)
 	};
 
 	collect = 0;
-	run_test(test, &collect);
+	run_test(test, &collect, depth);
 	return (collect);
 }
 /*

@@ -28,7 +28,7 @@ void	*add_4(void *val)
 	return ((void *)ptr);
 }
 
-int	tests_optional(void)
+int	tests_optional(int depth)
 {
 	int				collect;
 	const t_test	test[] = {
@@ -44,7 +44,7 @@ int	tests_optional(void)
 	};
 
 	collect = 0;
-	run_test(test, &collect);
+	run_test(test, &collect, depth);
 	return (collect);
 }
 /*

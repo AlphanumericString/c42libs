@@ -14,7 +14,7 @@
 #include "tests/map_tests.h"
 
 // see with --leak-check=full
-int	tests_map(void)
+int	tests_map(int depth)
 {
 	int				collect;
 	const t_test	test[] = {
@@ -34,7 +34,7 @@ int	tests_map(void)
 	};
 
 	collect = 0;
-	run_test(test, &collect);
+	run_test(test, &collect, depth);
 	return (collect);
 }
 /*

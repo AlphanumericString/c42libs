@@ -13,7 +13,7 @@
 #include "tests/tests.h"
 #include "tests/ll_tests.h"
 
-int	tests_linked_list_all(void)
+int	tests_linked_list_all(int depth)
 {
 	int				collect;
 	const t_test	test[] = {
@@ -34,7 +34,7 @@ int	tests_linked_list_all(void)
 	{NULL, NULL}};
 
 	collect = 0;
-	run_test(test, &collect);
+	run_test(test, &collect, depth);
 	return (collect);
 }
 /*

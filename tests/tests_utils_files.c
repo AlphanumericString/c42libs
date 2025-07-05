@@ -1,44 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_tests.c                                     :+:      :+:    :+:   */
+/*   tests_files.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 13:36:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/21 00:20:46 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/07/04 23:35:59 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/04 23:35:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <fcntl.h>
+#include <unistd.h>
 
 #include "ft_string.h"
 #include "tests/tests.h"
 
-#include <unistd.h>
-
-static const t_module	*load_submodules_tests(void)
+int	open_test_file(char **func_to_test)
 {
-	static const t_module	tests[] = {
-	{"characters", "char", char_tests},
-	{"memory", "mem", mem_tests},
-	{"string", "str", str_tests},
-	{"growable strings", "t_string", t_string_tests},
-	{NULL, NULL, NULL}
-	};
+	char	*file;
+	int		fd;
 
-	return (tests);
+	file = ft_strjoin(TESTS_FPREFIX, *func_to_test);
+	fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Error: on oppening ", STDERR_FILENO);
+		ft_putstr_fd(file, STDERR_FILENO);
+		return (ft_free(file), -1);
+	}
+	*func_to_test = file;
+	return (fd);
 }
 
-int	tests_string(int depth)
+void	destroy_test_file(int fd, const char *file)
 {
-	size_t			i;
-	int				collect;
-	const t_module	*modules = load_submodules_tests();
-
-	i = 0;
-	collect = 0;
-	while (modules[i].test)
-		collect += run_module(modules[i++], depth);
-	return (collect);
+	close(fd);
+	unlink(file);
 }
 /*
 GPL-3.0 License:

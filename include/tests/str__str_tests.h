@@ -13,7 +13,7 @@
 #ifndef STR__STR_TESTS_H
 # define STR__STR_TESTS_H
 
-int	str_tests(void);
+int	str_tests(int d);
 
 int	test_atod(void);
 int	test_atoi_base(void);

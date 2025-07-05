@@ -12,6 +12,7 @@
 
 #include "ft_arr.h"
 #include "ft_defs.h"
+#include <stddef.h>
 
 void	ft_atr(t_arr arr, t_data_tr_i tr)
 {
@@ -22,6 +23,20 @@ void	ft_atr(t_arr arr, t_data_tr_i tr)
 	i = -1;
 	while (arr[++i])
 		arr[i] = tr(arr[i]);
+}
+
+void	ft_antr(t_arr arr, size_t n, t_data_tr_i tr)
+{
+	size_t	i;
+
+	if (!tr || !arr || !n)
+		return ;
+	i = 0;
+	while (arr[i] && i < n)
+	{
+		arr[i] = tr(arr[i]);
+		i++;
+	}
 }
 /*
 GPL-3.0 License:

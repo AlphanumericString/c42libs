@@ -47,7 +47,7 @@ static const t_test	*loadtests02(void)
 	return (NULL);
 }
 
-int	t_string_tests(void)
+int	t_string_tests(int depth)
 {
 	int				sum;
 	const t_test	*tests = loadtests01();
@@ -55,7 +55,7 @@ int	t_string_tests(void)
 
 	sum = 0;
 	(void)tests02;
-	run_test(tests, &sum);
+	run_test(tests, &sum, depth);
 	return (sum);
 }
 /*

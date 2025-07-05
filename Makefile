@@ -311,6 +311,7 @@ FT_MEM_SRC		=\
 			$(FT_MEM_DIR)/ft_arr/ft_afree.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_alen.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_amap.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_arev.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_arfind.c		\
 			$(FT_MEM_DIR)/ft_arr/ft_atr.c			\
 			$(FT_MEM_DIR)/ft_bzero.c				\
@@ -474,61 +475,62 @@ TESTS_SRC	=\
 			\
 			$(TESTS_DIR)/ft_list/clt/cl_list_tests.c			\
 			$(TESTS_DIR)/ft_list/clt/cl_tests_utils.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_add.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_apply.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_check.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_clear.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_copy.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_create.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_delete.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_find.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_get.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_iterators.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_map.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_new.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_pop.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_push.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_rev.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_sizers.c			\
-			$(TESTS_DIR)/ft_list/clt/tcl_clist_subrange.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_add.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_apply.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_check.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_clear.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_copy.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_create.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_delete.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_find.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_get.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_iterators.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_map.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_new.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_pop.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_push.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_rev.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_sizers.c			\
+			$(TESTS_DIR)/ft_list/clt/tcl_subrange.c			\
 			\
 			$(TESTS_DIR)/ft_list/dlt/dl_list_tests.c			\
 			$(TESTS_DIR)/ft_list/dlt/dl_tests_utils.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_add.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_apply.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_check.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_clear.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_copy.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_create.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_delete.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_find.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_get.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_iterators.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_map.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_new.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_push.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_rev.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_sizers.c			\
-			$(TESTS_DIR)/ft_list/dlt/tdl_dlist_subrange.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_add.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_apply.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_check.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_clear.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_copy.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_create.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_delete.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_find.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_get.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_iterators.c		\
+			$(TESTS_DIR)/ft_list/dlt/tdl_map.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_new.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_push.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_rev.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_sizers.c			\
+			$(TESTS_DIR)/ft_list/dlt/tdl_subrange.c		\
 			\
 			$(TESTS_DIR)/ft_list/llt/ll_list_tests.c			\
 			$(TESTS_DIR)/ft_list/llt/ll_tests_utils.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_add.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_apply.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_check.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_clear.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_copy.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_create.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_deletors.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_find.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_get.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_iterators.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_map.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_new.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_push.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_rev.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_sizers.c			\
-			$(TESTS_DIR)/ft_list/llt/tll_list_subrange.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_add.c				\
+			$(TESTS_DIR)/ft_list/llt/tll_apply.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_check.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_clear.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_copy.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_create.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_deletors.c		\
+			$(TESTS_DIR)/ft_list/llt/tll_find.c		\
+			$(TESTS_DIR)/ft_list/llt/tll_get.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_iterators.c	\
+			$(TESTS_DIR)/ft_list/llt/tll_map.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_new.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_push.c		\
+			$(TESTS_DIR)/ft_list/llt/tll_rev.c			\
+			$(TESTS_DIR)/ft_list/llt/tll_sizers.c		\
+			$(TESTS_DIR)/ft_list/llt/tll_subrange.c	\
+			$(TESTS_DIR)/ft_list/lists_tests.c				\
 			\
 			$(TESTS_DIR)/ft_map/map_tests.c			\
 			$(TESTS_DIR)/ft_map/tmap_cappacity.c			\
@@ -600,18 +602,19 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_belong.c	\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_free.c	\
 			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aapply.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aapply.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acat.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aclear.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aclear.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acmp.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acpy.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_adup.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_afind.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_afree.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_afind.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_afree.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_alen.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_arfind.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_atr.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_amap.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_arev.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_arfind.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_atr.c			\
 			\
 			$(TESTS_DIR)/ft_string/ft_mem/mem_tests.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/tm_bzero.c			\
@@ -769,6 +772,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/tests_fixtures/talloc_group.c			\
 			$(TESTS_DIR)/tests_fixtures/talloc_testimpl.c			\
 			$(TESTS_DIR)/tests_utils.c			\
+			$(TESTS_DIR)/tests_utils_files.c	\
 
 SRCS	=\
 		$(FT_FILEHANDLER_SRC)	\
@@ -833,7 +837,9 @@ $(BUILD_DIR)/$(TESTS_DIR)/%.o: %.c
 
 .DEFAULT_GOAL	:= lib$(NAME).a
 .PRECIOUS		: $(TEST_NAME)
--include		$(OBJ:.o=.d)
+-include $(OBJ:.o=.d)
+-include $(TOBJ:.o=.d)
+-include $(QTEST_OBJ:.o=.d)
 
 so: lib$(NAME).so
 
@@ -886,7 +892,7 @@ $(TEST_NAME): $(TOBJ)
 $(COVERAGE_DIR): $(TEST_NAME)
 	@$(PRINTF) "$(BG_INFO)Generating coverage ... $(RESET)"		&& \
 	$(PRINTF) "$(BG_INFO)profraw ... $(RESET)"					&& \
-	./$(TEST_NAME)												&& \
+	./$(TEST_NAME)												; \
 	$(PRINTF) "$(BG_INFO)profdata ... $(RESET)"					&& \
 	$(PRD) merge -sparse default.profraw -o 					\
 	$(TEST_NAME).profdata										&& \

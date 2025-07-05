@@ -13,6 +13,7 @@
 #include "ft_defs.h"
 
 #include "ft_arr.h"
+#include "ft_math.h"
 #include "ft_string.h"
 
 t_iconst_arr	ft_adup(t_const_arr arr)
@@ -28,6 +29,28 @@ t_iconst_arr	ft_adup(t_const_arr arr)
 		return (NULL);
 	i = 0;
 	while (arr[i])
+	{
+		ret[i] = arr[i];
+		i++;
+	}
+	ret[i] = NULL;
+	return (ret);
+}
+
+t_iconst_arr	ft_andup(t_const_arr arr, size_t n)
+{
+	t_iconst_arr	ret;
+	size_t			i;
+
+	ret = NULL;
+	if (!arr)
+		return (ret);
+	i = ft_min(ft_alen(arr), n);
+	ret = ft_calloc(sizeof(const void *), i + 1);
+	if (!ret)
+		return (NULL);
+	i = 0;
+	while (arr[i] && i < n)
 	{
 		ret[i] = arr[i];
 		i++;

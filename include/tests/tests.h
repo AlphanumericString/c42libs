@@ -19,6 +19,12 @@
 # define TESTS_FPREFIX		"build/test_"
 # define TESTS_FPREFIX_TMP	"/tmp/c42libs_test_"
 
+# ifndef VERBOSE
+#  define VERBOSE 0
+# endif
+
+# define TEST_NOT_IMPLEMENTED EXIT_FAILURE
+
 # if defined(__linux__)
 #  define SRAND_OK true
 # else
@@ -28,6 +34,24 @@
 # ifndef FORK_TESTS
 #  define FORK_TESTS 1
 # endif
+
+typedef enum e_err_test_type
+{
+	TERR_CRASH = -1,
+	TERR_OK = 0,
+	TERR_ERR = 1,
+}	t_err_test_type;
+
+typedef union u_returns
+{
+	int	(*module_test)(int);
+	int	(*tests_test)(void);
+	struct
+	{
+		t_err_test_type	e_type;
+		int				value;
+	};
+}	t_packed_returns;
 
 typedef struct s_test
 {
@@ -39,13 +63,14 @@ typedef struct s_module
 {
 	char	*full_name;
 	char	*short_name;
-	int		(*test)(void);
+	int		(*test)(int);
 }			t_module;
 
-typedef int	(*t_function_test_runner)(t_test, int *, int);
+typedef int	(*t_function_test_runner)(t_test, int *, int, int);
 
 // test main frame
-int		run_test(const t_test *test, int *collect);
+int		run_module(const t_module module, int depth);
+int		run_test(const t_test *test, int *collect, int depth);
 int		open_test_file(char **func_to_test);
 void	destroy_test_file(int fd, const char *file);
 
@@ -68,26 +93,28 @@ void	*talloc_reallocarray(void *p, size_t a, size_t b);
 /// memory fail end
 
 // hook for modules tests
-int		tests_args(void);
-// int		tests_arena(void);
-// int		tests_array(void);
-int		tests_bitset(void);
-int		tests_doubly_linked_list_all(void);
-int		tests_linked_list_all(void);
-int		tests_circular_linked_list_all(void);
-int		tests_map(void);
-int		tests_math(void);
-int		tests_optional(void);
-int		tests_pair(void);
-int		tests_string(void);
-int		tests_vector(void);
+int		tests_args(int d);
+// int		tests_arena(int d);
+// int		tests_array(int d);
+int		tests_bitset(int d);
+int		tests_lists(int d);
+int		tests_map(int d);
+int		tests_math(int d);
+int		tests_optional(int d);
+int		tests_pair(int d);
+int		tests_string(int d);
+int		tests_vector(int d);
 
 // sub modules tests
 // - string
-int		t_string_tests(void);
-int		mem_tests(void);
-int		str_tests(void);
-int		char_tests(void);
+int		t_string_tests(int d);
+int		mem_tests(int d);
+int		str_tests(int d);
+int		char_tests(int d);
+// - lists
+int		tests_doubly_linked_list_all(int d);
+int		tests_linked_list_all(int d);
+int		tests_circular_linked_list_all(int d);
 
 // to see utils and such see : test_lambda_functions.h
 

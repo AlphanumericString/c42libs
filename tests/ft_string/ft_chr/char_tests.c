@@ -13,7 +13,7 @@
 #include "tests/char_tests.h"
 #include "tests/tests.h"
 
-int	char_tests(void)
+int	char_tests(int depth)
 {
 	int				i;
 	const t_test	tests[] = {
@@ -26,7 +26,7 @@ int	char_tests(void)
 	{"putnchar", tc_putnchar}, {NULL, NULL}};
 
 	i = 0;
-	run_test(tests, &i);
+	run_test(tests, &i, depth);
 	return (i);
 }
 /*

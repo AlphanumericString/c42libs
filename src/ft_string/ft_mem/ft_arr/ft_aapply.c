@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "ft_arr.h"
+#include <stddef.h>
+#include <stdio.h>
 
 void	ft_aapply(t_oconst_arr array, t_data_apply f)
 {
@@ -20,6 +22,17 @@ void	ft_aapply(t_oconst_arr array, t_data_apply f)
 	if (!array || !f)
 		return ;
 	while (array[i])
+		f(array[i++]);
+}
+
+void	ft_anapply(t_oconst_arr array, size_t n, t_data_apply f)
+{
+	size_t	i;
+
+	i = 0;
+	if (!array || !f || !n)
+		return ;
+	while (i < n && array[i])
 		f(array[i++]);
 }
 /*

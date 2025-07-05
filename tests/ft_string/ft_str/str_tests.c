@@ -52,7 +52,7 @@ static const t_test	*load_tests02(void)
 	return (tb);
 }
 
-int	str_tests(void)
+int	str_tests(int depth)
 {
 	int				collect;
 	const t_test	*tests_tb[] = {load_tests01(), load_tests02(), NULL};
@@ -69,7 +69,7 @@ int	str_tests(void)
 		it[0]++;
 	}
 	collect = 0;
-	run_test(tests, &collect);
+	run_test(tests, &collect, depth);
 	return (collect);
 }
 /*

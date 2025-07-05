@@ -28,12 +28,10 @@
 static const t_module	*get_tests(void)
 {
 	static const t_module	tests[] = {
+	{"linked list", "list", tests_lists},
 	{"string", "str", tests_string},
 	{"vector", "vec", tests_vector},
 	{"hashmaps", "map", tests_map},
-	{"simply linked lists", "sll", tests_linked_list_all},
-	{"doubly linked lists", "dll", tests_doubly_linked_list_all},
-	{"circular linked lists", "cll", tests_circular_linked_list_all},
 	{"optional", "opt", tests_optional},
 	{"arguments", "arg", tests_args},
 	{"math", "math", tests_math},
@@ -57,14 +55,21 @@ static void	setup(const char *av[])
 	talloc_set_currentpoint(0);
 }
 
-static int	run_module(const t_module module)
+int	run_module(const t_module module, int depth)
 {
 	const char	*r_s[] = {" \033[32mOK\033[0m", " \033[31mKO\033[0m"};
+	const char	*md_type[] = {"main module", "sub-module", "nested sub-module"};
+	const char	*_md;
 	int			collect;
 
-	ft_print_fd(STDOUT_FILENO, "\n\nTesting %s\n", module.full_name);
-	collect = module.test();
-	ft_print_fd(STDOUT_FILENO, "\nModule:: %s ", module.full_name);
+	if (depth > 1)
+		_md = md_type[2];
+	else
+		_md = md_type[depth];
+	if (depth <= VERBOSE)
+		ft_print_fd(STDOUT_FILENO, "\n%s %s\n", _md, module.full_name);
+	collect = module.test(depth + 1);
+	ft_print_fd(STDOUT_FILENO, "%s:: %s ", _md, module.full_name);
 	ft_putendl_fd(r_s[collect != 0], STDOUT_FILENO);
 	return (collect);
 }
@@ -111,7 +116,7 @@ int	main(int ac, const char *av[])
 	{
 		if (ac < 2 || (!ft_strcmp(target, tests[i].short_name)
 				|| !ft_strcmp(target, tests[i].full_name)))
-			collect += run_module(tests[i]);
+			collect += run_module(tests[i], 0);
 		i++;
 	}
 	return (ft_putendl_fd(res_str[collect != 0], STDOUT_FILENO),

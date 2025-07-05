@@ -42,6 +42,33 @@ int	tca_acmp(void)
 	return (0);
 }
 
+int	tca_ancmp(void)
+{
+	const char	*arr1[] = {"a", "b", NULL};
+	const char	*arr2[] = {"a", "b", NULL};
+	const char	*arr3[] = {"a", "b", "42", NULL};
+	const char	*arr4[] = {"a", "a", NULL};
+
+	if (ft_ancmp((t_iconst_arr) NULL, (t_iconst_arr) NULL, 0) != 0
+		|| ft_ancmp((t_iconst_arr)arr1, (t_iconst_arr)arr1, 0) != 0
+		|| ft_ancmp((t_iconst_arr)arr1, (t_iconst_arr)arr2, 0) != 0
+		|| ft_ancmp((t_iconst_arr)arr1, (t_iconst_arr)arr1, 2) != 0
+		|| ft_ancmp((t_iconst_arr)arr1, (t_iconst_arr)arr3, 2) != 0
+		|| ft_ancmp((t_iconst_arr) NULL, (t_iconst_arr) NULL, 2) != 0
+		|| ft_ancmp((t_iconst_arr)arr4, (t_iconst_arr)arr1, 1) != 0)
+		return (1);
+	if (ft_ancmp((t_iconst_arr)arr3, (t_iconst_arr)arr1, 3) == 0
+		|| ft_ancmp((t_iconst_arr)arr1, (t_iconst_arr)arr3, 3) == 0
+		|| ft_ancmp((t_iconst_arr)arr4, (t_iconst_arr)arr3, 42) == 0
+		|| ft_ancmp((t_iconst_arr)arr3, (t_iconst_arr)arr4, 42) == 0
+		|| ft_ancmp((t_iconst_arr)arr1, (t_iconst_arr)arr3, 42) == 0
+		|| ft_ancmp((t_iconst_arr)arr3, (t_iconst_arr)arr1, 42) == 0
+		|| ft_ancmp((t_iconst_arr)arr3, (t_iconst_arr) NULL, 2) == 0
+		|| ft_ancmp((t_iconst_arr) NULL, (t_iconst_arr) arr3, 2) == 0)
+		return (2);
+	return (0);
+}
+
 int	tca_acmpwith(void)
 {
 	const char	*arr1[] = {"hello", "42", NULL};
@@ -66,6 +93,34 @@ int	tca_acmpwith(void)
 	if (ft_acmp_with(NULL, (t_const_arr)arr1, NULL) >= 0
 		|| ft_acmp_with((t_const_arr)arr1, NULL, NULL) <= 0)
 		return (5);
+	return (0);
+}
+
+int	tca_ancmpwith(void)
+{
+	const char	*arr1[] = {"a", "b", NULL};
+	const char	*arr2[] = {"a", "b", NULL};
+	const char	*arr3[] = {"a", "b", "42", NULL};
+	const char	*arr4[] = {"a", "a", NULL};
+
+	if (ft_ancmp_with((t_any) NULL, (t_any) NULL, 0, (t_any)ft_strcmp) != 0
+		|| ft_ancmp_with((t_any)arr1, (t_any)arr1, 0, (t_any)ft_strcmp) != 0
+		|| ft_ancmp_with((t_any)arr1, (t_any)arr2, 0, (t_any)ft_strcmp) != 0
+		|| ft_ancmp_with((t_any)arr1, (t_any)arr1, 2, (t_any)ft_strcmp) != 0
+		|| ft_ancmp_with((t_any)arr1, (t_any)arr3, 2, (t_any)ft_strcmp) != 0
+		|| ft_ancmp_with((t_any) NULL, (t_any) NULL, 2, (t_any)ft_strcmp) != 0
+		|| ft_ancmp_with((t_any)arr4, (t_any)arr1, 1, (t_any)ft_strcmp) != 0
+		|| ft_ancmp_with((t_any)arr4, (t_any)arr1, 1, NULL) != 0)
+		return (1);
+	if (ft_ancmp_with((t_any)arr3, (t_any)arr1, 3, (t_any)ft_strcmp) == 0
+		|| ft_ancmp_with((t_any)arr1, (t_any)arr3, 3, (t_any)ft_strcmp) == 0
+		|| ft_ancmp_with((t_any)arr4, (t_any)arr3, 42, (t_any)ft_strcmp) == 0
+		|| ft_ancmp_with((t_any)arr3, (t_any)arr4, 42, (t_any)ft_strcmp) == 0
+		|| ft_ancmp_with((t_any)arr1, (t_any)arr3, 42, (t_any)ft_strcmp) == 0
+		|| ft_ancmp_with((t_any)arr3, (t_any)arr1, 42, (t_any)ft_strcmp) == 0
+		|| ft_ancmp_with((t_any)arr3, (t_any) NULL, 2, (t_any)ft_strcmp) == 0
+		|| ft_ancmp_with((t_any) NULL, (t_any) arr3, 2, (t_any)ft_strcmp) == 0)
+		return (2);
 	return (0);
 }
 /*

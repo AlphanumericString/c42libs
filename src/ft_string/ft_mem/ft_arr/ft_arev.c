@@ -1,44 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_tests.c                                     :+:      :+:    :+:   */
+/*   ft_arev.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 13:36:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/21 00:20:46 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/07/03 11:22:42 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/03 11:22:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "tests/tests.h"
+#include "ft_arr.h"
+#include <stddef.h>
 
-#include <unistd.h>
-
-static const t_module	*load_submodules_tests(void)
+void	ft_arev(t_iconst_arr array)
 {
-	static const t_module	tests[] = {
-	{"characters", "char", char_tests},
-	{"memory", "mem", mem_tests},
-	{"string", "str", str_tests},
-	{"growable strings", "t_string", t_string_tests},
-	{NULL, NULL, NULL}
-	};
+	size_t		len;
+	size_t		it;
+	const void	*p;
 
-	return (tests);
+	it = 0;
+	if (!array || !array[0] || !array[1])
+		return ;
+	len = ft_alen(array) - 1;
+	while (it <= len / 2)
+	{
+		p = array[it];
+		array[it] = array[len];
+		array[len] = p;
+		it++;
+		len--;
+	}
 }
 
-int	tests_string(int depth)
+void	ft_anrev(t_iconst_arr array, size_t n)
 {
-	size_t			i;
-	int				collect;
-	const t_module	*modules = load_submodules_tests();
+	size_t		len;
+	size_t		it;
+	const void	*p;
 
-	i = 0;
-	collect = 0;
-	while (modules[i].test)
-		collect += run_module(modules[i++], depth);
-	return (collect);
+	it = 0;
+	if (n < 2 || !array || !array[0] || !array[1])
+		return ;
+	len = ft_alen(array) - 1;
+	if (n > len)
+		n = len + 1;
+	while (it < n / 2)
+	{
+		p = array[it];
+		array[it] = array[n - it - 1];
+		array[n - it - 1] = p;
+		it++;
+	}
 }
 /*
 GPL-3.0 License:

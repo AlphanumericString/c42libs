@@ -16,23 +16,30 @@
 // test array
 // tca -> test c-style array
 int	tca_aapply(void);
+int	tca_anapply(void);
 int	tca_acat(void);
 int	tca_alcat(void);
 int	tca_aclear(void);
 int	tca_acmp(void);
+int	tca_ancmp(void);
 int	tca_acmpwith(void);
+int	tca_ancmpwith(void);
 int	tca_acpy(void);
 int	tca_alcpy(void);
 int	tca_adup(void);
+int	tca_andup(void);
 int	tca_afind(void);
 int	tca_afindwith(void);
 int	tca_afree(void);
 int	tca_alen(void);
 int	tca_amap(void);
 int	tca_anmap(void);
+int	tca_arev(void);
+int	tca_anrev(void);
 int	tca_arfind(void);
 int	tca_arfindwith(void);
 int	tca_atr(void);
+int	tca_antr(void);
 
 // test memory allocator
 // tmal -> test memory allocator

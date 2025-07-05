@@ -14,11 +14,8 @@
 # define FT_ARR_H
 
 # include "ft_defs.h"
+# include <stddef.h>
 
-// # TODO: add the following array functions:
-// # ft_arev	- reverse any array
-// # ft_ancmp	- n version of cmp
-// # ft_andup	- n version of dup
 // todo: change search to return a t_const_arr at pos where cmp_d was found
 
 /* ************************************************************************** */
@@ -43,13 +40,17 @@
 /// @param	array, the array the funcion f is applied to
 /// @param	f, the function to applied
 void			ft_aapply(t_oconst_arr array, t_data_apply f);
+/// @brief	aplies a function onto up to n member of the array
+/// @param	array, the array the funcion f is applied to
+/// @param	n, the maximum number of elements to apply the function f to
+/// @param	f, the function to applied
+void			ft_anapply(t_oconst_arr array, size_t n, t_data_apply f);
 
 /// @brief function the same way as a strcat would, append to the end of
 ///	 array ar_dst the array ar_src.
 /// @param ar_dst, the destination array
 /// @param ar_src, the source array
 void			ft_acat(t_iconst_arr ar_dst, t_const_arr ar_src);
-
 /// @brief function the same way as a strlcat would, append to the end of
 ///	 array ar_dst the array ar_src but only if there is enough space
 ///	 in ar_dst.
@@ -62,7 +63,6 @@ void			ft_alcat(t_iconst_arr ar_dst, size_t mx, t_const_arr ar_src);
 /// @param	dst, the destination array
 /// @param	src, the source array
 void			ft_acpy(t_iconst_arr dst, t_const_arr src);
-
 /// @brief	copies the content of array src into dst but only if there is
 ///	 enough space in dst.
 ///	 @param	dst, the destination array
@@ -85,8 +85,16 @@ void			ft_aclear(t_iconst_arr arr);
 /// @note	only compares by raw pointer values in a1[i] == a2[i] style, use
 ///		ft_acmp_with to compare using a function.
 int				ft_acmp(t_const_arr a1, t_const_arr a2);
+/// @brief	compare up to n elements of two sets of array.
+/// @param	a1, the first array of the comparaison
+/// @param	a2, the second array of the comparaison
+/// @param	n, the maximum number of elements to compare
+/// @return	-1, 0, 1, if a1 < a2, a1 == a2, a1 > a2
+/// @note	only compares by raw pointer values in a1[i] == a2[i] style, use
+///			ft_ancmp_with to compare using a function.
+int				ft_ancmp(t_const_arr a1, t_const_arr a2, size_t n);
 
-/// @brief	compare two set of array.
+/// @brief	compare two set of array using a function.
 /// @param	a1, the first array of the comparaison
 /// @param	a2, the second array of the comparaison
 /// @param	cmp, the comparaison function
@@ -94,6 +102,16 @@ int				ft_acmp(t_const_arr a1, t_const_arr a2);
 /// @note	compares by calling cmp on both element, for faster but less
 ///		accurate comparaisons use ft_acmp.
 int				ft_acmp_with(t_const_arr a1, t_const_arr a2, t_data_cmp cmp);
+/// @brief	compare up to n elements of two sets of array using a function.
+/// @param	a1, the first array of the comparaison
+/// @param	a2, the second array of the comparaison
+/// @param	n, the maximum number of elements to compare
+/// @param	cmp, the comparaison function
+/// @return	-1, 0, 1, if a1 < a2, a1 == a2, a1 > a2
+/// @note	compares by calling cmp on both element, for faster but less
+///		accurate comparaisons use ft_ancmp.
+int				ft_ancmp_with(t_const_arr a1, t_const_arr a2, size_t n,
+					t_data_cmp cmp);
 
 /// @brief	Duplicate an array arr
 /// @param	arr, the array to duplicate
@@ -101,6 +119,13 @@ int				ft_acmp_with(t_const_arr a1, t_const_arr a2, t_data_cmp cmp);
 /// @note	This is NOT A DEEP COPY. As t_*arr types are void typed we dont
 ///		copy the data.
 t_iconst_arr	ft_adup(t_const_arr arr);
+/// @brief	Duplicate up to n elements of an array given
+/// @param	arr, the array to duplicate
+/// @param	n, the max number of elements to duplicate
+/// @return	either a new array or null if allocation failed.
+/// @note	This is NOT A DEEP COPY. As t_*arr types are void typed we dont
+///		copy the data.
+t_iconst_arr	ft_andup(t_const_arr arr, size_t n);
 
 /// @brief	search for element n in array arr (linear search)
 /// @param	arr, the array to search into
@@ -145,10 +170,18 @@ const void		*ft_arfind_with(t_const_arr arr, const void *cmp_d,
 void			ft_afree(void **arr);
 
 ///	@brief	call a function f on every elements and expects data to not be
-///	const to TRansform In-place.
+///		const to TRansform In-place.
 ///	@param	arr, the array holding the elements to call the function on.
+///	@param	tr, the transformation function to transform the data in place
 ///	@note	if your array is const use ft_adup to copy it before calling this.
 void			ft_atr(t_arr arr, t_data_tr_i tr);
+///	@brief	call a function f on up to n element and expects data to not be
+///		const to TRansform In-place.
+///	@param	arr, the array holding the elements to call the function on.
+///	@param	n, the number of max elements to transform
+///	@param	tr, the transformation function to transform the data in place
+///	@note	if your array is const use ft_adup to copy it before calling this.
+void			ft_antr(t_arr arr, size_t n, t_data_tr_i tr);
 
 /// @brief	allocate a new array and populate it with the result of
 ///		function f applied to each element of arr.
@@ -157,7 +190,6 @@ void			ft_atr(t_arr arr, t_data_tr_i tr);
 /// @return	a new array with the result of f applied to each element of arr or
 ///		NULL if allocation failed.
 t_arr			ft_amap(t_const_arr arr, t_data_tr f);
-
 /// @brief	allocate a new array and populate it with the result of
 ///		function f applied up to n elements of arr.
 ///	@param	arr, the array to map
@@ -166,5 +198,15 @@ t_arr			ft_amap(t_const_arr arr, t_data_tr f);
 /// @return	a new array with the result of f applied up to n element of arr or
 ///		NULL if allocation failed.
 t_arr			ft_anmap(t_const_arr array, size_t n, t_data_tr f);
+
+/// @brief	reverse the array given
+/// @param	array, the array to reverse
+/// @return	void, the array is reversed in place
+void			ft_arev(t_iconst_arr array);
+/// @brief	reverse up to n elements of the array given.
+/// @param	array, the array to reverse
+/// @param	n, the number of max elements to reverse
+/// @return	void, the array is reversed in place
+void			ft_anrev(t_iconst_arr array, size_t n);
 
 #endif /* FT_ARR_H */

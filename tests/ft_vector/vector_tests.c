@@ -14,7 +14,7 @@
 #include "tests/vector_tests.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	tests_vector(void)
+int	tests_vector(int depth)
 {
 	int				collect;
 	const t_test	tests[] = {
@@ -33,7 +33,7 @@ int	tests_vector(void)
 	};
 
 	collect = 0;
-	run_test(tests, &collect);
+	run_test(tests, &collect, depth);
 	return (collect);
 }
 /*

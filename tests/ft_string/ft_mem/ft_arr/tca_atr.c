@@ -19,7 +19,7 @@
 
 #include <stdlib.h>
 
-static char	*loc_strtoupper(void *data)
+static void	*loc_strtoupper(void *data)
 {
 	char	*str;
 	int		i;
@@ -31,7 +31,7 @@ static char	*loc_strtoupper(void *data)
 	while (str[i])
 		if (ft_isalpha(str[i++]))
 			str[i - 1] = ft_toupper(str[i - 1]);
-	return (str);
+	return ((void *)str);
 }
 
 int	tca_atr(void)
@@ -39,15 +39,41 @@ int	tca_atr(void)
 	char	**arr;
 
 	arr = ft_split("Hello|World|42", '|');
+	ft_atr((t_arr)arr, (t_data_tr_i) NULL);
+	ft_atr((t_arr) NULL, (t_data_tr_i)loc_strtoupper);
+	if (ft_strcmp(arr[0], "Hello") != 0
+		|| ft_strcmp(arr[1], "World") != 0
+		|| ft_strcmp(arr[2], "42") != 0)
+		return (ft_afree((void **)arr), 1);
 	ft_atr((t_arr)arr, (t_data_tr_i)loc_strtoupper);
 	if (ft_strcmp(arr[0], "HELLO") != 0
 		|| ft_strcmp(arr[1], "WORLD") != 0
 		|| ft_strcmp(arr[2], "42") != 0)
+		return (ft_afree((void **)arr), 1);
+	return (ft_afree((void **)arr), 0);
+}
+
+int	tca_antr(void)
+{
+	char	**arr;
+
+	arr = ft_split("Hello|World|42", '|');
+	ft_antr((t_arr)arr, 0, NULL);
+	ft_antr(NULL, 1, (t_data_tr_i)loc_strtoupper);
+	ft_antr((t_arr)arr, 1, NULL);
+	ft_antr((t_arr)arr, 0, loc_strtoupper);
+	if (ft_strcmp(arr[0], "Hello") != 0 || ft_strcmp(arr[1], "World") != 0
+		|| ft_strcmp(arr[2], "42") != 0)
+		return (ft_afree((void **)arr), 1);
+	ft_antr((t_arr)arr, 1, loc_strtoupper);
+	if (ft_strcmp(arr[0], "HELLO") != 0 || ft_strcmp(arr[1], "World") != 0
+		|| ft_strcmp(arr[2], "42") != 0)
 		return (ft_afree((void **)arr), 2);
-	ft_afree((void **)arr);
-	ft_atr((t_arr)arr, (t_data_tr_i) NULL);
-	ft_atr((t_arr) NULL, (t_data_tr_i)loc_strtoupper);
-	return (0);
+	ft_antr((t_arr)arr, 42, loc_strtoupper);
+	if (ft_strcmp(arr[0], "HELLO") != 0 || ft_strcmp(arr[1], "WORLD") != 0
+		|| ft_strcmp(arr[2], "42") != 0)
+		return (ft_afree((void **)arr), 3);
+	return (ft_afree((void **)arr), 0);
 }
 /*
 GPL-3.0 License:

@@ -36,13 +36,13 @@ static const t_test	*init_tests(void)
 	return (var);
 }
 
-int	tests_bitset(void)
+int	tests_bitset(int depth)
 {
 	const t_test	*test = init_tests();
 	int				collect;
 
 	collect = 0;
-	run_test(test, &collect);
+	run_test(test, &collect, depth);
 	return (collect);
 }
 /*

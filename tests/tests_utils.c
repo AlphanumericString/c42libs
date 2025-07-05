@@ -20,7 +20,18 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-static int	run_t_test_fork(t_test test, int *collect, int mx_flen)
+static void	print_test_name(int depth, const char *name, int mx_len)
+{
+	if (depth > VERBOSE)
+		return ;
+	while (depth--)
+		ft_putstr_fd("\t", STDOUT_FILENO);
+	ft_putnchar_fd(' ', STDOUT_FILENO, mx_len - ft_strlen(name));
+	ft_putstr_fd(name, STDOUT_FILENO);
+	ft_putchar_fd(' ', STDOUT_FILENO);
+}
+
+static int	run_t_test_fork(t_test test, int *collect, int mx_flen, int depth)
 {
 	int	ret;
 	int	pid;
@@ -29,13 +40,14 @@ static int	run_t_test_fork(t_test test, int *collect, int mx_flen)
 	if (pid == 0)
 		exit(test.test());
 	waitpid(pid, &ret, 0);
-	ft_putnchar_fd(' ', STDOUT_FILENO, mx_flen - ft_strlen(test.name));
-	ft_putstr_fd(test.name, STDOUT_FILENO);
+	if (depth > VERBOSE)
+		return (*collect += ret, ret);
+	print_test_name(depth, test.name, mx_flen);
 	if (WIFEXITED(ret) && ret == 0)
-		ft_putstr_fd(" \033[32mOK \033[0m", STDOUT_FILENO);
+		ft_putstr_fd("\033[32mOK \033[0m", STDOUT_FILENO);
 	else
 	{
-		ft_putstr_fd(" \033[31mKO\033[0m ret::", STDOUT_FILENO);
+		ft_putstr_fd("\033[31mKO\033[0m ret::", STDOUT_FILENO);
 		if (WIFEXITED(ret))
 			ft_putnbr_fd(WEXITSTATUS(ret), STDOUT_FILENO);
 		else
@@ -46,49 +58,26 @@ static int	run_t_test_fork(t_test test, int *collect, int mx_flen)
 	return (ret);
 }
 
-static int	run_t_test_nofork(t_test test, int *collect, int mx_flen)
+static int	run_t_test_nofork(t_test test, int *collect, int mx_flen, int depth)
 {
 	int	ret;
 
-	(void)mx_flen;
+	if (depth > VERBOSE)
+	{
+		ret = test.test();
+		return (*collect += ret, ret);
+	}
+	print_test_name(depth, test.name, mx_flen);
 	ret = test.test();
 	*collect += ret;
 	if (ret != 0)
-	{
-		ft_putstr_fd(test.name, STDOUT_FILENO);
-		ft_putstr_fd(" \033[31mKO\033[0m ret::", STDOUT_FILENO);
-		ft_putnbr_fd(ret, STDOUT_FILENO);
-		ft_putstr_fd("\n", STDOUT_FILENO);
-	}
+		ft_print_fd(STDOUT_FILENO, "\033[31mKO\033[0m ret::%d\n", ret);
 	else
-		ft_putstr_fd(" \033[32mOK\033[0m", STDOUT_FILENO);
+		ft_putstr_fd("\033[32mOK\033[0m\n", STDOUT_FILENO);
 	return (ret);
 }
 
-int	open_test_file(char **func_to_test)
-{
-	char	*file;
-	int		fd;
-
-	file = ft_strjoin(TESTS_FPREFIX, *func_to_test);
-	fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error: on oppening ", STDERR_FILENO);
-		ft_putstr_fd(file, STDERR_FILENO);
-		return (ft_free(file), -1);
-	}
-	*func_to_test = file;
-	return (fd);
-}
-
-void	destroy_test_file(int fd, const char *file)
-{
-	close(fd);
-	unlink(file);
-}
-
-int	run_test(const t_test *test, int *collect)
+int	run_test(const t_test *test, int *collect, int depth)
 {
 	const t_function_test_runner	f[2] = {run_t_test_nofork, run_t_test_fork};
 	size_t							i;
@@ -104,7 +93,7 @@ int	run_test(const t_test *test, int *collect)
 	i = 0;
 	while (test[i].name)
 	{
-		ret = f[FORK_TESTS](test[i], &sum, mx_flen);
+		ret = f[FORK_TESTS](test[i], &sum, mx_flen, depth);
 		*collect += ret;
 		sum += ret;
 		i++;

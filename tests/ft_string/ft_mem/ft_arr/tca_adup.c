@@ -12,6 +12,7 @@
 
 #include "ft_allocator__dev.h"
 #include "ft_arr.h"
+#include "ft_string.h"
 #include "tests/tests.h"
 #include "tests/str__mem_tests.h"
 
@@ -32,6 +33,20 @@ static int	mt_adup(void)
 	return (0);
 }
 
+static int	mt_andup(void)
+{
+	const int		fp = *talloc_get_failpoint();
+	t_iconst_arr	dst;
+	const char		*src[] = {(void *)"a", (void *)"b", (void *)"c", NULL};
+
+	talloc_set_failpoint(0);
+	dst = ft_andup((t_const_arr)src, 42);
+	talloc_set_failpoint(fp);
+	if (dst)
+		return (10);
+	return (0);
+}
+
 int	tca_adup(void)
 {
 	const char		*arr1[] = {"Hello", "World", "42", NULL};
@@ -45,6 +60,25 @@ int	tca_adup(void)
 	if (dup)
 		return (2);
 	return (mt_adup());
+}
+
+int	tca_andup(void)
+{
+	const char		*arr1[] = {"Hello", "World", "42", NULL};
+	t_iconst_arr	dup;
+
+	dup = ft_andup((t_const_arr)arr1, 42);
+	if (!dup || ft_alen((t_const_arr)dup) != 3 || ft_acmp(dup, (t_any)arr1))
+		return (1);
+	ft_free((t_any)dup);
+	dup = ft_andup((t_const_arr)arr1, 1);
+	if (!dup || ft_alen((t_const_arr)dup) != 1
+		|| ft_strcmp(dup[0], arr1[0]) || dup[1] != NULL)
+		return (2);
+	ft_free((t_any)dup);
+	if (ft_andup((t_const_arr) NULL, 0) != NULL)
+		return (3);
+	return (mt_andup());
 }
 /*
 GPL-3.0 License:
