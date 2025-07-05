@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_char.h"
-#include "tests/tests__all_modules_tests.h"
+#include "tests/str__char_tests.h"
 
 static int	local_ishexdigit(int c)
 {

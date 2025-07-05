@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   str__put_tests.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:28:40 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/05 14:13:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#ifndef STR__PUT_TESTS_H
+# define STR__PUT_TESTS_H
 
-static int	local_isspace(int c)
-{
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
-}
+int	put_tests(int depth);
 
-int	tc_isspace(void)
-{
-	int	i;
+int	tsp_perror(void);
+int	tsp_putendl(void);
+int	tsp_putnbr(void);
+int	tsp_putstr(void);
+int	tsp_putchar(void);
+int	tsp_putnchar(void);
 
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
-	return (0);
-}
+#endif /* STR__PUT_TESTS_H */
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

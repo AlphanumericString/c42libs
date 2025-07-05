@@ -1,38 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   tsp_putendl.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/05 13:19:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include <fcntl.h>
+#include <unistd.h>
 
-static int	local_isspace(int c)
+#include "ft_string.h"
+#include "tests/tests.h"
+#include "tests/str__put_tests.h"
+
+static int	error_cases(int fd, const char *const f_name)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
+	int		bread;
+	char	buff[100];
+
+	fd = open(f_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	if (ft_putendl_fd(NULL, fd) != -1)
 		return (1);
-	return (0);
+	fd = (close(fd), open(f_name, O_RDONLY));
+	bread = read(fd, buff, 100);
+	if (bread != 0)
+		return (2);
+	destroy_test_file(fd, f_name);
+	fd = -1;
+	if (ft_putendl_fd("bad fd", fd) != -1)
+		return (3);
+	return (EXIT_SUCCESS);
 }
 
-int	tc_isspace(void)
+int	tsp_putendl(void)
 {
-	int	i;
+	const char	*str;
+	int			fd;
+	char		buff[100];
+	int			bread;
+	const char	file_name[] = TESTS_FPREFIX "putendl.txt";
 
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
-	return (0);
+	str = "Hello World!";
+	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	ft_putendl_fd(str, fd);
+	close(fd);
+	fd = open(file_name, O_RDONLY);
+	bread = read(fd, buff, 100);
+	if (bread < 0 || ft_strncmp(buff, str, ft_strlen(str)) != 0
+		|| buff[ft_strlen(str)] != '\n')
+		return (1);
+	destroy_test_file(fd, file_name);
+	return (error_cases(fd, file_name));
 }
 /*
 GPL-3.0 License:

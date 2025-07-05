@@ -22,6 +22,8 @@ static const t_module	*load_submodules_tests(void)
 	{"memory", "mem", mem_tests},
 	{"string", "str", str_tests},
 	{"growable strings", "t_string", t_string_tests},
+	{"string output", "put", put_tests},
+	{"number conversions", "num", num_conv_tests},
 	{NULL, NULL, NULL}
 	};
 

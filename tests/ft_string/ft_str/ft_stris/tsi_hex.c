@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   ts_sis_hex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 14:07:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "ft_string.h"
+#include "tests/str__str_sis_tests.h"
 
-static int	local_isspace(int c)
+int	tsi_ishex(void)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
+	if (ft_str_ishex("0123456789abcdefABCDEF") != 1)
 		return (1);
-	return (0);
-}
-
-int	tc_isspace(void)
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
+	if (ft_str_ishex("0xdeadbeef") != 1 || ft_str_ishex("0xDEADBEEF") != 1)
+		return (2);
+	if (ft_str_ishex("0xdeadbeefg") != 0 || ft_str_ishex("0xDEADBEEFG") != 0)
+		return (3);
+	if (ft_str_ishex("0x") != 0 || ft_str_ishex("0X") != 0)
+		return (4);
+	if (ft_str_ishex("0x+32") != 0 || ft_str_ishex("0x-32") != 0)
+		return (5);
+	if (ft_str_ishex("0x0x") != 0 || ft_str_ishex("0X0X") != 0)
+		return (6);
+	if (ft_str_ishex("-0x0") != 0 || ft_str_ishex("+0X0") != 0)
+		return (7);
+	if (ft_str_ishex("0x0") != 1 || ft_str_ishex("0X0") != 1)
+		return (8);
+	if (ft_str_ishex("123") != 1)
+		return (8);
+	if (ft_str_ishex("") != 0)
+		return (9);
+	if (ft_str_ishex(NULL) != false)
+		return (10);
 	return (0);
 }
 /*

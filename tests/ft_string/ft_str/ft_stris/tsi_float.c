@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   ts_sis_float.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 14:07:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "ft_string.h"
+#include "tests/str__str_sis_tests.h"
+#include <stddef.h>
+#include <stdio.h>
 
-static int	local_isspace(int c)
+int	tsi_isfloat(void)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
-}
-
-int	tc_isspace(void)
-{
-	int	i;
+	const char	*valid_str[20] = {
+		"23.3", "42", "0.0", "2.0000", "0.00000", "+0e+00", "43.32e-12", NULL};
+	const char	*err_str[20] = {
+		"34..4", "0a.0", "a0.0", "0.0a", "0a0", "0.a0", "1.0.0", "0.0.0",
+		"+.", "+", "-", ".", "++0", "+-32.12e+12", "", NULL};
+	size_t		i;
 
 	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
+	while (valid_str[i])
+		if (ft_str_isfloat(valid_str[i++]) != true)
+			return (i);
+	i = 0;
+	while (err_str[i])
+		if (ft_str_isfloat(err_str[i++]) != false)
+			return (i + 20);
+	if (ft_str_isfloat(NULL) != false)
+		return (40);
 	return (0);
 }
 /*

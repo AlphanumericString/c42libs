@@ -94,8 +94,6 @@ void	*talloc_reallocarray(void *p, size_t a, size_t b);
 
 // hook for modules tests
 int		tests_args(int d);
-// int		tests_arena(int d);
-// int		tests_array(int d);
 int		tests_bitset(int d);
 int		tests_lists(int d);
 int		tests_map(int d);
@@ -111,10 +109,20 @@ int		t_string_tests(int d);
 int		mem_tests(int d);
 int		str_tests(int d);
 int		char_tests(int d);
+int		put_tests(int d);
+int		num_conv_tests(int d);
 // - lists
 int		tests_doubly_linked_list_all(int d);
 int		tests_linked_list_all(int d);
 int		tests_circular_linked_list_all(int d);
+
+// - string/mem
+int		arr_module_tests(int depth);
+int		allocator_module_tests(int depth);
+int		arena_module_tests(int depth);
+
+// - string/str/stris
+int		stris_tests(int depth);
 
 // to see utils and such see : test_lambda_functions.h
 

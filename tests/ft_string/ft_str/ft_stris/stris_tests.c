@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   stris_tests.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/07/05 13:00:10 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/05 13:00:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "tests/str__str_sis_tests.h"
+#include "tests/tests.h"
 
-static int	local_isspace(int c)
+int	stris_tests(int depth)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
+	int				collect;
+	const t_test	tests[] = {
+	{"isalpha", tsi_isalpha},
+	{"isbool", tsi_isbool}, {"alnum", tsi_isalnum},
+	{"isdigit", tsi_isdigit}, {"isdouble", tsi_isdouble},
+	{"ishex", tsi_ishex}, {"islong", tsi_islong},
+	{"isnum", tsi_isnum}, {"isoct", tsi_isoct},
+	{"isint", tsi_isint}, {"isfloat", tsi_isfloat},
+	{"isvalid", tsi_isvalid}, {NULL, NULL}};
+
+	collect = 0;
+	run_test(tests, &collect, depth);
+	return (collect);
 }
 
-int	tc_isspace(void)
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
-	return (0);
-}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

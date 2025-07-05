@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   ts_sis_alnum.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 14:07:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "ft_string.h"
+#include "tests/str__str_sis_tests.h"
 
-static int	local_isspace(int c)
+int	tsi_isalnum(void)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
+	if (ft_str_isalnum("HelloWorld42") != 1)
 		return (1);
-	return (0);
-}
-
-int	tc_isspace(void)
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
+	if (ft_str_isalnum("Hello World42") != 0)
+		return (2);
+	if (ft_str_isalnum("Hello21World!") != 0)
+		return (3);
+	if (ft_str_isalnum("Hello420BlazeIt.") != 0)
+		return (4);
+	if (ft_str_isalnum("HelloWorld696969\0") != 1)
+		return (5);
+	if (ft_str_isalnum("") != 0)
+		return (6);
+	if (ft_str_isalnum(NULL) != false)
+		return (7);
 	return (0);
 }
 /*

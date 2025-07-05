@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   tsp_putstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/05 13:19:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include <fcntl.h>
+#include <unistd.h>
 
-static int	local_isspace(int c)
+#include "ft_string.h"
+#include "tests/tests.h"
+#include "tests/str__put_tests.h"
+
+int	tsp_putstr(void)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
+	const char	file_name[] = TESTS_FPREFIX "putstr.txt";
+	const char	*str = "Hello World!";
+	int			fd;
+	char		buff[100];
+	int			bread;
+
+	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	ft_putstr_fd(str, fd);
+	close(fd);
+	fd = open(file_name, O_RDONLY);
+	bread = read(fd, buff, 100);
+	if (bread < 0 || ft_strncmp(buff, str, ft_strlen(str)) != 0)
 		return (1);
-	return (0);
-}
-
-int	tc_isspace(void)
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
+	destroy_test_file(fd, file_name);
+	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	ft_putstr_fd(NULL, fd);
+	close(fd);
+	fd = open(file_name, O_RDONLY);
+	bread = read(fd, buff, 100);
+	if (bread != 0)
+		return (2);
+	destroy_test_file(fd, file_name);
 	return (0);
 }
 /*

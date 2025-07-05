@@ -58,7 +58,7 @@ static void	setup(const char *av[])
 int	run_module(const t_module module, int depth)
 {
 	const char	*r_s[] = {" \033[32mOK\033[0m", " \033[31mKO\033[0m"};
-	const char	*md_type[] = {"main module", "sub-module", "nested sub-module"};
+	const char	*md_type[] = {"main ", "\tsub-", "\t\tnested sub-"};
 	const char	*_md;
 	int			collect;
 
@@ -67,9 +67,9 @@ int	run_module(const t_module module, int depth)
 	else
 		_md = md_type[depth];
 	if (depth <= VERBOSE)
-		ft_print_fd(STDOUT_FILENO, "\n%s %s\n", _md, module.full_name);
+		ft_print_fd(STDOUT_FILENO, "\n%smodule %s\n", _md, module.full_name);
 	collect = module.test(depth + 1);
-	ft_print_fd(STDOUT_FILENO, "%s:: %s ", _md, module.full_name);
+	ft_print_fd(STDOUT_FILENO, "%smodule:: %s ", _md, module.full_name);
 	ft_putendl_fd(r_s[collect != 0], STDOUT_FILENO);
 	return (collect);
 }

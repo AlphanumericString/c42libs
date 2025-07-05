@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   ts_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 14:07:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "tests/str__num_tests.h"
+#include "ft_string.h"
 
-static int	local_isspace(int c)
+int	tsn_atoll(void)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
-}
-
-int	tc_isspace(void)
-{
-	int	i;
+	size_t		i;
+	const int	t_cases[] = {0, 1, 9, 10, 99, 100, 999, 1000, 9999, 10000, \
+-1, -9, -10, -99, -100, -999, -1000, -9999, -10000};
+	const char	*t_str[] = {"0", "1", "9", "10", "99", "100", "999", "1000", \
+"9999", "10000", "-1", "-9", "-10", "-99", "-100", "-999", "-1000", \
+"-9999", "-10000"};
 
 	i = 0;
-	while (i < 256)
+	while (i < sizeof(t_cases) / sizeof(t_cases[0]))
 	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
+		if (ft_atoll(t_str[i]) != t_cases[i])
+			return (i + 1);
 		i++;
 	}
+	if (ft_atoll(" --99") != 99 || ft_atoll(" -0") != 0 || \
+ft_atoll(" -++--1") != -1)
+		return (30);
+	if (ft_atoll("toto") != 0 || ft_atoll("-toto") != 0 || ft_atoll("toto-") \
+!= 0 || ft_atoll("a") != 0 || ft_atoll("01234\t56789") != 1234)
+		return (31);
 	return (0);
 }
 /*

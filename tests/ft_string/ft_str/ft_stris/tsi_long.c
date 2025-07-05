@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   ts_sis_long.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 14:07:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "ft_string.h"
+#include "tests/str__str_sis_tests.h"
 
-static int	local_isspace(int c)
+int	tsi_islong(void)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
+	if (ft_str_islong("23") != 1 || ft_str_islong("42") != 1 || \
+ft_str_islong("0") != 1 || ft_str_islong("2") != 1 || \
+ft_str_islong("-34") != 1 || ft_str_islong("42") != 1 || \
+ft_str_islong("9223372036854775807") != 1 || \
+ft_str_islong("-9223372036854775808") != 1)
 		return (1);
-	return (0);
-}
-
-int	tc_isspace(void)
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
+	if (ft_str_islong("9223372036854775808") != 0 || \
+ft_str_islong("-9223372036854775809") != 0 || \
+ft_str_islong("92233720368547758070") != 0 || \
+ft_str_islong("-92233720368547758080") != 0 || \
+ft_str_islong("9223372036854775807a") != 0 || \
+ft_str_islong("-9223372036854775808a") != 0 || \
+ft_str_islong("9223372036854775807 ") != 0 || \
+ft_str_islong("-9223372036854775808 ") != 0 || \
+ft_str_islong("-+0") != 0 || ft_str_islong("+-0") != 0 || \
+ft_str_islong("0-") != 0 || ft_str_islong("0+") != 0)
+		return (2);
+	if (ft_str_islong("") != 0 || ft_str_islong("-") != 0)
+		return (3);
+	if (ft_str_islong(NULL) != false)
+		return (4);
 	return (0);
 }
 /*

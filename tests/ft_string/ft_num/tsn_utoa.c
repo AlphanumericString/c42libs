@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   ts_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:17:28 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 14:07:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "ft_string.h"
+#include <stdlib.h>
+#include "tests/str__num_tests.h"
 
-static int	local_isspace(int c)
+int	tsn_utoa(void)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
-}
-
-int	tc_isspace(void)
-{
-	int	i;
+	char				*res;
+	size_t				i;
+	const unsigned int	t_cases[] = {0, 123, 456, 7890, 12345};
+	const char			*expected_results[] = \
+{"0", "123", "456", "7890", "12345"};
 
 	i = 0;
-	while (i < 256)
+	while (i < sizeof(t_cases) / sizeof(t_cases[0]))
 	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
+		res = ft_utoa(t_cases[i]);
+		if (ft_strcmp(res, expected_results[i++]) != 0)
+			return (i);
+		ft_free(res);
 	}
 	return (0);
 }

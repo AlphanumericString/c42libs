@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   str__num_tests.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/26 11:28:40 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/05 14:12:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#ifndef STR__NUM_TESTS_H
+# define STR__NUM_TESTS_H
 
-static int	local_isspace(int c)
-{
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
-}
+int	tsn_atod(void);
+int	tsn_atoi_base(void);
+int	tsn_atoi(void);
+int	tsn_atol(void);
+int	tsn_atoll(void);
+int	tsn_atol_base(void);
+int	tsn_itoa_base(void);
+int	tsn_itoa(void);
+int	tsn_utoa(void);
 
-int	tc_isspace(void)
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
-	return (0);
-}
+#endif /* STR__NUM_TESTS_H */
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

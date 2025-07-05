@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   arena_tests.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/07/05 12:49:58 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/05 12:49:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "tests/str__mem_tests.h"
+#include "tests/tests.h"
 
-static int	local_isspace(int c)
+int	arena_module_tests(int depth)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
-}
+	int				collect;
+	const t_test	tests[] = {
+	{"arena", tma_arena}, {"narena_alloc", tma_narena_alloc},
+	{"narena_calloc", tma_narena_calloc}, {"narena_belong", tma_narena_belong},
+	{"narena_free", tma_narena_free},
+	{NULL, NULL}};
 
-int	tc_isspace(void)
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
-	return (0);
+	collect = 0;
+	run_test(tests, &collect, depth);
+	return (collect);
 }
 /*
 GPL-3.0 License:

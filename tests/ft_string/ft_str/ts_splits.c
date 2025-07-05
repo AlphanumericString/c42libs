@@ -14,7 +14,7 @@
 #include "ft_string.h"
 #include "tests/tests__all_modules_tests.h"
 
-int	tests_splits(void)
+int	test_splits(void)
 {
 	const char	*str;
 	char		**res;
@@ -22,10 +22,11 @@ int	tests_splits(void)
 
 	str = "path/to/file:another/path:yet/another/path";
 	res = ft_splits(str, " /:");
-	if (ft_strcmp(res[0], "path") != 0 || ft_strcmp(res[1], "to") != 0 || \
-ft_strcmp(res[2], "file") != 0 || ft_strcmp(res[3], "another") != 0 || \
-ft_strcmp(res[4], "path") != 0 || ft_strcmp(res[5], "yet") != 0 || \
-ft_strcmp(res[6], "another") != 0 || ft_strcmp(res[7], "path") != 0 || res[8])
+	if (ft_strcmp(res[0], "path") != 0 || ft_strcmp(res[1], "to") != 0
+		|| ft_strcmp(res[2], "file") != 0 || ft_strcmp(res[3], "another") != 0
+		|| ft_strcmp(res[4], "path") != 0 || ft_strcmp(res[5], "yet") != 0
+		|| ft_strcmp(res[6], "another") != 0 || ft_strcmp(res[7], "path") != 0
+		|| res[8])
 		return (1);
 	i = 0;
 	while (res[i])

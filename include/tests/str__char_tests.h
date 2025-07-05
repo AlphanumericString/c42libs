@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   str__char_tests.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/23 22:39:35 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/05 14:11:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#ifndef STR__CHAR_TESTS_H
+# define STR__CHAR_TESTS_H
 
-static int	local_isspace(int c)
-{
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
-}
+int	tc_tolower(void);
+int	tc_isalpha(void);
+int	tc_isalnum(void);
+int	tc_ishexdigit(void);
+int	tc_isspace(void);
+int	tc_isoctdigit(void);
+int	tc_isprint(void);
+int	tc_toupper(void);
+int	tc_isascii(void);
+int	tc_isdigit(void);
 
-int	tc_isspace(void)
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
-	return (0);
-}
+#endif /* STR__CHAR_TESTS_H */
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

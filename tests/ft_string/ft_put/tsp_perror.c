@@ -1,37 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   tsp_perror.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/03/13 08:04:30 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/05 13:20:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "ft_errno.h"
+#include "ft_string.h"
 
-static int	local_isspace(int c)
+#include "tests/str__put_tests.h"
+#include "tests/tests.h"
+
+#include <fcntl.h>
+#include <errno.h>
+#include <unistd.h>
+#include <stdio.h>
+
+static void	write_lines(void)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
+	errno = EPERM;
+	ft_perror("toto");
+	errno = EISCONN;
+	ft_perror("titi");
+	errno = ETIMEDOUT;
+	ft_perror(NULL);
+	errno = ELIBEXEC;
+	ft_perror(NULL);
+	errno = 9999;
+	ft_perror(NULL);
 }
 
-int	tc_isspace(void)
+int	tsp_perror(void)
 {
-	int	i;
+	const char	*expected[] = {"toto: Operation not permitted\n", \
+"titi: Transport endpoint is already connected\n", "Connection timed out\n", \
+"Cannot exec a shared library directly\n", "Unkown error\n"};
+	char		*rd_buff;
+	char		*file;
+	int			fd;
+	size_t		i;
 
+	file = "perror";
+	fd = open_test_file(&file);
+	dup2(fd, STDERR_FILENO);
+	write_lines();
+	fd = (close(fd), open(file, O_RDWR));
 	i = 0;
-	while (i < 256)
+	while (i < sizeof(expected) / sizeof(expected[0]))
 	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
+		rd_buff = ft_gnl(fd);
+		if (ft_strcmp(rd_buff, expected[i++]))
+			return (i);
+		ft_free_clear((void **)&rd_buff);
 	}
+	destroy_test_file(fd, file);
+	free(file);
 	return (0);
 }
 /*

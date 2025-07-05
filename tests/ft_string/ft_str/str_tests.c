@@ -17,60 +17,35 @@
 
 static const t_test	*load_tests01(void)
 {
-	static t_test	tb[] = {{"putstr", test_putstr}, {"putendl", test_putendl},
-	{"putnbr", test_putnbr}, {"tok", test_strtok}, {"split", test_split},
-	{"splits", tests_splits}, {"chr", test_strchr}, {"dup", test_strdup},
+	static t_test	tb[] = {{"tok", test_strtok}, {"split", test_split},
+	{"splits", test_splits}, {"chr", test_strchr}, {"dup", test_strdup},
 	{"iteri", test_striteri}, {"join", test_strjoin}, {"lcat", test_strlcat},
 	{"lcpy", test_strlcpy}, {"len", test_strlen}, {"mapi", test_strmapi},
 	{"cmp", test_strcmp}, {"ncmp", test_strncmp}, {"ndup", test_strndup},
 	{"nstr", test_strnstr}, {"rchr", test_strrchr}, {"trim", test_strtrim},
 	{"substr", test_substr}, {"replace", test_str_replace},
 	{"replace_chr", test_str_replace_chr},
-	{"gnl", test_gnl}, {"atod", test_atod}, {"isalpha", test_str_isalpha},
-	{"isbool", test_str_isbool}, {"alnum", test_str_isalnum},
-	{"isdigit", test_str_isdigit}, {"isdouble", test_str_isdouble},
-	{"ishex", test_str_ishex}, {"islong", test_str_islong},
-	{"isnum", test_str_isnum}, {"isoct", test_str_isoct},
-	{"isint", test_str_isint}, {"isfloat", test_str_isfloat},
-	{"isvalid", test_str_isvalid}, {"clen", test_strclen},
+	{"gnl", test_gnl}, {"clen", test_strclen},
 	{"cnb", test_strcnb}, {"cspn", test_strcspn},
 	{"end_with", test_strend_with}, {"start_with", test_strstart_with},
 	{"spn", test_strspn}, {"append_c", test_strappend_c},
-	{"rev", test_strrev}, {"perror", test_perror},
-	{"atol_base", test_atol_base}, {NULL, NULL}};
+	{"rev", test_strrev}, {NULL, NULL}};
 
 	return (tb);
 }
 
-static const t_test	*load_tests02(void)
-{
-	static t_test	tb[] = {{"itoa", test_itoa}, {"utoa", test_utoa},
-	{"itoa_base", test_itoa_base}, {"atoi", test_atoi},
-	{"atoi_base", test_atoi_base}, {"atol", test_atol}, {"atoll", test_atoll},
-	{"atol_base", test_atol_base}, {NULL, NULL}};
-
-	return (tb);
-}
-
+// merge t_test* from 2 blocks... dw, it's a bit ugly but it works
 int	str_tests(int depth)
 {
 	int				collect;
-	const t_test	*tests_tb[] = {load_tests01(), load_tests02(), NULL};
-	t_test			tests[999];
-	int				it[3];
+	const t_module	sb[] = {
+	{"str_is", "sis", stris_tests},
+	{NULL, NULL, NULL}};
+	const t_test	*tests = load_tests01();
 
-	ft_bzero(tests, sizeof(tests));
-	ft_bzero(it, sizeof(it));
-	while (tests_tb[it[0]])
-	{
-		while (tests_tb[it[0]][it[1]].name)
-			tests[it[2]++] = tests_tb[it[0]][it[1]++];
-		it[1] = 0;
-		it[0]++;
-	}
 	collect = 0;
 	run_test(tests, &collect, depth);
-	return (collect);
+	return (collect + run_module(sb[0], depth));
 }
 /*
 GPL-3.0 License:

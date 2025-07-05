@@ -15,26 +15,10 @@
 
 int	str_tests(int d);
 
-int	test_atod(void);
-int	test_atoi_base(void);
-int	test_atoi(void);
-int	test_atol(void);
-int	test_atoll(void);
-int	test_atol_base(void);
-int	test_itoa_base(void);
-int	test_itoa(void);
-int	test_utoa(void);
-
 int	test_gnl(void);
-int	test_shift_args(void);
-
-int	test_perror(void);
-int	test_putendl(void);
-int	test_putnbr(void);
-int	test_putstr(void);
 
 int	test_split(void);
-int	tests_splits(void);
+int	test_splits(void);
 int	test_strappend_c(void);
 int	test_strchr(void);
 int	test_strclen(void);
@@ -61,19 +45,6 @@ int	test_strstart_with(void);
 int	test_strtok(void);
 int	test_strtrim(void);
 int	test_substr(void);
-
-int	test_str_isalnum(void);
-int	test_str_isalpha(void);
-int	test_str_isbool(void);
-int	test_str_isdigit(void);
-int	test_str_isdouble(void);
-int	test_str_isfloat(void);
-int	test_str_ishex(void);
-int	test_str_isint(void);
-int	test_str_islong(void);
-int	test_str_isnum(void);
-int	test_str_isoct(void);
-int	test_str_isvalid(void);
 
 #endif /* STR__STR_TESTS_H */
 /*

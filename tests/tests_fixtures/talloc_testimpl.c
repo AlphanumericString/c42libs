@@ -44,8 +44,8 @@ void	talloc_free(void *p)
 void	*talloc_reallocarray(void *p, size_t a, size_t b)
 {
 	if (talloc_is_ok())
-		return (((t_allocator_group *)talloc_prev_group())->ptr_reallocarray \
-(p, a, b));
+		return (((t_allocator_group *)
+				talloc_prev_group())->ptr_reallocarray(p, a, b));
 	return (NULL);
 }
 

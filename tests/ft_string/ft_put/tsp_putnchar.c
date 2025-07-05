@@ -1,38 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   tsp_putnchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/04/06 22:37:01 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/05 13:19:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include <unistd.h>
+#include <fcntl.h>
 
-static int	local_isspace(int c)
+#include "ft_char.h"
+#include "ft_string.h"
+#include "tests/tests.h"
+#include "tests/str__put_tests.h"
+
+static int	test_bad_fd(char *file)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
+	const int	fd = -1;
+
+	if (ft_putnchar_fd('a', fd, 1) != -1)
+		return (11);
+	if (ft_putnchar_fd('\n', fd, 12) != -1)
+		return (12);
+	if (ft_putnchar_fd('a', fd, 0) != 0)
+		return (13);
+	ft_free(file);
 	return (0);
 }
 
-int	tc_isspace(void)
+int	tsp_putnchar(void)
 {
-	int	i;
+	const char	*file = "ft_putchar";
+	char		buf[256 * 3];
+	char		c;
+	int			fd;
+	int			ret;
 
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
-	return (0);
+	c = 0;
+	fd = open_test_file((char **)&file);
+	if (fd < 0)
+		return (1);
+	while ((unsigned char)c < 255)
+		if (ft_putnchar_fd(c++, fd, 3) == -1)
+			return (2);
+	fd = (close(fd), open(file, O_RDONLY));
+	if (fd < 0)
+		return (3);
+	ret = read(fd, buf, 256 * 3);
+	if (ret != 255 * 3)
+		return (4);
+	buf[255 * 3] = 0;
+	while (ret--)
+		if (buf[ret] != (char)(ret / 3))
+			return (5);
+	return (destroy_test_file(fd, (char *)file), test_bad_fd((char *)file));
 }
 /*
 GPL-3.0 License:

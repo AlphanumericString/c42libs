@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests/char_tests.h"
+#include "tests/str__char_tests.h"
 #include "tests/tests.h"
 
 int	char_tests(int depth)
@@ -21,9 +21,9 @@ int	char_tests(int depth)
 	{"isascii", tc_isascii}, {"isdigit", tc_isdigit},
 	{"isprint", tc_isprint}, {"tolower", tc_tolower},
 	{"toupper", tc_toupper}, {"isalnum", tc_isalnum},
-	{"putchar", tc_putchar}, {"ishexdigit", tc_ishexdigit},
+	{"ishexdigit", tc_ishexdigit},
 	{"isoctdigit", tc_isoctdigit}, {"isspace", tc_isspace},
-	{"putnchar", tc_putnchar}, {NULL, NULL}};
+	{NULL, NULL}};
 
 	i = 0;
 	run_test(tests, &i, depth);

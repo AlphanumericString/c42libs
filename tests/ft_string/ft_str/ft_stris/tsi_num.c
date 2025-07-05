@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tc_isspace.c                                       :+:      :+:    :+:   */
+/*   ts_sis_num.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:32:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:05 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/29 08:10:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 14:07:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_char.h"
-#include "tests/str__char_tests.h"
+#include "ft_string.h"
+#include "tests/str__str_sis_tests.h"
 
-static int	local_isspace(int c)
+int	tsi_isnum(void)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
+	if (ft_str_isnum("-23") != 1 || ft_str_isnum("+42") != 1 || \
+ft_str_isnum("0") != 1 || ft_str_isnum("2345865785645643532453") != 1 || \
+ft_str_isnum("2147483647") != 1)
 		return (1);
-	return (0);
-}
-
-int	tc_isspace(void)
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		if (ft_isspace(i) != local_isspace(i))
-			return (1);
-		i++;
-	}
+	if (ft_str_isnum("23.3") != 0 || ft_str_isnum("42.0") != 0 || \
+ft_str_isnum("0.0") != 0 || ft_str_isnum("2.000000") != 0 || \
+ft_str_isnum("0.000000") != 0 || ft_str_isnum("--2147483648") != 0 || \
+ft_str_isnum("++2147483648") != 0)
+		return (2);
+	if (ft_str_isnum("") != 0 || ft_str_isnum("+") != 0 || \
+ft_str_isnum("-") != 0)
+		return (3);
+	if (ft_str_isnum(NULL) != false)
+		return (4);
 	return (0);
 }
 /*

@@ -589,6 +589,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_chr/tc_tolower.c			\
 			$(TESTS_DIR)/ft_string/ft_chr/tc_toupper.c			\
 			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/allocator_tests.c	\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_allocator.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_calloc.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_free.c			\
@@ -596,12 +597,14 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_realloc.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_reallocarray.c	\
 			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/arena_tests.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_arena.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_alloc.c	\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_calloc.c	\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_belong.c	\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_free.c	\
 			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/arr_tests.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aapply.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acat.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aclear.c		\
@@ -632,35 +635,38 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/tm_realloc.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/tm_swap.c			\
 			\
-			$(TESTS_DIR)/ft_string/ft_num/ts_atod.c			\
-			$(TESTS_DIR)/ft_string/ft_num/ts_atoi.c			\
-			$(TESTS_DIR)/ft_string/ft_num/ts_atoi_base.c			\
-			$(TESTS_DIR)/ft_string/ft_num/ts_atol.c			\
-			$(TESTS_DIR)/ft_string/ft_num/ts_atol_base.c			\
-			$(TESTS_DIR)/ft_string/ft_num/ts_atoll.c			\
-			$(TESTS_DIR)/ft_string/ft_num/ts_itoa.c			\
-			$(TESTS_DIR)/ft_string/ft_num/ts_itoa_base.c			\
-			$(TESTS_DIR)/ft_string/ft_num/ts_utoa.c			\
+			$(TESTS_DIR)/ft_string/ft_num/num_tests.c		\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_atod.c			\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_atoi.c			\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_atoi_base.c			\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_atol.c			\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_atol_base.c			\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_atoll.c			\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_itoa.c			\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_itoa_base.c			\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_utoa.c			\
 			\
-			$(TESTS_DIR)/ft_string/ft_put/tc_putchar.c			\
-			$(TESTS_DIR)/ft_string/ft_put/tc_putnchar.c			\
-			$(TESTS_DIR)/ft_string/ft_put/ts_perror.c			\
-			$(TESTS_DIR)/ft_string/ft_put/ts_putendl.c			\
-			$(TESTS_DIR)/ft_string/ft_put/ts_putnbr.c			\
-			$(TESTS_DIR)/ft_string/ft_put/ts_putstr.c			\
+			$(TESTS_DIR)/ft_string/ft_put/put_tests.c			\
+			$(TESTS_DIR)/ft_string/ft_put/tsp_perror.c			\
+			$(TESTS_DIR)/ft_string/ft_put/tsp_putchar.c			\
+			$(TESTS_DIR)/ft_string/ft_put/tsp_putnchar.c		\
+			$(TESTS_DIR)/ft_string/ft_put/tsp_putendl.c			\
+			$(TESTS_DIR)/ft_string/ft_put/tsp_putnbr.c			\
+			$(TESTS_DIR)/ft_string/ft_put/tsp_putstr.c			\
 			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_alnum.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_alpha.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_bool.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_digit.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_double.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_float.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_hex.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_int.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_long.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_num.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_oct.c			\
-			$(TESTS_DIR)/ft_string/ft_str/ft_stris/ts_sis_valid.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/stris_tests.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_alnum.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_alpha.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_bool.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_digit.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_double.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_float.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_hex.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_int.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_long.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_num.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_oct.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_valid.c			\
 			\
 			$(TESTS_DIR)/ft_string/ft_str/str_tests.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ts_gnl.c			\
