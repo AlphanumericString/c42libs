@@ -142,8 +142,7 @@ t_vector	*ft_vec_from_array(void **data, size_t count);
 
 /// @brief Create a new vector from an array and steals ownership of the array
 /// @param data data to create the vector from
-/// @param count count of the data array (if count is 0 will consider it
-///		null ended)
+/// @param count lenght of the data array given
 /// @return pointer to the new vector
 t_vector	*ft_vec_convert_alloccarray(void **data, size_t count);
 

@@ -13,7 +13,6 @@
 #include "ft_string.h"
 
 #include <stddef.h>
-#include <stdio.h>
 
 static bool	is_sorted(void *array, size_t nmb, size_t size,
 		int (*cmp)(const void *, const void *))

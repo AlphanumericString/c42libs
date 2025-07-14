@@ -37,14 +37,24 @@
 # include "types/ft_string_types.h"
 
 /* ************************************************************************** */
-/* **                     FT_ARR SUB MODULE                                ** */
+/* **   					   FT_ARR SUB MODULE						   ** */
 /* ************************************************************************** */
 
 # include "ft_arr.h"
 
 /* ************************************************************************** */
-/* **						 FT_STR_IS MAIN MODULE						   ** */
+/* **						 FT_STR_IS SUB MODULE						   ** */
 /* ************************************************************************** */
+
+// todo: Criminal to not have a capitalize and lowerize
+//	strupper -> pass all alpha chars to capitalized version
+//	strnupper -> pass up to n alpha chars to capitalized version
+//	strlower -> pass all alpha chars to lower case version
+//	strnlower -> pass up to n alpha chars to lower case version
+//  strcapitalize -> pass alpha chars to capitalized version if they follow any
+//		of isspace character or at index 0
+//	justify_to -> justify a string to a number n by splitting and adding the
+//		minimum of number space between each words
 
 /// @brief Checks if the string str is composed only of alphabetical characters
 /// @param str string to check
@@ -128,6 +138,8 @@ bool		ft_str_isfname(const char *fname);
 /* ************************************************************************** */
 /* **                     FT_MEM SUB MODULE                                ** */
 /* ************************************************************************** */
+
+// todo: maybe its own header?
 
 /// @brief fill the memory with 0
 /// @param s start of the memory
@@ -255,8 +267,44 @@ int			ft_putdbl_fd(double value, int fd);
 ///  error.
 int			ft_putstr_fd(const char *restrict s, int fd);
 
+/// @brief Print the string str on the specified file descriptor with the
+/// specified format (only sdiuxXcspfFeEm)
+/// @param fd file descriptor to print on
+/// @param str string to print
+/// @param ... variable arguments to format the string
+/// @return the number of printed characters
+int			ft_print_fd(int fd, const char *str, ...);
+
+/// @brief Print the string str on the specified file descriptor with the
+/// specified format (only sdiuxXcspfFeEm)
+/// @param fd file descriptor to print on
+/// @param str string to print
+/// @param args	the va_list containing the arguments for the format string
+/// @return the number of printed characters
+int			ft_vaprint_fd(int fd, const char *str, va_list args);
+
+/// @brief Print the string str on STDOUT with the specified format
+///		(only sdiuxXcspfFeEm)
+/// @param str string to print
+/// @param ... variable arguments to format the string
+/// @return the number of printed characters
+int			ft_print(const char *str, ...);
+
+/// @brief Print the string str on STDERR with the specified format
+///		(only sdiuxXcspfFeEm)
+/// @param str string to print
+/// @param ... variable arguments to format the string
+/// @return the number of printed characters
+int			ft_print_err(const char *str, ...);
+
+//
+// no theres no printf function in this lib.
+// 1 this is a project @ 42, you're already lucky your getting ft_print and gnl
+// 2 this is largely sufficient for 99% of cases. specialy for 42 projects.
+//
+
 /* ************************************************************************** */
-/* **                     FT_NUM MAIN MODULE                               ** */
+/* **                      FT_NUM SUB MODULE                               ** */
 /* ************************************************************************** */
 
 /// @brief convert the string to a long
@@ -544,6 +592,9 @@ int			ft_strstart_with(const char *restrict str,
 /// @note The string is modified in place
 char		*ft_str_replace_chr(char *restrict str, char to_replace,
 				char replace_by);
+// todo: ft_str_replace_chrs(str, set1, set2);
+// check by char in str set1 characters, if match replace with same offset from
+//	set2;
 
 /// @brief Return a pointer to a constant string describing the error code
 /// @param errnum Error code
@@ -563,46 +614,6 @@ void		ft_strrev(char *restrict s);
 /// @note You can see the number of supported file descriptor in the macro
 /// MAX_FD
 char		*ft_gnl(int fd);
-
-/* ************************************************************************** */
-/*                        FT_PRT SUB MODULE                                   */
-/* ************************************************************************** */
-
-/// @brief Print the string str on the specified file descriptor with the
-/// specified format (only sdiuxXcspfFeEm)
-/// @param fd file descriptor to print on
-/// @param str string to print
-/// @param ... variable arguments to format the string
-/// @return the number of printed characters
-int			ft_print_fd(int fd, const char *str, ...);
-
-/// @brief Print the string str on the specified file descriptor with the
-/// specified format (only sdiuxXcspfFeEm)
-/// @param fd file descriptor to print on
-/// @param str string to print
-/// @param args	the va_list containing the arguments for the format string
-/// @return the number of printed characters
-int			ft_vaprint_fd(int fd, const char *str, va_list args);
-
-/// @brief Print the string str on STDOUT with the specified format
-///		(only sdiuxXcspfFeEm)
-/// @param str string to print
-/// @param ... variable arguments to format the string
-/// @return the number of printed characters
-int			ft_print(const char *str, ...);
-
-/// @brief Print the string str on STDERR with the specified format
-///		(only sdiuxXcspfFeEm)
-/// @param str string to print
-/// @param ... variable arguments to format the string
-/// @return the number of printed characters
-int			ft_print_err(const char *str, ...);
-
-//
-// no theres no printf function in this lib.
-// 1 this is a project @ 42, you're already lucky your getting ft_print and gnl
-// 2 this is largely sufficient for 99% of cases. specialy for 42 projects.
-//
 
 /* ************************************************************************** */
 /*                        FT_STRING SUB MODULE                                */

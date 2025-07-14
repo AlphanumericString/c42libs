@@ -12,7 +12,6 @@
 
 #include "ft_bitset.h"
 #include "types/ft_bitset_types.h"
-#include "internal/debug_defs.h"
 
 bool	ft_bs_set_raw(t_bitset *bitset, size_t index, uint8_t value)
 {

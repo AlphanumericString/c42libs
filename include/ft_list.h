@@ -38,6 +38,31 @@
 # include "ft_defs.h"
 
 /* ************************************************************************** */
+/*									  SORT									  */
+/* ************************************************************************** */
+
+// TODO: -> sort prototypes for dl
+// /// @brief Sort a doubly linked list
+// /// @param head The head of the list
+// /// @param cmp The compare function to use
+// /// @param flags Flags to use (see t_sort_orders, t_sort_algorithms)
+// /// @return a valid pointer to the first node of the sorted list or NULL
+// /// @note If !list || !cmp || bad flags, returns NULL
+// /// @note If head is not the head of the list, it will be set to the first
+// ///		sorted node of the list.
+// t_dlist	*ft_dl_sort(t_dlist **head, const t_data_cmp cmp, int flags);
+//
+// /// @brief Sort a doubly linked list
+// /// @param start The start of the list
+// /// @param end The end of the list
+// /// @param cmp The compare function to use
+// /// @param flags Flags to use (see t_sort_orders, t_sort_algorithms)
+// /// @return a valid pointer to the first node of the sorted list or NULL
+// /// @note If !list || !cmp || bad flags, returns NULL
+// t_dlist	*ft_dl_sort_range(t_dlist *start, t_dlist *end,
+//    			const t_data_cmp cmp, int flags);
+
+/* ************************************************************************** */
 /*                                    ADD                                     */
 /* ************************************************************************** */
 
@@ -206,11 +231,12 @@ bool	ft_cl_check_health(const t_clist *lst);
 /// @note The head is set to NULL
 size_t	ft_dl_clear(t_dlist **head, const t_data_apply del);
 
-/// @brief Clear a list until the end
+/// @brief Clear a list until the element end
 /// @param start The start of the list
 /// @param end The end of the list
 /// @param del The function to delete the data
 /// @return The number of nodes deleted
+/// @note The range is inclusive on start and exclusive on end [start, end[
 size_t	ft_dl_clear_range(t_dlist *start, const t_dlist *end,
 			const t_data_apply del);
 
@@ -220,9 +246,15 @@ size_t	ft_dl_clear_range(t_dlist *start, const t_dlist *end,
 /// @return void
 void	ft_ll_clear(t_list **lst, const t_data_apply del);
 
-// TODO: implement clear range for ll
+//TODO: implement clear range for ll-> needs sort
+// /// @brief Clear a list until the element end (if no end, clear all)
+// /// @param start The start of the list
+// /// @param end The end of the list
+// /// @param del The function to delete the data
+// /// @return The number of nodes deleted
+// /// @note The range is inclusive on start and exclusive on end [start, end[
 // size_t	ft_ll_clear_range(t_dlist *start, const t_dlist *end,
-//						 const t_data_apply del);
+// 			const t_data_apply del);
 
 /// @brief Clear a list
 /// @param head The adress of head of the list to clear
@@ -231,7 +263,7 @@ void	ft_ll_clear(t_list **lst, const t_data_apply del);
 /// @note The head is set to NULL
 size_t	ft_cl_clear(t_clist **head, const t_data_apply del);
 
-/// @brief Clear a list until the end (if no end, clear all)
+/// @brief Clear a list until the element end (if no end, clear all)
 /// @param start The start of the list
 /// @param end The end of the list
 /// @param del The function to delete the data
@@ -321,7 +353,7 @@ size_t	ft_dl_delete_range(t_dlist *start, const t_dlist *restrict end,
 /// @return The number of nodes deleted
 size_t	ft_dl_delete(t_dlist **head, const t_data_apply del);
 
-// TODO: implement delete dup for dl
+// TODO: implement delete dup for dl-> needs sort
 // /// @brief Delete duplicates node
 // /// @param head The head of the list
 // /// @param cmp The compare function
@@ -352,7 +384,7 @@ size_t	ft_ll_delete_range(t_list *lst, const t_list *restrict end,
 /// @return The number of nodes deleted
 size_t	ft_ll_delete(t_list **lst, const t_data_apply del);
 
-// TODO: implement delete dup for ll
+// TODO: implement delete dup for ll-> needs sort
 // /// @brief Delete duplicates node
 // /// @param head The head of the list
 // /// @param cmp The compare function
@@ -373,7 +405,7 @@ size_t	ft_cl_delete_range(t_dlist *start, const t_dlist *restrict end,
 /// @return The number of nodes deleted
 size_t	ft_cl_delete(t_dlist **head, const t_data_apply del);
 
-// TODO: implement delete dup for cl
+// TODO: implement delete dup for cl-> needs sort
 // /// @brief Delete duplicates node
 // /// @param head The head of the list
 // /// @param cmp The compare function

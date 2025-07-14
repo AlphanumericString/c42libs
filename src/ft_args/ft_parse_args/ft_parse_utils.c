@@ -48,11 +48,11 @@ const char	*get_arg(enum e_separator sep_flag, t_parser_state *state,
 	else if (sep_flag == FT_AS_EQSIGN)
 		av_arg = ft_strchr(args[state->arg_it], '=') + 1;
 	else
-		return (perror_pa_state(state, "Unknown separator."), NULL);
+		return (perror_pa_state(state, "Unknown separator"), NULL);
 	if (!av_arg)
-		return (perror_pa_state(state, "Missing argument."), NULL);
+		return (perror_pa_state(state, "Missing argument"), NULL);
 	else if (av_arg == (void *)1 || av_arg[1] == '\0')
-		return (perror_pa_state(state, "invalid argument."), NULL);
+		return (perror_pa_state(state, "invalid argument"), NULL);
 	else
 		return (av_arg);
 }

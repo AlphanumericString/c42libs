@@ -19,7 +19,7 @@
 //  - ft_gnl
 # ifndef MAX_FD
 #  ifdef TEST
-#   define MAX_FD 5
+#   define MAX_FD 15
 #  else
 //  there's unfortunately no way to know the maximum number of file descriptors
 //	might need to acoomodate the makefile to add a -D

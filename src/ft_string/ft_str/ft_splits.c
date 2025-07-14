@@ -48,20 +48,23 @@ char	**ft_splits(const char *str, const char *delim)
 	char	**words;
 
 	words = ft_calloc(sizeof(char *), (loc_get_nbwords(str, delim) + 1));
-	if (!words)
-		return (NULL);
+	if (!words || !str)
+		return (words);
 	offset_words = 0;
 	str_cpy = ft_strdup(str);
+	if (!str_cpy)
+		return (ft_afree((t_arr)words), NULL);
 	s = ft_strtok(str_cpy, delim);
 	while (s)
 	{
 		words[offset_words++] = ft_strdup(s);
 		if (!words[offset_words - 1])
-			return (ft_afree((void **)words), NULL);
+			return (ft_afree((void **)words), ft_free(str_cpy), NULL);
 		s = ft_strtok(NULL, delim);
+		while (s && !*s)
+			s = ft_strtok(NULL, delim);
 	}
-	ft_free(str_cpy);
-	return (words);
+	return (ft_free(str_cpy), words);
 }
 /*
 GPL-3.0 License:

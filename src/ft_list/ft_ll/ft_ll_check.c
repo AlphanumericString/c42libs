@@ -12,7 +12,6 @@
 
 #include "types/ft_list_types.h"
 #include "ft_list.h"
-#include <stdio.h>
 
 bool	ft_ll_check_circular(const t_list *lst)
 {

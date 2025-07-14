@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "ft_string.h"
 #include "types/ft_string_types.h"
+#include "ft_string.h"
+
+#include <limits.h>
+#include <unistd.h>
 
 int	ft_putunbr_base_fd(size_t nb, const char *base, int fd)
 {

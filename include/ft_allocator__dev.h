@@ -31,12 +31,19 @@
 //  malloc at any time by calling ft_set_gnu_alloc
 
 t_allocator_group	*ft_get_allocator(void);
+void				ft_take_allocator(t_allocator_group new_allocator_group);
 void				ft_set_allocator(void) __attribute__((constructor(200)));
 void				ft_set_ft_alloc(void);
 void				ft_set_gnu_alloc(void);
 
 // hooks
 // aka call the allocator_group ptrs
+// equivalent to doing:
+//	ft_get_allocator()->[allocator_function](args);
+//	eg:
+//	ft_malloc(42) == ft_get_allocator()->ptr_alloc(42);
+//	ft_calloc(42) == ft_get_allocator()->ptr_calloc(42);
+//	...
 void				*ft_malloc(size_t size);
 void				ft_free(void *ptr);
 void				*ft_calloc(size_t nmemb, size_t size);
@@ -44,34 +51,13 @@ void				*ft_realloc(void *ptr, size_t size);
 void				*ft_reallocarray(void *ptr, size_t nmemb, size_t size);
 
 // mem implementation
-// aka 'My' allocators
+// aka 'My' allocators - not finished
 void				*ft_memimpl_malloc(size_t size);
 void				ft_memimpl_free(void *ptr);
 void				*ft_memimpl_calloc(size_t nmemb, size_t size);
 void				*ft_memimpl_realloc(void *ptr, size_t size);
 void				*ft_memimpl_reallocarray(void *ptr, size_t nmemb,
 						size_t size);
-
-/// dev (not sorted)
-t_memory_block		**ft_get_memory_block(void);
-bool				is_block_valid(void *ptr);
-void				merge_blocks(t_memory_block *block1,
-						t_memory_block *block2);
-
-// usefull ::
-t_memory_block		*search_block(size_t size);
-t_memory_block		*create_block(size_t size);
-t_memory_block		*split_block(t_memory_block *block, size_t size);
-void				*realoc_create_block(size_t size);
-bool				addable_blocks(t_memory_block *block, size_t size,
-						t_memory_block *bound[2]);
-void				*add_blocks(t_memory_block *block, size_t size,
-						t_memory_block *bounds[2]);
-void				move_block_data(t_memory_block *dst, t_memory_block *src);
-void				free_block(t_memory_block *block);
-
-void				ft_real_memimpl_free(void *ptr);;
-void				*ft_real_memimpl_realloc(void *ptr, size_t size);
 
 #endif /* FT_ALLOCATOR__DEV_H */
 /*

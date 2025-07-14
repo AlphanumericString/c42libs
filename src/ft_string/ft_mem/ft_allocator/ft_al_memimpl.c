@@ -47,19 +47,22 @@ void	*ft_memimpl_calloc(size_t nmemb, size_t size)
 }
 
 // null == NOT_IMPLEMENTED
+	// if (SELF_ALLOC == false)
+	// 	return (free(ptr));
 void	ft_memimpl_free(void *ptr)
 {
-	if (SELF_ALLOC == false)
-		return (free(ptr));
+	(void)ptr;
 	ft_putstr_fd("ft_memimpl_free: not implemented\n", STDERR_FILENO);
 	return ((void) NULL);
 }
 
 // null == NOT_IMPLEMENTED
+	// if (SELF_ALLOC == false)
+	// 	return (realloc(ptr, size));
 void	*ft_memimpl_realloc(void *ptr, size_t size)
 {
-	if (SELF_ALLOC == false)
-		return (realloc(ptr, size));
+	(void)ptr;
+	(void)size;
 	ft_putstr_fd("ft_memimpl_realloc: not implemented\n", STDERR_FILENO);
 	return (NULL);
 }

@@ -13,13 +13,28 @@
 #ifndef TESTS_LAMBDA_FUNCTIONS_H
 # define TESTS_LAMBDA_FUNCTIONS_H
 # include <stdbool.h>
+# include <stddef.h>
 
+// lambdas - semi pure
 void	do_nothing(void *data);
+int		cmp_ptr_as_long(const void *data1, const void *data2);
+int		cmp_raw_ptr(const void *ptrL, const void *ptrR);
+void	*double_ptr(const void *data);
+
+// array / tables
+void	**creat_tb(void);
+void	set_up_continuous_int_tab(int *tab, size_t size);
+
+// --string
+int		cmp_str(const void *v_data, const void *key);
+
+// --int
+bool	is_odd(const void *data);
+bool	is_even(const void *data);
 bool	is42(const void *data);
 void	add42(void *data);
 void	*add42_ret(const void *data);
 int		cmp_int(const void *a, const void *b);
-void	**creat_tb(void);
 
 #endif /* TESTS_LAMBDA_FUNCTIONS_H */
 /*

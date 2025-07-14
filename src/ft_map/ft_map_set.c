@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "types/ft_map_types.h"
 #include "ft_list.h"
 #include "ft_map.h"
-#include "types/ft_map_types.h"
 #include "ft_string.h"
 #include "ft_vector.h"
+
+#include <stdlib.h>
 
 static void	setup_map_node(t_map_node *map_node, const void *key,
 		const void *value)

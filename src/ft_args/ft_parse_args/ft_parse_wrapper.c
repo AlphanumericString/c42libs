@@ -11,13 +11,12 @@
 /* ************************************************************************** */
 
 #include "ft_args.h"
-#include "internal/debug_defs.h"
 #include "types/ft_args_types.h"
 #include "ft_string.h"
 #include "internal/args_helper.h"
 #include "internal/args_helper_types.h"
+
 #include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 static int	ft_parg_core(const char **argv, void *usr_strct)

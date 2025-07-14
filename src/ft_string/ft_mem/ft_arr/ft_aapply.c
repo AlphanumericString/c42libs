@@ -12,7 +12,6 @@
 
 #include "ft_arr.h"
 #include <stddef.h>
-#include <stdio.h>
 
 void	ft_aapply(t_oconst_arr array, t_data_apply f)
 {

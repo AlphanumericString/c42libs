@@ -13,7 +13,6 @@
 #include "internal/args_helper_types.h"
 #include "internal/args_helper.h"
 
-#include "internal/debug_defs.h"
 #include "types/ft_args_types.h"
 #include <stdlib.h>
 #include <stddef.h>
@@ -44,15 +43,15 @@ static const char	*maybe_get_arg(const char **args, t_parser_state *state,
 			return (args[state->arg_it + 1]);
 		else if (sep == FT_AS_EQSIGN)
 			return (&args[state->arg_it][state->in_arg_it + 2]);
-		return (perror_pa_state(state, "Unkown separator flag."), NULL);
+		return (perror_pa_state(state, "Unkown separator flag"), NULL);
 	}
 	else if (harg == FT_AH_YES || harg == FT_AH_MAYBE)
 	{
 		if (arg_ok(args, state, sep) == 1)
-			return (perror_pa_state(state, "Couldn't find separator."), NULL);
-		return (perror_pa_state(state, "Missing argument."), NULL);
+			return (perror_pa_state(state, "Couldn't find separator"), NULL);
+		return (perror_pa_state(state, "Missing argument"), NULL);
 	}
-	return (perror_pa_state(state, "Couldn't parse harg flag."), NULL);
+	return (perror_pa_state(state, "Couldn't parse harg flag"), NULL);
 }
 
 static void	v2_parse_short_opt_inner(t_parser_state *state, size_t op,

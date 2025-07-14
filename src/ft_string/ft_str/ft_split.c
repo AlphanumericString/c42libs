@@ -48,8 +48,6 @@ static char	*loc_cpy_til(const char *str, char delim, size_t *offset_str)
 	len = 0;
 	while (str[*offset_str + len] != delim && str[*offset_str + len])
 		len++;
-	if (len == 0)
-		return (NULL);
 	ret = ft_calloc(sizeof(char), (len + 1));
 	if (!ret)
 		return (NULL);
@@ -74,7 +72,7 @@ char	**ft_split(const char *str, char delim)
 		return (words);
 	offset_words = 0;
 	offset_str = 0;
-	while (str && str[offset_str] == delim && delim != 0)
+	while (str && str[offset_str] == delim)
 		offset_str++;
 	while (str && str[offset_str])
 	{

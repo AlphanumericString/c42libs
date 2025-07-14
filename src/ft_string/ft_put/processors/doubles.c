@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_math.h"
 #include "internal/print.h"
 #include "ft_string.h"
 #include <stdio.h>
@@ -37,7 +38,7 @@ int	flt_upper_processor(va_list args, int fd)
 static double	exponent_handler(double value, int *exp)
 {
 	*exp = 0;
-	while ((value >= 10.0 && value > 0.0) || (value <= -10.0 && value < 0.0))
+	while (value >= 10.0 || value <= -10.0)
 	{
 		value /= 10.0;
 		(*exp)++;
@@ -65,14 +66,9 @@ int	exp_processor(va_list args, int fd)
 	if (ret < 0)
 		return (-1);
 	ft_strlcpy(exp_str, "e+00", sizeof(exp_str));
-	if (exp < 0)
-	{
-		exp_str[1] = '-';
-		exp = -exp;
-	}
-	else
-		exp_str[1] = '+';
-	exp_str[2] = (exp / 10) + '0';
+	exp_str[1] = '-' * (exp < 0) + '+' * (exp >= 0);
+	exp = ft_abs(exp);
+	exp_str[2] = ((exp / 10) % 10) + '0';
 	exp_str[3] = (exp % 10) + '0';
 	if (ft_putstr_fd(exp_str, fd) < 0)
 		return (-1);
@@ -94,13 +90,8 @@ int	exp_upper_processor(va_list args, int fd)
 	if (ret < 0)
 		return (-1);
 	ft_strlcpy(exp_str, "E+00", sizeof(exp_str));
-	if (exp < 0)
-	{
-		exp_str[1] = '-';
-		exp = -exp;
-	}
-	else
-		exp_str[1] = '+';
+	exp_str[1] = '-' * (exp < 0) + '+' * (exp >= 0);
+	exp = ft_abs(exp);
 	exp_str[2] = (exp / 10) + '0';
 	exp_str[3] = (exp % 10) + '0';
 	if (ft_putstr_fd(exp_str, fd) < 0)

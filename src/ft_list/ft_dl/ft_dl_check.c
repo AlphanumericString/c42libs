@@ -13,10 +13,6 @@
 #include "types/ft_list_types.h"
 #include "ft_list.h"
 #include <stdbool.h>
-#include <stdio.h>
-
-static bool	ft_dl_check_circular_fward(const t_dlist *_lst);
-static bool	ft_dl_check_circular_bward(const t_dlist *_lst);
 
 static bool	ft_dl_check_circular_bward(const t_dlist *_lst)
 {

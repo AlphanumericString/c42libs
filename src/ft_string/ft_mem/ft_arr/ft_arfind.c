@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "ft_arr.h"
+#include "ft_defs.h"
 
-const void	*ft_arfind(t_const_arr arr, const void *cmp_d)
+t_const_arr	ft_arfind(t_const_arr arr, const void *cmp_d)
 {
 	size_t	i;
 
@@ -24,12 +25,12 @@ const void	*ft_arfind(t_const_arr arr, const void *cmp_d)
 	while (i--)
 	{
 		if (arr[i] == cmp_d)
-			return (arr[i]);
+			return (&arr[i]);
 	}
 	return (NULL);
 }
 
-const void	*ft_arfind_with(t_const_arr arr, const void *cmp_d,
+t_const_arr	ft_arfind_with(t_const_arr arr, const void *cmp_d,
 				t_data_cmp cmp)
 {
 	size_t	i;
@@ -40,7 +41,7 @@ const void	*ft_arfind_with(t_const_arr arr, const void *cmp_d,
 	while (i--)
 	{
 		if (cmp(arr[i], cmp_d) == 0)
-			return (arr[i]);
+			return (&arr[i]);
 	}
 	return (NULL);
 }

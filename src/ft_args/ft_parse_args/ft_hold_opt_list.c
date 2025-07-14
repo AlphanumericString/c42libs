@@ -23,7 +23,7 @@ static const t_opt	**singleton_opt_list(void)
 	return (&singleton_opt_list);
 }
 
-int	ft_set_opt_list(const t_opt *opt_list_c)
+int	ft_set_opt_list(t_opt *opt_list_c)
 {
 	size_t	ol_it;
 	t_opt	*opt_list;

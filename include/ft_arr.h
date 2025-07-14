@@ -17,6 +17,9 @@
 # include <stddef.h>
 
 // todo: change search to return a t_const_arr at pos where cmp_d was found
+// todo: sorts - see ft_defs.h
+// todo: is_sorted[_with] -> check if the array is sorted
+// todo: binary search -> requires sort
 
 /* ************************************************************************** */
 /* 					                                                          */
@@ -130,37 +133,42 @@ t_iconst_arr	ft_andup(t_const_arr arr, size_t n);
 /// @brief	search for element n in array arr (linear search)
 /// @param	arr, the array to search into
 /// @param	cmp_d, the pointer used to search
-/// @return	either null if not found or first match for cmp_d;
+/// @return	either null if not found or the adress of the first match in the
+/// 	array for cmp_d.
+/// 	eg: if arr = {&a, &b, &c, NULL} and cmp_d = &b, returns {&b, &c, NULL}
 /// @note	very fast search but compares raw pointer and not the data in them
 ///		to compare the data in them use '_with' variant.
-const void		*ft_afind(t_const_arr arr, const void *cmp_d);
+t_const_arr		ft_afind(t_const_arr arr, const void *cmp_d);
 /// @brief	search for element n in array arr (linear search)
 /// @param	arr, the array to search into
 /// @param	cmp_d, the pointer used to search
 /// @param	cmp, the comparaison function
-/// @return	either null if not found or first match for cmp_d using cmp
-///		function.
+/// @return	either null if not found or the adress of the first match in the
+/// 	array for cmp_d using cmp function.
+/// 	eg: if arr = {&a, &b, &c, NULL} and cmp = &b, returns {&b, &c, NULL}
 /// @note	compares by calling cmp elements, for faster but less accurate
 ///		searches, checkout ft_afind
-const void		*ft_afind_with(t_const_arr arr, const void *cmp_d,
+t_const_arr		ft_afind_with(t_const_arr arr, const void *cmp_d,
 					t_data_cmp cmp);
 
 /// @brief	search for element n in array arr (linear search)
 /// @param	arr, the array to search into
 /// @param	cmp_d, the pointer used to search
-/// @return	either null if not found or last match for cmp_d;
+/// @return	either null if not found or the adress of last match for cmp_d;
+///		eg: if arr = {&b, &c, &b, NULL} and cmp_d = &b, returns {&b, NULL}
 /// @note	very fast search but compares raw pointer and not the data in them
 ///		to compare the data in them use '_with' variant.
-const void		*ft_arfind(t_const_arr arr, const void *cmp_d);
+t_const_arr		ft_arfind(t_const_arr arr, const void *cmp_d);
 /// @brief	search for element n in array arr (linear search)
 /// @param	arr, the array to search into
 /// @param	cmp_d, the pointer used to search
 /// @param	cmp, the comparaison function
-/// @return	either null if not found or last match for cmp_d using cmp
-///		function.
+/// @return	either null if not found or the adress of the last match for
+///		cmp_d using the cmp function.
+///		eg: if arr = {&b, &c, &b, NULL} and cmp_d = &b, returns {&b, NULL}
 /// @note	compares by calling cmp elements, for faster but less accurate
 ///		searches, checkout ft_arfind
-const void		*ft_arfind_with(t_const_arr arr, const void *cmp_d,
+t_const_arr		ft_arfind_with(t_const_arr arr, const void *cmp_d,
 					t_data_cmp cmp);
 
 /// @brief	call ft_free on every sub elements and then on the array itself

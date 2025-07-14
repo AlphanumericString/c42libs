@@ -14,9 +14,8 @@
 #include "types/ft_bitset_types.h"
 #include "ft_allocator__dev.h"
 #include "ft_string.h"
+
 #include <stddef.h>
-#include <stdint.h>
-#include <stdio.h>
 
 t_bitset	*ft_bs_new(size_t size)
 {

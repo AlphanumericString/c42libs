@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_math.h"
-#include <stdio.h>
 
 ssize_t	ft_mod(ssize_t nbr, ssize_t modulus)
 {

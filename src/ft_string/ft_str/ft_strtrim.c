@@ -15,16 +15,11 @@
 
 static int	loc_strchr(const char *str, int c)
 {
-	int	i;
+	const char	*s = ft_strchr(str, c);
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
+	if (!s)
+		return (-1);
+	return (s - str);
 }
 
 static size_t	loc_strtrim_size(size_t *offset, char const *s1,
@@ -36,12 +31,9 @@ static size_t	loc_strtrim_size(size_t *offset, char const *s1,
 	*offset = 0;
 	while (ret_size > 0 && loc_strchr(set, s1[ret_size - 1]) != -1)
 		ret_size--;
-	while (ret_size && s1[*offset] && loc_strchr(set, s1[*offset]) != -1)
-	{
-		(*offset)++;
-		ret_size--;
-	}
-	return (ret_size);
+	while (ret_size-- && loc_strchr(set, s1[(*offset)++]) != -1)
+		;
+	return ((*offset)--, ret_size + 1);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -60,13 +52,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (ret_size == 0)
 		return (ft_strdup(""));
 	ret = ft_calloc(sizeof(char), (ret_size + 1));
-	if (!ret)
-		return (ret);
-	while (s1[offset] && ret_size--)
+	while (s1[offset] && ret_size-- && ret)
 		ret[offset_ret++] = s1[offset++];
-	offset--;
-	while (loc_strchr(set, s1[offset--]) != -1)
-		ret[offset_ret--] = 0;
 	return (ret);
 }
 /*

@@ -14,7 +14,6 @@
 
 #include <stddef.h>
 #include <limits.h>
-#include <stdio.h>
 
 static void	*sword_memchr(const void *s, int c, size_t n)
 {

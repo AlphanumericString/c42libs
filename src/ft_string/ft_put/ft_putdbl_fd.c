@@ -13,7 +13,6 @@
 #include <math.h>
 #include <stdio.h>
 
-#include "ft_defs.h"
 #include "ft_string.h"
 #include "ft_char.h"
 #include "ft_math.h"
@@ -32,6 +31,31 @@ const char	*flt_spevals(bool maj, double val)
 	if (val != val)
 		return (spevals[maj][1]);
 	return (NULL);
+}
+
+static int	print_coma_padded(int fd, double value, int prec, int ret)
+{
+	char	str[42];
+	int		r2;
+
+	r2 = prec;
+	value = value - (int) value;
+	while (r2--)
+		value *= 10;
+	value = ft_round(value);
+	prec = ft_min(prec, 42);
+	ft_memset(str, '0', prec);
+	str[prec--] = 0;
+	while (prec + 1)
+	{
+		str[prec] = ((int)value % 10) + '0';
+		value /= 10;
+		prec--;
+	}
+	r2 = ft_putstr_fd(str, fd);
+	if (r2 <= 0)
+		return (-1);
+	return (ret + r2);
 }
 
 int	ft_putdbl_fd(double value, int fd)
@@ -53,13 +77,9 @@ int	ft_putdbl_fd(double value, int fd)
 	if (result < 0)
 		return (-1);
 	total += result;
-	result = ft_putchar_fd('.', fd);
-	if (result < 0)
+	if (ft_putchar_fd('.', fd) <= 0)
 		return (-1);
-	total += result;
-	value -= (ssize_t)value;
-	value = ft_round(value * 1000000);
-	return (ft_putnbr_base_fd((ssize_t)(value), "0123456789", fd) + total);
+	return (print_coma_padded(fd, value, 6, total + 1));
 }
 /*
 GPL-3.0 License:

@@ -64,7 +64,7 @@ char	*ft_str_replace_chr(char *str, char to_replace, char replace_by)
 
 	ptr = str;
 	str = ft_strchr(str, to_replace);
-	while (str && *str)
+	while (str)
 	{
 		*str = replace_by;
 		str++;

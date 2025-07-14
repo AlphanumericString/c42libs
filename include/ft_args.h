@@ -41,7 +41,7 @@
 //
 /// @brief argument parser
 int					ft_arg_set_custom_checker(t_data_is custom_checker);
-int					ft_set_opt_list(const t_opt *opt_list);
+int					ft_set_opt_list(t_opt *opt_list);
 void				ft_print_opts(const t_opt opt, int fd);
 int					ft_parse_args(const char **argv,
 						void *usr_control_struct);

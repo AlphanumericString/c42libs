@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "internal/debug_defs.h"
 #include "types/ft_bitset_types.h"
 #include "ft_bitset.h"
 #include "ft_string.h"
-#include <stdio.h>
 
 static void	print_bitset8(t_bitset8 b8, int fd, const char *fmt[3])
 {

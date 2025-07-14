@@ -16,10 +16,19 @@
 # include "types/ft_list_types.h"
 # include <stddef.h>
 
+// cl
 t_clist	*a_to_cl(int *arr, size_t size);
+void	create_2elem_clist(t_clist **cl, void *dtx, void *dty);
 void	add42_clnode(t_clist *node);
 
+// dl
+t_dlist	*a_to_dl(const int *a, int size);
 void	create_2elem_dlist(t_dlist **list, void **data1, void **data2);
+void	dnode_add42(t_dlist *node);
+
+// ll
+void	lnode_add42(t_list *node);
+int		cmp_string_length(const void *s1, const void *s2);
 void	create_2elem_list(t_list **list, void **data1, void **data2);
 
 #endif

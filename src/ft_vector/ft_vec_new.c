@@ -57,19 +57,11 @@ t_vector	*ft_vec_from_array(void **data, size_t count)
 t_vector	*ft_vec_convert_alloccarray(void **data, size_t count)
 {
 	t_vector	*ret;
-	size_t		i;
 
 	ret = ft_calloc(sizeof(t_vector), 1);
 	if (!ret)
 		return (ret);
-	i = 0;
 	ret->datas = data;
-	if (!count)
-	{
-		while (data[i])
-			i++;
-		count = i + 1;
-	}
 	ret->count = count;
 	ret->cappacity = count;
 	return (ret);

@@ -30,6 +30,7 @@ void	ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del)
 			vec->datas[i++] = NULL;
 		}
 		ft_vec_shift(vec, i - shift_count, shift_count);
+		i -= shift_count;
 		while (vec->count > i && func(vec->datas[i]) == true)
 			i++;
 	}

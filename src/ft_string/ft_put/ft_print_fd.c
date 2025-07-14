@@ -13,9 +13,9 @@
 #include "internal/print.h"
 #include "ft_string.h"
 
-#include <stddef.h>
 #include <unistd.h>
 
+// keep error as last please
 static const t_processor	*table_holder(void)
 {
 	static const t_processor	processors[] = {
@@ -33,12 +33,19 @@ static const t_processor	*table_holder(void)
 	{EXP_PROCESSOR, 'e', exp_processor},
 	{EXP_UPPER_PROCESSOR, 'E', exp_upper_processor},
 	{ERRNO_PROCESSOR, 'm', errno_processor},
+	{META_PROCESSOR, '%', meta_processor},
 	{ERROR, '\0', NULL}
 	};
 
 	return ((const t_processor *)processors);
 }
 
+// lines:
+// if (!processors[i].func | (processors[i].type == ERROR))
+// 	return (-1);
+// should never be reached, but can be if a new symbol is added to
+//	FT__PRINTF_META_CHAR and his processor isn't in the table...
+//	This is a safety check
 static int	lc_process_vaa(char c, va_list args, int fd)
 {
 	size_t				i;
@@ -46,13 +53,14 @@ static int	lc_process_vaa(char c, va_list args, int fd)
 	const char			bad_spe[3] = {FT__PRINTF_META_CHAR, c, '\0'};
 
 	i = 0;
-	if (!ft_strchr(FT__PRINTF_CONVERTION_SPECIFIERS, c))
-		return (write(fd, bad_spe, 2));
-	while (processors[i].func)
-		if (processors[i++].link == c)
-			break ;
-	if (processors[--i].type == ERROR)
-		return (-1);
+	if (!c || !ft_strchr(FT__PRINTF_CONVERTION_SPECIFIERS, c))
+		return (write(fd, bad_spe, 1 + (c != 0)));
+	while (processors[i].link != c)
+	{
+		if (!processors[i].func | (processors[i].type == ERROR))
+			return (-1);
+		i++;
+	}
 	return (processors[i].func(args, fd));
 }
 
@@ -60,7 +68,7 @@ int	ft_vaprint_fd(int fd, const char *str, va_list args)
 {
 	char			*pos;
 	size_t			total;
-	size_t			ret;
+	ssize_t			ret;
 
 	if (!str || fd < 0 || fd > MAX_FD)
 		return (-1);
@@ -78,7 +86,7 @@ int	ft_vaprint_fd(int fd, const char *str, va_list args)
 		if (ret <= 0)
 			return (-1);
 		total += ret;
-		str = pos + 2;
+		str = pos + 1 + (pos[1] != 0);
 		pos = ft_strchr(str, FT__PRINTF_META_CHAR);
 	}
 	return (ft_putstr_fd(str, fd) + total);
@@ -89,8 +97,6 @@ int	ft_print_fd(int fd, const char *str, ...)
 	va_list	args;
 	int		result;
 
-	if (!str || fd < 0 || fd > MAX_FD)
-		return (-1);
 	va_start(args, str);
 	result = ft_vaprint_fd(fd, str, args);
 	va_end(args);

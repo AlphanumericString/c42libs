@@ -13,8 +13,10 @@
 #include "ft_string.h"
 #include <stddef.h>
 
-// if/elseif/else for !str1||!str2
-// mandatory to not overflow in case of high ptr + NULL
+// ((str2==NULL)-(str1==NULL))	=> !str2 && !str1 => (1-1) -> eq
+//								=> !str2 &&  str1 => (1-0) -> str1 > str2
+//								=>  str2 && !str1 => (0-1) -> str1 < str2
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	const unsigned char	*str1 = (const unsigned char *)s1;
@@ -24,15 +26,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	index = 0;
 	if (n == 0)
 		return (0);
-	if (!str1 || !str2)
-	{
-		index = str1 - str2;
-		if (index < 0)
-			return (-1);
-		else if (index > 0)
-			return (1);
-		return (index);
-	}
+	if (!str1 | !str2)
+		return ((str2 == NULL) - (str1 == NULL));
 	while (str1[index] == str2[index] && str1[index] && index < n - 1)
 		index++;
 	return (str1[index] - str2[index]);

@@ -10,15 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <stdio.h>
-#include <stdarg.h>
+#ifndef DEBUG_DEFS_H
+# define DEBUG_DEFS_H
 
 /*
+
+# include <stdio.h>
+# include <stdarg.h>
+
  *
 ** Usefull when debuging stuff, dont use in prod or else #GRRRRR
  *
+
 #define LOG(fmt, ...) (printf("[LOG]\t"fmt"\n", ##__VA_ARGS__), fflush(stdout))
 #define LOG_VAR(fmt, var) LOG(#var":"fmt, var)
 #define LOG_POS	LOG("@ %s ( %s:%d )", __func__, __FILE__, __LINE__)
 */
+
+#endif /* DEBUG_DEFS_H */

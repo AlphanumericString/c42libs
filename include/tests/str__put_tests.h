@@ -15,6 +15,10 @@
 
 int	put_tests(int depth);
 
+int	tsp_printfd(void);
+int	tsp_print(void);
+int	tsp_print_err(void);
+int	tsp_va_printfd(void);
 int	tsp_perror(void);
 int	tsp_putendl(void);
 int	tsp_putnbr(void);

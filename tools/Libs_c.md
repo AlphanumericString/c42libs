@@ -208,7 +208,7 @@ link:
         - [x]   ft_optional
         - [x]   ft_pair
         - [ ]   ft_string
-            - [ ]   str
+            - [x]   str
             - [ ]   string
             - [x]   mem
             - [x]   chr
@@ -216,7 +216,7 @@ link:
     - [ ]   Up the coverage percentage (line + branch)(fell lower due to new funcs)
         - [x]   80% for all modules
         - [ ]   90% for all modules
-            - [x] lines
+            - [ ] lines
             - [ ] branches
         - [ ]   95% for all modules
         - [ ]   100% for all modules (unachievable, but still goal)
@@ -226,10 +226,10 @@ link:
 ## to add
 - **NEW** Module to add
     - [ ]   ft_config : Config file parser (serializer/deserializer) (json, raw, idk...)
+    - [x]   ft_bitset : Bit manipulation functions
     - [x]   ft_optional : Optional type (like in rust)
     - [x]   ft_args : Arguments parser
     - [ ]   ft_db : Database bindings (yes i can use a lib but this is fun) (?sqlite3?)
-    - [ ]   ft_bit : Bit manipulation functions
     - [ ]   ft_tree : Binary tree (avl, red-black, splay, ...)
     - [ ]   ft_thread : Thread management for c (thread pool, mutex, ...)
     - [ ]   ft_net : Network functions (socket, http, ...)
@@ -245,30 +245,36 @@ link:
 - Sub-Modules to create
     - ft_args
         - [x]  prog name
-        - [ ]  env vars
+        - [x]  env vars
         - [ ]  ctx relative to program
+            ? context missing ?
         - [x]  cli args parser
     - list
         - [x]   circular
         - [ ]   stack
         - [ ]   queue
-    - math 
+    - math
         - [ ]   matrix
     - map
         - [x]   hash_map (current map (not resizable))
         - [ ]   tree_map
     - string
         - [ ]   regex
-        - [ ]   printf
+        - [~]   printf
+            - [x]   basic printf -> ft_print_fd
         - mem
-            - [ ]   arena
+            - [x]   arena
+                - [x]   v1 - (no free, no realloc, no extract ptr from arena)
+                - [ ]   v2 -
+                        free without del arena,
+                        extract ptr from arena
             - [ ]   ft_malloc_impl
 - Functions
     - vector
         - [ ]   Compatibility
             - [ ]    lists
-                - [ ]   from_ll + from_dl
-                - [ ]   to_ll + to_dl
+                - [ ]   from_ll + from_dl + from_cl
+                - [ ]   to_ll + to_dl + to_cl
             - [ ]   maps (not sure, map are not ordered)
                 - [ ]   from_map
                 - [ ]   to_map
@@ -285,7 +291,7 @@ link:
             - [ ]   with ft_vector
                 - [ ]   from_vector
                 - [ ]   to_vector
-            - [ ]   ? with ft_map (not sure, map are not ordered)
+            - [ ]   ? with ft_map (not sure, map are not ordered by default)
                 - [ ]   from_map
                 - [ ]   to_map
             - [ ]   with c-style arrays
@@ -297,14 +303,20 @@ link:
             - [ ]   regex
             - [x]  Gnl
                 - [x]  Update gnl
-                - [ ]  Rename get_next_line -> ft_gnl
+                - [x]  Rename get_next_line -> ft_gnl
+                - [ ]  Use local array and 'push' front last fd instead of 1024 tab
                 - [ ]  Optimise gnl to use func from lib (culd be pushed further)
-            - [ ]  Printf
-                - [ ]   basic printf
+            - [~]  Printf
+                - [x]   basic printf
                 - [ ]   you could at least support flags you scum bag
+                        - might not, dont wanna get in trouble with 42 adm
         - mem
-            - [ ]   finish the god damn arena
+            - [x]   finish the god damn arena
             - [ ]   finish the god damn ft_malloc_impl
+                - [x]   bindings
+                - [ ]   implementation
+                    - [ ]   sbrk/pbrk
+                    - [ ]   mmap
             - [ ]   Add search functions
                 - [ ]   bsearch lsearch lfind
             - [ ]   Add sort functions
@@ -352,7 +364,8 @@ link:
             return (0);
             `
             use `rg 'return \(1\);' tests/ -C 4 | less` to check faster
-        - [ ]   ft_args
+        - [x]   ft_args
+        - [x]   ft_bitset
         - [ ]   ft_list
         - [ ]   ft_map
         - [ ]   ft_math

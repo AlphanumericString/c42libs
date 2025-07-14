@@ -29,6 +29,11 @@ void	ft_set_allocator(void)
 		ft_set_gnu_alloc();
 }
 
+void	ft_take_allocator(t_allocator_group new_allocator_group)
+{
+	*ft_get_allocator() = new_allocator_group;
+}
+
 void	ft_set_ft_alloc(void)
 {
 	t_allocator_group	*alloc;

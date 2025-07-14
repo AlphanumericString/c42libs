@@ -12,7 +12,6 @@
 
 #include "ft_list.h"
 #include "ft_math.h"
-#include <stdio.h>
 
 t_clist	*ft_cl_at(const t_clist *head, ssize_t index)
 {

@@ -11,14 +11,12 @@
 /* ************************************************************************** */
 
 #include "ft_args.h"
-#include "internal/debug_defs.h"
 #include "types/ft_args_types.h"
 #include "internal/args_helper.h"
 #include "internal/args_helper_types.h"
 #include "ft_string.h"
 
 #include <stddef.h>
-#include <stdio.h>
 #include <unistd.h>
 
 static bool	maybe_run(const char **args, t_parser_state state,

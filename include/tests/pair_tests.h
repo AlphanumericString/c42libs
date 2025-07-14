@@ -6,23 +6,27 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 00:30:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/04/06 13:53:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:18:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PAIR_TESTS_H
 # define PAIR_TESTS_H
 
-int	tp_destroy(void);
-int	tp_destroy_sep(void);
-int	tp_set(void);
-int	tp_new(void);
-int	tp_second(void);
-int	tp_first(void);
-int	tp_destroy(void);
-int	tp_cmp(void);
-int	tp_cmp_first(void);
-int	tp_cmp_second(void);
+# include "types/ft_pair_types.h"
+
+void	triple_pair_setup(t_pair *first, t_pair *diff, t_pair *same_diffloc);
+
+int		tp_destroy(void);
+int		tp_destroy_sep(void);
+int		tp_set(void);
+int		tp_new(void);
+int		tp_second(void);
+int		tp_first(void);
+int		tp_destroy(void);
+int		tp_cmp(void);
+int		tp_cmp_first(void);
+int		tp_cmp_second(void);
 
 #endif /* PAIR_TESTS_H */
 /*

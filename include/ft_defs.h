@@ -20,6 +20,13 @@
 # include <stdbool.h>
 # include <sys/types.h>
 
+# ifndef EXIT_SUCCESS
+#  define EXIT_SUCCESS 0
+# endif
+# ifndef EXIT_FAILURE
+#  define EXIT_FAILURE 1
+# endif
+
 // Change version with -DVERSION="x.y.z" at compile time
 # ifndef VERSION
 #  define VERSION "1.0.0"
@@ -44,9 +51,36 @@
 # define FT_PATH_SEPARATORS "/"
 # define FT_ENV_SEPARATORS ":"
 
+// Base strings for conversions
 # define FT_HEXBASE			"0123456789abcdef"
 # define FT_HEXBASE_CAP		"0123456789ABCDEF"
+# define FT_DECBASE			"0123456789"
 # define FT_OCTBASE			"01234567"
+# define FT_BINBASE			"01"
+
+typedef enum e_sort_algorithms
+{
+	FT_SORT_ALG_BUBBLE = 0,
+	FT_SORT_ALG_INSERTION,
+	// FT_SORT_ALG_SELECTION,
+	// FT_SORT_ALG_MERGE,
+	// FT_SORT_ALG_QUICK,
+	// FT_SORT_ALG_HEAP,
+	// FT_SORT_ALG_COUNTING,
+	// FT_SORT_ALG_RADIX,
+	// FT_SORT_ALG_BUCKET,
+	// FT_SORT_ALG_SHELL,
+	FT_SORT_ALG_UNKNOWN, // 10 // 31 - 10 => 21 space left is ok
+	FT_SORT_ALG_MASK = (1 << 5) - 1, // (2^5 - 1) = 31 = 0b00011111
+}	t_sort_algorithms;
+
+typedef enum e_sort_order
+{
+	FT_SORT_ASCENDING = 1 << 5,
+	FT_SORT_DESCENDING = 2 << 5,
+	FT_SORT_UNORDERED = 3 << 5,
+	FT_SORT_MASK = 0b11100000,
+}	t_sort_order;
 
 /// @brief	Type maping to remove checks on type on any ptrs
 typedef void				*t_any;

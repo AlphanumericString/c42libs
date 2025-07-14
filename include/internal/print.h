@@ -28,6 +28,7 @@ enum e_processor_type
 	HEX_UPPER_PROCESSOR, //%X
 	OCTAL_PROCESSOR, //%o
 	PTR_PROCESSOR, //%p
+	META_PROCESSOR, //%%
 	FLOAT_PROCESSOR, //%f
 	FLOAT_UPPER_PROCESSOR, //%F
 	EXP_PROCESSOR, //%e
@@ -43,6 +44,7 @@ typedef struct s_processor
 	int						(*func)(va_list args, int fd);
 }	t_processor;
 
+int	meta_processor(va_list args, int fd);
 int	errno_processor(va_list args, int fd);
 int	string_processor(va_list args, int fd);
 int	uint_processor(va_list args, int fd);

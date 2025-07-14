@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include <stdio.h>
 
 size_t	ft_cl_clear(t_clist **head, t_data_apply del)
 {

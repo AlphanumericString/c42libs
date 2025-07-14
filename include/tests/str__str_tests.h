@@ -15,36 +15,36 @@
 
 int	str_tests(int d);
 
-int	test_gnl(void);
+int	ts_gnl(void);
 
-int	test_split(void);
-int	test_splits(void);
-int	test_strappend_c(void);
-int	test_strchr(void);
-int	test_strclen(void);
-int	test_strcmp(void);
-int	test_strcnb(void);
-int	test_strcspn(void);
-int	test_strdup(void);
-int	test_strend_with(void);
-int	test_striteri(void);
-int	test_strjoin(void);
-int	test_strlcat(void);
-int	test_strlcpy(void);
-int	test_strlen(void);
-int	test_strmapi(void);
-int	test_strncmp(void);
-int	test_strndup(void);
-int	test_strnstr(void);
-int	test_strrchr(void);
-int	test_str_replace_chr(void);
-int	test_str_replace(void);
-int	test_strrev(void);
-int	test_strspn(void);
-int	test_strstart_with(void);
-int	test_strtok(void);
-int	test_strtrim(void);
-int	test_substr(void);
+int	ts_split(void);
+int	ts_splits(void);
+int	ts_strappend_c(void);
+int	ts_strchr(void);
+int	ts_strclen(void);
+int	ts_strcmp(void);
+int	ts_strcnb(void);
+int	ts_strcspn(void);
+int	ts_strdup(void);
+int	ts_strend_with(void);
+int	ts_striteri(void);
+int	ts_strjoin(void);
+int	ts_strlcat(void);
+int	ts_strlcpy(void);
+int	ts_strlen(void);
+int	ts_strmapi(void);
+int	ts_strncmp(void);
+int	ts_strndup(void);
+int	ts_strnstr(void);
+int	ts_strrchr(void);
+int	ts_str_replace_chr(void);
+int	ts_str_replace(void);
+int	ts_strrev(void);
+int	ts_strspn(void);
+int	ts_strstart_with(void);
+int	ts_strtok(void);
+int	ts_strtrim(void);
+int	ts_substr(void);
 
 #endif /* STR__STR_TESTS_H */
 /*

@@ -12,7 +12,6 @@
 
 #include "ft_list.h"
 #include "types/ft_list_types.h"
-#include <stdio.h>
 
 size_t	ft_cl_apply(const t_clist *start, t_data_apply applied)
 {

@@ -14,26 +14,20 @@
 
 int	ft_pair_cmp(const t_pair *pair1, const t_pair *pair2, const t_data_cmp cmp)
 {
-	if (!pair1 && !pair2)
-		return (0);
-	if (!pair1)
-		return (-(pair2 != NULL));
-	if (!pair2)
-		return (pair1 != NULL);
+	if (!pair1 || !pair2)
+		return ((pair2 == NULL) - (pair1 == NULL));
 	if (cmp)
 		return (cmp(pair1, pair2));
-	return (pair1 - pair2);
+	if (pair1->first != pair2->first)
+		return (pair1->first - pair2->first);
+	return (pair1->second - pair2->second);
 }
 
 int	ft_pair_cmp_first(const t_pair *pair1, const t_pair *pair2,
 		const t_data_cmp cmp)
 {
-	if (!pair1 && !pair2)
-		return (0);
-	if (!pair1)
-		return (-(pair2->first != NULL));
-	if (!pair2)
-		return (pair1->first != NULL);
+	if (!pair1 || !pair2)
+		return ((pair2 == NULL) - (pair1 == NULL));
 	if (cmp)
 		return (cmp(pair1->first, pair2->first));
 	return (pair1->first - pair2->first);
@@ -42,12 +36,8 @@ int	ft_pair_cmp_first(const t_pair *pair1, const t_pair *pair2,
 int	ft_pair_cmp_second(const t_pair *pair1, const t_pair *pair2,
 		const t_data_cmp cmp)
 {
-	if (!pair1 && !pair2)
-		return (0);
-	if (!pair1)
-		return (-(pair2->second != NULL));
-	if (!pair2)
-		return (pair1->second != NULL);
+	if (!pair1 || !pair2)
+		return ((pair2 == NULL) - (pair1 == NULL));
 	if (cmp)
 		return (cmp(pair1->second, pair2->second));
 	return (pair1->second - pair2->second);

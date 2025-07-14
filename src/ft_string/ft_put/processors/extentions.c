@@ -12,6 +12,7 @@
 
 #include "internal/print.h"
 #include "ft_string.h"
+#include <errno.h>
 
 #ifdef errno
 

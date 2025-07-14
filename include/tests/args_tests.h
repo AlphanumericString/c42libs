@@ -13,8 +13,8 @@
 #ifndef ARGS_TESTS_H
 # define ARGS_TESTS_H
 
-// TODO: parse_arg tests :eyes: :sus:
-int	parse_args_test(void);
+# include "tests/argp_tests.h"
+
 int	targ_custom_checker_test(void);
 int	targ_opt_list_test(void);
 

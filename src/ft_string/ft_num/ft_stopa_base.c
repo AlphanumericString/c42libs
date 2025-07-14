@@ -14,11 +14,10 @@
 #include "ft_string.h"
 #include "sys/types.h"
 #include <stddef.h>
-#include <stdio.h>
 
-// size_t
-// to
-// pointed array
+// Size_t
+// To
+// Pointed Array
 bool	ft_stopa_base(size_t nbr, const char *base, char *ptr, size_t max)
 {
 	t_uint	blen;

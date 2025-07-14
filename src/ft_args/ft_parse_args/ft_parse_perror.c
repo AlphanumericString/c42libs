@@ -28,9 +28,9 @@ void	perror_pa_state(t_parser_state *st, const char *error)
 	else
 		ft_print_fd(STDERR_FILENO, "Error: ");
 	if (st->mode == FTPA_SHORT)
-		ft_print_fd(STDERR_FILENO, " Short option `-%s' : %s\n", str, error);
+		ft_print_fd(STDERR_FILENO, " Short option `-%s' : %s.\n", str, error);
 	else
-		ft_print_fd(STDERR_FILENO, " Option `%s' : %s\n",
+		ft_print_fd(STDERR_FILENO, " Option `%s' : %s.\n",
 			st->args[st->arg_it], error);
 	st->err = 1;
 }
