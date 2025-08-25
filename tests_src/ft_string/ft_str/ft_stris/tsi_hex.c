@@ -15,29 +15,22 @@
 
 int	tsi_ishex(void)
 {
-	if (ft_str_ishex("0123456789abcdefABCDEF") != 1)
+	if (ft_str_ishex("0123456789abcdefABCDEF") != true
+		|| ft_str_ishex("0xdeadbeef") != true
+		|| ft_str_ishex("0xDEADBEEF") != true
+		|| ft_str_ishex("0x0") != true || ft_str_ishex("0X0") != true
+		|| ft_str_ishex("123") != true)
 		return (1);
-	if (ft_str_ishex("0xdeadbeef") != 1 || ft_str_ishex("0xDEADBEEF") != 1)
+	if (ft_str_ishex("0xdeadbeefg") != false
+		|| ft_str_ishex("0xDEADBEEFG") != false
+		|| ft_str_ishex("0x") != false || ft_str_ishex("0X") != false
+		|| ft_str_ishex("0x+32") != false || ft_str_ishex("0x-32") != false
+		|| ft_str_ishex("0x0x") != false || ft_str_ishex("0X0X") != false
+		|| ft_str_ishex("-0x0") != false || ft_str_ishex("+0X0") != false
+		|| ft_str_ishex("") != false
+		|| ft_str_ishex(NULL) != false)
 		return (2);
-	if (ft_str_ishex("0xdeadbeefg") != 0 || ft_str_ishex("0xDEADBEEFG") != 0)
-		return (3);
-	if (ft_str_ishex("0x") != 0 || ft_str_ishex("0X") != 0)
-		return (4);
-	if (ft_str_ishex("0x+32") != 0 || ft_str_ishex("0x-32") != 0)
-		return (5);
-	if (ft_str_ishex("0x0x") != 0 || ft_str_ishex("0X0X") != 0)
-		return (6);
-	if (ft_str_ishex("-0x0") != 0 || ft_str_ishex("+0X0") != 0)
-		return (7);
-	if (ft_str_ishex("0x0") != 1 || ft_str_ishex("0X0") != 1)
-		return (8);
-	if (ft_str_ishex("123") != 1)
-		return (8);
-	if (ft_str_ishex("") != 0)
-		return (9);
-	if (ft_str_ishex(NULL) != false)
-		return (10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

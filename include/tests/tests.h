@@ -13,6 +13,7 @@
 #ifndef TESTS_H
 # define TESTS_H
 
+# include "./testing_lib/include/tests_fxtr.h"
 # include <stdbool.h>
 # include <stddef.h>
 
@@ -24,86 +25,45 @@
 #  define SRAND_OK false
 # endif
 
-# ifndef FORK_TESTS
-#  define FORK_TESTS 1
-# endif
-
-typedef enum verbosity
+typedef struct s_fnamed
 {
-	VER_TESTS = 0,
-	VER_MODULES = 1,
-	VER_SUB_MODULES = 2,
-	VER_ALL = 3,
-	VER_QUIET = 4,
-}	t_verbosity;
+	const char	*name;
+	int			(*test)(void);
+}				t_fnamed;
 
-# ifndef VERBOSE
-#  define VERBOSE VER_ALL
-# endif
-
-//
-// typedef enum e_err_test_type
-// {
-// 	TERR_CRASH = -1,
-// 	TERR_OK = 0,
-// 	TERR_ERR = 1,
-// }	t_err_test_type;
-
-typedef struct s_test
-{
-	char	*name;
-	int		(*test)(void);
-}			t_test;
-
-typedef struct s_module
-{
-	char	*full_name;
-	char	*short_name;
-	int		(*test)(int);
-	int		res;
-}			t_module;
-
-typedef int	(*t_function_test_runner)(t_test, int *, int, int);
-
-// test main frame
-int			run_module(t_module module, int depth);
-int			run_test(const t_test *test, int *collect, int depth);
-
-// verbosity control of tests
-t_verbosity	tverbose(void);
-void		tverbose_set(t_verbosity verbose);
+typedef t_module *(*	t_mod_constructor)(void);
 
 // hook for modules tests
-int			tests_args(int d);
-int			tests_bitset(int d);
-int			tests_lists(int d);
-int			tests_map(int d);
-int			tests_math(int d);
-int			tests_optional(int d);
-int			tests_pair(int d);
-int			tests_string(int d);
-int			tests_vector(int d);
+t_module		*tests_args(void);
+t_module		*tests_bitset(void);
+t_module		*tests_lists(void);
+t_module		*tests_map(void);
+t_module		*tests_math(void);
+t_module		*tests_optional(void);
+t_module		*tests_pair(void);
+t_module		*tests_string(void);
+t_module		*tests_vector(void);
 
 // sub modules tests
 // - string
-int			t_string_tests(int d);
-int			mem_tests(int d);
-int			str_tests(int d);
-int			char_tests(int d);
-int			put_tests(int d);
-int			num_conv_tests(int d);
+t_module		*t_string_tests(void);
+t_module		*mem_tests(void);
+t_module		*str_tests(void);
+t_module		*char_tests(void);
+t_module		*put_tests(void);
+t_module		*num_conv_tests(void);
 // - lists
-int			tests_doubly_linked_list_all(int d);
-int			tests_linked_list_all(int d);
-int			tests_circular_linked_list_all(int d);
+t_module		*tests_doubly_linked_list_all(void);
+t_module		*tests_linked_list_all(void);
+t_module		*tests_circular_linked_list_all(void);
 
 // - string/mem
-int			arr_module_tests(int depth);
-int			allocator_module_tests(int depth);
-int			arena_module_tests(int depth);
+t_module		*arr_module_tests(void);
+t_module		*allocator_module_tests(void);
+t_module		*arena_module_tests(void);
 
 // - string/str/stris
-int			stris_tests(int depth);
+t_module		*stris_tests(void);
 
 // to see utils and such see : test_lambda_functions.h
 

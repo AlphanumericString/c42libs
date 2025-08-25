@@ -27,6 +27,8 @@
 # include <stddef.h>
 
 # include "ft_defs.h"
+
+// TODO: re-implement hashmap - current impl is bad
 # include "types/ft_map_types.h"
 
 /// @brief Create a new map
@@ -47,6 +49,8 @@ void		ft_map_destroy(t_map *map);
 /// @param free_data function to free the data in the map
 /// @file ft_map/ft_map_destroy.c
 /// @return void
+/// WARNING:
+///		1. not thread safe bc i took a shortcut while developing this shit
 void		ft_map_destroy_free(t_map *map, t_data_apply free_data);
 
 /// @brief Clears a map

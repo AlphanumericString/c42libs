@@ -42,8 +42,8 @@ static int	error_cases(void)
 	size = 15;
 	res = ft_calloc(sizeof(char), size);
 	ret = ft_strlcpy(res, "This is too large!", size);
-	if (ft_strncmp(res, "This is too large!", size - 1) != 0 || \
-ret != (int)ft_strlen("This is too large!"))
+	if (ft_strncmp(res, "This is too large!", size - 1) != 0 || ret != (int)
+		ft_strlen("This is too large!"))
 		return (3);
 	ft_free(res);
 	res = ft_calloc(sizeof(char), 1);

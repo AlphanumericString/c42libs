@@ -16,23 +16,19 @@
 int	test_string_set(void)
 {
 	t_string	*str;
-	const char	*src;
-	const char	*res;
+	const char	*src = "Hello world this is zod!";
 
-	src = "Hello world this is zod!";
 	str = ft_string_new(0);
 	ft_string_set(str, src);
-	res = ft_string_get(str);
-	if (ft_strcmp(src, res) != 0)
-		return (1);
-	ft_string_destroy(&str);
-	str = ft_string_new(99);
+	if (!ft_string_get(str) || ft_strcmp(src, ft_string_get(str)) != 0)
+		return (ft_string_destroy(&str), 1);
+	str = (ft_string_destroy(&str), ft_string_new(99));
 	ft_string_set(str, src);
-	res = ft_string_get(str);
-	if (ft_strcmp(src, res) != 0)
-		return (2);
-	ft_string_destroy(&str);
-	return (0);
+	if (!ft_string_get(str) || ft_strcmp(src, ft_string_get(str)) != 0)
+		return (ft_string_destroy(&str), 2);
+	ft_string_set(str, NULL);
+	ft_string_set(NULL, src);
+	return (ft_string_destroy(&str), 0);
 }
 /*
 GPL-3.0 License:

@@ -11,8 +11,25 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+
+static int	mt_string_to_str(void)
+{
+	const int	fp = *talloc_get_failpoint();
+	t_string	*str;
+	char		*cstr;
+
+	str = ft_string_from("hiii");
+	talloc_set_failpoint(0);
+	cstr = ft_string_to_str(str);
+	talloc_set_failpoint(fp);
+	ft_string_destroy(&str);
+	if (cstr)
+		return (1);
+	return (EXIT_SUCCESS);
+}
 
 int	test_string_to_str(void)
 {
@@ -25,7 +42,7 @@ int	test_string_to_str(void)
 		return (1);
 	ft_string_destroy(&str);
 	ft_free(cstr);
-	return (0);
+	return (mt_string_to_str());
 }
 /*
 GPL-3.0 License:

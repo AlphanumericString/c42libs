@@ -29,7 +29,7 @@ static int	test_bad_fd(char *file)
 	if (ft_putnchar_fd('a', fd, 0) != 0)
 		return (13);
 	ft_free(file);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tsp_putnchar(void)

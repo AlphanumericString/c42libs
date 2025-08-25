@@ -11,14 +11,23 @@
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
+#include "ft_defs.h"
 #include <malloc.h> // reallocarray
+#include <pthread.h>
 #include <stdbool.h> // true
 
-t_allocator_group	*ft_get_allocator(void)
+t_allocator_group	ft_get_allocator(const t_allocator_group *ag)
 {
+	static pthread_mutex_t		ag_lock = PTHREAD_MUTEX_INITIALIZER;
 	static t_allocator_group	alloc = {0};
 
-	return (&alloc);
+	if (FT_THREADS)
+		pthread_mutex_lock(&ag_lock);
+	if (ag != NULL)
+		alloc = *ag;
+	if (FT_THREADS)
+		pthread_mutex_unlock(&ag_lock);
+	return (alloc);
 }
 
 void	ft_set_allocator(void)
@@ -29,21 +38,16 @@ void	ft_set_allocator(void)
 		ft_set_gnu_alloc();
 }
 
-void	ft_take_allocator(t_allocator_group new_allocator_group)
-{
-	*ft_get_allocator() = new_allocator_group;
-}
-
 void	ft_set_ft_alloc(void)
 {
-	t_allocator_group	*alloc;
+	t_allocator_group	alloc;
 
-	alloc = ft_get_allocator();
-	alloc->ptr_alloc = ft_memimpl_malloc;
-	alloc->ptr_calloc = ft_memimpl_calloc;
-	alloc->ptr_free = ft_memimpl_free;
-	alloc->ptr_realloc = ft_memimpl_realloc;
-	alloc->ptr_reallocarray = ft_memimpl_reallocarray;
+	alloc.ptr_alloc = ft_memimpl_malloc;
+	alloc.ptr_calloc = ft_memimpl_calloc;
+	alloc.ptr_free = ft_memimpl_free;
+	alloc.ptr_realloc = ft_memimpl_realloc;
+	alloc.ptr_reallocarray = ft_memimpl_reallocarray;
+	ft_get_allocator(&alloc);
 }
 
 #if __GNUC__ && __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 26)
@@ -54,14 +58,14 @@ void	ft_set_ft_alloc(void)
 
 void	ft_set_gnu_alloc(void)
 {
-	t_allocator_group	*alloc;
+	t_allocator_group	alloc;
 
-	alloc = ft_get_allocator();
-	alloc->ptr_alloc = malloc;
-	alloc->ptr_calloc = calloc;
-	alloc->ptr_free = free;
-	alloc->ptr_realloc = realloc;
-	alloc->ptr_reallocarray = (void *(*)(void *, size_t, size_t))REALLOCARRAY;
+	alloc.ptr_alloc = malloc;
+	alloc.ptr_calloc = calloc;
+	alloc.ptr_free = free;
+	alloc.ptr_realloc = realloc;
+	alloc.ptr_reallocarray = (void *(*)(void *, size_t, size_t))REALLOCARRAY;
+	ft_get_allocator(&alloc);
 }
 
 /*

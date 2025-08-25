@@ -15,18 +15,19 @@
 
 int	tsi_isoct(void)
 {
-	if (ft_str_isoct("0o1234567") != 1 || ft_str_isoct("0O1234567") != 1
-		|| ft_str_isoct("0o342") != 1 || ft_str_isoct("0o0") != 1
-		|| ft_str_isoct("0o000000") != 1 || ft_str_isoct("12") != 1
-		|| ft_str_isoct("34") != 1)
+	if (ft_str_isoct("0o1234567") != true || ft_str_isoct("0O1234567") != true
+		|| ft_str_isoct("0o342") != true || ft_str_isoct("0o0") != true
+		|| ft_str_isoct("0o000000") != true || ft_str_isoct("12") != true
+		|| ft_str_isoct("34") != true)
 		return (1);
-	if (ft_str_isoct("-0o1234568") != 0 || ft_str_isoct("0o1234568") != 0
-		|| ft_str_isoct("0o9") != 0 || ft_str_isoct("-7") != 0
+	if (ft_str_isoct("-0o1234568") != false
+		|| ft_str_isoct("0o1234568") != false
+		|| ft_str_isoct("0o9") != false || ft_str_isoct("-7") != false
 		|| ft_str_isoct("+67") != 0)
 		return (2);
 	if (ft_str_isoct(NULL) != false)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

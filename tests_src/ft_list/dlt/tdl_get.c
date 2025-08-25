@@ -40,8 +40,7 @@ int	t_dl_get_datas(void)
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_dl_get_datas(list))
-		return (talloc_set_failpoint(prev), \
-ft_dl_clear(&list, ft_free), 5);
+		return (talloc_set_failpoint(prev), ft_dl_clear(&list, ft_free), 5);
 	talloc_set_failpoint(prev);
 	ft_dl_clear(&list, ft_free);
 	free(datas);
@@ -69,8 +68,7 @@ int	t_dl_get_nodes(void)
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_dl_get_nodes(list))
-		return (talloc_set_failpoint(prev), \
-ft_dl_clear(&list, ft_free), 5);
+		return (talloc_set_failpoint(prev), ft_dl_clear(&list, ft_free), 5);
 	talloc_set_failpoint(prev);
 	ft_dl_clear(&list, ft_free);
 	free(nodes);

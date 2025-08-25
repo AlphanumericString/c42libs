@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include "ft_string.h"
 #include "ft_string.h"
 #include "tests/str__num_tests.h"
@@ -30,25 +31,25 @@ static int	eval_base(int *t_cases, const char *bases, const char *exp_res[])
 		ft_free(res);
 		j++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	check_base_error(void)
 {
-	if (ft_itoa_base(0, "0") || ft_itoa_base(0, "010") || \
-ft_itoa_base(0, "0123456789+") || ft_itoa_base(0, "0123456789a-") \
-|| ft_itoa_base(0, "0123456789a1") || ft_itoa_base(0, "0123456789a ") \
-|| ft_itoa_base(0, "0123456789\t"))
-		return (15);
-	return (0);
+	if (ft_itoa_base(0, "0") || ft_itoa_base(0, "010")
+		|| ft_itoa_base(0, "0123456789+") || ft_itoa_base(0, "0123456789a-")
+		|| ft_itoa_base(0, "0123456789a1") || ft_itoa_base(0, "0123456789a ")
+		|| ft_itoa_base(0, "0123456789\t"))
+		return (1);
+	return (EXIT_SUCCESS);
 }
 
 int	tsn_itoa_base(void)
 {
 	size_t		j;
 	const int	t_cases[] = {0, 123, -456, 7890, -12345, MAGIC};
-	const char	*bases[] = {"0123456789abcdef", "0123456789", "01",
-		"0123456789ABCDEF"};
+	const char	*bases[] = {FT_HEXBASE, FT_DECBASE, FT_BINBASE,
+		FT_HEXBASE_CAP};
 	const char	*expected_results[sizeof(bases)
 		/ sizeof(bases[0])][sizeof(t_cases) / sizeof(t_cases[0])] = {{"0", "7b",
 		"-1c8", "1ed2", "-3039"}, {"0", "123", "-456", "7890", "-12345"}, {"0",
@@ -62,9 +63,9 @@ int	tsn_itoa_base(void)
 			return (j + 1);
 		j++;
 	}
-	if (check_base_error() != 0)
+	if (check_base_error() != EXIT_SUCCESS)
 		return (j + check_base_error());
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

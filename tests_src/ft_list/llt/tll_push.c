@@ -129,8 +129,8 @@ int	t_ll_pop_back(void)
 	if (ft_ll_size(list) != 1 || list->data != data3 || pop != data)
 		return (3);
 	pop = ft_ll_pop_back(&list);
-	if (list || pop != data3 || ft_ll_size(list) != 0 || \
-ft_ll_pop_back(&list) || ft_ll_pop_back(NULL))
+	if (list || pop != data3 || ft_ll_size(list) != 0 || ft_ll_pop_back(&list)
+		|| ft_ll_pop_back(NULL))
 		return (4);
 	return (free(data), free(data2), free(data3), 0);
 }

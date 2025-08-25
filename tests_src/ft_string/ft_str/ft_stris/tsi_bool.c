@@ -15,25 +15,18 @@
 
 int	tsi_isbool(void)
 {
-	if (ft_str_isbool("1") != 1 || ft_str_isbool("true") != 1)
+	if (ft_str_isbool("1") != true || ft_str_isbool("true") != true
+		|| ft_str_isbool("0") != true || ft_str_isbool("false") != true)
 		return (1);
-	if (ft_str_isbool("0") != 1 || ft_str_isbool("false") != 1)
+	if (ft_str_isbool("true!") != false
+		|| ft_str_isbool("falseeurt") != false
+		|| ft_str_isbool("truetrue") != false
+		|| ft_str_isbool("false42") != false
+		|| ft_str_isbool("false\t") != false
+		|| ft_str_isbool("") != false
+		|| ft_str_isbool(NULL) != false)
 		return (2);
-	if (ft_str_isbool("true!") != 0)
-		return (3);
-	if (ft_str_isbool("falseeurt") != 0)
-		return (4);
-	if (ft_str_isbool("truetrue") != 0)
-		return (5);
-	if (ft_str_isbool("false42") != 0)
-		return (6);
-	if (ft_str_isbool("false\t") != 0)
-		return (7);
-	if (ft_str_isbool("") != 0)
-		return (8);
-	if (ft_str_isbool(NULL) != false)
-		return (9);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

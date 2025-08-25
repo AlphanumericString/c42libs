@@ -14,15 +14,23 @@
 #include "internal/args_helper.h"
 #include "ft_defs.h"
 
+#include <pthread.h>
 #include <stdlib.h>
 
 static const char *const	*ft_ev_singleton(const char *const *ev, bool set)
 {
+	static pthread_mutex_t		ev_lock = PTHREAD_MUTEX_INITIALIZER;
 	static const char *const	*ev_st = NULL;
+	const char *const			*ret;
 
+	if (FT_THREADS)
+		pthread_mutex_lock(&ev_lock);
 	if (set)
 		ev_st = ev;
-	return (ev_st);
+	ret = ev_st;
+	if (FT_THREADS)
+		pthread_mutex_unlock(&ev_lock);
+	return (ret);
 }
 
 // Dependant on c abi - lol

@@ -26,8 +26,7 @@ int	ts_strtok(void)
 		|| ft_strcmp(ft_strtok(NULL, " "), "ipsum") != 0
 		|| ft_strcmp(ft_strtok(NULL, " "), "dolor") != 0)
 		return (1);
-	if (ft_strcmp(ft_strtok(NULL, " "), "") != 0 || ft_strtok(NULL,
-			" "))
+	if (ft_strcmp(ft_strtok(NULL, " "), "") != 0 || ft_strtok(NULL, " "))
 		return (2);
 	if (ft_strcmp(ft_strtok(test, ":"), "path/to/file") != 0
 		|| ft_strcmp(ft_strtok(NULL, ":"), "another/path") != 0)

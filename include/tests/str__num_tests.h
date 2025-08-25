@@ -18,9 +18,14 @@ int	tsn_atoi_base(void);
 int	tsn_atoi(void);
 int	tsn_atol(void);
 int	tsn_atoll(void);
+int	tsn_base_valid(void);
 int	tsn_atol_base(void);
 int	tsn_itoa_base(void);
 int	tsn_itoa(void);
+int	tsn_stoa_base(void);
+int	tsn_stopa_base(void);
+int	tsn_sstoa_base(void);
+int	tsn_sstopa_base(void);
 int	tsn_utoa(void);
 
 #endif /* STR__NUM_TESTS_H */

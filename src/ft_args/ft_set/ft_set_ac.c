@@ -11,17 +11,26 @@
 /* ************************************************************************** */
 
 #include "ft_args.h"
+#include "ft_defs.h"
 #include "internal/args_helper.h"
 
+#include <pthread.h>
 #include <stdlib.h>
 
 static int	ft_ac_singleton(int ac)
 {
-	static int	ac_st = 0;
+	static pthread_mutex_t	ac_lock = PTHREAD_MUTEX_INITIALIZER;
+	static int				ac_st = 0;
+	int						ret;
 
+	if (FT_THREADS)
+		pthread_mutex_lock(&ac_lock);
 	if (ac >= 0)
 		ac_st = ac;
-	return (ac_st);
+	ret = ac_st;
+	if (FT_THREADS)
+		pthread_mutex_unlock(&ac_lock);
+	return (ret);
 }
 
 int	ft_set_ac(int ac)

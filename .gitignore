@@ -65,10 +65,11 @@ Todo
 .cache
 tests_run
 coverage
+doxydoc
 Doxygen
 tools
-*test*tmp*.c
 tags
 quick_tests_run
 compile_commands.json
-tester_rust*
+testing_lib
+tests

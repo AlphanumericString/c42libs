@@ -14,27 +14,27 @@
 
 void	*ft_malloc(size_t size)
 {
-	return (ft_get_allocator()->ptr_alloc(size));
+	return (ft_get_allocator(NULL).ptr_alloc(size));
 }
 
 void	ft_free(void *ptr)
 {
-	return (ft_get_allocator()->ptr_free(ptr));
+	return (ft_get_allocator(NULL).ptr_free(ptr));
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	return (ft_get_allocator()->ptr_calloc(nmemb, size));
+	return (ft_get_allocator(NULL).ptr_calloc(nmemb, size));
 }
 
 void	*ft_realloc(void *ptr, size_t size)
 {
-	return (ft_get_allocator()->ptr_realloc(ptr, size));
+	return (ft_get_allocator(NULL).ptr_realloc(ptr, size));
 }
 
 void	*ft_reallocarray(void *ptr, size_t nmemb, size_t size)
 {
-	return (ft_get_allocator()->ptr_reallocarray(ptr, nmemb, size));
+	return (ft_get_allocator(NULL).ptr_reallocarray(ptr, nmemb, size));
 }
 
 /*

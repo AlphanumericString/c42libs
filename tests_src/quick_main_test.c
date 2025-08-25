@@ -27,6 +27,7 @@
 #include "ft_lib.h"
 #include "ft_args.h"
 #include "ft_arena.h"
+#include "tests/fixtures.h"
 #include "types/ft_args_types.h"
 
 // iee754 tests
@@ -106,6 +107,32 @@
 // 	if (feof(file)) printf("End of file reached.\n");
 // 	else printf("File not fully read.\n");
 // 	return (fclose(file), EXIT_SUCCESS);
+// }
+
+// static int	ts_strtok(void)
+// {
+// 	char	test[50];
+// 	char	lorem[30];
+//
+// 	lorem[0] = '\0';
+// 	test[0] = '\0';
+// 	ft_strlcpy(lorem, "Lorem ipsum dolor ", 30);
+// 	ft_strlcpy(test, ":::path/to/file:::another/path::yet/:/another/path", 47);
+// 	if (ft_strcmp(ft_strtok(lorem, " "), "Lorem") != 0
+// 		|| ft_strcmp(ft_strtok(NULL, " "), "ipsum") != 0
+// 		|| ft_strcmp(ft_strtok(NULL, " "), "dolor") != 0)
+// 		return (1);
+// 	if (ft_strcmp(ft_strtok(NULL, " "), "") != 0
+// 		|| ft_strtok(NULL, " "))
+// 		return (2);
+// 	if (ft_strcmp(ft_strtok(test, ":"), "path/to/file") != 0
+// 		|| ft_strcmp(ft_strtok(NULL, ":"), "another/path") != 0)
+// 		return (3);
+// 	if (ft_strcmp(ft_strtok(NULL, ":/"), "yet") != 0)
+// 		return (4);
+// 	if (ft_strcmp(ft_strtok(NULL, ":/"), "another") != 0)
+// 		return (5);
+// 	return (0);
 // }
 
 int	main(int ac, char **av)

@@ -16,9 +16,9 @@
 #include "unistd.h"
 #include <stddef.h>
 
-static const t_test	*tm_tests(void)
+static const t_fnamed	*tm_tests(void)
 {
-	static const t_test	tests[] = {
+	static const t_fnamed	tests[] = {
 	{"fd_to_buff", tm_fd_to_buff}, {"bzero", tm_bzero},
 	{"calloc", tm_calloc}, {"realloc", tm_realloc}, {"free", tm_free},
 	{"free_clear", tm_freecl}, {"memchr", tm_memchr}, {"memcmp", tm_memcmp},
@@ -29,25 +29,26 @@ static const t_test	*tm_tests(void)
 	return (tests);
 }
 
-int	mem_tests(int depth)
+t_module	*mem_tests(void)
 {
-	size_t			i;
-	int				prev;
-	int				collect;
-	const t_module	sb[] = {
-	{"c-style array", "arr", arr_module_tests, 0},
-	{"memory arena", "arena", arena_module_tests, 0},
-	{"memory allocator", "allocator", allocator_module_tests, 0},
-	{NULL, NULL, NULL, 0}};
-	const t_test	*tests = tm_tests();
+	size_t					i;
+	const t_mod_constructor	sbm[] = {arr_module_tests,
+		arena_module_tests, allocator_module_tests, NULL};
+	const t_fnamed			*funcs = tm_tests();
+	t_module				*args;
 
 	i = 0;
-	collect = 0;
-	while (sb[i].test)
-		collect += run_module(sb[i++], depth);
-	prev = 0;
-	run_test(tests, &prev, depth);
-	return (collect + prev);
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "memory", "memory manipulation functions module.");
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	i = 0;
+	while (sbm[i])
+		add_submodule(args, sbm[i++]());
+	return (args);
 }
 /*
 GPL-3.0 License:

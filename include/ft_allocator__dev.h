@@ -16,12 +16,8 @@
 # include <stdbool.h>
 # include <stdlib.h>
 
-// if for whatever reason it is def, put true in it
-# ifdef ALLOC_SELF
-#  define SELF_ALLOC true
-# else
-#  define SELF_ALLOC false
-# endif
+// for conditional self alloc defines
+# include "ft_defs.h"
 
 # include "types/ft_allocator_types.h"
 
@@ -30,8 +26,8 @@
 //  resolved through the allocaor group -> therefore i can switch to the 'real'
 //  malloc at any time by calling ft_set_gnu_alloc
 
-t_allocator_group	*ft_get_allocator(void);
-void				ft_take_allocator(t_allocator_group new_allocator_group);
+// hook to null to get current value
+t_allocator_group	ft_get_allocator(const t_allocator_group *ag);
 void				ft_set_allocator(void) __attribute__((constructor(200)));
 void				ft_set_ft_alloc(void);
 void				ft_set_gnu_alloc(void);

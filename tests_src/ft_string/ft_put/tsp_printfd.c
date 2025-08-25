@@ -25,12 +25,12 @@ static int	error_cases(int fd, const char *file)
 	const int	malicious_fd = 14;
 	int			ret;
 
-	ret = 0;
+	ret = EXIT_SUCCESS;
 	if (ft_print_fd(-1, "tests") != -1
 		|| ft_print_fd(fd, NULL) != -1
 		|| ft_print_fd(99999, "tests") != -1
 		|| ft_print_fd(malicious_fd, "toto %d", 42) != -1)
-		ret = 1;
+		ret = EXIT_FAILURE;
 	destroy_test_file(fd, file);
 	ft_free((t_any)file);
 	return (ret);
@@ -51,6 +51,8 @@ static void	fill_the_file(int fd)
 	ft_print_fd(fd, "%E, %E, %E, %E\n", 42.000042f, INFINITY, -INFINITY, NAN);
 	errno = 0;
 	ft_print_fd(fd, "%m\n");
+	errno = 999;
+	ft_print_fd(fd, "%m\n");
 	errno = EFAULT;
 	ft_print_fd(fd, "%m\n%o\t%s%s", 42, "hey\n", NULL);
 	ft_print_fd(fd, "%p\t%p\n", (t_any)0xDEADBEEF, NULL);
@@ -67,7 +69,7 @@ int	tsp_printfd(void)
 	const char	*expected = "test_toto\ntest *, 42, 42, 42\n*%y2A%2a\n"
 		"42.000042, inf, -inf, nan\n42.000042, INF, -INF, NAN\n"
 		"4.200004e+01, inf, -inf, nan\n4.200004E+01, INF, -INF, NAN\n"
-		"Success\nBad address\n"
+		"Success\nUnknown error\nBad address\n"
 		"52\they\n(null)0xdeadbeef\t(nil)\n"
 		"3.200000e-03\t3.200000E-03\n-3.200000e-03\t-3.200000E-03\n"
 		"3.200000e+03\t3.200000E+03\n-3.200000e+03\t-3.200000E+03\n"
@@ -78,7 +80,7 @@ int	tsp_printfd(void)
 	fd = (close(fd), open(file, O_RDONLY));
 	ret = ft_fd_to_buff(fd);
 	if (!ret || ft_strcmp(expected, ret) != 0)
-		return (ft_free(ret), 1);
+		return (ft_free(ret), EXIT_FAILURE);
 	return (ft_free(ret), error_cases(fd, file));
 }
 /*

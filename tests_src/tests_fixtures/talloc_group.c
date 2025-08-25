@@ -20,23 +20,25 @@ void	*talloc_prev_group(void)
 	return (&prev);
 }
 
+// prev = static stack adress = wont change
 void	talloc_wrapper_setup(void)
 {
-	t_allocator_group	*alloc;
+	t_allocator_group	alloc;
 	t_allocator_group	*prev;
 
-	alloc = ft_get_allocator();
 	prev = talloc_prev_group();
-	prev->ptr_alloc = alloc->ptr_alloc;
-	prev->ptr_calloc = alloc->ptr_calloc;
-	prev->ptr_realloc = alloc->ptr_realloc;
-	prev->ptr_free = alloc->ptr_free;
-	prev->ptr_reallocarray = alloc->ptr_reallocarray;
-	alloc->ptr_alloc = talloc_alloc;
-	alloc->ptr_calloc = talloc_calloc;
-	alloc->ptr_realloc = talloc_realloc;
-	alloc->ptr_free = talloc_free;
-	alloc->ptr_reallocarray = talloc_reallocarray;
+	alloc = ft_get_allocator(NULL);
+	prev->ptr_alloc = alloc.ptr_alloc;
+	prev->ptr_calloc = alloc.ptr_calloc;
+	prev->ptr_realloc = alloc.ptr_realloc;
+	prev->ptr_free = alloc.ptr_free;
+	prev->ptr_reallocarray = alloc.ptr_reallocarray;
+	alloc.ptr_alloc = talloc_alloc;
+	alloc.ptr_calloc = talloc_calloc;
+	alloc.ptr_realloc = talloc_realloc;
+	alloc.ptr_free = talloc_free;
+	alloc.ptr_reallocarray = talloc_reallocarray;
+	ft_get_allocator(&alloc);
 }
 
 /*

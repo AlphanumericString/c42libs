@@ -15,28 +15,28 @@
 
 int	tsi_islong(void)
 {
-	if (ft_str_islong("23") != 1 || ft_str_islong("42") != 1 || \
-ft_str_islong("0") != 1 || ft_str_islong("2") != 1 || \
-ft_str_islong("-34") != 1 || ft_str_islong("42") != 1 || \
-ft_str_islong("9223372036854775807") != 1 || \
-ft_str_islong("-9223372036854775808") != 1)
+	if (ft_str_islong("23") != true || ft_str_islong("42") != true
+		|| ft_str_islong("0") != true || ft_str_islong("2") != true
+		|| ft_str_islong("-34") != true || ft_str_islong("42") != true
+		|| ft_str_islong("9223372036854775807") != true
+		|| ft_str_islong("-9223372036854775808") != true)
 		return (1);
-	if (ft_str_islong("9223372036854775808") != 0 || \
-ft_str_islong("-9223372036854775809") != 0 || \
-ft_str_islong("92233720368547758070") != 0 || \
-ft_str_islong("-92233720368547758080") != 0 || \
-ft_str_islong("9223372036854775807a") != 0 || \
-ft_str_islong("-9223372036854775808a") != 0 || \
-ft_str_islong("9223372036854775807 ") != 0 || \
-ft_str_islong("-9223372036854775808 ") != 0 || \
-ft_str_islong("-+0") != 0 || ft_str_islong("+-0") != 0 || \
-ft_str_islong("0-") != 0 || ft_str_islong("0+") != 0)
+	if (ft_str_islong("9223372036854775808") != false
+		|| ft_str_islong("-9223372036854775809") != false
+		|| ft_str_islong("92233720368547758070") != false
+		|| ft_str_islong("-92233720368547758080") != false
+		|| ft_str_islong("9223372036854775807a") != false
+		|| ft_str_islong("-9223372036854775808a") != false
+		|| ft_str_islong("9223372036854775807 ") != false
+		|| ft_str_islong("-9223372036854775808 ") != false
+		|| ft_str_islong("-+0") != false || ft_str_islong("+-0") != false
+		|| ft_str_islong("0-") != false || ft_str_islong("0+") != false)
 		return (2);
-	if (ft_str_islong("") != 0 || ft_str_islong("-") != 0)
+	if (ft_str_islong("") != false || ft_str_islong("-") != false)
 		return (3);
 	if (ft_str_islong(NULL) != false)
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -22,12 +22,16 @@ int	test_string_trimstr(void)
 	ft_string_trimstr(str, " d");
 	if (ft_string_cmp(str, "Hello Worl") != 0)
 		return (1);
-	if (str->length != 10)
+	if (str->length != 10 || str->capacity < 10)
 		return (2);
-	if (str->capacity < 10)
-		return (3);
+	ft_string_trimstr(str, NULL);
+	ft_string_trimstr(NULL, " d");
 	ft_string_destroy(&str);
-	return (0);
+	str = ft_string_from("    , ");
+	ft_string_trimstr(str, " ,");
+	if (ft_string_cmp(str, "") != 0)
+		return (3);
+	return (ft_string_destroy(&str), 0);
 }
 /*
 GPL-3.0 License:

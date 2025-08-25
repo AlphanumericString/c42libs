@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "tests/bitset_tests.h"
+#include "ft_allocator__dev.h"
 #include "tests/tests.h"
 
 // {"new", tb_new}, {"create", tb_create}, {"new_from_str", tb_new_from_str},
@@ -21,9 +22,9 @@
 // {"print_hex", tb_print_hex}, {"print_decimal", tb_print_decimal},
 // {"append", tb_append}, {"remove", tb_remove},
 // {"remove_front", tb_remove_front}, {NULL, NULL}};
-static const t_test	*tb_tests(void)
+static const t_fnamed	*tb_tests(void)
 {
-	static const t_test	var[] = {
+	static const t_fnamed	var[] = {
 	{"new", tb_new}, {"create", tb_create}, {"new_from_mem", tb_new_from_mem},
 	{"clear", tb_clear}, {"free", tb_free}, {"free_inner", tb_free_inner},
 	{"get_raw", tb_get_raw}, {"get", tb_get}, {"set_raw", tb_set_raw},
@@ -36,14 +37,21 @@ static const t_test	*tb_tests(void)
 	return (var);
 }
 
-int	tests_bitset(int depth)
+t_module	*tests_bitset(void)
 {
-	const t_test	*test = tb_tests();
-	int				collect;
+	int				i;
+	const t_fnamed	*funcs = tb_tests();
+	t_module		*args;
 
-	collect = 0;
-	run_test(test, &collect, depth);
-	return (collect);
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "bitset", "bitset handling module");
+	i = 0;
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

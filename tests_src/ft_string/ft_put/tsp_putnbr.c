@@ -64,7 +64,7 @@ static int	test_positives(void)
 
 static int	test_negatives(void)
 {
-	const int	nbs[] = {-1, -9, -10, -99, -100, -999, -1000, -9999, -10000, \
+	const int	nbs[] = {-1, -9, -10, -99, -100, -999, -1000, -9999, -10000,
 		INT_MIN};
 	const char	*exp = "-1\n-9\n-10\n-99\n-100\n-999\n-1000\n-9999\n-10000\n"
 		"-2147483648\n";
@@ -76,11 +76,17 @@ static int	test_negatives(void)
 
 int	tsp_putnbr(void)
 {
+	const int	unopen_fd = 8;
+
 	if (test_positives() != 0)
 		return (1);
 	if (test_negatives() != 0)
 		return (2);
-	return (0);
+	if (ft_putnbr_fd(42, -3) != -1
+		|| ft_putnbr_fd(42, 999) != -1
+		|| ft_putnbr_fd(42, unopen_fd) != -1)
+		return (3);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

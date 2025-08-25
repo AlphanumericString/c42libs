@@ -14,6 +14,7 @@
 #include <unistd.h>
 
 #include "ft_string.h"
+#include "types/ft_string_types.h"
 
 int	ft_putnbr_fd(int nb, int fd)
 {
@@ -23,11 +24,12 @@ int	ft_putnbr_fd(int nb, int fd)
 
 	i = 0;
 	sign = 1;
+	if (fd < 0 || fd > MAX_FD)
+		return (-1);
 	ft_bzero(res, sizeof(res) / sizeof(res[0]));
-	if (nb == INT_MIN)
-		return (write(fd, "-2147483648", 11));
-	if (nb == INT_MAX)
-		return (write(fd, "2147483647", 10));
+	if (nb == INT_MIN || nb == INT_MAX)
+		return (write(fd, (char *)((long)"-2147483648" *(nb == INT_MIN))
+			+ ((long)"2147483647" *(nb == INT_MAX)), 10 + (nb == INT_MIN)));
 	if (nb < 0)
 		sign = -1;
 	if (nb == 0)
@@ -39,8 +41,7 @@ int	ft_putnbr_fd(int nb, int fd)
 	}
 	if (sign == -1)
 		res[i++] = '-';
-	ft_strrev(res);
-	return (write(fd, res, i));
+	return (ft_strrev(res), write(fd, res, i));
 }
 /*
 GPL-3.0 License:

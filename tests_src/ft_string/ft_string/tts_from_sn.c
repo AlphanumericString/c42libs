@@ -11,8 +11,25 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+
+static int	mt_string_from_sn(void)
+{
+	const int	fp = *talloc_get_failpoint();
+	t_string	*str;
+	t_string	*str_src;
+
+	str_src = ft_string_from("Hello there!");
+	talloc_set_failpoint(0);
+	str = ft_string_from_s_n(str_src, 4);
+	talloc_set_failpoint(fp);
+	ft_string_destroy(&str_src);
+	if (str != NULL)
+		return (1);
+	return (EXIT_SUCCESS);
+}
 
 int	test_string_from_sn(void)
 {
@@ -35,7 +52,8 @@ int	test_string_from_sn(void)
 	str = ft_string_from_s_n(str_src, 0);
 	if (str->length != 0 || str->capacity < 1)
 		return (5);
-	return (ft_string_destroy(&str), ft_string_destroy(&str_src), 0);
+	return (ft_string_destroy(&str), ft_string_destroy(&str_src),
+		mt_string_from_sn());
 }
 /*
 GPL-3.0 License:

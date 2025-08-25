@@ -14,15 +14,23 @@
 #include "ft_defs.h"
 #include "internal/args_helper.h"
 
+#include <pthread.h>
 #include <stddef.h>
 
 static const char	*singleton_version(const char *version)
 {
-	static const char	*singleton_version = NULL;
+	static pthread_mutex_t	ver_lock = PTHREAD_MUTEX_INITIALIZER;
+	static const char		*singleton_version = NULL;
+	const char				*ret;
 
+	if (FT_THREADS)
+		pthread_mutex_lock(&ver_lock);
 	if (version)
 		singleton_version = version;
-	return (singleton_version);
+	ret = singleton_version;
+	if (FT_THREADS)
+		pthread_mutex_unlock(&ver_lock);
+	return (ret);
 }
 
 void	ft_set_version(const char *version)

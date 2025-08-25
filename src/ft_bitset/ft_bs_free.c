@@ -28,8 +28,7 @@ void	ft_bs_free(t_bitset **bitset)
 		return ;
 	if ((*bitset)->bits)
 		ft_free((*bitset)->bits);
-	ft_free(*bitset);
-	*bitset = NULL;
+	ft_free_clear((void **)bitset);
 	return ;
 }
 
@@ -37,9 +36,7 @@ void	ft_bs_free_inner(t_bitset *bitset)
 {
 	if (!bitset)
 		return ;
-	if (bitset->bits)
-		ft_free(bitset->bits);
-	bitset->bits = NULL;
+	ft_free_clear((void **)&bitset->bits);
 	bitset->_capacity = 0;
 	return ;
 }

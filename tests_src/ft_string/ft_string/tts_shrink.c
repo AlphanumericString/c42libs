@@ -11,8 +11,27 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+
+static int	mt_string_shrink(void)
+{
+	const int	fp = *talloc_get_failpoint();
+	t_string	*str;
+
+	str = ft_string_new(0);
+	ft_string_set_n(str, "Hellium", 30);
+	ft_string_reserve(str, 999);
+	talloc_set_failpoint(0);
+	ft_string_shrink(str);
+	talloc_set_failpoint(fp);
+	if (ft_string_cmp(str, "Hellium") != 0 || str->length != 8
+		|| str->capacity <= 8)
+		return (ft_string_destroy(&str), 1);
+	ft_string_destroy(&str);
+	return (EXIT_SUCCESS);
+}
 
 int	test_string_shrink(void)
 {
@@ -20,25 +39,23 @@ int	test_string_shrink(void)
 
 	str = ft_string_from("Hello");
 	ft_string_shrink(str);
-	if (ft_string_cmp(str, "Hello") != 0)
+	if (ft_string_cmp(str, "Hello") != 0 || str->length != 5
+		|| str->capacity < 5)
 		return (1);
-	if (str->length != 5 || str->capacity < 5)
-		return (2);
 	ft_string_destroy(&str);
 	str = ft_string_from("^_^");
 	if (str->length != 3 || str->capacity != T_STRING_BUFF)
+		return (2);
+	ft_string_shrink(str);
+	if (ft_string_cmp(str, "^_^") != 0 || str->length != 3
+		|| str->capacity < 3)
 		return (3);
 	ft_string_shrink(str);
-	if (ft_string_cmp(str, "^_^") != 0)
+	if (ft_string_cmp(str, "^_^") != 0 || str->length != 3
+		|| str->capacity < 3)
 		return (4);
-	if (str->length != 3 || str->capacity < 3)
-		return (5);
-	ft_string_shrink(str);
-	if (ft_string_cmp(str, "^_^") != 0)
-		return (6);
-	if (str->length != 3 || str->capacity < 3)
-		return (7);
-	return (ft_string_destroy(&str), 0);
+	ft_string_shrink(NULL);
+	return (ft_string_destroy(&str), mt_string_shrink());
 }
 /*
 GPL-3.0 License:

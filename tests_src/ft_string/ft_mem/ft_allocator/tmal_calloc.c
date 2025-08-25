@@ -16,14 +16,14 @@
 
 int	tmal_calloc(void)
 {
-	const t_allocator_group	prev = *ft_get_allocator();
-	t_allocator_group		*group_test;
+	const t_allocator_group	prev = ft_get_allocator(NULL);
+	t_allocator_group		group_test;
 
 	ft_set_ft_alloc();
-	group_test = ft_get_allocator();
-	if (group_test->ptr_calloc != &ft_memimpl_calloc)
+	group_test = ft_get_allocator(NULL);
+	if (group_test.ptr_calloc != &ft_memimpl_calloc)
 		return (1);
-	ft_take_allocator(prev);
+	ft_get_allocator(&prev);
 	return (0);
 }
 /*

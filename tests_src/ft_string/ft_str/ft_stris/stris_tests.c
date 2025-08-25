@@ -10,33 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/str__str_sis_tests.h"
 #include "tests/tests.h"
 
-static const t_test	*tsi_tests(void)
+static const t_fnamed	*tsi_tests(void)
 {
-	static const t_test	tests[] = {
+	static const t_fnamed	tests[] = {
 	{"isalpha", tsi_isalpha},
 	{"isbool", tsi_isbool}, {"alnum", tsi_isalnum},
 	{"isdigit", tsi_isdigit}, {"isdouble", tsi_isdouble},
 	{"ishex", tsi_ishex}, {"islong", tsi_islong},
 	{"isnum", tsi_isnum}, {"isoct", tsi_isoct},
+	{"ispath", tsi_ispath},
 	{"isint", tsi_isint}, {"isfloat", tsi_isfloat},
+	{"isfname", tsi_isfname},
 	{"isvalid", tsi_isvalid}, {NULL, NULL}};
 
 	return (tests);
 }
 
-int	stris_tests(int depth)
+t_module	*stris_tests(void)
 {
-	int				collect;
-	const t_test	*tests = tsi_tests();
+	int				i;
+	const t_fnamed	*funcs = tsi_tests();
+	t_module		*args;
 
-	collect = 0;
-	run_test(tests, &collect, depth);
-	return (collect);
+	i = 0;
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "stris", "query functions for c-strings.");
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
-
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

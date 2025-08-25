@@ -28,12 +28,12 @@ static int	base_cases(void)
 	ft_vec_shrink(vec);
 	if (vec->count != 3 || vec->cappacity != 3)
 		return (1);
-	else if (ft_vec_at(vec, 0) != (void *) 42 || ft_vec_at(vec, 1) != \
-(void *) 43 || ft_vec_at(vec, 2) != (void *) 44)
+	else if (ft_vec_at(vec, 0) != (void *)42
+		|| ft_vec_at(vec, 1) != (void *)43 || ft_vec_at(vec, 2) != (void *)44)
 		return (2);
 	ft_vec_shrink(vec);
-	if (!vec || !vec->datas || !vec->cappacity || !vec->count || \
-vec->count != vec->cappacity || vec->count != 3)
+	if (!vec || !vec->datas || !vec->cappacity || !vec->count
+		|| vec->count != vec->cappacity || vec->count != 3)
 		return (3);
 	ft_vec_destroy(&vec);
 	return (0);

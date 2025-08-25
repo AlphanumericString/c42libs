@@ -50,7 +50,6 @@ t_bitset	ft_bs_create(size_t size)
 		bitset._capacity = 0;
 		return (bitset);
 	}
-	ft_bzero(bitset.bits, sizeof(t_bitset8) * bitset._capacity);
 	return (bitset);
 }
 

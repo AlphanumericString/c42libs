@@ -11,25 +11,62 @@
 /* ************************************************************************** */
 
 #include "ft_char.h"
+#include "ft_defs.h"
 #include "ft_string.h"
+#include <stddef.h>
+#include <limits.h>
+
+// prev:
+//  base[1]
+//   base[2->n] == base[1] ?    - n - 2 checks
+//	...
+//	base[n - 1]
+//	 base[n] == base[n-1] ?		- n - (n-1) checks
+//	aka:
+//		O(n^2)
+//
+// ---previous worst case: baselen == ascii table
+// 256(strlen) + 32 385(loop) => 32 640
+// new worst case:
+// 256(strlen) + 4(checks on base lenght) + 256 (loop) => 516
+//
+// ---most likely case:10
+// prev:
+// 10(strlen) + 36 => 46
+// new:
+// 10(strlen) + 4 + 10 => 24
+
+static bool	is_common_base(const char *base, size_t len)
+{
+	if ((len == 2 && !ft_strcmp(base, FT_BINBASE))
+		|| (len == 10 && !ft_strcmp(base, FT_DECBASE))
+		|| (len == 16 && !ft_strcmp(base, FT_HEXBASE))
+		|| (len == 16 && !ft_strcmp(base, FT_HEXBASE_CAP)))
+		return (true);
+	return (false);
+}
 
 bool	ft_base_valid(const char *base)
 {
-	int	i;
-	int	j;
+	bool				arr[256];
+	const unsigned char	*b_u = (const unsigned char *)base;
+	int					i;
+	size_t				len;
 
 	i = 0;
-	if (ft_strlen(base) < 2)
+	ft_bzero(arr, 255);
+	if (!base)
 		return (false);
-	while (base[i])
+	len = ft_strnlen(base, 257);
+	if (len < 2 || len > UCHAR_MAX)
+		return (false);
+	if (is_common_base(base, len))
+		return (true);
+	while (b_u[i])
 	{
-		if (base[i] == '+' || base[i] == '-' || ft_isspace(base[i]))
+		if (arr[b_u[i]] != false || !ft_isalnum(base[i]))
 			return (false);
-		j = i + 1;
-		while (base[j])
-			if (base[i] == base[j++])
-				return (false);
-		i++;
+		arr[b_u[i++]] = true;
 	}
 	return (true);
 }

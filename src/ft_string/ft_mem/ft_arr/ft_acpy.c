@@ -20,15 +20,17 @@ void	ft_acpy(t_iconst_arr dst, t_const_arr src)
 	if (!dst || !src)
 		return ((void) 0);
 	i = 0;
+	dst[i] = NULL;
 	while (src[i])
 	{
+		dst[i + 1] = NULL;
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = NULL;
 	return ((void)i);
 }
 
+// TODO: make AS-Safe ?pushing NULL before the copy if size > 0
 void	ft_alcpy(t_iconst_arr dst, size_t size, t_const_arr src)
 {
 	size_t	src_len;

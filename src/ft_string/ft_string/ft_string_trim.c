@@ -40,7 +40,8 @@ void	ft_string_trimstr(t_string *str, const char *to_trim)
 	while (ft_strchr(to_trim, str->str[rpad]) && rpad > 0)
 		rpad--;
 	if (rpad < lpad)
-		return ((void)ft_string_set(str, ""));
+		return (ft_bzero(str->str, str->length),
+			ft_bzero(&str->length, sizeof(str->length)));
 	ft_memmove(str->str, str->str + lpad, rpad - lpad + 1);
 	str->length = rpad - lpad + 1;
 	str->str[str->length] = '\0';

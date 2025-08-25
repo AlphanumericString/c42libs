@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/tests.h"
 #include "tests/math_tests.h"
 
-static const t_test	*tm_tests(void)
+static const t_fnamed	*tm_tests(void)
 {
-	static const t_test	tests[] = {
+	static const t_fnamed	tests[] = {
 	{"abs", tm_abs}, {"abs_l", tm_abs_l}, {"abs_ssize", tm_abs_ssize},
 	{"clamp", tm_clamp},
 	{"complex_abs", tm_complex_abs},
@@ -37,14 +38,21 @@ static const t_test	*tm_tests(void)
 	return (tests);
 }
 
-int	tests_math(int depth)
+t_module	*tests_math(void)
 {
 	int				i;
-	const t_test	*tests = tm_tests();
+	const t_fnamed	*funcs = tm_tests();
+	t_module		*args;
 
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "math", "math functions module.");
 	i = 0;
-	run_test(tests, &i, depth);
-	return (i);
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

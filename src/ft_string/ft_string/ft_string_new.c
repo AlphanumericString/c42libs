@@ -23,7 +23,7 @@ t_string	*ft_string_new(size_t capacity)
 		capacity = T_STRING_BUFF;
 	new->str = ft_calloc(capacity, sizeof(char));
 	if (!new->str)
-		return (ft_free((void **)&new), NULL);
+		return (ft_free(new), NULL);
 	new->capacity = capacity;
 	new->length = 0;
 	return (new);

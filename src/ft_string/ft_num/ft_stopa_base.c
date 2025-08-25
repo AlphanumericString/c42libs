@@ -13,6 +13,8 @@
 #include "ft_math.h"
 #include "ft_string.h"
 #include "sys/types.h"
+#include "unistd.h"
+#include <stdio.h>
 #include <stddef.h>
 
 // Size_t
@@ -23,7 +25,7 @@ bool	ft_stopa_base(size_t nbr, const char *base, char *ptr, size_t max)
 	t_uint	blen;
 	t_uint	nblen;
 
-	if (!base || !ptr || max <= 1 || ft_base_valid(base) == false)
+	if (!base | !ptr | max <= 1 || ft_base_valid(base) == false)
 		return (false);
 	blen = ft_strlen(base);
 	nblen = ft_unbrlen_base(nbr, blen);
@@ -46,7 +48,7 @@ bool	ft_sstopa_base(ssize_t nbr, const char *base, char *ptr, size_t max)
 	t_uint	nblen;
 	char	hold;
 
-	if (!base || !ptr || max <= 1 || ft_base_valid(base) == false)
+	if (!base | !ptr | max <= 1 || ft_base_valid(base) == false)
 		return (false);
 	blen = ft_strlen(base);
 	nblen = ft_nbrlen_base(nbr, blen);

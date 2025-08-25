@@ -22,10 +22,13 @@ int	test_string_trim_chr(void)
 	ft_string_trim_chr(str, ' ');
 	if (ft_string_cmp(str, "Hello World") != 0)
 		return (1);
-	if (str->length != 11)
+	if (str->length != 11 || str->capacity < 11)
 		return (2);
-	if (str->capacity < 11)
+	ft_string_trim_chr(str, 'z');
+	if (ft_string_cmp(str, "Hello World") != 0)
 		return (3);
+	if (str->length != 11 || str->capacity < 11)
+		return (4);
 	ft_string_destroy(&str);
 	return (0);
 }

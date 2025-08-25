@@ -13,18 +13,23 @@
 #ifndef STR__PUT_TESTS_H
 # define STR__PUT_TESTS_H
 
-int	put_tests(int depth);
-
 int	tsp_printfd(void);
 int	tsp_print(void);
 int	tsp_print_err(void);
 int	tsp_va_printfd(void);
-int	tsp_perror(void);
-int	tsp_putendl(void);
-int	tsp_putnbr(void);
-int	tsp_putstr(void);
+
 int	tsp_putchar(void);
 int	tsp_putnchar(void);
+
+int	tsp_putstr(void);
+int	tsp_putendl(void);
+
+int	tsp_perror(void);
+
+int	tsp_putdbl_fd(void);
+int	tsp_putnbr(void);
+int	tsp_putnbr_base(void);
+int	tsp_putunbr_base(void);
 
 #endif /* STR__PUT_TESTS_H */
 /*

@@ -16,24 +16,24 @@ int	ft_string_append(t_string *str, const char *append)
 {
 	size_t	len;
 
-	len = ft_strlen(append) + 1;
-	if (str->length + len >= str->capacity)
-	{
-		if (ft_string_resize(str, str->capacity + len) == -1)
-			return (-1);
-	}
+	if (!str || !append)
+		return (-1);
+	len = ft_strlen(append);
+	if (str->length + len >= str->capacity
+		&& ft_string_resize(str, str->capacity + len) == -1)
+		return (-1);
 	ft_memcpy(str->str + str->length, append, len);
-	str->length += len - 1;
+	str->length += len;
 	return (0);
 }
 
 int	ft_string_append_n(t_string *str, const char *append, size_t n)
 {
-	if (str->length + n + 1 >= str->capacity)
-	{
-		if (ft_string_resize(str, str->capacity + n + 1) == -1)
-			return (-1);
-	}
+	if (!str || !append)
+		return (-1);
+	if (str->length + n >= str->capacity
+		&& ft_string_resize(str, str->capacity + n) == -1)
+		return (-1);
 	ft_memcpy(str->str + str->length, append, n);
 	str->length += n;
 	str->str[str->length] = '\0';
@@ -42,24 +42,23 @@ int	ft_string_append_n(t_string *str, const char *append, size_t n)
 
 int	ft_string_append_c(t_string *str, char c)
 {
-	if (str->length + 2 >= str->capacity)
-	{
-		if (ft_string_resize(str, str->capacity + 2) == -1)
-			return (-1);
-	}
+	if (!str)
+		return (-1);
+	if (str->length + 1 >= str->capacity
+		&& ft_string_resize(str, str->capacity + 1) == -1)
+		return (-1);
 	str->str[str->length] = c;
-	str->str[str->length + 1] = '\0';
-	str->length += 1;
+	str->str[++str->length] = '\0';
 	return (0);
 }
 
 int	ft_string_append_s(t_string *restrict str, const t_string *restrict append)
 {
-	if (str->length + append->length + 1 >= str->capacity)
-	{
-		if (ft_string_resize(str, str->capacity + append->length + 1) == -1)
-			return (-1);
-	}
+	if (!str || !append)
+		return (-1);
+	if (str->length + append->length + 1 >= str->capacity
+		&& ft_string_resize(str, str->capacity + append->length) == -1)
+		return (-1);
 	ft_memcpy(str->str + str->length, append->str, append->length + 1);
 	str->length += append->length;
 	str->str[str->length] = '\0';
@@ -69,11 +68,11 @@ int	ft_string_append_s(t_string *restrict str, const t_string *restrict append)
 int	ft_string_append_s_n(t_string *restrict str,
 		const t_string *restrict append, size_t n)
 {
-	if (str->length + n + 1 >= str->capacity)
-	{
-		if (ft_string_resize(str, str->capacity + n + 1) == -1)
-			return (-1);
-	}
+	if (!str || !append)
+		return (-1);
+	if (str->length + n >= str->capacity
+		&& ft_string_resize(str, str->capacity + n) == -1)
+		return (-1);
 	ft_memcpy(str->str + str->length, append->str, n);
 	str->length += n;
 	str->str[str->length] = '\0';

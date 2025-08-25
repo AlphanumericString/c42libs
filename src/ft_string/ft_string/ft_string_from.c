@@ -13,7 +13,7 @@
 #include "ft_string.h"
 #include "ft_math.h"
 
-// +1 for the null terminator
+// +1 for the null-byte
 t_string	*ft_string_from(const char *str)
 {
 	t_string	*new;

@@ -12,6 +12,7 @@
 
 #include "ft_string.h"
 
+// TODO: change return -> bool
 int	ft_string_reserve(t_string *str, size_t size)
 {
 	char	*new;

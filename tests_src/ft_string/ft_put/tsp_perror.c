@@ -20,6 +20,17 @@
 #include <errno.h>
 #include <unistd.h>
 
+static const char	**expected_strings_load(void)
+{
+	static const char	*ex[] = {"toto: Operation not permitted\n",
+		"titi: Transport endpoint is already connected\n",
+		"Connection timed out\n",
+		"Cannot exec a shared library directly\n",
+		"Unkown error\n", NULL};
+
+	return (ex);
+}
+
 static void	write_lines(void)
 {
 	errno = EPERM;
@@ -36,9 +47,7 @@ static void	write_lines(void)
 
 int	tsp_perror(void)
 {
-	const char	*expected[] = {"toto: Operation not permitted\n", \
-"titi: Transport endpoint is already connected\n", "Connection timed out\n", \
-"Cannot exec a shared library directly\n", "Unkown error\n"};
+	const char	**expected = expected_strings_load();
 	char		*rd_buff;
 	char		*file;
 	int			fd;
@@ -50,14 +59,14 @@ int	tsp_perror(void)
 	write_lines();
 	fd = (close(fd), open(file, O_RDWR));
 	i = 0;
-	while (i < sizeof(expected) / sizeof(expected[0]))
+	while (expected[i])
 	{
 		rd_buff = ft_gnl(fd);
 		if (ft_strcmp(rd_buff, expected[i++]))
 			return (i);
 		ft_free_clear((void **)&rd_buff);
 	}
-	return (destroy_test_file(fd, file), free(file), 0);
+	return (destroy_test_file(fd, file), free(file), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

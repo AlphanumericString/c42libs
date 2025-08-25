@@ -32,9 +32,9 @@ int	tsp_print(void)
 	ret = ft_fd_to_buff(fd);
 	if (!ret || ft_strcmp(ret, exp))
 		return (destroy_test_file(fd, file), ft_free((t_any)file),
-			ft_free(ret), 1);
+			ft_free(ret), EXIT_FAILURE);
 	return (destroy_test_file(fd, file), ft_free((t_any)file),
-		ft_free(ret), 0);
+		ft_free(ret), EXIT_SUCCESS);
 }
 
 int	tsp_print_err(void)
@@ -51,9 +51,9 @@ int	tsp_print_err(void)
 	ret = ft_fd_to_buff(fd);
 	if (!ret || ft_strcmp(ret, exp))
 		return (destroy_test_file(fd, file), ft_free((t_any)file),
-			ft_free(ret), 1);
+			ft_free(ret), EXIT_FAILURE);
 	return (destroy_test_file(fd, file), ft_free((t_any)file),
-		ft_free(ret), 0);
+		ft_free(ret), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

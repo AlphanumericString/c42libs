@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/str__mem_tests.h"
 #include "tests/tests.h"
 
-static const t_test	*tmal_tests(void)
+static const t_fnamed	*tmal_tests(void)
 {
-	static const t_test	tests[] = {
+	static const t_fnamed	tests[] = {
 	{"allocator_ctl", tmal_allocator}, {"calloc", tmal_calloc},
 	{"realloc", tmal_realloc}, {"reallocarray", tmal_reallocarray},
 	{"malloc", tmal_malloc}, {"free", tmal_free}, {NULL, NULL}};
@@ -23,14 +24,21 @@ static const t_test	*tmal_tests(void)
 	return (tests);
 }
 
-int	allocator_module_tests(int depth)
+t_module	*allocator_module_tests(void)
 {
-	int				collect;
-	const t_test	*tests = tmal_tests();
+	size_t			i;
+	const t_fnamed	*funcs = tmal_tests();
+	t_module		*args;
 
-	collect = 0;
-	run_test(tests, &collect, depth);
-	return (collect);
+	i = 0;
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "allocator", "allocator functions.");
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

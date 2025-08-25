@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 
 #include "ft_string.h"
 #include "ft_math.h"
 
+// TODO: deffer the number pushing to stopa_base & sstopa_base
 char	*ft_stoa_base(size_t nbr, const char *base)
 {
 	t_uint	blen;
@@ -66,12 +68,12 @@ char	*ft_sstoa_base(ssize_t nbr, const char *base)
 	if (!nbr)
 		return (res[0] = base[0], res);
 	res[--nblen] = base[ft_mod(nbr, blen)];
-	nbr /= blen;
 	if (nbr < 0)
 	{
 		nbr = -nbr;
 		res[0] = '-';
 	}
+	nbr /= blen;
 	loop(nbr, base, (t_uint [2]){blen, nblen}, res);
 	return (res);
 }

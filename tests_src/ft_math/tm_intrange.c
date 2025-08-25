@@ -54,8 +54,8 @@ int	tm_range(void)
 	if (ft_range(x, min, max, new_max) != new_max)
 		return (5);
 	x = 21;
-	if (ft_range(x, min, max, new_max) != (int)(((double)(x - min) / \
-(max - min)) * new_max))
+	if (ft_range(x, min, max, new_max) != (int)
+		(((double)(x - min) / (max - min)) * new_max))
 		return (6);
 	return (tm_range_errors());
 }
@@ -82,8 +82,8 @@ int	tm_range_f(void)
 	if (ft_range_f(x, min, max, new_max) != new_max)
 		return (5);
 	x = 21;
-	if (ft_range_f(x, min, max, new_max) != \
-(float)(((double)(x - min) / (max - min)) * new_max))
+	if (ft_range_f(x, min, max, new_max) != (float)
+		(((double)(x - min) / (max - min)) * new_max))
 		return (6);
 	return (0);
 }

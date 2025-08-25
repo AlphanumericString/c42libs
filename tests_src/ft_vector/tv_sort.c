@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include "ft_defs.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 #include "tests/tests_lambda_functions.h"
@@ -32,12 +33,14 @@ static int	base_cases(void)
 	ft_vec_sort(vec, cmp_ptr);
 	if (vec->count != 3)
 		return (1);
-	else if (ft_vec_at(vec, 0) != (void *)42 || ft_vec_at(vec, 1) != \
-(void *)43 || ft_vec_at(vec, 2) != (void *)44)
+	else if (ft_vec_at(vec, 0) != (t_any)42
+		|| ft_vec_at(vec, 1) != (t_any)43
+		|| ft_vec_at(vec, 2) != (t_any)44)
 		return (2);
 	ft_vec_sort(vec, cmp_ptr);
-	if (ft_vec_at(vec, 0) != (void *)42 || ft_vec_at(vec, 1) != \
-(void *)43 || ft_vec_at(vec, 2) != (void *)44)
+	if (ft_vec_at(vec, 0) != (t_any)42
+		|| ft_vec_at(vec, 1) != (t_any)43
+		|| ft_vec_at(vec, 2) != (t_any)44)
 		return (3);
 	ft_vec_destroy(&vec);
 	return (0);

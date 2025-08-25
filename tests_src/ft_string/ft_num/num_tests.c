@@ -10,30 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/tests.h"
 #include "tests/str__num_tests.h"
 
-static const t_test	*tsn_tests(void)
+static const t_fnamed	*tsn_tests(void)
 {
-	static const t_test	tests[] = {
-	{"itoa", tsn_itoa},
-	{"utoa", tsn_utoa}, {"itoa_base", tsn_itoa_base},
-	{"atoi", tsn_atoi}, {"atod", tsn_atod}, {"atol_base", tsn_atol_base},
-	{"atoi_base", tsn_atoi_base}, {"atol", tsn_atol}, {"atoll", tsn_atoll},
-	{"atol_base", tsn_atol_base},
+	static const t_fnamed	tests[] = {
+	{"base_valid", tsn_base_valid}, {"itoa", tsn_itoa}, {"utoa", tsn_utoa},
+	{"itoa_base", tsn_itoa_base}, {"atoi", tsn_atoi}, {"atod", tsn_atod},
+	{"atol_base", tsn_atol_base}, {"atoi_base", tsn_atoi_base},
+	{"atol", tsn_atol}, {"atoll", tsn_atoll}, {"atol_base", tsn_atol_base},
+	{"sstoa_base", tsn_sstoa_base}, {"stoa_base", tsn_stoa_base},
+	{"stopa_base", tsn_stopa_base}, {"sstopa_base", tsn_sstopa_base},
 	{NULL, NULL}};
 
 	return (tests);
 }
 
-int	num_conv_tests(int depth)
+t_module	*num_conv_tests(void)
 {
-	int				collect;
-	const t_test	*tests = tsn_tests();
+	int				i;
+	const t_fnamed	*funcs = tsn_tests();
+	t_module		*args;
 
-	collect = 0;
-	run_test(tests, &collect, depth);
-	return (collect);
+	i = 0;
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "num", "numerical strings conversion functions module.");
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

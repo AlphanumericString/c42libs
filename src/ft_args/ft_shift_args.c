@@ -21,8 +21,6 @@ void	ft_shift_args(const char *const **av, int *ac, int nb)
 		return ;
 	*ac -= nb;
 	*av = (*av) + nb;
-	ft_set_av(*av);
-	ft_set_ac(*ac);
 }
 /*
 GPL-3.0 License:

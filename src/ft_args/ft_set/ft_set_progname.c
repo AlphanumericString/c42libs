@@ -13,15 +13,23 @@
 #include "ft_args.h"
 #include "internal/args_helper.h"
 
+#include <pthread.h>
 #include <stddef.h>
 
 static const char	*singleton_progname(const char *progname)
 {
-	static const char	*singleton_progname = NULL;
+	static pthread_mutex_t	progname_lock = PTHREAD_MUTEX_INITIALIZER;
+	static const char		*singleton_progname = NULL;
+	const char				*ret;
 
+	if (FT_THREADS)
+		pthread_mutex_lock(&progname_lock);
 	if (progname)
 		singleton_progname = progname;
-	return (singleton_progname);
+	ret = singleton_progname;
+	if (FT_THREADS)
+		pthread_mutex_unlock(&progname_lock);
+	return (ret);
 }
 
 void	ft_set_progname(const char *progname)

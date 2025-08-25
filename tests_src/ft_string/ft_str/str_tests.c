@@ -15,9 +15,9 @@
 #include "tests/tests.h"
 #include <stddef.h>
 
-static const t_test	*load_tests01(void)
+static const t_fnamed	*load_tests01(void)
 {
-	static t_test	tb[] = {{"tok", ts_strtok}, {"split", ts_split},
+	static t_fnamed	tb[] = {{"tok", ts_strtok}, {"split", ts_split},
 	{"splits", ts_splits}, {"chr", ts_strchr}, {"dup", ts_strdup},
 	{"iteri", ts_striteri}, {"join", ts_strjoin}, {"lcat", ts_strlcat},
 	{"lcpy", ts_strlcpy}, {"len", ts_strlen}, {"mapi", ts_strmapi},
@@ -34,18 +34,28 @@ static const t_test	*load_tests01(void)
 	return (tb);
 }
 
-// merge t_test* from 2 blocks... dw, it's a bit ugly but it works
-int	str_tests(int depth)
+// merge t_fnamed* from 2 blocks... dw, it's a bit ugly but it works
+t_module	*str_tests(void)
 {
-	int				collect;
-	const t_module	sb[] = {
-	{"str_is", "sis", stris_tests, 0},
-	{NULL, NULL, NULL, 0}};
-	const t_test	*tests = load_tests01();
+	int						i;
+	const t_fnamed			*funcs = load_tests01();
+	const t_mod_constructor	sbm[] = {stris_tests, NULL};
+	t_module				*args;
 
-	collect = 0;
-	run_test(tests, &collect, depth);
-	return (collect + run_module(sb[0], depth));
+	i = 0;
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "str", "general str module.");
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	i = 0;
+	while (sbm[i])
+	{
+		add_submodule(args, sbm[i++]());
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

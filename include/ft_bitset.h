@@ -37,12 +37,22 @@
 /// @param size The size of the bitset
 /// @return A pointer to the new bitset allocated in memory
 /// @note You to free the bitset with ft_bs_free
+///
+/// @note MT-safe
+/// @note no guarantee on AC-Safe - might leak if interrupted after calloc
+/// @note no guarantee on AS-Safe - might leak if interrupted after calloc
 t_bitset	*ft_bs_new(size_t size);
 
 /// @brief Create a new bitset
 /// @param size The size of the bitset
 /// @return A new bitset allocated in memory
 /// @note There is an underlying memory allocated, free with ft_bs_free_inner
+///
+/// @note MT-safe
+/// @note no guarantee on AC-Safe - underlying calloc might leak if the
+///		t_bitset returned is lost.
+/// @note no guarantee on AS-Safe - underlying calloc might leak if the
+///		t_bitset returned is lost.
 t_bitset	ft_bs_create(size_t size);
 
 /// @brief Create a new bitset from a string
@@ -51,6 +61,10 @@ t_bitset	ft_bs_create(size_t size);
 /// @return A pointer to the new bitset allocated in memory
 /// @note Samples with multiple of 8 underneath, you can visualize ptr as a
 ///		`uint8_t *` and n as the number of 'uint8_t' read.
+///
+/// @note MT-safe
+/// @note no guarantee on AC-Safe - might leak if interrupted
+/// @note no guarantee on AS-Safe - might leak if interrupted
 t_bitset	*ft_bs_new_from_mem(const void *ptr, size_t n);
 
 /* ************************************************************************** */
@@ -59,14 +73,26 @@ t_bitset	*ft_bs_new_from_mem(const void *ptr, size_t n);
 
 /// @brief Reset all fields of the bitset to 0
 /// @param bitset The bitset to clear
+///
+/// @note MT-safe
+/// @note AC-Safe - might be partially cleared if interrupted
+/// @note AS-Safe - might be partially cleared if interrupted
 void		ft_bs_clear(t_bitset *bitset);
 
 /// @brief Free the bitsetptr and all its inner fields
 /// @param bitset The bitset to free
+///
+/// @note MT-safe
+/// @note AC-Safe - hinges on ft_free_clear
+/// @note AS-Safe - hinges on ft_free_clear
 void		ft_bs_free(t_bitset **bitset);
 
 /// @brief Free the inner fields of the bitset
 /// @param bitset The bitset of which to free the inner fields
+///
+/// @note MT-safe
+/// @note AC-Safe - hinges on ft_free_clear
+/// @note AS-Safe - hinges on ft_free_clear
 void		ft_bs_free_inner(t_bitset *bitset);
 
 /* ************************************************************************** */
@@ -78,6 +104,10 @@ void		ft_bs_free_inner(t_bitset *bitset);
 /// @param index The index of the raw to get
 /// @return The value of the raw at this index
 /// @note If the index is out of bounds, the function will return 0
+///
+/// @note MT-safe
+/// @note AC-Safe
+/// @note AS-Safe
 uint8_t		ft_bs_get_raw(t_bitset *bitset, size_t raw_index);
 
 /// @brief Get the value of a bit in the bitset
@@ -85,6 +115,10 @@ uint8_t		ft_bs_get_raw(t_bitset *bitset, size_t raw_index);
 /// @param index The index of the bit to get (not necessarily a multiple of 8)
 /// @return The value of the bit at this index
 /// @note If the index is out of bounds, the function will return 0
+///
+/// @note MT-safe
+/// @note AC-Safe
+/// @note AS-Safe
 bool		ft_bs_get(t_bitset *bitset, size_t index);
 
 /// @brief Set the value of a raw in the bitset
@@ -92,6 +126,10 @@ bool		ft_bs_get(t_bitset *bitset, size_t index);
 /// @param index The index of the raw to set (will be multed by 8)
 /// @param value The value of the raw to set
 /// @return False if out of bounds, True otherwise
+///
+/// @note MT-safe
+/// @note AC-Safe
+/// @note AS-Safe
 bool		ft_bs_set_raw(t_bitset *bitset, size_t raw_index, uint8_t value);
 
 /// @brief Set the value of a bool in the bitset
@@ -99,6 +137,10 @@ bool		ft_bs_set_raw(t_bitset *bitset, size_t raw_index, uint8_t value);
 /// @param index The index of the bool to set
 /// @return The value of the bool to set (0 - False, 1 - True)
 /// @return False if out of bounds, True otherwise
+///
+/// @note MT-safe
+/// @note AC-Safe
+/// @note AS-Safe
 bool		ft_bs_set(t_bitset *bitset, size_t index, bool value);
 
 /* ************************************************************************** */

@@ -17,9 +17,7 @@ t_const_arr	ft_arfind(t_const_arr arr, const void *cmp_d)
 {
 	size_t	i;
 
-	if (!arr || !cmp_d)
-		return (NULL);
-	if (arr[0] == NULL)
+	if (!arr || !cmp_d || arr[0] == NULL)
 		return (NULL);
 	i = ft_alen(arr);
 	while (i--)

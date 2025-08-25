@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/tests.h"
 #include "tests/list__ll_tests.h"
 
-int	tests_linked_list_all(int depth)
+static const t_fnamed	*ll_tests(void)
 {
-	int				collect;
-	const t_test	test[] = {
+	static const t_fnamed	test[] = {
 	{"add_front", t_ll_add_front}, {"add_back", t_ll_add_back},
 	{"apply", t_ll_apply},	{"apply_range", t_ll_apply_range},
 	{"apply_range_node", t_ll_apply_range_node}, {"begin", t_ll_begin},
@@ -33,9 +33,24 @@ int	tests_linked_list_all(int depth)
 	{"check_sorted", t_ll_check_sorted}, {"check_health", t_ll_check_health},
 	{NULL, NULL}};
 
-	collect = 0;
-	run_test(test, &collect, depth);
-	return (collect);
+	return (test);
+}
+
+t_module	*tests_linked_list_all(void)
+{
+	int				i;
+	const t_fnamed	*funcs = ll_tests();
+	t_module		*args;
+
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "ll", "linked lists handling module");
+	i = 0;
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

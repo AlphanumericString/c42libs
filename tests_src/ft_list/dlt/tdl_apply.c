@@ -45,8 +45,7 @@ int	t_dl_apply_range(void)
 	ft_dl_apply_range(list, list->next, add42);
 	if (ft_dl_size(list) != 2)
 		return (1);
-	else if (*(int *)list->data != 84 || \
-*(int *)list->next->data != 21)
+	else if (*(int *)list->data != 84 || *(int *)list->next->data != 21)
 		return (1);
 	return (ft_dl_clear(&list, ft_free), 0);
 }
@@ -61,8 +60,7 @@ int	t_dl_apply_range_node(void)
 	ft_dl_apply_range_node(list, list->next, dnode_add42);
 	if (ft_dl_size(list) != 2)
 		return (1);
-	else if (*(int *)list->data != 84 || \
-*(int *)list->next->data != 21)
+	else if (*(int *)list->data != 84 || *(int *)list->next->data != 21)
 		return (1);
 	return (ft_dl_clear(&list, ft_free), 0);
 }

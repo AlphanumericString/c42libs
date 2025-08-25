@@ -14,14 +14,26 @@
 #include "ft_list.h"
 #include "ft_string.h"
 #include "types/ft_list_types.h"
+#include "ft_defs.h"
+
+#include <pthread.h>
+#include <threads.h>
 
 static t_dlist	**singleton_arena(int arena)
 {
-	static t_dlist	*arenas[FT_NARENA_MAX] = {0};
+	static pthread_mutex_t	ar_lock = PTHREAD_MUTEX_INITIALIZER;
+	static t_dlist			*arenas[FT_NARENA_MAX] = {0};
+	void					*ret;
 
+	if (FT_THREADS)
+		pthread_mutex_lock(&ar_lock);
 	if (arena < 0 || arena >= FT_NARENA_MAX)
-		return (NULL);
-	return (&arenas[arena]);
+		ret = NULL;
+	else
+		ret = &arenas[arena];
+	if (FT_THREADS)
+		pthread_mutex_unlock(&ar_lock);
+	return (ret);
 }
 
 // anrena should be for group allocation

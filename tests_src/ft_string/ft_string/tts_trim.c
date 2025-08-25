@@ -14,18 +14,29 @@
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
 
+// atrocious 42 norm
+//
+// ft_string_trim(&((t_string)
+// 	{
+// 		.str = (char *)0xFF, .capacity = 99, .length = 0
+// 	}));
 int	test_string_trim(void)
 {
 	t_string	*str;
 
-	str = ft_string_from("   Hello World   ");
+	str = ft_string_from("   Hello_World   ");
 	ft_string_trim(str);
-	if (ft_string_cmp(str, "Hello World") != 0)
+	ft_string_trim(str);
+	ft_string_trim(str);
+	if (ft_string_cmp(str, "Hello_World") != 0 || str->length != 11
+		|| str->capacity < 11)
 		return (1);
-	if (str->length != 11)
-		return (2);
-	if (str->capacity < 11)
-		return (3);
+	ft_string_trim(NULL);
+	ft_string_trim(&((t_string){.str = NULL, .capacity = 99, .length = 32}));
+	ft_string_trim(&((t_string)
+		{
+			.str = (char *)0xFF, .capacity = 99, .length = 0
+		}));
 	ft_string_destroy(&str);
 	return (0);
 }

@@ -32,7 +32,7 @@ int	tsi_isdouble(void)
 			return (20 + i);
 	if (ft_str_isdouble(NULL) != false)
 		return (40);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

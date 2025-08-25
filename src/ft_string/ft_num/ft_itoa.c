@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include "ft_string.h"
 
 char	*ft_itoa(int nbr)
 {
-	return (ft_itoa_base(nbr, "0123456789"));
+	return (ft_itoa_base(nbr, FT_DECBASE));
 }
 
 char	*ft_itoa_base(int nbr, const char *base)

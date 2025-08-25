@@ -18,6 +18,8 @@ int	ft_string_replace(t_string *str, const char *to_replace,
 	char	*tmp;
 	char	*tmp2;
 
+	if (!str)
+		return (0);
 	tmp = (char *)ft_string_get(str);
 	if (!tmp)
 		return (0);
@@ -33,7 +35,7 @@ int	ft_string_replace_chr(t_string *str, char to_replace, char replace_by)
 	size_t	i;
 	size_t	nb_rep;
 
-	if (!str->str)
+	if (!str || !str->str)
 		return (0);
 	i = 0;
 	nb_rep = 0;

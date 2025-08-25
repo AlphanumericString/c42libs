@@ -11,12 +11,30 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+
+static int	mt_string_replace(void)
+{
+	const int	fp = *talloc_get_failpoint();
+	t_string	*str;
+	const char	*src = "Hello there, how the Hell are you?";
+
+	str = ft_string_from(src);
+	talloc_set_failpoint(0);
+	ft_string_replace(str, "Hell", "Heaven");
+	talloc_set_failpoint(fp);
+	if (ft_string_cmp(str, src) != 0 || str->length != ft_strlen(src))
+		return (1);
+	ft_string_destroy(&str);
+	return (EXIT_SUCCESS);
+}
 
 int	test_string_replace(void)
 {
 	t_string	*str;
+	t_string	str2;
 
 	str = ft_string_from("Hello worlds!");
 	ft_string_replace(str, "worlds", "Worlds");
@@ -27,7 +45,10 @@ int	test_string_replace(void)
 	if (ft_string_cmp(str, "Hello earth! earth!"))
 		return (2);
 	ft_string_destroy(&str);
-	return (0);
+	ft_string_replace(NULL, "string1", "string2");
+	ft_bzero(&str2, sizeof(str2));
+	ft_string_replace(&str2, "string1", "string2");
+	return (mt_string_replace());
 }
 /*
 GPL-3.0 License:

@@ -10,15 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include "internal/print.h"
 #include "ft_string.h"
+#include <stdio.h>
 
 int	hex_processor(va_list args, int fd)
 {
 	unsigned int	value;
 
 	value = va_arg(args, unsigned int);
-	return (ft_putunbr_base_fd(value, "0123456789abcdef", fd));
+	return (ft_putunbr_base_fd(value, FT_HEXBASE, fd));
 }
 
 int	hex_upper_processor(va_list args, int fd)
@@ -26,7 +28,7 @@ int	hex_upper_processor(va_list args, int fd)
 	unsigned int	value;
 
 	value = va_arg(args, unsigned int);
-	return (ft_putunbr_base_fd(value, "0123456789ABCDEF", fd));
+	return (ft_putunbr_base_fd(value, FT_HEXBASE_CAP, fd));
 }
 
 int	octal_processor(va_list args, int fd)
@@ -34,22 +36,21 @@ int	octal_processor(va_list args, int fd)
 	unsigned int	value;
 
 	value = va_arg(args, unsigned int);
-	return (ft_putunbr_base_fd(value, "01234567", fd));
+	return (ft_putunbr_base_fd(value, FT_OCTBASE, fd));
 }
 
 int	ptr_processor(va_list args, int fd)
 {
+	char	res[64];
 	void	*value;
-	int		predicate;
 
 	value = (void *)va_arg(args, unsigned long long);
 	if (!value)
 		return (ft_putstr_fd("(nil)", fd));
-	predicate = ft_putstr_fd("0x", fd);
-	if (predicate <= 0)
-		return (predicate);
-	return (ft_putunbr_base_fd((size_t)value, \
-"0123456789abcdef", fd) + predicate);
+	ft_bzero(res, sizeof(res) / sizeof(res[0]));
+	ft_strlcpy(res, "0x", sizeof(res) / sizeof(res[0]));
+	ft_stopa_base((size_t)value, FT_HEXBASE, (&res[0]) + 2, 64 - 2);
+	return (ft_putstr_fd(res, fd));
 }
 /*
 GPL-3.0 License:

@@ -110,8 +110,8 @@ int	t_dl_push_back(void)
 	ft_dl_push_back(&list, (void *)126);
 	if (ft_dl_size(list) != 3)
 		return (1);
-	else if (list->data != (void *)42 || list->next->data != (void *)84 || \
-list->next->next->data != (void *)126)
+	else if (list->data != (void *)42 || list->next->data != (void *)84
+		|| list->next->next->data != (void *)126)
 		return (2);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);

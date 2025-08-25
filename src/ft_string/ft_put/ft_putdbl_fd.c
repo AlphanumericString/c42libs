@@ -73,7 +73,7 @@ int	ft_putdbl_fd(double value, int fd)
 		value = -value;
 		total++;
 	}
-	result = ft_putnbr_base_fd((ssize_t)value, "0123456789", fd);
+	result = ft_putnbr_base_fd((ssize_t)value, FT_DECBASE, fd);
 	if (result < 0)
 		return (-1);
 	total += result;

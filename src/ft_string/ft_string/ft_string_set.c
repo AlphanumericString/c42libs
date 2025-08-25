@@ -14,26 +14,35 @@
 
 int	ft_string_set(t_string *str, const char *new_str)
 {
-	return (ft_string_set_n(str, new_str, ft_strlen(new_str) + 1));
+	char	*s;
+	int		r;
+
+	if (!new_str)
+		return (-1);
+	s = ft_strdup(new_str);
+	r = ft_string_set_inplace(str, s);
+	if (r == 0)
+		ft_free(s);
+	return (r);
 }
 
 int	ft_string_set_n(t_string *str, const char *new_str, size_t n)
 {
 	size_t	new_len;
 
+	if (!str || !new_str)
+		return (-1);
 	new_len = ft_strlen(new_str) + 1;
 	if (new_len > n)
 		new_len = n;
-	if (new_len > str->capacity)
+	if (new_len >= str->capacity)
 	{
-		str->str = ft_realloc(str->str, new_len);
-		if (!str->str)
+		if (ft_string_reserve(str, new_len + 1) == -1)
 			return (0);
-		str->capacity = new_len;
 	}
-	ft_memcpy(str->str, new_str, new_len - 1);
-	str->str[new_len - 1] = '\0';
-	str->length = new_len - 1;
+	ft_memcpy(str->str, new_str, new_len);
+	str->str[new_len] = '\0';
+	str->length = new_len;
 	return (1);
 }
 
@@ -41,6 +50,8 @@ int	ft_string_set_inplace(t_string *str, char *new_str)
 {
 	size_t	new_len;
 
+	if (!str || !new_str)
+		return (0);
 	new_len = ft_strlen(new_str);
 	str->length = new_len;
 	if (str->str)

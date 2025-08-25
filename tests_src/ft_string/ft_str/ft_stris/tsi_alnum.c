@@ -15,21 +15,16 @@
 
 int	tsi_isalnum(void)
 {
-	if (ft_str_isalnum("HelloWorld42") != 1)
+	if (ft_str_isalnum("HelloWorld42") != true
+		|| ft_str_isalnum("HelloWorld696969\0") != true)
 		return (1);
-	if (ft_str_isalnum("Hello World42") != 0)
+	if (ft_str_isalnum("Hello World42") != false
+		|| ft_str_isalnum("Hello21World!") != false
+		|| ft_str_isalnum("Hello420BlazeIt.") != false
+		|| ft_str_isalnum("") != false
+		|| ft_str_isalnum(NULL) != false)
 		return (2);
-	if (ft_str_isalnum("Hello21World!") != 0)
-		return (3);
-	if (ft_str_isalnum("Hello420BlazeIt.") != 0)
-		return (4);
-	if (ft_str_isalnum("HelloWorld696969\0") != 1)
-		return (5);
-	if (ft_str_isalnum("") != 0)
-		return (6);
-	if (ft_str_isalnum(NULL) != false)
-		return (7);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

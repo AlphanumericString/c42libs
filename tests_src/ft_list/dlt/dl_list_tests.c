@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/tests.h"
 #include "tests/list__dl_tests.h"
 
-static const t_test	*dl_tests(void)
+static const t_fnamed	*dl_tests(void)
 {
-	static const t_test	var[] = {
+	static const t_fnamed	var[] = {
 	{"add_front", t_dl_add_front}, {"add_back", t_dl_add_back},
 	{"apply", t_dl_apply}, {"apply_range", t_dl_apply_range},
 	{"apply_range_node", t_dl_apply_range_node}, {"clear", t_dl_clear},
@@ -36,14 +37,21 @@ static const t_test	*dl_tests(void)
 	return (var);
 }
 
-int	tests_doubly_linked_list_all(int depth)
+t_module	*tests_doubly_linked_list_all(void)
 {
-	int				collect;
-	const t_test	*test = dl_tests();
+	int				i;
+	const t_fnamed	*funcs = dl_tests();
+	t_module		*args;
 
-	collect = 0;
-	run_test(test, &collect, depth);
-	return (collect);
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "dll", "doubly linked lists module.");
+	i = 0;
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

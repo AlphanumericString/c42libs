@@ -17,21 +17,20 @@ int	test_string_set_inplace(void)
 {
 	t_string	*str;
 	char		*src;
-	const char	*res;
 
 	src = ft_strdup("Hello world this is zod!");
 	str = ft_string_new(0);
 	ft_string_set_inplace(str, src);
-	res = ft_string_get(str);
-	if (ft_strcmp(src, res) != 0)
+	if (!ft_string_get(str) || ft_strcmp(src, ft_string_get(str)) != 0)
 		return (1);
 	src = ft_strdup("Hello world this is zod!");
 	ft_free(str->str);
 	str->str = NULL;
 	ft_string_set_inplace(str, src);
-	res = ft_string_get(str);
-	if (ft_strcmp(src, res) != 0)
+	if (!ft_string_get(str) || ft_strcmp(src, ft_string_get(str)) != 0)
 		return (2);
+	ft_string_set_inplace(str, NULL);
+	ft_string_set_inplace(NULL, src);
 	return (ft_string_destroy(&str), 0);
 }
 /*

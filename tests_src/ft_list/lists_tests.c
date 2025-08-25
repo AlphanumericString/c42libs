@@ -10,31 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/tests.h"
 
-static const t_module	*tl_modules(void)
+t_module	*tests_lists(void)
 {
-	static const t_module	md[] = {
-	{"simply linked lists", "sll", tests_linked_list_all, 0},
-	{"doubly linked lists", "dll", tests_doubly_linked_list_all, 0},
-	{"circular linked lists", "cll", tests_circular_linked_list_all, 0},
-	{NULL, NULL, NULL, 0},
+	size_t					i;
+	const t_mod_constructor	sbm[] = {
+		tests_circular_linked_list_all,
+		tests_linked_list_all,
+		tests_doubly_linked_list_all,
+		NULL
 	};
-
-	return (md);
-}
-
-int	tests_lists(int depth)
-{
-	size_t			i;
-	int				collect;
-	const t_module	*modules = tl_modules();
+	t_module				*module;
 
 	i = 0;
-	collect = 0;
-	while (modules[i].test)
-		collect += run_module(modules[i++], depth);
-	return (collect);
+	module = ft_calloc(sizeof(*module), 1);
+	init_module(module, "lists", "lists modules.");
+	while (sbm[i])
+		add_submodule(module, sbm[i++]());
+	return (module);
 }
 /*
 GPL-3.0 License:

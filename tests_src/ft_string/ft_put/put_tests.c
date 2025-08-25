@@ -10,32 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/tests.h"
 #include "tests/str__put_tests.h"
 
-static const t_test	*tsp_tests(void)
+static const t_fnamed	*tsp_tests(void)
 {
-	static const t_test	tests[] = {
+	static const t_fnamed	tests[] = {
+	{"putnbr", tsp_putnbr}, {"putnbr_base", tsp_putnbr_base},
+	{"putunbr_base", tsp_putunbr_base},
+	{"putdbl_fd", tsp_putdbl_fd},
 	{"putstr", tsp_putstr}, {"putendl", tsp_putendl},
-	{"putnbr", tsp_putnbr},
 	{"putchar", tsp_putchar}, {"putnchar", tsp_putnchar},
 	{"perror", tsp_perror},
-	{"print_fd", tsp_printfd},
-	{"print", tsp_print},
+	{"print_fd", tsp_printfd}, {"print", tsp_print},
 	{"print_err", tsp_print_err}, {"va_print_fd", tsp_va_printfd},
 	{NULL, NULL}};
 
 	return (tests);
 }
 
-int	put_tests(int depth)
+t_module	*put_tests(void)
 {
 	int				i;
-	const t_test	*tests = tsp_tests();
+	const t_fnamed	*funcs = tsp_tests();
+	t_module		*args;
 
 	i = 0;
-	run_test(tests, &i, depth);
-	return (i);
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "put", "output pure strings functions module.");
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

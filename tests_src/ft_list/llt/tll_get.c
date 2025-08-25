@@ -28,8 +28,7 @@ int	t_ll_get_datas(void)
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	datas = ft_ll_get_datas(list);
-	if (!datas || datas[2] || datas[0] != data || \
-datas[1] != data2)
+	if (!datas || datas[2] || datas[0] != data || datas[1] != data2)
 		return (1);
 	if (ft_ll_get_datas(NULL))
 		return (2);
@@ -53,8 +52,7 @@ int	t_ll_get_nodes(void)
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	nodes = ft_ll_get_nodes(list);
-	if (!nodes || nodes[2] || nodes[0] != list || \
-nodes[1] != list->next)
+	if (!nodes || nodes[2] || nodes[0] != list || nodes[1] != list->next)
 		return (1);
 	if (ft_ll_get_nodes(NULL))
 		return (2);

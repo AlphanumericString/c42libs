@@ -13,31 +13,32 @@
 #include <stddef.h>
 #include "ft_args.h"
 #include "internal/args_helper.h"
+#include "pthread.h"
 
-static size_t	*singleton_nbparg(void)
+static size_t	*singleton_nbparg(size_t nb_, bool set)
 {
-	static size_t	nb = 0;
+	static pthread_mutex_t	nb_lock = PTHREAD_MUTEX_INITIALIZER;
+	static size_t			nb = 0;
+	size_t					*ret;
 
-	return (&nb);
+	if (FT_THREADS)
+		pthread_mutex_lock(&nb_lock);
+	if (set)
+		nb = nb_;
+	ret = &nb;
+	if (FT_THREADS)
+		pthread_mutex_unlock(&nb_lock);
+	return (ret);
 }
 
 void	ft_set_nbparg(size_t nb)
 {
-	size_t	*nbparg;
-
-	nbparg = singleton_nbparg();
-	if (nbparg)
-		*nbparg = nb;
+	singleton_nbparg(nb, true);
 }
 
 size_t	ft_get_nbparg(void)
 {
-	size_t	*nbparg;
-
-	nbparg = singleton_nbparg();
-	if (nbparg)
-		return (*nbparg);
-	return (0);
+	return (*singleton_nbparg(0, false));
 }
 /*
 GPL-3.0 License:

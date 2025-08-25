@@ -20,17 +20,18 @@ static int	string_validator(int c)
 
 int	tsi_isvalid(void)
 {
-	if (ft_str_isvalid("abc", string_validator) != 1 || \
-ft_str_isvalid("abcabc", string_validator) != 1 || \
-ft_str_isvalid("aabbcc", string_validator) != 1)
+	if (ft_str_isvalid("abc", string_validator) != true
+		|| ft_str_isvalid("abcabc", string_validator) != true
+		|| ft_str_isvalid("aabbcc", string_validator) != true)
 		return (1);
-	if (ft_str_isvalid("abd", string_validator) != 0 || ft_str_isvalid("bap", \
-string_validator) != 0 || ft_str_isvalid("ck", string_validator) != 0)
+	if (ft_str_isvalid("abd", string_validator) != false
+		|| ft_str_isvalid("bap", string_validator) != false
+		|| ft_str_isvalid("ck", string_validator) != false)
 		return (2);
-	if (ft_str_isvalid("", string_validator) != 0 || \
-ft_str_isvalid(NULL, string_validator) != false)
+	if (ft_str_isvalid("", string_validator) != false
+		|| ft_str_isvalid(NULL, string_validator) != false)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

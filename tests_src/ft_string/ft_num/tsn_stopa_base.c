@@ -1,32 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tverbose.c                                         :+:      :+:    :+:   */
+/*   tsn_stopa_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 01:40:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/07/06 01:40:19 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/07/15 12:43:54 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/07/16 17:48:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests/tests.h"
+#include "ft_string.h"
+#include "tests/str__num_tests.h"
+#include "ft_defs.h"
+#include <stddef.h>
+#include <stdio.h>
 
-static t_verbosity	*tverbose_singleton(void)
+#define BUFF_SZ	200
+
+static int	test_for(const size_t *nbrs, const char **expected,
+				const char *base, size_t len)
 {
-	static t_verbosity	verbose = VERBOSE;
+	char	s[200];
+	size_t	i;
 
-	return (&verbose);
+	i = 0;
+	while (i < len)
+	{
+		if (ft_stopa_base(nbrs[i], base, (char *)s, BUFF_SZ) != true
+			|| ft_strcmp(s, expected[i]) != 0)
+			return (i + 1);
+		i++;
+	}
+	return (0);
 }
 
-t_verbosity	tverbose(void)
+// TODO:
+// NOT IMPLEMENTED
+int	tsn_stopa_base(void)
 {
-	return (*tverbose_singleton());
-}
+	const char		*b[] = {FT_DECBASE, FT_HEXBASE};
+	const size_t	nb[] = {0, 12, 34, 42, 78};
+	const char		*e[3][5] = {{"0", "12", "34", "42", "78"},
+	{"0", "c", "22", "2a", "4e"}};
+	size_t			j;
+	int				ret;
 
-void	tverbose_set(t_verbosity verbose)
-{
-	*tverbose_singleton() = verbose;
+	j = 0;
+	while (j < sizeof(b) / sizeof(b[0]))
+	{
+		ret = test_for(nb, e[j], b[j], sizeof(nb) / sizeof(nb[0]));
+		if (ret)
+			return (ret + (j + 1) * 100);
+		j++;
+	}
+	if (ft_stopa_base(42, FT_DECBASE, (t_any)0xCAFE, 1) != false
+		|| ft_stopa_base(42, FT_DECBASE, (t_any)0XDEADBEEF, 2) != false)
+		return (42);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

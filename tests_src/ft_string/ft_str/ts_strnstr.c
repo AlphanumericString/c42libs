@@ -31,8 +31,7 @@ int	ts_strnstr(void)
 		return (4);
 	if (ft_strnstr(str, "hidden", 100))
 		return (5);
-	if (ft_strnstr(NULL, "hidden", 10) || \
-ft_strnstr(str, NULL, 10))
+	if (ft_strnstr(NULL, "hidden", 10) || ft_strnstr(str, NULL, 10))
 		return (6);
 	return (0);
 }

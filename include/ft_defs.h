@@ -23,6 +23,7 @@
 # ifndef EXIT_SUCCESS
 #  define EXIT_SUCCESS 0
 # endif
+
 # ifndef EXIT_FAILURE
 #  define EXIT_FAILURE 1
 # endif
@@ -40,9 +41,25 @@
 # endif
 
 // maybe add a hash to the prefix to avoid collisions?
-// sed in Makefile to replace _COMPILETIME_HASH_
+// sed in Makefile to replace '_COMPILETIME_HASH\s+\w*'
 # ifndef FT_COMPILETIME_HASH
 #  define FT_COMPILETIME_HASH "13"
+# endif
+
+// TODO:
+//  change name to FT_
+
+// if for whatever reason it is def, put true in it
+# ifdef ALLOC_SELF
+#  define SELF_ALLOC true
+# else
+#  define SELF_ALLOC false
+# endif
+
+# ifdef FT_THREADS
+#  define FT_THREADS true
+# else
+#  define FT_THREADS false
 # endif
 
 // Paths and separators
@@ -58,6 +75,15 @@
 # define FT_OCTBASE			"01234567"
 # define FT_BINBASE			"01"
 
+# include <limits.h>
+
+# define SSIZE_MAX LONG_MAX
+# define SSIZE_MIN LONG_MIN
+# define SIZE_T_MAX ULONG_MAX
+# define SIZE_T_MIN 0
+
+// TODO:
+// implement algos
 typedef enum e_sort_algorithms
 {
 	FT_SORT_ALG_BUBBLE = 0,

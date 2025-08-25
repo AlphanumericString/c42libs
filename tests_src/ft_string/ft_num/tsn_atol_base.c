@@ -27,52 +27,39 @@ static int	test_base_resps(const char *base, const long *expected_results,
 			return (i + 1);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	test_spaces(void)
 {
-	if (ft_atol_base(" 0", "0123456789") != 0)
+	if (ft_atol_base(" 0", FT_DECBASE) != 0
+		|| ft_atol_base(" 1", FT_DECBASE) != 1
+		|| ft_atol_base(" 9", FT_DECBASE) != 9
+		|| ft_atol_base(" 10", FT_DECBASE) != 10
+		|| ft_atol_base(" 99", FT_DECBASE) != 99
+		|| ft_atol_base(" -99", FT_DECBASE) != -99
+		|| ft_atol_base(" -0", FT_DECBASE) != 0
+		|| ft_atol_base(" -1", FT_DECBASE) != -1
+		|| ft_atol_base(" -10", FT_DECBASE) != -10
+		|| ft_atol_base(" -99", FT_DECBASE) != -99)
 		return (1);
-	if (ft_atol_base(" 1", "0123456789") != 1)
-		return (2);
-	if (ft_atol_base(" 9", "0123456789") != 9)
-		return (3);
-	if (ft_atol_base(" 10", "0123456789") != 10)
-		return (4);
-	if (ft_atol_base(" 99", "0123456789") != 99)
-		return (5);
-	if (ft_atol_base(" -99", "0123456789") != -99)
-		return (6);
-	if (ft_atol_base(" -0", "0123456789") != 0)
-		return (7);
-	if (ft_atol_base(" -1", "0123456789") != -1)
-		return (8);
-	if (ft_atol_base(" -10", "0123456789") != -10)
-		return (9);
-	if (ft_atol_base(" -99", "0123456789") != -99)
-		return (10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	test_multi_sign(void)
 {
-	if (ft_atol_base(" --99", "0123456789") != 99)
+	if (ft_atol_base(" --99", FT_DECBASE) != 99
+		|| ft_atol_base(" -0", FT_DECBASE) != 0
+		|| ft_atol_base(" -++--1", FT_DECBASE) != -1
+		|| ft_atol_base(" -+--10", FT_DECBASE) != -10
+		|| ft_atol_base(" -+--99", FT_DECBASE) != -99)
 		return (1);
-	if (ft_atol_base(" -0", "0123456789") != 0)
-		return (2);
-	if (ft_atol_base(" -++--1", "0123456789") != -1)
-		return (3);
-	if (ft_atol_base(" -+--10", "0123456789") != -10)
-		return (4);
-	if (ft_atol_base(" -+--99", "0123456789") != -99)
-		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tsn_atol_base(void)
 {
-	const char	*bases[] = {"0123456789", "01", "0123456789abcdef"};
+	const char	*bases[] = {FT_DECBASE, "01", "0123456789abcdef"};
 	const long	expected_results[][11] = {
 	{0, 1, 9, 10, 99, 0, -1, -9, -10, -99},
 	{0, 1, 2, 3, 4, 0, -1, -2, -3, -4},
@@ -84,19 +71,19 @@ int	tsn_atol_base(void)
 	{"0", "a", "f", "10", "99", "0", "-a", "-f", "-10", "-99", NULL}
 	};
 
-	if (test_base_resps(bases[0], expected_results[0], strs[0]) || \
-test_base_resps(bases[1], expected_results[1], strs[1]) || \
-test_base_resps(bases[2], expected_results[2], strs[2]))
+	if (test_base_resps(bases[0], expected_results[0], strs[0])
+		|| test_base_resps(bases[1], expected_results[1], strs[1])
+		|| test_base_resps(bases[2], expected_results[2], strs[2]))
 		return (1);
-	if (ft_atol_base("23", "011") || ft_atol_base("23", "0") || \
-ft_atol_base("23", "1") || ft_atol_base("23", "0123456789-") || \
-ft_atol_base("23", "0123456789+") || ft_atol_base("23", " 23"))
+	if (ft_atol_base("23", "011") || ft_atol_base("23", "0")
+		|| ft_atol_base("23", "1") || ft_atol_base("23", "0123456789-")
+		|| ft_atol_base("23", "0123456789+") || ft_atol_base("23", " 23"))
 		return (2);
 	if (test_spaces())
 		return (3);
 	if (test_multi_sign())
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -33,8 +33,8 @@ int	tm_memmove(void)
 	ft_memmove(str + 2, str, 5);
 	if (ft_memcmp(str, "3434567a9", 10) != 0)
 		return (4);
-	if (ft_memmove(str, str, 999) != str || ft_memmove(NULL, str, 99) != NULL \
-|| ft_memmove(str, NULL, 99) != str || ft_memmove(str, str, 0) != str)
+	if (ft_memmove(str, str, 999) != str || ft_memmove(NULL, str, 99) != NULL
+		|| ft_memmove(str, NULL, 99) != str || ft_memmove(str, str, 0) != str)
 		return (5);
 	return (0);
 }

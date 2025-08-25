@@ -16,6 +16,8 @@ int	ft_string_resize(t_string *str, size_t size)
 {
 	char	*new;
 
+	if (!str)
+		return (-1);
 	if (size < (str->length + 1))
 		return (0);
 	new = ft_calloc(size, sizeof(char));

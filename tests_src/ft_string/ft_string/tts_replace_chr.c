@@ -17,12 +17,17 @@
 int	test_string_replace_chr(void)
 {
 	t_string	*str;
+	t_string	str2;
 
 	str = ft_string_from("Hello worlds!");
 	ft_string_replace_chr(str, 'o', 'O');
+	ft_string_replace_chr(str, 'z', 'Z');
 	if (ft_string_cmp(str, "HellO wOrlds!"))
 		return (1);
 	ft_string_destroy(&str);
+	ft_string_replace_chr(NULL, 'o', 'O');
+	ft_bzero(&str2, sizeof(str2));
+	ft_string_replace_chr(&str2, 'o', '0');
 	return (0);
 }
 /*

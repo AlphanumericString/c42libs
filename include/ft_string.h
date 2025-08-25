@@ -135,6 +135,11 @@ bool		ft_str_isvalid(const char *restrict str, int (*f)(int));
 /// @return 1 if the string is a possible filename, 0 otherwise
 bool		ft_str_isfname(const char *fname);
 
+/// @brief check if the string is a valid path
+/// @param str string to check
+/// @return 1 if the string is a possible path, 0 otherwise
+bool		ft_str_ispath(const char *path);
+
 /* ************************************************************************** */
 /* **                     FT_MEM SUB MODULE                                ** */
 /* ************************************************************************** */
@@ -186,7 +191,7 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 
 /// @brief copies then transform a memory array region pointed by src using a
-///  function f of form `void *(*f)(const void *) on a region delimited by
+///  function f of form 'void *(*f)(const void *) on a region delimited by
 ///  the number of elements nb_e.
 /// @param src start of the source memory
 /// @param nb_e number of void* elements in the source array
@@ -257,6 +262,7 @@ const char	*flt_spevals(bool maj, double val);
 /// @brief print the double value on the specified file descriptor
 /// @param value double value to print
 /// @param fd file descriptor to print on
+/// @return	return the number of character written to fd or -1
 int			ft_putdbl_fd(double value, int fd);
 
 /// @brief print the string on the specified file descriptor
@@ -339,6 +345,7 @@ char		*ft_utoa(unsigned int nbr);
 /// @return pointer to the string.
 /// @note You must free the returned string
 char		*ft_itoa_base(int nbr, const char *restrict base);
+char		*ft_utoa_base(unsigned int nbr, const char *restrict base);
 char		*ft_sstoa_base(ssize_t nbr, const char *restrict base);
 char		*ft_stoa_base(size_t nbr, const char *restrict base);
 
@@ -347,6 +354,10 @@ char		*ft_stoa_base(size_t nbr, const char *restrict base);
 /// @param base	base of the string to return with ordered digits
 /// @param ptr	The pointer to the array to write to
 /// @param max	The maximum size of the array buffer
+/// @return true if sucessfull otherwise false.
+/// @note the size 'max' of the pointed array includes the space for a '\0'
+///		so writing '42' would take 3 as minimum for max. with 2 spaces for 42
+///		and one for the null-byte.
 bool		ft_stopa_base(size_t nbr, const char *base, char *ptr,\
 				size_t max);
 bool		ft_sstopa_base(ssize_t nbr, const char *base, char *ptr,\
@@ -361,14 +372,28 @@ bool		ft_base_valid(const char *base);
 /* **                     FT_STR MAIN MODULE                               ** */
 /* ************************************************************************** */
 
-/// @brief Return a pointer to the first occurrence of any character contained
-/// in the string delims in the string str
-/// @param str_init string to search into WARNING: the string is modified by
-/// this function. DO NOT PASS A CONST STRING.
+/// @brief strtok - str tokenzier
+/// @param str_init string to search into
 /// @param delims string of delimiters
-/// @return a pointer to the first occurrence of any character contained in the
-/// string delims in the string str otherwise NULL
+/// @return Return a pointer to the first 'word' in a string using the charaters
+///		in the string delims as delimiters.
+/// WARNING:
+///		1. this function is not thread safe.
+///		2. you lose the information on the separator that was used to split
+///		3. this modify the string str
 char		*ft_strtok(char *str_init, const char *restrict delims);
+
+/// @brief strtok_r - str tokenzier reentrant
+/// @param str_init string to search into
+/// @param delims string of delimiters
+/// @param saveptr a string pointer that 'holds' the value in between calls
+///  of the function.
+/// @return a pointer to the first word separated by character in the string
+///  delims str otherwise NULL
+/// WARNING:
+///		2. you lose the information on the separator that was used to split
+///		3. this modify the string str
+char		*ft_strtok_r(char *str, const char *delim, char **saveptr);
 
 /// @brief Split the string str with the specified delimiter
 /// @param str String to split
@@ -501,7 +526,7 @@ char		*ft_strmapi(char const *restrict s, char (*f)(unsigned int, char));
 /// first different char (s1 - s2)
 int			ft_strcmp(const char *restrict s1, const char *restrict s2);
 
-/// @brief Compare the two strings s1 and s2 up to n characters or until a `\0'
+/// @brief Compare the two strings s1 and s2 up to n characters or until a '\0'
 /// @param s1 String to compare s1
 /// @param s2 String to compare s2
 /// @param n number of chars to compare maximum
@@ -530,7 +555,7 @@ char		*ft_strdup(const char *restrict src);
 /// @param n minimum number of characters to search
 /// @return returns a pointer to the first occurrence of the string small in the
 /// string big, where not more than n characters are searched. Characters that
-/// appear after a `\0' character are not searched.
+/// appear after a '\0' character are not searched.
 /// @note The returned pointer is from str and has the same constness as str
 ///  it was left as non-const to align with glibc's strnstr
 char		*ft_strnstr(const char *restrict big, const char *restrict small,
@@ -613,11 +638,24 @@ void		ft_strrev(char *restrict s);
 /// @note You must free the returned string
 /// @note You can see the number of supported file descriptor in the macro
 /// MAX_FD
+/// WARNING:
+///		1. This function is not thread safe.
 char		*ft_gnl(int fd);
+
+//TODO: implement ft_gnl_r(int fd, void **buf);
+//  -> buf is the buffer, instead of being static and not thread safe,
+//    we use a handle var
+//	?-> buf is a t_string to append new read call results
+//	?-> buf is a simple char * to reuse gnl tools
 
 /* ************************************************************************** */
 /*                        FT_STRING SUB MODULE                                */
 /* ************************************************************************** */
+
+/// @brief dumps the string infos to the given fd
+/// @param str the string to dump the infos of
+/// @param fd the fd to print to
+void		ft_string_dump(const t_string *str, int fd);
 
 /// @brief create a new t_string
 /// @param capacity initial capacity of the string
@@ -710,6 +748,9 @@ void		ft_string_clear(t_string *restrict str);
 /// @param str pointer to the t_string to free
 /// @return void
 void		ft_string_destroy(t_string **str);
+
+// TODO:
+// change string_instert* ret to bool or int on the nb of chars inserted
 
 /// @brief insert the string src in the string str at the specified position
 /// @param str t_string to modify

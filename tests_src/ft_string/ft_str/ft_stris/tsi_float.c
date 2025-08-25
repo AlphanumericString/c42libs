@@ -15,24 +15,26 @@
 
 int	tsi_isfloat(void)
 {
-	const char	*valid_str[20] = {
-		"23.3", "42", "0.0", "2.0000", "0.00000", "+0e+00", "43.32e-12", NULL};
-	const char	*err_str[20] = {
+	const char	*valid_str[32] = {
+		"23.3", "42", "0.0", "2.0000", "0.00000", "+0e+00", "43.32e-12",
+		"2e10", NULL};
+	const char	*err_str[32] = {
 		"34..4", "0a.0", "a0.0", "0.0a", "0a0", "0.a0", "1.0.0", "0.0.0",
-		"+.", "+", "-", ".", "++0", "+-32.12e+12", "", NULL};
+		"+.", "+", "-", ".", "++0", "+-32.12e+12", "", "    ", "   a.4 ",
+		"e-12", "e+", "e-+12", "12.4e+a0", "12.4ea0", "1E", NULL};
 	size_t		i;
 
 	i = 0;
 	while (valid_str[i])
 		if (ft_str_isfloat(valid_str[i++]) != true)
-			return (i);
+			return (i + 1);
 	i = 0;
 	while (err_str[i])
 		if (ft_str_isfloat(err_str[i++]) != false)
-			return (i + 20);
+			return (i + 32);
 	if (ft_str_isfloat(NULL) != false)
-		return (40);
-	return (0);
+		return (65);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

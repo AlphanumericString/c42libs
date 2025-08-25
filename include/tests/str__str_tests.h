@@ -13,8 +13,6 @@
 #ifndef STR__STR_TESTS_H
 # define STR__STR_TESTS_H
 
-int	str_tests(int d);
-
 int	ts_gnl(void);
 
 int	ts_split(void);

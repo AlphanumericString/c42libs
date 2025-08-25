@@ -15,22 +15,24 @@
 
 int	tsi_isint(void)
 {
-	if (ft_str_isint("23") != 1 || ft_str_isint("42") != 1 || \
-ft_str_isint("0") != 1 || ft_str_isint("-42") != 1 || \
-ft_str_isint("2147483647") != 1 || ft_str_isint("-2147483648") != 1)
+	if (ft_str_isint("23") != true || ft_str_isint("42") != true
+		|| ft_str_isint("0") != true || ft_str_isint("-42") != true
+		|| ft_str_isint("2147483647") != true
+		|| ft_str_isint("-2147483648") != true)
 		return (1);
-	if (ft_str_isint("23.3") != 0 || ft_str_isint("42.0") != 0 || \
-ft_str_isint("0.0") != 0 || ft_str_isint("2.000000") != 0 || \
-ft_str_isint("0.000000") != 0 || ft_str_isint("2147483648") != 0 || \
-ft_str_isint("-2147483649") != 0 || ft_str_isint("2147483647.0") != 0 || \
-ft_str_isint("-2147483648.0") != 0)
+	if (ft_str_isint("23.3") != false || ft_str_isint("42.0") != false
+		|| ft_str_isint("0.0") != false || ft_str_isint("2.000000") != false
+		|| ft_str_isint("0.000000") != false
+		|| ft_str_isint("2147483648") != false
+		|| ft_str_isint("-2147483649") != false
+		|| ft_str_isint("2147483647.0") != false
+		|| ft_str_isint("-2147483648.0") != false)
 		return (2);
-	if (ft_str_isint("") != 0 || ft_str_isint("999999999999") != 0 || \
-ft_str_isint("-") != 0 || ft_str_isint("+") != 0)
+	if (ft_str_isint("") != false || ft_str_isint("999999999999") != false
+		|| ft_str_isint("-") != false || ft_str_isint("+") != false
+		|| ft_str_isint(NULL) != false)
 		return (3);
-	if (ft_str_isint(NULL) != false)
-		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

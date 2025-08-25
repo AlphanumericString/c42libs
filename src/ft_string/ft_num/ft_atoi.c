@@ -14,17 +14,17 @@
 
 long long	ft_atoll(const char *str)
 {
-	return (ft_atoll_base(str, "0123456789"));
+	return (ft_atoll_base(str, FT_DECBASE));
 }
 
 long	ft_atol(const char *str)
 {
-	return ((long)ft_atoll_base(str, "0123456789"));
+	return ((long)ft_atoll_base(str, FT_DECBASE));
 }
 
 int	ft_atoi(const char *str)
 {
-	return (ft_atoi_base(str, "0123456789"));
+	return (ft_atoi_base(str, FT_DECBASE));
 }
 /*
 GPL-3.0 License:

@@ -15,23 +15,34 @@
 char	*ft_strtok(char *str, const char *token)
 {
 	static char	*ptr;
-	char		*ret;
 
 	if (str)
 		ptr = str;
-	while (ptr && ft_strchr(token, *ptr) && *ptr)
+	return (ft_strtok_r(str, token, &ptr));
+}
+
+char	*ft_strtok_r(char *str, const char *delim, char **saveptr)
+{
+	char	*ptr;
+
+	ptr = str;
+	if (!ptr && saveptr)
+		ptr = *saveptr;
+	if (!ptr)
+		return (NULL);
+	while (*ptr && ft_strchr(delim, *ptr))
 		ptr++;
-	ret = ptr;
-	while (ptr && !ft_strchr(token, *ptr))
-		ptr++;
-	if (ptr && *ptr)
+	*saveptr = ptr;
+	while (!ft_strchr(delim, **saveptr))
+		(*saveptr)++;
+	if (**saveptr)
 	{
-		*ptr = 0;
-		ptr++;
+		**saveptr = 0;
+		*saveptr = *saveptr + 1;
 	}
 	else
-		ptr = 0;
-	return (ret);
+		*saveptr = NULL;
+	return (ptr);
 }
 /*
 GPL-3.0 License:

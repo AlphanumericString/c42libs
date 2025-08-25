@@ -22,8 +22,8 @@ static int	checks_01(t_vector *vec)
 {
 	if (vec->count != 2)
 		return (1);
-	else if (*(int *)ft_vec_at(vec, 0) != 42 || \
-*(int *)ft_vec_at(vec, 1) != 44)
+	else if (*(int *)ft_vec_at(vec, 0) != 42
+		|| *(int *)ft_vec_at(vec, 1) != 44)
 		return (2);
 	ft_vec_remove(vec, 42, NULL);
 	if (vec->count != 2)
@@ -36,8 +36,8 @@ static int	checks_02(t_vector *vec, const int *arr)
 {
 	if (vec->count != 2)
 		return (1);
-	if (*(int *)ft_vec_at(vec, 0) != arr[0] || *(int *)ft_vec_at(vec, 1) != \
-arr[2])
+	if (*(int *)ft_vec_at(vec, 0) != arr[0]
+		|| *(int *)ft_vec_at(vec, 1) != arr[2])
 		return (1);
 	return (0);
 }

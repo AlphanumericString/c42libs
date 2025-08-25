@@ -29,6 +29,7 @@
 
 // default allocation size for t_strings
 //  - ft_string_new
+//  TODO: rename to more legible name
 # ifndef T_STRING_BUFF
 #  ifdef TEST
 #   define T_STRING_BUFF 5

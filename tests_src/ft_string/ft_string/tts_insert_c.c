@@ -11,8 +11,24 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+
+static int	mt_string_insert_c(void)
+{
+	const int	fp = *talloc_get_failpoint();
+	t_string	*str;
+
+	str = ft_string_from("Hello");
+	talloc_set_failpoint(0);
+	ft_string_insert_c(str, 'a', -1);
+	talloc_set_failpoint(fp);
+	if (ft_string_cmp(str, "Hello") != 0 || str->length != 5)
+		return (1);
+	ft_string_destroy(&str);
+	return (EXIT_SUCCESS);
+}
 
 int	test_string_insert_c(void)
 {
@@ -30,7 +46,7 @@ int	test_string_insert_c(void)
 	if (str->length != 7 || str->capacity < 7)
 		return (4);
 	ft_string_destroy(&str);
-	return (0);
+	return (mt_string_insert_c());
 }
 /*
 GPL-3.0 License:

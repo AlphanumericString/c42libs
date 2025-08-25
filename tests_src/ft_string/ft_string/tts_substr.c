@@ -11,8 +11,25 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+
+static int	mt_string_sub(void)
+{
+	t_string	*str;
+	t_string	*sub;
+	const int	fp = *talloc_get_failpoint();
+
+	str = ft_string_from("Hello world");
+	talloc_set_failpoint(0);
+	sub = ft_string_substr(str, 0, -1);
+	talloc_set_failpoint(fp);
+	ft_string_destroy(&str);
+	if (sub)
+		return (1);
+	return (EXIT_SUCCESS);
+}
 
 int	test_string_substr(void)
 {
@@ -20,19 +37,22 @@ int	test_string_substr(void)
 	t_string	*sub;
 
 	str = ft_string_from("Hello World");
-	sub = ft_string_substr(str, 0, 6);
-	if (!sub)
+	sub = ft_string_substr(str, 0, 5);
+	if (!sub || ft_strcmp(sub->str, "Hello") != 0 || sub->length != 5
+		|| sub->capacity < 5)
 		return (1);
-	if (ft_strcmp(sub->str, "Hello") != 0)
-		return (2);
-	if (sub->length != 5)
-		return (3);
-	if (sub->capacity < 5)
-		return (4);
-	ft_strlen(sub->str);
-	ft_string_destroy(&str);
 	ft_string_destroy(&sub);
-	return (0);
+	sub = ft_string_substr(str, 99, 100);
+	if (sub)
+		return (2);
+	sub = ft_string_substr(str, 0, -1);
+	if (ft_string_cmpstr(str, sub) != 0)
+		return (3);
+	ft_string_destroy(&sub);
+	sub = ft_string_substr(NULL, 0, 100);
+	if (sub)
+		return (4);
+	return (ft_string_destroy(&str), mt_string_sub());
 }
 /*
 GPL-3.0 License:

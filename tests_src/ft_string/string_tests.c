@@ -15,25 +15,20 @@
 
 #include <unistd.h>
 
-int	tests_string(int depth)
+t_module	*tests_string(void)
 {
-	size_t			i;
-	int				collect;
-	const t_module	modules[] = {
-	{"characters", "char", char_tests, 0},
-	{"memory", "mem", mem_tests, 0},
-	{"string", "str", str_tests, 0},
-	{"growable strings", "t_string", t_string_tests, 0},
-	{"string output", "put", put_tests, 0},
-	{"number conversions", "num", num_conv_tests, 0},
-	{NULL, NULL, NULL, 0}
-	};
+	int						i;
+	const t_mod_constructor	sbm[] = {char_tests, mem_tests, str_tests,
+		t_string_tests, put_tests, num_conv_tests, NULL};
+	t_module				*args;
 
 	i = 0;
-	collect = 0;
-	while (modules[i].test)
-		collect += run_module(modules[i++], depth);
-	return (collect);
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "str", "general str module.");
+	i = 0;
+	while (sbm[i])
+		add_submodule(args, sbm[i++]());
+	return (args);
 }
 /*
 GPL-3.0 License:

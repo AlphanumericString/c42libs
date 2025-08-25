@@ -15,21 +15,22 @@
 
 int	tsi_isnum(void)
 {
-	if (ft_str_isnum("-23") != 1 || ft_str_isnum("+42") != 1 || \
-ft_str_isnum("0") != 1 || ft_str_isnum("2345865785645643532453") != 1 || \
-ft_str_isnum("2147483647") != 1)
+	if (ft_str_isnum("-23") != true || ft_str_isnum("+42") != true
+		|| ft_str_isnum("0") != true
+		|| ft_str_isnum("2345865785645643532453") != true
+		|| ft_str_isnum("2147483647") != true)
 		return (1);
-	if (ft_str_isnum("23.3") != 0 || ft_str_isnum("42.0") != 0 || \
-ft_str_isnum("0.0") != 0 || ft_str_isnum("2.000000") != 0 || \
-ft_str_isnum("0.000000") != 0 || ft_str_isnum("--2147483648") != 0 || \
-ft_str_isnum("++2147483648") != 0)
+	if (ft_str_isnum("23.3") != false || ft_str_isnum("42.0") != false
+		|| ft_str_isnum("0.0") != false || ft_str_isnum("2.000000") != false
+		|| ft_str_isnum("0.000000") != false
+		|| ft_str_isnum("--2147483648") != false
+		|| ft_str_isnum("++2147483648") != false)
 		return (2);
-	if (ft_str_isnum("") != 0 || ft_str_isnum("+") != 0 || \
-ft_str_isnum("-") != 0)
+	if (ft_str_isnum("") != false || ft_str_isnum("+") != false
+		|| ft_str_isnum("-") != false
+		|| ft_str_isnum(NULL) != false)
 		return (3);
-	if (ft_str_isnum(NULL) != false)
-		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

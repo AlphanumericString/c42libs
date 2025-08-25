@@ -24,9 +24,9 @@ static void	print_bitset8(t_bitset8 b8, int fd, const char *fmt[3])
 	while (i)
 	{
 		if (bit[--i])
-			ft_putstr_fd(fmt[0], fd);
-		else
 			ft_putstr_fd(fmt[1], fd);
+		else
+			ft_putstr_fd(fmt[0], fd);
 		if (i != 0 && fmt[2])
 			ft_putstr_fd(fmt[2], fd);
 	}
@@ -35,7 +35,7 @@ static void	print_bitset8(t_bitset8 b8, int fd, const char *fmt[3])
 // true | false print w 8 bits per lines
 void	ft_bs_print(t_bitset *bitset, int fd)
 {
-	const char	*fmt[3] = {"true", "false", ", "};
+	const char	*fmt[3] = {"false", "true", ", "};
 	size_t		i;
 
 	if (fd < 0 || !bitset || !bitset->bits)
@@ -51,7 +51,7 @@ void	ft_bs_print(t_bitset *bitset, int fd)
 // 1 | 0 print w 8 bits per lines
 void	ft_bs_print_binary(t_bitset *bitset, int fd)
 {
-	const char	*fmt[3] = {"1", "0", NULL};
+	const char	*fmt[3] = {"0", "1", NULL};
 	size_t		i;
 
 	if (fd < 0 || !bitset || !bitset->bits)

@@ -11,22 +11,41 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/fixtures.h"
 #include "tests/str__t_str_test.h"
+
+static int	mt_string_set_n(void)
+{
+	const int	fp = *talloc_get_failpoint();
+	t_string	*str;
+
+	str = ft_string_new(6);
+	talloc_set_failpoint(0);
+	ft_string_set_n(str, "this is a long zod message", 20);
+	if (str->capacity != 6 || str->length != 0)
+		return (talloc_set_failpoint(fp), 1);
+	ft_string_set_n(str, "this", 4);
+	if (str->capacity != 6 || str->length != 4
+		|| ft_string_cmp(str, "this") != 0)
+		return (talloc_set_failpoint(fp), 2);
+	talloc_set_failpoint(fp);
+	ft_string_destroy(&str);
+	return (EXIT_SUCCESS);
+}
 
 int	test_string_set_n(void)
 {
 	t_string	*str;
-	const char	*src;
-	const char	*res;
+	const char	*src = "Hello world this is zod!";
 
-	src = "Hello world this is zod!";
 	str = ft_string_new(0);
-	ft_string_set_n(str, src, 6);
-	res = ft_string_get(str);
-	if (ft_strcmp("Hello", res) != 0)
+	ft_string_set_n(str, src, 5);
+	if (ft_strcmp("Hello", ft_string_get(str)) != 0)
 		return (1);
-	ft_string_destroy(&str);
-	return (0);
+	ft_string_set_n(str, NULL, 9);
+	ft_string_set_n(NULL, src, 9);
+	ft_string_set_n(str, src, 9999999999);
+	return (ft_string_destroy(&str), mt_string_set_n());
 }
 /*
 GPL-3.0 License:

@@ -51,21 +51,21 @@ int	tv_cat(void)
 	ret = ft_vec_cat(&vec_a, vec_b);
 	if (ret != true || vec_a->count != 6)
 		return (1);
-	else if (ft_vec_at(vec_a, 0) != (void *)42 || ft_vec_at(vec_a, 1) != \
-(void *)43 || ft_vec_at(vec_a, 2) != (void *)44 || ft_vec_at(vec_a, 3) != \
-(void *)45 || ft_vec_at(vec_a, 4) != (void *)46 || ft_vec_at(vec_a, 5) != \
-(void *)47)
+	else if (ft_vec_at(vec_a, 0) != (t_any)42
+		|| ft_vec_at(vec_a, 1) != (t_any)43 || ft_vec_at(vec_a, 2) != (t_any)44
+		|| ft_vec_at(vec_a, 3) != (t_any)45 || ft_vec_at(vec_a, 4) != (t_any)46
+		|| ft_vec_at(vec_a, 5) != (t_any)47)
 		return (2);
 	ft_vec_destroy(&vec_a);
 	vec_a = ft_vec_new();
-	ft_vec_add(&vec_a, (void *)42);
-	ft_vec_add(&vec_a, (void *)43);
-	ft_vec_add(&vec_a, (void *)44);
+	ft_vec_add(&vec_a, (t_any)42);
+	ft_vec_add(&vec_a, (t_any)43);
+	ft_vec_add(&vec_a, (t_any)44);
 	ret = ft_vec_cat(&vec_a, vec_b);
 	if (ret != false || vec_a->count != 3)
 		return (3);
-	else if (ft_vec_at(vec_a, 0) != (void *)42 || ft_vec_at(vec_a, 1) != \
-(void *)43 || ft_vec_at(vec_a, 2) != (void *)44)
+	else if (ft_vec_at(vec_a, 0) != (t_any)42
+		|| ft_vec_at(vec_a, 1) != (t_any)43 || ft_vec_at(vec_a, 2) != (t_any)44)
 		return (4);
 	return (ft_vec_destroy(&vec_a), ft_vec_destroy(&vec_b), 0);
 }

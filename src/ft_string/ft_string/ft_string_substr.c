@@ -17,17 +17,15 @@ t_string	*ft_string_substr(const t_string *restrict str, size_t start,
 {
 	t_string	*new;
 
-	if (start > str->length)
+	if (!str || start > str->length)
 		return (NULL);
 	if (len > str->length - start)
 		len = str->length - start;
-	new = ft_string_new(len);
+	new = ft_string_new(len + 1);
 	if (!new)
 		return (NULL);
-	if (ft_string_cap(new) != len)
-		return (ft_string_destroy(&new), NULL);
 	ft_memcpy(new->str, str->str + start, len);
-	new->length = len - 1;
+	new->length = len;
 	new->str[new->length] = '\0';
 	return (new);
 }

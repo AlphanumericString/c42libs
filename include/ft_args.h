@@ -40,6 +40,12 @@
 // args parser
 //
 /// @brief argument parser
+/// WARNING: these function is NOT thread-safe.
+/// It uses static variables.
+///
+/// @note not MT-safe
+/// @note not AC-Safe
+/// @note not AS-Safe
 int					ft_arg_set_custom_checker(t_data_is custom_checker);
 int					ft_set_opt_list(t_opt *opt_list);
 void				ft_print_opts(const t_opt opt, int fd);
@@ -50,6 +56,11 @@ int					ft_parse_args(const char **argv,
 void				ft_setup_prog(const char *const *const av);
 
 /// @brief getters for vals
+/// @return ac, av, ev, progname, version
+///
+/// @note MT-safe
+/// @note not AC-Safe
+/// @note not AS-Safe
 int					ft_ac(void);
 const char *const	*ft_av(void);
 const char *const	*ft_ev(void);
@@ -61,19 +72,33 @@ size_t				ft_get_nbparg(void);
 /// @param	key the key to search in env
 /// @return	return either null if not found/invalid-key otherwise the value
 /// associated with $key (already truncate the 'key=' part)
+///
+/// @note MT-safe
+/// @note no guarantee of AC-Safe
+/// @note no guarantee of AS-Safe
 const char			*ft_get_env(const char *key);
 
-/// @brief	Returns a pointer to the first string pointed to by args
+/// @brief	Returns a pointer to the first argument string pointed to by args
+///  and decreases ac by one and increase args by one. It effectively 'shift'
+///  the table by one while keeping the count of element consistent.
 /// @param	args Pointer to a list of const char pointer
-/// @param	index Number of elements in Args
+/// @param	index Number of elements in Args remaining in args
 /// @return	The first string in args or NULL if it fails.
 /// fail reasons might be: bad `args` pointer, `index` is 0 or negative.
+///
+/// @note MT-safe
+/// @note no guarantee of AC-Safe
+/// @note no guarantee of AS-Safe
 const char			*ft_consume_args(const char **args[], int *ac);
 
 /// @brief Moves the first arg to the nth element and decrease ac accordingly
 /// @param av Pointer to a list of const char pointer (program arguments)
 /// @param ac Pointer to the number of elements in Args
 /// @param nb Number of elements to shift
+///
+/// @note MT-safe
+/// @note no guarantee of AC-Safe
+/// @note no guarantee of AS-Safe
 void				ft_shift_args(const char *const **av, int *ac, int nb);
 
 #endif /* FT_ARGS_H */

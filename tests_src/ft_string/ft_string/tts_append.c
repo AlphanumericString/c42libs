@@ -11,8 +11,24 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+
+static int	mt_string_append(void)
+{
+	const int	fp = *talloc_get_failpoint();
+	t_string	*str;
+
+	str = ft_string_from("Hello");
+	talloc_set_failpoint(0);
+	ft_string_append(str, " World");
+	talloc_set_failpoint(fp);
+	if (ft_string_cmp(str, "Hello") != 0)
+		return (1);
+	ft_string_destroy(&str);
+	return (EXIT_SUCCESS);
+}
 
 int	test_string_append(void)
 {
@@ -31,8 +47,9 @@ int	test_string_append(void)
 		return (3);
 	if (str->length != 3 || str->capacity < 3)
 		return (4);
-	ft_string_destroy(&str);
-	return (0);
+	ft_string_append(str, NULL);
+	ft_string_append(NULL, "hiii");
+	return (ft_string_destroy(&str), mt_string_append());
 }
 /*
 GPL-3.0 License:

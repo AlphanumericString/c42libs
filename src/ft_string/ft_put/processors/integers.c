@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include "internal/print.h"
 #include "ft_string.h"
 
@@ -18,7 +19,7 @@ int	uint_processor(va_list args, int fd)
 	unsigned int	value;
 
 	value = va_arg(args, unsigned int);
-	return (ft_putunbr_base_fd(value, "0123456789", fd));
+	return (ft_putunbr_base_fd(value, FT_DECBASE, fd));
 }
 
 int	int_processor(va_list args, int fd)
@@ -26,7 +27,7 @@ int	int_processor(va_list args, int fd)
 	int	value;
 
 	value = va_arg(args, int);
-	return (ft_putnbr_base_fd(value, "0123456789", fd));
+	return (ft_putnbr_base_fd(value, FT_DECBASE, fd));
 }
 /*
 GPL-3.0 License:

@@ -15,21 +15,16 @@
 
 int	tsi_isdigit(void)
 {
-	if (ft_str_isdigit("00000000000000000000012") != 1)
+	if (ft_str_isdigit("00000000000000000000012") != true)
 		return (1);
-	if (ft_str_isdigit("1234567890q") != 0)
+	if (ft_str_isdigit("1234567890q") != false
+		|| ft_str_isdigit("8^)") != false
+		|| ft_str_isdigit("42.5") != false
+		|| ft_str_isdigit("+00") != false
+		|| ft_str_isdigit("") != false
+		|| ft_str_isdigit(NULL) != false)
 		return (2);
-	if (ft_str_isdigit("8^)") != 0)
-		return (3);
-	if (ft_str_isdigit("42.5") != 0)
-		return (4);
-	if (ft_str_isdigit("+00") != 0)
-		return (5);
-	if (ft_str_isdigit("") != 0)
-		return (6);
-	if (ft_str_isdigit(NULL) != false)
-		return (7);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

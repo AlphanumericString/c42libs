@@ -14,30 +14,27 @@
 #include "ft_string.h"
 
 #include <limits.h>
+#include <stdio.h>
 #include <unistd.h>
 
 int	ft_putunbr_base_fd(size_t nb, const char *base, int fd)
 {
-	char	*s;
-	int		ret;
+	char	s[256];
 
-	s = ft_stoa_base(nb, base);
-	if (!s || fd < 0 || fd > MAX_FD)
+	if (ft_stopa_base(nb, base, &s[0], sizeof(s) / sizeof(s[0])) == false
+		|| (fd < 0 | fd > MAX_FD))
 		return (-1);
-	ret = ft_putstr_fd(s, fd);
-	return (ft_free(s), ret);
+	return (ft_putstr_fd(s, fd));
 }
 
 int	ft_putnbr_base_fd(ssize_t nb, const char *base, int fd)
 {
-	char	*s;
-	int		ret;
+	char	s[256];
 
-	s = ft_sstoa_base(nb, base);
-	if (!s || fd < 0 || fd > MAX_FD)
+	if (ft_sstopa_base(nb, base, &s[0], sizeof(s) / sizeof(s[0])) == false
+		|| (fd < 0 | fd > MAX_FD))
 		return (-1);
-	ret = ft_putstr_fd(s, fd);
-	return (ft_free(s), ret);
+	return (ft_putstr_fd(s, fd));
 }
 /*
 GPL-3.0 License:

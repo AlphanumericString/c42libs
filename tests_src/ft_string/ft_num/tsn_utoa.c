@@ -12,25 +12,39 @@
 
 #include "ft_string.h"
 #include <stdlib.h>
+#include "tests/fixtures.h"
 #include "tests/str__num_tests.h"
+
+static int	mt_utoa(void)
+{
+	const int	fp = *talloc_get_failpoint();
+	char		*res;
+
+	talloc_set_failpoint(0);
+	res = ft_utoa(42);
+	talloc_set_failpoint(fp);
+	if (res)
+		return (32);
+	return (EXIT_SUCCESS);
+}
 
 int	tsn_utoa(void)
 {
 	char				*res;
 	size_t				i;
 	const unsigned int	t_cases[] = {0, 123, 456, 7890, 12345};
-	const char			*expected_results[] = \
-{"0", "123", "456", "7890", "12345"};
+	const char			*expected_results[] = {"0", "123", "456", "7890",
+		"12345"};
 
 	i = 0;
 	while (i < sizeof(t_cases) / sizeof(t_cases[0]))
 	{
 		res = ft_utoa(t_cases[i]);
 		if (ft_strcmp(res, expected_results[i++]) != 0)
-			return (i);
+			return (i + 1);
 		ft_free(res);
 	}
-	return (0);
+	return (mt_utoa());
 }
 /*
 GPL-3.0 License:

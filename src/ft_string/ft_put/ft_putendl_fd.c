@@ -24,9 +24,7 @@ int	ft_putendl_fd(const char *s, int fd)
 	ret = ft_putstr_fd(s, fd);
 	if (ret < 0)
 		return (ret);
-	if (write(fd, "\n", 1) < 0)
-		return (-1);
-	return (ret + 1);
+	return ((ret + 2) * (write(fd, "\n", 1) == 1) - 1);
 }
 /*
 GPL-3.0 License:

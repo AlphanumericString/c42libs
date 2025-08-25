@@ -33,9 +33,9 @@ static int	bases_case(void)
 	ft_vec_add(&vec, (void *)47);
 	if (vec->count != 6)
 		return (3);
-	if (vec->datas[0] != (void *)42 || vec->datas[1] != (void *)43 || \
-vec->datas[2] != (void *)44 || vec->datas[3] != (void *)45 || \
-vec->datas[4] != (void *)46 || vec->datas[5] != (void *)47)
+	if (vec->datas[0] != (void *)42 || vec->datas[1] != (void *)43
+		|| vec->datas[2] != (void *)44 || vec->datas[3] != (void *)45
+		|| vec->datas[4] != (void *)46 || vec->datas[5] != (void *)47)
 		return (4);
 	ft_vec_destroy(&vec);
 	return (0);

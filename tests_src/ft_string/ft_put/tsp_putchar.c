@@ -27,7 +27,7 @@ static int	test_bad_fd(char *file)
 	if (ft_putchar_fd('\n', fd) != -1)
 		return (12);
 	ft_free(file);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tsp_putchar(void)

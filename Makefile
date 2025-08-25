@@ -42,7 +42,7 @@ CTAGS		=	$(shell which ctags		2>/dev/null)
 SRC_DIR			=	src
 BUILD_DIR		=	build
 TESTS_DIR		=	tests_src
-INC_DIR			=	include
+INC_DIR			=	include includes .
 COVERAGE_DIR	=	coverage
 
 FT_MAP_DIR		=	$(SRC_DIR)/ft_map
@@ -77,12 +77,14 @@ FT_VERSION				:= $(shell git describe --tags --dirty 2> /dev/null || echo "0.0.0
 
 # flags
 WFLAGS		= -Wall -Wextra -Werror -Wmissing-prototypes
-LDFLAGS		=
+LDFLAGS		= -L./testing_lib -lsimple_tests
 STDFLAGS	= -std=c99
 
 VAR_FLAGS	=\
 			-DFT_COMPILE_TIME_HASH="$(FT_COMPILE_TIME_HASH)"	\
-			-DFT_VERSION="$(FT_VERSION)"
+			-DFT_VERSION="$(FT_VERSION)"						\
+
+# ifndef VERBOSE
 
 CPPFLAGS	=\
 			$(addprefix -I, $(INC_DIR)) -MMD -MP
@@ -99,9 +101,12 @@ CFLAGS		=\
 			$(VAR_FLAGS)
 
 TEST_FLAGS	=\
-			-g2	-DTEST														\
 			-fprofile-instr-generate -ftest-coverage -fcoverage-mapping		\
-			-fno-inline -fno-inline-functions -DFORK_TESTS=1 -O0
+			-fno-inline -fno-inline-functions -O0	-DTEST					\
+			-DFORK_TESTS=1													\
+
+#-DVERBOSE=1
+
 
 DEBUG_LEVEL	?=\
 		0
@@ -113,7 +118,7 @@ DEBUG_FLAGS	=\
 ifeq ($(DEBUG_LEVEL), 0)
 	CFLAGS := $(CFLAGS)
 else
-	CFLAGS := $(CFLAGS) $(DEBUG_FLAGS)
+	CFLAGS := $(CFLAGS) $(DEBUG_FLAGS) -DTEST
 endif
 
 # Inner variables
@@ -647,8 +652,13 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_num/tsn_atol.c			\
 			$(TESTS_DIR)/ft_string/ft_num/tsn_atol_base.c		\
 			$(TESTS_DIR)/ft_string/ft_num/tsn_atoll.c			\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_base_valid.c		\
 			$(TESTS_DIR)/ft_string/ft_num/tsn_itoa.c			\
 			$(TESTS_DIR)/ft_string/ft_num/tsn_itoa_base.c		\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_stoa_base.c		\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_stopa_base.c		\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_sstoa_base.c		\
+			$(TESTS_DIR)/ft_string/ft_num/tsn_sstopa_base.c		\
 			$(TESTS_DIR)/ft_string/ft_num/tsn_utoa.c			\
 			\
 			$(TESTS_DIR)/ft_string/ft_put/put_tests.c			\
@@ -656,9 +666,12 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_print.c			\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_printfd.c			\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_putchar.c			\
+			$(TESTS_DIR)/ft_string/ft_put/tsp_putdbl_fd.c		\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_putnchar.c		\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_putendl.c			\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_putnbr.c			\
+			$(TESTS_DIR)/ft_string/ft_put/tsp_putunbr_base.c	\
+			$(TESTS_DIR)/ft_string/ft_put/tsp_putnbr_base.c		\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_putstr.c			\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_va_printfd.c		\
 			\
@@ -669,11 +682,13 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_digit.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_double.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_float.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_fname.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_hex.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_int.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_long.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_num.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_oct.c			\
+			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_path.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_valid.c			\
 			\
 			$(TESTS_DIR)/ft_string/ft_str/str_tests.c			\
@@ -779,12 +794,10 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tv_to_array.c			\
 			$(TESTS_DIR)/ft_vector/vector_tests.c			\
 			\
-			$(TESTS_DIR)/tests_fixtures/run_test.c				\
 			$(TESTS_DIR)/tests_fixtures/talloc_failpoint.c		\
 			$(TESTS_DIR)/tests_fixtures/talloc_group.c			\
 			$(TESTS_DIR)/tests_fixtures/talloc_testimpl.c		\
 			$(TESTS_DIR)/tests_fixtures/tests_files_handling.c	\
-			$(TESTS_DIR)/tests_fixtures/tverbose.c				\
 			$(TESTS_DIR)/tests_utils/lambdas_general.c			\
 			$(TESTS_DIR)/tests_utils/lmdb_i_add.c				\
 			$(TESTS_DIR)/tests_utils/lmdb_i_cmp.c				\
@@ -892,12 +905,16 @@ $(QTEST_NAME): lib$(NAME).a	$(QTEST_OBJ)
 	$(PRINTF) "$(ERROR_COLOR)Failed$(LOG_INFO)\tSee:%s$(RESET)\n"				\
 	$(CLOG_FILE)
 
+testing_lib/libsimple_tests.a:
+	make -C ./testing_lib/
+
 # Rule to compile and run tests
-$(TEST_NAME): $(TOBJ)
+$(TEST_NAME): $(TOBJ) testing_lib/libsimple_tests.a
 	@$(PRINTF) "$(GRAY)Compiling tests %-*s... $(RESET)"			\
 	$(TEST_MAX_FILE_LEN) $(TEST_NAME)								&& \
 	$(CC) $(CFLAGS) $(TOBJ) -o $(TEST_NAME) $(TEST_FLAGS)			\
-	$(LDFLAGS) -lgcov 2>> $(CLOG_FILE)								&& \
+	$(LDFLAGS) 2>> $(CLOG_FILE)								&& \
+	$(RM) -- $(CLOG_FILE)											&& \
 	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"						|| \
 	$(PRINTF) "$(ERROR_COLOR)Failed$(LOG_INFO)\tSee:%s$(RESET)\n"	\
 	$(CLOG_FILE)
@@ -911,7 +928,7 @@ $(TEST_NAME)_run: $(TEST_NAME)
 # Rule to generate coverage using llvm
 $(COVERAGE_DIR): $(TEST_NAME)
 	@$(PRINTF) "$(BG_INFO)Generating coverage ... $(RESET)"		&& \
-	$(PRINTF) "$(BG_INFO)profraw ... $(RESET)"					&& \
+	$(PRINTF) "$(BG_INFO)profraw ... $(RESET)\n"				&& \
 	./$(TEST_NAME)												; \
 	$(PRINTF) "$(BG_INFO)profdata ... $(RESET)"					&& \
 	$(PRD) merge -sparse default.profraw -o 					\
@@ -961,6 +978,7 @@ clean:
 fclean: clean
 	@$(PRINTF) "$(BG_INFO)FCleaning ... $(RESET)"				&& \
 	$(RM) -rf lib$(NAME).a lib$(NAME).so $(COVERAGE_DIR)		\
+	./testing_lib/libsimple_tests.a								\
 	$(TEST_NAME) $(QTEST_NAME) 2> /dev/null 					&& \
 	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"					|| \
 	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"

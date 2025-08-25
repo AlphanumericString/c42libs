@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/str__mem_tests.h"
 #include "tests/tests.h"
 
-static const t_test	*tma_tests(void)
+static const t_fnamed	*tma_tests(void)
 {
-	static const t_test	tests[] = {
+	static const t_fnamed	tests[] = {
 	{"arena", tma_arena}, {"narena_alloc", tma_narena_alloc},
 	{"narena_calloc", tma_narena_calloc}, {"narena_belong", tma_narena_belong},
 	{"narena_free", tma_narena_free},
@@ -24,14 +25,21 @@ static const t_test	*tma_tests(void)
 	return (tests);
 }
 
-int	arena_module_tests(int depth)
+t_module	*arena_module_tests(void)
 {
-	int				collect;
-	const t_test	*tests = tma_tests();
+	size_t			i;
+	const t_fnamed	*funcs = tma_tests();
+	t_module		*args;
 
-	collect = 0;
-	run_test(tests, &collect, depth);
-	return (collect);
+	i = 0;
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "arena", "arena handling module.");
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

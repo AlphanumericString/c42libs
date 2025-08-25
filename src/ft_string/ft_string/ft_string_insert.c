@@ -18,6 +18,8 @@ int	ft_string_insert(t_string *str, const char *insert, size_t index)
 	size_t	new_len;
 	char	*new_str;
 
+	if (!insert || !str)
+		return (0);
 	insert_len = ft_strlen(insert);
 	if (index > str->length)
 		index = str->length;
@@ -34,7 +36,7 @@ int	ft_string_insert(t_string *str, const char *insert, size_t index)
 	if (index == str->length)
 		str->str[new_len] = '\0';
 	str->length = new_len;
-	str->capacity += insert_len + 1;
+	str->capacity += insert_len;
 	return (1);
 }
 

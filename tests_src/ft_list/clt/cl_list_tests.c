@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/tests.h"
 #include "tests/list__cl_tests.h"
 
-static const t_test	*cl_tests(void)
+static const t_fnamed	*cl_tests(void)
 {
-	static const t_test	var[] = {
+	static const t_fnamed	var[] = {
 	{"add_front", tcl_add_front}, {"add_back", tcl_add_back},
 	{"apply", tcl_apply}, {"apply_range", tcl_apply_range},
 	{"apply_range_node", tcl_apply_range_node},
@@ -36,14 +37,21 @@ static const t_test	*cl_tests(void)
 	return (var);
 }
 
-int	tests_circular_linked_list_all(int depth)
+t_module	*tests_circular_linked_list_all(void)
 {
-	int				collect;
-	const t_test	*test = cl_tests();
+	int				i;
+	const t_fnamed	*funcs = cl_tests();
+	t_module		*args;
 
-	collect = 0;
-	run_test(test, &collect, depth);
-	return (collect);
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "cl", "circular linked lists handling module.");
+	i = 0;
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

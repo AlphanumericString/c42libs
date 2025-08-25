@@ -41,7 +41,7 @@ int	tsp_putstr(void)
 	if (bread != 0)
 		return (2);
 	destroy_test_file(fd, file_name);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

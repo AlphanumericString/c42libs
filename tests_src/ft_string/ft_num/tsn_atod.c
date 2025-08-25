@@ -36,7 +36,7 @@ int	tsn_atod(void)
 			return (i + 1);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

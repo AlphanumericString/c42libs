@@ -13,14 +13,14 @@
 #ifndef STR__STR_SIS_TESTS_H
 # define STR__STR_SIS_TESTS_H
 
-int	stris_tests(int depth);
-
 int	tsi_isalnum(void);
 int	tsi_isalpha(void);
 int	tsi_isbool(void);
 int	tsi_isdigit(void);
 int	tsi_isdouble(void);
 int	tsi_isfloat(void);
+int	tsi_isfname(void);
+int	tsi_ispath(void);
 int	tsi_ishex(void);
 int	tsi_isint(void);
 int	tsi_islong(void);

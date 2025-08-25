@@ -15,21 +15,16 @@
 
 int	tsi_isalpha(void)
 {
-	if (ft_str_isalpha("HelloWorld") != 1)
+	if (ft_str_isalpha("HelloWorld") != true
+		|| ft_str_isalpha("HelloWorld\0") != true)
 		return (1);
-	if (ft_str_isalpha("Hello World") != 0)
+	if (ft_str_isalpha("Hello World") != false
+		|| ft_str_isalpha("HelloWorld!") != false
+		|| ft_str_isalpha("HelloWorld42") != false
+		|| ft_str_isalpha("") != false
+		|| ft_str_isalpha(NULL) != false)
 		return (2);
-	if (ft_str_isalpha("HelloWorld!") != 0)
-		return (3);
-	if (ft_str_isalpha("HelloWorld42") != 0)
-		return (4);
-	if (ft_str_isalpha("HelloWorld\0") != 1)
-		return (5);
-	if (ft_str_isalpha("") != 0)
-		return (6);
-	if (ft_str_isalpha(NULL) != false)
-		return (7);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -31,18 +31,17 @@ int	tm_memchr(void)
 	}
 	str[32 / 2] = '9';
 	str[32] = 0;
-	if (ft_memchr(str, '8', 32) != &str[8] || ft_memchr(str, '7', 32) \
-!= &str[7] || ft_memchr(str, '9', 32) != &str[32 / 2])
+	if (ft_memchr(str, '8', 32) != &str[8]
+		|| ft_memchr(str, '7', 32) != &str[7]
+		|| ft_memchr(str, '9', 32) != &str[32 / 2])
 		return (1);
-	if (ft_memchr(str + 3, '8', 32 - 3) != &str[8] || ft_memchr \
-(str + 3, '9', 32 - 3) != &str[32 / 2])
+	if (ft_memchr(str + 3, '8', 32 - 3) != &str[8]
+		|| ft_memchr(str + 3, '9', 32 - 3) != &str[32 / 2])
 		return (2);
-	if (ft_memchr(str, 'z', sizeof(size_t) + 2) != NULL)
+	if (ft_memchr(str, 'z', sizeof(size_t) + 2) || ft_memchr(str, 'z', 32)
+		|| ft_memchr(str, '1', 0) || ft_memchr(str, 4242, 1)
+		|| ft_memchr(NULL, 42, 1) || ft_memchr(str, -42, 1))
 		return (3);
-	if (ft_memchr(str, 'z', 32) != NULL || ft_memchr(str, '1', 0) != NULL || \
-ft_memchr(str, 4242, 1) != NULL || ft_memchr(NULL, 42, 1) != NULL || \
-ft_memchr(str, -42, 1) != NULL)
-		return (4);
 	return (0);
 }
 /*

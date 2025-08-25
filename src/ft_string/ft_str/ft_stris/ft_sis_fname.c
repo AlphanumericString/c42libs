@@ -12,17 +12,40 @@
 
 #include "ft_char.h"
 #include "ft_string.h"
+#include <stddef.h>
+#include <linux/limits.h>
+
+bool	ft_str_ispath(const char *path)
+{
+	size_t	i;
+	size_t	len;
+
+	if (!path || !*path)
+		return (false);
+	i = 0;
+	while (path[i])
+	{
+		if (path[i] == '/')
+			len = 0;
+		else
+			len++;
+		if (i > PATH_MAX | len > NAME_MAX)
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 bool	ft_str_isfname(const char *fname)
 {
 	size_t	i;
 
-	i = 0;
 	if (!fname || !*fname)
 		return (false);
+	i = 0;
 	while (fname[i])
 	{
-		if (!ft_strchr(FT_PATH_INVALID_SPE_CHARS, fname[i]))
+		if (fname[i] == '/' | i > NAME_MAX)
 			return (false);
 		i++;
 	}

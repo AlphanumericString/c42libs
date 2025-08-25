@@ -17,26 +17,26 @@
 
 int	tmal_allocator(void)
 {
-	const t_allocator_group	prev = *ft_get_allocator();
-	t_allocator_group		*curent;
+	const t_allocator_group	prev = ft_get_allocator(NULL);
+	t_allocator_group		curent;
 
-	curent = (ft_set_gnu_alloc(), ft_get_allocator());
-	if (curent->ptr_free != &free || curent->ptr_alloc != &malloc
-		|| curent->ptr_calloc != &calloc || curent->ptr_realloc != &realloc
-		|| curent->ptr_reallocarray != &reallocarray)
+	curent = (ft_set_gnu_alloc(), ft_get_allocator(NULL));
+	if (curent.ptr_free != &free || curent.ptr_alloc != &malloc
+		|| curent.ptr_calloc != &calloc || curent.ptr_realloc != &realloc
+		|| curent.ptr_reallocarray != &reallocarray)
 		return (1);
-	curent = (ft_set_ft_alloc(), ft_get_allocator());
-	if (curent->ptr_free != &ft_memimpl_free
-		|| curent->ptr_alloc != &ft_memimpl_malloc
-		|| curent->ptr_calloc != &ft_memimpl_calloc
-		|| curent->ptr_realloc != &ft_memimpl_realloc
-		|| curent->ptr_reallocarray != &ft_memimpl_reallocarray)
+	curent = (ft_set_ft_alloc(), ft_get_allocator(NULL));
+	if (curent.ptr_free != &ft_memimpl_free
+		|| curent.ptr_alloc != &ft_memimpl_malloc
+		|| curent.ptr_calloc != &ft_memimpl_calloc
+		|| curent.ptr_realloc != &ft_memimpl_realloc
+		|| curent.ptr_reallocarray != &ft_memimpl_reallocarray)
 		return (2);
-	curent = (ft_take_allocator(prev), ft_get_allocator());
-	if (curent->ptr_free != prev.ptr_free || curent->ptr_alloc != prev.ptr_alloc
-		|| curent->ptr_calloc != prev.ptr_calloc
-		|| curent->ptr_realloc != prev.ptr_realloc
-		|| curent->ptr_reallocarray != prev.ptr_reallocarray)
+	curent = (ft_get_allocator(&prev));
+	if (curent.ptr_free != prev.ptr_free || curent.ptr_alloc != prev.ptr_alloc
+		|| curent.ptr_calloc != prev.ptr_calloc
+		|| curent.ptr_realloc != prev.ptr_realloc
+		|| curent.ptr_reallocarray != prev.ptr_reallocarray)
 		return (3);
 	return (0);
 }

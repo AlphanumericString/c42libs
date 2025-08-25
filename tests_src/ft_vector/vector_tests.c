@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "tests/tests.h"
 #include "tests/vector_tests.h"
-#include "tests/vector_tests.h"
 
-static const t_test	*tv_tests(void)
+static const t_fnamed	*tv_tests(void)
 {
-	static const t_test	tests[] = {
+	static const t_fnamed	tests[] = {
 	{"add", tv_add}, {"apply", tv_apply}, {"at", tv_at},
 	{"cat", tv_cat}, {"clear", tv_clear},
 	{"destroy", tv_destroy}, {"filter", tv_filter},
@@ -34,14 +34,21 @@ static const t_test	*tv_tests(void)
 	return (tests);
 }
 
-int	tests_vector(int depth)
+t_module	*tests_vector(void)
 {
-	int				collect;
-	const t_test	*tests = tv_tests();
+	int				i;
+	const t_fnamed	*funcs = tv_tests();
+	t_module		*args;
 
-	collect = 0;
-	run_test(tests, &collect, depth);
-	return (collect);
+	i = 0;
+	args = ft_calloc(sizeof(*args), 1);
+	init_module(args, "vector", "vectors module.");
+	while (funcs[i].name)
+	{
+		add_test_f(args, funcs[i].test, funcs[i].name);
+		i++;
+	}
+	return (args);
 }
 /*
 GPL-3.0 License:

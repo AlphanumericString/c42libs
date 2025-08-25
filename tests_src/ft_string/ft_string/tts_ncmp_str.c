@@ -25,15 +25,15 @@ int	test_string_ncmp_str(void)
 	str2 = ft_string_from("Hello Worle");
 	str3 = ft_string_from("Hello Worla");
 	str4 = ft_string_from("Hello");
-	if (ft_string_ncmpstr(str, str2, 10) != 0 || \
-ft_string_ncmpstr(str, str3, 10) != 0)
+	if (ft_string_ncmpstr(str, str2, 10) != 0
+		|| ft_string_ncmpstr(str, str3, 10) != 0)
 		return (1);
-	if (ft_string_ncmpstr(str, str2, 11) == 0 || \
-ft_string_ncmpstr(str, str3, 11) == 0 || \
-ft_string_ncmpstr(str3, str, 11) == 0)
+	if (ft_string_ncmpstr(str, str2, 11) == 0
+		|| ft_string_ncmpstr(str, str3, 11) == 0
+		|| ft_string_ncmpstr(str3, str, 11) == 0)
 		return (2);
-	if (ft_string_ncmpstr(str2, str, 99) == 0 || \
-ft_string_ncmpstr(str3, str4, 9) == 0)
+	if (ft_string_ncmpstr(str2, str, 99) == 0
+		|| ft_string_ncmpstr(str3, str4, 9) == 0)
 		return (6);
 	return (ft_string_destroy(&str), ft_string_destroy(&str2),
 		ft_string_destroy(&str3), ft_string_destroy(&str4), 0);

@@ -17,6 +17,8 @@ int	ft_string_shrink(t_string *str)
 {
 	char	*new;
 
+	if (!str)
+		return (-1);
 	if (str->capacity <= str->length + 1)
 		return (0);
 	new = ft_malloc(str->length + 1);
