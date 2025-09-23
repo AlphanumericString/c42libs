@@ -14,6 +14,7 @@
 #include "ft_defs.h"
 #include "types/ft_args_types.h"
 #include "ft_string.h"
+#include "ft_stris.h"
 #include "internal/args_helper.h"
 #include "internal/args_helper_types.h"
 #include <stddef.h>

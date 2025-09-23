@@ -27,7 +27,7 @@ int	tv_apply(void)
 	if (*(int *)vec->datas[0] != 42)
 		return (1);
 	ft_vec_destroy(&vec);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

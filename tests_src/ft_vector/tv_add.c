@@ -38,7 +38,7 @@ static int	bases_case(void)
 		|| vec->datas[4] != (void *)46 || vec->datas[5] != (void *)47)
 		return (4);
 	ft_vec_destroy(&vec);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	mt_case(void)
@@ -56,7 +56,7 @@ static int	mt_case(void)
 	if (vec->count != 1)
 		return (1);
 	ft_vec_destroy(&vec);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tv_add(void)
@@ -69,7 +69,7 @@ int	tv_add(void)
 	ret = mt_case();
 	if (ret)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

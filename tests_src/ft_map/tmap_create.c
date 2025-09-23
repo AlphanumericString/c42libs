@@ -37,7 +37,7 @@ int	tmap_create(void)
 			return (talloc_set_failpoint(prev), 2 + total + 1);
 	}
 	talloc_set_failpoint(prev);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

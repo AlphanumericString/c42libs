@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "types/ft_vector_types.h"
 #include "ft_vector.h"
-
-#include <stdlib.h>
 
 void	**ft_vec_to_array(t_vector **vec)
 {

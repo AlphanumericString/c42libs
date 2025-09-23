@@ -32,7 +32,7 @@ int	tca_arfind(void)
 		|| ft_arfind((t_const_arr)arr, NULL)
 		|| ft_arfind((t_const_arr) NULL, NULL))
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_arfindwith(void)

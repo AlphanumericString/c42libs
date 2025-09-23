@@ -20,6 +20,11 @@
 #include "internal/args_helper.h"
 #include "ft_args.h"
 
+static void	print_desc(const char *d, int fd)
+{
+	ft_print_fd(fd, "\n\t\t%s\n", d);
+}
+
 void	ft_print_opts(const t_opt opt, int fd)
 {
 	if (!opt.long_name && !opt.short_name)
@@ -31,7 +36,7 @@ void	ft_print_opts(const t_opt opt, int fd)
 		(ft_print_fd(fd, "\t-%c", opt.short_name),
 			put_type_fd(opt.type, fd));
 	if (opt.desc)
-		ft_print_fd(fd, "\n\t\t%s\n", opt.desc);
+		print_desc(opt.desc, fd);
 }
 /*
 GPL-3.0 License:

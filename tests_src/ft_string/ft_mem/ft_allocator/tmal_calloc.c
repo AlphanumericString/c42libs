@@ -24,7 +24,7 @@ int	tmal_calloc(void)
 	if (group_test.ptr_calloc != &ft_memimpl_calloc)
 		return (1);
 	ft_get_allocator(&prev);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

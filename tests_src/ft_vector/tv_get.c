@@ -36,7 +36,7 @@ int	tv_get(void)
 	if (data_ret)
 		return (1);
 	ft_vec_destroy(&vector);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

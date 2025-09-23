@@ -28,6 +28,11 @@
 #  define EXIT_FAILURE 1
 # endif
 
+# define FT_MICRO_BUF_SIZE	16
+# define FT_SMALL_BUF_SIZE	256
+# define FT_STD_BUF_SIZE	4096
+# define FT_LARGE_BUF_SIZE	65536
+
 // Change version with -DVERSION="x.y.z" at compile time
 # ifndef VERSION
 #  define VERSION "1.0.0"
@@ -46,14 +51,11 @@
 #  define FT_COMPILETIME_HASH "13"
 # endif
 
-// TODO:
-//  change name to FT_
-
 // if for whatever reason it is def, put true in it
-# ifdef ALLOC_SELF
-#  define SELF_ALLOC true
+# ifdef FT_ALLOC_SELF
+#  define FT_ALLOC_SELF true
 # else
-#  define SELF_ALLOC false
+#  define FT_ALLOC_SELF false
 # endif
 
 # ifdef FT_THREADS
@@ -63,7 +65,6 @@
 # endif
 
 // Paths and separators
-# define FT_PATH_INVALID_SPE_CHARS "?*/"
 # define FT_NEWLINE_SEQ "\n"
 # define FT_PATH_SEPARATORS "/"
 # define FT_ENV_SEPARATORS ":"
@@ -75,18 +76,20 @@
 # define FT_OCTBASE			"01234567"
 # define FT_BINBASE			"01"
 
+//  Add other primitive types max and min (currently not needed)
+
 # include <limits.h>
 
-# define SSIZE_MAX LONG_MAX
-# define SSIZE_MIN LONG_MIN
-# define SIZE_T_MAX ULONG_MAX
-# define SIZE_T_MIN 0
+# define FT_SSIZE_MAX LONG_MAX
+# define FT_SSIZE_MIN LONG_MIN
+# define FT_SIZE_MAX ULONG_MAX
+# define FT_SIZE_MIN 0
 
-// TODO:
-// implement algos
+// TODO: implement algos
 typedef enum e_sort_algorithms
 {
 	FT_SORT_ALG_BUBBLE = 0,
+	FT_SORT_ALG_BUCKET,
 	FT_SORT_ALG_INSERTION,
 	// FT_SORT_ALG_SELECTION,
 	// FT_SORT_ALG_MERGE,
@@ -94,7 +97,6 @@ typedef enum e_sort_algorithms
 	// FT_SORT_ALG_HEAP,
 	// FT_SORT_ALG_COUNTING,
 	// FT_SORT_ALG_RADIX,
-	// FT_SORT_ALG_BUCKET,
 	// FT_SORT_ALG_SHELL,
 	FT_SORT_ALG_UNKNOWN, // 10 // 31 - 10 => 21 space left is ok
 	FT_SORT_ALG_MASK = (1 << 5) - 1, // (2^5 - 1) = 31 = 0b00011111
@@ -102,10 +104,10 @@ typedef enum e_sort_algorithms
 
 typedef enum e_sort_order
 {
-	FT_SORT_ASCENDING = 1 << 5,
-	FT_SORT_DESCENDING = 2 << 5,
-	FT_SORT_UNORDERED = 3 << 5,
-	FT_SORT_MASK = 0b11100000,
+	FT_SORT_ORD_ASC = 1 << 5,
+	FT_SORT_ORD_DES = 2 << 5,
+	FT_SORT_ORD_UNO = 3 << 5, //< not sure is usefull
+	FT_SORT_ORD_MASK = 7 << 5, // (2^3 - 1) << 5 = 0b11100000
 }	t_sort_order;
 
 /// @brief	Type maping to remove checks on type on any ptrs
@@ -159,6 +161,21 @@ typedef void				*(*t_data_tr)(const void *);
 /// @return	pointer to the data (think of strcat or memcpy, returns a pointer
 ///	to dst)
 typedef void				*(*t_data_tr_i)(void *);
+
+// asserts on basic defs needed for the lib to work
+
+# if FT_MICRO_BUF_SIZE != 16
+#  error "FT_SMALL_BUF_SIZE must be 256 bytes"
+# endif
+# if FT_SMALL_BUF_SIZE != 256 || FT_SMALL_BUF_SIZE != FT_MICRO_BUF_SIZE * 16
+#  error "FT_SMALL_BUF_SIZE must be 256 bytes"
+# endif
+# if FT_STD_BUF_SIZE != 4096 || FT_STD_BUF_SIZE != FT_SMALL_BUF_SIZE * 16
+#  error "FT_STD_BUF_SIZE must be 4096 bytes"
+# endif
+# if FT_LARGE_BUF_SIZE != 65536 || FT_LARGE_BUF_SIZE != FT_STD_BUF_SIZE * 16
+#  error "FT_LARGE_BUF_SIZE must be 65536 bytes"
+# endif
 
 #endif /* FT_DEFS_H */
 /*

@@ -11,54 +11,57 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_tstring.h"
+#include "ft_allocator__dev.h"
+#include "ft_mem.h"
 
-int	ft_string_set(t_string *str, const char *new_str)
+bool	ft_string_set(t_string *str, const char *new_str)
 {
 	char	*s;
-	int		r;
+	bool	r;
 
 	if (!new_str)
 		return (-1);
 	s = ft_strdup(new_str);
 	r = ft_string_set_inplace(str, s);
-	if (r == 0)
+	if (r == false)
 		ft_free(s);
 	return (r);
 }
 
-int	ft_string_set_n(t_string *str, const char *new_str, size_t n)
+bool	ft_string_set_n(t_string *str, const char *new_str, size_t n)
 {
 	size_t	new_len;
 
 	if (!str || !new_str)
-		return (-1);
+		return (false);
 	new_len = ft_strlen(new_str) + 1;
 	if (new_len > n)
 		new_len = n;
 	if (new_len >= str->capacity)
 	{
-		if (ft_string_reserve(str, new_len + 1) == -1)
-			return (0);
+		if (ft_string_reserve(str, new_len + 1) == false)
+			return (false);
 	}
 	ft_memcpy(str->str, new_str, new_len);
 	str->str[new_len] = '\0';
 	str->length = new_len;
-	return (1);
+	return (true);
 }
 
-int	ft_string_set_inplace(t_string *str, char *new_str)
+bool	ft_string_set_inplace(t_string *str, char *new_str)
 {
 	size_t	new_len;
 
 	if (!str || !new_str)
-		return (0);
+		return (false);
 	new_len = ft_strlen(new_str);
 	str->length = new_len;
 	if (str->str)
 		ft_free(str->str);
 	str->str = new_str;
 	str->capacity = new_len + 1;
-	return (1);
+	return (true);
 }
 /*
 GPL-3.0 License:

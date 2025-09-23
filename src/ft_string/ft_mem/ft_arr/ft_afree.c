@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "ft_arr.h"
-#include "ft_string.h"
+#include "ft_mem.h"
+#include <stddef.h>
 
 void	ft_afree(void **arr)
 {
@@ -19,6 +20,15 @@ void	ft_afree(void **arr)
 		return ;
 	if (*arr)
 		ft_aapply(arr, ft_free);
+	ft_free(arr);
+}
+
+void	ft_anfree(void **arr, size_t	n)
+{
+	if (!arr || !n)
+		return ;
+	if (*arr)
+		ft_anapply(arr, n, ft_free);
 	ft_free(arr);
 }
 /*

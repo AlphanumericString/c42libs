@@ -14,6 +14,8 @@
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "ft_string.h"
+#include "ft_mem.h"
+
 #include "tests/lists_test_utils.h"
 #include "tests/tests_lambda_functions.h"
 #include "tests/list__ll_tests.h"
@@ -38,7 +40,7 @@ int	t_ll_size(void)
 	if (size_ret[2] != 2)
 		return (1);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_ll_size_match(void)
@@ -59,7 +61,7 @@ int	t_ll_size_match(void)
 	if (size_ret[2] != 0)
 		return (1);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_ll_size_cmp(void)
@@ -79,7 +81,7 @@ int	t_ll_size_cmp(void)
 	if (ft_ll_size_cmp(list, "zod", (t_data_cmp)ft_strcmp) != 1)
 		return (3);
 	ft_ll_clear(&list, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

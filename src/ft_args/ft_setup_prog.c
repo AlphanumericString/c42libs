@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arr.h"
 #include "ft_args.h"
-#include "ft_string.h"
-#include "ft_math.h"
 #include "internal/args_helper.h"
 
 void	ft_setup_prog(const char *const *const av)

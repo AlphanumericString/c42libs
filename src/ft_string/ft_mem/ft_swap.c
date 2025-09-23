@@ -10,15 +10,94 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
+#include <stddef.h>
 
-void	ft_swap(void **a, void **b)
+// NOTE: might be needing a xor_ibyteop for better optimization
+// but it's "fiiine" and im topping out the limit of 5 functions per file
+
+static void	*xor_nbyteop(void *_dst, const void *_src, size_t n)
+{
+	unsigned char		*dst;
+	const unsigned char	*src;
+	size_t				i;
+
+	i = 0;
+	dst = _dst;
+	src = _src;
+	while (i < n)
+	{
+		dst[i] ^= src[i];
+		i++;
+	}
+	return (_dst);
+}
+
+// NOTE: this function cannot handle overlapping memory areas
+// xor swap is by definition not safe for overlapping memory areas
+static void	*xor_nst(void *_dst, const void *_src, size_t n)
+{
+	size_t			*dst;
+	const size_t	*src;
+	const size_t	s_size = sizeof(*src);
+	size_t			i;
+
+	if ((size_t)_dst % s_size != (size_t)_src % s_size || n < s_size)
+		return (xor_nbyteop(_dst, _src, n), _dst);
+	i = 0;
+	while ((size_t)(_dst + i) % s_size)
+	{
+		xor_nbyteop((char *)_dst + i, (char *)_src + i, 1);
+		i++;
+	}
+	n -= i;
+	dst = _dst + i;
+	src = _src + i;
+	i = 0;
+	while (i < (n / s_size))
+	{
+		dst[i] ^= src[i];
+		i++;
+	}
+	i = i * s_size + (size_t)dst - (size_t)_dst;
+	return (xor_nbyteop(_dst + i, _src + i, n % s_size), _dst);
+}
+
+void	ft_swap_ptr(void **a, void **b)
 {
 	void	*tmp;
 
 	tmp = *a;
 	*a = *b;
 	*b = tmp;
+}
+
+void	ft_swap_xor(void *a, void *b, size_t size)
+{
+	xor_nst(a, b, size);
+	xor_nst(b, a, size);
+	xor_nst(a, b, size);
+}
+
+void	ft_swap(void *a, void *b, size_t size)
+{
+	char	medium_buffer[FT_STD_BUF_SIZE];
+	void	*tmp;
+
+	tmp = medium_buffer;
+	if (a == b || size == 0)
+		return ;
+	if (!(a + size > b && a < b + size))
+		return (ft_swap_xor(a, b, size), (void)0);
+	if (size > FT_STD_BUF_SIZE)
+		tmp = ft_malloc(size);
+	if (!tmp)
+		return ;
+	ft_memcpy(tmp, a, size);
+	ft_memcpy(a, b, size);
+	ft_memcpy(b, tmp, size);
+	if (size > FT_STD_BUF_SIZE)
+		ft_free(tmp);
 }
 /*
 GPL-3.0 License:

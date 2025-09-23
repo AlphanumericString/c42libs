@@ -10,11 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "tests/str__put_tests.h"
+#include <stdlib.h>
 
 int	tsp_va_printfd(void)
 {
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

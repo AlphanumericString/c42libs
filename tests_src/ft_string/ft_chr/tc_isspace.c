@@ -12,13 +12,14 @@
 
 #include "ft_char.h"
 #include "tests/str__char_tests.h"
+#include <stdlib.h>
 
 static int	local_isspace(int c)
 {
 	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
 		|| c == '\v')
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tc_isspace(void)
@@ -32,7 +33,7 @@ int	tc_isspace(void)
 			return (1);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

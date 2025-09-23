@@ -10,12 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <assert.h>
+#include <stddef.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
 
 #include "tests/str__str_tests.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/fixtures.h"
+#include "types/ft_string_types.h"
 
 static int	write_lines(const char **lines, size_t n)
 {
@@ -32,7 +37,7 @@ static int	write_lines(const char **lines, size_t n)
 		i++;
 	}
 	close(fd);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static const char	**return_lines(size_t *n)
@@ -49,6 +54,25 @@ static const char	**return_lines(size_t *n)
 
 	*n = sizeof(test_lines) / sizeof(test_lines[0]);
 	return (test_lines);
+}
+
+static int	mt_gnl(int fd, const char **tl, int lc)
+{
+	int			ret;
+	char		*line;
+	const int	fp = *talloc_get_failpoint();
+
+	(void)tl;
+	(void)lc;
+	ret = 0;
+	fd = (close(fd), open(TESTS_FPREFIX "gnl.txt", O_RDONLY));
+	talloc_set_failpoint(0);
+	line = ft_gnl(fd);
+	if (line != NULL)
+		ret = 1;
+	talloc_set_failpoint(fp);
+	destroy_test_file(fd, TESTS_FPREFIX "gnl.txt");
+	return (ret);
 }
 
 int	ts_gnl(void)
@@ -74,7 +98,7 @@ int	ts_gnl(void)
 	line = ft_gnl(fd);
 	if (line)
 		return (2);
-	return (ft_free(line), destroy_test_file(fd, TESTS_FPREFIX "gnl.txt"), 0);
+	return (mt_gnl(fd, test_lines, lines_count));
 }
 /*
 GPL-3.0 License:

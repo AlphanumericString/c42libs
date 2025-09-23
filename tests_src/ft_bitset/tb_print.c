@@ -12,6 +12,7 @@
 
 #include "fcntl.h"
 #include "ft_bitset.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/bitset_tests.h"
 #include "tests/fixtures.h"

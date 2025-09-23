@@ -14,6 +14,7 @@
 #include "../include/usr_strct.h"
 
 #include "ft_string.h"
+#include "ft_stris.h"
 
 #include <unistd.h>
 

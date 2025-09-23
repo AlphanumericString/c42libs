@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "tests/list__ll_tests.h"
@@ -37,7 +37,7 @@ int	t_ll_apply(void)
 		|| *(int *)list->data != data4 || *(int *)list->next->data != data3)
 		return (1);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_ll_apply_range(void)
@@ -64,7 +64,7 @@ int	t_ll_apply_range(void)
 		return (1);
 	ft_ll_apply_range(NULL, NULL, add42);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_ll_apply_range_node(void)
@@ -85,7 +85,7 @@ int	t_ll_apply_range_node(void)
 		return (1);
 	ft_ll_apply_range_node(NULL, NULL, lnode_add42);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

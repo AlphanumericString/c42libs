@@ -36,7 +36,7 @@ static int	base_cases(void)
 		|| vec->count != vec->cappacity || vec->count != 3)
 		return (3);
 	ft_vec_destroy(&vec);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	mt_cases(void)
@@ -55,7 +55,7 @@ static int	mt_cases(void)
 		return (1);
 	talloc_set_failpoint(f_point);
 	ft_vec_destroy(&vec);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tv_shrink(void)
@@ -68,7 +68,7 @@ int	tv_shrink(void)
 	ret = mt_cases();
 	if (ret)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

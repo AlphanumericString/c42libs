@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/str__mem_tests.h"
 
 int	tm_memcmp(void)
@@ -32,7 +33,7 @@ int	tm_memcmp(void)
 		return (5);
 	if (ft_memcmp(str, str, 999) != 0)
 		return (6);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -6,10 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:25:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:08:18 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/09/06 19:40:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arr.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/fixtures.h"
 #include "tests/str__str_tests.h"
@@ -24,7 +26,7 @@ static int	mt_substr(void)
 	talloc_set_failpoint(fp);
 	if (s1 != NULL)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	ts_substr(void)

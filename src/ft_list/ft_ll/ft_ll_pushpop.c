@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 
 t_list	*ft_ll_push(t_list **lst, const void *data)
 {

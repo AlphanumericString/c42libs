@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "tests/map_tests.h"
+#include "ft_mem.h"
 #include "ft_map.h"
-#include "types/ft_map_types.h"
 #include "ft_string.h"
 
 int	tmap_set(void)
@@ -31,7 +31,7 @@ int	tmap_set(void)
 	ft_map_destroy(map);
 	ft_free(str);
 	ft_free(str2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

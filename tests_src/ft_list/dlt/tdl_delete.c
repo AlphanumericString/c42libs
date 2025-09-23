@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -25,7 +25,7 @@ int	t_dl_delete_self(void)
 	t_dlist	*list;
 
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
-	data3 = malloc(sizeof(int));
+	data3 = ft_malloc(sizeof(int));
 	*data3 = 63;
 	ft_dl_add_back(&list, ft_dl_create(data3));
 	ft_dl_delete_self(list->next, NULL);
@@ -33,7 +33,7 @@ int	t_dl_delete_self(void)
 		|| list->next->data != data3 || list->next->next)
 		return (1);
 	ft_dl_clear(&list, ft_free);
-	data3 = malloc(sizeof(int));
+	data3 = ft_malloc(sizeof(int));
 	*data3 = 63;
 	*data2 = 21;
 	list = ft_dl_create(data3);
@@ -67,7 +67,7 @@ int	t_dl_delete_range(void)
 	int		nb_deleted;
 
 	create_2elem_dlist(&list, (void **)&data_array[0], (void **)&data_array[1]);
-	data_array[2] = malloc(sizeof(int));
+	data_array[2] = ft_malloc(sizeof(int));
 	*data_array[2] = 63;
 	ft_dl_add_back(&list, ft_dl_create(data_array[2]));
 	list2 = list->next;
@@ -85,7 +85,7 @@ int	t_dl_delete_range(void)
 		return (2);
 	ft_dl_clear(&list2, ft_free);
 	ft_dl_delete_range(NULL, NULL, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_delete(void)
@@ -96,7 +96,7 @@ int	t_dl_delete(void)
 	int		*data3;
 	int		nb_deleted;
 
-	data3 = malloc(sizeof(int));
+	data3 = ft_malloc(sizeof(int));
 	*data3 = 63;
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	ft_dl_add_back(&list, ft_dl_create(data3));
@@ -114,7 +114,7 @@ int	t_dl_delete(void)
 	else if (list)
 		return (4);
 	ft_dl_delete(NULL, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

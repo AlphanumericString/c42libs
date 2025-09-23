@@ -23,7 +23,7 @@ int	tmal_free(void)
 	if (group_test.ptr_free != &ft_memimpl_free)
 		return (1);
 	ft_get_allocator(&prev);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

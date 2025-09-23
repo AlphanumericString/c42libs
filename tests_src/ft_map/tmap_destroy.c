@@ -12,6 +12,7 @@
 
 #include "tests/map_tests.h"
 #include "ft_map.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "types/ft_map_types.h"
 #include <stdlib.h>
@@ -26,7 +27,7 @@ int	tmap_destroy(void)
 	map = NULL;
 	ft_map_destroy(map);
 	ft_map_destroy(NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 // accessing to key[0] and value[0] after the call to check
@@ -48,7 +49,7 @@ int	tmap_destroy_free(void)
 	ft_map_set(map, key, value, ft_strlen(key));
 	ft_map_destroy_free(map, ft_free);
 	ft_free(key);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -31,7 +31,7 @@ int	t_ll_delone(void)
 	list = ft_ll_create(data);
 	ft_ll_delone(list, ft_free);
 	ft_ll_delone(NULL, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_ll_delete_range(void)
@@ -54,7 +54,7 @@ int	t_ll_delete_range(void)
 	if (nb_deleted != 0)
 		return (2);
 	ft_ll_delete(&nxt, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_ll_delete(void)
@@ -79,7 +79,7 @@ int	t_ll_delete(void)
 	nb_del = ft_ll_delete(&list, ft_free);
 	if (nb_del != 0)
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

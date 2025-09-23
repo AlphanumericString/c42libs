@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
+#include "ft_tstring.h"
 
 t_string	*ft_string_new(size_t capacity)
 {
@@ -19,8 +20,8 @@ t_string	*ft_string_new(size_t capacity)
 	new = ft_calloc(1, sizeof(t_string));
 	if (!new)
 		return (NULL);
-	if (capacity < T_STRING_BUFF)
-		capacity = T_STRING_BUFF;
+	if (capacity < FT_TSTR_BUFF)
+		capacity = FT_TSTR_BUFF;
 	new->str = ft_calloc(capacity, sizeof(char));
 	if (!new->str)
 		return (ft_free(new), NULL);

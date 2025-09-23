@@ -27,7 +27,7 @@ int	tp_first(void)
 		return (1);
 	if (ft_pair_first(NULL) != NULL)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

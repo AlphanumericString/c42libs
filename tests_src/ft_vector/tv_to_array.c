@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
 
@@ -37,7 +38,7 @@ int	tv_to_array(void)
 	if (ft_strcmp(array[4], "Zod") != 0)
 		return (1);
 	ft_free(array);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -10,26 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/str__str_tests.h"
 #include "tests/tests.h"
 #include <stddef.h>
 
 static const t_fnamed	*load_tests01(void)
 {
-	static t_fnamed	tb[] = {{"tok", ts_strtok}, {"split", ts_split},
-	{"splits", ts_splits}, {"chr", ts_strchr}, {"dup", ts_strdup},
-	{"iteri", ts_striteri}, {"join", ts_strjoin}, {"lcat", ts_strlcat},
-	{"lcpy", ts_strlcpy}, {"len", ts_strlen}, {"mapi", ts_strmapi},
-	{"cmp", ts_strcmp}, {"ncmp", ts_strncmp}, {"ndup", ts_strndup},
-	{"nstr", ts_strnstr}, {"rchr", ts_strrchr}, {"trim", ts_strtrim},
-	{"substr", ts_substr}, {"replace", ts_str_replace},
-	{"replace_chr", ts_str_replace_chr},
-	{"gnl", ts_gnl}, {"clen", ts_strclen},
-	{"cnb", ts_strcnb}, {"cspn", ts_strcspn},
-	{"end_with", ts_strend_with}, {"start_with", ts_strstart_with},
-	{"spn", ts_strspn}, {"append_c", ts_strappend_c},
-	{"rev", ts_strrev}, {NULL, NULL}};
+	static t_fnamed	tb[] = {{"tok", ts_tok}, {"split", ts_split},
+	{"splits", ts_splits}, {"nchr", ts_nchr}, {"chr", ts_chr}, {"dup", ts_dup},
+	{"iteri", ts_iteri}, {"join", ts_join}, {"lcat", ts_lcat},
+	{"lcpy", ts_lcpy}, {"len", ts_len}, {"mapi", ts_mapi}, {"tok_r", ts_tok_r},
+	{"cmp", ts_cmp}, {"nrcmp", ts_nrcmp}, {"ncmp", ts_ncmp}, {"ndup", ts_ndup},
+	{"str", ts_str}, {"nstr", ts_nstr}, {"rchr", ts_rchr},
+	{"chr_null", ts_chr_null}, {"trim", ts_trim},
+	{"trim_inplace", ts_trim_inplace}, {"substr", ts_substr}, {"rpl", ts_rpl},
+	{"rplchr", ts_rplchr}, {"rplchrs", ts_rplchrs}, {"gnl", ts_gnl},
+	{"nrplchr", ts_nrplchr}, {"nrplchrs", ts_nrplchrs},
+	{"nclen", ts_nclen}, {"clen", ts_clen}, {"ncnb", ts_ncnb}, {"cnb", ts_cnb},
+	{"cspn", ts_cspn}, {"end_with", ts_end_with},
+	{"start_with", ts_start_with}, {"spn", ts_spn}, {"append_c", ts_append_c},
+	{"rev", ts_rev}, {"upper", ts_upper}, {"nupper", ts_nupper},
+	{"lower", ts_lower}, {"nlower", ts_nlower},
+	{"justify_inplace", ts_justify_inplace},
+	{"justify_nospace", ts_justify_nospace}, {"ncapitalize", ts_ncapitalize},
+	{"capitalize", ts_capitalize}, {"nwcapitalize", ts_nwcapitalize},
+	{"rmdup", ts_rmdup}, {"nrmdup", ts_nrmdup},
+	{"rmdup_spaceall", ts_rmdup_spaceall}, {"rmdup_space", ts_rmdup_space},
+	{"nrev", ts_nrev}, {"nrchr", ts_nrchr},
+	{NULL, NULL}};
 
 	return (tb);
 }
@@ -52,9 +61,7 @@ t_module	*str_tests(void)
 	}
 	i = 0;
 	while (sbm[i])
-	{
 		add_submodule(args, sbm[i++]());
-	}
 	return (args);
 }
 /*

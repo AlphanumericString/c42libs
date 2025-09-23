@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_optional.h"
 #include "types/ft_optional_types.h"
 #include "tests/optional_tests.h"
-#include <stdlib.h>
 
 int	to_copy(void)
 {
@@ -21,7 +21,7 @@ int	to_copy(void)
 	t_optional	opt_a;
 	t_optional	opt_b;
 
-	ptr = malloc(sizeof(int));
+	ptr = ft_malloc(sizeof(int));
 	*ptr = 42;
 	opt_a.pres = OPT_SOME;
 	opt_a.val = ptr;
@@ -30,8 +30,8 @@ int	to_copy(void)
 		return (1);
 	if (*(int *)opt_b.val != 42)
 		return (2);
-	free(ptr);
-	return (0);
+	ft_free(ptr);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

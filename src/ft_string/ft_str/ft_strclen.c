@@ -15,10 +15,15 @@
 
 size_t	ft_strclen(const char *str, char c)
 {
+	return (ft_strnclen(str, -1, c));
+}
+
+size_t	ft_strnclen(const char *str, size_t n, char c)
+{
 	size_t	i;
 
 	i = 0;
-	while (str[i] && str[i] != c)
+	while (i < n && str[i] && str[i] != c)
 		i++;
 	return (i);
 }

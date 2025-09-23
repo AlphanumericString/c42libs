@@ -10,25 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "ft_string.h"
+#include <stdio.h>
+
+void	ft_strnrev(char *s, size_t n)
+{
+	size_t	i;
+	char	tmp;
+
+	if (!n | !s || !*s)
+		return ;
+	i = 0;
+	n = ft_strnlen(s, n) - 1;
+	while (i < n)
+	{
+		tmp = s[i];
+		s[i] = s[n];
+		s[n] = tmp;
+		i++;
+		n--;
+	}
+}
 
 void	ft_strrev(char *s)
 {
-	size_t	i;
-	size_t	j;
-	char	tmp;
-
-	i = 0;
-	j = ft_strlen(s) - 1;
-	while (i < j)
-	{
-		tmp = s[i];
-		s[i] = s[j];
-		s[j] = tmp;
-		i++;
-		j--;
-	}
+	return (ft_strnrev(s, -1));
 }
 /*
 GPL-3.0 License:

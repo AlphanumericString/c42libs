@@ -12,7 +12,7 @@
 
 #include "types/ft_bitset_types.h"
 #include "ft_bitset.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include <stddef.h>
 
 bool	ft_bs_append(t_bitset *bitset, t_bitset *to_append)

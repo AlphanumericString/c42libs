@@ -23,7 +23,7 @@ int	tmap_set_cmp(void)
 	if (map->cmp)
 		return (1);
 	ft_map_destroy(map);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tmap_set_hash(void)
@@ -35,7 +35,7 @@ int	tmap_set_hash(void)
 	if (map->hash)
 		return (1);
 	ft_map_destroy(map);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

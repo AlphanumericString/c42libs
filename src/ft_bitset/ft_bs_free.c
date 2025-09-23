@@ -12,7 +12,7 @@
 
 #include "types/ft_bitset_types.h"
 #include "ft_bitset.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 
 void	ft_bs_clear(t_bitset *bitset)
 {

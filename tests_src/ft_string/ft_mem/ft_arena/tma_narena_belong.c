@@ -31,7 +31,7 @@ int	tma_narena_belong(void)
 		|| ft_narena_belongs(-1, ptr_2) != false)
 		return (ft_narena_free_all(), 2);
 	ft_narena_free_all();
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_tstring.h"
+#include "ft_mem.h"
 
 t_string	*ft_string_substr(const t_string *restrict str, size_t start,
 		size_t len)

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_arr.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/str__mem_tests.h"
 
@@ -31,7 +32,7 @@ int	tca_afree(void)
 	empty = ft_malloc(sizeof(*empty) * 1);
 	empty[0] = NULL;
 	ft_afree(empty);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

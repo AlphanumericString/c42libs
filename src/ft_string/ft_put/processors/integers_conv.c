@@ -13,6 +13,7 @@
 #include "ft_defs.h"
 #include "internal/print.h"
 #include "ft_string.h"
+#include "ft_mem.h"
 #include <stdio.h>
 
 int	hex_processor(va_list args, int fd)

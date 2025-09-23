@@ -29,18 +29,23 @@
 
 // default allocation size for t_strings
 //  - ft_string_new
-//  TODO: rename to more legible name
-# ifndef T_STRING_BUFF
+# ifndef FT_TSTR_BUFF
 #  ifdef TEST
-#   define T_STRING_BUFF 5
+#   define FT_TSTR_BUFF 5
 #  else
-#   define T_STRING_BUFF 4096
+#   define FT_TSTR_BUFF 4096
 #  endif
 # endif
 
 // buffer size for temporary read buffers
-//  - ft_gnl
-//  - ft_fd_to_buff
+# ifndef MAX_GNL_FD
+#  ifdef TEST
+#   define MAX_GNL_FD 3
+#  else
+#   define MAX_GNL_FD 32
+#  endif
+# endif
+
 # ifndef BUFFER_SIZE
 #  ifdef TEST
 #   define BUFFER_SIZE 5

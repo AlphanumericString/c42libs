@@ -12,7 +12,7 @@
 
 #include "ft_pair.h"
 #include "types/ft_pair_types.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include <stdlib.h>
 
 t_pair	*ft_pair_new(const void *restrict a, const void *restrict b)

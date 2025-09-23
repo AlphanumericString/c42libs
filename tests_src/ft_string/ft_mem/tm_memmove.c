@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/str__mem_tests.h"
 
 // last ft_memmove is a test to check that we do nothing on
@@ -36,7 +37,7 @@ int	tm_memmove(void)
 	if (ft_memmove(str, str, 999) != str || ft_memmove(NULL, str, 99) != NULL
 		|| ft_memmove(str, NULL, 99) != str || ft_memmove(str, str, 0) != str)
 		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

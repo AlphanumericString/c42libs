@@ -35,7 +35,7 @@ int	tca_acmp(void)
 	if (ft_acmp((t_iconst_arr)arr1, (t_iconst_arr)arr4) == 0
 		|| ft_acmp((t_iconst_arr)arr4, (t_iconst_arr)arr1) == 0)
 		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_ancmp(void)
@@ -62,7 +62,7 @@ int	tca_ancmp(void)
 		|| ft_ancmp((t_iconst_arr)arr3, (t_iconst_arr) NULL, 2) == 0
 		|| ft_ancmp((t_iconst_arr) NULL, (t_iconst_arr) arr3, 2) == 0)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_acmpwith(void)
@@ -89,7 +89,7 @@ int	tca_acmpwith(void)
 	if (ft_acmp_with(NULL, (t_const_arr)arr1, NULL) >= 0
 		|| ft_acmp_with((t_const_arr)arr1, NULL, NULL) <= 0)
 		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_ancmpwith(void)
@@ -117,7 +117,7 @@ int	tca_ancmpwith(void)
 		|| ft_ancmp_with((t_any)arr3, (t_any) NULL, 2, (t_any)ft_strcmp) == 0
 		|| ft_ancmp_with((t_any) NULL, (t_any) arr3, 2, (t_any)ft_strcmp) == 0)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

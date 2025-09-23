@@ -39,7 +39,7 @@ int	tmap_hash(void)
 	ret2 = ft_hash_dummy("key2", ft_strlen("key2"));
 	if (ret == ret2)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

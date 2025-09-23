@@ -24,13 +24,39 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	size_t				index;
 
 	index = 0;
-	if (n == 0)
-		return (0);
 	if (!str1 | !str2)
 		return ((str2 == NULL) - (str1 == NULL));
+	if (n == 0)
+		return (0);
 	while (str1[index] == str2[index] && str1[index] && index < n - 1)
 		index++;
 	return (str1[index] - str2[index]);
+}
+
+int	ft_strnrcmp(const char *restrict s1, const char *restrict s2,
+		size_t n)
+{
+	const unsigned char	*str1 = (const unsigned char *)s1;
+	const unsigned char	*str2 = (const unsigned char *)s2;
+	size_t				len1;
+	size_t				len2;
+
+	if (!str1 | !str2)
+		return ((str2 == NULL) - (str1 == NULL));
+	if (n == 0)
+		return (0);
+	len1 = ft_strlen((const char *)str1);
+	len2 = ft_strlen((const char *)str2);
+	while (len1 && len2 && str1[len1 - 1] == str2[len2 - 1] && n--)
+	{
+		len1--;
+		len2--;
+	}
+	if (n == 0 && str1[len1 - 1] == str2[len2 - 1])
+		return (0);
+	if (len1 == 0 || len2 == 0)
+		return ((len2 == 0) - (len1 == 0));
+	return (str1[len1 - 1] - str2[len2 - 1]);
 }
 /*
 GPL-3.0 License:

@@ -38,7 +38,7 @@ int	tp_new(void)
 		return (4);
 	talloc_set_failpoint(prev);
 	ft_pair_destroy_sep(&pair, NULL, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

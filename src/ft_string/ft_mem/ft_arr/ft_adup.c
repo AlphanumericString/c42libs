@@ -14,7 +14,7 @@
 
 #include "ft_arr.h"
 #include "ft_math.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 
 t_iconst_arr	ft_adup(t_const_arr arr)
 {

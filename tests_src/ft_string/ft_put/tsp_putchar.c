@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include "ft_mem.h"
 #include "ft_char.h"
 #include "ft_string.h"
 #include "tests/fixtures.h"
@@ -41,20 +42,20 @@ int	tsp_putchar(void)
 	c = 0;
 	fd = open_test_file((char **)&file);
 	if (fd < 0)
-		return (1);
+		return (destroy_test_file(fd, (char *)file), 1);
 	while ((unsigned char)c < 255)
 		if (ft_putchar_fd(c++, fd) == -1)
-			return (2);
+			return (destroy_test_file(fd, (char *)file), 2);
 	fd = (close(fd), open(file, O_RDONLY));
 	if (fd < 0)
 		return (3);
 	ret = read(fd, buf, 256);
 	if (ret != 255)
-		return (4);
+		return (destroy_test_file(fd, (char *)file), 4);
 	buf[255] = 0;
 	while (ret--)
 		if (buf[ret] != --c)
-			return (5);
+			return (destroy_test_file(fd, (char *)file), 5);
 	return (destroy_test_file(fd, (char *)file), test_bad_fd((char *)file));
 }
 /*

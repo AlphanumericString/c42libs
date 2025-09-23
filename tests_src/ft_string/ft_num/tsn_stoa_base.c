@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "tests/str__num_tests.h"
+#include "ft_mem.h"
 #include "ft_defs.h"
 #include "ft_string.h"
 #include <limits.h>
@@ -72,7 +73,7 @@ int	tsn_stoa_base(void)
 	if (ft_stoa_base(SIZE_MAX, FT_DECBASE FT_DECBASE) != NULL
 		|| ft_stoa_base(SIZE_MAX, NULL) != NULL)
 		return (42);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

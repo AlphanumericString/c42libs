@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -32,7 +32,7 @@ int	t_dl_apply(void)
 	else if (*(int *)list->next->data != 63)
 		return (3);
 	ft_dl_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_apply_range(void)

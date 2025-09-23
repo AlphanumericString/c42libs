@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_tstring.h"
 #include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
@@ -44,7 +44,7 @@ int	test_string_shrink(void)
 		return (1);
 	ft_string_destroy(&str);
 	str = ft_string_from("^_^");
-	if (str->length != 3 || str->capacity != T_STRING_BUFF)
+	if (str->length != 3 || str->capacity != FT_TSTR_BUFF)
 		return (2);
 	ft_string_shrink(str);
 	if (ft_string_cmp(str, "^_^") != 0 || str->length != 3

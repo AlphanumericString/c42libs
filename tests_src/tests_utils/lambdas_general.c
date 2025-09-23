@@ -22,16 +22,6 @@ int	cmp_ptr_as_long(const void *data1, const void *data2)
 	return ((long)data1 - (long)data2);
 }
 
-int	cmp_raw_ptr(const void *ptrL, const void *ptrR)
-{
-	if ((long)ptrL < (long)ptrR)
-		return (-1);
-	else if ((long)ptrL == (long)ptrR)
-		return (0);
-	else
-		return (1);
-}
-
 void	*double_ptr(const void *data)
 {
 	return ((void *)((long)data * 2));

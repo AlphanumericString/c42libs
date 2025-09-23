@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_map.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "ft_vector.h"
 

@@ -14,23 +14,29 @@
 
 #include <stddef.h>
 
+char	*ft_strchr_null(const char *str, int c)
+{
+	return (ft_strnchr_null(str, -1, c));
+}
+
 char	*ft_strchr(const char *str, int c)
 {
-	char		*ret;
-	int			i;
-	const char	target = (char)c;
+	return (ft_strnchr(str, -1, (char)c));
+}
 
-	ret = NULL;
-	i = 0;
-	while (str[i] && !ret)
-	{
-		if (str[i] == target)
-			ret = (char *)str + i;
-		i++;
-	}
-	if (!str[i] && target == 0)
+char	*ft_strnchr_null(const char *str, size_t n, int c)
+{
+	return ((char *)&str[ft_strnclen(str, n, c)]);
+}
+
+char	*ft_strnchr(const char *str, size_t n, int c)
+{
+	size_t	i;
+
+	i = ft_strclen(str, c);
+	if (str[i] == c && i < n)
 		return ((char *)str + i);
-	return ((char *)ret);
+	return (NULL);
 }
 /*
 GPL-3.0 License:

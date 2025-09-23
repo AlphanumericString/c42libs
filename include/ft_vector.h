@@ -79,6 +79,12 @@ void		ft_vec_clear(t_vector *restrict vec);
 /// @return true if the vector was destroyed, false otherwise
 bool		ft_vec_destroy(t_vector **vec);
 
+/// @brief Delete a vector
+/// @param vec pointer to the vector
+/// @return true if the vector was deleted, false otherwise
+/// @note if possible, prefer ft_vec_destroy as it sets the pointer to NULL
+bool		ft_vec_delete(t_vector *vec);
+
 // ft_vector/ft_vec_filter.c
 
 /// @brief Filter a vector

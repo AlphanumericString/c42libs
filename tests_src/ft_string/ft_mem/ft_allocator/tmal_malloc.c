@@ -23,7 +23,7 @@ int	tmal_malloc(void)
 	if (group_test.ptr_alloc != &ft_memimpl_malloc)
 		return (1);
 	ft_get_allocator(&prev);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -13,9 +13,11 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "types/ft_string_types.h"
 
+// TODO: move to ft_str
 char	*ft_fd_to_buff(int fd)
 {
 	char	buff[BUFFER_SIZE + 1];
@@ -26,16 +28,12 @@ char	*ft_fd_to_buff(int fd)
 	if (fd == -1)
 		return (NULL);
 	file = NULL;
-	ret = read(fd, buff, BUFFER_SIZE);
-	if (ret == -1)
-		return (NULL);
-	buff[ret] = '\0';
-	file = ft_strdup(buff);
+	ret = BUFFER_SIZE;
 	while (ret == BUFFER_SIZE)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
 		if (ret == -1)
-			return (ft_free((void **)&file), NULL);
+			return (ft_free(file), NULL);
 		buff[ret] = '\0';
 		prev = file;
 		file = ft_strjoin(file, buff);

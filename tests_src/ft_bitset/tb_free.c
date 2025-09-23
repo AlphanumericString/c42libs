@@ -31,7 +31,7 @@ int	tb_free(void)
 	ft_bs_free(&bitset);
 	if (bitset != NULL)
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /*

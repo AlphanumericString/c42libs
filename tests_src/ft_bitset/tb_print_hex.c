@@ -10,11 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fcntl.h"
+#include "ft_mem.h"
 #include "ft_bitset.h"
 #include "ft_string.h"
 #include "tests/bitset_tests.h"
 #include "tests/fixtures.h"
+
+#include <fcntl.h>
 #include <unistd.h>
 
 static void	loc_print_to_fd(int fd)
@@ -54,7 +56,7 @@ int	tb_print_hex(void)
 		|| ft_strcmp(buff, expecteds))
 		return (1);
 	destroy_test_file(fd, file_name);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

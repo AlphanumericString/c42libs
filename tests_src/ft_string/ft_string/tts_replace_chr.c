@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_defs.h"
+#include "ft_mem.h"
+#include "ft_tstring.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
 
@@ -20,15 +22,15 @@ int	test_string_replace_chr(void)
 	t_string	str2;
 
 	str = ft_string_from("Hello worlds!");
-	ft_string_replace_chr(str, 'o', 'O');
-	ft_string_replace_chr(str, 'z', 'Z');
+	ft_string_rpl_chr(str, 'o', 'O');
+	ft_string_rpl_chr(str, 'z', 'Z');
 	if (ft_string_cmp(str, "HellO wOrlds!"))
 		return (1);
 	ft_string_destroy(&str);
-	ft_string_replace_chr(NULL, 'o', 'O');
+	ft_string_rpl_chr(NULL, 'o', 'O');
 	ft_bzero(&str2, sizeof(str2));
-	ft_string_replace_chr(&str2, 'o', '0');
-	return (0);
+	ft_string_rpl_chr(&str2, 'o', '0');
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

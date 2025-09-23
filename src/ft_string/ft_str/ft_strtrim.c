@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_string.h"
-#include <stdlib.h>
 
 static int	loc_strchr(const char *str, int c)
 {
@@ -36,6 +36,9 @@ static size_t	loc_strtrim_size(size_t *offset, char const *s1,
 	return ((*offset)--, ret_size + 1);
 }
 
+// current impl allocates only needed memory
+// maybe a ft_strtrim_inplace(ft_strdup(s1), set);
+// would be "simpler", but we "shrink" the string to only what is needed
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*ret;
@@ -56,6 +59,28 @@ char	*ft_strtrim(char const *s1, char const *set)
 		ret[offset_ret++] = s1[offset++];
 	return (ret);
 }
+
+// +2 -> null + position of back_offset
+char	*ft_strtrim_inplace(char *s1, const char *set)
+{
+	char	*front_offset;
+	char	*back_offset;
+
+	if (!s1 || !set || !*set)
+		return (s1);
+	front_offset = s1;
+	back_offset = s1 + ft_strlen(s1);
+	while (*front_offset && loc_strchr(set, *front_offset) != -1)
+		front_offset++;
+	while (back_offset > front_offset && ft_strchr(set, *back_offset) != NULL)
+		back_offset--;
+	if (front_offset == back_offset && ft_strchr(set, *front_offset) != NULL)
+		return (*s1 = '\0', s1);
+	*(back_offset + 1) = '\0';
+	ft_memmove(s1, front_offset, back_offset - front_offset + 2);
+	return (s1);
+}
+
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

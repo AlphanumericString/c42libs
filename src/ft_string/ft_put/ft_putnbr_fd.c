@@ -13,6 +13,7 @@
 #include <limits.h>
 #include <unistd.h>
 
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "types/ft_string_types.h"
 

@@ -12,6 +12,7 @@
 
 #include "ft_math.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 int	tm_sqrt(void)
 {
@@ -30,7 +31,7 @@ int	tm_sqrt(void)
 	result = ft_sqrt(x);
 	if (result >= -0.99 || result <= -1.01)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

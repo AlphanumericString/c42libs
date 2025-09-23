@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "tests/list__ll_tests.h"
 #include "tests/fixtures.h"
@@ -23,7 +23,7 @@ int	t_ll_create(void)
 	int		*data;
 	int		prev;
 
-	data = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
 	*data = 42;
 	list = ft_ll_create(data);
 	if (!list || !list->data || list->data != data)
@@ -36,7 +36,7 @@ int	t_ll_create(void)
 	if (ft_ll_create(data))
 		return (talloc_set_failpoint(prev), 4);
 	talloc_set_failpoint(prev);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

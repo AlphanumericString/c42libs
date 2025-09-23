@@ -12,11 +12,11 @@
 
 #include "ft_allocator__dev.h"
 #include "ft_args.h"
-#include "ft_string.h"
 #include "testing_lib/include/tests_fxtr.h"
 #include "tests/fixtures.h"
 #include "tests/tests.h"
 
+#include <stdio.h>
 #include <unistd.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -37,9 +37,11 @@ static t_mod_constructor	*get_tests(void)
 // setup stuff for tests
 static void	setup(const char *av[])
 {
+	const unsigned int	seed = time(NULL);
+
 	ft_setup_prog((char const *const *)av);
-	if (SRAND_OK)
-		srand(time(NULL));
+	printf("seed used for tests: %u\n", seed);
+	srand(seed);
 	ft_set_gnu_alloc();
 	talloc_wrapper_setup();
 	talloc_set_failpoint(INT_MAX);
@@ -64,9 +66,10 @@ int	main(int ac, const char *av[])
 	while (sbm[i])
 		add_submodule(root, sbm[i++]());
 	setup(av);
+	sort_recursive(root);
 	run_module(root);
-	display_results(root,
-		ONELINE | TESTS_ALL | MODULE_PRINT_LAST | MODULE_PRINT_SBM);
+	display_results(root, MODULE_PRINT_SBM | MODULE_SUM_ALL | MODULE_INF_NAME
+		| TESTS_FULLNAME);
 	module_destroy(root);
 	return (EXIT_SUCCESS);
 }

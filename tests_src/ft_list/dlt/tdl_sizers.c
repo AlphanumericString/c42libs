@@ -14,9 +14,12 @@
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "ft_string.h"
+#include "ft_mem.h"
+
 #include "tests/lists_test_utils.h"
 #include "tests/tests_lambda_functions.h"
 #include "tests/list__dl_tests.h"
+
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -38,7 +41,7 @@ int	t_dl_size(void)
 	else if (size_ret[2] != 2)
 		return (1);
 	ft_dl_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_size_datais(void)
@@ -59,7 +62,7 @@ int	t_dl_size_datais(void)
 	else if (size_ret[2] != 1)
 		return (3);
 	ft_dl_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_size_cmp(void)
@@ -77,7 +80,7 @@ int	t_dl_size_cmp(void)
 	if (ft_dl_size_cmp(lst, "this", (t_data_cmp)ft_strcmp) != 2)
 		return (2);
 	ft_dl_clear(&lst, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

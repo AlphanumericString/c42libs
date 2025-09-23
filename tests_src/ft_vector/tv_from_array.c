@@ -22,7 +22,7 @@ static int	checks_01(t_vector *vec, void **data)
 	else if (ft_vec_at(vec, 0) != data[0] || ft_vec_at(vec, 1) != data[1]
 		|| ft_vec_at(vec, 2) != data[2])
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	checks_02(t_vector *vec, void **data)
@@ -33,7 +33,7 @@ static int	checks_02(t_vector *vec, void **data)
 		|| ft_vec_at(vec, 2) != data[2] || ft_vec_at(vec, 3) != data[3]
 		|| ft_vec_at(vec, 4) != data[4] || ft_vec_at(vec, 5) != data[5])
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tv_from_array(void)

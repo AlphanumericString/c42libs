@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
+#include "ft_defs.h"
 #include "ft_string.h"
+#include "ft_tstring.h"
 #include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"

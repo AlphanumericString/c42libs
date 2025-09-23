@@ -12,7 +12,7 @@
 
 #include "ft_list.h"
 #include "types/ft_list_types.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include <stdlib.h>
 
 void	**ft_cl_get_datas(const t_clist *src)

@@ -24,7 +24,7 @@ int	set_oct(void *user_struct, const char *arg)
 		my->oct = ft_atoi_base(arg, FT_OCTBASE);
 	else
 		my->oct = 32;
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

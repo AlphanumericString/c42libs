@@ -10,17 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_vector.h"
 #include <stdlib.h>
 
 bool	ft_vec_destroy(t_vector **vec)
 {
-	(*vec)->count = 0;
-	(*vec)->cappacity = 0;
-	ft_free((*vec)->datas);
-	ft_free(*vec);
-	*vec = NULL;
+	if (!vec || !*vec)
+		return (false);
+	return (ft_vec_delete(*vec), *vec = NULL, true);
+}
+
+bool	ft_vec_delete(t_vector *vec)
+{
+	if (!vec)
+		return (false);
+	if (vec->datas)
+		ft_free(vec->datas);
+	ft_free(vec);
 	return (true);
 }
 /*

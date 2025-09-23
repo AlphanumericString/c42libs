@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -36,7 +36,7 @@ int	t_ll_begin(void)
 	if (first)
 		return (4);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_ll_end(void)
@@ -58,7 +58,7 @@ int	t_ll_end(void)
 	if (last)
 		return (4);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_ll_at(void)
@@ -82,7 +82,7 @@ int	t_ll_at(void)
 	if (ft_ll_at(list, 32) || ft_ll_at(NULL, 0))
 		return (5);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

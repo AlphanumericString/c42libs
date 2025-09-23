@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_tstring.h"
 #include "tests/fixtures.h"
 #include "tests/str__t_str_test.h"
 

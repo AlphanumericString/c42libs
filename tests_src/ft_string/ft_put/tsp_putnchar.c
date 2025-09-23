@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#include "ft_mem.h"
 #include "ft_char.h"
 #include "ft_string.h"
 #include "tests/fixtures.h"

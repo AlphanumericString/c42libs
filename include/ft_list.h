@@ -361,6 +361,8 @@ size_t	ft_dl_delete(t_dlist **head, const t_data_apply del);
 // /// @return The number of nodes deleted
 // size_t	ft_dl_delete_dup(t_dlist **src, t_data_cmp cmp,
 //  			const t_data_apply del);
+//
+// TODO: ft_dl_delete_node(t_dlist **head, t_dlist *node);
 
 /// @brief Delete a node
 /// @param node The node to delete
@@ -392,6 +394,8 @@ size_t	ft_ll_delete(t_list **lst, const t_data_apply del);
 // /// @return The number of nodes deleted
 // size_t	ft_ll_delete_dup(t_list **src, t_data_cmp cmp,
 //  			t_data_apply del);
+//
+// TODO: ft_ll_delete_node(t_list **head, t_list *node);
 
 /// @brief Delete a range of nodes
 /// @param start The node from which to delete
@@ -413,16 +417,23 @@ size_t	ft_cl_delete(t_dlist **head, const t_data_apply del);
 // /// @return The number of nodes deleted
 // size_t	ft_cl_delete_dup(t_clist **src, t_data_cmp cmp,
 //  			const t_data_apply del);
+//
+// TODO: ft_dl_delete_node(t_dlist **head, t_dlist *node);
 
 /* ************************************************************************** */
 /*                                  FIND                                      */
 /* ************************************************************************** */
+
+// TODO:
+// search? does the same as find but returns the node?
 
 /// @brief Find a node in a list
 /// @param head The head of the list
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
+/// @note	The comparaison always puts the data given to the function as
+/// the right operand of the comparator function call
 t_dlist	*ft_dl_find(const t_dlist *head, const void *restrict data,
 			const t_data_cmp cmp);
 
@@ -431,7 +442,9 @@ t_dlist	*ft_dl_find(const t_dlist *head, const void *restrict data,
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
-void	*ft_ll_find(const t_list *list, const void *restrict data,
+/// @note	The comparaison always puts the data given to the function as
+/// the right operand of the comparator function call
+t_list	*ft_ll_find(const t_list *list, const void *restrict data,
 			const t_data_cmp cmp);
 
 /// @brief Find a node in a list
@@ -439,6 +452,8 @@ void	*ft_ll_find(const t_list *list, const void *restrict data,
 /// @param data The data to find
 /// @param cmp The compare function
 /// @return The node found or NULL
+/// @note	The comparaison always puts the data given to the function as
+/// the right operand of the comparator function call
 t_dlist	*ft_cl_find(const t_dlist *head, const void *restrict data,
 			const t_data_cmp cmp);
 

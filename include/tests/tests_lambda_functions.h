@@ -14,11 +14,11 @@
 # define TESTS_LAMBDA_FUNCTIONS_H
 # include <stdbool.h>
 # include <stddef.h>
+# include <sys/types.h>
 
 // lambdas - semi pure
 void	do_nothing(void *data);
 int		cmp_ptr_as_long(const void *data1, const void *data2);
-int		cmp_raw_ptr(const void *ptrL, const void *ptrR);
 void	*double_ptr(const void *data);
 
 // array / tables
@@ -34,7 +34,11 @@ bool	is_even(const void *data);
 bool	is42(const void *data);
 void	add42(void *data);
 void	*add42_ret(const void *data);
-int		cmp_int(const void *a, const void *b);
+
+// --mem
+void	*randomize_iarr(int *arr, size_t size, ssize_t low, ssize_t upr);
+void	*randomize_sarr(size_t *arr, size_t size, ssize_t low, ssize_t upr);
+void	*randomize_ssarr(ssize_t *arr, size_t size, ssize_t low, ssize_t upr);
 
 #endif /* TESTS_LAMBDA_FUNCTIONS_H */
 /*

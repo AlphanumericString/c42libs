@@ -12,6 +12,7 @@
 
 #include "ft_math.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 int	tm_round(void)
 {
@@ -29,7 +30,7 @@ int	tm_round(void)
 	x = 42.5;
 	if (ft_round(x) != 43)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

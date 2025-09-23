@@ -12,6 +12,7 @@
 
 #include "ft_math.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 int	tm_align_2_multiple(void)
 {
@@ -27,7 +28,7 @@ int	tm_align_2_multiple(void)
 	nbr = 275;
 	if (ft_align_multiple_2(nbr, 4) != 276)
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_align_2(void)
@@ -46,7 +47,7 @@ int	tm_align_2(void)
 	nbr = 275;
 	if (ft_align_2(nbr) != 276)
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_align(void)
@@ -67,7 +68,7 @@ int	tm_align(void)
 		return (4);
 	if (ft_align(276, 6) != 276)
 		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

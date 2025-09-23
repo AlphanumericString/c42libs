@@ -31,7 +31,7 @@ static int	test_for(const ssize_t *nbrs, const char **expected,
 			return (i + 1);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tsn_sstopa_base(void)

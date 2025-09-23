@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/fixtures.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
@@ -24,7 +24,7 @@ int	t_dl_create(void)
 	int		*data;
 	int		prev;
 
-	data = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
 	*data = 42;
 	list = ft_dl_create(data);
 	if (!list || !list->data || list->data != data)

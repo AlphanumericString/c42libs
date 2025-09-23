@@ -17,65 +17,26 @@
 #include "ft_string.h"
 #include "ft_math.h"
 
-// TODO: deffer the number pushing to stopa_base & sstopa_base
 char	*ft_stoa_base(size_t nbr, const char *base)
 {
-	t_uint	blen;
-	t_uint	nblen;
-	char	*res;
+	char	buff[200];
 
 	if (!base || ft_base_valid(base) != true)
 		return (NULL);
-	blen = ft_strlen(base);
-	nblen = ft_unbrlen_base(nbr, blen);
-	res = ft_calloc((nblen + 1), sizeof(char));
-	if (!res)
-		return (res);
-	if (!nbr)
-		return (res[0] = base[0], res);
-	res[--nblen] = base[nbr % blen];
-	nbr /= blen;
-	while (nbr)
-	{
-		res[--nblen] = base[nbr % blen];
-		nbr /= blen;
-	}
-	return (res);
-}
-
-static void	loop(ssize_t nbr, const char *base, t_uint pass[2], char *res)
-{
-	while (nbr)
-	{
-		res[--pass[1]] = base[ft_mod(nbr, pass[0])];
-		nbr /= pass[0];
-	}
+	if (ft_stopa_base(nbr, base, (char *)buff, 200) != true)
+		return (NULL);
+	return (ft_strdup(buff));
 }
 
 char	*ft_sstoa_base(ssize_t nbr, const char *base)
 {
-	t_uint	blen;
-	t_uint	nblen;
-	char	*res;
+	char	buff[200];
 
 	if (!base || ft_base_valid(base) != true)
 		return (NULL);
-	blen = ft_strlen(base);
-	nblen = ft_nbrlen_base(nbr, blen);
-	res = ft_calloc((nblen + 1), sizeof(char));
-	if (!res)
-		return (res);
-	if (!nbr)
-		return (res[0] = base[0], res);
-	res[--nblen] = base[ft_mod(nbr, blen)];
-	if (nbr < 0)
-	{
-		nbr = -nbr;
-		res[0] = '-';
-	}
-	nbr /= blen;
-	loop(nbr, base, (t_uint [2]){blen, nblen}, res);
-	return (res);
+	if (ft_sstopa_base(nbr, base, (char *)buff, 200) != true)
+		return (NULL);
+	return (ft_strdup(buff));
 }
 /*
 GPL-3.0 License:

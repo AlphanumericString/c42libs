@@ -12,8 +12,9 @@
 
 #include "tests/map_tests.h"
 #include "ft_map.h"
-#include "types/ft_map_types.h"
+#include "ft_mem.h"
 #include "ft_string.h"
+
 #include <stdlib.h>
 
 int	tmap_size(void)
@@ -30,7 +31,7 @@ int	tmap_size(void)
 		return (1);
 	ft_map_destroy(map);
 	ft_free(str);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

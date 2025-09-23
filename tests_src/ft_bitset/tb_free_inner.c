@@ -12,8 +12,9 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+
 #include "ft_bitset.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/bitset_tests.h"
 #include "types/ft_bitset_types.h"
 
@@ -51,7 +52,7 @@ int	tb_free_inner(void)
 		|| check_for_n(10000) != EXIT_SUCCESS
 		|| check_for_n(100000) != EXIT_SUCCESS)
 		return (6);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /*

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arr.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include <stdlib.h>
 

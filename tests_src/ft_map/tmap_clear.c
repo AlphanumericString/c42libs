@@ -29,7 +29,7 @@ int	tmap_clear(void)
 		return (1);
 	ft_map_clear(map);
 	ft_map_destroy(map);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

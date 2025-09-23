@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -39,7 +39,7 @@ int	t_dl_rev(void)
 	list = NULL;
 	if (ft_dl_rev(&list))
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

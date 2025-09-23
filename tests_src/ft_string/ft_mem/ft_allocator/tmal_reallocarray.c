@@ -23,7 +23,7 @@ int	tmal_reallocarray(void)
 	if (group_test.ptr_reallocarray != &ft_memimpl_reallocarray)
 		return (1);
 	ft_get_allocator(&prev);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

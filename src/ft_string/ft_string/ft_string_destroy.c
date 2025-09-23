@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_allocator__dev.h"
+#include "ft_tstring.h"
 
 void	ft_string_destroy(t_string **str)
 {

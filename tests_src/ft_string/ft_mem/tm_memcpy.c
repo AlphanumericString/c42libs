@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/str__mem_tests.h"
 
@@ -28,7 +29,7 @@ int	tm_memcpy(void)
 	if (ft_memcmp(str, str3, 10) != 0)
 		return (2);
 	ft_memcpy(str, str, 999);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

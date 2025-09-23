@@ -43,7 +43,7 @@ static int	test_ptr(void)
 		return (4);
 	if (ft_pair_cmp_first(NULL, NULL, NULL) != 0)
 		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	test_cmp(void)
@@ -58,7 +58,7 @@ static int	test_cmp(void)
 	ft_pair_set(&pair_b, (void *)c, (void *)a);
 	if (ft_pair_cmp_first(&pair_a, &pair_b, (t_data_cmp) & ft_strcmp) == 0)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tp_cmp_first(void)
@@ -71,7 +71,7 @@ int	tp_cmp_first(void)
 	ret = test_cmp();
 	if (ret != 0)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -13,7 +13,7 @@
 #include "types/ft_pair_types.h"
 
 #include "ft_defs.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_pair.h"
 
 void	ft_pair_destroy(t_pair **pair, const t_data_apply del_f)

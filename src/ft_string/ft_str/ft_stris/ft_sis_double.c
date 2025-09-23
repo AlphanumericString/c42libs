@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_stris.h"
 
 bool	ft_str_isdouble(const char *str)
 {

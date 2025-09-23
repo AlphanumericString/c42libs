@@ -15,6 +15,7 @@
 #include <stdbool.h>
 
 #include "ft_string.h"
+#include "ft_stris.h"
 #include "ft_char.h"
 
 // IEEE 754

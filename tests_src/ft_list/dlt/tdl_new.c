@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/fixtures.h"
 #include "tests/list__dl_tests.h"
 #include "ft_list.h"
@@ -32,7 +32,7 @@ int	t_dl_new(void)
 		return (talloc_set_failpoint(prev), 2);
 	talloc_set_failpoint(prev);
 	ft_dl_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

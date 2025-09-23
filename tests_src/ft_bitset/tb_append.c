@@ -32,7 +32,7 @@ static int	mt_bsappend(void)
 	talloc_set_failpoint(fp);
 	ft_bs_free(&b1);
 	ft_bs_free(&b2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static void	reset_bitsets(t_bitset **b1, t_bitset **b2)

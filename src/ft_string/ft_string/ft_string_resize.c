@@ -10,24 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
+#include "ft_tstring.h"
 
-int	ft_string_resize(t_string *str, size_t size)
+bool	ft_string_resize(t_string *str, size_t size)
 {
 	char	*new;
 
 	if (!str)
-		return (-1);
+		return (false);
 	if (size < (str->length + 1))
-		return (0);
+		return (true);
 	new = ft_calloc(size, sizeof(char));
 	if (!new)
-		return (-1);
+		return (false);
 	ft_memcpy(new, str->str, str->length + 1);
 	ft_free(str->str);
 	str->str = new;
 	str->capacity = size;
-	return (0);
+	return (true);
 }
 /*
 GPL-3.0 License:

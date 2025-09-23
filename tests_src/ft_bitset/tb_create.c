@@ -24,7 +24,7 @@ static int	mt_bsnew(void)
 	if (bitset.bits)
 		return (1 + 10);
 	talloc_set_failpoint(fp);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tb_create(void)

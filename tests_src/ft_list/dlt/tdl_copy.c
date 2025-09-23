@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 
@@ -27,7 +27,7 @@ int	t_dl_copy_node(void)
 	t_dlist	*copy;
 	int		prev;
 
-	data = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
 	*data = 42;
 	list = ft_dl_create(data);
 	copy = ft_dl_copy_node(list);

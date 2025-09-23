@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_defs.h"
+#include "ft_tstring.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
 
@@ -30,7 +31,7 @@ int	test_string_trim_chr(void)
 	if (str->length != 11 || str->capacity < 11)
 		return (4);
 	ft_string_destroy(&str);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

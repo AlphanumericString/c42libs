@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/fixtures.h"
 #include "tests/str__num_tests.h"

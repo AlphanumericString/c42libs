@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_tstring.h"
 #include "ft_string.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
@@ -31,7 +32,7 @@ int	test_string_rchr(void)
 		i++;
 	}
 	ft_string_destroy(&str);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

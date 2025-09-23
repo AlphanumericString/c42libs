@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "ft_arr.h"
 #include "ft_defs.h"
 #include "ft_string.h"
 #include "tests/fixtures.h"
@@ -38,7 +39,7 @@ static int	mt_tssplits(void)
 		return (2 + 10);
 	if (res3 != NULL)
 		return (2 + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	ts_splits(void)

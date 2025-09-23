@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_stris.h"
 #include <stdbool.h>
 
 bool	ft_str_isbool(const char *str)

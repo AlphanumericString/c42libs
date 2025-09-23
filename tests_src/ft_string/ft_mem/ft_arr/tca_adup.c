@@ -30,7 +30,7 @@ static int	mt_adup(void)
 	talloc_set_failpoint(fp);
 	if (dst)
 		return (10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	mt_andup(void)
@@ -44,7 +44,7 @@ static int	mt_andup(void)
 	talloc_set_failpoint(fp);
 	if (dst)
 		return (10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_adup(void)

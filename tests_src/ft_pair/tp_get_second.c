@@ -27,7 +27,7 @@ int	tp_second(void)
 		return (1);
 	if (ft_pair_second(NULL) != NULL)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

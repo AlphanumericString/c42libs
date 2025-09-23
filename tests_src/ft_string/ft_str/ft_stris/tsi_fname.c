@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_defs.h"
+#include "ft_stris.h"
 #include "tests/str__str_sis_tests.h"
 
 int	tsi_isfname(void)
 {
 	const char	*valid_str[20] = {
-		"long file name", "a.c", "_", "\033[0m",  NULL};
+		"long file name", "a.c", "_", "\033[0m", NULL};
 	const char	*err_str[20] = {
 		"this/is/not/a/file", "", NULL};
 	size_t		i;

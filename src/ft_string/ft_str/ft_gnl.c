@@ -10,95 +10,56 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "types/ft_string_types.h"
 #include "ft_string.h"
+
+#include <stddef.h>
 #include <unistd.h>
 
-static int	ft_strchr_index(const char *from, char c)
+static char	*extract_to(char **dst, char *from, char delim)
 {
-	int	i;
-
-	i = 0;
-	if (!from)
-		return (-1);
-	while (from[i] && from[i] != c)
-		i++;
-	if (from[i] == c)
-		return (i);
-	return (-1);
-}
-
-static int	mvstr(char *str, int nb, char delim)
-{
-	size_t	off;
-
-	if (ft_strchr_index(str, delim) != -1)
-		nb++;
-	off = 0;
-	while (off != BUFFER_SIZE)
-	{
-		if (off + nb < BUFFER_SIZE && str[off + nb])
-			str[off] = str[off + nb];
-		else
-			str[off] = 0;
-		off++;
-	}
-	return (0);
-}
-
-static int	split_from(char **dst, char *from, int pos, char delim)
-{
+	int		pos;
 	char	*ret;
 	size_t	or_len;
 	size_t	len;
-	size_t	i;
 
+	pos = ft_strclen(from, delim);
 	or_len = 0;
 	if (*dst)
-		or_len += ft_strlen(*dst);
+		or_len = ft_strlen(*dst);
 	len = or_len + pos + 1;
-	ret = ft_malloc(sizeof(char) * (len + 1));
+	ret = ft_calloc(sizeof(char), len + 1);
 	if (!ret)
-		return (-1);
-	ret[len] = 0;
-	i = 0;
-	while (i != len)
-	{
-		if (i < or_len)
-			ret[i] = (*dst)[i];
-		else
-			ret[i] = from[i - or_len];
-		i++;
-	}
+		return (ret);
+	ft_strlcpy(ret, *dst, len);
+	ft_strlcpy(ret + or_len, from, len - or_len + 1);
+	pos += (ft_strchr(from, delim) != NULL);
+	ft_memmove(from, from + pos, BUFFER_SIZE - pos);
+	ft_bzero(from + BUFFER_SIZE - pos, pos);
 	if (*dst)
 		ft_free(*dst);
-	return (*dst = ret, (mvstr(from, pos, delim) || 0));
+	return (*dst = ret, ret);
 }
 
 char	*ft_gnl(int fd)
 {
-	static char	loc_buff[1024][BUFFER_SIZE + 1] = {0};
+	static char	s_buff[1024][BUFFER_SIZE] = {0};
 	char		*ret;
 	int			rep;
 
 	ret = NULL;
-	while (ft_strchr_index(loc_buff[fd], '\n') == -1)
+	rep = BUFFER_SIZE;
+	while (ft_strchr(s_buff[fd], '\n') == NULL && rep == BUFFER_SIZE)
 	{
-		if (loc_buff[fd][0] && split_from(&ret, loc_buff[fd],
-			ft_strlen(loc_buff[fd]), '\n'))
+		if (s_buff[fd][0] && !extract_to(&ret, s_buff[fd], '\n'))
 			return (NULL);
-		rep = read(fd, loc_buff[fd], BUFFER_SIZE);
+		rep = read(fd, s_buff[fd], BUFFER_SIZE);
 		if (rep <= 0)
 			return (ret);
-		loc_buff[fd][rep] = 0;
-		if (rep != BUFFER_SIZE)
-			break ;
+		s_buff[fd][rep] = 0;
 	}
-	rep = ft_strchr_index(loc_buff[fd], '\n');
-	if (rep == -1)
-		rep = ft_strlen(loc_buff[fd]);
-	if (split_from(&ret, loc_buff[fd], rep, '\n'))
-		return (NULL);
+	ret = extract_to(&ret, s_buff[fd], '\n');
 	return (ret);
 }
 /*

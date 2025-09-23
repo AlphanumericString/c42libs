@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_tstring.h"
 
 int	ft_string_cmp(const t_string *str, const char *cmp)
 {

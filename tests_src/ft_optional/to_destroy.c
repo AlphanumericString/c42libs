@@ -32,7 +32,7 @@ int	to_destroy(void)
 		return (4);
 	if (ft_optional_destroy(NULL) != false)
 		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

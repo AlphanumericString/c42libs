@@ -12,13 +12,14 @@
 
 #include "ft_char.h"
 #include "tests/str__char_tests.h"
+#include <stdlib.h>
 
 static int	local_ishexdigit(int c)
 {
 	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')
 		|| (c >= 'A' && c <= 'F'))
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tc_ishexdigit(void)
@@ -32,7 +33,7 @@ int	tc_ishexdigit(void)
 			return (1);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

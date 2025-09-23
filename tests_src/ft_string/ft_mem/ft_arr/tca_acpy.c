@@ -28,7 +28,7 @@ int	tca_acpy(void)
 	ft_acpy(NULL, (t_const_arr)src);
 	ft_acpy((t_iconst_arr)dst, NULL);
 	ft_free(dst);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_alcpy(void)
@@ -47,7 +47,7 @@ int	tca_alcpy(void)
 	ft_alcpy(NULL, 4, (t_const_arr)src);
 	ft_alcpy((t_iconst_arr)dst, 0, NULL);
 	ft_free(dst);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

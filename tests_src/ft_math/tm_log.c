@@ -12,6 +12,7 @@
 
 #include "ft_math.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 int	tm_log(void)
 {
@@ -32,7 +33,7 @@ int	tm_log(void)
 	x = -12;
 	if (ft_log(x) != -1)
 		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_llogof(void)
@@ -47,7 +48,7 @@ int	tm_llogof(void)
 		return (4);
 	if (ft_llogof(23, 3) != 2)
 		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_ullogof(void)
@@ -58,7 +59,7 @@ int	tm_ullogof(void)
 		return (2);
 	if (ft_ullogof(2, 2) != 1)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_logof(void)
@@ -71,7 +72,7 @@ int	tm_logof(void)
 		return (3);
 	if (ft_logof(8, 2) != 3)
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

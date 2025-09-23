@@ -37,7 +37,7 @@ int	to_dup(void)
 	if (ft_optional_dup(&opt_a))
 		return (4);
 	talloc_set_failpoint(prev);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

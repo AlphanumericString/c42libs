@@ -32,7 +32,7 @@ t_allocator_group	ft_get_allocator(const t_allocator_group *ag)
 
 void	ft_set_allocator(void)
 {
-	if (SELF_ALLOC == true)
+	if (FT_ALLOC_SELF == true)
 		ft_set_ft_alloc();
 	else
 		ft_set_gnu_alloc();

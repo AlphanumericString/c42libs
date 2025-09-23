@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "types/ft_list_types.h"
 
 #include "tests/list__cl_tests.h"

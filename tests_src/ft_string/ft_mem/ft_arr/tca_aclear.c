@@ -31,7 +31,7 @@ int	tca_aclear(void)
 	ft_aclear((t_iconst_arr)arr);
 	if (ft_alen((t_const_arr)arr) != 0 || arr[2] != (int *)42)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_string.h"
+#include "ft_tstring.h"
 #include "tests/str__t_str_test.h"
 
 int	test_string_set_inplace(void)

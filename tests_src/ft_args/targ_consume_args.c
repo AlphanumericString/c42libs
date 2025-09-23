@@ -38,7 +38,7 @@ int	targ_consume_args_test(void)
 	fake_argc = 4012;
 	if (ft_consume_args(&test, &fake_argc) || ft_consume_args(&tmp, &fake_argc))
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arr.h"
 #include "tests/map_tests.h"
+#include "ft_mem.h"
 #include "ft_map.h"
 #include "ft_string.h"
 #include "types/ft_map_types.h"
@@ -36,7 +38,7 @@ static int	tmap_remove_normal(void)
 		return (3);
 	ft_map_destroy(map);
 	ft_free(str);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	tmap_remove_colision(void)
@@ -76,7 +78,7 @@ int	tmap_remove(void)
 	ret = tmap_remove_colision();
 	if (ret != 0)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

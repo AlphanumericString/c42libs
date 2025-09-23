@@ -12,6 +12,7 @@
 
 #include "ft_math.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 int	tm_min(void)
 {
@@ -25,7 +26,7 @@ int	tm_min(void)
 		return (2);
 	if (ft_min(c, a) != a)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_max(void)
@@ -40,7 +41,7 @@ int	tm_max(void)
 		return (2);
 	if (ft_max(c, a) != c)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

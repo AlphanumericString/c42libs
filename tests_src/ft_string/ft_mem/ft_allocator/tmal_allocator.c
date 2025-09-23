@@ -38,7 +38,7 @@ int	tmal_allocator(void)
 		|| curent.ptr_realloc != prev.ptr_realloc
 		|| curent.ptr_reallocarray != prev.ptr_reallocarray)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

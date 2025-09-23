@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
 #include "tests/tests.h"
 #include "tests/str__mem_tests.h"
-#include "unistd.h"
+#include "ft_mem.h"
 #include <stddef.h>
 
 static const t_fnamed	*tm_tests(void)
@@ -23,7 +22,8 @@ static const t_fnamed	*tm_tests(void)
 	{"calloc", tm_calloc}, {"realloc", tm_realloc}, {"free", tm_free},
 	{"free_clear", tm_freecl}, {"memchr", tm_memchr}, {"memcmp", tm_memcmp},
 	{"memcpy", tm_memcpy}, {"memmap", tm_memmap}, {"memmove", tm_memmove},
-	{"memset", tm_memset}, {"swap", tm_swap}, {"qsort", tm_qsort},
+	{"memset", tm_memset}, {"swap_ptr", tm_swap_ptr}, {"memrev", tm_memrev},
+	{"memnrev", tm_memnrev}, {"swap", tm_swap}, {"swap_xor", tm_swap_xor},
 	{NULL, NULL}};
 
 	return (tests);
@@ -32,8 +32,8 @@ static const t_fnamed	*tm_tests(void)
 t_module	*mem_tests(void)
 {
 	size_t					i;
-	const t_mod_constructor	sbm[] = {arr_module_tests,
-		arena_module_tests, allocator_module_tests, NULL};
+	const t_mod_constructor	sbm[] = {arr_module_tests, arena_module_tests,
+		allocator_module_tests, algorithms_module_tests, NULL};
 	const t_fnamed			*funcs = tm_tests();
 	t_module				*args;
 

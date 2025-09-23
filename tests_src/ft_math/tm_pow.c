@@ -12,6 +12,7 @@
 
 #include "ft_math.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 int	tm_powd(void)
 {
@@ -30,7 +31,7 @@ int	tm_powd(void)
 		return (1);
 	if (ft_pow_d(0, y) != 0)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_pow(void)
@@ -50,7 +51,7 @@ int	tm_pow(void)
 		return (1);
 	if (ft_pow(0, y) != 0)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

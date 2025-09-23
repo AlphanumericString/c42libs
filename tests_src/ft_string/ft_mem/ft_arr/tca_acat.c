@@ -38,7 +38,7 @@ int	tca_acat(void)
 			return (2);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_alcat(void)

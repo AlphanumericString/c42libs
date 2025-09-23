@@ -30,7 +30,7 @@ int	t_ll_new(void)
 	if (ft_ll_new())
 		return (2);
 	talloc_set_failpoint(prev);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

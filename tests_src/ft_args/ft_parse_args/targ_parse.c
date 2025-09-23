@@ -15,7 +15,10 @@
 #include "internal/args_helper.h"
 #include "types/ft_args_types.h"
 #include "tests/args_tests.h"
-#include "unistd.h"
+#include "ft_mem.h"
+
+#include <stdio.h>
+#include <unistd.h>
 #include <stddef.h>
 
 // FT_AT_INT = 1 << 4,	// todo: maybe add uint ?
@@ -73,14 +76,14 @@ static int	targp_err(int err_fd, const char **args_to_test,
 	if (ft_parse_args(args_to_test, &test) == EXIT_SUCCESS)
 		return (5);
 	if (!err_str)
-		return (0);
+		return (EXIT_SUCCESS);
 	err = ft_gnl(err_fd);
 	ft_strlcpy(str, PREDICATE, sizeof(str));
 	ft_strlcat(str, err_str, sizeof(str));
 	if (!err || ft_strcmp(err, str) != 0)
 		return (6);
 	ft_free_clear((void *)&err);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	targ_parse(void)

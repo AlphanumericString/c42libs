@@ -13,6 +13,7 @@
 #include "ft_math.h"
 #include "sys/types.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 int	tm_nbrlen(void)
 {
@@ -27,7 +28,7 @@ int	tm_nbrlen(void)
 			return (i + 1);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_unbrlen_base(void)
@@ -52,7 +53,7 @@ int	tm_unbrlen_base(void)
 		}
 		j++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_nbrlen_base(void)
@@ -77,7 +78,7 @@ int	tm_nbrlen_base(void)
 		}
 		j++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

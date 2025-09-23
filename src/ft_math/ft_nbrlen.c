@@ -36,9 +36,9 @@ int	ft_nbrlen_base(ssize_t nbr, size_t blen)
 		return (1);
 	if (nbr < 0)
 	{
-		if (nbr == SSIZE_MIN)
+		if (nbr == FT_SSIZE_MIN)
 		{
-			nbr = SSIZE_MAX;
+			nbr = FT_SSIZE_MAX;
 			if (blen == 2)
 				nbr_len++;
 		}

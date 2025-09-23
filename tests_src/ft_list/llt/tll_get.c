@@ -39,7 +39,7 @@ int	t_ll_get_datas(void)
 	talloc_set_failpoint(prev);
 	ft_ll_clear(&list, ft_free);
 	ft_free(datas);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_ll_get_nodes(void)
@@ -63,7 +63,7 @@ int	t_ll_get_nodes(void)
 	talloc_set_failpoint(prev);
 	ft_ll_clear(&list, ft_free);
 	ft_free(nodes);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
+#include "ft_allocator__dev.h"
+#include "ft_arr.h"
 #include "ft_list.h"
-#include "ft_string.h"
+#include "ft_sort.h"
 #include "types/ft_list_types.h"
 
 #include "tests/list__ll_tests.h"
-#include "tests/tests_lambda_functions.h"
 
 int	t_ll_check_circular(void)
 {
@@ -50,15 +50,15 @@ int	t_ll_check_sorted(void)
 
 	lst = NULL;
 	ft_ll_push(&lst, (void *)8);
-	if (ft_ll_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != true)
+	if (ft_ll_check_sorted(lst, ft_cmp_ptr) != true)
 		return (1);
 	ft_ll_push(&lst, (void *)7);
-	if (ft_ll_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != true)
+	if (ft_ll_check_sorted(lst, ft_cmp_ptr) != true)
 		return (2);
 	ft_ll_push(&lst, (void *)9);
-	if (ft_ll_check_sorted(NULL, (t_data_cmp)cmp_raw_ptr) != true)
+	if (ft_ll_check_sorted(NULL, ft_cmp_ptr) != true)
 		return (3);
-	if (ft_ll_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != false)
+	if (ft_ll_check_sorted(lst, ft_cmp_ptr) != false)
 		return (4);
 	return (ft_ll_delete(&lst, NULL), EXIT_SUCCESS);
 }
@@ -74,7 +74,7 @@ int	t_ll_check_health(void)
 	if (ft_ll_check_health(lst) == false)
 		return (2);
 	ft_ll_clear(&lst, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arr.h"
 #include "ft_vector.h"
-#include "types/ft_vector_types.h"
-
-#include "ft_string.h"
+#include "ft_allocator__dev.h"
 
 #include "tests/tests_lambda_functions.h"
 #include "tests/vector_tests.h"
@@ -70,7 +69,7 @@ int	tv_filter(void)
 	ret = base_case();
 	if (ret)
 		return (ret);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

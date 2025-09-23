@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_allocator__dev.h"
 #include "tests/str__mem_tests.h"
 
@@ -21,7 +21,7 @@ int	tm_free(void)
 	str = ft_calloc(10, sizeof(char));
 	ft_free(str);
 	ft_free(NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

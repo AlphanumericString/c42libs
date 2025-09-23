@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_args.h"
-#include "types/ft_args_types.h"
 #include "ft_string.h"
+#include "ft_args.h"
+#include "ft_mem.h"
+#include "types/ft_args_types.h"
 #include "internal/args_helper.h"
 #include "internal/args_helper_types.h"
 

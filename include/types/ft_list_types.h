@@ -13,12 +13,14 @@
 #ifndef FT_LIST_TYPES_H
 # define FT_LIST_TYPES_H
 
+# include "ft_defs.h"
 # define FTLIST_SUCCESS EXIT_SUCCESS
 # define FTLIST_FAILURE EXIT_FAILURE
 
-/// @brief Structure representing a node in a list
+/// @brief Structure representing a node in a simple linked list
 /// @param data The data of the node
 /// @param next The next node
+/// @note this is the naive first apporoach of a linked list
 typedef struct s_list
 {
 	void				*data;
@@ -29,6 +31,7 @@ typedef struct s_list
 /// @param data The data of the node
 /// @param next The next node
 /// @param prev The previous node
+/// @note this is the naive first apporoach of a doubly linked list
 typedef struct s_dl_list
 {
 	struct s_dl_list	*next;
@@ -36,6 +39,8 @@ typedef struct s_dl_list
 	void				*data;
 }						t_dlist;
 
+/// @brief Structure for circular lists, done with a rename to explicit
+///		functions working on circular lists
 typedef t_dlist			t_clist;
 
 /// @brief Type of function to apply on a doubly linked list node

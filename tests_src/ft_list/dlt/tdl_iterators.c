@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -38,7 +38,7 @@ int	t_dl_at(void)
 	if (at)
 		return (5);
 	ft_dl_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_begin(void)
@@ -61,7 +61,7 @@ int	t_dl_begin(void)
 	else if (begin->prev)
 		return (5);
 	ft_dl_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_end(void)
@@ -82,7 +82,7 @@ int	t_dl_end(void)
 	else if (end->prev != list)
 		return (4);
 	ft_dl_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_mem.h"
+#include "ft_tstring.h"
 
 void	ft_string_trim(t_string *str)
 {
@@ -24,8 +26,6 @@ void	ft_string_trim_chr(t_string *str, char c)
 	return (ft_string_trimstr(str, (char *)to_trim));
 }
 
-// placing the null terminator at the end of the string
-// because str->str is not reset after.
 void	ft_string_trimstr(t_string *str, const char *to_trim)
 {
 	size_t	rpad;

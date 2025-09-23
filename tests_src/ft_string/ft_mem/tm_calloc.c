@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/str__mem_tests.h"
 #include <stdint.h>
 
@@ -30,7 +30,7 @@ int	tm_calloc(void)
 	str = ft_calloc(SIZE_MAX, SIZE_MAX);
 	if (str)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

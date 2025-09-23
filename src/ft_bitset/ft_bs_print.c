@@ -13,6 +13,7 @@
 #include "types/ft_bitset_types.h"
 #include "ft_bitset.h"
 #include "ft_string.h"
+#include "ft_mem.h"
 
 static void	print_bitset8(t_bitset8 b8, int fd, const char *fmt[3])
 {

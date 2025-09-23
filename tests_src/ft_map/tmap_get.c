@@ -19,6 +19,7 @@
 */
 
 #include "tests/map_tests.h"
+#include "ft_mem.h"
 #include "ft_map.h"
 #include "types/ft_map_types.h"
 #include "ft_string.h"
@@ -46,7 +47,7 @@ static int	tmap_get_ultra_small(void)
 	else if (ft_strcmp((char *)ret, "value2"))
 		return (4);
 	ft_map_destroy_free(map, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	tmap_normal(void)
@@ -74,7 +75,7 @@ static int	tmap_normal(void)
 		return (5);
 	ft_map_destroy(map);
 	ft_free(str);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	tmap_get_null(void)
@@ -97,7 +98,7 @@ static int	tmap_get_null(void)
 	if (node)
 		return (4);
 	ft_map_destroy(map);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tmap_get(void)
@@ -113,7 +114,7 @@ int	tmap_get(void)
 	ret = tmap_get_null();
 	if (ret != 0)
 		return (ret + 10 * 2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

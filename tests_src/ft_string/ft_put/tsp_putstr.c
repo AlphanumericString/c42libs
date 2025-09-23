@@ -31,7 +31,7 @@ int	tsp_putstr(void)
 	fd = open(file_name, O_RDONLY);
 	bread = read(fd, buff, 100);
 	if (bread < 0 || ft_strncmp(buff, str, ft_strlen(str)) != 0)
-		return (1);
+		return (destroy_test_file(fd, file_name), 1);
 	destroy_test_file(fd, file_name);
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putstr_fd(NULL, fd);
@@ -39,9 +39,8 @@ int	tsp_putstr(void)
 	fd = open(file_name, O_RDONLY);
 	bread = read(fd, buff, 100);
 	if (bread != 0)
-		return (2);
-	destroy_test_file(fd, file_name);
-	return (EXIT_SUCCESS);
+		return (destroy_test_file(fd, file_name), 2);
+	return (destroy_test_file(fd, file_name), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

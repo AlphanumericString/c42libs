@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_vector.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include <stddef.h>
 #include <stdlib.h>
 

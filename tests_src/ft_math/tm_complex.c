@@ -13,6 +13,7 @@
 #include "ft_math.h"
 #include "types/ft_math_types.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 int	tm_complex_abs(void)
 {
@@ -30,7 +31,7 @@ int	tm_complex_abs(void)
 	res = ft_complex_abs(z);
 	if (res < 59.39 || res > 59.41)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_complex_addl(void)
@@ -45,7 +46,7 @@ int	tm_complex_addl(void)
 	res = ft_complex_addl(y, 42);
 	if (res.real != 42 || res.imaginary != 84)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_complex_mull(void)
@@ -60,7 +61,7 @@ int	tm_complex_mull(void)
 	res = ft_complex_mull(y, 2);
 	if (res.real != 0 || res.imaginary != 84)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_complex_muld(void)
@@ -75,7 +76,7 @@ int	tm_complex_muld(void)
 	res = ft_complex_muld(y, 2.5);
 	if (res.real != 0 || res.imaginary != 105)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -24,7 +24,7 @@ int	tmap_capacity(void)
 	if (ret != 10)
 		return (1);
 	ft_map_destroy(map);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

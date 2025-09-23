@@ -17,6 +17,7 @@
 #include "ft_string.h"
 
 #include <stddef.h>
+#include <stdio.h>
 #include <unistd.h>
 
 static bool	maybe_run(const char **args, t_parser_state state,
@@ -88,17 +89,21 @@ void	v2_parse_long_opt(t_parser_state *st, const char **av, void *data)
 	const t_opt		*ls = st->opt_list;
 	size_t			op;
 	const char		*str_o;
+	size_t			cmp_len;
 
 	op = 0;
 	st->mode = FTPA_LONG;
 	str_o = av[st->arg_it] + 2;
+	cmp_len = ft_strclen(str_o, '=');
+	if (cmp_len == ft_strlen(str_o))
+		cmp_len = -1;
 	while (ls[op].func
 		&& !(ls[op].long_name
-			&& !ft_strncmp(ls[op].long_name, str_o, ft_strclen(str_o, '='))))
+			&& !ft_strncmp(ls[op].long_name, str_o, cmp_len)))
 		op++;
 	if (!ls[op].func
 		|| !(ls[op].long_name
-			&& !ft_strncmp(ls[op].long_name, str_o, ft_strclen(str_o, '='))))
+			&& !ft_strncmp(ls[op].long_name, str_o, cmp_len)))
 	{
 		st->err = 1;
 		return (explain(av[st->arg_it]));

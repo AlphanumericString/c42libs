@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
 #include "tests/list__ll_tests.h"
@@ -38,7 +38,7 @@ int	t_ll_rev(void)
 	rev = ft_ll_rev(NULL);
 	if (rev || ft_ll_rev(&rev))
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

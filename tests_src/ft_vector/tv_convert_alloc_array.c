@@ -12,10 +12,9 @@
 
 #include "tests/vector_tests.h"
 
+#include "ft_arr.h"
 #include "ft_vector.h"
-#include "types/ft_vector_types.h"
-
-#include "ft_string.h"
+#include "ft_allocator__dev.h"
 #include "tests/fixtures.h"
 
 static int	**create_tb_int(size_t *size)
@@ -88,7 +87,7 @@ static int	mt_case(void)
 		return (1);
 	talloc_set_failpoint(f_p);
 	ft_afree((void **)arr);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tv_convert_alloc_array(void)
@@ -101,7 +100,7 @@ int	tv_convert_alloc_array(void)
 	ret = mt_case();
 	if (ret)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

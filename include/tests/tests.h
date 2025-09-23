@@ -61,6 +61,7 @@ t_module		*tests_circular_linked_list_all(void);
 t_module		*arr_module_tests(void);
 t_module		*allocator_module_tests(void);
 t_module		*arena_module_tests(void);
+t_module		*algorithms_module_tests(void);
 
 // - string/str/stris
 t_module		*stris_tests(void);

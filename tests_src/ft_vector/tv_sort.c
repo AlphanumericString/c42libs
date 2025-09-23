@@ -43,7 +43,7 @@ static int	base_cases(void)
 		|| ft_vec_at(vec, 2) != (t_any)44)
 		return (3);
 	ft_vec_destroy(&vec);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tv_sort(void)
@@ -53,7 +53,7 @@ int	tv_sort(void)
 	ret = base_cases();
 	if (ret)
 		return (ret);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

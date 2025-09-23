@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
+#include "ft_sort.h"
 #include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
-#include "tests/tests_lambda_functions.h"
 #include "tests/list__ll_tests.h"
 #include <stdlib.h>
 
@@ -24,27 +24,27 @@ int	t_ll_find(void)
 	int		*data;
 	int		*data2;
 	int		*data3;
-	void	*found;
+	t_list	*found;
 
-	data3 = malloc(sizeof(int));
+	data3 = ft_malloc(sizeof(int));
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	found = ft_ll_find(list, data2, NULL);
-	if (!found || *(int *)found != *data2)
+	if (!found || *(int *)found->data != *data2)
 		return (1);
 	*data3 = 63;
-	found = ft_ll_find(list, data3, cmp_int);
+	found = ft_ll_find(list, data3, ft_cmp_int_p);
 	if (found)
 		return (2);
 	found = ft_ll_find(NULL, data2, NULL);
 	if (found)
 		return (3);
 	*data3 = 42;
-	found = ft_ll_find(list, data3, cmp_int);
-	if (!found || *(int *)found != *data)
+	found = ft_ll_find(list, data3, ft_cmp_int_p);
+	if (!found || *(int *)found->data != *data)
 		return (4);
 	ft_ll_clear(&list, ft_free);
 	free(data3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

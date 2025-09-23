@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_defs.h"
+#include "ft_tstring.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
 
@@ -26,7 +27,7 @@ int	test_string_ncmp(void)
 	if (ft_string_ncmp(str, "Hello World!", 12) == 0)
 		return (3);
 	ft_string_destroy(&str);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

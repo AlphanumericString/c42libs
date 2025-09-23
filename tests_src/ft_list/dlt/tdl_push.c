@@ -71,7 +71,7 @@ int	t_dl_pop_back(void)
 		return (1);
 	free(data1);
 	free(data2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_push(void)
@@ -96,7 +96,7 @@ int	t_dl_push(void)
 		return (talloc_set_failpoint(prev), 4);
 	talloc_set_failpoint(prev);
 	ft_dl_clear(&list, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_push_back(void)
@@ -120,7 +120,7 @@ int	t_dl_push_back(void)
 		return (talloc_set_failpoint(prev), 3);
 	talloc_set_failpoint(prev);
 	ft_dl_clear(&list, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

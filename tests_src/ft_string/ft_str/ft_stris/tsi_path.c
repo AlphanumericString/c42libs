@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_defs.h"
+#include "ft_stris.h"
 #include "tests/str__str_sis_tests.h"
+#include <stdio.h>
 
 int	tsi_ispath(void)
 {
@@ -59,4 +61,3 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-

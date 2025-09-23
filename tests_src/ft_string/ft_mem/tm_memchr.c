@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/str__mem_tests.h"
 
 // test 1: basic test - str aligned + search char in str
@@ -42,7 +43,7 @@ int	tm_memchr(void)
 		|| ft_memchr(str, '1', 0) || ft_memchr(str, 4242, 1)
 		|| ft_memchr(NULL, 42, 1) || ft_memchr(str, -42, 1))
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/str__mem_tests.h"
 
 /*
@@ -34,7 +35,7 @@ int	tm_memset(void)
 	ft_memset(str, 'c', 5);
 	if (ft_memcmp(str, "cccccaaaaa", 10) != 0)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

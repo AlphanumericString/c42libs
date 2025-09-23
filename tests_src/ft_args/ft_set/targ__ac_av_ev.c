@@ -32,7 +32,7 @@ int	targ_ac(void)
 			return (it + 1);
 		it++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	targ_ev_from_acav(void)

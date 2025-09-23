@@ -12,6 +12,7 @@
 
 #include "ft_char.h"
 #include "tests/str__char_tests.h"
+#include <stdlib.h>
 
 static int	local_toupper(int c)
 {
@@ -31,7 +32,7 @@ int	tc_toupper(void)
 			return (1);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

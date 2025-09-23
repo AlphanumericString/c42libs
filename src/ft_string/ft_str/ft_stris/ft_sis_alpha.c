@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_stris.h"
 #include "ft_char.h"
 
 bool	ft_str_isalpha(const char *str)

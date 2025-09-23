@@ -28,7 +28,7 @@ int	targ_program_name_test(void)
 	ft_set_progname(s2);
 	if (ft_progname() == s2)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

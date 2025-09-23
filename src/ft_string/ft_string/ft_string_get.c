@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_tstring.h"
 
 const char	*ft_string_get(const t_string *str)
 {

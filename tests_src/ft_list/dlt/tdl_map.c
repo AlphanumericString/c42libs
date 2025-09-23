@@ -14,7 +14,7 @@
 
 #include "ft_list.h"
 #include "types/ft_list_types.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 
 #include "tests/lists_test_utils.h"
 #include "tests/tests_lambda_functions.h"
@@ -66,7 +66,7 @@ static int	mt_case(void)
 		return (talloc_set_failpoint(prev), 8);
 	talloc_set_failpoint(prev);
 	ft_dl_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_map(void)
@@ -79,7 +79,7 @@ int	t_dl_map(void)
 	ret = mt_case();
 	if (ret)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 
 t_dlist	*ft_dl_new(void)
 {

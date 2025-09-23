@@ -11,11 +11,14 @@
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <unistd.h>
 
+#include "ft_defs.h"
+#include "ft_mem.h"
 #include "ft_string.h"
+#include "ft_tstring.h"
 #include "tests/fixtures.h"
 #include "tests/str__t_str_test.h"
-#include "unistd.h"
 
 static int	normal_cases(void)
 {
@@ -72,7 +75,7 @@ int	test_string_put(void)
 	ret = error_case();
 	if (ret)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

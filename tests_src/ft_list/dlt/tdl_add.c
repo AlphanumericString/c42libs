@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include <stdlib.h>
@@ -22,8 +22,8 @@ int	t_dl_add_front(void)
 	int		*data;
 	int		*data2;
 
-	data = malloc(sizeof(int));
-	data2 = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
+	data2 = ft_malloc(sizeof(int));
 	*data = 42;
 	*data2 = 21;
 	list = ft_dl_create(data2);
@@ -39,7 +39,7 @@ int	t_dl_add_front(void)
 		return (ft_free(data), ft_free(data2), ft_dl_clear(&list, NULL), 4);
 	ft_dl_clear(&list, ft_free);
 	ft_dl_add_front(NULL, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_add_back(void)
@@ -49,8 +49,8 @@ int	t_dl_add_back(void)
 	int		*data2;
 
 	list = NULL;
-	data = malloc(sizeof(int));
-	data2 = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
+	data2 = ft_malloc(sizeof(int));
 	*data = 42;
 	*data2 = 21;
 	ft_dl_add_back(&list, ft_dl_create(data));
@@ -65,7 +65,7 @@ int	t_dl_add_back(void)
 		return (ft_free(data), ft_free(data2), ft_dl_clear(&list, NULL), 3);
 	ft_dl_clear(&list, ft_free);
 	ft_dl_add_back(NULL, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

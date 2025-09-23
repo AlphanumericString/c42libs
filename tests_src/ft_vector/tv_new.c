@@ -26,7 +26,7 @@ int	tv_new(void)
 	else if (!vec->datas)
 		return (1);
 	ft_vec_destroy(&vec);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -37,7 +37,7 @@ int	tv_swap(void)
 	else if (*(int *)ft_vec_at(vec, 2) != 42)
 		return (1);
 	ft_vec_destroy(&vec);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

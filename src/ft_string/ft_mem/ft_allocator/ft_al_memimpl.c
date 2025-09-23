@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include <unistd.h>
 #include <stddef.h>
@@ -47,7 +48,7 @@ void	*ft_memimpl_calloc(size_t nmemb, size_t size)
 }
 
 // null == NOT_IMPLEMENTED
-	// if (SELF_ALLOC == false)
+	// if (FT_ALLOC_SELF == false)
 	// 	return (free(ptr));
 void	ft_memimpl_free(void *ptr)
 {
@@ -57,7 +58,7 @@ void	ft_memimpl_free(void *ptr)
 }
 
 // null == NOT_IMPLEMENTED
-	// if (SELF_ALLOC == false)
+	// if (FT_ALLOC_SELF == false)
 	// 	return (realloc(ptr, size));
 void	*ft_memimpl_realloc(void *ptr, size_t size)
 {

@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
-#include "types/ft_list_types.h"
-#include "tests/lists_test_utils.h"
-#include "tests/tests_lambda_functions.h"
+#include "ft_sort.h"
+
 #include <stdlib.h>
+
 #include "tests/list__dl_tests.h"
+#include "tests/lists_test_utils.h"
 
 /*
 ft_dl_add_back(&list, ft_dl_create(data2));
@@ -31,12 +32,12 @@ int	t_dl_find(void)
 	int		*data2;
 	int		*data3;
 
-	data3 = malloc(sizeof(int));
+	data3 = ft_malloc(sizeof(int));
 	*data3 = 21;
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	found_ret[0] = ft_dl_find(list, data2, NULL);
 	found_ret[1] = ft_dl_find(list, data3, NULL);
-	found_ret[2] = ft_dl_find(list, data3, cmp_int);
+	found_ret[2] = ft_dl_find(list, data3, ft_cmp_int_p);
 	if (ft_dl_size(found_ret[0]) != 1 || found_ret[0]->data != data2)
 		return (1);
 	else if (found_ret[1])

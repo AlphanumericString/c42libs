@@ -37,7 +37,7 @@ int	tca_arev(void)
 		return (3);
 	ft_arev((t_iconst_arr)(const char *[1]){NULL});
 	ft_arev(NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_anrev(void)
@@ -62,7 +62,7 @@ int	tca_anrev(void)
 	ft_anrev(NULL, 42);
 	ft_anrev((t_iconst_arr)(const char *[1]){NULL}, 42);
 	ft_anrev((t_iconst_arr)(const char *[2]){"toto", NULL}, 42);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

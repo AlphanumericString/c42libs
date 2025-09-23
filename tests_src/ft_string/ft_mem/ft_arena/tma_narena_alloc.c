@@ -25,7 +25,7 @@ static int	mt_narena_alloc(void)
 	if (ptr)
 		return (1 + 10);
 	talloc_set_failpoint(fp);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tma_narena_alloc(void)

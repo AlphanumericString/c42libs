@@ -14,6 +14,7 @@
 #include "tests/pair_tests.h"
 #include "types/ft_pair_types.h"
 #include "ft_pair.h"
+#include "ft_mem.h"
 #include "tests/pair_tests.h"
 
 int	tp_destroy(void)
@@ -39,7 +40,7 @@ int	tp_destroy(void)
 	ft_pair_destroy(NULL, NULL);
 	pair = NULL;
 	ft_pair_destroy(&pair, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tp_destroy_sep(void)
@@ -65,7 +66,7 @@ int	tp_destroy_sep(void)
 	ft_pair_destroy_sep(NULL, NULL, NULL);
 	pair = NULL;
 	ft_pair_destroy_sep(&pair, NULL, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

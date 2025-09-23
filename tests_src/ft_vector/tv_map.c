@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_vector.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
@@ -37,7 +38,7 @@ static int	base_case(void)
 	ft_vec_apply(ret, ft_free);
 	ft_vec_destroy(&vec);
 	ft_vec_destroy(&ret);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	mt_case(void)
@@ -68,7 +69,7 @@ int	tv_map(void)
 	ret = mt_case();
 	if (ret)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

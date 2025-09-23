@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_tstring.h"
+#include "ft_mem.h"
 #include <stdbool.h>
 
-int	ft_string_shrink(t_string *str)
+bool	ft_string_shrink(t_string *str)
 {
 	char	*new;
 

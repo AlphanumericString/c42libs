@@ -24,7 +24,7 @@ int	tca_alen(void)
 		|| ft_alen((t_const_arr)ar2) != 2
 		|| ft_alen((t_const_arr)ar3) != 3)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

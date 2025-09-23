@@ -12,6 +12,7 @@
 
 #include "ft_char.h"
 #include "ft_string.h"
+#include "ft_stris.h"
 
 bool	ft_str_isoct(const char *str)
 {

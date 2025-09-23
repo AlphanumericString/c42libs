@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_arr.h"
 #include "ft_args.h"
 #include "ft_defs.h"
 #include "ft_string.h"

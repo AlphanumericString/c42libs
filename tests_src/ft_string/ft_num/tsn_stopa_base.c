@@ -32,11 +32,9 @@ static int	test_for(const size_t *nbrs, const char **expected,
 			return (i + 1);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
-// TODO:
-// NOT IMPLEMENTED
 int	tsn_stopa_base(void)
 {
 	const char		*b[] = {FT_DECBASE, FT_HEXBASE};

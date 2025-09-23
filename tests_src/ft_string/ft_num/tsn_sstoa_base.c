@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bits/posix1_lim.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/str__num_tests.h"
 #include "ft_defs.h"
@@ -50,8 +50,8 @@ static const char	**load_expecteds(void)
 //
 int	tsn_sstoa_base(void)
 {
-	const ssize_t	nbrs[] = {0, 23, 42, 99, INT_MAX, SSIZE_MAX, INT_MIN,
-		SSIZE_MIN};
+	const ssize_t	nbrs[] = {0, 23, 42, 99, INT_MAX, FT_SSIZE_MAX, INT_MIN,
+		FT_SSIZE_MIN};
 	const char		*bases[] = {FT_DECBASE, FT_HEXBASE, FT_BINBASE};
 	const char		**expected = (const char **)load_expecteds();
 	size_t			i;
@@ -73,7 +73,7 @@ int	tsn_sstoa_base(void)
 	if (ft_sstoa_base(SIZE_MAX, FT_DECBASE FT_DECBASE) != NULL
 		|| ft_sstoa_base(SIZE_MAX, NULL) != NULL)
 		return (42);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

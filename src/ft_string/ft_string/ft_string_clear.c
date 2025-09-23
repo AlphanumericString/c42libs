@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_tstring.h"
+#include "ft_mem.h"
 
 void	ft_string_clear(t_string *str)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_tstring.h"
 #include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
@@ -28,9 +28,10 @@ static int	mt_string_insert_s(void)
 		|| ft_string_insert_s(str, src, -1) != 0)
 		return (talloc_set_failpoint(fp), 1);
 	if (ft_string_cmp(str, "Hello") != 0 || str->length != 5)
-		return (2);
+		return (talloc_set_failpoint(fp), 2);
 	ft_string_destroy(&str);
 	ft_string_destroy(&src);
+	talloc_set_failpoint(fp);
 	return (EXIT_SUCCESS);
 }
 

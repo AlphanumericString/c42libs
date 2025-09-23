@@ -24,11 +24,11 @@ static int	error_cases(int fd, const char *const f_name)
 
 	fd = open(f_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (ft_putendl_fd(NULL, fd) != -1)
-		return (1);
+		return (destroy_test_file(fd, f_name), 1);
 	fd = (close(fd), open(f_name, O_RDONLY));
 	bread = read(fd, buff, 100);
 	if (bread != 0)
-		return (2);
+		return (destroy_test_file(fd, f_name), 2);
 	destroy_test_file(fd, f_name);
 	fd = -1;
 	if (ft_putendl_fd("bad fd", fd) != -1)

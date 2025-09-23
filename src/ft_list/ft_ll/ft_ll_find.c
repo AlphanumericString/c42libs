@@ -12,7 +12,7 @@
 
 #include "ft_list.h"
 
-void	*ft_ll_find(const t_list *list, const void *data,
+t_list	*ft_ll_find(const t_list *list, const void *data,
 		int (*cmp)(const void *, const void *))
 {
 	t_list	*it;
@@ -21,7 +21,7 @@ void	*ft_ll_find(const t_list *list, const void *data,
 	while (it)
 	{
 		if (data == it->data || (cmp && cmp(it->data, data) == 0))
-			return (it->data);
+			return (it);
 		it = it->next;
 	}
 	return (NULL);

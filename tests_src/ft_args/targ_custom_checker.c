@@ -28,7 +28,7 @@ int	targ_custom_checker_test(void)
 	ft_arg_set_custom_checker(loc_checker);
 	if (ft_arg_get_custom_checker() != loc_checker)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

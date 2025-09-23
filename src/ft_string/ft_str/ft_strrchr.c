@@ -11,24 +11,32 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <stddef.h>
 
 char	*ft_strrchr(const char *str, int c)
 {
-	char		*ret;
-	int			i;
-	const char	target = (char)c;
+	return (ft_strnrchr(str, -1, c));
+}
 
+char	*ft_strnrchr(const char *str, size_t n, int c)
+{
+	const char	target = (char)c;
+	size_t		len;
+	char		*ret;
+	size_t		i;
+
+	if (!str | !n)
+		return (NULL);
+	len = ft_strnlen(str, n);
 	ret = NULL;
 	i = 0;
-	while (str[i])
+	while (i < len)
 	{
 		if (str[i] == target)
 			ret = (char *)str + i;
 		i++;
 	}
-	if (str[i] == target)
-		return ((char *)str + i);
+	if (i < n && str[i] == target)
+		ret = (char *)str + i;
 	return (ret);
 }
 /*

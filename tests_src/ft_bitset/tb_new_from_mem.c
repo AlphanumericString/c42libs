@@ -39,7 +39,7 @@ int	tb_new_from_mem(void)
 		return (4);
 	if (ft_bs_new_from_mem("10101010", 0) != NULL)
 		return (5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

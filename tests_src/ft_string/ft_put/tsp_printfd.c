@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <errno.h>
 
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/str__put_tests.h"
 #include "tests/fixtures.h"

@@ -12,7 +12,7 @@
 
 #include "ft_list.h"
 #include "types/ft_list_types.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include <stdlib.h>
 
 // !target -> error list is circular, NULL is not the end of list

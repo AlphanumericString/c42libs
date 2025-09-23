@@ -29,7 +29,7 @@ static int	mt_bsnew(void)
 	if (bs)
 		return (2);
 	talloc_set_failpoint(fp);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tb_new(void)

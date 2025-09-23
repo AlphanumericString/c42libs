@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_char.h"
-#include "ft_string.h"
+#include "ft_stris.h"
 #include <stdbool.h>
 
 bool	ft_str_isdigit(const char *str)

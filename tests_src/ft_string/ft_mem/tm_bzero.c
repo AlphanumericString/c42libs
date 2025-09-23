@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/str__mem_tests.h"
 
 int	tm_bzero(void)
@@ -31,7 +31,7 @@ int	tm_bzero(void)
 			return (off + 10);
 	ft_bzero(tab, 0);
 	ft_bzero(NULL, 999);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

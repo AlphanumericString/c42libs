@@ -29,7 +29,7 @@ int	targ_version_test(void)
 	ft_set_version(s2);
 	if (ft_version() == s2)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

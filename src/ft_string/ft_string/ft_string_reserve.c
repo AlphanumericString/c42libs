@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_tstring.h"
+#include "ft_mem.h"
 
-// TODO: change return -> bool
-int	ft_string_reserve(t_string *str, size_t size)
+bool	ft_string_reserve(t_string *str, size_t size)
 {
 	char	*new;
 
 	if (size <= str->capacity)
-		return (0);
+		return (true);
 	new = ft_realloc(str->str, size);
 	if (!new)
-		return (-1);
+		return (false);
 	str->str = new;
 	str->capacity = size;
-	return (0);
+	return (true);
 }
 /*
 GPL-3.0 License:

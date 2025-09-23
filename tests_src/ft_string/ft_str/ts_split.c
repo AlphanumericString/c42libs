@@ -31,7 +31,7 @@ static int	mt_ts_split(void)
 	if (res != NULL)
 		return (2 + 10);
 	talloc_set_failpoint(fp);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	ts_split(void)

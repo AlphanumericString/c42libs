@@ -37,7 +37,7 @@ int	targ_setup_prog(void)
 	if (ft_ac() != 0 || ft_ev() != NULL)
 		return (7);
 	ft_setup_prog(argv3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

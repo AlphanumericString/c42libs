@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/str__mem_tests.h"
 
 int	tm_freecl(void)
@@ -24,7 +24,7 @@ int	tm_freecl(void)
 		return (1);
 	ft_free_clear(&ptr);
 	ft_free_clear(NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

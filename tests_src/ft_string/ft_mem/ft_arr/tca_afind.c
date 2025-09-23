@@ -33,7 +33,7 @@ int	tca_afind(void)
 		|| ft_afind((t_const_arr) NULL, (const void *)42) != NULL
 		|| ft_afind((t_const_arr)arr, NULL) != NULL)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_afindwith(void)

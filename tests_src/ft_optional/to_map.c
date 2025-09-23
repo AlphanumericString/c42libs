@@ -34,7 +34,7 @@ int	to_map(void)
 	opt.pres = OPT_NONE;
 	if (ft_optional_map(&opt, (t_data_tr_i *)f_list).pres != OPT_NONE)
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

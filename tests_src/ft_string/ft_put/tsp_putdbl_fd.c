@@ -10,18 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fcntl.h"
 #include "ft_allocator__dev.h"
+#include "ft_math.h"
 #include "ft_defs.h"
 #include "ft_string.h"
 #include "tests/fixtures.h"
 #include "tests/str__put_tests.h"
-#include "ft_math.h"
+
+#include <fcntl.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <unistd.h>
-
 #include <math.h>
+
+static int	bad_fd_tests(void)
+{
+	if (ft_putdbl_fd(42.0, 999999) != -1)
+		return (1);
+	if (ft_putdbl_fd(.02, 999999) != -1)
+		return (2);
+	if (ft_putdbl_fd(.0, 999999) != -1)
+		return (3);
+	if (ft_putdbl_fd(0, 999999) != -1)
+		return (4);
+	return (EXIT_SUCCESS);
+}
 
 static int	putdbl_to_file(const double *dbl, size_t nb, int fd)
 {
@@ -38,7 +51,6 @@ static int	putdbl_to_file(const double *dbl, size_t nb, int fd)
 	return (EXIT_SUCCESS);
 }
 
-// TODO: bad fd tests + norming
 int	tsp_putdbl_fd(void)
 {
 	const double	dbl[] = {INFINITY_D, -INFINITY_D, -NAN, 6.23, 42, -6.23,
@@ -57,8 +69,8 @@ int	tsp_putdbl_fd(void)
 	destroy_test_file(fd, file_name);
 	ft_free((t_any) file_name);
 	if (ft_strcmp(expected, res) != 0)
-		return (printf("g:'%s'\ne:'%s'\n", expected, res), ft_free(res), 1);
-	return (ft_free(res), 0);
+		return (1);
+	return (ft_free(res), bad_fd_tests());
 }
 /*
 GPL-3.0 License:

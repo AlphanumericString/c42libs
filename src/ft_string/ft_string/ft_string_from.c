@@ -11,7 +11,9 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include "ft_tstring.h"
 #include "ft_math.h"
+#include "ft_mem.h"
 
 // +1 for the null-byte
 t_string	*ft_string_from(const char *str)

@@ -12,10 +12,10 @@
 
 #include "ft_list.h"
 #include "ft_arr.h"
+#include "ft_sort.h"
 #include "types/ft_list_types.h"
 
 #include "tests/list__cl_tests.h"
-#include "tests/tests_lambda_functions.h"
 
 // maybe answer circular yes due to bward links ?
 int	tcl_check_circular(void)
@@ -41,7 +41,7 @@ int	tcl_check_circular(void)
 	if (ft_cl_check_circular(lst) != false)
 		return (4);
 	ft_afree((void **)nodes);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tcl_check_sorted(void)
@@ -49,17 +49,17 @@ int	tcl_check_sorted(void)
 	t_clist	*lst;
 
 	lst = NULL;
-	if (ft_cl_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != true)
+	if (ft_cl_check_sorted(lst, ft_cmp_ptr) != true)
 		return (1);
 	ft_cl_push(&lst, (void *)9);
-	if (ft_cl_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != true)
+	if (ft_cl_check_sorted(lst, ft_cmp_ptr) != true)
 		return (2);
 	ft_cl_push(&lst, (void *)8);
 	ft_cl_push(&lst, (void *)7);
-	if (ft_cl_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != true)
+	if (ft_cl_check_sorted(lst, ft_cmp_ptr) != true)
 		return (3);
 	ft_cl_push(&lst, (void *)10);
-	if (ft_cl_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != false)
+	if (ft_cl_check_sorted(lst, ft_cmp_ptr) != false)
 		return (4);
 	ft_cl_check_sorted(lst, NULL);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);

@@ -12,7 +12,7 @@
 
 #include "ft_optional.h"
 #include "types/ft_optional_types.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/fixtures.h"
 #include "tests/optional_tests.h"
 #include <stdlib.h>
@@ -23,7 +23,7 @@ int	to_from_val(void)
 	t_optional	*opt;
 	int			prev;
 
-	ptr = malloc(sizeof(int));
+	ptr = ft_malloc(sizeof(int));
 	*ptr = 42;
 	opt = ft_optional_from_val(ptr);
 	if (!opt || !opt->val || opt->val != ptr)
@@ -38,7 +38,7 @@ int	to_from_val(void)
 		return (talloc_set_failpoint(prev), 3);
 	talloc_set_failpoint(prev);
 	ft_free(ptr);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

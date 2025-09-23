@@ -10,23 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_string.h"
+#include "ft_tstring.h"
 
-int	ft_string_insert(t_string *str, const char *insert, size_t index)
+bool	ft_string_insert(t_string *str, const char *insert, size_t index)
 {
 	size_t	insert_len;
 	size_t	new_len;
 	char	*new_str;
 
 	if (!insert || !str)
-		return (0);
+		return (false);
 	insert_len = ft_strlen(insert);
 	if (index > str->length)
 		index = str->length;
 	new_len = str->length + insert_len;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (!new_str)
-		return (0);
+		return (false);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert, insert_len);
 	ft_memcpy(new_str + index + insert_len, str->str + index, str->length
@@ -37,10 +39,10 @@ int	ft_string_insert(t_string *str, const char *insert, size_t index)
 		str->str[new_len] = '\0';
 	str->length = new_len;
 	str->capacity += insert_len;
-	return (1);
+	return (true);
 }
 
-int	ft_string_insert_n(t_string *str, const char *insert, size_t index,
+bool	ft_string_insert_n(t_string *str, const char *insert, size_t index,
 		size_t n)
 {
 	size_t	new_len;
@@ -51,7 +53,7 @@ int	ft_string_insert_n(t_string *str, const char *insert, size_t index,
 	new_len = str->length + n;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (!new_str)
-		return (0);
+		return (false);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert, n);
 	ft_memcpy(new_str + index + n, str->str + index, str->length - index);
@@ -61,10 +63,10 @@ int	ft_string_insert_n(t_string *str, const char *insert, size_t index,
 		str->str[new_len] = '\0';
 	str->length = new_len;
 	str->capacity = new_len + 1;
-	return (1);
+	return (true);
 }
 
-int	ft_string_insert_c(t_string *str, char insert, size_t index)
+bool	ft_string_insert_c(t_string *str, char insert, size_t index)
 {
 	size_t	new_len;
 	char	*new_str;
@@ -74,7 +76,7 @@ int	ft_string_insert_c(t_string *str, char insert, size_t index)
 	new_len = str->length + 1;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (!new_str)
-		return (0);
+		return (false);
 	ft_memcpy(new_str, str->str, index);
 	new_str[index] = insert;
 	ft_memcpy(new_str + index + 1, str->str + index, str->length - index);
@@ -84,10 +86,10 @@ int	ft_string_insert_c(t_string *str, char insert, size_t index)
 		str->str[new_len] = '\0';
 	str->length = new_len;
 	str->capacity = new_len + 1;
-	return (1);
+	return (true);
 }
 
-int	ft_string_insert_s(t_string *restrict str,
+bool	ft_string_insert_s(t_string *restrict str,
 		const t_string *restrict insert, size_t index)
 {
 	size_t	new_len;
@@ -98,7 +100,7 @@ int	ft_string_insert_s(t_string *restrict str,
 	new_len = str->length + insert->length;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (!new_str)
-		return (0);
+		return (false);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert->str, insert->length);
 	ft_memcpy(new_str + index + insert->length, str->str + index, str->length
@@ -109,10 +111,10 @@ int	ft_string_insert_s(t_string *restrict str,
 		str->str[new_len] = '\0';
 	str->length = new_len;
 	str->capacity = new_len + 1;
-	return (1);
+	return (true);
 }
 
-int	ft_string_insert_s_n(t_string *restrict str,
+bool	ft_string_insert_s_n(t_string *restrict str,
 		const t_string *restrict insert, size_t index, size_t n)
 {
 	size_t	new_len;
@@ -123,7 +125,7 @@ int	ft_string_insert_s_n(t_string *restrict str,
 	new_len = str->length + n;
 	new_str = ft_calloc(new_len + 1, sizeof(char));
 	if (!new_str)
-		return (0);
+		return (false);
 	ft_memcpy(new_str, str->str, index);
 	ft_memcpy(new_str + index, insert->str, n);
 	ft_memcpy(new_str + index + n, str->str + index, str->length - index);
@@ -133,7 +135,7 @@ int	ft_string_insert_s_n(t_string *restrict str,
 		str->str[new_len] = '\0';
 	str->length = new_len;
 	str->capacity = new_len + 1;
-	return (1);
+	return (true);
 }
 /*
 GPL-3.0 License:

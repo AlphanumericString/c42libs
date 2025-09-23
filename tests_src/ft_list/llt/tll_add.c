@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "tests/list__ll_tests.h"
@@ -31,9 +31,9 @@ int	t_ll_add_front(void)
 	int		*data;
 	int		*data2;
 
-	data = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
 	*data = 42;
-	data2 = malloc(sizeof(int));
+	data2 = ft_malloc(sizeof(int));
 	*data2 = 21;
 	list = NULL;
 	ft_ll_add_front(&list, ft_ll_create(data2));
@@ -54,9 +54,9 @@ int	t_ll_add_back(void)
 	int		*data;
 	int		*data2;
 
-	data = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
 	*data = 42;
-	data2 = malloc(sizeof(int));
+	data2 = ft_malloc(sizeof(int));
 	*data2 = 21;
 	list = ft_ll_create(data);
 	ft_ll_add_back(&list, ft_ll_create(data2));
@@ -68,7 +68,7 @@ int	t_ll_add_back(void)
 	else if (list->next->data != data2 || list->next->next)
 		return (ft_free(data), ft_free(data2), ft_ll_clear(&list, NULL), 3);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

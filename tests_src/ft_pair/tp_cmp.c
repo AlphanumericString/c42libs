@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_pair.h"
+#include "ft_sort.h"
 #include "types/ft_pair_types.h"
 #include "tests/pair_tests.h"
 #include "tests/tests_lambda_functions.h"
@@ -34,7 +35,7 @@ static int	test_ptr(void)
 	if (ft_pair_cmp(NULL, &pair_a, NULL) == 0
 		|| ft_pair_cmp(&pair_a, NULL, NULL) == 0)
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	test_cmp(void)
@@ -44,11 +45,11 @@ static int	test_cmp(void)
 	t_pair	pair_c;
 
 	triple_pair_setup(&pair_a, &pair_b, &pair_c);
-	if (ft_pair_cmp(&pair_a, &pair_b, &cmp_int) == 0)
+	if (ft_pair_cmp(&pair_a, &pair_b, &ft_cmp_int_p) == 0)
 		return (1);
-	if (ft_pair_cmp(&pair_a, &pair_c, &cmp_int) != 0)
+	if (ft_pair_cmp(&pair_a, &pair_c, &ft_cmp_int_p) != 0)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tp_cmp(void)
@@ -61,7 +62,7 @@ int	tp_cmp(void)
 	ret = test_cmp();
 	if (ret != 0)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

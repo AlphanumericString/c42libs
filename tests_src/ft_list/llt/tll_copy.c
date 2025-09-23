@@ -69,7 +69,7 @@ int	t_ll_copy_list(void)
 		return (talloc_set_failpoint(prev), ft_ll_clear(&list, ft_free), 7);
 	talloc_set_failpoint(prev);
 	ft_ll_clear(&list, ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

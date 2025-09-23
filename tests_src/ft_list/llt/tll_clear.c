@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/list__ll_tests.h"
 #include <stdlib.h>
 
@@ -20,14 +20,14 @@ int	t_ll_clear(void)
 	t_list	*list;
 	int		*data;
 
-	data = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
 	*data = 42;
 	list = ft_ll_create(data);
 	ft_ll_clear(&list, NULL);
 	list = ft_ll_create(data);
 	ft_ll_clear(&list, ft_free);
 	ft_ll_clear(NULL, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

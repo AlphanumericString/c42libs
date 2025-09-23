@@ -23,7 +23,7 @@ int	tmal_realloc(void)
 	if (group_test.ptr_realloc != &ft_memimpl_realloc)
 		return (1);
 	ft_get_allocator(&prev);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

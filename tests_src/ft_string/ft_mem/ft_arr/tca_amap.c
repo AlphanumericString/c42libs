@@ -28,7 +28,7 @@ static int	mt_tcaamap(void)
 	talloc_set_failpoint(fp);
 	if (result != NULL)
 		return (1 + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_amap(void)
@@ -60,7 +60,7 @@ static int	mt_tcaanmap(void)
 	talloc_set_failpoint(fp);
 	if (result != NULL)
 		return (1 + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tca_anmap(void)

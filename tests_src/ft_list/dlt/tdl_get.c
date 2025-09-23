@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "tests/lists_test_utils.h"
@@ -44,7 +44,7 @@ int	t_dl_get_datas(void)
 	talloc_set_failpoint(prev);
 	ft_dl_clear(&list, ft_free);
 	free(datas);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_get_nodes(void)
@@ -72,7 +72,7 @@ int	t_dl_get_nodes(void)
 	talloc_set_failpoint(prev);
 	ft_dl_clear(&list, ft_free);
 	free(nodes);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

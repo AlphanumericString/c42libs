@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "ft_optional.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include <stdbool.h>
-#include <stdlib.h>
 
 bool	ft_optional_destroy(t_optional *opt)
 {

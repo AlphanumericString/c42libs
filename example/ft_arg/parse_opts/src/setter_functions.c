@@ -17,6 +17,7 @@
 #include "../include/usr_strct.h"
 
 #include "ft_string.h"
+#include "ft_stris.h"
 
 int	lc_opt_bool(t_usr_struct *data, const char *arg)
 {

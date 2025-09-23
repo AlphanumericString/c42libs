@@ -12,7 +12,7 @@
 
 #include "ft_list.h"
 #include "types/ft_list_types.h"
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "tests/lists_test_utils.h"
 #include "tests/fixtures.h"
 #include "tests/list__ll_tests.h"
@@ -87,13 +87,13 @@ int	t_ll_pop(void)
 	ft_free(pop);
 	if (ft_ll_pop(&list) || ft_ll_pop(NULL))
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /*
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	// (42)-> (21)-> NULL
-	data3 = malloc(sizeof(int));
+	data3 = ft_malloc(sizeof(int));
 	*data3 = 63;
 	ft_ll_push(&list, data3); // (63)-> (42)-> (21)-> NULL
 	pop = ft_ll_pop_back(&list); // 21 : (63)-> (42)-> NULL
@@ -117,7 +117,7 @@ int	t_ll_pop_back(void)
 	void	*pop;
 
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	data3 = malloc(sizeof(int));
+	data3 = ft_malloc(sizeof(int));
 	*data3 = 63;
 	ft_ll_push(&list, data3);
 	pop = ft_ll_pop_back(&list);

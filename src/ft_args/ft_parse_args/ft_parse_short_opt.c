@@ -14,6 +14,7 @@
 #include "internal/args_helper.h"
 
 #include "types/ft_args_types.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
 #include <unistd.h>
@@ -34,10 +35,10 @@ static int	arg_ok(const char **args, t_parser_state *state,
 static const char	*maybe_get_arg(const char **args, t_parser_state *state,
 						enum e_has_arg harg, enum e_separator sep)
 {
-	if (harg == FT_AH_MAYBE && arg_ok(args, state, sep))
+	if (harg == FT_AH_MAYBE && arg_ok(args, state, sep) != EXIT_SUCCESS)
 		return (NULL);
 	if ((harg == FT_AH_YES || harg == FT_AH_MAYBE)
-		&& !arg_ok(args, state, sep))
+		&& arg_ok(args, state, sep) == EXIT_SUCCESS)
 	{
 		if (sep == FT_AS_NEXT_ARG)
 			return (args[state->arg_it + 1]);
@@ -58,25 +59,25 @@ static void	v2_parse_short_opt_inner(t_parser_state *state, size_t op,
 				const char **args, void *data)
 {
 	const t_opt				*ls = state->opt_list;
-	const enum e_has_arg	harg = ls[op].type & FT_AH_MASK;
-	const enum e_separator	sarg = ls[op].type & FT_AS_MASK;
-	const enum e_arg_types	targ = ls[op].type & FT_AT_MASK;
+	const enum e_has_arg	has_arg = ls[op].type & FT_AH_MASK;
+	const enum e_separator	separator = ls[op].type & FT_AS_MASK;
+	const enum e_arg_types	arg_type = ls[op].type & FT_AT_MASK;
 	const char				*arg = NULL;
 
-	if (harg == FT_AH_NO)
+	if (has_arg == FT_AH_NO)
 	{
 		state->in_arg_it++;
 		state->err = ((int (*)(void *))ls[op].func)(data);
 		return ;
 	}
-	arg = maybe_get_arg(args, state, harg, sarg);
+	arg = maybe_get_arg(args, state, has_arg, separator);
 	if (state->err)
 		return ;
-	check_arg(targ, state, arg);
+	check_arg(arg_type, state, arg);
 	if (state->err)
 		return ;
 	if (arg)
-		state->arg_it += 2;
+		state->arg_it += (separator == FT_AS_NEXT_ARG) + 1;
 	state->in_arg_it = (state->in_arg_it + 1) * (arg == NULL);
 	state->err = ((int (*)(void *, const char *))ls[op].func)(data, arg);
 }

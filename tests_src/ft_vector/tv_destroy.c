@@ -31,7 +31,7 @@ int	tv_destroy(void)
 	ft_vec_destroy(&vec);
 	if (vec)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

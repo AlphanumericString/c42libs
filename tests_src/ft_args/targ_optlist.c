@@ -35,7 +35,7 @@ int	targ_opt_list_test(void)
 	ft_set_opt_list(NULL);
 	if (ft_get_opt_list() != op1)
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

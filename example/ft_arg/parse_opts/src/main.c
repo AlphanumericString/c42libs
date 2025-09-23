@@ -20,18 +20,19 @@
 #include "../include/usr_strct.h"
 
 #include "ft_args.h"
+#include "ft_mem.h"
 #include "ft_types.h"
 #include "types/ft_args_types.h"
 #include "ft_string.h"
 
 static void	printf_user_struct(t_usr_struct data)
 {
-	ft_print_fd(STDOUT_FILENO, "fields are:\n");
-	ft_print_fd(STDOUT_FILENO, "int_val: %d\n", data.int_val);
-	ft_print_fd(STDOUT_FILENO, "long_val: %ld\n", data.long_val);
-	ft_print_fd(STDOUT_FILENO, "float_val: %f\n", data.float_val);
-	ft_print_fd(STDOUT_FILENO, "double_val: %lf\n", data.double_val);
-	ft_print_fd(STDOUT_FILENO, "string_val: %s\n", data.string_val);
+	printf("fields are:\n");
+	printf("int_val: %d\n", data.int_val);
+	printf("long_val: %ld\n", data.long_val);
+	printf("float_val: %f\n", data.float_val);
+	printf("double_val: %lf\n", data.double_val);
+	printf("string_val: %s\n", data.string_val);
 	if (data.bool_val)
 		ft_print_fd(STDOUT_FILENO, "bool_val: %s\n", "true");
 	else
@@ -40,16 +41,16 @@ static void	printf_user_struct(t_usr_struct data)
 
 static int	print_y(void *usr)
 {
-	(void)usr;
-	printf("y\n");
+	t_usr_struct	*usr_str = usr;
+
+	ft_print("y\n");
+	ft_print("%s\n", usr_str->string_val);
 	return (0);
 }
 
-// not abi stable.........
-// but you CAN do it...
 static int	print_z(void)
 {
-	printf("z\n");
+	ft_print_fd(STDOUT_FILENO, "z\n");
 	return (0);
 }
 
@@ -79,10 +80,11 @@ static t_opt	*opt_list_holder(void)
 
 int	main(int ac, const char *const *av)
 {
-	const t_opt		*opt_list = opt_list_holder();
+	t_opt			*opt_list;
 	t_usr_struct	data;
 	size_t			i;
 
+	opt_list = opt_list_holder();
 	ft_set_opt_list(opt_list);
 	ft_bzero(&data, sizeof(t_usr_struct));
 	if (ft_parse_args((const char **)av, &data) == EXIT_FAILURE)
@@ -103,6 +105,19 @@ int	main(int ac, const char *const *av)
 	printf_reaminer_args(av, 0);
 	return (EXIT_SUCCESS);
 }
+/**
+ * interesting options to launch with:
+ *	-y --string "something" -y : -y prints the string so you can check that
+ *		arguments are indeed treated in a linear way.
+ *  -y -b=true -s "something" -y : to check the the single - indeed respects the
+ *		separator requirement given
+ *	-
+ * 
+ * 
+**/
+
+
+
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

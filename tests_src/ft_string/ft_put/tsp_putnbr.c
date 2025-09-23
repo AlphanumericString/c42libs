@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/fixtures.h"
 #include "tests/str__put_tests.h"
@@ -34,7 +35,7 @@ static int	nb_to_file(const int *nbs, size_t size, const char *file_name)
 		i++;
 	}
 	close(fd);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	file_cmp(const char *file_name, const char *expected)
@@ -46,8 +47,8 @@ static int	file_cmp(const char *file_name, const char *expected)
 	ft_bzero(buff, sizeof(buff));
 	read(fd, buff, sizeof(buff));
 	if (ft_strncmp(buff, expected, sizeof(buff)))
-		return (1);
-	return (destroy_test_file(fd, file_name), 0);
+		return (destroy_test_file(fd, file_name), 1);
+	return (destroy_test_file(fd, file_name), EXIT_SUCCESS);
 }
 
 static int	test_positives(void)

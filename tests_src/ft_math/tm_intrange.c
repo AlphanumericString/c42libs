@@ -12,6 +12,7 @@
 
 #include "ft_math.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 static int	tm_range_errors(void)
 {
@@ -29,7 +30,7 @@ static int	tm_range_errors(void)
 	x = max + 1;
 	if (ft_range(x, min, max, 0) != 0)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_range(void)
@@ -85,7 +86,7 @@ int	tm_range_f(void)
 	if (ft_range_f(x, min, max, new_max) != (float)
 		(((double)(x - min) / (max - min)) * new_max))
 		return (6);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	tm_range_d_errors(void)
@@ -104,7 +105,7 @@ static int	tm_range_d_errors(void)
 	x = max + 1;
 	if (ft_range_d(x, min, max, 0) != 0)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_range_d(void)

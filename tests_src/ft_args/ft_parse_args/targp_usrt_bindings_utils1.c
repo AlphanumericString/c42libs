@@ -10,9 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include "ft_string.h"
+#include "ft_mem.h"
 
 #include "tests/argp_tests.h"
+#include <stdio.h>
 
 int	set_digit(void *user_struct, const char *arg)
 {
@@ -20,7 +23,7 @@ int	set_digit(void *user_struct, const char *arg)
 
 	my = user_struct;
 	my->nbr = ft_atoi(arg);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	set_int(void *user_struct, const char *arg)
@@ -29,7 +32,7 @@ int	set_int(void *user_struct, const char *arg)
 
 	my = user_struct;
 	my->i_nbr = ft_atoi(arg);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	set_long(void *user_struct, const char *arg)
@@ -38,7 +41,7 @@ int	set_long(void *user_struct, const char *arg)
 
 	my = user_struct;
 	my->l_nbr = ft_atol(arg);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	set_hex2(void *user_struct, const char *arg)
@@ -50,7 +53,7 @@ int	set_hex2(void *user_struct, const char *arg)
 		my->hex2 = 0xDEADBEEF;
 	else
 		my->hex2 = 0xCAFE;
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	set_hex(void *user_struct, const char *arg)
@@ -65,12 +68,9 @@ int	set_hex(void *user_struct, const char *arg)
 		tmp = ft_strdup(arg + 2);
 	else
 		tmp = ft_strdup(arg);
-	ft_str_replace_chr(tmp, 'a', 'A');
-	ft_str_replace_chr(tmp, 'b', 'B');
-	ft_str_replace_chr(tmp, 'c', 'C');
-	ft_str_replace_chr(tmp, 'd', 'D');
-	ft_str_replace_chr(tmp, 'e', 'E');
-	ft_str_replace_chr(tmp, 'f', 'F');
+	if (!tmp)
+		return (1);
+	ft_strrpl_chrs(tmp, FT_HEXBASE, FT_HEXBASE_CAP);
 	my->hex = ft_atol_base(tmp, FT_HEXBASE_CAP);
 	return (ft_free(tmp), 0);
 }

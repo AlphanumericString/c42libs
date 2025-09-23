@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/fixtures.h"
 #include "tests/str__mem_tests.h"
@@ -57,7 +58,7 @@ static int	error_case(void)
 	ret = ft_fd_to_buff(malice_fd);
 	if (ret)
 		return (3);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_fd_to_buff(void)
@@ -70,7 +71,7 @@ int	tm_fd_to_buff(void)
 	ret = error_case();
 	if (ret != 0)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "tests/str__mem_tests.h"
 #include "ft_string.h"
 
 int	tm_realloc(void)
 {
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

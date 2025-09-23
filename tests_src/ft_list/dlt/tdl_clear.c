@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 
@@ -23,7 +23,7 @@ int	t_dl_clear(void)
 	t_dlist	*list;
 	int		*data;
 
-	data = malloc(sizeof(int));
+	data = ft_malloc(sizeof(int));
 	*data = 42;
 	list = ft_dl_create(data);
 	ft_dl_clear(&list, NULL);
@@ -31,7 +31,7 @@ int	t_dl_clear(void)
 	ft_dl_clear(&list, ft_free);
 	list = ft_dl_create((void *)42);
 	ft_dl_clear(&list, do_nothing);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 //
 //ft_dl_add_back(&list, ft_dl_create(data3))
@@ -68,7 +68,7 @@ int	t_dl_clear_range(void)
 	ft_dl_clear_range(list, NULL, do_nothing);
 	ft_dl_clear_range(NULL, NULL, do_nothing);
 	ft_dl_delete_range(list, NULL, NULL);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

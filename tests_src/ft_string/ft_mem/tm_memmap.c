@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_defs.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include "tests/str__mem_tests.h"
 
@@ -34,7 +35,7 @@ static int	base_cases(void)
 		|| ft_memmap((void *)tb, 0, (t_data_tr)ft_strdup)
 		|| ft_memmap((void *)tb, sizeof(tb) / sizeof(tb[0]), NULL))
 		return (2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	mt_cases(void)
@@ -49,7 +50,7 @@ static int	mt_cases(void)
 	talloc_set_failpoint(f_p);
 	if (str2)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_memmap(void)
@@ -62,7 +63,7 @@ int	tm_memmap(void)
 	ret = mt_cases();
 	if (ret)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

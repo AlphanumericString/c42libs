@@ -12,6 +12,7 @@
 
 #include "ft_math.h"
 #include "tests/math_tests.h"
+#include <stdlib.h>
 
 int	tm_clamp(void)
 {
@@ -34,7 +35,7 @@ int	tm_clamp(void)
 	x = 23;
 	if (ft_clamp(x, min, max) != x)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_clamp_f(void)
@@ -58,7 +59,7 @@ int	tm_clamp_f(void)
 	x = 23;
 	if (ft_clamp_f(x, min, max) != x)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_clamp_d(void)
@@ -82,7 +83,7 @@ int	tm_clamp_d(void)
 	x = 23;
 	if (ft_clamp_d(x, min, max) != x)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

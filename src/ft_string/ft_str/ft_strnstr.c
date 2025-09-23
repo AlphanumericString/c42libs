@@ -12,6 +12,11 @@
 
 #include "ft_string.h"
 
+char	*ft_strstr(const char *big, const char *small)
+{
+	return (ft_strnstr(big, small, -1));
+}
+
 char	*ft_strnstr(const char *big, const char *small, size_t n)
 {
 	size_t			len_small;

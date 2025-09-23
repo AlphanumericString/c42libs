@@ -38,7 +38,7 @@ int	tv_reserve(void)
 	if (vec->cappacity != FT_VECTOR_BASE_LEN + 2)
 		return (4 + 1);
 	ft_vec_destroy(&vec);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

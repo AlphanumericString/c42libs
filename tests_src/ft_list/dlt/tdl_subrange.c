@@ -12,7 +12,8 @@
 
 #include "ft_list.h"
 #include "types/ft_list_types.h"
-#include "ft_string.h"
+#include "ft_mem.h"
+
 #include "tests/lists_test_utils.h"
 #include "tests/fixtures.h"
 #include "tests/list__dl_tests.h"
@@ -63,7 +64,7 @@ static int	mt_cases(void)
 	if (lists[1])
 		return (ft_dl_clear(&lists[0], ft_free), 1);
 	ft_dl_clear(&lists[0], ft_free);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	t_dl_subrange(void)
@@ -76,7 +77,7 @@ int	t_dl_subrange(void)
 	ret = mt_cases();
 	if (ret)
 		return (ret + 10);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -30,7 +30,7 @@ int	tma_narena_free(void)
 	ptr = ft_narena_alloc(FT_NARENA_MAX / 2, 42);
 	ft_strlcpy(ptr, "test", 42);
 	ft_narena_free(FT_NARENA_MAX / 2);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

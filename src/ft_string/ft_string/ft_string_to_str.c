@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_tstring.h"
+#include "ft_mem.h"
 
 char	*ft_string_to_str(t_string *str)
 {

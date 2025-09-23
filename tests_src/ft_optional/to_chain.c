@@ -39,7 +39,7 @@ int	to_chain(void)
 	ret = ft_optional_chain(&opt, function_list2);
 	if (ret != false || opt.pres != OPT_NONE)
 		return (4);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

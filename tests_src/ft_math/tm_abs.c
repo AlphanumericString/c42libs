@@ -13,6 +13,7 @@
 #include "ft_math.h"
 #include "tests/math_tests.h"
 #include <sys/types.h>
+#include <stdlib.h>
 
 int	tm_abs_l(void)
 {
@@ -27,7 +28,7 @@ int	tm_abs_l(void)
 	x = 0;
 	if (ft_abs_l(x) != 0)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_abs_ssize(void)
@@ -43,7 +44,7 @@ int	tm_abs_ssize(void)
 	x = 0;
 	if (ft_abs_ssize_t(x) != 0)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tm_abs(void)
@@ -59,7 +60,7 @@ int	tm_abs(void)
 	x = 0;
 	if (ft_abs(x) != 0)
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

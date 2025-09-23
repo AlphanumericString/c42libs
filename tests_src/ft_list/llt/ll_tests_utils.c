@@ -13,7 +13,10 @@
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 #include "ft_string.h"
+#include "ft_mem.h"
+
 #include "tests/lists_test_utils.h"
+
 #include <stdlib.h>
 
 void	create_2elem_list(t_list **list, void **data1, void **data2)

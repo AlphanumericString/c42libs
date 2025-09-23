@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
+#include "ft_arr.h"
 #include "ft_list.h"
-#include "ft_string.h"
+#include "ft_sort.h"
 #include "types/ft_list_types.h"
 
 #include "tests/list__dl_tests.h"
-#include "tests/tests_lambda_functions.h"
 
 static int	local_check_circular_special_cases(void)
 {
@@ -76,17 +77,17 @@ int	t_dl_check_sorted(void)
 	t_dlist	*lst;
 
 	lst = NULL;
-	if (ft_dl_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != true)
+	if (ft_dl_check_sorted(lst, ft_cmp_ptr) != true)
 		return (1);
 	ft_dl_push(&lst, (void *)7);
-	if (ft_dl_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != true)
+	if (ft_dl_check_sorted(lst, ft_cmp_ptr) != true)
 		return (2);
 	ft_dl_push(&lst, (void *)8);
 	ft_dl_push(&lst, (void *)9);
-	if (ft_dl_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != true)
+	if (ft_dl_check_sorted(lst, ft_cmp_ptr) != true)
 		return (3);
 	ft_dl_push(&lst, (void *)3);
-	if (ft_dl_check_sorted(lst, (t_data_cmp)cmp_raw_ptr) != false)
+	if (ft_dl_check_sorted(lst, ft_cmp_ptr) != false)
 		return (4);
 	return (ft_dl_delete(&lst, NULL), EXIT_SUCCESS);
 }

@@ -12,6 +12,7 @@
 
 #include "ft_char.h"
 #include "ft_defs.h"
+#include "ft_mem.h"
 #include "ft_string.h"
 #include <stddef.h>
 #include <limits.h>

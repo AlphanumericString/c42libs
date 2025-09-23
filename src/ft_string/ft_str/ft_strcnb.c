@@ -15,6 +15,11 @@
 
 size_t	ft_strcnb(const char *str, char c)
 {
+	return (ft_strncnb(str, -1, c));
+}
+
+size_t	ft_strncnb(const char *str, size_t n, char c)
+{
 	size_t	i;
 	size_t	nb;
 
@@ -22,7 +27,7 @@ size_t	ft_strcnb(const char *str, char c)
 	nb = 0;
 	if (!str)
 		return (0);
-	while (str[i])
+	while (str[i] && i < n)
 		if (str[i++] == c)
 			nb++;
 	if (c == '\0')

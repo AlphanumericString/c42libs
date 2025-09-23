@@ -12,12 +12,13 @@
 
 #include "ft_char.h"
 #include "tests/str__char_tests.h"
+#include <stdlib.h>
 
 static int	local_isoctdigit(int c)
 {
 	if (c >= '0' && c <= '7')
 		return (1);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	tc_isoctdigit(void)
@@ -31,7 +32,7 @@ int	tc_isoctdigit(void)
 			return (1);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:
