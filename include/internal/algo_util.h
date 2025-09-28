@@ -1,62 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_default_cmps.c                             :+:      :+:    :+:   */
+/*   algo_util.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/07 23:19:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/07 23:19:23 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/09/26 05:58:57 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/26 05:58:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sort.h"
-#include <stddef.h>
-#include <stdio.h>
+#ifndef ALGO_UTIL_H
+# define ALGO_UTIL_H
 
-int	ft_cmp_ptr(const void *a, const void *b)
-{
-	return (ft_cmp_szt_p((size_t *)&a, (size_t *)&b));
-}
+# include "ft_defs.h"
 
-int	ft_cmp_int_p(const void *a, const void *b)
-{
-	const bool	eq = *(int *)a == *(int *)b;
-	bool		lt;
+bool	ft_isord_ok(int ord, int cmp_res);
 
-	if (eq)
-		return (0);
-	lt = *(int *)a < *(int *)b;
-	if (lt)
-		return (-1);
-	return (1);
-}
-
-int	ft_cmp_szt_p(const void *a, const void *b)
-{
-	const bool	eq = *(size_t *)a == *(size_t *)b;
-	bool		lt;
-
-	if (eq)
-		return (0);
-	lt = *(size_t *)a < *(size_t *)b;
-	if (lt)
-		return (-1);
-	return (1);
-}
-
-int	ft_cmp_sszt_p(const void *a, const void *b)
-{
-	const bool	eq = *(ssize_t *)a == *(ssize_t *)b;
-	bool		lt;
-
-	if (eq)
-		return (0);
-	lt = *(ssize_t *)a < *(ssize_t *)b;
-	if (lt)
-		return (-1);
-	return (1);
-}
+#endif /* ALGO_UTIL_H */
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

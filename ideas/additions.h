@@ -1,8 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   additions.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 14:53:06 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/27 14:53:06 by bgoulard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 //
 // additions to ft_list.h
 //
 //
+#ifndef ADDITIONS_H
+# define ADDITIONS_H
 
+# ifndef FT_NOVEC_UROLL
+#  include "types/ft_vector_types.h"
+# endif
 
 # define FTLIST_UBLOCK_SIZE	32
 
@@ -17,10 +34,6 @@ typedef struct s_idlist
 	struct s_idlist	*next;
 	struct s_idlist	*prev;
 }	t_idlist;
-
-# ifndef FT_NOVEC_UROLL
-#  include "types/ft_vector_types.h"
-# endif
 
 # ifndef FT_NOVEC_UROLL
 
@@ -59,4 +72,4 @@ typedef struct s_skip_list
 	struct s_skip_list	*nexts[FTLIST_SKIP_SIZE];
 }	t_skip_list;
 
-
+#endif /* ADDITIONS_H */

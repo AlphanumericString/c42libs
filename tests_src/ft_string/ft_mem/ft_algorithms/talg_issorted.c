@@ -12,27 +12,27 @@
 
 #include "ft_defs.h"
 #include "ft_mem.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include "tests/str__mem_tests.h"
 #include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
 
 int	talg_issorted(void)
 {
-	const t_arrinfo	infos = {.n_ele = FT_STD_BUF_SIZE, .ele_s = sizeof(int)};
+	const t_arrinfo	infos = {.nmemb = FT_STD_BUF_SIZE, .sz = sizeof(int)};
 	int				arr[FT_STD_BUF_SIZE];
 	int				arr_uno[FT_STD_BUF_SIZE];
 
-	randomize_iarr(arr, infos.n_ele, 0, infos.n_ele);
-	ft_memcpy(arr_uno, arr, infos.n_ele * infos.ele_s);
-	ft_qsort(arr, infos.n_ele, infos.ele_s, ft_cmp_int_p);
-	if (!ft_is_sorted(arr, infos.n_ele, infos.ele_s, ft_cmp_int_p))
+	randomize_iarr(arr, infos.nmemb, 0, infos.nmemb);
+	ft_memcpy(arr_uno, arr, infos.nmemb * infos.sz);
+	ft_qsort(arr, infos.nmemb, infos.sz, ft_cmp_int_p);
+	if (!ft_is_sorted(arr, infos.nmemb, infos.sz, ft_cmp_int_p))
 		return (1);
-	if (ft_is_sorted(arr_uno, infos.n_ele, infos.ele_s, ft_cmp_int_p))
+	if (ft_is_sorted(arr_uno, infos.nmemb, infos.sz, ft_cmp_int_p))
 		return (2);
-	if (!ft_is_sorted(arr, 1, infos.ele_s, ft_cmp_int_p)
-		|| !ft_is_sorted(arr, 0, infos.ele_s, ft_cmp_int_p)
-		|| !ft_is_sorted(arr, infos.n_ele, 0, ft_cmp_int_p))
+	if (!ft_is_sorted(arr, 1, infos.sz, ft_cmp_int_p)
+		|| !ft_is_sorted(arr, 0, infos.sz, ft_cmp_int_p)
+		|| !ft_is_sorted(arr, infos.nmemb, 0, ft_cmp_int_p))
 		return (3);
 	return (EXIT_SUCCESS);
 }

@@ -49,7 +49,7 @@ int	tv_cat(void)
 
 	init_vec_cat(&vec_a, &vec_b);
 	ret = ft_vec_cat(&vec_a, vec_b);
-	if (ret != true || vec_a->count != 6)
+	if (ret != true || vec_a->nb_e != 6)
 		return (1);
 	else if (ft_vec_at(vec_a, 0) != (t_any)42
 		|| ft_vec_at(vec_a, 1) != (t_any)43 || ft_vec_at(vec_a, 2) != (t_any)44
@@ -62,7 +62,7 @@ int	tv_cat(void)
 	ft_vec_add(&vec_a, (t_any)43);
 	ft_vec_add(&vec_a, (t_any)44);
 	ret = ft_vec_cat(&vec_a, vec_b);
-	if (ret != false || vec_a->count != 3)
+	if (ret != false || vec_a->nb_e != 3)
 		return (3);
 	else if (ft_vec_at(vec_a, 0) != (t_any)42
 		|| ft_vec_at(vec_a, 1) != (t_any)43 || ft_vec_at(vec_a, 2) != (t_any)44)

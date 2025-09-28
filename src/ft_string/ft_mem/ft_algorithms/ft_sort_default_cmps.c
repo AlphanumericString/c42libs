@@ -1,39 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_qsort.c                                         :+:      :+:    :+:   */
+/*   ft_sort_default_cmps.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:31:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/25 19:47:39 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/09/07 23:19:23 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/07 23:19:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mem.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
+#include <stddef.h>
+#include <stdio.h>
 
-void	ft_qsort(void *array, size_t nmb, size_t size, t_data_cmp cmp)
+int	ft_cmp_ptr(const void *a, const void *b)
 {
-	size_t	left;
-	size_t	right;
+	return (ft_cmp_szt_p((size_t *)&a, (size_t *)&b));
+}
 
-	if (nmb < 2 || size < 1 || ft_is_sorted(array, nmb, size, cmp))
-		return ;
-	left = 0;
-	right = nmb - 1;
-	while (left < right)
-	{
-		while (left < nmb && cmp(array + left * size, array) <= 0)
-			left++;
-		while (right > 0 && cmp(array + right * size, array) > 0)
-			right--;
-		if (left < right)
-			ft_swap(array + left * size, array + right * size, size);
-	}
-	ft_swap(array, array + right * size, size);
-	ft_qsort(array, right, size, cmp);
-	ft_qsort(array + (right + 1) * size, nmb - right - 1, size, cmp);
+int	ft_cmp_int_p(const void *a, const void *b)
+{
+	const bool	eq = *(int *)a == *(int *)b;
+	bool		lt;
+
+	if (eq)
+		return (0);
+	lt = *(int *)a < *(int *)b;
+	if (lt)
+		return (-1);
+	return (1);
+}
+
+int	ft_cmp_szt_p(const void *a, const void *b)
+{
+	const bool	eq = *(size_t *)a == *(size_t *)b;
+	bool		lt;
+
+	if (eq)
+		return (0);
+	lt = *(size_t *)a < *(size_t *)b;
+	if (lt)
+		return (-1);
+	return (1);
+}
+
+int	ft_cmp_sszt_p(const void *a, const void *b)
+{
+	const bool	eq = *(ssize_t *)a == *(ssize_t *)b;
+	bool		lt;
+
+	if (eq)
+		return (0);
+	lt = *(ssize_t *)a < *(ssize_t *)b;
+	if (lt)
+		return (-1);
+	return (1);
 }
 /*
 GPL-3.0 License:

@@ -27,10 +27,10 @@ void	ft_map_clear(t_map *restrict map)
 			map->nodes[i] = map->nodes[i]->next;
 			ft_vec_add(&map->reserved_nodes, cur);
 		}
-		map->weights[i] = 0;
+		map->nb_e[i] = 0;
 		i++;
 	}
-	map->w_total = 0;
+	map->nb_e_total = 0;
 }
 /*
 GPL-3.0 License:

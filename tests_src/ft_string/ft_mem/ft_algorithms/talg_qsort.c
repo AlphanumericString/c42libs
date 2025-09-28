@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_defs.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include "tests/tests_lambda_functions.h"
 #include "tests/str__mem_tests.h"
 #include <stdlib.h>
@@ -20,12 +20,12 @@
 
 static int	tm_set(void)
 {
-	const t_arrinfo	infos = {.n_ele = FT_STD_BUF_SIZE, .ele_s = sizeof(int)};
+	const t_arrinfo	infos = {.nmemb = FT_STD_BUF_SIZE, .sz = sizeof(int)};
 	int				ar_out[FT_STD_BUF_SIZE];
 
-	randomize_iarr(ar_out, infos.n_ele, 0, infos.n_ele * 2);
-	ft_qsort(ar_out, infos.n_ele, infos.ele_s, ft_cmp_int_p);
-	if (!ft_is_sorted(ar_out, infos.n_ele, infos.ele_s, ft_cmp_int_p))
+	randomize_iarr(ar_out, infos.nmemb, 0, infos.nmemb * 2);
+	ft_qsort(ar_out, infos.nmemb, infos.sz, ft_cmp_int_p);
+	if (!ft_is_sorted(ar_out, infos.nmemb, infos.sz, ft_cmp_int_p))
 		return (1);
 	return (EXIT_SUCCESS);
 }

@@ -17,7 +17,7 @@ void	ft_vec_apply(t_vector *vec, void (*func)(void *))
 	size_t	i;
 
 	i = 0;
-	while (i < vec->count)
+	while (i < vec->nb_e)
 		func(vec->datas[i++]);
 	return ;
 }

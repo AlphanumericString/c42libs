@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort.h                                          :+:      :+:    :+:   */
+/*   ft_algorithms.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:01:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/07 23:01:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/09/27 15:15:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SORT_H
-# define FT_SORT_H
+#ifndef FT_ALGORITHMS_H
+# define FT_ALGORITHMS_H
 
 // NOTE: maybe rename to ft_algos.h
 
 // defs -> size_t, ssize_t, NULL, bool ...
 # include "ft_defs.h"
-# include "sys/cdefs.h"
 
+// TODO: move to ft_arr
 typedef struct arr_info
 {
-	size_t		n_ele;
-	size_t		ele_s;
+	size_t		nmemb;
+	size_t		sz;
 }	t_arrinfo;
 
 // cmp utils
@@ -72,6 +72,20 @@ void		*ft_isrtsort( void *data, const t_arrinfo infos, t_data_cmp cmp,
 void		*ft_isrtsort_b(void *data, const t_arrinfo infos, t_data_cmp cmp,
 				void *buff) __attribute__((nonnull(1, 3, 4)));
 
+// selection sort (aka bblsort wihout the reset to 0 after every swap)
+void		*ft_slctsort(void *data, const t_arrinfo infos, t_data_cmp cmp,
+				int fg) __attribute__((nonnull(1, 3)));
+
+// shakersort
+void		*ft_shkrsort(void *data, t_arrinfo nf, t_data_cmp cmp, int flag)
+			__attribute__((nonnull(1, 3)));
+
+// mergesort
+void		*ft_mrgsort_r(void *data, t_arrinfo infos, t_data_cmp cmp,
+				void *buff) __attribute__((nonnull(1, 3, 4)));
+void		*ft_mrgsort(void *data, t_arrinfo info, t_data_cmp cmp, int flag)
+			__attribute__((nonnull(1, 3)));
+
 /// @brief sort the memory with the cmp function by chunks of size
 /// @param array pointer to the memory
 /// @param nmb number of chunks
@@ -83,5 +97,27 @@ void		ft_qsort(void *array, size_t nmb, size_t size, t_data_cmp cmp)
 
 bool		ft_is_sorted(void *array, size_t nmb, size_t size,
 				t_data_cmp cmp) __attribute__((nonnull(1, 4)));
+void		*ft_getmax(const void *data, t_arrinfo infos,
+				t_data_cmp cmp) __attribute__((nonnull(1, 3)));
+void		*ft_getmin(const void *data, t_arrinfo infos,
+				t_data_cmp cmp) __attribute__((nonnull(1, 3)));
 
-#endif // !FT_SORT_H
+#endif // !FT_ALGORITHMS_H
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

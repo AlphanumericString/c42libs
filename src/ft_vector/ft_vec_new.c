@@ -31,7 +31,7 @@ t_vector	*ft_vec_from_size(size_t n)
 	if (!ret->datas)
 		return (ft_free(ret), NULL);
 	ret->cappacity = n;
-	ret->count = 0;
+	ret->nb_e = 0;
 	return (ret);
 }
 
@@ -50,7 +50,7 @@ t_vector	*ft_vec_from_array(void **data, size_t count)
 		ret->datas[i] = data[i];
 		i++;
 	}
-	ret->count = i;
+	ret->nb_e = i;
 	return (ret);
 }
 
@@ -62,7 +62,7 @@ t_vector	*ft_vec_convert_alloccarray(void **data, size_t count)
 	if (!ret)
 		return (ret);
 	ret->datas = data;
-	ret->count = count;
+	ret->nb_e = count;
 	ret->cappacity = count;
 	return (ret);
 }

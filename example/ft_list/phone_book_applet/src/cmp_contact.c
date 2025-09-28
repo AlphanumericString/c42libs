@@ -20,6 +20,7 @@ int	cmp_contact_phnb(const t_contact *cntact, const char *phnb)
 		return (-1);
 	return (ft_strcmp(cntact->number, phnb));
 }
+
 int	cmp_contact_name(const t_contact *cntact, const char *name)
 {
 	if (!cntact | !name)
@@ -36,6 +37,7 @@ void	del_contact(t_contact *con)
 	ft_free(con->infos);
 	ft_free(con);
 }
+
 void	contact_printstdout(const t_contact *con)
 {
 	if (!con)

@@ -26,14 +26,14 @@ static int	base_cases(void)
 	data[2] = (void *)44;
 	vec = ft_vec_from_array(data, sizeof(data) / sizeof(data[0]));
 	ft_vec_shrink(vec);
-	if (vec->count != 3 || vec->cappacity != 3)
+	if (vec->nb_e != 3 || vec->cappacity != 3)
 		return (1);
 	else if (ft_vec_at(vec, 0) != (void *)42
 		|| ft_vec_at(vec, 1) != (void *)43 || ft_vec_at(vec, 2) != (void *)44)
 		return (2);
 	ft_vec_shrink(vec);
-	if (!vec || !vec->datas || !vec->cappacity || !vec->count
-		|| vec->count != vec->cappacity || vec->count != 3)
+	if (!vec || !vec->datas || !vec->cappacity || !vec->nb_e
+		|| vec->nb_e != vec->cappacity || vec->nb_e != 3)
 		return (3);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);

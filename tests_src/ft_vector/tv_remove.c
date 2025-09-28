@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
 #include "ft_mem.h"
 #include "ft_vector.h"
 #include "types/ft_vector_types.h"
@@ -21,13 +20,13 @@
 // tests vector_remove is bound checked with 42's call
 static int	checks_01(t_vector *vec)
 {
-	if (vec->count != 2)
+	if (vec->nb_e != 2)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42
 		|| *(int *)ft_vec_at(vec, 1) != 44)
 		return (2);
 	ft_vec_remove(vec, 42, NULL);
-	if (vec->count != 2)
+	if (vec->nb_e != 2)
 		return (3);
 	return (EXIT_SUCCESS);
 }
@@ -35,7 +34,7 @@ static int	checks_01(t_vector *vec)
 // tests vector_remove calls free on the correct element
 static int	checks_02(t_vector *vec, const int *arr)
 {
-	if (vec->count != 2)
+	if (vec->nb_e != 2)
 		return (1);
 	if (*(int *)ft_vec_at(vec, 0) != arr[0]
 		|| *(int *)ft_vec_at(vec, 1) != arr[2])

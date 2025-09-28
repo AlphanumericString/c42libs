@@ -48,7 +48,7 @@ static int	base_case(void)
 	ft_vec_add(&vec, (void *)&arr[1]);
 	ft_vec_add(&vec, (void *)&arr[2]);
 	ft_vec_filter(vec, is42, NULL);
-	if (vec->count != 1 || *(int *)ft_vec_at(vec, 0) != 42)
+	if (vec->nb_e != 1 || *(int *)ft_vec_at(vec, 0) != 42)
 		return (1);
 	ft_vec_destroy(&vec);
 	pp = (int **)create_tb_int(NULL);
@@ -57,7 +57,7 @@ static int	base_case(void)
 	*(pp[4]) = 42;
 	vec = ft_vec_convert_alloccarray((void **)pp, ft_alen((t_any)pp));
 	ft_vec_filter(vec, is42, ft_free);
-	if (ft_vec_at(vec, 0) != pp[0] || vec->count != 4)
+	if (ft_vec_at(vec, 0) != pp[0] || vec->nb_e != 4)
 		return (2);
 	return (ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
 }

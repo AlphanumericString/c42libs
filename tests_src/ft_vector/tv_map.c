@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
 #include "ft_mem.h"
 #include "ft_vector.h"
 #include "types/ft_vector_types.h"
@@ -30,7 +29,7 @@ static int	base_case(void)
 	arr = (int **)creat_tb();
 	vec = ft_vec_from_array((void **)arr, 3);
 	ret = ft_vec_map(vec, add42_ret);
-	if (ret->count != 3)
+	if (ret->nb_e != 3)
 		return (1);
 	else if (*(int *)ft_vec_at(ret, 0) != 84 || *(int *)ft_vec_at(ret, 1) != 85
 		|| *(int *)ft_vec_at(ret, 2) != 86)

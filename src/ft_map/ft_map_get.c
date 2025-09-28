@@ -47,7 +47,7 @@ void	*ft_map_get(t_map *map, const void *key, size_t size)
 
 size_t	ft_map_size(const t_map *map)
 {
-	return (map->w_total);
+	return (map->nb_e_total);
 }
 
 size_t	ft_map_capacity(const t_map *map)

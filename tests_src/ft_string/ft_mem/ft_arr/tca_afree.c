@@ -17,6 +17,22 @@
 
 #include <stdlib.h>
 
+int	tca_anfree(void)
+{
+	void		**arr;
+
+	arr = (void **)ft_split("this|is|a|test", '|');
+	if (!arr || ft_alen((t_const_arr)arr) != 4)
+		return (1);
+	ft_anfree(arr, 4);
+	ft_anfree(NULL, 4);
+	ft_anfree(arr, 0);
+	arr = ft_calloc(sizeof(*arr), 1);
+	arr[0] = NULL;
+	ft_anfree(arr, 1);
+	return (EXIT_SUCCESS);
+}
+
 // check if leaked memory, otherwise cant really check lol
 int	tca_afree(void)
 {

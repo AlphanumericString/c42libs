@@ -12,7 +12,7 @@
 
 #include "ft_defs.h"
 #include "ft_mem.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,15 +20,15 @@
 size_t	*ft_sisrtsort(size_t *data, size_t nb_e, int flags)
 {
 	return (ft_isrtsort(data, (t_arrinfo){
-			.n_ele = nb_e,
-			.ele_s = sizeof(size_t)}, (t_data_cmp)ft_cmp_szt_p, flags), data);
+			.nmemb = nb_e,
+			.sz = sizeof(size_t)}, (t_data_cmp)ft_cmp_szt_p, flags), data);
 }
 
 ssize_t	*ft_ssisrtsort(ssize_t *data, size_t nb_e, int flags)
 {
 	return (ft_isrtsort(data, (t_arrinfo){
-			.n_ele = nb_e,
-			.ele_s = sizeof(ssize_t)}, (t_data_cmp)ft_cmp_sszt_p, flags), data);
+			.nmemb = nb_e,
+			.sz = sizeof(ssize_t)}, (t_data_cmp)ft_cmp_sszt_p, flags), data);
 }
 
 void	*ft_isrtsort_b(void *data, const t_arrinfo infos, t_data_cmp cmp,
@@ -37,20 +37,20 @@ void	*ft_isrtsort_b(void *data, const t_arrinfo infos, t_data_cmp cmp,
 	size_t				i_place;
 	size_t				i;
 
-	if (infos.n_ele < 2 || infos.ele_s < 1)
+	if (infos.nmemb < 2 || infos.sz < 1)
 		return (data);
 	i = 1;
 	i_place = 0;
-	while (i != infos.n_ele)
+	while (i != infos.nmemb)
 	{
-		if (cmp(data + (i - 1) * infos.ele_s, data + i * infos.ele_s) > 0)
+		if (cmp(data + (i - 1) * infos.sz, data + i * infos.sz) > 0)
 		{
-			ft_memcpy(buff, (data + i * infos.ele_s), infos.ele_s);
-			i_place = ft_binsrch(data, (t_arrinfo){i, infos.ele_s}, buff, cmp);
-			ft_memmove((data + (i_place + 1) * infos.ele_s),
-				(data + i_place * infos.ele_s),
-				(i - i_place) * infos.ele_s);
-			ft_memcpy((t_any)(data + i_place * infos.ele_s), buff, infos.ele_s);
+			ft_memcpy(buff, (data + i * infos.sz), infos.sz);
+			i_place = ft_binsrch(data, (t_arrinfo){i, infos.sz}, buff, cmp);
+			ft_memmove((data + (i_place + 1) * infos.sz),
+				(data + i_place * infos.sz),
+				(i - i_place) * infos.sz);
+			ft_memcpy((t_any)(data + i_place * infos.sz), buff, infos.sz);
 		}
 		i++;
 	}
@@ -62,12 +62,12 @@ void	*ft_isrtsort(void *data, const t_arrinfo infos, t_data_cmp cmp, int flg)
 	const t_sort_order	ord = flg & FT_SORT_ORD_MASK;
 	void				*tmp;
 
-	if (infos.n_ele < 2 || infos.ele_s < 1 || ord == FT_SORT_ORD_UNO)
+	if (infos.nmemb < 2 || infos.sz < 1 || ord == FT_SORT_ORD_UNO)
 		return (data);
 	if (ord == FT_SORT_ORD_DES)
 		return (ft_memnrev(ft_isrtsort(data, infos, cmp, FT_SORT_ORD_ASC),
-				infos.n_ele, infos.ele_s));
-	tmp = ft_calloc(1, infos.ele_s);
+				infos.nmemb, infos.sz));
+	tmp = ft_calloc(1, infos.sz);
 	if (tmp)
 		ft_isrtsort_b(data, infos, cmp, tmp);
 	return (ft_free(tmp), data);

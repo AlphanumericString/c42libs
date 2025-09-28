@@ -41,16 +41,29 @@
 /*									  SORT									  */
 /* ************************************************************************** */
 
-// TODO: -> sort prototypes for dl
-// /// @brief Sort a doubly linked list
-// /// @param head The head of the list
-// /// @param cmp The compare function to use
-// /// @param flags Flags to use (see t_sort_orders, t_sort_algorithms)
-// /// @return a valid pointer to the first node of the sorted list or NULL
-// /// @note If !list || !cmp || bad flags, returns NULL
-// /// @note If head is not the head of the list, it will be set to the first
-// ///		sorted node of the list.
-// t_dlist	*ft_dl_sort(t_dlist **head, const t_data_cmp cmp, int flags);
+//TODO: add documentation
+t_dlist	*ft_dl_extract_min(const t_dlist *list, t_data_cmp cmp);
+t_dlist	*ft_dl_extract_min_node(const t_dlist *list, t_data_cmp cmp);
+
+//TODO: add documentation
+t_dlist	*ft_dl_extract_max(const t_dlist *list, t_data_cmp cmp);
+t_dlist	*ft_dl_extract_max_node(const t_dlist *list, t_data_cmp cmp);
+
+/// @brief check if a doubly linked list is sorted 
+/// @param head the head of a doubly linked list
+/// @param cmp the comparaison function
+/// @param flag the flag for the sort order (0 = default)
+/// @return true if list is sorted false otherwise
+bool	ft_dl_issort(const t_dlist *head, const t_data_cmp cmp, int flag);
+/// @brief Sort a doubly linked list
+/// @param head The head of the list
+/// @param cmp The compare function to use
+/// @param flags Flags to use (see t_sort_orders, t_sort_algorithms)
+/// @return a valid pointer to the first node of the sorted list or NULL
+/// @note If !list || !cmp || bad flags, returns NULL
+/// @note If head is not the head of the list, it will be set to the first
+///		sorted node of the list.
+t_dlist	*ft_dl_sort(t_dlist **head, const t_data_cmp cmp, int flags);
 //
 // /// @brief Sort a doubly linked list
 // /// @param start The start of the list
@@ -423,9 +436,6 @@ size_t	ft_cl_delete(t_dlist **head, const t_data_apply del);
 /* ************************************************************************** */
 /*                                  FIND                                      */
 /* ************************************************************************** */
-
-// TODO:
-// search? does the same as find but returns the node?
 
 /// @brief Find a node in a list
 /// @param head The head of the list

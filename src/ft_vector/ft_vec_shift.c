@@ -14,12 +14,12 @@
 
 void	ft_vec_shift(t_vector *vec, size_t start, size_t shift)
 {
-	while (start + shift < vec->count)
+	while (start + shift < vec->nb_e)
 	{
 		vec->datas[start] = vec->datas[start + shift];
 		start++;
 	}
-	vec->count -= shift;
+	vec->nb_e -= shift;
 }
 /*
 GPL-3.0 License:

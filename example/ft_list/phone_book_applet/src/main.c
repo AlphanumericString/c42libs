@@ -47,7 +47,7 @@ static void	process(char *line, t_list **contact_l, bool *state)
 	return ;
 }
 
-int main(void)
+int	main(void)
 {
 	bool	running;
 	char	*line;
@@ -68,7 +68,7 @@ int main(void)
 	printf("contact_list : %zu\n", ft_ll_size(contact_list));
 	disp_all(contact_list);
 	ft_ll_delete(&contact_list, (t_data_apply)del_contact);
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

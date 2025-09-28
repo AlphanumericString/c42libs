@@ -25,8 +25,10 @@ static const t_fnamed	*talg_tests(void)
 	{"isrtsort", talg_isrtsort}, {"sisrtsort", talg_sisrtsort},
 	{"ssisrtsort", talg_ssisrtsort}, {"isrtsort_b", talg_isrtsort_b},
 	{"sbcksort", talg_sbcksort}, {"cmps", talg_cmps}, {"rcmp", talg_rcmps},
-	{NULL, NULL}
-	};
+	{"slctsort", talg_slctsort}, {"getmax", talg_getmax},
+	{"getmin", talg_getmin}, {"isord_ok", talg_isord_ok},
+	{"mrgsort", talg_mrgsort}, {"shkrsort", talg_shkrsort},
+	{"mrgsort_r", talg_mrgsort_r}, {NULL, NULL}};
 
 	return (tests);
 }

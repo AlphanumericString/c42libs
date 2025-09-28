@@ -1,62 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_default_cmps.c                             :+:      :+:    :+:   */
+/*   ft_qcksort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/07 23:19:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/07 23:19:23 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/09/21 14:16:53 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/21 14:16:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sort.h"
-#include <stddef.h>
-#include <stdio.h>
-
-int	ft_cmp_rptr(const void *a, const void *b)
-{
-	return (ft_cmp_rszt_p((size_t *)&a, (size_t *)&b));
-}
-
-int	ft_cmp_rint_p(const void *a, const void *b)
-{
-	const bool	eq = *(int *)b == *(int *)a;
-	bool		lt;
-
-	if (eq)
-		return (0);
-	lt = *(int *)b < *(int *)a;
-	if (lt)
-		return (-1);
-	return (1);
-}
-
-int	ft_cmp_rszt_p(const void *a, const void *b)
-{
-	const bool	eq = *(size_t *)b == *(size_t *)a;
-	bool		lt;
-
-	if (eq)
-		return (0);
-	lt = *(size_t *)b < *(size_t *)a;
-	if (lt)
-		return (-1);
-	return (1);
-}
-
-int	ft_cmp_rsszt_p(const void *a, const void *b)
-{
-	const bool	eq = *(ssize_t *)b == *(ssize_t *)a;
-	bool		lt;
-
-	if (eq)
-		return (0);
-	lt = *(ssize_t *)b < *(ssize_t *)a;
-	if (lt)
-		return (-1);
-	return (1);
-}
+// TODO:
+// - adapt qsort to qcksort by packing up nmemb and e_size, and adding flag var
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

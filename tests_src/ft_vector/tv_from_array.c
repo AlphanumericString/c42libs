@@ -16,7 +16,7 @@
 
 static int	checks_01(t_vector *vec, void **data)
 {
-	if (vec->count != 3 || vec->cappacity != FT_VECTOR_BASE_LEN
+	if (vec->nb_e != 3 || vec->cappacity != FT_VECTOR_BASE_LEN
 		|| !vec->datas)
 		return (1);
 	else if (ft_vec_at(vec, 0) != data[0] || ft_vec_at(vec, 1) != data[1]
@@ -27,7 +27,7 @@ static int	checks_01(t_vector *vec, void **data)
 
 static int	checks_02(t_vector *vec, void **data)
 {
-	if (vec->count != 6 || vec->cappacity != 6 || !vec->datas)
+	if (vec->nb_e != 6 || vec->cappacity != 6 || !vec->datas)
 		return (3);
 	else if (ft_vec_at(vec, 0) != data[0] || ft_vec_at(vec, 1) != data[1]
 		|| ft_vec_at(vec, 2) != data[2] || ft_vec_at(vec, 3) != data[3]

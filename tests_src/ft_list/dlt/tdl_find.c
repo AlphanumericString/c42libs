@@ -12,7 +12,7 @@
 
 #include "ft_mem.h"
 #include "ft_list.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 
 #include <stdlib.h>
 

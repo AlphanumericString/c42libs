@@ -14,7 +14,6 @@
 #include "ft_list.h"
 #include "ft_map.h"
 #include "ft_mem.h"
-#include "ft_vector.h"
 
 #include <stdlib.h>
 
@@ -29,26 +28,22 @@ static void	setup_map_node(t_map_node *map_node, const void *key,
 bool	ft_map_set(t_map *map, const void *key, const void *value, size_t k_sz)
 {
 	t_map_node	*map_node;
-	t_list		*reuse_node;
+	t_list		*list_node;
 
-	reuse_node = NULL;
+	list_node = NULL;
 	map_node = ft_map_get_node(map, key, k_sz);
 	if (map_node)
 		return (map_node->data = (void *)value, true);
-	if (map->reserved_nodes && map->reserved_nodes->count)
-		reuse_node = ft_vec_pop(map->reserved_nodes);
-	else
-		map_node = ft_malloc(sizeof(t_map_node));
-	if (!map_node && !reuse_node)
+	map_node = ft_malloc(sizeof(t_map_node));
+	if (!map_node)
 		return (false);
-	if (!reuse_node && map_node)
-		reuse_node = ft_ll_create(map_node);
-	map_node = reuse_node->data;
+	list_node = ft_ll_create(map_node);
+	map_node = list_node->data;
 	setup_map_node(map_node, key, value);
 	map_node->hash = map->hash(key, k_sz);
-	ft_ll_add_front(&map->nodes[map_node->hash % map->capacity], reuse_node);
-	map->weights[map_node->hash % map->capacity]++;
-	map->w_total++;
+	ft_ll_add_front(&map->nodes[map_node->hash % map->capacity], list_node);
+	map->nb_e[map_node->hash % map->capacity]++;
+	map->nb_e_total++;
 	return (true);
 }
 

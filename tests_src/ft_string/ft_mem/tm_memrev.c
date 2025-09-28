@@ -12,34 +12,34 @@
 
 #include "ft_defs.h"
 #include "ft_mem.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include "tests/str__mem_tests.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int	tm_memrev(void)
 {
-	const t_arrinfo	inf = {.n_ele = FT_MICRO_BUF_SIZE, .ele_s = sizeof(char)};
+	const t_arrinfo	inf = {.nmemb = FT_MICRO_BUF_SIZE, .sz = sizeof(char)};
 	char			arr[FT_MICRO_BUF_SIZE];
 	size_t			off;
 	char			i;
 
 	i = 0;
 	off = 0;
-	while (off < inf.n_ele)
+	while (off < inf.nmemb)
 		arr[off++] = i++;
-	ft_memrev(arr, inf.n_ele);
+	ft_memrev(arr, inf.nmemb);
 	off = 0;
 	i = 0;
-	while (off < inf.n_ele)
-		if (arr[off++] != inf.n_ele - 1 - i++)
+	while (off < inf.nmemb)
+		if (arr[off++] != inf.nmemb - 1 - i++)
 			return (1);
 	ft_memrev(arr, 1);
 	ft_memrev(arr, 0);
 	off = 0;
 	i = 0;
-	while (off < inf.n_ele)
-		if (arr[off++] != inf.n_ele - 1 - i++)
+	while (off < inf.nmemb)
+		if (arr[off++] != inf.nmemb - 1 - i++)
 			return (1);
 	return (EXIT_SUCCESS);
 }
@@ -64,3 +64,21 @@ int	tm_memnrev(void)
 		return (3);
 	return (EXIT_SUCCESS);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

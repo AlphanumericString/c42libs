@@ -57,7 +57,7 @@ static int	base_case(void)
 	len = 0;
 	a = create_tb_int(&len);
 	vec = ft_vec_convert_alloccarray((void **)a, len);
-	if (vec->count != len || vec->cappacity != len || vec->datas != (void **)a)
+	if (vec->nb_e != len || vec->cappacity != len || vec->datas != (void **)a)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42
 		|| *(int *)ft_vec_at(vec, 1) != 43 || *(int *)ft_vec_at(vec, 2) != 44)
@@ -65,7 +65,7 @@ static int	base_case(void)
 	(ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec));
 	a = create_tb_int(&len);
 	vec = ft_vec_convert_alloccarray((void **)a, len);
-	if (vec->count != len || vec->cappacity != len || vec->datas != (void **)a)
+	if (vec->nb_e != len || vec->cappacity != len || vec->datas != (void **)a)
 		return (3);
 	else if (*(int *)ft_vec_at(vec, 0) != 42
 		|| *(int *)ft_vec_at(vec, 1) != 43 || *(int *)ft_vec_at(vec, 2) != 44)

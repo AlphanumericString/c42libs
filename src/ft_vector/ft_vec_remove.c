@@ -15,7 +15,7 @@
 
 void	ft_vec_remove(t_vector *vector, size_t n, void (*del)(void *))
 {
-	if (n >= vector->count)
+	if (n >= vector->nb_e)
 		return ;
 	if (del)
 		del(vector->datas[n]);
@@ -28,7 +28,7 @@ void	ft_vec_remove_if(t_vector *vector, t_data_is func, t_data_apply del)
 	size_t	i;
 
 	i = 0;
-	while (i < vector->count)
+	while (i < vector->nb_e)
 	{
 		if (func(vector->datas[i]))
 			ft_vec_remove(vector, i, del);

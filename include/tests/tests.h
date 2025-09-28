@@ -13,7 +13,7 @@
 #ifndef TESTS_H
 # define TESTS_H
 
-# include "./testing_lib/include/tests_fxtr.h"
+# include "ctestinglib/include/tests_fxtr.h"
 # include <stdbool.h>
 # include <stddef.h>
 

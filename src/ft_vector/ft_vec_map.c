@@ -18,15 +18,15 @@ t_vector	*ft_vec_map(const t_vector *restrict vec, const t_data_tr func)
 	size_t		i;
 
 	i = 0;
-	ret = ft_vec_from_size(vec->count);
+	ret = ft_vec_from_size(vec->nb_e);
 	if (!ret)
 		return (NULL);
-	while (i < vec->count)
+	while (i < vec->nb_e)
 	{
 		ret->datas[i] = func(vec->datas[i]);
 		i++;
 	}
-	ret->count = i;
+	ret->nb_e = i;
 	return (ret);
 }
 /*

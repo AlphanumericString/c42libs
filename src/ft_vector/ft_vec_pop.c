@@ -17,10 +17,10 @@ void	*ft_vec_pop(t_vector *vec)
 {
 	void	*data;
 
-	if (vec->count == 0)
+	if (vec->nb_e == 0)
 		return (NULL);
-	data = vec->datas[vec->count - 1];
-	vec->datas[--vec->count] = NULL;
+	data = vec->datas[vec->nb_e - 1];
+	vec->datas[--vec->nb_e] = NULL;
 	return (data);
 }
 /*

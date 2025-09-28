@@ -18,20 +18,20 @@ bool	ft_vec_shrink(t_vector *vec)
 	void	**new_datas;
 	size_t	i;
 
-	if (vec->count == vec->cappacity)
+	if (vec->nb_e == vec->cappacity)
 		return (true);
-	new_datas = ft_calloc(sizeof(void *), vec->count);
+	new_datas = ft_calloc(sizeof(void *), vec->nb_e);
 	if (!new_datas)
 		return (false);
 	i = 0;
-	while (i < vec->count)
+	while (i < vec->nb_e)
 	{
 		new_datas[i] = vec->datas[i];
 		i++;
 	}
 	ft_free(vec->datas);
 	vec->datas = new_datas;
-	vec->cappacity = vec->count;
+	vec->cappacity = vec->nb_e;
 	return (true);
 }
 /*

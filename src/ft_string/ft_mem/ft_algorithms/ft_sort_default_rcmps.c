@@ -1,59 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bblsort.c                                       :+:      :+:    :+:   */
+/*   ft_sort_default_cmps.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/07 20:54:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/07 20:54:27 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/09/07 23:19:23 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/07 23:19:23 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_allocator__dev.h"
-#include "ft_defs.h"
-#include "ft_mem.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include <stddef.h>
 #include <stdio.h>
 
-size_t	*ft_sbblsort(size_t *data, size_t nb_elem, int flags)
+int	ft_cmp_rptr(const void *a, const void *b)
 {
-	return (ft_bblsort(data, (t_arrinfo){
-			.n_ele = nb_elem,
-			.ele_s = sizeof(size_t)}, (t_data_cmp)ft_cmp_szt_p, flags), data);
+	return (ft_cmp_rszt_p((size_t *)&a, (size_t *)&b));
 }
 
-ssize_t	*ft_ssbblsort(ssize_t *data, size_t nb_elem, int flags)
+int	ft_cmp_rint_p(const void *a, const void *b)
 {
-	return (ft_bblsort(data, (t_arrinfo){
-			.n_ele = nb_elem,
-			.ele_s = sizeof(ssize_t)}, (t_data_cmp)ft_cmp_sszt_p, flags), data);
+	const bool	eq = *(int *)b == *(int *)a;
+	bool		lt;
+
+	if (eq)
+		return (0);
+	lt = *(int *)b < *(int *)a;
+	if (lt)
+		return (-1);
+	return (1);
 }
 
-void	*ft_bblsort(void *data, const t_arrinfo infos, t_data_cmp cmp, int flg)
+int	ft_cmp_rszt_p(const void *a, const void *b)
 {
-	const size_t		se = infos.ele_s;
-	const size_t		nb = infos.n_ele;
-	const t_sort_order	order = (flg & FT_SORT_ORD_MASK);
-	size_t				i;
+	const bool	eq = *(size_t *)b == *(size_t *)a;
+	bool		lt;
 
-	if (nb < 2 || se == 0 || order == FT_SORT_ORD_UNO)
-		return ((void *)data);
-	i = 1;
-	while (i < nb)
-	{
-		if ((cmp(data + (i - 1) * se, data + i * se) > 0
-				&& order == FT_SORT_ORD_ASC)
-			|| (cmp(data + (i - 1) * se, data + i * se) < 0
-				&& order == FT_SORT_ORD_DES))
-		{
-			ft_swap(data + (i - 1) * se, data + i * se, se);
-			i = 0;
-		}
-		i++;
-	}
-	return ((t_any) data);
+	if (eq)
+		return (0);
+	lt = *(size_t *)b < *(size_t *)a;
+	if (lt)
+		return (-1);
+	return (1);
+}
+
+int	ft_cmp_rsszt_p(const void *a, const void *b)
+{
+	const bool	eq = *(ssize_t *)b == *(ssize_t *)a;
+	bool		lt;
+
+	if (eq)
+		return (0);
+	lt = *(ssize_t *)b < *(ssize_t *)a;
+	if (lt)
+		return (-1);
+	return (1);
 }
 /*
 GPL-3.0 License:

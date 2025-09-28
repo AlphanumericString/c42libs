@@ -32,7 +32,7 @@ int	tv_shift(void)
 	ft_vec_add(&vec, &c);
 	ft_vec_add(&vec, &d);
 	ft_vec_shift(vec, 1, 2);
-	if (vec->count != 2)
+	if (vec->nb_e != 2)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42)
 		return (1);

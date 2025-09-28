@@ -13,7 +13,7 @@
 #include "ft_allocator__dev.h"
 #include "ft_arr.h"
 #include "ft_list.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include "types/ft_list_types.h"
 
 #include "tests/list__dl_tests.h"

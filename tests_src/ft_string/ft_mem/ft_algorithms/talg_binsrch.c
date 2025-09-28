@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_defs.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include "tests/str__mem_tests.h"
 #include "tests/tests_lambda_functions.h"
 #include <stdlib.h>
@@ -24,8 +24,8 @@ int	talg_binsrch(void)
 	int				target;
 	int				i;
 
-	randomize_iarr(arr, infos.n_ele, 0, infos.n_ele);
-	ft_qsort(arr, infos.n_ele, infos.ele_s, ft_cmp_int_p);
+	randomize_iarr(arr, infos.nmemb, 0, infos.nmemb);
+	ft_qsort(arr, infos.nmemb, infos.sz, ft_cmp_int_p);
 	nb_tries = 16;
 	while (nb_tries-- > 0)
 	{
@@ -37,8 +37,8 @@ int	talg_binsrch(void)
 	i = ft_binsrch(arr, (t_arrinfo){0}, &target, ft_cmp_int_p);
 	if (i != 0)
 		return (16 + 2);
-	i += ft_binsrch(arr, (t_arrinfo){infos.n_ele, 0}, &target, ft_cmp_int_p);
-	i += ft_binsrch(arr, (t_arrinfo){0, infos.ele_s}, &target, ft_cmp_int_p);
+	i += ft_binsrch(arr, (t_arrinfo){infos.nmemb, 0}, &target, ft_cmp_int_p);
+	i += ft_binsrch(arr, (t_arrinfo){0, infos.sz}, &target, ft_cmp_int_p);
 	if (i != 0)
 		return (16 + 3);
 	return (0);

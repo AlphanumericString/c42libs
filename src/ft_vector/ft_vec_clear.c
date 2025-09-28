@@ -17,9 +17,9 @@ void	ft_vec_clear(t_vector *vec)
 	size_t	size;
 
 	size = 0;
-	while (size < vec->count)
+	while (size < vec->nb_e)
 		vec->datas[size++] = NULL;
-	vec->count = 0;
+	vec->nb_e = 0;
 }
 /*
 GPL-3.0 License:

@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_issorted.c                                      :+:      :+:    :+:   */
+/*   ft_getmax.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 16:48:18 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/21 16:48:18 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/09/25 22:19:56 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/25 22:19:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sort.h"
+#include "ft_algorithms.h"
+#include <stdio.h>
 
-bool	ft_is_sorted(void *array, size_t nmb, size_t size,
-			t_data_cmp cmp)
+void	*ft_getmax(const void *data, t_arrinfo infos, t_data_cmp cmp)
 {
 	size_t	i;
+	size_t	max;
 
-	if (nmb < 2 || !size)
-		return (true);
-	i = 1;
-	while (i < nmb)
+	i = 0;
+	max = 0;
+	if (infos.nmemb < 1 || infos.sz < 1)
+		return (NULL);
+	while (i < infos.nmemb)
 	{
-		if (cmp(array + (i - 1) * size, array + i * size) > 0)
-			return (false);
+		if (cmp(data + i * infos.sz, data + max * infos.sz) > 0)
+			max = i;
 		i++;
 	}
-	return (true);
+	return ((void *)data + max * infos.sz);
 }
 /*
 GPL-3.0 License:

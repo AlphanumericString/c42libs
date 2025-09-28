@@ -30,7 +30,7 @@ int	tv_remove_if(void)
 	ft_vec_add(&vec, &b);
 	ft_vec_add(&vec, &c);
 	ft_vec_remove_if(vec, is42, NULL);
-	if (vec->count != 2)
+	if (vec->nb_e != 2)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 43)
 		return (1);

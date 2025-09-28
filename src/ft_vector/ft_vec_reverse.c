@@ -19,7 +19,7 @@ void	ft_vec_reverse(t_vector *vector)
 	void	*tmp;
 
 	i = 0;
-	j = vector->count - 1;
+	j = vector->nb_e - 1;
 	while (i < j)
 	{
 		tmp = vector->datas[i];

@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_binsrch.c                                       :+:      :+:    :+:   */
+/*   ft_getmin.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 10:36:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/21 14:16:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/09/25 22:19:13 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/25 22:19:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
-#include "ft_sort.h"
-#include <stddef.h>
+#include "ft_algorithms.h"
 #include <stdio.h>
 
-size_t	ft_binsrch(const void *data, const t_arrinfo infos, const void *elem,
-					t_data_cmp cmp)
+void	*ft_getmin(const void *data, t_arrinfo infos, t_data_cmp cmp)
 {
-	const size_t	nb_elem = infos.n_ele;
-	const size_t	e_size = infos.ele_s;
-	const char		*byte_data = data;
-	const char		*mid_elem;
-	int				ret;
+	size_t	i;
+	size_t	min;
 
-	if (nb_elem == 0 || e_size == 0)
-		return (0);
-	mid_elem = byte_data + ((nb_elem - 1) / 2) * e_size;
-	ret = cmp(mid_elem, elem);
-	if (ret == 0)
-		return ((size_t)((mid_elem - byte_data) / e_size));
-	else if (ret > 0)
-		return (ft_binsrch(byte_data, (t_arrinfo){
-				.n_ele = (nb_elem - 1) / 2,
-				.ele_s = e_size}, elem, cmp));
-	return (ft_binsrch(mid_elem + e_size, (t_arrinfo){
-			.n_ele = nb_elem / 2,
-			.ele_s = e_size}, elem, cmp)
-		+ (nb_elem - 1) / 2 + 1);
+	if (!infos.nmemb || !infos.sz)
+		return (NULL);
+	min = 0;
+	i = 0;
+	while (i < infos.nmemb)
+	{
+		if (cmp(data + i * infos.sz, data + min * infos.sz) < 0)
+			min = i;
+		i++;
+	}
+	return ((void *)data + min * infos.sz);
 }
 /*
 GPL-3.0 License:

@@ -24,6 +24,9 @@
 // #include <fcntl.h>
 // #include <math.h>
 
+#include "ft_list.h"
+#include "types/ft_list_types.h"
+#define FT_CLASSIC_COLORS
 #include "ft_colors.h"
 #include "ft_allocator__dev.h"
 #include "ft_arr.h"
@@ -37,7 +40,9 @@
 #include "tests/fixtures.h"
 #include "types/ft_args_types.h"
 
+// -------------
 // iee754 tests
+// -------------
 //
 // typedef struct s_dbl_fields
 // {
@@ -78,7 +83,9 @@
 // 	return sign * frac * pow(2, exp);
 // }
 
+// -------------
 // lseek test
+// -------------
 // {
 // 	char buffer[256 + 1] = {0};
 // 	int fd = open("./test.txt", O_RDONLY | O_CLOEXEC);
@@ -116,33 +123,9 @@
 // 	return (fclose(file), EXIT_SUCCESS);
 // }
 
-// static int	ts_tok(void)
-// {
-// 	char	test[50];
-// 	char	lorem[30];
-//
-// 	lorem[0] = '\0';
-// 	test[0] = '\0';
-// 	ft_strlcpy(lorem, "Lorem ipsum dolor ", 30);
-// 	ft_strlcpy(test, ":::path/to/file:::another/path::yet/:/another/path", 47);
-// 	if (ft_strcmp(ft_strtok(lorem, " "), "Lorem") != 0
-// 		|| ft_strcmp(ft_strtok(NULL, " "), "ipsum") != 0
-// 		|| ft_strcmp(ft_strtok(NULL, " "), "dolor") != 0)
-// 		return (1);
-// 	if (ft_strcmp(ft_strtok(NULL, " "), "") != 0
-// 		|| ft_strtok(NULL, " "))
-// 		return (2);
-// 	if (ft_strcmp(ft_strtok(test, ":"), "path/to/file") != 0
-// 		|| ft_strcmp(ft_strtok(NULL, ":"), "another/path") != 0)
-// 		return (3);
-// 	if (ft_strcmp(ft_strtok(NULL, ":/"), "yet") != 0)
-// 		return (4);
-// 	if (ft_strcmp(ft_strtok(NULL, ":/"), "another") != 0)
-// 		return (5);
-// 	return (EXIT_SUCCESS);
-// }
-
+// -------------
 // quick strjustify test
+// -------------
 //
 //int	main(int ac, char **av) {
 //	if (ac < 2)
@@ -158,42 +141,7 @@
 //		printf("%zu:%03zu: `%s`\n", i, strlen(tb[i]), tb[i]);
 //	ft_free(str);
 //}
-
-// int fd = open(".gitignore", O_RDONLY);
-// char *str;
-// size_t	i;
 //
-// i = 0;
-// str = ft_gnl(fd);
-// if (!str)
-// 	printf("gnl fail (NULL)");
-// while (str)
-// {
-// 	printf("%03zu:'%s'\n", ++i, ft_strtrim_inplace(str, "\n"));
-// 	str = (ft_free(str), ft_gnl(fd));
-// }
-// close(fd);
-
-// bool dbl = false;
-// char s[1024] = {0};
-//
-// printf("nb_elem, k, cost, data_size\n");
-// for (size_t nb_elem  = 0; nb_elem < 1500; nb_elem += 10)
-// {
-// 	const size_t k = ft_ullogof((unsigned long long)nb_elem, 10) + 1;
-// 	printf("%zu, %zu, ", nb_elem, k);
-// 	printf("%zu, %zu\n",
-// 		(k * (nb_elem + 1) * sizeof(size_t)) + sizeof(size_t *),
-// 		nb_elem * sizeof(size_t));
-// 	if (!dbl && nb_elem > 20 &&
-// 		nb_elem * 3 < (k * (nb_elem + 1) + sizeof(size_t *)))
-// 	{
-// 		sprintf(s, "crossover at %zu elems (%zu bytes)\n", nb_elem, nb_elem * sizeof(size_t));
-// 		dbl = true;
-// 	}
-// }
-// ft_putstr_fd(s, STDERR_FILENO);
-
 // const char *str = "hello earthlings, my name is zod the terrible "
 // 	"prepare for my fury... i will send my goon to this supposed goon cave "
 // 	"you speak of! for I the great zod will not leave a stone un-turned and"
@@ -205,41 +153,34 @@
 // printf("rep:\n%s\n", rep);
 // ft_free(rep);
 
-#include "ft_sort.h"
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-typedef struct person {
-	char *name;
-	int	 non_unique_id;
-} person_t;
-
-static int	__attribute__((unused)) adr_cmp(const void *a, const void *b)
-{
-	const size_t	aa = (const size_t)(a);
-	const size_t	bb = (const size_t)(b);
-
-	if (aa < bb)
-		return (-1);
-	if (aa > bb)
-		return (1);
-	return (0);
-}
-
+// --------------------
+// -- person_t tests --
+// --------------------
+// #include <stddef.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <time.h>
+//
+// typedef struct person {
+// 	char *name;
+// 	int	 non_unique_id;
+// } person_t;
+//
 // static int	person_cmp_names(const void *p1, const void *p2)
 // {
 // 	return (ft_strcmp(((person_t *)p1)->name, ((person_t *)p2)->name));
 // }
-static int	__attribute__((unused)) person_cmp_ids(const void *p1, const void *p2)
-{
-	return ((*(person_t **)p1)->non_unique_id - (*(person_t **)p2)->non_unique_id);
-}
-static int	__attribute__((unused)) person_cmp_to_ids(const void *p1, const void *id)
-{
-	return ((*((person_t **) p1))->non_unique_id - *(int *)id);
-}
+// static int	__attribute__((unused))
+//			person_cmp_ids(const void *p1, const void *p2)
+// {
+// 	return ((*(person_t **)p1)->non_unique_id -
+//		(*(person_t **)p2)->non_unique_id);
+// }
+// static int	__attribute__((unused))
+//			person_cmp_to_ids(const void *p1, const void *id)
+// {
+// 	return ((*((person_t **) p1))->non_unique_id - *(int *)id);
+// }
 //
 // static size_t	ptr_to_raw(const void *p)
 // {
@@ -265,268 +206,286 @@ static int	__attribute__((unused)) person_cmp_to_ids(const void *p1, const void 
 // {
 // 	return (ft_strcmp(person_to_name(personA), person_to_name(personB)));
 // }
+//
 
-#include <unistd.h>
-
-#define	CARR_FOR(x, act)	\
-	do {					\
-		for (size_t i = 0; i < sizeof(x) / sizeof(*x); i++)	\
-			act;											\
-	} while (0);	\
-
-
-#define PRINT_TABL_S(x)					\
-	CARR_FOR(x, \
-		printf("%3zu%c", x[i], i + 1 == sizeof(x) / sizeof(*x) ? '\n' : ' '))
-
-#define PRINT_TABL_SS(x)				\
-	CARR_FOR(x, \
-		printf("%3zd%c", \
-			(ssize_t)x[i],	i + 1 == sizeof(x) / sizeof(*x) ? '\n' : ' '));
-
-#define PRINT_TABL_V(x)					\
-	CARR_FOR(x, \
-			printf("%8p%c", x[i],								\
-				i + 1 == sizeof(x) / sizeof(*x) ? '\n' : ' '));	\
-
-#define	RESET_TABLE(x, src)								\
-	do {												\
-		ft_memcpy(x, src, sizeof(*x) * sample_size);	\
-	} while (0);
-
-#define	ALGO_CATEGORY_COLOR	FT_C_GREEN
-#define	TYPE_COLOR			FT_C_YELLOW
-#define	ORDER_COLOR			FT_C_CYAN
+// ----------------
+// -- sort tests --
+// ----------------
+// #define	CARR_FOR(x, act)
+// 	do {
+// 		for (size_t i = 0; i < sizeof(x) / sizeof(*x); i++)
+// 			act;
+// 	} while (0);
+//
+//
+// #define PRINT_TABL_S(x)
+// 	CARR_FOR(x,
+// 		printf("%3zu%c", x[i], i + 1 == sizeof(x) / sizeof(*x) ? '\n' : ' '))
+//
+// #define PRINT_TABL_SS(x)
+// 	CARR_FOR(x,
+// 		printf("%3zd%c",
+// 			(ssize_t)x[i],	i + 1 == sizeof(x) / sizeof(*x) ? '\n' : ' '));
+//
+// #define PRINT_TABL_V(x)
+// 	CARR_FOR(x,
+// 			printf("%8p%c", x[i],
+// 				i + 1 == sizeof(x) / sizeof(*x) ? '\n' : ' '));
+//
+// #define	RESET_TABLE(x, src)
+// 	do {
+// 		ft_memcpy(x, src, sizeof(*x) * sample_size);
+// 	} while (0);
+//
+// #define	ALGO_CATEGORY_COLOR	FT_CGRN
+// #define	TYPE_COLOR			FT_CYEL
+// #define	ORDER_COLOR			FT_CCYN
+//
+// void	print_adresses(void *adr);
+// void	print_adresses(void *adr)
+// {
+// 	printf("%p\t%zu\n", adr, (size_t)adr);
+// }
+//
+//
+// 	const int sample_size = 10;
+// 	size_t	sarr_rand[sample_size];
+// 	ssize_t arr_rand[sample_size];
+// 	void	*adr_rand[sample_size];
+//
+// 	size_t	sarr[sample_size];
+// 	size_t	arr[sample_size];
+// 	void	*adr[sample_size];
+//
+// 	person_t	**sample;
+//
+//
+// 	sample = (t_any)ft_aalloc(sample_size, sizeof(person_t *),
+// 	sizeof(person_t));
+// 	sample[0]->name = "Alice bbb"; sample[0]->non_unique_id = 3;
+// 	sample[1]->name = "Alice aaa", sample[1]->non_unique_id = 3;
+// 	sample[2]->name = "john aaa",  sample[2]->non_unique_id = 5;
+// 	sample[3]->name = "john aaa",  sample[3]->non_unique_id = 6;
+// 	sample[4]->name = "john bbb",  sample[4]->non_unique_id = 5;
+// 	sample[5]->name = "john cca",  sample[5]->non_unique_id = 6;
+// 	sample[6]->name = "john ccb",  sample[6]->non_unique_id = 1;
+// 	sample[7]->name = "john ccc",  sample[7]->non_unique_id = 32;
+// 	sample[8]->name = "john aaa",  sample[8]->non_unique_id = 96;
+// 	sample[9]->name = "john aaa",  sample[9]->non_unique_id = 69;
+//
+//
+// 	unsigned int seed =  1758453962; //time(NULL);
+// 	printf("rand seed: %u\n", seed);
+// 	srand(seed);
+// 	for (size_t i = 0; i < sizeof(sarr_rand) / sizeof(*sarr_rand); i++)
+// 		sarr_rand[i] = (rand() % 100) - 50;
+// 	for (size_t i = 0; i < sizeof(arr_rand) / sizeof(*arr_rand); i++)
+// 		arr_rand[i] = rand() % 100;
+// 	for (size_t i = 0; i < sizeof(adr_rand) / sizeof(*adr_rand); i++)
+// 		adr_rand[i] = (void *)((size_t)rand() % 100);
+// 	t_sort_order	orders[2] = {FT_SORT_ORD_ASC, FT_SORT_ORD_DES};
+// 	const char		*orders_str[] = {"Ascending", "Descending"};
+//
+// 	RESET_TABLE(sarr, sarr_rand);
+// 	RESET_TABLE(arr, arr_rand);
+// 	RESET_TABLE(adr, adr_rand);
+// 	printf(ALGO_CATEGORY_COLOR "bubble sort:\n" FT_C_RESET);
+// 	{
+// 		printf(TYPE_COLOR "\t-size_t version:\n" FT_C_RESET);
+// 		{
+// 			PRINT_TABL_S(arr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+//				orders_str[0]);
+// 			ft_sbblsort(arr, sizeof(arr) / sizeof(*arr), orders[0]);
+// 			PRINT_TABL_S(arr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+//				orders_str[1]);
+// 			ft_sbblsort(arr, sizeof(arr) / sizeof(*arr), orders[1]);
+// 			PRINT_TABL_S(arr);
+// 		}
+// 		printf(TYPE_COLOR "\t-ssize_t version:\n" FT_C_RESET);
+// 		{
+// 			PRINT_TABL_SS(sarr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+//				orders_str[0]);
+// 			ft_ssbblsort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr),
+//				orders[0]);
+// 			PRINT_TABL_SS(sarr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+//				orders_str[1]);
+// 			ft_ssbblsort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr),
+//				orders[1]);
+// 			PRINT_TABL_SS(sarr);
+// 		}
+// 		printf(TYPE_COLOR "\t-void* version:\n" FT_C_RESET);
+// 		{
+// 			PRINT_TABL_V(adr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+//				orders_str[0]);
+// 			ft_bblsort(adr, (t_arrinfo){sizeof(adr) / sizeof(*adr),
+//				sizeof(*adr)},
+// 				(t_data_cmp)ft_cmp_szt_p, orders[0]);
+// 			PRINT_TABL_V(adr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+//				orders_str[1]);
+// 			ft_bblsort(adr, (t_arrinfo){sizeof(adr) / sizeof(*adr),
+//				sizeof(*adr)},
+// 				(t_data_cmp)ft_cmp_szt_p, orders[1]);
+// 			PRINT_TABL_V(adr);
+// 		}
+// 		printf("\n\n\n");
+// 	}
+//
+// 	RESET_TABLE(sarr, sarr_rand);
+// 	RESET_TABLE(arr, arr_rand);
+// 	RESET_TABLE(adr, adr_rand);
+// 	printf(ALGO_CATEGORY_COLOR "bucket sort:\n" FT_C_RESET);
+// 	{
+// 		printf(TYPE_COLOR "\t-size_t version:\n" FT_C_RESET);
+// 		{
+// 			PRINT_TABL_S(arr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+//				orders_str[0]);
+// 			ft_sbcksort(arr, sizeof(arr) / sizeof(*arr), orders[0]);
+// 			PRINT_TABL_S(arr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+//				orders_str[1]);
+// 			ft_sbcksort(arr, sizeof(arr) / sizeof(*arr), orders[1]);
+// 			PRINT_TABL_S(arr);
+// 		}
+// 		printf(TYPE_COLOR "\t-ssize_t version:\n" FT_C_RESET);
+// 		printf(TYPE_COLOR "\t-void* version:\n" FT_C_RESET);
+// 			printf(FT_C_INFO "ssize_t + void* version not implemented.\n"
+// 			FT_C_RESET);
+// 		printf("\n\n\n");
+// 	}
+//
+// 	RESET_TABLE(sarr, sarr_rand);
+// 	RESET_TABLE(arr, arr_rand);
+// 	RESET_TABLE(adr, adr_rand);
+// 	printf(ALGO_CATEGORY_COLOR "isrt_sort:\n" FT_C_RESET);
+// 	{
+// 		printf(TYPE_COLOR "\t-size_t version:\n" FT_C_RESET);
+// 		{
+// 			PRINT_TABL_S(arr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+// 			orders_str[0]);
+// 			ft_sisrtsort(arr, sizeof(arr) / sizeof(*arr), orders[0]);
+// 			PRINT_TABL_S(arr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+// 			orders_str[1]);
+// 			ft_sisrtsort(arr, sizeof(arr) / sizeof(*arr), orders[1]);
+// 			PRINT_TABL_S(arr);
+// 		}
+// 		printf(TYPE_COLOR "\t-ssize_t version:\n" FT_C_RESET);
+// 		{
+// 			PRINT_TABL_SS(sarr);
+// 			printf(ORDER_COLOR "%s order:\n" FT_C_RESET, orders_str[0]);
+// 			ft_ssisrtsort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr),
+//				orders[0]);
+// 			PRINT_TABL_SS(sarr);
+// 			printf(ORDER_COLOR "%s order:\n" FT_C_RESET, orders_str[1]);
+// 			ft_ssisrtsort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr),
+// 			orders[1]);
+// 			PRINT_TABL_SS(sarr);
+// 		}
+// 		printf(TYPE_COLOR "\t-void* version:\n" FT_C_RESET);
+// 		{
+// 			PRINT_TABL_V(adr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+// 			orders_str[0]);
+// 			ft_isrtsort(adr, (t_arrinfo){
+// 				.nmemb = sizeof(adr) / sizeof(*adr),
+// 				.sz = sizeof(*adr)}, (t_data_cmp)ft_cmp_szt_p, orders[0]);
+// 			PRINT_TABL_V(adr);
+// 			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET,
+// 			orders_str[1]);
+// 			ft_isrtsort(adr, (t_arrinfo){sizeof(adr) / sizeof(*adr),
+// 			sizeof(*adr)},
+// 				(t_data_cmp)ft_cmp_szt_p, orders[1]);
+// 			PRINT_TABL_V(adr);
+// 		}
+// 		printf("\n\n\n");
+// 	}
+//
+//
+// 	// printf("\n\n\n");
+// 	// printf(FT_CYEL "tests on real structures:\n" FT_C_RESET);
+// 	// printf("\t REAL struct test: (person_t)\n");
+// 	//
+// 	// printf("abin srchs:\n");
+// 	// printf("seraching elem: [%d] aka %s %d\n", 42 % sample_size,
+// 	// 	sample[42 % sample_size]->name,
+//		sample[42 % sample_size]->non_unique_id);
+// 	// printf("&sample[idx found]: %p\n", &sample[42 % sample_size]);
+// 	// printf("sample[idx found]: %p\n", sample[42 % sample_size]);
+// 	// int aaaa = (int)ft_binsrch(sample, (t_arrinfo){sample_size,
+//		sizeof(*sample)}, &sample[42 % sample_size], person_cmp_ids);
+// 	// printf("idx found:%d\n", aaaa);
+// 	// printf("\n");
+// 	// printf("\n");
+// 	// printf("\n");
+// 	//
+// 	// int id = sample[42 % sample_size]->non_unique_id;
+// 	// printf("seraching id: %d\n", id);
+// 	// int bbbb = (int)ft_binsrch(sample,
+// 	// 					   (t_arrinfo){sample_size, sizeof(*sample)},
+//							&id, person_cmp_to_ids);
+// 	// printf("idx found:%d\n", bbbb);
+// 	//
+// 	// printf("sample nb\t id\t name\tptr\n");
+// 	// for (size_t i = 0; i < sample_size; i++)
+// 	// {
+// 	// 	printf("sample[%zu]\t%d\t%s\t%p\n", i, sample[i]->non_unique_id,
+//			sample[i]->name,
+// 	// 	 &sample[i]);
+// 	// }
+// 	// printf("\n\n");
+// 	// // ft_bblsort
+// 	// ft_isrtsort
+// 	// 	(sample, (t_arrinfo){sample_size, sizeof(*sample)}, person_cmp_ids,
+// 	FT_SORT_ORD_ASC);
+// 	//
+// 	// printf("sample nb\t id\t name\tptr\n");
+// 	// for (size_t i = 0; i < sample_size; i++)
+// 	// {
+// 	// 	printf("sample[%zu]\t%d\t%s\t%p\n", i, sample[i]->non_unique_id,
+// 	sample[i]->name,
+// 	// 	 &sample[i]);
+// 	// }
+// 	// printf("\n\n");
+// 	ft_anfree((t_any)sample, sample_size);
+//
+// // 	printf("\n\n\n");
+// // 	printf("\t-person tests:\n");
+// // //	shuffle(sample, 5);
+// // 	for (int i = sample_size * ft_max(ft_log(sample_size), 10); i; i--)
+// // 	{
+// // 		size_t a, b;
+// // 		a = rand() % sample_size;
+// // 		b = rand() % sample_size;
+// // 		void *tmp = sample[a];
+// // 		sample[a] = sample[b];
+// // 		sample[b] = tmp;
+// //
+// // 	}
+// // 	for (size_t i = 0; i < sample_size ; i++)
+// // 		printf("n:%s\ta:%d\n", sample[i]->name, sample[i]->non_unique_id);
+// // 	printf("---\n");
+// // 	ft_bblsort((t_iconst_arr)sample, sample_size, cmp_person_id, order);
+// // 	for (size_t i = 0; i < sample_size ; i++)
+// // 		printf("n:%s\ta:%d\n", sample[i]->name, sample[i]->non_unique_id);
+// // 	printf("---\n");
+// // 	ft_bblsort((t_iconst_arr)sample, sample_size, cmp_person_name, order);
+// // 	for (size_t i = 0; i < sample_size ; i++)
+// // 		printf("n:%s\ta:%d\n", sample[i]->name, sample[i]->non_unique_id);
+// //
+//
 
 int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-
-	const int sample_size = 10;
-	size_t	sarr_rand[sample_size];
-	ssize_t arr_rand[sample_size];
-	void	*adr_rand[sample_size];
-
-	size_t	sarr[sample_size];
-	size_t	arr[sample_size];
-	void	*adr[sample_size];
-
-	person_t	**sample;
-
-
-	sample = (t_any)ft_aalloc(sample_size, sizeof(person_t *), sizeof(person_t));
-	sample[0]->name = "Alice bbb"; sample[0]->non_unique_id = 3;
-	sample[1]->name = "Alice aaa", sample[1]->non_unique_id = 3;
-	sample[2]->name = "john aaa",  sample[2]->non_unique_id = 5;
-	sample[3]->name = "john aaa",  sample[3]->non_unique_id = 6;
-	sample[4]->name = "john bbb",  sample[4]->non_unique_id = 5;
-	sample[5]->name = "john cca",  sample[5]->non_unique_id = 6;
-	sample[6]->name = "john ccb",  sample[6]->non_unique_id = 1;
-	sample[7]->name = "john ccc",  sample[7]->non_unique_id = 32;
-	sample[8]->name = "john aaa",  sample[8]->non_unique_id = 96;
-	sample[9]->name = "john aaa",  sample[9]->non_unique_id = 69;
-
-
-	unsigned int seed =  1758453962; //time(NULL);
-	printf("rand seed: %u\n", seed);
-	srand(seed);
-	for (size_t i = 0; i < sizeof(sarr_rand) / sizeof(*sarr_rand); i++)
-		sarr_rand[i] = (rand() % 100) - 50;
-	for (size_t i = 0; i < sizeof(arr_rand) / sizeof(*arr_rand); i++)
-		arr_rand[i] = rand() % 100;
-	for (size_t i = 0; i < sizeof(adr_rand) / sizeof(*adr_rand); i++)
-		adr_rand[i] = (void *)((size_t)rand() % 100);
-	t_sort_order	orders[2] = {FT_SORT_ORD_ASC, FT_SORT_ORD_DES};
-	const char		*orders_str[] = {"Ascending", "Descending"};
-
-	RESET_TABLE(sarr, sarr_rand);
-	RESET_TABLE(arr, arr_rand);
-	RESET_TABLE(adr, adr_rand);
-	printf(ALGO_CATEGORY_COLOR "bubble sort:\n" FT_C_RESET);
-	{
-		printf(TYPE_COLOR "\t-size_t version:\n" FT_C_RESET);
-		{
-			PRINT_TABL_S(arr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[0]);
-			ft_sbblsort(arr, sizeof(arr) / sizeof(*arr), orders[0]);
-			PRINT_TABL_S(arr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[1]);
-			ft_sbblsort(arr, sizeof(arr) / sizeof(*arr), orders[1]);
-			PRINT_TABL_S(arr);
-		}
-		printf(TYPE_COLOR "\t-ssize_t version:\n" FT_C_RESET);
-		{
-			PRINT_TABL_SS(sarr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[0]);
-			ft_ssbblsort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr), orders[0]);
-			PRINT_TABL_SS(sarr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[1]);
-			ft_ssbblsort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr), orders[1]);
-			PRINT_TABL_SS(sarr);
-		}
-		printf(TYPE_COLOR "\t-void* version:\n" FT_C_RESET);
-		{
-			PRINT_TABL_V(adr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[0]);
-			ft_bblsort(adr, (t_arrinfo){sizeof(adr) / sizeof(*adr), sizeof(*adr)},
-				(t_data_cmp)ft_cmp_szt_p, orders[0]);
-			PRINT_TABL_V(adr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[1]);
-			ft_bblsort(adr, (t_arrinfo){sizeof(adr) / sizeof(*adr), sizeof(*adr)},
-				(t_data_cmp)ft_cmp_szt_p, orders[1]);
-			PRINT_TABL_V(adr);
-		}
-		printf("\n\n\n");
-	}
-
-	RESET_TABLE(sarr, sarr_rand);
-	RESET_TABLE(arr, arr_rand);
-	RESET_TABLE(adr, adr_rand);
-	printf(ALGO_CATEGORY_COLOR "bucket sort:\n" FT_C_RESET);
-	{
-		printf(TYPE_COLOR "\t-size_t version:\n" FT_C_RESET);
-		{
-			PRINT_TABL_S(arr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[0]);
-			ft_sbcksort(arr, sizeof(arr) / sizeof(*arr), orders[0]);
-			PRINT_TABL_S(arr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[1]);
-			ft_sbcksort(arr, sizeof(arr) / sizeof(*arr), orders[1]);
-			PRINT_TABL_S(arr);
-		}
-		printf(TYPE_COLOR "\t-ssize_t version:\n" FT_C_RESET);
-		{
-			PRINT_TABL_SS(sarr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[0]);
-			ft_ssbcksort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr), orders[0]);
-			PRINT_TABL_SS(sarr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[1]);
-			ft_ssbcksort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr), orders[1]);
-			PRINT_TABL_SS(sarr);
-		}
-		printf(TYPE_COLOR "\t-void* version:\n" FT_C_RESET);
-		{
-			char txt[] ="having a void * although possible, is extremely "
-				"annoying with bucket sort, as it requires to map the data to "
-				"a real positive integer index (size_t in impl) "
-				"first and even then you also need a cmp function for your "
-				"subsort sorting the buckets...\n";
-
-			ft_strwlgn_inplace(txt, 80);
-			printf(FT_C_RED "\t\t-no void* version available\n" FT_C_RESET);
-			printf(FT_C_RED "%s\n" FT_C_RESET, txt);
-		}
-		printf("\n\n\n");
-	}
-
-	RESET_TABLE(sarr, sarr_rand);
-	RESET_TABLE(arr, arr_rand);
-	RESET_TABLE(adr, adr_rand);
-	printf(ALGO_CATEGORY_COLOR "isrt_sort:\n" FT_C_RESET);
-	{
-		printf(TYPE_COLOR "\t-size_t version:\n" FT_C_RESET);
-		{
-			PRINT_TABL_S(arr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[0]);
-			ft_sisrtsort(arr, sizeof(arr) / sizeof(*arr), orders[0]);
-			PRINT_TABL_S(arr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[1]);
-			ft_sisrtsort(arr, sizeof(arr) / sizeof(*arr), orders[1]);
-			PRINT_TABL_S(arr);
-		}
-		printf(TYPE_COLOR "\t-ssize_t version:\n" FT_C_RESET);
-		{
-			PRINT_TABL_SS(sarr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[0]);
-			ft_ssisrtsort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr), orders[0]);
-			PRINT_TABL_SS(sarr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[1]);
-			ft_ssisrtsort((ssize_t *)sarr, sizeof(sarr) / sizeof(*sarr), orders[1]);
-			PRINT_TABL_SS(sarr);
-		}
-		printf(TYPE_COLOR "\t-void* version:\n" FT_C_RESET);
-		{
-			PRINT_TABL_V(adr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[0]);
-			ft_isrtsort(adr, (t_arrinfo){
-				.n_ele = sizeof(adr) / sizeof(*adr), 
-				.ele_s = sizeof(*adr)}, (t_data_cmp)ft_cmp_szt_p, orders[0]);
-			PRINT_TABL_V(adr);
-			printf(ORDER_COLOR "Sorting in %s order:\n" FT_C_RESET, orders_str[1]);
-			ft_isrtsort(adr, (t_arrinfo){sizeof(adr) / sizeof(*adr), sizeof(*adr)},
-				(t_data_cmp)ft_cmp_szt_p, orders[1]);
-			PRINT_TABL_V(adr);
-		}
-		printf("\n\n\n");
-	}
-
-
-	// printf("\n\n\n");
-	// printf("\t REAL struct test: (person_t)\n");
-	//
-	// printf("abin srchs:\n");
-	// printf("seraching elem: [%d] aka %s %d\n", 42 % sample_size,
-	// 	sample[42 % sample_size]->name, sample[42 % sample_size]->non_unique_id);
-	// printf("&sample[idx found]: %p\n", &sample[42 % sample_size]);
-	// printf("sample[idx found]: %p\n", sample[42 % sample_size]);
-	// int aaaa = (int)ft_binsrch(sample, (t_arrinfo){sample_size, sizeof(*sample)}, &sample[42 % sample_size], person_cmp_ids);
-	// printf("idx found:%d\n", aaaa);
-	// printf("\n");
-	// printf("\n");
-	// printf("\n");
-	//
-	// int id = sample[42 % sample_size]->non_unique_id;
-	// printf("seraching id: %d\n", id);
-	// int bbbb = (int)ft_binsrch(sample,
-	// 					   (t_arrinfo){sample_size, sizeof(*sample)}, &id, person_cmp_to_ids);
-	// printf("idx found:%d\n", bbbb);
-	//
-	// printf("sample nb\t id\t name\tptr\n");
-	// for (size_t i = 0; i < sample_size; i++)
-	// {
-	// 	printf("sample[%zu]\t%d\t%s\t%p\n", i, sample[i]->non_unique_id, sample[i]->name,
-	// 	 &sample[i]);
-	// }
-	// printf("\n\n");
-	// ft_isrtsort
-	// /*ft_bblsort*/ 
-	// 	(sample, (t_arrinfo){sample_size, sizeof(*sample)}, person_cmp_ids, FT_SORT_ORD_ASC);
-	//
-	// printf("sample nb\t id\t name\tptr\n");
-	// for (size_t i = 0; i < sample_size; i++)
-	// {
-	// 	printf("sample[%zu]\t%d\t%s\t%p\n", i, sample[i]->non_unique_id, sample[i]->name,
-	// 	 &sample[i]);
-	// }
-	// printf("\n\n");
-	ft_anfree((t_any)sample, sample_size);
-
-// 	printf("\n\n\n");
-// 	printf("\t-person tests:\n");
-// //	shuffle(sample, 5);
-// 	for (int i = sample_size * ft_max(ft_log(sample_size), 10); i; i--)
-// 	{
-// 		size_t a, b;
-// 		a = rand() % sample_size;
-// 		b = rand() % sample_size;
-// 		void *tmp = sample[a];
-// 		sample[a] = sample[b];
-// 		sample[b] = tmp;
-//
-// 	}
-// 	for (size_t i = 0; i < sample_size ; i++)
-// 		printf("n:%s\ta:%d\n", sample[i]->name, sample[i]->non_unique_id);
-// 	printf("---\n");
-// 	ft_bblsort((t_iconst_arr)sample, sample_size, cmp_person_id, order);
-// 	for (size_t i = 0; i < sample_size ; i++)
-// 		printf("n:%s\ta:%d\n", sample[i]->name, sample[i]->non_unique_id);
-// 	printf("---\n");
-// 	ft_bblsort((t_iconst_arr)sample, sample_size, cmp_person_name, order);
-// 	for (size_t i = 0; i < sample_size ; i++)
-// 		printf("n:%s\ta:%d\n", sample[i]->name, sample[i]->non_unique_id);
-//
-
 	return (EXIT_SUCCESS);
 }
 /*

@@ -12,7 +12,7 @@
 
 #include "ft_defs.h"
 #include "ft_math.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include "tests/fixtures.h"
 #include "tests/str__mem_tests.h"
 #include "tests/tests_lambda_functions.h"
@@ -24,42 +24,42 @@
 static int	mt_sbcksrt(void)
 {
 	const int		fp = *talloc_get_failpoint();
-	const t_arrinfo	infos = {.n_ele = FT_STD_BUF_SIZE, .ele_s = sizeof(size_t)};
+	const t_arrinfo	infos = {.nmemb = FT_STD_BUF_SIZE, .sz = sizeof(size_t)};
 	size_t			arr[FT_STD_BUF_SIZE];
 	int				ret;
-	const int		k = ft_ullogof(infos.n_ele, 10) + 1;
+	const int		k = ft_ullogof(infos.nmemb, 10) + 1;
 
 	ret = EXIT_SUCCESS;
-	randomize_sarr(arr, infos.n_ele, 0, infos.n_ele);
+	randomize_sarr(arr, infos.nmemb, 0, infos.nmemb);
 	talloc_set_failpoint(0);
-	ft_sbcksort(arr, infos.n_ele, FT_SORT_ORD_ASC);
+	ft_sbcksort(arr, infos.nmemb, FT_SORT_ORD_ASC);
 	talloc_set_failpoint(*talloc_get_currentpoint() + (k + 1));
-	ft_sbcksort(arr, infos.n_ele, FT_SORT_ORD_ASC);
+	ft_sbcksort(arr, infos.nmemb, FT_SORT_ORD_ASC);
 	talloc_set_failpoint(fp);
-	if (ft_is_sorted(arr, infos.n_ele, infos.ele_s, (t_data_cmp)ft_cmp_szt_p))
+	if (ft_is_sorted(arr, infos.nmemb, infos.sz, (t_data_cmp)ft_cmp_szt_p))
 		ret = 1 + 8;
 	return (ret);
 }
 
 int	talg_sbcksort(void)
 {
-	const t_arrinfo	infos = {.n_ele = FT_STD_BUF_SIZE, .ele_s = sizeof(size_t)};
+	const t_arrinfo	infos = {.nmemb = FT_STD_BUF_SIZE, .sz = sizeof(size_t)};
 	size_t			arr[FT_STD_BUF_SIZE];
 
-	randomize_sarr(arr, infos.n_ele, 0, infos.n_ele);
-	ft_sbcksort(arr, infos.n_ele, FT_SORT_ORD_ASC);
-	if (!ft_is_sorted(arr, infos.n_ele, infos.ele_s, (t_data_cmp)ft_cmp_szt_p))
+	randomize_sarr(arr, infos.nmemb, 0, infos.nmemb);
+	ft_sbcksort(arr, infos.nmemb, FT_SORT_ORD_ASC);
+	if (!ft_is_sorted(arr, infos.nmemb, infos.sz, (t_data_cmp)ft_cmp_szt_p))
 		return (1);
-	randomize_sarr(arr, infos.n_ele, 0, infos.n_ele);
-	arr[rand() % infos.n_ele] = FT_SIZE_MAX;
-	ft_sbcksort(arr, infos.n_ele, FT_SORT_ORD_ASC);
-	if (!ft_is_sorted(arr, infos.n_ele, infos.ele_s, (t_data_cmp)ft_cmp_szt_p))
+	randomize_sarr(arr, infos.nmemb, 0, infos.nmemb);
+	arr[rand() % infos.nmemb] = FT_SIZE_MAX;
+	ft_sbcksort(arr, infos.nmemb, FT_SORT_ORD_ASC);
+	if (!ft_is_sorted(arr, infos.nmemb, infos.sz, (t_data_cmp)ft_cmp_szt_p))
 		return (2);
-	randomize_sarr(arr, infos.n_ele, 0, infos.n_ele);
+	randomize_sarr(arr, infos.nmemb, 0, infos.nmemb);
 	ft_sbcksort(arr, 0, FT_SORT_ORD_ASC);
 	ft_sbcksort(arr, 1, FT_SORT_ORD_ASC);
 	ft_sbcksort(arr, 2, FT_SORT_ORD_ASC);
-	if (ft_is_sorted(arr, infos.n_ele, infos.ele_s, (t_data_cmp)ft_cmp_szt_p))
+	if (ft_is_sorted(arr, infos.nmemb, infos.sz, (t_data_cmp)ft_cmp_szt_p))
 		return (3);
 	return (mt_sbcksrt());
 }

@@ -14,7 +14,6 @@
 #include "ft_defs.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
-#include "tests/tests_lambda_functions.h"
 
 static int	cmp_ptr(const void *a, const void *b)
 {
@@ -31,7 +30,7 @@ static int	base_cases(void)
 	ft_vec_add(&vec, (void *)nbrs[1]);
 	ft_vec_add(&vec, (void *)nbrs[2]);
 	ft_vec_sort(vec, cmp_ptr);
-	if (vec->count != 3)
+	if (vec->nb_e != 3)
 		return (1);
 	else if (ft_vec_at(vec, 0) != (t_any)42
 		|| ft_vec_at(vec, 1) != (t_any)43

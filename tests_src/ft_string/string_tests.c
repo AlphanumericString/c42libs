@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_mem.h"
-#include "ft_string.h"
 #include "tests/tests.h"
 
 #include <unistd.h>

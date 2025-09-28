@@ -19,7 +19,7 @@ void	*ft_vec_find(const t_vector *restrict vector,
 	size_t	i;
 
 	i = 0;
-	while (i < vector->count)
+	while (i < vector->nb_e)
 	{
 		if (cmp(vector->datas[i], key) == 0)
 			return (vector->datas[i]);

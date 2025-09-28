@@ -30,6 +30,7 @@ static const t_fnamed	*tca_tests(void)
 	{"amap", tca_amap}, {"anmap", tca_anmap},
 	{"arev", tca_arev}, {"anrev", tca_anrev},
 	{"atr", tca_atr}, {"antr", tca_antr},
+	{"anfree", tca_anfree},
 	{NULL, NULL}};
 
 	return (tests);

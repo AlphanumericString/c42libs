@@ -29,7 +29,7 @@ int	tv_clear(void)
 	ft_vec_add(&vec, &b);
 	ft_vec_add(&vec, &c);
 	ft_vec_clear(vec);
-	if (vec->count != 0)
+	if (vec->nb_e != 0)
 		return (1);
 	else if (vec->cappacity == 0)
 		return (1);

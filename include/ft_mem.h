@@ -120,6 +120,6 @@ void		*ft_memrev(void *data, size_t n);
 //  -> usefull for :LE <=> BE, ARGB <=> BGRA,
 //		UTF-16 <=> UTF-16BE, md5, sha1, sha256, sha512 etc...
 
-// NOTE: maybe move to ft_sort.h ?
+// NOTE: maybe move to ft_algorithms.h ?
 
 #endif /* FT_MEM_H */

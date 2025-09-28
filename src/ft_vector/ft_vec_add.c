@@ -16,13 +16,13 @@ bool	ft_vec_add(t_vector **vec, const void *restrict data)
 {
 	size_t	nw_size;
 
-	if ((*vec)->count == (*vec)->cappacity)
+	if ((*vec)->nb_e == (*vec)->cappacity)
 	{
 		nw_size = (*vec)->cappacity + FT_VECTOR_BASE_LEN;
 		if (ft_vec_reserve(vec, nw_size) == false)
 			return (false);
 	}
-	return ((*vec)->datas[(*vec)->count++] = (void *)data, true);
+	return ((*vec)->datas[(*vec)->nb_e++] = (void *)data, true);
 }
 /*
 GPL-3.0 License:

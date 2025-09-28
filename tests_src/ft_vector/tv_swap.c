@@ -28,7 +28,7 @@ int	tv_swap(void)
 	data[2] = (void *)&arr[2];
 	vec = ft_vec_from_array(data, sizeof(data) / sizeof(data[0]));
 	ft_vec_swap(vec, 0, 2);
-	if (vec->count != 3)
+	if (vec->nb_e != 3)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 44)
 		return (1);

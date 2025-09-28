@@ -12,7 +12,7 @@
 
 #include "ft_allocator__dev.h"
 #include "ft_args.h"
-#include "testing_lib/include/tests_fxtr.h"
+#include "tests_fxtr.h"
 #include "tests/fixtures.h"
 #include "tests/tests.h"
 
@@ -68,8 +68,8 @@ int	main(int ac, const char *av[])
 	setup(av);
 	sort_recursive(root);
 	run_module(root);
-	display_results(root, MODULE_PRINT_SBM | MODULE_SUM_ALL | MODULE_INF_NAME
-		| TESTS_FULLNAME);
+	display_results(root, ONELINE | MODULE_PRINT_LAST
+		| MODULE_PRINT_SBM_SPLIT | TESTS_FULLNAME);
 	module_destroy(root);
 	return (EXIT_SUCCESS);
 }

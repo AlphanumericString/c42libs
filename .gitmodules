@@ -1,0 +1,3 @@
+[submodule "ctestinglib"]
+	path = ctestinglib
+	url = git@github.com:AlphanumericString/ctestinglib.git

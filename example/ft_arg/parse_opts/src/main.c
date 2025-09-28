@@ -41,8 +41,9 @@ static void	printf_user_struct(t_usr_struct data)
 
 static int	print_y(void *usr)
 {
-	t_usr_struct	*usr_str = usr;
+	t_usr_struct	*usr_str;
 
+	usr_str = usr;
 	ft_print("y\n");
 	ft_print("%s\n", usr_str->string_val);
 	return (0);
@@ -111,12 +112,8 @@ int	main(int ac, const char *const *av)
  *		arguments are indeed treated in a linear way.
  *  -y -b=true -s "something" -y : to check the the single - indeed respects the
  *		separator requirement given
- *	-
- * 
- * 
+ *
 **/
-
-
 
 /*
 GPL-3.0 License:

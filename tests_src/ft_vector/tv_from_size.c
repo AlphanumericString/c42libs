@@ -19,7 +19,7 @@ int	tv_from_size(void)
 	t_vector	*vec;
 
 	vec = ft_vec_from_size(42);
-	if (vec->count != 0)
+	if (vec->nb_e != 0)
 		return (1);
 	else if (vec->cappacity != 42)
 		return (1);

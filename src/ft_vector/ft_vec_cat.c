@@ -17,14 +17,14 @@ bool	ft_vec_cat(t_vector **vec_a, const t_vector *vec_b)
 	size_t	i;
 
 	i = 0;
-	if ((*vec_a)->cappacity < ((*vec_a)->count + vec_b->count))
+	if ((*vec_a)->cappacity < ((*vec_a)->nb_e + vec_b->nb_e))
 		return (false);
-	while (i < vec_b->count)
+	while (i < vec_b->nb_e)
 	{
-		(*vec_a)->datas[(*vec_a)->count + i] = vec_b->datas[i];
+		(*vec_a)->datas[(*vec_a)->nb_e + i] = vec_b->datas[i];
 		i++;
 	}
-	(*vec_a)->count += i;
+	(*vec_a)->nb_e += i;
 	return (true);
 }
 /*

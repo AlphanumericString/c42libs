@@ -19,7 +19,7 @@ int	tv_new(void)
 	t_vector	*vec;
 
 	vec = ft_vec_new();
-	if (vec->count != 0)
+	if (vec->nb_e != 0)
 		return (1);
 	else if (vec->cappacity != FT_VECTOR_BASE_LEN)
 		return (1);

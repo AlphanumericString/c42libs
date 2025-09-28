@@ -22,7 +22,7 @@
 /// @param data The data of the node
 /// @param key The key of the node
 /// @param used Whether the node is used or not
-typedef struct s_map_node
+typedef struct __attribute__((packed)) s_map_node
 {
 	void		*data;
 	const void	*key;
@@ -31,6 +31,8 @@ typedef struct s_map_node
 
 /// @brief Structure representing a map
 /// @param capacity The capacity of the map
+/// @param nb_e number of elem in each sublists
+/// @param nb_e_total number of elements total
 /// @param size The size of the map
 /// @param nodes The nodes of the map (array of lists distributed by hash)
 /// @param cmp The compare function of the map
@@ -39,8 +41,8 @@ typedef struct s_map_node
 typedef struct s_map
 {
 	size_t		capacity;
-	size_t		*weights;
-	size_t		w_total;
+	size_t		*nb_e;
+	size_t		nb_e_total;
 	t_list		**nodes;
 	t_data_cmp	cmp;
 	t_memhash	hash;

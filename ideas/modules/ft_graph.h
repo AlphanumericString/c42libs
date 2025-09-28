@@ -13,14 +13,16 @@
 #include "types/ft_list_types.h"
 #include "types/ft_vector_types.h"
 
-typedef struct s_graph_node {
+typedef struct s_graph_node
+{
 	void	*data;
-} t_graph_node;
+}	t_graph_node;
 
-typedef struct s_ngraph {
+typedef struct s_ngraph
+{
 	void	*data;
 	t_dlist	*connected_nodes;
-} t_ngraph;
+}	t_ngraph;
 
 // nodes is a vector of vector to graph nodes
 //
@@ -29,15 +31,34 @@ typedef struct s_ngraph {
 // |  |
 // c--d--e
 // would translate to
-// vector 'nodes': [
-//		[0] aka nodes::a: [b, c]
-//		[1] aka nodes::b: [a, d]
-//		[2] aka nodes::c: [a, d]
-//		[3] aka nodes::d: [b, c, e]
-//		[4] aka nodes::e: [e]
-// ]
-typedef struct s_graph {
-	t_vector	**nodes;
-	void		*metadata;
-	// other fields needed;
-} t_graph;
+// 'nodes': [
+//		[0] aka nodes::a: [[1], [2]]
+//		[1] aka nodes::b: [[0], [3]]
+//		[2] aka nodes::c: [[0], [3]]
+//		[3] aka nodes::d: [[1], [2], [4]]
+//		[4] aka nodes::e: [[3]]
+// ] buuilding an adjency matrix 'inplace' to store the nodes
+typedef struct s_graph
+{
+	t_vector	data;		// vec of datas
+	t_vector	indecies;	// vec of vec of indecies
+	void		*metadata;	//
+}	t_graph;
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

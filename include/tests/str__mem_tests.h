@@ -39,6 +39,7 @@ int	tca_antr(void);
 int	tca_arev(void);
 int	tca_arfind(void);
 int	tca_arfindwith(void);
+int	tca_anfree(void);
 int	tca_atr(void);
 
 // test memory allocator
@@ -60,19 +61,26 @@ int	tma_narena_free(void);
 
 // test algorithms
 // talg -> test algorithms
-int	talg_binsrch(void);
-int	talg_issorted(void);
-int	talg_qsort(void);;
 int	talg_bblsort(void);
-int	talg_sbblsort(void);
-int	talg_ssbblsort(void);
-int	talg_isrtsort(void);
-int	talg_sisrtsort(void);
-int	talg_ssisrtsort(void);
-int	talg_isrtsort_b(void);
-int	talg_sbcksort(void);
+int	talg_binsrch(void);
 int	talg_cmps(void);
+int	talg_getmax(void);
+int	talg_getmin(void);
+int	talg_isord_ok(void);
+int	talg_isrtsort_b(void);
+int	talg_isrtsort(void);
+int	talg_issorted(void);
+int	talg_mrgsort_r(void);
+int	talg_mrgsort(void);
+int	talg_qsort(void);;
 int	talg_rcmps(void);
+int	talg_sbblsort(void);
+int	talg_sbcksort(void);
+int	talg_shkrsort(void);
+int	talg_sisrtsort(void);
+int	talg_slctsort(void);
+int	talg_ssbblsort(void);
+int	talg_ssisrtsort(void);
 
 // global test memory functions
 // tm -> test memory

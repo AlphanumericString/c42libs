@@ -24,13 +24,13 @@ int	tv_pop(void)
 	ft_vec_add(&vec, "value2");
 	ft_vec_add(&vec, "value3");
 	str = ft_vec_pop(vec);
-	if (!str || ft_strcmp(str, "value3") != 0 || vec->count != 2)
+	if (!str || ft_strcmp(str, "value3") != 0 || vec->nb_e != 2)
 		return (1);
 	str = ft_vec_pop(vec);
-	if (!str || ft_strcmp(str, "value2") != 0 || vec->count != 1)
+	if (!str || ft_strcmp(str, "value2") != 0 || vec->nb_e != 1)
 		return (2);
 	str = ft_vec_pop(vec);
-	if (!str || ft_strcmp(str, "value1") != 0 || vec->count != 0)
+	if (!str || ft_strcmp(str, "value1") != 0 || vec->nb_e != 0)
 		return (3);
 	str = ft_vec_pop(vec);
 	if (str)

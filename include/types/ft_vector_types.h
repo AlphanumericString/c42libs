@@ -30,7 +30,7 @@
 typedef struct s_vector
 {
 	void	**datas;
-	size_t	count;
+	size_t	nb_e;
 	size_t	cappacity;
 }			t_vector;
 

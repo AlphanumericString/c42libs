@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cntgsort.c                                      :+:      :+:    :+:   */
+/*   talg_isord_ok.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 14:24:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/10 14:24:19 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/09/26 16:17:38 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/26 16:17:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
-#include "ft_mem.h"
+#include "ft_algorithms.h"
+#include "internal/algo_util.h"
+#include "tests/str__mem_tests.h"
 
+int	talg_isord_ok(void)
+{
+	const size_t	arr[4] = {0, 1, 3, 2};
+
+	if (ft_isord_ok(FT_SORT_ORD_ASC, ft_cmp_szt_p(&arr[2], &arr[3])) != false)
+		return (1);
+	if (ft_isord_ok(FT_SORT_ORD_DES, ft_cmp_szt_p(&arr[1], &arr[2])) != false)
+		return (2);
+	if (ft_isord_ok(FT_SORT_ORD_DES, ft_cmp_szt_p(&arr[2], &arr[3])) != true)
+		return (3);
+	if (ft_isord_ok(FT_SORT_ORD_ASC, ft_cmp_szt_p(&arr[1], &arr[2])) != true)
+		return (4);
+	if (!ft_isord_ok(FT_SORT_ORD_UNO, ft_cmp_szt_p(&arr[1], &arr[2]))
+		|| !ft_isord_ok(FT_SORT_ORD_UNO, ft_cmp_szt_p(&arr[2], &arr[3]))
+		|| !ft_isord_ok(FT_SORT_ORD_UNO, -12)
+		|| !ft_isord_ok(FT_SORT_ORD_UNO, 0)
+		|| !ft_isord_ok(FT_SORT_ORD_UNO, 12))
+		return (5);
+	return (EXIT_SUCCESS);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

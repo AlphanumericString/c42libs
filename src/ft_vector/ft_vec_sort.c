@@ -29,10 +29,10 @@ void	ft_vec_sort(t_vector *vec, t_data_cmp cmp_f)
 	size_t		j;
 
 	i = 0;
-	while (i < vec->count)
+	while (i < vec->nb_e)
 	{
 		j = i + 1;
-		while (j < vec->count)
+		while (j < vec->nb_e)
 		{
 			if (cmp_f(vec->datas[i], vec->datas[j]) > 0)
 				ft_loc_swap(&vec->datas[i], &vec->datas[j]);

@@ -47,17 +47,13 @@
 // choice-> default k to a log of nb_elem
 // choice-> default cmp to ft_cmp_szt
 
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include "ft_allocator__dev.h"
 #include "ft_arr.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include "ft_defs.h"
 #include "ft_math.h"
 #include "ft_mem.h"
-
-#include <stddef.h>
-#include <stdio.h>
-#include <assert.h>
 
 static size_t	grab_max(size_t *collection, size_t nb_elem)
 {
@@ -111,7 +107,7 @@ size_t	*ft_sbcksort(size_t *data, size_t nb_elem, int flags)
 	buckets = (size_t **)ft_aalloc(k, nb_elem, sizeof(size_t));
 	bk_idx = ft_calloc(k, sizeof(size_t));
 	if (!buckets || !bk_idx)
-		return (ft_afree((void **)buckets), ft_free(bk_idx), data);
+		return (ft_anfree((void **)buckets, k), ft_free(bk_idx), data);
 	max_val = grab_max(data, nb_elem);
 	if (max_val != FT_SIZE_MAX)
 		max_val += 1;

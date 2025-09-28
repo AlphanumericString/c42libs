@@ -22,6 +22,7 @@
 
 #include "../include/contact.h"
 
+//	line = ft_strchr(line, ' '); // skip 'add '
 void	add_contact( char *line, t_list **contact_l)
 {
 	t_contact	con;
@@ -29,18 +30,16 @@ void	add_contact( char *line, t_list **contact_l)
 
 	if (!line || !contact_l)
 		return ;
-	line = ft_strchr(line, ' '); // skip 'add '
+	line = ft_strchr(line, ' ');
 	con.name = ft_strtok(line, " ");
 	con.number = ft_strtok(NULL, " ");
 	con.infos = ft_strtok(NULL, " ");
 	if (!con.name || !con.number)
-		return (ft_print_err("contact format: <name> <number> [infos]\n"), (void) 0);
+		return (ft_print_err("contact format: <name> <number> [infos]\n"),
+			(void) 0);
 	al = ft_calloc(sizeof(*al), 1);
 	if (!al)
-	{
-		ft_print_err("Allocation faillure\n");
-		return ;
-	}
+		return (ft_print_err("Allocation faillure\n"), (void) 0);
 	if (con.name)
 		al->name = ft_strdup(con.name);
 	if (con.number)
@@ -51,6 +50,12 @@ void	add_contact( char *line, t_list **contact_l)
 		ft_print_err("Allocation faillure\n");
 }
 
+// del_contact(rep->data);
+// // TODO:
+// // replace by
+// // ft_ll_delete_node(contact_l, rep);
+// // or
+// // ft_ll_delete_node(contact_l, rep, del_contact);
 void	rm_contact(char	*line, t_list **contact_l)
 {
 	const char	*target;
@@ -59,38 +64,27 @@ void	rm_contact(char	*line, t_list **contact_l)
 
 	if (!line | !contact_l)
 		return ;
-	ft_strtok(line, " ");
-	target = ft_strtok(NULL, " ");
+	target = (ft_strtok(line, " "), ft_strtok(NULL, " "));
 	if (!target)
-	{
-		ft_print_err("rm <name|phone number>");
-		return ;
-	}
+		return (ft_print_err("rm <name|phone number>"), (void) 0);
 	rep = ft_ll_find(*contact_l, target, (t_data_cmp)cmp_contact_phnb);
 	if (!rep)
 		rep = ft_ll_find(*contact_l, target, (t_data_cmp)cmp_contact_name);
 	if (!rep)
-	{
-		ft_print("No such contact\n");
-		return ;
-	}
+		return (ft_print("No such contact\n"), (void) 0);
 	del_contact(rep->data);
-	// TODO:
-	// replace by
-	// ft_ll_delete_node(contact_l, rep);
-	// or
-	// ft_ll_delete_node(contact_l, rep, del_contact);
 	if (*contact_l == rep)
 	{
 		*contact_l = rep->next;
-		ft_free(rep);
-		return ;
+		return (ft_free(rep), (void) 0);
 	}
-	for (lst = *contact_l; lst && lst->next != rep; lst = lst->next)
-		;
+	lst = *contact_l;
+	while (lst && lst->next != rep)
+		lst = lst->next;
 	lst->next = rep->next;
 	ft_free(rep);
 }
+
 void	disp(char *line, t_list **contact_l)
 {
 	t_list	*node;

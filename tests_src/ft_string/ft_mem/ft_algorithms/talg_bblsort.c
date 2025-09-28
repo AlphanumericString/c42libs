@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_defs.h"
-#include "ft_sort.h"
+#include "ft_algorithms.h"
 #include "sys/types.h"
 #include "tests/str__mem_tests.h"
 #include "tests/tests_lambda_functions.h"
@@ -27,19 +27,19 @@ static int	te_cases(void)
 	const ssize_t	upper = FT_SMALL_BUF_SIZE / 2;
 
 	randomize_iarr(arr, FT_SMALL_BUF_SIZE, lower, upper);
-	infos = (t_arrinfo){.n_ele = FT_SMALL_BUF_SIZE, .ele_s = 0};
+	infos = (t_arrinfo){.nmemb = FT_SMALL_BUF_SIZE, .sz = 0};
 	ft_bblsort(arr, infos, ft_cmp_int_p, FT_SORT_ORD_ASC);
 	if (ft_is_sorted(arr, FT_SMALL_BUF_SIZE, sizeof(int), ft_cmp_int_p))
 		return (8 + 1);
-	infos = (t_arrinfo){.n_ele = 0, .ele_s = sizeof(int)};
+	infos = (t_arrinfo){.nmemb = 0, .sz = sizeof(int)};
 	ft_bblsort(arr, infos, ft_cmp_int_p, FT_SORT_ORD_ASC);
 	if (ft_is_sorted(arr, FT_SMALL_BUF_SIZE, sizeof(int), ft_cmp_int_p))
 		return (8 + 2);
-	infos = (t_arrinfo){.n_ele = 1, .ele_s = sizeof(int)};
+	infos = (t_arrinfo){.nmemb = 1, .sz = sizeof(int)};
 	ft_bblsort(arr, infos, ft_cmp_int_p, FT_SORT_ORD_ASC);
 	if (ft_is_sorted(arr, FT_SMALL_BUF_SIZE, sizeof(int), ft_cmp_int_p))
 		return (8 + 3);
-	infos = (t_arrinfo){.n_ele = FT_SMALL_BUF_SIZE, .ele_s = sizeof(int)};
+	infos = (t_arrinfo){.nmemb = FT_SMALL_BUF_SIZE, .sz = sizeof(int)};
 	ft_bblsort(arr, infos, ft_cmp_int_p, FT_SORT_ORD_UNO);
 	if (ft_is_sorted(arr, FT_SMALL_BUF_SIZE, sizeof(int), ft_cmp_int_p))
 		return (8 + 4);
@@ -50,17 +50,17 @@ static int	te_cases(void)
 // on that size...
 int	talg_bblsort(void)
 {
-	const t_arrinfo	infos = {.n_ele = FT_SMALL_BUF_SIZE, .ele_s = sizeof(int)};
+	const t_arrinfo	infos = {.nmemb = FT_SMALL_BUF_SIZE, .sz = sizeof(int)};
 	int				arr[FT_SMALL_BUF_SIZE];
 	int				arr_tin[FT_SMALL_BUF_SIZE];
-	const ssize_t	buff_by2 = infos.n_ele / 2;
+	const ssize_t	buff_by2 = infos.nmemb / 2;
 
-	randomize_iarr(arr, infos.n_ele, -buff_by2, buff_by2);
-	randomize_iarr(arr_tin, infos.n_ele, -buff_by2, buff_by2);
+	randomize_iarr(arr, infos.nmemb, -buff_by2, buff_by2);
+	randomize_iarr(arr_tin, infos.nmemb, -buff_by2, buff_by2);
 	ft_bblsort(arr, infos, ft_cmp_int_p, FT_SORT_ORD_ASC);
 	ft_bblsort(arr_tin, infos, ft_cmp_int_p, FT_SORT_ORD_DES);
-	if (!ft_is_sorted(arr, infos.n_ele, sizeof(int), ft_cmp_int_p)
-		|| !ft_is_sorted(arr_tin, infos.n_ele, sizeof(int), ft_cmp_rint_p))
+	if (!ft_is_sorted(arr, infos.nmemb, sizeof(int), ft_cmp_int_p)
+		|| !ft_is_sorted(arr_tin, infos.nmemb, sizeof(int), ft_cmp_rint_p))
 		return (1);
 	return (te_cases());
 }

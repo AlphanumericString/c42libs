@@ -19,10 +19,10 @@ void	ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del)
 	size_t	shift_count;
 
 	i = 0;
-	while (vec->count > i)
+	while (vec->nb_e > i)
 	{
 		shift_count = 0;
-		while (vec->count > i && func(vec->datas[i]) == false)
+		while (vec->nb_e > i && func(vec->datas[i]) == false)
 		{
 			if (del)
 				del(vec->datas[i]);
@@ -31,7 +31,7 @@ void	ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del)
 		}
 		ft_vec_shift(vec, i - shift_count, shift_count);
 		i -= shift_count;
-		while (vec->count > i && func(vec->datas[i]) == true)
+		while (vec->nb_e > i && func(vec->datas[i]) == true)
 			i++;
 	}
 	return ;

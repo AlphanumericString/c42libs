@@ -25,12 +25,12 @@ bool	ft_vec_reserve(t_vector **vec, size_t size)
 	if (!ret.datas)
 		return (false);
 	i = 0;
-	while (i < (*vec)->count)
+	while (i < (*vec)->nb_e)
 	{
 		ret.datas[i] = (*vec)->datas[i];
 		i++;
 	}
-	ret.count = (*vec)->count;
+	ret.nb_e = (*vec)->nb_e;
 	ret.cappacity = size;
 	ft_free((*vec)->datas);
 	**vec = ret;

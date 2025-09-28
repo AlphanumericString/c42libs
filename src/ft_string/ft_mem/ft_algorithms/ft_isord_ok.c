@@ -1,15 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_qcksort.c                                       :+:      :+:    :+:   */
+/*   ft_isord_ok.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 14:16:53 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/21 14:16:53 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/09/26 05:56:17 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/26 05:56:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
+#include "internal/algo_util.h"
+
+// internal function for sorts
+bool	ft_isord_ok(int ord, int c_res)
+{
+	if (ord == FT_SORT_ORD_UNO || c_res == 0)
+		return (true);
+	return ((ord == FT_SORT_ORD_ASC && c_res < 0)
+		|| (ord == FT_SORT_ORD_DES && c_res > 0));
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

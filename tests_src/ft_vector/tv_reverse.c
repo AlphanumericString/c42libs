@@ -30,7 +30,7 @@ int	tv_reverse(void)
 	ft_vec_add(&vec, &c);
 	ft_vec_shrink(vec);
 	ft_vec_reverse(vec);
-	if (vec->count != 3)
+	if (vec->nb_e != 3)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 44)
 		return (1);

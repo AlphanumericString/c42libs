@@ -11,15 +11,16 @@
 /* ************************************************************************** */
 
 #ifndef CONTACT_H
-#define CONTACT_H
+# define CONTACT_H
 
-#include "types/ft_list_types.h"
+# include "types/ft_list_types.h"
 
-typedef struct s_contact {
+typedef struct s_contact
+{
 	char	*name;
 	char	*infos;
 	char	*number;
-} t_contact ;
+}	t_contact;
 
 // contact op
 int		cmp_contact_name(const t_contact *cntact, const char *name);

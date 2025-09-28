@@ -22,7 +22,7 @@ static int	bases_case(void)
 
 	vec = ft_vec_new();
 	ft_vec_add(&vec, (void *)42);
-	if (vec->count != 1)
+	if (vec->nb_e != 1)
 		return (1);
 	if (vec->datas[0] != (void *)42)
 		return (2);
@@ -31,7 +31,7 @@ static int	bases_case(void)
 	ft_vec_add(&vec, (void *)45);
 	ft_vec_add(&vec, (void *)46);
 	ft_vec_add(&vec, (void *)47);
-	if (vec->count != 6)
+	if (vec->nb_e != 6)
 		return (3);
 	if (vec->datas[0] != (void *)42 || vec->datas[1] != (void *)43
 		|| vec->datas[2] != (void *)44 || vec->datas[3] != (void *)45
@@ -53,7 +53,7 @@ static int	mt_case(void)
 	talloc_set_failpoint(0);
 	ft_vec_add(&vec, (void *)43);
 	talloc_set_failpoint(f_po);
-	if (vec->count != 1)
+	if (vec->nb_e != 1)
 		return (1);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
