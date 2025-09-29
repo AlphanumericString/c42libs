@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2025/06/20 21:08:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/09/29 11:29:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	main(int ac, const char *av[])
 	setup(av);
 	sort_recursive(root);
 	run_module(root);
-	display_results(root, ONELINE | MODULE_PRINT_LAST
-		| MODULE_PRINT_SBM_SPLIT | TESTS_FULLNAME);
+	display_results(root, ONELINE | TM_PRINT_LAST
+		| TM_SBM_SPLIT | TESTS_FULLNAME);
 	module_destroy(root);
 	return (EXIT_SUCCESS);
 }

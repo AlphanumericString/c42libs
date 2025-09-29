@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:15:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/11 14:15:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/09/24 12:05:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,4 @@ typedef struct s_tree_node
 	void				*data;
 }	t_tree_node;
 
-#endif // !FT_TREE_H
+#endif /* FT_TREE */

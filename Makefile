@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2025/06/21 22:01:03 by bgoulard         ###   ########.fr        #
+#    Updated: 2025/09/29 11:32:22 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -985,7 +985,7 @@ $(COVERAGE_DIR): $(TEST_NAME)
 	-instr-profile=$(TEST_NAME).profdata						\
 	-ignore-filename-regex=$(TESTS_DIR)/*						\
 	-ignore-filename-regex=$(FT_MEM_DIR)/ft_allocator/ft_al_memimpl.c	\
-	--show-branches=count	--show-directory-coverage			\
+	--show-branches=count										\
 	./$(TEST_NAME) -output-dir=$(COVERAGE_DIR)					&& \
 	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"					|| \
 	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"
