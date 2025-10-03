@@ -40,13 +40,13 @@ t_optional	*ft_optional_new(void);
 /// @return The new optional
 /// @note prefer creating from stack
 /// @note WARNING: you must free the optional after use
-t_optional	*ft_optional_from_val(const void *restrict ptr);
+t_optional	*ft_optional_from_val(const void *ptr);
 
 /// @brief Copies the value of an optional into another
 /// @param dest The destination optional
 /// @param src The source optional
-void		ft_optional_copy(t_optional *restrict dest,
-				const t_optional *restrict src);
+void		ft_optional_copy(t_optional *dest,
+				const t_optional *src);
 
 /// @brief Chain functions calls on an optional until either there are no more
 /// functions to call or one of the functions returns NULL
@@ -56,7 +56,7 @@ void		ft_optional_copy(t_optional *restrict dest,
 /// @note This function was made to emulate object programming pipelines
 /// @note WARNING: The function will return false if the optional is empty
 /// or if the function list is NULL
-bool		ft_optional_chain(t_optional *restrict opt, const t_data_tr_i *f);
+bool		ft_optional_chain(t_optional *opt, const t_data_tr_i *f);
 
 /// @brief Map a result of a function on an optional
 /// @param opt The optional with the value to map
@@ -64,21 +64,21 @@ bool		ft_optional_chain(t_optional *restrict opt, const t_data_tr_i *f);
 /// @return The new optional with the result of the functions.
 /// @note WARNING: The function will return an empty optional if the result
 /// of the function is NULL.
-t_optional	ft_optional_map(t_optional *restrict opt, const t_data_tr_i f[]);
+t_optional	ft_optional_map(t_optional *opt, const t_data_tr_i f[]);
 
 /// @brief Destroy an optional
 /// @param opt The optional to destroy
 /// @return true if the optional was destroyed, false otherwise
 /// @note WARNING: The optional must be empty before destroying it
 /// otherwise the function will return false
-bool		ft_optional_destroy(t_optional *restrict opt);
+bool		ft_optional_destroy(t_optional *opt);
 
 /// @brief Duplicate an optional
 /// @param org The optional to duplicate
 /// @return The new optional
 /// @note prefer creating from stack
 /// @note WARNING: you must free the optional after use
-t_optional	*ft_optional_dup(const t_optional *restrict org);
+t_optional	*ft_optional_dup(const t_optional *org);
 
 /// @brief Return the value contained in an optional
 /// @param opt The optional to unwrap

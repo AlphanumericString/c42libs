@@ -11,30 +11,74 @@
 /* ************************************************************************** */
 
 #include "ft_defs.h"
+#include "ft_mem.h"
 #include "ft_vector.h"
+#include <stddef.h>
+#include <stdio.h>
 
-void	ft_vec_remove(t_vector *vector, size_t n, void (*del)(void *))
+
+void	ft_vec_remove(t_vector *vec, size_t idx, t_data_apply del)
 {
-	if (n >= vector->nb_e)
+	if (!vec->n_e || !vec->s_e || idx >= vec->n_e)
 		return ;
 	if (del)
-		del(vector->datas[n]);
-	vector->datas[n] = NULL;
-	ft_vec_shift(vector, n, 1);
+		del(ft_vec_at(vec, idx));
+	if (idx + 1 >= vec->n_e)
+		return (vec->n_e--, (void)0);
+	ft_memcpy(ft_vec_at(vec, idx), ft_vec_at(vec, idx + 1), 
+		   vec->s_e * (vec->n_e - idx - 1));
+	vec->n_e--;
+	return;
 }
 
-void	ft_vec_remove_if(t_vector *vector, t_data_is func, t_data_apply del)
+void	ft_vec_filterout(t_vector *vec, t_data_is func, t_data_apply del)
+{
+	if (vec->n_e == 0 || vec->s_e == 0)
+		return;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < vec->n_e)
+	{
+		while (i < vec->n_e && func(ft_vec_at(vec, i)) == false)
+			i++;
+		j = 0;
+		while ((i + j) < vec->n_e && func(ft_vec_at(vec, i + j)) == true)
+			j++;
+		if (j)
+			ft_vec_nremove(vec, i, j, del);
+	}
+}
+
+// NOTE: maybe move the ft_bzero calls to another ft_vec_* function to allow
+//	for : 1. better performance, 2. might be usefull in some other cases to 
+//	keep the array clean
+void	ft_vec_nremove(t_vector *vec, size_t start, size_t nb_todel, 
+			t_data_apply del)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < vector->nb_e)
+	if (!vec->n_e || !vec->s_e || start > vec->n_e || !nb_todel)
+		return ;
+	if ((start + nb_todel) >= vec->n_e)
 	{
-		if (func(vector->datas[i]))
-			ft_vec_remove(vector, i, del);
-		else
-			i++;
+		while (++i < nb_todel + 1 && del)
+			del(ft_vec_at(vec, i - 1));
+		ft_bzero(ft_vec_at(vec, start), (vec->n_e - start) * vec->s_e);
+		vec->n_e = start;
+		return ;
 	}
+	while (++i < (nb_todel + 1) && del)
+		del(ft_vec_at(vec, i - 1));
+	i = 0;
+	i = vec->n_e - (start + nb_todel);
+	ft_memcpy(ft_vec_at(vec, start), ft_vec_at(vec, start + nb_todel), 
+		   i * vec->s_e);
+	vec->n_e -= nb_todel;
+	ft_bzero(vec->data + (vec->n_e * vec->s_e),
+		vec->cappacity - ft_vec_inuse(vec));
 }
 /*
 GPL-3.0 License:

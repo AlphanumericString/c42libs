@@ -10,15 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
 
 void	ft_vec_swap(t_vector *vec, size_t a, size_t b)
 {
-	void	*tmp;
-
-	tmp = vec->datas[a];
-	vec->datas[a] = vec->datas[b];
-	vec->datas[b] = tmp;
+	ft_swap(ft_vec_at(vec, a), ft_vec_at(vec, b), vec->s_e);
 }
 /*
 GPL-3.0 License:

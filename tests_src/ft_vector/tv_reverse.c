@@ -17,20 +17,11 @@
 int	tv_reverse(void)
 {
 	t_vector	*vec;
-	int			a;
-	int			b;
-	int			c;
+	const int	a[3] = {42, 43, 44};
 
-	a = 42;
-	b = 43;
-	c = 44;
-	vec = ft_vec_new();
-	ft_vec_add(&vec, &a);
-	ft_vec_add(&vec, &b);
-	ft_vec_add(&vec, &c);
-	ft_vec_shrink(vec);
+	vec = ft_vec_from_array(a, 3, sizeof(int));
 	ft_vec_reverse(vec);
-	if (vec->nb_e != 3)
+	if (vec->n_e != 3)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 44)
 		return (1);

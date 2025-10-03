@@ -14,30 +14,31 @@
 #include "ft_mem.h"
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
+#include <stdio.h>
 
 int	tv_to_array(void)
 {
 	t_vector	*vector;
-	const char	**array;
+	const char	*array_src[] = {"Hello", "world", "this", "is", "Zod"};
+	const char	**array_ret;
+	size_t		i;
 
-	vector = ft_vec_new();
-	ft_vec_add(&vector, "Hello");
-	ft_vec_add(&vector, "world");
-	ft_vec_add(&vector, "this");
-	ft_vec_add(&vector, "is");
-	ft_vec_add(&vector, "Zod");
-	array = (const char **)ft_vec_to_array(&vector);
-	if (ft_strcmp(array[0], "Hello") != 0)
+	i = 0;
+	vector = ft_vec_create(sizeof(char *));
+	while (i < (sizeof(array_src) / sizeof(array_src[0])))
+		ft_vec_add(vector, &array_src[i++]);
+	array_ret = (t_any)ft_vec_to_array(&vector);
+	if (vector)
 		return (1);
-	if (ft_strcmp(array[1], "world") != 0)
-		return (1);
-	if (ft_strcmp(array[2], "this") != 0)
-		return (1);
-	if (ft_strcmp(array[3], "is") != 0)
-		return (1);
-	if (ft_strcmp(array[4], "Zod") != 0)
-		return (1);
-	ft_free(array);
+	i = 0;
+	while (array_ret && i < 5 && !ft_strcmp(array_ret[i], array_src[i]))
+		i++;
+	if (i != 5)
+		return (ft_free(array_ret), 2);
+	ft_free(array_ret);
+	array_ret = ft_vec_to_array(&vector);
+	if (array_ret || vector)
+		return (3);
 	return (EXIT_SUCCESS);
 }
 /*

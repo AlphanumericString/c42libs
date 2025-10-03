@@ -39,7 +39,7 @@ void	*ft_map_remove(t_map *map, const void *key, size_t size)
 	else
 		prev->next = cur->next;
 	cur->next = NULL;
-	ft_vec_add(&map->reserved_nodes, cur);
+	ft_vec_add(map->reserved_nodes, &cur);
 	map->nb_e[hash]--;
 	map->nb_e_total--;
 	return (((t_map_node *)cur->data)->data);

@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
+#include "tests/fixtures.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 #include <stdbool.h>
+#include <stdio.h>
 
 /*
 	ft_vec_add(&vec_a, &a); // 42
@@ -31,14 +34,43 @@
 
 static void	init_vec_cat(t_vector **vec_a, t_vector **vec_b)
 {
-	*vec_a = ft_vec_from_size(6);
-	ft_vec_add(vec_a, (void *)42);
-	ft_vec_add(vec_a, (void *)43);
-	ft_vec_add(vec_a, (void *)44);
-	*vec_b = ft_vec_new();
-	ft_vec_add(vec_b, (void *)45);
-	ft_vec_add(vec_b, (void *)46);
-	ft_vec_add(vec_b, (void *)47);
+	int i;
+
+	*vec_a = ft_vec_create(sizeof(int));
+	i = 42 - 1;
+	while (++i - 42 < 3)
+		ft_vec_add(*vec_a, &i);
+	i = 45 - 1;
+	*vec_b = ft_vec_create(sizeof(int));
+	while (++i - 45 < 3)
+		ft_vec_add(*vec_b, &i);
+}
+
+static int	mt_test(void)
+{
+	size_t		i;
+	t_vector	*vec_a;
+	t_vector	*vec_b;
+	int			fp;
+	bool		ret;
+
+	i = 0;
+	vec_a = ft_vec_create(sizeof(i));
+	vec_b = ft_vec_create(sizeof(i));
+	while(i < (vec_a->cappacity / vec_a->s_e))
+	{
+		ft_vec_add(vec_a, &i);
+		ft_vec_add(vec_b, &i);
+		i++;
+	}
+	fp = *talloc_get_failpoint();
+	talloc_set_failpoint(0);
+	ret = ft_vec_cat(vec_a, vec_b);
+	talloc_set_failpoint(fp);
+	(ft_vec_delete(vec_a), ft_vec_delete(vec_b));
+	if (ret)
+		return (1 + 8);
+	return (EXIT_SUCCESS);
 }
 
 int	tv_cat(void)
@@ -48,26 +80,25 @@ int	tv_cat(void)
 	t_vector	*vec_b;
 
 	init_vec_cat(&vec_a, &vec_b);
-	ret = ft_vec_cat(&vec_a, vec_b);
-	if (ret != true || vec_a->nb_e != 6)
+	ret = ft_vec_cat(vec_a, vec_b);
+	if (ret != true || vec_a->n_e != 6)
 		return (1);
-	else if (ft_vec_at(vec_a, 0) != (t_any)42
-		|| ft_vec_at(vec_a, 1) != (t_any)43 || ft_vec_at(vec_a, 2) != (t_any)44
-		|| ft_vec_at(vec_a, 3) != (t_any)45 || ft_vec_at(vec_a, 4) != (t_any)46
-		|| ft_vec_at(vec_a, 5) != (t_any)47)
+	else if (*(int *)ft_vec_at(vec_a, 0) != 42
+		|| *(int *)ft_vec_at(vec_a, 1) != 43
+		|| *(int *)ft_vec_at(vec_a, 2) != 44
+		|| *(int *)ft_vec_at(vec_a, 3) != 45
+		|| *(int *)ft_vec_at(vec_a, 4) != 46
+		|| *(int *)ft_vec_at(vec_a, 5) != 47)
 		return (2);
-	ft_vec_destroy(&vec_a);
-	vec_a = ft_vec_new();
-	ft_vec_add(&vec_a, (t_any)42);
-	ft_vec_add(&vec_a, (t_any)43);
-	ft_vec_add(&vec_a, (t_any)44);
-	ret = ft_vec_cat(&vec_a, vec_b);
-	if (ret != false || vec_a->nb_e != 3)
+	vec_a = (ft_vec_destroy(&vec_a), ft_vec_create(sizeof(long)));
+	if (ft_vec_cat(vec_a, vec_b) != false || vec_a->n_e != 0)
 		return (3);
-	else if (ft_vec_at(vec_a, 0) != (t_any)42
-		|| ft_vec_at(vec_a, 1) != (t_any)43 || ft_vec_at(vec_a, 2) != (t_any)44)
+	vec_a = (ft_vec_destroy(&vec_a), ft_vec_create(vec_b->s_e));
+	if (ft_vec_cat(vec_a, vec_b) != true || vec_a->n_e != vec_b->n_e)
 		return (4);
-	return (ft_vec_destroy(&vec_a), ft_vec_destroy(&vec_b), 0);
+	else if (ft_memcmp(vec_a->data, vec_b->data, ft_vec_inuse(vec_b)) != 0)
+		return (5);
+	return (ft_vec_destroy(&vec_a), ft_vec_destroy(&vec_b), mt_test());
 }
 /*
 GPL-3.0 License:

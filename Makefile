@@ -823,16 +823,17 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tv_cat.c									\
 			$(TESTS_DIR)/ft_vector/tv_clear.c								\
 			$(TESTS_DIR)/ft_vector/tv_convert_alloc_array.c					\
+			$(TESTS_DIR)/ft_vector/tv_create.c								\
 			$(TESTS_DIR)/ft_vector/tv_destroy.c								\
 			$(TESTS_DIR)/ft_vector/tv_filter.c								\
+			$(TESTS_DIR)/ft_vector/tv_filterout.c							\
+			$(TESTS_DIR)/ft_vector/tv_find.c								\
 			$(TESTS_DIR)/ft_vector/tv_from_array.c							\
 			$(TESTS_DIR)/ft_vector/tv_from_size.c							\
-			$(TESTS_DIR)/ft_vector/tv_get.c									\
 			$(TESTS_DIR)/ft_vector/tv_map.c									\
 			$(TESTS_DIR)/ft_vector/tv_new.c									\
 			$(TESTS_DIR)/ft_vector/tv_pop.c									\
 			$(TESTS_DIR)/ft_vector/tv_remove.c								\
-			$(TESTS_DIR)/ft_vector/tv_remove_if.c							\
 			$(TESTS_DIR)/ft_vector/tv_reserve.c								\
 			$(TESTS_DIR)/ft_vector/tv_reverse.c								\
 			$(TESTS_DIR)/ft_vector/tv_shift.c								\

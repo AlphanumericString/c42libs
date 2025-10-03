@@ -10,28 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_math.h"
 #include "ft_mem.h"
 #include "ft_vector.h"
 
+// 'new_size >= vec->cappacity' is over the top but if vec is by any means
+// badly created this will save some asses
+// new_size = max(curr_size, vec->se);
+// unfortunately max cant be defined as a macro by norm....
 bool	ft_vec_shrink(t_vector *vec)
 {
-	void	**new_datas;
-	size_t	i;
+	const size_t	curr_size = ft_vec_inuse(vec);
+	size_t			new_size;
+	void			*data_empl;
 
-	if (vec->nb_e == vec->cappacity)
-		return (true);
-	new_datas = ft_calloc(sizeof(void *), vec->nb_e);
-	if (!new_datas)
+	if (!vec->s_e || curr_size >= vec->cappacity || !vec->data)
 		return (false);
-	i = 0;
-	while (i < vec->nb_e)
-	{
-		new_datas[i] = vec->datas[i];
-		i++;
-	}
-	ft_free(vec->datas);
-	vec->datas = new_datas;
-	vec->cappacity = vec->nb_e;
+	new_size = curr_size;
+	if (new_size < vec->s_e)
+		new_size = vec->s_e;
+	data_empl = ft_malloc(new_size);
+	if (!data_empl)
+		return (false);
+	ft_memcpy(data_empl, vec->data, new_size);
+	vec->cappacity = new_size;
+	ft_free(vec->data);
+	vec->data = data_empl;
 	return (true);
 }
 /*

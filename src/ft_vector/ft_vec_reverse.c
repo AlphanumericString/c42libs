@@ -10,24 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
 
-void	ft_vec_reverse(t_vector *vector)
+void	ft_vec_reverse(t_vector *vec)
 {
-	size_t	i;
-	size_t	j;
-	void	*tmp;
-
-	i = 0;
-	j = vector->nb_e - 1;
-	while (i < j)
-	{
-		tmp = vector->datas[i];
-		vector->datas[i] = vector->datas[j];
-		vector->datas[j] = tmp;
-		i++;
-		j--;
-	}
+	ft_memnrev(vec->data, vec->n_e, vec->s_e);
 }
 /*
 GPL-3.0 License:

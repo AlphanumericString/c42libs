@@ -12,29 +12,26 @@
 
 #include "ft_defs.h"
 #include "ft_vector.h"
+#include <stdio.h>
 
 void	ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del)
 {
 	size_t	i;
-	size_t	shift_count;
+	size_t	j;
 
+	if (!vec->n_e || !vec->s_e)
+		return;
 	i = 0;
-	while (vec->nb_e > i)
+	while (i < vec->n_e)
 	{
-		shift_count = 0;
-		while (vec->nb_e > i && func(vec->datas[i]) == false)
-		{
-			if (del)
-				del(vec->datas[i]);
-			shift_count++;
-			vec->datas[i++] = NULL;
-		}
-		ft_vec_shift(vec, i - shift_count, shift_count);
-		i -= shift_count;
-		while (vec->nb_e > i && func(vec->datas[i]) == true)
+		while (i < vec->n_e && func(ft_vec_at(vec, i)) == true)
 			i++;
+		j = 0;
+		while ((i + j) < vec->n_e && func(ft_vec_at(vec, i + j)) == false)
+			j++;
+		if (j)
+			ft_vec_nremove(vec, i, j, del);
 	}
-	return ;
 }
 /*
 GPL-3.0 License:

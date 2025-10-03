@@ -1,44 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_tests.h                                     :+:      :+:    :+:   */
+/*   tv_remove_if.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 11:10:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/24 11:30:26 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 14:09:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_TESTS_H
-# define VECTOR_TESTS_H
+#include "ft_vector.h"
+#include "types/ft_vector_types.h"
+#include "tests/vector_tests.h"
+#include "tests/tests_lambda_functions.h"
 
-int	tv_add(void);
-int	tv_apply(void);
-int	tv_at(void);
-int	tv_create(void);
-int	tv_cat(void);
-int	tv_clear(void);
-int	tv_convert_alloc_array(void);
-int	tv_destroy(void);
-int	tv_filter(void);
-int	tv_from_array(void);
-int	tv_from_size(void);
-int	tv_find(void);
-int	tv_map(void);
-int	tv_new(void);
-int	tv_pop(void);
-int	tv_remove(void);
-int	tv_filterout(void);
-int	tv_reserve(void);
-int	tv_reverse(void);
-int	tv_shift(void);
-int	tv_shrink(void);
-int	tv_sort(void);
-int	tv_swap(void);
-int	tv_to_array(void);
+int	tv_filterout(void)
+{
+	t_vector	*vec;
+	int			a[3] = {42, 43, 44};
 
-#endif /* VECTOR_TESTS_H */
+	vec = ft_vec_from_array(a, 3, sizeof(int));
+	ft_vec_filterout(vec, is42, NULL);
+	if (vec->n_e != 2)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 0) != 43)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 1) != 44)
+		return (1);
+	ft_vec_destroy(&vec);
+	return (EXIT_SUCCESS);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

@@ -14,26 +14,20 @@
 #include "ft_vector.h"
 #include <stdlib.h>
 
-bool	ft_vec_reserve(t_vector **vec, size_t size)
+bool	ft_vec_reserve(t_vector *vec, size_t size)
 {
-	t_vector	ret;
-	size_t		i;
+	void	*data_empl;
 
-	if ((*vec)->cappacity > size)
+	if (vec->cappacity > size)
 		return (true);
-	ret.datas = ft_malloc(sizeof(void *) * size);
-	if (!ret.datas)
+	data_empl = ft_malloc(size);
+	if (!data_empl)
 		return (false);
-	i = 0;
-	while (i < (*vec)->nb_e)
-	{
-		ret.datas[i] = (*vec)->datas[i];
-		i++;
-	}
-	ret.nb_e = (*vec)->nb_e;
-	ret.cappacity = size;
-	ft_free((*vec)->datas);
-	**vec = ret;
+	ft_memcpy(data_empl, vec->data, ft_vec_inuse(vec));
+	vec->cappacity = size;
+	if (vec->data)
+		ft_free(vec->data);
+	vec->data = data_empl;
 	return (true);
 }
 /*

@@ -18,7 +18,7 @@ void	add42(void *data)
 {
 	int	*ptr;
 
-	ptr = (int *)data;
+	ptr = data;
 	*ptr += 42;
 }
 

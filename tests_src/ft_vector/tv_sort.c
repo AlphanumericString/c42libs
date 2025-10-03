@@ -15,9 +15,9 @@
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 
-static int	cmp_ptr(const void *a, const void *b)
+static int	cmp_fun(const void *a, const void *b)
 {
-	return (a - b);
+	return (*(long *)a - *(long *)b);
 }
 
 static int	base_cases(void)
@@ -25,21 +25,19 @@ static int	base_cases(void)
 	t_vector	*vec;
 	const long	nbrs[3] = {44, 43, 42};
 
-	vec = ft_vec_new();
-	ft_vec_add(&vec, (void *)nbrs[0]);
-	ft_vec_add(&vec, (void *)nbrs[1]);
-	ft_vec_add(&vec, (void *)nbrs[2]);
-	ft_vec_sort(vec, cmp_ptr);
-	if (vec->nb_e != 3)
+	vec = ft_vec_from_array(nbrs, 3, sizeof(long));
+	ft_vec_sort(vec, cmp_fun);
+	if (vec->n_e != 3)
 		return (1);
-	else if (ft_vec_at(vec, 0) != (t_any)42
-		|| ft_vec_at(vec, 1) != (t_any)43
-		|| ft_vec_at(vec, 2) != (t_any)44)
+	else if (*(long *)ft_vec_at(vec, 0) != 42
+		|| *(long *)ft_vec_at(vec, 1) != 43
+		|| *(long *)ft_vec_at(vec, 2) != 44)
 		return (2);
-	ft_vec_sort(vec, cmp_ptr);
-	if (ft_vec_at(vec, 0) != (t_any)42
-		|| ft_vec_at(vec, 1) != (t_any)43
-		|| ft_vec_at(vec, 2) != (t_any)44)
+	ft_vec_sort(vec, cmp_fun);
+	ft_vec_sort(vec, cmp_fun);
+	if (*(long *)ft_vec_at(vec, 0) != 42
+		|| *(long *)ft_vec_at(vec, 1) != 43
+		|| *(long *)ft_vec_at(vec, 2) != 44)
 		return (3);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);

@@ -57,7 +57,7 @@ void		ft_map_destroy_free(t_map *map, t_data_apply free_data);
 /// @param map map to clear
 /// @file ft_map/ft_map_clear.c
 /// @return void
-void		ft_map_clear(t_map *restrict map);
+void		ft_map_clear(t_map *map);
 
 /// @brief Set a value in a map
 /// @param map map to set the value in
@@ -66,22 +66,22 @@ void		ft_map_clear(t_map *restrict map);
 /// @param size size of the key
 /// @file ft_map/ft_map_set.c
 /// @return true if the value was set, otherwise if key creation failed false
-bool		ft_map_set(t_map *map, const void *restrict key,
-				const void *restrict value,	size_t size);
+bool		ft_map_set(t_map *map, const void *key,
+				const void *value,	size_t size);
 
 /// @brief Set the compare function of a map
 /// @param map map to set the compare function
 /// @param cmp compare function newly set
 /// @file ft_map/ft_map_set.c
 /// @return void
-void		ft_map_set_cmp(t_map *restrict map, const t_data_cmp cmp);
+void		ft_map_set_cmp(t_map *map, const t_data_cmp cmp);
 
 /// @brief Set the hash function of a map
 /// @param map map to set the hash function
 /// @param hash hash function newly set
 /// @file ft_map/ft_map_set.c
 /// @return void
-void		ft_map_set_hash(t_map *restrict map, t_memhash hash);
+void		ft_map_set_hash(t_map *map, t_memhash hash);
 
 /// @brief Get a node from a map
 /// @param map map to get the node from
@@ -89,7 +89,7 @@ void		ft_map_set_hash(t_map *restrict map, t_memhash hash);
 /// @param size size of the key
 /// @file ft_map/ft_map_get.c
 /// @return a map_node if found, NULL otherwise
-t_map_node	*ft_map_get_node(t_map *restrict map, const void *restrict key,
+t_map_node	*ft_map_get_node(t_map *map, const void *key,
 				size_t size);
 
 /// @brief Get a value from a map
@@ -98,20 +98,20 @@ t_map_node	*ft_map_get_node(t_map *restrict map, const void *restrict key,
 /// @param key_size size of the key
 /// @file ft_map/ft_map_get.c
 /// @return a pointer to the user data or NULL if the key is not found
-void		*ft_map_get(t_map *restrict map, const void *restrict key,
+void		*ft_map_get(t_map *map, const void *key,
 				size_t key_size);
 
 /// @brief Get the number of elements in a map
 /// @param map map to get the size from
 /// @file ft_map/ft_map_size.c
 /// @return the number of elements in the map
-size_t		ft_map_size(const t_map *restrict map);
+size_t		ft_map_size(const t_map *map);
 
 /// @brief Get the capacity of a map
 /// @param map map to get the capacity from
 /// @file ft_map/ft_map_get.c
 /// @return the capacity of the map
-size_t		ft_map_capacity(const t_map *restrict map);
+size_t		ft_map_capacity(const t_map *map);
 
 /// @brief Remove a value from a map
 /// @param map map to remove the value from
@@ -119,7 +119,7 @@ size_t		ft_map_capacity(const t_map *restrict map);
 /// @param size size of the key
 /// @file ft_map/ft_map_remove.c
 /// @return the value removed or NULL if the key is not found
-void		*ft_map_remove(t_map *restrict map, const void *restrict key,
+void		*ft_map_remove(t_map *map, const void *key,
 				size_t size);
 
 /// @brief Hash a key
@@ -127,20 +127,20 @@ void		*ft_map_remove(t_map *restrict map, const void *restrict key,
 /// @param size size of the key
 /// @file ft_map/ft_map_hash.c
 /// @return the hash of the key
-size_t		ft_hash_djb2(const void *restrict key, size_t size);
+size_t		ft_hash_djb2(const void *key, size_t size);
 
 /// @brief Hash a key
 /// @param key key to hash
 /// @param size size of the key
 /// @file ft_map/ft_map_hash.c
 /// @return the hash of the key
-size_t		ft_hash_sdbm(const void *restrict key, size_t size);
+size_t		ft_hash_sdbm(const void *key, size_t size);
 
 /// @brief Hash a key
 /// @param key key to hash
 /// @param size size of the key
 /// @return the hash of the key
-size_t		ft_hash_fnv1a(const void *restrict key, size_t size);
+size_t		ft_hash_fnv1a(const void *key, size_t size);
 
 /// @brief Hash a key
 /// @param key key to hash
@@ -150,7 +150,7 @@ size_t		ft_hash_fnv1a(const void *restrict key, size_t size);
 /// @note this hash function is not very good, full of collisions
 /// but it's very fast, easy to understand and never overflows.
 /// use it ONLY for TESTing purposes
-size_t		ft_hash_dummy(const void *restrict key, size_t size);
+size_t		ft_hash_dummy(const void *key, size_t size);
 
 #endif /* FT_MAP_H */
 /*

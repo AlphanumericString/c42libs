@@ -11,54 +11,77 @@
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include "tests/fixtures.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 
-static int	checks_01(t_vector *vec, void **data)
+static int	error_cases(void)
 {
-	if (vec->nb_e != 3 || vec->cappacity != FT_VECTOR_BASE_LEN
-		|| !vec->datas)
+	int			fp;
+	int			ar[] = {21, 42, 63, 84};
+	t_vector	*v;
+
+	v = ft_vec_from_array(ar, 0, 4);
+	if (v)
+		return (EXIT_FAILURE);
+	v = ft_vec_from_array(ar, 4, 0);
+	if (v)
+		return (EXIT_FAILURE);
+	fp = *talloc_get_failpoint();
+	talloc_set_failpoint(0);
+	v = ft_vec_from_array(ar, 4, sizeof(*ar));
+	talloc_set_failpoint(fp);
+	if (v)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+
+static int	checks_01(t_vector *vec, const void **data)
+{
+	if (vec->n_e != 3 || vec->s_e != sizeof(data[0]) || !vec->data)
 		return (1);
-	else if (ft_vec_at(vec, 0) != data[0] || ft_vec_at(vec, 1) != data[1]
-		|| ft_vec_at(vec, 2) != data[2])
+	else if (*(void **)ft_vec_at(vec, 0) != data[0]
+		|| *(void **)ft_vec_at(vec, 1) != data[1]
+		|| *(void **)ft_vec_at(vec, 2) != data[2])
 		return (2);
 	return (EXIT_SUCCESS);
 }
 
-static int	checks_02(t_vector *vec, void **data)
+static int	checks_02(t_vector *vec, const void **data)
 {
-	if (vec->nb_e != 6 || vec->cappacity != 6 || !vec->datas)
+	if (vec->n_e != 6 || vec->s_e != sizeof(data[0]) || !vec->data)
 		return (3);
-	else if (ft_vec_at(vec, 0) != data[0] || ft_vec_at(vec, 1) != data[1]
-		|| ft_vec_at(vec, 2) != data[2] || ft_vec_at(vec, 3) != data[3]
-		|| ft_vec_at(vec, 4) != data[4] || ft_vec_at(vec, 5) != data[5])
+	else if (*(void **)ft_vec_at(vec, 0) != data[0]
+		|| *(void **)ft_vec_at(vec, 1) != data[1]
+		|| *(void **)ft_vec_at(vec, 2) != data[2]
+		|| *(void **)ft_vec_at(vec, 3) != data[3]
+		|| *(void **)ft_vec_at(vec, 4) != data[4]
+		|| *(void **)ft_vec_at(vec, 5) != data[5])
 		return (4);
 	return (EXIT_SUCCESS);
 }
 
+// TODO: add mt case
+// add errcases like 0 nmemb or 0 elem_size
 int	tv_from_array(void)
 {
-	void		*data[3];
-	void		*data2[6];
+	const void	*data[3] = {(void *)12, (void *)13, (void *)14};
+	const void	*data2[6] = {(void *)20, (void *)21, (void *)22,
+		(void *)23, (void *)24, (void *)25};
 	t_vector	*vec;
+	int			ret;
 
-	data[0] = (void *)12;
-	data[1] = (void *)13;
-	data[2] = (void *)14;
-	data2[0] = (void *)20;
-	data2[1] = (void *)21;
-	data2[2] = (void *)22;
-	data2[3] = (void *)23;
-	data2[4] = (void *)24;
-	data2[5] = (void *)25;
-	vec = ft_vec_from_array(data, sizeof(data) / sizeof(data[0]));
-	if (checks_01(vec, data))
-		return (checks_01(vec, data));
+	vec = ft_vec_from_array(data, 3, sizeof(void *));
+	ret = checks_01(vec, data);
+	if (ret)
+		return (ft_vec_destroy(&vec), ret);
 	ft_vec_destroy(&vec);
-	vec = ft_vec_from_array(data2, sizeof(data2) / sizeof(*data2));
-	if (checks_02(vec, data2))
-		return (checks_02(vec, data2));
-	return (ft_vec_destroy(&vec), 0);
+	vec = ft_vec_from_array(data2, 6, sizeof(void *));
+	ret = checks_02(vec, data2);
+	if (ret)
+		return (ft_vec_destroy(&vec), ret);
+	return (ft_vec_destroy(&vec), error_cases());
 }
 /*
 GPL-3.0 License:

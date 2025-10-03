@@ -18,11 +18,14 @@ void	*ft_vec_find(const t_vector *restrict vector,
 {
 	size_t	i;
 
+	if (!vector->s_e || !vector->n_e || !vector->data)
+		return (NULL);
 	i = 0;
-	while (i < vector->nb_e)
+	while (i < vector->n_e)
 	{
-		if (cmp(vector->datas[i], key) == 0)
-			return (vector->datas[i]);
+		if (key == ft_vec_at(vector, i) || (cmp
+				&& cmp(ft_vec_at(vector, i), key) == 0))
+			return (ft_vec_at(vector, i));
 		i++;
 	}
 	return (NULL);

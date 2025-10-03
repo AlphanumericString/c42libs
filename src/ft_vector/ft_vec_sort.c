@@ -10,37 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_algorithms.h"
 #include "ft_defs.h"
 #include "ft_vector.h"
 
-static void	ft_loc_swap(void **a, void **b)
-{
-	void	*tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-	return ;
-}
-
 void	ft_vec_sort(t_vector *vec, t_data_cmp cmp_f)
 {
-	size_t		i;
-	size_t		j;
-
-	i = 0;
-	while (i < vec->nb_e)
-	{
-		j = i + 1;
-		while (j < vec->nb_e)
-		{
-			if (cmp_f(vec->datas[i], vec->datas[j]) > 0)
-				ft_loc_swap(&vec->datas[i], &vec->datas[j]);
-			j++;
-		}
-		i++;
-	}
-	return ;
+	ft_qsort(vec->data, vec->n_e, vec->s_e, cmp_f);
 }
 /*
 GPL-3.0 License:

@@ -10,11 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_allocator__dev.h"
 #include "ft_vector.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 
 #include "tests/fixtures.h"
+
+static int	edge(void)
+{
+	t_vector	*v;
+	bool		ret;
+	void		*d;
+
+	v = ft_vec_from_size(FT_VECTOR_BASE_LEN);
+	d = v->data;
+	v->data = NULL;
+	ret = ft_vec_reserve(v, FT_VECTOR_BASE_LEN);
+	if (!v->data || !ret)
+		return (ft_free(d), ft_vec_delete(v), 1 + 8);
+	return (ft_free(d), ft_vec_delete(v), EXIT_SUCCESS);
+}
 
 int	tv_reserve(void)
 {
@@ -24,21 +40,20 @@ int	tv_reserve(void)
 	bool		ret[4];
 
 	vec = ft_vec_from_size(FT_VECTOR_BASE_LEN - 1);
-	ret[0] = ft_vec_reserve(&vec, FT_VECTOR_BASE_LEN - 2);
-	ret[1] = ft_vec_reserve(&vec, FT_VECTOR_BASE_LEN);
-	ret[2] = ft_vec_reserve(&vec, FT_VECTOR_BASE_LEN + 2);
+	ret[0] = ft_vec_reserve(vec, FT_VECTOR_BASE_LEN - 2);
+	ret[1] = ft_vec_reserve(vec, FT_VECTOR_BASE_LEN);
+	ret[2] = ft_vec_reserve(vec, FT_VECTOR_BASE_LEN + 2);
 	f_point = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	ret[3] = !ft_vec_reserve(&vec, FT_VECTOR_BASE_LEN + 3);
+	ret[3] = !ft_vec_reserve(vec, FT_VECTOR_BASE_LEN + 3);
 	talloc_set_failpoint(f_point);
 	i = 0;
 	while (i < 4)
 		if (ret[i++] != true)
 			return (i);
 	if (vec->cappacity != FT_VECTOR_BASE_LEN + 2)
-		return (4 + 1);
-	ft_vec_destroy(&vec);
-	return (EXIT_SUCCESS);
+		return (5 + 1);
+	return (ft_vec_destroy(&vec), edge());
 }
 /*
 GPL-3.0 License:

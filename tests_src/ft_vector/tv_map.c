@@ -22,40 +22,54 @@
 
 static int	base_case(void)
 {
+	t_vector	hold;
 	t_vector	*vec;
 	t_vector	*ret;
-	int			**arr;
+	int			arr[3] = {42, 43, 44};
 
-	arr = (int **)creat_tb();
-	vec = ft_vec_from_array((void **)arr, 3);
-	ret = ft_vec_map(vec, add42_ret);
-	if (ret->nb_e != 3)
+	vec = ft_vec_from_array(arr, 3, sizeof(int));
+	ret = ft_vec_map(vec, add42);
+	if (ret->n_e != 3)
 		return (1);
 	else if (*(int *)ft_vec_at(ret, 0) != 84 || *(int *)ft_vec_at(ret, 1) != 85
 		|| *(int *)ft_vec_at(ret, 2) != 86)
-		return (2);
-	ft_vec_apply(ret, ft_free);
-	ft_vec_destroy(&vec);
+		return (ft_vec_destroy(&vec), ft_vec_destroy(&ret), 2);
 	ft_vec_destroy(&ret);
-	return (EXIT_SUCCESS);
+	hold = *vec;
+	vec->s_e = 0;
+	if (ft_vec_map(vec, add42) != NULL)
+		return (3);
+	ft_memcpy(vec, &hold, sizeof(t_vector));
+	vec->n_e = 0;
+	if (ft_vec_map(vec, add42) != NULL)
+		return (4);
+	ft_memcpy(vec, &hold, sizeof(t_vector));
+	vec->data = NULL;
+	if (ft_vec_map(vec, add42) != NULL)
+		return (5);
+	return (ft_vec_destroy(&vec), ft_vec_destroy(&ret), EXIT_SUCCESS);
 }
 
 static int	mt_case(void)
 {
 	t_vector	*vec;
 	t_vector	*ret;
-	int			**ar;
+	int			ar[3] = {42, 43, 44};
 	int			f_point;
 
-	ar = (int **)creat_tb();
-	vec = ft_vec_from_array((void **)ar, 3);
+	vec = ft_vec_from_array(ar, 3, sizeof(int *));
 	f_point = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	ret = ft_vec_map(vec, add42_ret);
+	ret = ft_vec_map(vec, add42);
 	talloc_set_failpoint(f_point);
 	if (ret)
-		return (1);
-	return (ft_vec_destroy(&vec), 0);
+		return (ft_vec_destroy(&vec), ft_vec_destroy(&ret), 1 + 8);
+	talloc_set_failpoint(*talloc_get_currentpoint() + 1);
+	ret = ft_vec_map(vec, add42);
+	talloc_set_failpoint(f_point);
+	if (ret)
+		return (ft_vec_destroy(&vec), ft_vec_destroy(&ret), 2 + 8);
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 
 int	tv_map(void)
@@ -67,7 +81,7 @@ int	tv_map(void)
 		return (ret);
 	ret = mt_case();
 	if (ret)
-		return (ret + 10);
+		return (ret);
 	return (EXIT_SUCCESS);
 }
 /*

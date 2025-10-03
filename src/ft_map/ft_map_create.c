@@ -32,7 +32,7 @@ t_map	*ft_map_create(size_t size)
 		return (ft_free(map->nb_e), ft_free(map), NULL);
 	map->hash = &ft_hash_djb2;
 	map->cmp = (int (*)(const void *, const void *)) & ft_strcmp;
-	map->reserved_nodes = ft_vec_new();
+	map->reserved_nodes = ft_vec_create(sizeof(t_list *));
 	if (!map->reserved_nodes)
 		return (ft_free(map->nb_e), ft_free(map->nodes), ft_free(map), NULL);
 	return (map);

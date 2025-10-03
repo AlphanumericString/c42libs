@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_remove_if.c                                     :+:      :+:    :+:   */
+/*   tv_create.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 11:30:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:09:18 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/10/01 23:57:53 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/10/01 23:57:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
-#include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
-#include "tests/tests_lambda_functions.h"
 
-int	tv_remove_if(void)
+int	tv_create(void)
 {
-	t_vector	*vec;
-	int			a;
-	int			b;
-	int			c;
+	t_vector	*v;
 
-	a = 42;
-	b = 43;
-	c = 44;
-	vec = ft_vec_new();
-	ft_vec_add(&vec, &a);
-	ft_vec_add(&vec, &b);
-	ft_vec_add(&vec, &c);
-	ft_vec_remove_if(vec, is42, NULL);
-	if (vec->nb_e != 2)
+	v = ft_vec_create(12);
+	if (v->cappacity < 12)
 		return (1);
-	else if (*(int *)ft_vec_at(vec, 0) != 43)
-		return (1);
-	else if (*(int *)ft_vec_at(vec, 1) != 44)
-		return (1);
-	ft_vec_destroy(&vec);
+	if (v->n_e != 0 || v->s_e != 12)
+		return (2);
+	ft_vec_destroy(&v);
+	v = ft_vec_create(0);
+	if (!v)
+		return (3);
+	if (v->s_e != 1)
+		return (4);
+	ft_vec_destroy(&v);
 	return (EXIT_SUCCESS);
 }
 /*

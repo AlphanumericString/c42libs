@@ -14,27 +14,41 @@
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
 
+// NOTE:
+// vec_pop returns the place in the vector of the last element and
+// decreases the number of elements by 1
+// so we need to do `*(char **)` each time because we registered 'strs'
+// aka char *[3] aka list of adresses of strings in the vector
+// ft_vec_pop(vec) -> get the emplacement of last element
+// (char **) -> this emplacement is the adress of a char *
+// * -> dereference to get the char * aka the string
+// might be a tad confusing at first but it is what it is with void* as ret
+
+// TODO: ft_vec_popi(vec, &ret); returns and puts the value in ret
 int	tv_pop(void)
 {
+	size_t		tmp;
 	t_vector	*vec;
+	const char	*strs[3] = {"value1", "value2", "value3"};
 	const char	*str;
 
-	vec = ft_vec_new();
-	ft_vec_add(&vec, "value1");
-	ft_vec_add(&vec, "value2");
-	ft_vec_add(&vec, "value3");
-	str = ft_vec_pop(vec);
-	if (!str || ft_strcmp(str, "value3") != 0 || vec->nb_e != 2)
+	vec = ft_vec_from_array(strs, 3, sizeof(char *));
+	str = *(char **)ft_vec_pop(vec);
+	if (!str || ft_strcmp(str, "value3") != 0 || vec->n_e != 2)
 		return (1);
-	str = ft_vec_pop(vec);
-	if (!str || ft_strcmp(str, "value2") != 0 || vec->nb_e != 1)
+	str = *(char **)ft_vec_pop(vec);
+	if (!str || ft_strcmp(str, "value2") != 0 || vec->n_e != 1)
 		return (2);
-	str = ft_vec_pop(vec);
-	if (!str || ft_strcmp(str, "value1") != 0 || vec->nb_e != 0)
+	tmp = vec->s_e;
+	vec->s_e = 0;
+	if (ft_vec_pop(vec))
 		return (3);
-	str = ft_vec_pop(vec);
-	if (str)
+	vec->s_e = tmp;
+	str = *(char **)ft_vec_pop(vec);
+	if (!str || ft_strcmp(str, "value1") != 0 || vec->n_e != 0)
 		return (4);
+	if (ft_vec_pop(vec))
+		return (5);
 	return (ft_vec_destroy(&vec), 0);
 }
 /*

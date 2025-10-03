@@ -10,16 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
 
+// NOTE:	remove the ft_bzero if performance becomes an issue
+// or for a good enough compromise ft_bzero(vec->data, ft_vec_inuse(vec));
 void	ft_vec_clear(t_vector *vec)
 {
-	size_t	size;
-
-	size = 0;
-	while (size < vec->nb_e)
-		vec->datas[size++] = NULL;
-	vec->nb_e = 0;
+	if (!vec->n_e)
+		return ;
+	ft_bzero(vec->data, ft_vec_inuse(vec));
+	vec->n_e = 0;
 }
 /*
 GPL-3.0 License:

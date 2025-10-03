@@ -11,22 +11,39 @@
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include "tests/fixtures.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
+
+static int	mt_tests(void)
+{
+	t_vector	*vec;
+	t_vector	*vec2;
+	int			f_point;
+
+	vec = NULL;
+	f_point = *talloc_get_failpoint();
+	talloc_set_failpoint(0);
+	vec = ft_vec_from_size(42);
+	talloc_set_failpoint(*talloc_get_currentpoint() + 1);
+	vec2 = ft_vec_from_size(42);
+	talloc_set_failpoint(f_point);
+	if (vec || vec2)
+		return (ft_vec_destroy(&vec), ft_vec_destroy(&vec2), 2 + 16);
+	return (EXIT_SUCCESS);
+}
 
 int	tv_from_size(void)
 {
 	t_vector	*vec;
 
 	vec = ft_vec_from_size(42);
-	if (vec->nb_e != 0)
+	if (vec->n_e != 0 || vec->s_e != 1)
 		return (1);
-	else if (vec->cappacity != 42)
-		return (1);
-	else if (!vec->datas)
-		return (1);
+	else if (vec->cappacity != 42 || !vec->data)
+		return (2);
 	ft_vec_destroy(&vec);
-	return (EXIT_SUCCESS);
+	return (mt_tests());
 }
 /*
 GPL-3.0 License:

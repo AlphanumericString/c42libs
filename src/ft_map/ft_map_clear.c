@@ -25,7 +25,7 @@ void	ft_map_clear(t_map *restrict map)
 		{
 			cur = map->nodes[i];
 			map->nodes[i] = map->nodes[i]->next;
-			ft_vec_add(&map->reserved_nodes, cur);
+			ft_vec_add(map->reserved_nodes, &cur);
 		}
 		map->nb_e[i] = 0;
 		i++;

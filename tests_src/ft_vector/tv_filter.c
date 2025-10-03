@@ -10,56 +10,51 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_arr.h"
+#include "ft_mem.h"
 #include "ft_vector.h"
-#include "ft_allocator__dev.h"
 
 #include "tests/tests_lambda_functions.h"
 #include "tests/vector_tests.h"
+#include "types/ft_vector_types.h"
 
-static int	**create_tb_int(int *size)
+static int	edge(void)
 {
-	int	**tab;
-	int	i;
+	const int	arr[] = {42, 42, 42};
+	t_vector	*vec;
 
-	if (size)
-		*size = 10;
-	i = 10;
-	tab = ft_calloc(sizeof(int *), i + 1);
-	i = 0;
-	while (i < 10)
-	{
-		tab[i] = ft_calloc(sizeof(int), 1);
-		*(tab[i]) = 42 + i;
-		i++;
-	}
-	tab[i] = NULL;
-	return (tab);
+	vec = ft_vec_from_array(arr, 3, sizeof(int));
+	if (vec->n_e != 3)
+		return (1);
+	ft_vec_filter(vec, is42, NULL);
+	if (vec->n_e != 3)
+		return (2);
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 
 static int	base_case(void)
 {
+	const int	src_arr[10] = {0, 42, 21, 42, 63, 42, 84, 42, 105, 126};
 	const int	arr[3] = {21, 42, 63};
 	t_vector	*vec;
-	int			**pp;
+	int			*pp;
 
-	vec = ft_vec_new();
-	ft_vec_add(&vec, (void *)&arr[0]);
-	ft_vec_add(&vec, (void *)&arr[1]);
-	ft_vec_add(&vec, (void *)&arr[2]);
+	vec = ft_vec_from_array(arr, 3, sizeof(int));
 	ft_vec_filter(vec, is42, NULL);
-	if (vec->nb_e != 1 || *(int *)ft_vec_at(vec, 0) != 42)
+	if (vec->n_e != 1 || *(int *)ft_vec_at(vec, 0) != 42)
 		return (1);
 	ft_vec_destroy(&vec);
-	pp = (int **)create_tb_int(NULL);
-	*(pp[8]) = 42;
-	*(pp[3]) = 42;
-	*(pp[4]) = 42;
-	vec = ft_vec_convert_alloccarray((void **)pp, ft_alen((t_any)pp));
-	ft_vec_filter(vec, is42, ft_free);
-	if (ft_vec_at(vec, 0) != pp[0] || vec->nb_e != 4)
+	pp = ft_calloc(sizeof(int), 10);
+	ft_memcpy(pp, src_arr, sizeof(src_arr));
+	vec = ft_vec_convert_alloccarray(pp, 10, sizeof(int));
+	ft_vec_filter(vec, is42, NULL);
+	if (vec->n_e != 4)
 		return (2);
-	return (ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
+	vec->s_e = 0;
+	ft_vec_filter(vec, is42, NULL);
+	vec->s_e = sizeof(int);
+	vec->n_e = 0;
+	ft_vec_filter(vec, is42, NULL);
+	return (ft_vec_destroy(&vec), 0);
 }
 
 int	tv_filter(void)
@@ -67,6 +62,9 @@ int	tv_filter(void)
 	int	ret;
 
 	ret = base_case();
+	if (ret)
+		return (ret);
+	ret = edge();
 	if (ret)
 		return (ret);
 	return (EXIT_SUCCESS);

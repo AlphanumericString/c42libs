@@ -14,19 +14,20 @@
 #include "ft_vector.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
+#include <stdio.h>
 
 // tests vector has removed the arr[2]orrect element
 // and
 // tests vector_remove is bound checked with 42's call
 static int	checks_01(t_vector *vec)
 {
-	if (vec->nb_e != 2)
+	if (vec->n_e != 2)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42
 		|| *(int *)ft_vec_at(vec, 1) != 44)
 		return (2);
 	ft_vec_remove(vec, 42, NULL);
-	if (vec->nb_e != 2)
+	if (vec->n_e != 2)
 		return (3);
 	return (EXIT_SUCCESS);
 }
@@ -34,12 +35,17 @@ static int	checks_01(t_vector *vec)
 // tests vector_remove calls free on the correct element
 static int	checks_02(t_vector *vec, const int *arr)
 {
-	if (vec->nb_e != 2)
-		return (1);
-	if (*(int *)ft_vec_at(vec, 0) != arr[0]
-		|| *(int *)ft_vec_at(vec, 1) != arr[2])
-		return (1);
+	if (vec->n_e != 2)
+		return (4);
+	if (**(int **)ft_vec_at(vec, 0) != arr[0]
+		|| **(int **)ft_vec_at(vec, 1) != arr[2])
+		return (5);
 	return (EXIT_SUCCESS);
+}
+
+static void	intermediary(void *d)
+{
+	ft_free(*(int **)d);
 }
 
 int	tv_remove(void)
@@ -49,26 +55,23 @@ int	tv_remove(void)
 	int			*ptr;
 	size_t		i;
 
-	i = 0;
-	vec = ft_vec_new();
-	ft_vec_add(&vec, (void *)&arr[0]);
-	ft_vec_add(&vec, (void *)&arr[1]);
-	ft_vec_add(&vec, (void *)&arr[2]);
+	vec = ft_vec_from_array(arr, 3, sizeof(int));
 	ft_vec_remove(vec, 1, NULL);
 	if (checks_01(vec))
 		return (checks_01(vec));
 	ft_vec_destroy(&vec);
-	vec = ft_vec_new();
+	vec = ft_vec_create(sizeof(int *));
+	i = 0;
 	while (i < 3)
 	{
 		ptr = (int *)ft_malloc(sizeof(int));
 		*ptr = arr[i++];
-		ft_vec_add(&vec, (void *)ptr);
+		ft_vec_add(vec, &ptr);
 	}
-	ft_vec_remove(vec, 1, ft_free);
+	ft_vec_remove(vec, 1, intermediary);
 	if (checks_02(vec, arr))
 		return (checks_02(vec, arr));
-	return (ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
+	return (ft_vec_apply(vec, intermediary), ft_vec_destroy(&vec), 0);
 }
 /*
 GPL-3.0 License:

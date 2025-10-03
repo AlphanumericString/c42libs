@@ -14,20 +14,32 @@
 #include "tests/tests.h"
 #include "tests/vector_tests.h"
 
+// TODO: pure tests for already implemented functions:
+// TODO: tv_delete
+// TODO: tv_remove_at
+// TODO: tv_inuse
+//
+// TODO: with implementation functions:
+// TODO: tv_insert
+// {max min last first}
+// TODO: tv_dup
+// TODO: tv_fold (doesn't take initial value)
+// TODO: tv_reduce (takes initial value)
+//
 static const t_fnamed	*tv_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"add", tv_add}, {"apply", tv_apply}, {"at", tv_at},
-	{"cat", tv_cat}, {"clear", tv_clear},
-	{"destroy", tv_destroy}, {"filter", tv_filter},
-	{"map", tv_map}, {"new", tv_new}, {"pop", tv_pop},
-	{"from_size", tv_from_size}, {"from_array", tv_from_array},
-	{"convert_alloc_array", tv_convert_alloc_array},
-	{"remove", tv_remove}, {"remove_if", tv_remove_if},
-	{"reserve", tv_reserve}, {"reverse", tv_reverse},
-	{"shift", tv_shift}, {"sort", tv_sort},
-	{"shrink", tv_shrink}, {"swap", tv_swap},
-	{"get", tv_get}, {"to_array", tv_to_array},
+	{"add", tv_add}, {"apply", tv_apply}, {"at", tv_at}, {"cat", tv_cat},
+	{"clear", tv_clear},{"convert_alloc_array", tv_convert_alloc_array},
+	{"create", tv_create},
+  /*{"delete", tv_delete},*/ {"destroy", tv_destroy}, // {"dup", tv_dup},
+	{"filter-out", tv_filterout}, {"filter", tv_filter}, {"find", tv_find},
+	{"from_array", tv_from_array}, {"from_size", tv_from_size},
+	// {"insert", tv_insert}, {"inuse", tv_inuse},
+	{"map", tv_map}, {"new", tv_new}, {"pop", tv_pop}, {"remove", tv_remove},
+  /*{"remove_at", tv_remove_at},*/ {"reserve", tv_reserve},
+	{"reverse", tv_reverse}, {"shift", tv_shift}, {"shrink", tv_shrink},
+	{"sort", tv_sort}, {"swap", tv_swap}, {"to_array", tv_to_array},
 	{NULL, NULL}
 	};
 
