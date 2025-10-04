@@ -10,22 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <limits.h>
-// #include <errno.h>
-// #include <stddef.h>
-// #include <stdlib.h>
-// #include <stdbool.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <strings.h>
-// #include <unistd.h>
-// #include <string.h>
-// #include <time.h>
-// #include <fcntl.h>
-// #include <math.h>
+#include <limits.h>
+#include <errno.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <strings.h>
+#include <unistd.h>
+#include <string.h>
+#include <fcntl.h>
+#include <math.h>
+#include <time.h>
 
+#include "ft_algorithms.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
+#include "unistd.h"
+#include <stdlib.h>
 #define FT_CLASSIC_COLORS
 #include "ft_colors.h"
 #include "ft_allocator__dev.h"
@@ -482,10 +485,41 @@
 // //
 //
 
+#include "ft_mem.h"
+#include "ft_defs.h"
+#include "ft_tree.h"
+#include "types/ft_tree_types.h"
+#include <stdio.h>
+
+static void	loc_put(void *d)
+{
+	printf("%s\n", (char *)d);
+	fflush(stdout);
+}
+
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
+	(void) ac;
+	(void) av;
+	t_tree		*tmp;
+	const char		*arr[] = {"str", "str1", "str2", "str3", "str4"};
+	const size_t	a_size = sizeof(arr) / sizeof(arr[0]);
+
+	srand(time(NULL));
+	tmp = NULL;
+
+	size_t nb = (ac > 1) ? ft_atoi(av[1]) : 10;
+
+	while (nb--) {
+		ft_tree_push(&tmp,	(t_any)arr[rand() % a_size],	(t_data_cmp)ft_strcmp);
+	}
+	ft_tree_traverse(tmp, loc_put, INFIX);
+	printf("---------POST-\n");
+	ft_tree_traverse(tmp, loc_put, POSFIX);
+	printf("---------PRE-\n");
+	ft_tree_traverse(tmp, loc_put, PREFIX);
+
+	ft_tree_del(&tmp, NULL);
 	return (EXIT_SUCCESS);
 }
 /*

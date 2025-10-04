@@ -45,20 +45,23 @@ TESTS_DIR		=	tests_src
 INC_DIR			=	include includes .
 COVERAGE_DIR	=	coverage
 
-FT_MAP_DIR		=	$(SRC_DIR)/ft_map
-FT_LIST_DIR		=	$(SRC_DIR)/ft_list
-FT_STRING_DIR	=	$(SRC_DIR)/ft_string
-FT_VEC_DIR		=	$(SRC_DIR)/ft_vector
-FT_OPTIONAL_DIR	=	$(SRC_DIR)/ft_optional
 FT_ARGS_DIR		=	$(SRC_DIR)/ft_args
-FT_MATH_DIR		=	$(SRC_DIR)/ft_math
-FT_PAIR_DIR		=	$(SRC_DIR)/ft_pair
 FT_BITSET_DIR	=	$(SRC_DIR)/ft_bitset
+FT_LIST_DIR		=	$(SRC_DIR)/ft_list
+FT_MAP_DIR		=	$(SRC_DIR)/ft_map
+FT_MATH_DIR		=	$(SRC_DIR)/ft_math
+FT_OPTIONAL_DIR	=	$(SRC_DIR)/ft_optional
+FT_PAIR_DIR		=	$(SRC_DIR)/ft_pair
+FT_STRING_DIR	=	$(SRC_DIR)/ft_string
+FT_TREE_DIR		=	$(SRC_DIR)/ft_tree
+FT_VEC_DIR		=	$(SRC_DIR)/ft_vector
 
-FT_LIST_LL_DIR	=	$(FT_LIST_DIR)/ft_ll
-FT_LIST_DL_DIR	=	$(FT_LIST_DIR)/ft_dl
+#lists sub dirs
 FT_LIST_CL_DIR	=	$(FT_LIST_DIR)/ft_cl
+FT_LIST_DL_DIR	=	$(FT_LIST_DIR)/ft_dl
+FT_LIST_LL_DIR	=	$(FT_LIST_DIR)/ft_ll
 
+#str sub dirs
 FT_CHR_DIR		=	$(FT_STRING_DIR)/ft_chr
 FT_MEM_DIR		=	$(FT_STRING_DIR)/ft_mem
 FT_NUM_DIR		=	$(FT_STRING_DIR)/ft_num
@@ -147,6 +150,10 @@ ifeq (, $(shell which $(PRD) 2> /dev/null))
 endif
 
 # Sources
+
+FT_TREE_SRC		=	\
+				$(shell find $(FT_TREE_DIR) -name '*\.c')
+$(warning "remove the * from push")
 
 FT_BITSET_SRC	=	\
 			$(FT_BITSET_DIR)/ft_bs_append.c		\
@@ -854,6 +861,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/tests_utils/tab_create_set.c						\
 
 SRCS	=\
+		$(FT_TREE_SRC)			\
 		$(FT_FILEHANDLER_SRC)	\
 		$(FT_BITSET_SRC)		\
 		$(FT_MATH_SRC)          \
