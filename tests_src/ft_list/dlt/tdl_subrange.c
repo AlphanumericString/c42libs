@@ -67,7 +67,7 @@ static int	mt_cases(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_subrange(void)
+int	tdl_subrange(void)
 {
 	int	ret;
 

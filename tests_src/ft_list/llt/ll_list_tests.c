@@ -31,6 +31,9 @@ static const t_fnamed	*ll_tests(void)
 	{"size_match", t_ll_size_match}, {"size_cmp", t_ll_size_cmp},
 	{"subrange", t_ll_subrange}, {"check_circular", t_ll_check_circular},
 	{"check_sorted", t_ll_check_sorted}, {"check_health", t_ll_check_health},
+	{"xtrct_min", t_ll_extract_min}, {"xtrct_min_node", t_ll_extract_min_node},
+	{"xtrct_max", t_ll_extract_max}, {"xtrct_max_node", t_ll_extract_max_node},
+	{"sort", tll_sort}, {"issort", tll_issort},
 	{NULL, NULL}};
 
 	return (test);

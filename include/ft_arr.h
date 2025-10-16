@@ -252,6 +252,7 @@ void			ft_anfree(void **arr, size_t n);
 /// @param	cols the number of columns of the array
 /// @param	cell_size the size of each cell
 /// @return	either a new 2D array or null if any allocation failed.
+/// @note	the array is NOT null terminated.
 void			**ft_aalloc(size_t rows, size_t cols, size_t cell_size);
 
 ///	@brief	call a function f on every elements and expects data to not be

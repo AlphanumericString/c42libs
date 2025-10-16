@@ -14,7 +14,6 @@
 #include "ft_defs.h"
 #include "ft_string.h"
 #include "tests/str__mem_tests.h"
-#include <string.h>
 
 int	tca_arev(void)
 {

@@ -17,7 +17,7 @@
 #include "tests/list__dl_tests.h"
 #include <stdlib.h>
 
-int	t_dl_rev(void)
+int	tdl_rev(void)
 {
 	t_dlist	*list;
 	int		*data1;

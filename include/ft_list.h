@@ -41,15 +41,33 @@
 /*									  SORT									  */
 /* ************************************************************************** */
 
-//TODO: add documentation
-t_dlist	*ft_dl_extract_min(const t_dlist *list, t_data_cmp cmp);
+/// @brief Extract the minimum data from a doubly linked list with a
+///  comparaison function
+/// @param	list the list head to compare from
+/// @param	cmp the compariason function to use
+/// @return	the minimum data found
+void	*ft_dl_extract_min(const t_dlist *list, t_data_cmp cmp);
+/// @brief Extract the minimum node from the data in a doubly linked list with
+///  a comparaison function
+/// @param	list the list head to compare from
+/// @param	cmp the compariason function to use
+/// @return	the node containing the minimum data found
 t_dlist	*ft_dl_extract_min_node(const t_dlist *list, t_data_cmp cmp);
 
-//TODO: add documentation
-t_dlist	*ft_dl_extract_max(const t_dlist *list, t_data_cmp cmp);
+/// @brief Extract the maximum data from a doubly linked list with a
+///  comparaison function
+/// @param	list the list head to compare from
+/// @param	cmp the compariason function to use
+/// @return	the maximum data found
+void	*ft_dl_extract_max(const t_dlist *list, t_data_cmp cmp);
+/// @brief Extract the maximum node from the data in a doubly linked list with
+///  a comparaison function
+/// @param	list the list head to compare from
+/// @param	cmp the compariason function to use
+/// @return	the node containing the maximum data found
 t_dlist	*ft_dl_extract_max_node(const t_dlist *list, t_data_cmp cmp);
 
-/// @brief check if a doubly linked list is sorted 
+/// @brief check if a doubly linked list is sorted
 /// @param head the head of a doubly linked list
 /// @param cmp the comparaison function
 /// @param flag the flag for the sort order (0 = default)
@@ -64,16 +82,98 @@ bool	ft_dl_issort(const t_dlist *head, const t_data_cmp cmp, int flag);
 /// @note If head is not the head of the list, it will be set to the first
 ///		sorted node of the list.
 t_dlist	*ft_dl_sort(t_dlist **head, const t_data_cmp cmp, int flags);
-//
-// /// @brief Sort a doubly linked list
-// /// @param start The start of the list
-// /// @param end The end of the list
-// /// @param cmp The compare function to use
-// /// @param flags Flags to use (see t_sort_orders, t_sort_algorithms)
-// /// @return a valid pointer to the first node of the sorted list or NULL
-// /// @note If !list || !cmp || bad flags, returns NULL
-// t_dlist	*ft_dl_sort_range(t_dlist *start, t_dlist *end,
-//    			const t_data_cmp cmp, int flags);
+
+/// @brief Extract the minimum data from a simply linked list with a
+///  comparaison function
+/// @param	list the list head to compare from
+/// @param	cmp the compariason function to use
+/// @return	the minimum data found
+void	*ft_ll_extract_min(const t_list *list, t_data_cmp cmp);
+/// @brief Extract the minimum node from the data in a simply linked list with
+///  a comparaison function
+/// @param	list the list head to compare from
+/// @param	cmp the compariason function to use
+/// @return	the node containing the minimum data found
+t_list	*ft_ll_extract_min_node(const t_list *list, t_data_cmp cmp);
+
+/// @brief Extract the maximum data from a simply linked list with a
+///  comparaison function
+/// @param	list the list head to compare from
+/// @param	cmp the compariason function to use
+/// @return	the maximum data found
+void	*ft_ll_extract_max(const t_list *list, t_data_cmp cmp);
+/// @brief Extract the maximum node from the data in a simply linked list with
+///  a comparaison function
+/// @param	list the list head to compare from
+/// @param	cmp the compariason function to use
+/// @return	the node containing the maximum data found
+t_list	*ft_ll_extract_max_node(const t_list *list, t_data_cmp cmp);
+
+/// @brief check if a simply linked list is sorted
+/// @param head the head of a simply linked list
+/// @param cmp the comparaison function
+/// @param flag the flag for the sort order (0 = default)
+/// @return true if list is sorted false otherwise
+bool	ft_ll_issort(const t_list *head, const t_data_cmp cmp, int flag);
+/// @brief Sort a simply linked list
+/// @param head The head of the list
+/// @param cmp The compare function to use
+/// @param flags Flags to use (see t_sort_orders, t_sort_algorithms)
+/// @return a valid pointer to the first node of the sorted list or NULL
+/// @note If !list || !cmp || bad flags, returns NULL
+/// @note If head is not the head of the list, it will be set to the first
+///		sorted node of the list.
+t_list	*ft_ll_sort(t_list **head, const t_data_cmp cmp, int flags);
+
+/// @brief Extract the minimum data from a circular linked list with a
+///  comparaison function
+/// @param	list the list head to compare from
+/// @param	end	the lists end to stop to compare from
+/// @param	cmp the compariason function to use
+/// @return	the minimum data found
+void	*ft_cl_extract_min(const t_clist *list, const t_clist *end,
+			t_data_cmp cmp);
+/// @brief Extract the minimum node from the data in a circular linked list with
+///  a comparaison function
+/// @param	list the list head to compare from
+/// @param	end	the lists end to stop to compare from
+/// @param	cmp the compariason function to use
+/// @return	the node containing the minimum data found
+t_clist	*ft_cl_extract_min_node(const t_clist *list, const t_clist *end,
+			t_data_cmp cmp);
+
+/// @brief Extract the maximum data from a circular linked list with a
+///  comparaison function
+/// @param	list the list head to compare from
+/// @param	end	the lists end to stop to compare from
+/// @param	cmp the compariason function to use
+/// @return	the maximum data found
+void	*ft_cl_extract_max(const t_clist *list, const t_clist *end,
+			t_data_cmp cmp);
+/// @brief Extract the maximum node from the data in a circular linked list with
+///  a comparaison function
+/// @param	list the list head to compare from
+/// @param	end	the lists end to stop to compare from
+/// @param	cmp the compariason function to use
+/// @return	the node containing the maximum data found
+t_clist	*ft_cl_extract_max_node(const t_clist *list, const t_clist *end,
+			t_data_cmp cmp);
+
+/// @brief Extract the minimum data from a circular linked list with a
+///  comparaison function
+/// @param	list the list head to compare from
+/// @param	cmp the compariason function to use
+/// @return	the minimum data found
+bool	ft_cl_issort(const t_clist *head, const t_data_cmp cmp, int flag);
+/// @brief Sort a circular linked list
+/// @param head The head of the list
+/// @param cmp The compare function to use
+/// @param flags Flags to use (see t_sort_orders, t_sort_algorithms)
+/// @return a valid pointer to the first node of the sorted list or NULL
+/// @note If !list || !cmp || bad flags, returns NULL
+/// @note If head is not the head of the list, it will be set to the first
+///		sorted node of the list.
+t_clist	*ft_cl_sort(t_clist **head, const t_data_cmp cmp, int flags);
 
 /* ************************************************************************** */
 /*                                    ADD                                     */

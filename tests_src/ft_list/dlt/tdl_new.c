@@ -18,7 +18,7 @@
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 
-int	t_dl_new(void)
+int	tdl_new(void)
 {
 	t_dlist	*list;
 	int		prev;

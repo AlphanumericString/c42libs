@@ -32,6 +32,9 @@ static const t_fnamed	*cl_tests(void)
 	{"pop_back", tcl_pop_back}, {"rev", tcl_rev}, {"size", tcl_size},
 	{"size_data_is", tcl_size_data_is}, {"size_cmp", tcl_size_cmp},
 	{"subrange", tcl_subrange},
+	{"xtract_max", tcl_extract_max}, {"xtract_max_node", tcl_extract_max_node},
+	{"xtract_min", tcl_extract_min}, {"xtract_min_node", tcl_extract_min_node},
+	{"issort", tcl_issort}, {"sort", tcl_sort},
 	{NULL, NULL}};
 
 	return (var);

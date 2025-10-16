@@ -16,8 +16,6 @@
 #include "ft_string.h"
 #include "tests/str__mem_tests.h"
 
-#include <stdlib.h>
-
 static void	*loc_strtoupper(void *data)
 {
 	char	*str;

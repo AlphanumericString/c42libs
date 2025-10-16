@@ -21,14 +21,6 @@
 #  define M_E 2.71828182845904523536
 # endif
 
-# ifndef INFINITY
-#  define INFINITY 0x7ff0000000000000ULL
-# endif
-
-# ifndef NAN
-#  define NAN 0x7ff0000000000001ULL
-# endif
-
 typedef struct s_complex
 {
 	double	real;

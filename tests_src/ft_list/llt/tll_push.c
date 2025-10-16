@@ -132,7 +132,7 @@ int	t_ll_pop_back(void)
 	if (list || pop != data3 || ft_ll_size(list) != 0 || ft_ll_pop_back(&list)
 		|| ft_ll_pop_back(NULL))
 		return (4);
-	return (free(data), free(data2), free(data3), 0);
+	return (ft_free(data), ft_free(data2), ft_free(data3), 0);
 }
 /*
 GPL-3.0 License:

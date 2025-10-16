@@ -17,7 +17,7 @@
 #include "tests/tests_lambda_functions.h"
 #include "tests/list__dl_tests.h"
 
-int	t_dl_apply(void)
+int	tdl_apply(void)
 {
 	t_dlist	*list;
 	int		*data;
@@ -35,7 +35,7 @@ int	t_dl_apply(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_apply_range(void)
+int	tdl_apply_range(void)
 {
 	t_dlist	*list;
 	int		*data;
@@ -50,7 +50,7 @@ int	t_dl_apply_range(void)
 	return (ft_dl_clear(&list, ft_free), 0);
 }
 
-int	t_dl_apply_range_node(void)
+int	tdl_apply_range_node(void)
 {
 	t_dlist	*list;
 	int		*data;

@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "tests/list__dl_tests.h"
 
-int	t_dl_add_front(void)
+int	tdl_add_front(void)
 {
 	t_dlist	*list;
 	int		*data;
@@ -42,7 +42,7 @@ int	t_dl_add_front(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_add_back(void)
+int	tdl_add_back(void)
 {
 	t_dlist	*list;
 	int		*data;

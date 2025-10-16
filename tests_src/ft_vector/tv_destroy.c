@@ -10,9 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
+
+int	tv_delete(void)
+{
+	t_vector	*vec;
+	void		*hold;
+
+	vec = ft_vec_new();
+	if (ft_vec_delete(vec) != true)
+		return (1);
+	vec = NULL;
+	if (ft_vec_delete(vec) != false)
+		return (2);
+	vec = ft_vec_new();
+	hold = vec->datas;
+	vec->datas = NULL;
+	if (ft_vec_delete(vec) != true)
+		return (3);
+	ft_free(hold);
+	return (EXIT_SUCCESS);
+}
 
 int	tv_destroy(void)
 {
@@ -28,9 +49,14 @@ int	tv_destroy(void)
 	ft_vec_add(&vec, &a);
 	ft_vec_add(&vec, &b);
 	ft_vec_add(&vec, &c);
-	ft_vec_destroy(&vec);
-	if (vec)
+	if (ft_vec_destroy(&vec) != true)
 		return (1);
+	if (vec)
+		return (2);
+	if (ft_vec_destroy(&vec) != false)
+		return (3);
+	if (ft_vec_destroy(NULL) != false)
+		return (4);
 	return (EXIT_SUCCESS);
 }
 /*

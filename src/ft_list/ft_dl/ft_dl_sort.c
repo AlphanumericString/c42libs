@@ -26,7 +26,7 @@ bool	ft_dl_issort(const t_dlist *head, const t_data_cmp cmp, int flag)
 	if (!flag)
 		flag = FT_SORT_ORD_ASC;
 	ord = (flag & FT_SORT_ORD_MASK);
-	if (ord == FT_SORT_ORD_UNO || !head->next || !head)
+	if (ord == FT_SORT_ORD_UNO || !head || !head->next)
 		return (true);
 	ret = cmp(head->data, head->next->data);
 	while (head->next && ft_isord_ok(ord, ret))
@@ -34,7 +34,7 @@ bool	ft_dl_issort(const t_dlist *head, const t_data_cmp cmp, int flag)
 		ret = cmp(head->data, head->next->data);
 		head = head->next;
 	}
-	if (ret && ft_isord_ok(ord, ret))
+	if (ft_isord_ok(ord, ret) == false)
 		return (false);
 	return (head->next == NULL);
 }
@@ -45,9 +45,9 @@ t_dlist	*ft_dl_sort(t_dlist **head, const t_data_cmp cmp, int flags)
 	t_dlist				*runner;
 	t_dlist				*elem;
 
-	if (!head || !*head || !cmp)
+	if (!head || !cmp)
 		return (NULL);
-	if (ord == FT_SORT_ORD_UNO)
+	if (!*head || ord == FT_SORT_ORD_UNO)
 		return (*head);
 	if (!flags)
 		return (ft_dl_sort(head, cmp, FT_SORT_ORD_ASC));

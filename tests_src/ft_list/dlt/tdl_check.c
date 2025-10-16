@@ -44,7 +44,7 @@ static int	local_check_circular_special_cases(void)
 	return (ft_free(lst->next), ft_free(lst), EXIT_SUCCESS);
 }
 
-int	t_dl_check_circular(void)
+int	tdl_check_circular(void)
 {
 	t_dlist	*lst;
 	t_dlist	*nodes[11];
@@ -72,7 +72,7 @@ int	t_dl_check_circular(void)
 		local_check_circular_special_cases());
 }
 
-int	t_dl_check_sorted(void)
+int	tdl_check_sorted(void)
 {
 	t_dlist	*lst;
 
@@ -92,7 +92,7 @@ int	t_dl_check_sorted(void)
 	return (ft_dl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 
-int	t_dl_check_health(void)
+int	tdl_check_health(void)
 {
 	t_dlist	*lst;
 	t_dlist	*nodes[11];

@@ -24,8 +24,13 @@
 // #include <fcntl.h>
 // #include <math.h>
 
+#include "fcntl.h"
 #include "ft_list.h"
+#include "sys/wait.h"
 #include "types/ft_list_types.h"
+#include "unistd.h"
+#define _GNU_SOURCE
+#include <stdio.h>
 #define FT_CLASSIC_COLORS
 #include "ft_colors.h"
 #include "ft_allocator__dev.h"
@@ -84,46 +89,6 @@
 // }
 
 // -------------
-// lseek test
-// -------------
-// {
-// 	char buffer[256 + 1] = {0};
-// 	int fd = open("./test.txt", O_RDONLY | O_CLOEXEC);
-// 	int ret;
-//
-// 	if (fd < 0)
-// 		return (perror("Failed to open file"), EXIT_FAILURE);
-// 	ret = read(fd, buffer, 256);
-// 	if (ret < 0) {
-// 		return (perror("Failed to read file"), EXIT_FAILURE);
-// 	}
-// 	buffer[ret] = '\0'; // Null-terminate the string
-// 	printf("Read %d bytes: %s\n", ret, buffer);
-// 	lseek(fd, 0, SEEK_SET);
-// 	ret = read(fd, buffer, 256);
-// 	if (ret < 0) {
-// 		return (perror("Failed to read file again"), EXIT_FAILURE);
-// 	}
-// 	buffer[ret] = '\0'; // Null-terminate the string
-// 	printf("Read again %d bytes: %s\n", ret, buffer);
-// 	close(fd);
-//
-// 	FILE *file = fopen("./test.txt", "r");
-// 	char buffer_2[256 + 1] = {0};
-// 	if (!file) return (perror("Failed to open file with fopen"), EXIT_FAILURE);
-// 	printf("File opened: %p\n", file);
-// 	while (fgets(buffer_2, sizeof(buffer_2), file) != NULL)
-//		{ printf("Read line: %s", buffer_2); }
-// 	if (ferror(file)) {
-// 		fclose(file);
-// 		return (perror("Error reading file with fgets"), EXIT_FAILURE);
-// 	}
-// 	if (feof(file)) printf("End of file reached.\n");
-// 	else printf("File not fully read.\n");
-// 	return (fclose(file), EXIT_SUCCESS);
-// }
-
-// -------------
 // quick strjustify test
 // -------------
 //
@@ -152,61 +117,6 @@
 //
 // printf("rep:\n%s\n", rep);
 // ft_free(rep);
-
-// --------------------
-// -- person_t tests --
-// --------------------
-// #include <stddef.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <time.h>
-//
-// typedef struct person {
-// 	char *name;
-// 	int	 non_unique_id;
-// } person_t;
-//
-// static int	person_cmp_names(const void *p1, const void *p2)
-// {
-// 	return (ft_strcmp(((person_t *)p1)->name, ((person_t *)p2)->name));
-// }
-// static int	__attribute__((unused))
-//			person_cmp_ids(const void *p1, const void *p2)
-// {
-// 	return ((*(person_t **)p1)->non_unique_id -
-//		(*(person_t **)p2)->non_unique_id);
-// }
-// static int	__attribute__((unused))
-//			person_cmp_to_ids(const void *p1, const void *id)
-// {
-// 	return ((*((person_t **) p1))->non_unique_id - *(int *)id);
-// }
-//
-// static size_t	ptr_to_raw(const void *p)
-// {
-// 	return ((size_t)p);
-// }
-// static const char	*person_to_name(const void *p)
-// {
-// 	if (!p)
-// 		return (NULL);
-// 	return (((person_t *)p)->name);
-// }
-// static size_t	person_to_id(const void *p)
-// {
-// 	if (!p)
-// 		return (0);
-// 	return (((person_t *)p)->non_unique_id);
-// }
-// static int	cmp_person_id(const void *personA, const void *personB)
-// {
-// 	return (person_to_id(personA) - person_to_id(personB));
-// }
-// static int	cmp_person_name(const void *personA, const void *personB)
-// {
-// 	return (ft_strcmp(person_to_name(personA), person_to_name(personB)));
-// }
-//
 
 // ----------------
 // -- sort tests --
@@ -482,10 +392,11 @@
 // //
 //
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
+	(void)env;
 	return (EXIT_SUCCESS);
 }
 /*

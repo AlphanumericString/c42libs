@@ -16,7 +16,7 @@
 #include "tests/lists_test_utils.h"
 #include "tests/list__dl_tests.h"
 
-int	t_dl_at(void)
+int	tdl_at(void)
 {
 	t_dlist	*list;
 	t_dlist	*at;
@@ -41,7 +41,7 @@ int	t_dl_at(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_begin(void)
+int	tdl_begin(void)
 {
 	t_dlist	*list;
 	t_dlist	*begin;
@@ -64,7 +64,7 @@ int	t_dl_begin(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_end(void)
+int	tdl_end(void)
 {
 	t_dlist	*list;
 	t_dlist	*end;

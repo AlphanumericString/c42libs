@@ -12,7 +12,7 @@
 
 #include "ft_list.h"
 
-t_dlist	*ft_dl_extract_max(const t_dlist *list, t_data_cmp cmp)
+void	*ft_dl_extract_max(const t_dlist *list, t_data_cmp cmp)
 {
 	const t_dlist	*node = ft_dl_extract_max_node(list, cmp);
 

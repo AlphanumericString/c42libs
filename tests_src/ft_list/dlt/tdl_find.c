@@ -24,7 +24,7 @@ ft_dl_add_back(&list, ft_dl_create(data2));
 // data-> data2
 */
 
-int	t_dl_find(void)
+int	tdl_find(void)
 {
 	t_dlist	*list;
 	t_dlist	*found_ret[3];

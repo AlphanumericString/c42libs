@@ -19,7 +19,7 @@
 
 #include <stdlib.h>
 
-int	t_dl_get_datas(void)
+int	tdl_get_datas(void)
 {
 	t_dlist	*list;
 	int		*data;
@@ -47,7 +47,7 @@ int	t_dl_get_datas(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_get_nodes(void)
+int	tdl_get_nodes(void)
 {
 	t_dlist	*list;
 	int		*data;

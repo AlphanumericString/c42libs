@@ -194,6 +194,8 @@ FT_LIST_LL_SRC	=	\
 			$(FT_LIST_LL_DIR)/ft_ll_clear.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_check.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_delete.c		\
+			$(FT_LIST_LL_DIR)/ft_ll_extract_min.c	\
+			$(FT_LIST_LL_DIR)/ft_ll_extract_max.c	\
 			$(FT_LIST_LL_DIR)/ft_ll_apply.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_iterator.c		\
 			$(FT_LIST_LL_DIR)/ft_ll_map.c			\
@@ -203,6 +205,7 @@ FT_LIST_LL_SRC	=	\
 			$(FT_LIST_LL_DIR)/ft_ll_create.c		\
 			$(FT_LIST_LL_DIR)/ft_ll_getters.c		\
 			$(FT_LIST_LL_DIR)/ft_ll_pushpop.c		\
+			$(FT_LIST_LL_DIR)/ft_ll_sort.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_sub.c			\
 
 FT_LIST_DL_SRC	=	\
@@ -232,6 +235,8 @@ FT_LIST_CL_SRC	=	\
 			$(FT_LIST_CL_DIR)/ft_cl_clear.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_create.c		\
 			$(FT_LIST_CL_DIR)/ft_cl_delete.c		\
+			$(FT_LIST_CL_DIR)/ft_cl_extract_max.c	\
+			$(FT_LIST_CL_DIR)/ft_cl_extract_min.c	\
 			$(FT_LIST_CL_DIR)/ft_cl_find.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_getters.c		\
 			$(FT_LIST_CL_DIR)/ft_cl_iterator.c		\
@@ -240,6 +245,7 @@ FT_LIST_CL_SRC	=	\
 			$(FT_LIST_CL_DIR)/ft_cl_pushpop.c		\
 			$(FT_LIST_CL_DIR)/ft_cl_rev.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_size.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_sort.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_sub.c			\
 
 FT_VEC_SRC	=	\
@@ -521,8 +527,11 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/clt/tcl_copy.c								\
 			$(TESTS_DIR)/ft_list/clt/tcl_create.c							\
 			$(TESTS_DIR)/ft_list/clt/tcl_delete.c							\
+			$(TESTS_DIR)/ft_list/clt/tcl_extract_max.c						\
+			$(TESTS_DIR)/ft_list/clt/tcl_extract_min.c						\
 			$(TESTS_DIR)/ft_list/clt/tcl_find.c								\
 			$(TESTS_DIR)/ft_list/clt/tcl_get.c								\
+			$(TESTS_DIR)/ft_list/clt/tcl_issort.c							\
 			$(TESTS_DIR)/ft_list/clt/tcl_iterators.c						\
 			$(TESTS_DIR)/ft_list/clt/tcl_map.c								\
 			$(TESTS_DIR)/ft_list/clt/tcl_new.c								\
@@ -530,6 +539,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/clt/tcl_push.c								\
 			$(TESTS_DIR)/ft_list/clt/tcl_rev.c								\
 			$(TESTS_DIR)/ft_list/clt/tcl_sizers.c							\
+			$(TESTS_DIR)/ft_list/clt/tcl_sort.c								\
 			$(TESTS_DIR)/ft_list/clt/tcl_subrange.c							\
 			$(TESTS_DIR)/ft_list/dlt/dl_list_tests.c						\
 			$(TESTS_DIR)/ft_list/dlt/dl_tests_utils.c						\
@@ -540,14 +550,18 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/dlt/tdl_copy.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_create.c							\
 			$(TESTS_DIR)/ft_list/dlt/tdl_delete.c							\
+			$(TESTS_DIR)/ft_list/dlt/tdl_extract_max.c						\
+			$(TESTS_DIR)/ft_list/dlt/tdl_extract_min.c						\
 			$(TESTS_DIR)/ft_list/dlt/tdl_find.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_get.c								\
+			$(TESTS_DIR)/ft_list/dlt/tdl_issort.c							\
 			$(TESTS_DIR)/ft_list/dlt/tdl_iterators.c						\
 			$(TESTS_DIR)/ft_list/dlt/tdl_map.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_new.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_push.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_rev.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_sizers.c							\
+			$(TESTS_DIR)/ft_list/dlt/tdl_sort.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_subrange.c							\
 			$(TESTS_DIR)/ft_list/lists_tests.c								\
 			$(TESTS_DIR)/ft_list/llt/ll_list_tests.c						\
@@ -559,14 +573,18 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/llt/tll_copy.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_create.c							\
 			$(TESTS_DIR)/ft_list/llt/tll_deletors.c							\
+			$(TESTS_DIR)/ft_list/llt/tll_extract_max.c						\
+			$(TESTS_DIR)/ft_list/llt/tll_extract_min.c						\
 			$(TESTS_DIR)/ft_list/llt/tll_find.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_get.c								\
+			$(TESTS_DIR)/ft_list/llt/tll_issort.c							\
 			$(TESTS_DIR)/ft_list/llt/tll_iterators.c						\
 			$(TESTS_DIR)/ft_list/llt/tll_map.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_new.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_push.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_rev.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_sizers.c							\
+			$(TESTS_DIR)/ft_list/llt/tll_sort.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_subrange.c							\
 			$(TESTS_DIR)/ft_map/map_tests.c									\
 			$(TESTS_DIR)/ft_map/tmap_cappacity.c							\
@@ -649,6 +667,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_calloc.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_free.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/arr_tests.c				\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aaloc.c				\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aapply.c				\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_acat.c					\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aclear.c				\

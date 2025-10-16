@@ -23,13 +23,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stddef.h>
+// float for INFINITY
+# include <float.h>
 # include <sys/types.h>
 
 # include "types/ft_math_types.h"
 
-# define INFINITY_F	(__builtin_inff())
-# define INFINITY_D	(__builtin_inf())
+# define INFINITY_F	(float)INFINITY
+# define INFINITY_D	(double)INFINITY
 
 /// @brief Return the nearest aligned value of nbr on the alignment
 /// @param nbr The nbr to align

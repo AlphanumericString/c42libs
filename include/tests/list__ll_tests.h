@@ -45,6 +45,12 @@ int	t_ll_size_cmp(void);
 int	t_ll_size_match(void);
 int	t_ll_size(void);
 int	t_ll_subrange(void);
+int	t_ll_extract_max(void);
+int	t_ll_extract_max_node(void);
+int	t_ll_extract_min(void);
+int	t_ll_extract_min_node(void);
+int	tll_sort(void);
+int	tll_issort(void);
 
 #endif /* LIST__LL_TESTS_H */
 /*

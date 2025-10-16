@@ -17,20 +17,16 @@
 static const t_fnamed	*tca_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"aapply", tca_aapply}, {"anapply", tca_anapply},
-	{"acat", tca_acat}, {"alcat", tca_alcat},
-	{"aclear", tca_aclear},
-	{"acmp", tca_acmp}, {"ancmp", tca_ancmp},
-	{"acmpwith", tca_acmpwith}, {"ancmpwith", tca_ancmpwith},
-	{"acpy", tca_acpy}, {"alcpy", tca_alcpy},
-	{"adup", tca_adup}, {"andup", tca_andup},
-	{"afind", tca_afind}, {"afindwith", tca_afindwith},
-	{"arfind", tca_arfind}, {"arfindwith", tca_arfindwith},
-	{"afree", tca_afree}, {"alen", tca_alen},
-	{"amap", tca_amap}, {"anmap", tca_anmap},
-	{"arev", tca_arev}, {"anrev", tca_anrev},
-	{"atr", tca_atr}, {"antr", tca_antr},
-	{"anfree", tca_anfree},
+	{"aaloc", tca_aaloc}, {"aapply", tca_aapply}, {"acat", tca_acat},
+	{"aclear", tca_aclear}, {"acmp", tca_acmp}, {"acmpwith", tca_acmpwith},
+	{"acpy", tca_acpy}, {"adup", tca_adup}, {"afind", tca_afind},
+	{"afindwith", tca_afindwith}, {"afree", tca_afree}, {"alcat", tca_alcat},
+	{"alcpy", tca_alcpy}, {"alen", tca_alen}, {"amap", tca_amap},
+	{"anapply", tca_anapply}, {"ancmp", tca_ancmp},
+	{"ancmpwith", tca_ancmpwith}, {"andup", tca_andup},
+	{"anfree", tca_anfree}, {"anmap", tca_anmap}, {"anrev", tca_anrev},
+	{"antr", tca_antr}, {"arev", tca_arev}, {"arfind", tca_arfind},
+	{"arfindwith", tca_arfindwith}, {"atr", tca_atr},
 	{NULL, NULL}};
 
 	return (tests);

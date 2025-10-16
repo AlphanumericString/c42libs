@@ -23,7 +23,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-int	t_dl_size(void)
+int	tdl_size(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -44,7 +44,7 @@ int	t_dl_size(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_size_datais(void)
+int	tdl_size_datais(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -65,7 +65,7 @@ int	t_dl_size_datais(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_size_cmp(void)
+int	tdl_size_cmp(void)
 {
 	const char	*strs_data[] = {"this", "is", "an", "example", "this", NULL};
 	t_dlist		*lst;

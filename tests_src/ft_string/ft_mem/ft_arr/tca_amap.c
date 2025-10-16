@@ -15,7 +15,6 @@
 #include "ft_string.h"
 #include "tests/str__mem_tests.h"
 #include "tests/fixtures.h"
-#include <string.h>
 
 static int	mt_tcaamap(void)
 {

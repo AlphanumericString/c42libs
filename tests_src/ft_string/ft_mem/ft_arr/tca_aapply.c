@@ -14,8 +14,6 @@
 #include "ft_defs.h"
 #include "tests/str__mem_tests.h"
 
-#include <stdlib.h>
-
 static void	add_one(void *data)
 {
 	int	*nb;

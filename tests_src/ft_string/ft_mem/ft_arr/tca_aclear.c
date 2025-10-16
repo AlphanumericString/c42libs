@@ -13,8 +13,6 @@
 #include "ft_arr.h"
 #include "tests/str__mem_tests.h"
 
-#include <stdlib.h>
-
 int	tca_aclear(void)
 {
 	int			*arr[42];

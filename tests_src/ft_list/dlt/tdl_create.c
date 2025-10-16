@@ -10,15 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 #include "ft_mem.h"
-#include "tests/fixtures.h"
 #include "ft_list.h"
-#include "types/ft_list_types.h"
+
+#include "tests/fixtures.h"
 #include "tests/list__dl_tests.h"
 
-int	t_dl_create(void)
+int	tdl_create(void)
 {
 	t_dlist	*list;
 	int		*data;

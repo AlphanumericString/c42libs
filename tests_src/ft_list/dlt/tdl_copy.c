@@ -20,7 +20,7 @@
 #include "tests/fixtures.h"
 #include "tests/list__dl_tests.h"
 
-int	t_dl_copy_node(void)
+int	tdl_copy_node(void)
 {
 	int		*data;
 	t_dlist	*list;
@@ -47,7 +47,7 @@ int	t_dl_copy_node(void)
 	return (ft_dl_clear(&list, ft_free), ft_dl_clear(&copy, NULL), 0);
 }
 
-int	t_dl_copy_list(void)
+int	tdl_copy_list(void)
 {
 	t_dlist	*list;
 	t_dlist	*copy;

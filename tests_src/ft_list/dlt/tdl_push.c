@@ -10,15 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_allocator__dev.h"
+#include "ft_mem.h"
 #include "ft_list.h"
-#include "types/ft_list_types.h"
 #include "tests/list__dl_tests.h"
 #include "tests/lists_test_utils.h"
 #include "tests/fixtures.h"
-#include <stdlib.h>
 
-int	t_dl_pop(void)
+int	tdl_pop(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -42,10 +40,10 @@ int	t_dl_pop(void)
 	ret = ft_dl_pop(NULL);
 	if (ret)
 		return (6);
-	return (free(data1), free(data2), 0);
+	return (ft_free(data1), ft_free(data2), 0);
 }
 
-int	t_dl_pop_back(void)
+int	tdl_pop_back(void)
 {
 	t_dlist	*list;
 	int		*data1;
@@ -69,12 +67,12 @@ int	t_dl_pop_back(void)
 	data3 = ft_dl_pop_back(&list);
 	if (data3)
 		return (1);
-	free(data1);
-	free(data2);
+	ft_free(data1);
+	ft_free(data2);
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_push(void)
+int	tdl_push(void)
 {
 	t_dlist	*list;
 	int		prev;
@@ -99,7 +97,7 @@ int	t_dl_push(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_push_back(void)
+int	tdl_push_back(void)
 {
 	t_dlist	*list;
 	int		prev;

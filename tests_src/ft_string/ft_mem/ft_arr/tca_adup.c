@@ -16,9 +16,6 @@
 #include "tests/fixtures.h"
 #include "tests/str__mem_tests.h"
 
-#include <stdlib.h>
-#include <string.h>
-
 static int	mt_adup(void)
 {
 	const int		fp = *talloc_get_failpoint();

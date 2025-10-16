@@ -16,9 +16,6 @@
 #include "ft_string.h"
 #include "tests/str__mem_tests.h"
 
-#include <stdlib.h>
-#include <string.h>
-
 int	tca_acat(void)
 {
 	size_t		i;

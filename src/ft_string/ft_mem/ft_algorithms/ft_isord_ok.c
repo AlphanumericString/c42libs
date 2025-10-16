@@ -14,6 +14,7 @@
 #include "internal/algo_util.h"
 
 // internal function for sorts
+
 bool	ft_isord_ok(int ord, int c_res)
 {
 	if (ord == FT_SORT_ORD_UNO || c_res == 0)

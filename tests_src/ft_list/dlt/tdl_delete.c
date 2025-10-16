@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include "tests/list__dl_tests.h"
 
-int	t_dl_delete_self(void)
+int	tdl_delete_self(void)
 {
 	int		*data;
 	int		*data2;
@@ -59,7 +59,7 @@ int	t_dl_delete_self(void)
 		// NULL <-(42)<=>(63)-> NULL
 */
 
-int	t_dl_delete_range(void)
+int	tdl_delete_range(void)
 {
 	t_dlist	*list;
 	t_dlist	*list2;
@@ -88,7 +88,7 @@ int	t_dl_delete_range(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_delete(void)
+int	tdl_delete(void)
 {
 	t_dlist	*list;
 	int		*data;

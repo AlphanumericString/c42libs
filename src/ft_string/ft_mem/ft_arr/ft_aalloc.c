@@ -19,7 +19,7 @@ void	**ft_aalloc(size_t row, size_t col, size_t cell_size)
 	void	**arr;
 	size_t	i;
 
-	arr = ft_calloc(row, sizeof(void *));
+	arr = ft_calloc(row + 1, sizeof(void *));
 	if (!arr)
 		return (NULL);
 	i = 0;

@@ -69,7 +69,7 @@ static int	mt_case(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_dl_map(void)
+int	tdl_map(void)
 {
 	int	ret;
 

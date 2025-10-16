@@ -15,6 +15,10 @@
 
 # include "ft_defs.h"
 
+/// @brief internal function for sorts
+/// @param ord order to respect (t_sort_order)
+/// @param cmp_res result of a comparison function
+/// @return true if the order is respected otherwise false
 bool	ft_isord_ok(int ord, int cmp_res);
 
 #endif /* ALGO_UTIL_H */

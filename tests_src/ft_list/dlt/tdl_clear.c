@@ -18,7 +18,7 @@
 #include "tests/lists_test_utils.h"
 #include "tests/list__dl_tests.h"
 
-int	t_dl_clear(void)
+int	tdl_clear(void)
 {
 	t_dlist	*list;
 	int		*data;
@@ -46,7 +46,7 @@ int	t_dl_clear(void)
 //	delete nodes
 //
 
-int	t_dl_clear_range(void)
+int	tdl_clear_range(void)
 {
 	t_dlist		*list;
 	const int	data[] = {42, 21, 63};
