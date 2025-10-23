@@ -101,7 +101,7 @@ CFLAGS		=\
 			$(WFLAGS) $(CPPFLAGS) ${STDFLAGS}					\
 			$(VAR_FLAGS)
 CFLAGS		+=\
-			-fPIC -fdiagnostics-color -fno-inline -fno-inline-functions
+			-fPIC -fdiagnostics-color -fno-inline -fno-inline-functions	\
 
 TEST_FLAGS	=\
 			-fprofile-instr-generate -ftest-coverage -fcoverage-mapping	\
@@ -795,6 +795,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/ts_dup.c							\
 			$(TESTS_DIR)/ft_string/ft_str/ts_end_with.c						\
 			$(TESTS_DIR)/ft_string/ft_str/ts_gnl.c							\
+			$(TESTS_DIR)/ft_string/ft_str/ts_gnl_r.c						\
 			$(TESTS_DIR)/ft_string/ft_str/ts_iteri.c						\
 			$(TESTS_DIR)/ft_string/ft_str/ts_join.c							\
 			$(TESTS_DIR)/ft_string/ft_str/ts_justify.c						\

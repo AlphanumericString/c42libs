@@ -15,6 +15,7 @@
 #include "ft_string.h"
 
 #include <stddef.h>
+#include <stdio.h>
 #include <unistd.h>
 
 static char	*extract_to(char **dst, char *from, char delim)
@@ -46,20 +47,34 @@ char	*ft_gnl(int fd)
 {
 	static char	s_buff[1024][BUFFER_SIZE] = {0};
 	char		*ret;
-	int			rep;
+
+	ret = ft_gnl_r(fd, (char **)&s_buff[fd]);
+	return (ret);
+}
+
+char	*ft_gnl_r(int fd, char **buffer)
+{
+	char	*ret;
+	int		rep;
 
 	ret = NULL;
 	rep = BUFFER_SIZE;
-	while (ft_strchr(s_buff[fd], '\n') == NULL && rep == BUFFER_SIZE)
+	if (buffer && !*buffer)
+		*buffer = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
+	if (!buffer || !*buffer)
+		return (NULL);
+	while (ft_strchr(*buffer, '\n') == NULL && rep == BUFFER_SIZE)
 	{
-		if (s_buff[fd][0] && !extract_to(&ret, s_buff[fd], '\n'))
-			return (NULL);
-		rep = read(fd, s_buff[fd], BUFFER_SIZE);
+		if ((*buffer)[0] && !extract_to(&ret, *buffer, '\n'))
+			return (ft_free_clear((t_any)buffer), NULL);
+		rep = read(fd, *buffer, BUFFER_SIZE);
 		if (rep <= 0)
-			return (ret);
-		s_buff[fd][rep] = 0;
+			return (ft_free_clear((t_any)buffer), ret);
+		(*buffer)[rep] = 0;
 	}
-	ret = extract_to(&ret, s_buff[fd], '\n');
+	ret = extract_to(&ret, *buffer, '\n');
+	if (!ft_strlen(*buffer))
+		ft_free_clear((t_any)buffer);
 	return (ret);
 }
 /*

@@ -1,18 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ts_gnl.c                                           :+:      :+:    :+:   */
+/*   ts_gnl_r.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:59 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/10/23 11:52:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <assert.h>
-#include <stddef.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
 
@@ -26,7 +23,7 @@ static int	write_lines(const char **lines, size_t n)
 	size_t	i;
 	int		fd;
 
-	fd = open(TESTS_FPREFIX "gnl.txt", O_RDWR | O_CREAT | O_TRUNC, 0666);
+	fd = open(TESTS_FPREFIX "gnl_r.txt", O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (fd < 0)
 		return (-1);
 	i = 0;
@@ -57,6 +54,7 @@ static const char	**return_lines(size_t *n)
 
 static int	mt_gnl(int fd, const char **tl, int lc)
 {
+	char		*buffer;
 	int			ret;
 	char		*line;
 	const int	fp = *talloc_get_failpoint();
@@ -64,38 +62,39 @@ static int	mt_gnl(int fd, const char **tl, int lc)
 	(void)tl;
 	(void)lc;
 	ret = 0;
-	fd = (close(fd), open(TESTS_FPREFIX "gnl.txt", O_RDONLY));
+	buffer = NULL;
+	fd = (close(fd), open(TESTS_FPREFIX "gnl_r.txt", O_RDONLY));
 	talloc_set_failpoint(0);
-	line = ft_gnl(fd);
+	line = ft_gnl_r(fd, &buffer);
 	if (line != NULL)
 		ret = 1;
 	talloc_set_failpoint(fp);
-	destroy_test_file(fd, TESTS_FPREFIX "gnl.txt");
+	destroy_test_file(fd, TESTS_FPREFIX "gnl_r.txt");
 	return (ret);
 }
 
-int	ts_gnl(void)
+int	ts_gnl_r(void)
 {
-	int			fd;
-	char		*line;
 	size_t		i;
+	int			fd;
+	char		*tab[2];
 	size_t		lines_count;
 	const char	**test_lines = return_lines(&lines_count);
 
-	line = NULL;
+	ft_bzero(&tab, sizeof(char *) * 2);
 	if (write_lines(test_lines, lines_count) < 0)
 		return (1);
-	fd = open(TESTS_FPREFIX "gnl.txt", O_RDONLY);
+	fd = open(TESTS_FPREFIX "gnl_r.txt", O_RDONLY);
 	i = 0;
 	while (i < lines_count)
 	{
-		line = ft_gnl(fd);
-		if (ft_strcmp(line, test_lines[i++]) != 0)
+		tab[1] = ft_gnl_r(fd, &tab[0]);
+		if (ft_strcmp(tab[1], test_lines[i++]) != 0)
 			return (i + 1);
-		ft_free(line);
+		ft_free(tab[1]);
 	}
-	line = ft_gnl(fd);
-	if (line)
+	tab[1] = ft_gnl_r(fd, &tab[0]);
+	if (tab[1])
 		return (2);
 	return (mt_gnl(fd, test_lines, lines_count));
 }

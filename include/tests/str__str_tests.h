@@ -14,6 +14,7 @@
 # define STR__STR_TESTS_H
 
 int	ts_gnl(void);
+int	ts_gnl_r(void);
 
 int	ts_append_c(void);
 int	ts_capitalize(void);

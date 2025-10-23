@@ -28,6 +28,7 @@
 #include "ft_list.h"
 #include "sys/wait.h"
 #include "types/ft_list_types.h"
+#include "types/ft_string_types.h"
 #include "unistd.h"
 #define _GNU_SOURCE
 #include <stdio.h>
@@ -390,7 +391,33 @@
 // // 	for (size_t i = 0; i < sample_size ; i++)
 // // 		printf("n:%s\ta:%d\n", sample[i]->name, sample[i]->non_unique_id);
 // //
+
+// -----------------
+// -- gnl_r tests --
+// -----------------
 //
+// // to test run `./a.out < file > file_copy && diff file file_copy`
+// static int ft_gnl_r_main_test(int ac, char **av, char **env)
+// {
+// 	char	*buffer;
+// 	int		fd;
+// 	char	*line;
+//
+// 	(void)ac;
+// 	(void)av;
+// 	(void)env;
+// 	fd = STDIN_FILENO;
+// 	buffer = NULL;
+// 	while (1)
+// 	{
+// 		line = ft_gnl_r(fd, &buffer);
+// 		if (!line)
+// 			break ;
+// 		ft_putstr_fd(line, STDOUT_FILENO);
+// 		ft_free(line);
+// 	}
+// 	return (EXIT_SUCCESS);
+// }
 
 int	main(int ac, char **av, char **env)
 {

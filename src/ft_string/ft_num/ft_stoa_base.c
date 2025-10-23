@@ -10,12 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-
 #include "ft_string.h"
-#include "ft_math.h"
 
 char	*ft_stoa_base(size_t nbr, const char *base)
 {
@@ -23,8 +18,7 @@ char	*ft_stoa_base(size_t nbr, const char *base)
 
 	if (!base || ft_base_valid(base) != true)
 		return (NULL);
-	if (ft_stopa_base(nbr, base, (char *)buff, 200) != true)
-		return (NULL);
+	ft_stopa_base(nbr, base, (char *)buff, 200);
 	return (ft_strdup(buff));
 }
 
@@ -34,8 +28,7 @@ char	*ft_sstoa_base(ssize_t nbr, const char *base)
 
 	if (!base || ft_base_valid(base) != true)
 		return (NULL);
-	if (ft_sstopa_base(nbr, base, (char *)buff, 200) != true)
-		return (NULL);
+	ft_sstopa_base(nbr, base, (char *)buff, 200);
 	return (ft_strdup(buff));
 }
 /*

@@ -37,7 +37,7 @@ static const t_fnamed	*load_tests01(void)
 	{"capitalize", ts_capitalize}, {"nwcapitalize", ts_nwcapitalize},
 	{"rmdup", ts_rmdup}, {"nrmdup", ts_nrmdup},
 	{"rmdup_spaceall", ts_rmdup_spaceall}, {"rmdup_space", ts_rmdup_space},
-	{"nrev", ts_nrev}, {"nrchr", ts_nrchr},
+	{"nrev", ts_nrev}, {"nrchr", ts_nrchr}, {"gnl_r", ts_gnl_r},
 	{NULL, NULL}};
 
 	return (tb);

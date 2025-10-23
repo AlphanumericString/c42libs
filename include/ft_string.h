@@ -246,12 +246,15 @@ const char	*ft_strerror(int errnum);
 /// MAX_FD
 /// @warning: this function is not thread safe.
 char		*ft_gnl(int fd);
-//TODO: ft_gnl_r(int fd, void *buf);
-//  -> buf is the buffer, instead of being static and not thread safe,
-//    we use a handle var
-//	?-> buf is a t_string to append new read call results
-//	?-> buf is a simple char * to reuse gnl tools
-//TODO: ft_gnl_rn(int fd, void *buf, size_t n);
+/// @brief Read the next line from the file descriptor using the provided buffer
+/// as a persistent buffer between calls
+/// @param fd file descriptor to read from
+/// @param buffer pointer to the buffer to use between calls
+/// @return the next line from the file descriptor otherwise NULL
+/// @note You must free the returned string
+/// @note This function is thread safe if each thread uses its own buffer
+char		*ft_gnl_r(int fd, char **buffer);
+//TODO: ft_gnl_rn(int fd, void *buf, size_t n); // maybe for static buffers
 //  -> n size of the buffer
 
 /// @brief load the content of the file descriptor into a string
