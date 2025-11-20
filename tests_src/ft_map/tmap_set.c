@@ -10,12 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "tests/fixtures.h"
 #include "tests/map_tests.h"
 #include "ft_mem.h"
 #include "ft_map.h"
 #include "ft_string.h"
 
-int	tmap_set(void)
+static int	tmap_alloc_fail(void)
+{
+	const size_t	fp = *talloc_get_failpoint();
+	char			*str;
+	t_map			*map;
+	int				ret;
+
+	str = ft_strdup("value");
+	map = ft_map_create(1);
+	ret = EXIT_SUCCESS;
+	talloc_set_failpoint(0);
+	if (ft_map_set(map, "key", str, ft_strlen("key")) != false)
+		ret = 1;
+	talloc_set_failpoint(fp);
+	ft_map_destroy_free(map, ft_free);
+	ft_free(str);
+	return (ret);
+}
+
+
+static int	tmap_set_normal(void)
 {
 	char		*str;
 	char		*str2;
@@ -31,6 +52,19 @@ int	tmap_set(void)
 	ft_map_destroy(map);
 	ft_free(str);
 	ft_free(str2);
+	return (EXIT_SUCCESS);
+}
+
+int	tmap_set(void)
+{
+	int	ret;
+
+	ret = tmap_set_normal();
+	if (ret != EXIT_SUCCESS)
+		return (ret + 10 * 0);
+	ret = tmap_alloc_fail();
+	if (ret != EXIT_SUCCESS)
+		return (ret + 10 * 1);
 	return (EXIT_SUCCESS);
 }
 /*
