@@ -30,7 +30,7 @@ t_vector	*ft_vec_map(const t_vector *restrict vec, const t_data_apply func)
 		return (NULL);
 	ft_memcpy(data_, vec->data, ft_vec_inuse(vec));
 	while (i < vec->n_e)
-		func(data_ + (i++ * vec->s_e));
+		func(data_ + (i++ *vec->s_e));
 	ret = ft_vec_convert_alloccarray(data_, vec->n_e, vec->s_e);
 	if (!ret)
 		return (ft_free(data_), NULL);

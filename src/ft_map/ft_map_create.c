@@ -10,31 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_map.h"
 #include "ft_mem.h"
+#include "ft_map.h"
 #include "ft_string.h"
-#include "ft_vector.h"
 
-t_map	*ft_map_create(size_t size)
+t_map	*ft_map_create(size_t capacity)
 {
 	t_map	*map;
 
+	if (!capacity)
+		return (NULL);
 	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
-		return (0);
-	map->capacity = size;
-	map->nb_e_total = 0;
-	map->nb_e = ft_calloc(size, sizeof(size_t));
-	if (!map->nb_e)
-		return (ft_free(map), NULL);
-	map->nodes = ft_calloc(size, sizeof(t_list *));
-	if (!map->nodes)
-		return (ft_free(map->nb_e), ft_free(map), NULL);
-	map->hash = &ft_hash_djb2;
-	map->cmp = (int (*)(const void *, const void *)) & ft_strcmp;
-	map->reserved_nodes = ft_vec_create(sizeof(t_list *));
-	if (!map->reserved_nodes)
-		return (ft_free(map->nb_e), ft_free(map->nodes), ft_free(map), NULL);
+		return (NULL);
+	map->hash = ft_hash_djb2;
+	map->cmp = (t_any) ft_strcmp;
+	map->nb_e = ft_calloc(capacity, sizeof(size_t));
+	map->lists = ft_calloc(capacity, sizeof(t_map_node));
+	if (!map->nb_e || !map->lists)
+		return (ft_free(map->nb_e), ft_free(map->lists), NULL);
+	map->capacity = capacity;
 	return (map);
 }
 /*

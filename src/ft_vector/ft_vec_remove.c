@@ -16,7 +16,6 @@
 #include <stddef.h>
 #include <stdio.h>
 
-
 void	ft_vec_remove(t_vector *vec, size_t idx, t_data_apply del)
 {
 	if (!vec->n_e || !vec->s_e || idx >= vec->n_e)
@@ -25,19 +24,19 @@ void	ft_vec_remove(t_vector *vec, size_t idx, t_data_apply del)
 		del(ft_vec_at(vec, idx));
 	if (idx + 1 >= vec->n_e)
 		return (vec->n_e--, (void)0);
-	ft_memcpy(ft_vec_at(vec, idx), ft_vec_at(vec, idx + 1), 
-		   vec->s_e * (vec->n_e - idx - 1));
+	ft_memcpy(ft_vec_at(vec, idx), ft_vec_at(vec, idx + 1),
+		vec->s_e * (vec->n_e - idx - 1));
 	vec->n_e--;
-	return;
+	return ;
 }
 
 void	ft_vec_filterout(t_vector *vec, t_data_is func, t_data_apply del)
 {
-	if (vec->n_e == 0 || vec->s_e == 0)
-		return;
 	size_t	i;
 	size_t	j;
 
+	if (vec->n_e == 0 || vec->s_e == 0)
+		return ;
 	i = 0;
 	while (i < vec->n_e)
 	{
@@ -52,9 +51,9 @@ void	ft_vec_filterout(t_vector *vec, t_data_is func, t_data_apply del)
 }
 
 // NOTE: maybe move the ft_bzero calls to another ft_vec_* function to allow
-//	for : 1. better performance, 2. might be usefull in some other cases to 
+//	for : 1. better performance, 2. might be usefull in some other cases to
 //	keep the array clean
-void	ft_vec_nremove(t_vector *vec, size_t start, size_t nb_todel, 
+void	ft_vec_nremove(t_vector *vec, size_t start, size_t nb_todel,
 			t_data_apply del)
 {
 	size_t	i;
@@ -74,8 +73,8 @@ void	ft_vec_nremove(t_vector *vec, size_t start, size_t nb_todel,
 		del(ft_vec_at(vec, i - 1));
 	i = 0;
 	i = vec->n_e - (start + nb_todel);
-	ft_memcpy(ft_vec_at(vec, start), ft_vec_at(vec, start + nb_todel), 
-		   i * vec->s_e);
+	ft_memcpy(ft_vec_at(vec, start), ft_vec_at(vec, start + nb_todel),
+		i * vec->s_e);
 	vec->n_e -= nb_todel;
 	ft_bzero(vec->data + (vec->n_e * vec->s_e),
 		vec->cappacity - ft_vec_inuse(vec));

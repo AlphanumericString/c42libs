@@ -12,45 +12,40 @@
 
 #include "ft_map.h"
 
-t_map_node	*ft_map_get_node(t_map *map, const void *key, size_t size)
+t_map_node	*ft_map_get_node(const t_map *m, const void *k, size_t s)
 {
-	t_list		*bucket;
-	t_map_node	*map_node;
+	t_map_node	*cur;
+	size_t		s_hash;
 
-	if (!map || !key)
+	if (!m || !k || !s)
 		return (NULL);
-	bucket = map->nodes[map->hash(key, size) % map->capacity];
-	map_node = NULL;
-	while (bucket)
+	s_hash = m->hash(k, s);
+	cur = m->lists[s_hash % m->capacity];
+	while (cur)
 	{
-		map_node = bucket->data;
-		if (map->cmp(map_node->key, key) == 0)
+		if (cur->hash == s_hash && m->cmp(cur->key, k) == 0)
 			break ;
-		bucket = bucket->next;
+		cur = cur->next;
 	}
-	if (map_node && map->cmp(map_node->key, key) == 0)
-		return (map_node);
+	return (cur);
+}
+
+void	*ft_map_get(const t_map *map, const void *k, size_t size)
+{
+	t_map_node	*mn;
+
+	mn = ft_map_get_node(map, k, size);
+	if (mn)
+		return (mn->data);
 	return (NULL);
 }
 
-void	*ft_map_get(t_map *map, const void *key, size_t size)
-{
-	t_map_node	*map_node;
-
-	if (!map)
-		return (NULL);
-	map_node = ft_map_get_node(map, key, size);
-	if (!map_node)
-		return (NULL);
-	return (map_node->data);
-}
-
-size_t	ft_map_size(const t_map *map)
+size_t	ft_map_size(const t_map *restrict map)
 {
 	return (map->nb_e_total);
 }
 
-size_t	ft_map_capacity(const t_map *map)
+size_t	ft_map_capacity(const t_map *restrict map)
 {
 	return (map->capacity);
 }

@@ -10,65 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
-#include "ft_list.h"
 #include "ft_map.h"
 #include "ft_mem.h"
-#include "ft_vector.h"
-#include <stdlib.h>
-
-static t_data_apply	singleton_custom_destroy(const t_data_apply custom_destroy,
-		bool set)
-{
-	static t_data_apply	f_ptr = NULL;
-
-	if (set == true)
-		f_ptr = custom_destroy;
-	return (f_ptr);
-}
-
-static void	wrapper_destroy(void *restrict data)
-{
-	t_data_apply	destroy;
-	t_map_node		*map_node;
-
-	destroy = singleton_custom_destroy(NULL, false);
-	map_node = (t_map_node *)data;
-	if (destroy)
-		(*destroy)(map_node->data);
-	ft_free(map_node);
-}
 
 void	ft_map_destroy(t_map *map)
 {
 	ft_map_destroy_free(map, NULL);
 }
 
-static void	rsv_del(void *data)
+static t_map_node	*pop_f(t_map_node *mn, t_data_apply f)
 {
-	t_list	*node;
+	t_map_node	*nxt;
 
-	node = (t_list *)data;
-	wrapper_destroy(node->data);
-	ft_free(node);
+	if (f)
+		f(mn->data);
+	nxt = mn->next;
+	ft_free(mn);
+	return (nxt);
 }
 
-void	ft_map_destroy_free(t_map *map, t_data_apply free_fun)
+void	ft_map_destroy_free(t_map *m, t_data_apply f)
 {
-	size_t	i;
+	size_t		i;
+	t_map_node	*cur;
 
-	singleton_custom_destroy(free_fun, true);
 	i = 0;
-	if (!map)
+	if (!f || !m)
 		return ;
-	while (i < map->capacity)
-		ft_ll_clear(&map->nodes[i++], wrapper_destroy);
-	ft_free(map->nodes);
-	ft_free(map->nb_e);
-	ft_vec_apply(map->reserved_nodes, rsv_del);
-	ft_vec_destroy(&map->reserved_nodes);
-	ft_free(map);
-	singleton_custom_destroy(NULL, true);
+	while (i < m->capacity)
+	{
+		cur = m->lists[i++];
+		while (cur)
+			cur = pop_f(cur, f);
+	}
+	cur = m->nodes_pool;
+	while (cur)
+		cur = pop_f(cur, NULL);
+	ft_free(m->nb_e);
+	ft_free(m);
 }
 /*
 GPL-3.0 License:

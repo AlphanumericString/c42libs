@@ -31,10 +31,12 @@
 
 // alloc
 			// use ft_vec_create instead
-t_vector	*ft_vec_new(void) ;
+t_vector	*ft_vec_new(void) __attribute__((
+					__deprecated__("please use create instead",
+						"ft_vec_create")));
 t_vector	*ft_vec_create(size_t elem_size);
 t_vector	*ft_vec_from_size(size_t n);
-t_vector	*ft_vec_from_array(const void *data_src, size_t nmemb, size_t elem_size)
+t_vector	*ft_vec_from_array(const void *src, size_t nmemb, size_t e_size)
 			__attribute__((nonnull(1)));
 	// crea as in create a new vector w rets from the mapping
 t_vector	*ft_vec_map(const t_vector *vec, t_data_apply	func)
@@ -48,21 +50,21 @@ bool		ft_vec_reserve(t_vector *vec, size_t size)
 // destroy
 bool		ft_vec_destroy(t_vector **vec)
 			__attribute__((nonnull(1)));
-bool		ft_vec_delete(t_vector *vec);
+bool		ft_vec_delete(t_vector *vec)
 			__attribute__((nonnull(1)));
 void		*ft_vec_pop(t_vector *vec)
 			__attribute__((nonnull(1)));
 // TODO: ft_vec_pop_front
 void		ft_vec_remove(t_vector *vector, size_t n,
 				t_data_apply del) __attribute__((nonnull(1)));
-void		ft_vec_nremove(t_vector *vec, size_t start, size_t n, 
+void		ft_vec_nremove(t_vector *vec, size_t start, size_t n,
 				t_data_apply del) __attribute__((nonnull(1)));
 void		ft_vec_filterout(t_vector *vector, t_data_is func,
 				t_data_apply del) __attribute__((nonnull(1, 2)));
 // TODO: ft_vec_remove_if -> rename -> ft_vec_filterout
-			
+
 // add
-bool		ft_vec_add(t_vector *vec, const void * data)
+bool		ft_vec_add(t_vector *vec, const void *data)
 			__attribute__((nonnull(1, 2)));
 bool		ft_vec_cat(t_vector *vec_dst, const t_vector *vec_src)
 			__attribute__((nonnull(1, 2)));
@@ -75,8 +77,8 @@ void		ft_vec_clear(t_vector *vec)
 	// true -> elem kept, false->elem free'd
 void		ft_vec_filter(t_vector *vec, t_data_is func,
 				t_data_apply del) __attribute__((nonnull(1, 2)));
-void		ft_vec_sort(t_vector *vec, t_data_cmp cmp_f) 
-				__attribute__((nonnull(1, 2)));
+void		ft_vec_sort(t_vector *vec, t_data_cmp cmp_f)
+			__attribute__((nonnull(1, 2)));
 void		ft_vec_reverse(t_vector *vector)
 			__attribute__((nonnull(1)));
 void		ft_vec_shift(t_vector *vec, size_t start, size_t shift)
@@ -94,7 +96,6 @@ void		*ft_vec_find(const t_vector *vector,
 				const void *key, t_data_cmp cmp)
 			__attribute__((nonnull(1, 2)));
 void		*ft_vec_to_array(t_vector **vec) __attribute__((nonnull(1)));
-
 
 #endif /* FT_VECTOR_H */
 /*

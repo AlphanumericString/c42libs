@@ -18,35 +18,23 @@
 # include "types/ft_vector_types.h"
 # include <stddef.h>
 
-/// @brief Structure representing a node in a map
-/// @param data The data of the node
-/// @param key The key of the node
-/// @param used Whether the node is used or not
 typedef struct __attribute__((packed)) s_map_node
 {
-	void		*data;
-	const void	*key;
-	size_t		hash;
-}				t_map_node;
+	void				*data;
+	const void			*key;
+	size_t				hash;
+	struct s_map_node	*next;
+}		t_map_node;
 
-/// @brief Structure representing a map
-/// @param capacity The capacity of the map
-/// @param nb_e number of elem in each sublists
-/// @param nb_e_total number of elements total
-/// @param size The size of the map
-/// @param nodes The nodes of the map (array of lists distributed by hash)
-/// @param cmp The compare function of the map
-/// @param hash The hash function of the map
-/// @notes: see ft_map_create tests for example of a usage
 typedef struct s_map
 {
-	size_t		capacity;
+	size_t		capacity;	// cap - useful for nb lists
+	t_map_node	**lists;
 	size_t		*nb_e;
-	size_t		nb_e_total;
-	t_list		**nodes;
-	t_data_cmp	cmp;
+	size_t		nb_e_total; // total nb elem - useful for list imbalance
+	t_data_cmp	cmp;		// user must either provide the func or use default strcmp
 	t_memhash	hash;
-	t_vector	*reserved_nodes;
+	t_map_node	*nodes_pool;// pool of 'saved' nodes for reuse
 }				t_map;
 
 #endif /* FT_MAP_TYPES_H */

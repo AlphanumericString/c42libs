@@ -14,6 +14,8 @@
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 int	tv_new(void)
 {
 	t_vector	*vec;
@@ -27,6 +29,9 @@ int	tv_new(void)
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }
+
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
+
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

@@ -20,7 +20,7 @@ void	ft_vec_apply(t_vector *vec, t_data_apply func)
 		return ;
 	i = 0;
 	while (i < vec->n_e)
-		func(vec->data + i++ * vec->s_e);
+		func(vec->data + i++ *vec->s_e);
 }
 /*
 GPL-3.0 License:

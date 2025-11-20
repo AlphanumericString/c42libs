@@ -20,7 +20,7 @@ void	ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del)
 	size_t	j;
 
 	if (!vec->n_e || !vec->s_e)
-		return;
+		return ;
 	i = 0;
 	while (i < vec->n_e)
 	{

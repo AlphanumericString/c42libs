@@ -16,6 +16,7 @@
 #include "tests/vector_tests.h"
 
 #include "tests/fixtures.h"
+#include <stdio.h>
 
 static int	edge(void)
 {
@@ -45,13 +46,13 @@ int	tv_reserve(void)
 	ret[2] = ft_vec_reserve(vec, FT_VECTOR_BASE_LEN + 2);
 	f_point = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	ret[3] = !ft_vec_reserve(vec, FT_VECTOR_BASE_LEN + 3);
+	ret[3] = !ft_vec_reserve(vec, FT_VECTOR_BASE_LEN * 2 + 3);
 	talloc_set_failpoint(f_point);
 	i = 0;
 	while (i < 4)
 		if (ret[i++] != true)
 			return (i);
-	if (vec->cappacity != FT_VECTOR_BASE_LEN + 2)
+	if (vec->cappacity != (FT_VECTOR_BASE_LEN * 2))
 		return (5 + 1);
 	return (ft_vec_destroy(&vec), edge());
 }

@@ -34,9 +34,9 @@ static int	tmap_get_ultra_small(void)
 	str[0] = ft_strdup("value");
 	str[1] = ft_strdup("value2");
 	map = ft_map_create(1);
-	ft_map_set(map, "key", str[0], ft_strlen("key"));
-	ft_map_set(map, "key2", str[1], ft_strlen("key"));
-	ret = ft_map_get(map, "key", ft_strlen("key"));
+	ft_map_set(map, "my_specific_key", str[0], ft_strlen("my_specific_key"));
+	ft_map_set(map, "key2", str[1], ft_strlen("key2"));
+	ret = ft_map_get(map, "my_specific_key", ft_strlen("my_specific_key"));
 	if (!ret)
 		return (1);
 	else if (ft_strcmp((char *)ret, "value"))

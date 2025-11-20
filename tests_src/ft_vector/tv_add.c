@@ -45,7 +45,7 @@ static int	err_case(void)
 	int			i;
 
 	i = 42;
-	vec = ft_vec_new();
+	vec = ft_vec_create(sizeof(int));
 	vec->s_e = 0;
 	if (ft_vec_add(vec, &i) != false)
 		return (1 + 16);
