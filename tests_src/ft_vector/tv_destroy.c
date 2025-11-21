@@ -20,15 +20,15 @@ int	tv_delete(void)
 	t_vector	*vec;
 	void		*hold;
 
-	vec = ft_vec_new();
+	vec = ft_vec_create(sizeof(void *));
 	if (ft_vec_delete(vec) != true)
 		return (1);
 	vec = NULL;
 	if (ft_vec_delete(vec) != false)
 		return (2);
-	vec = ft_vec_new();
-	hold = vec->datas;
-	vec->datas = NULL;
+	vec = ft_vec_create(sizeof(void *));
+	hold = vec->data;
+	vec->data = NULL;
 	if (ft_vec_delete(vec) != true)
 		return (3);
 	ft_free(hold);
