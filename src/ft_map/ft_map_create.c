@@ -28,7 +28,7 @@ t_map	*ft_map_create(size_t capacity)
 	map->nb_e = ft_calloc(capacity, sizeof(size_t));
 	map->lists = ft_calloc(capacity, sizeof(t_map_node));
 	if (!map->nb_e || !map->lists)
-		return (ft_free(map->nb_e), ft_free(map->lists), NULL);
+		return (ft_free(map->nb_e), ft_free(map->lists), ft_free(map), NULL);
 	map->capacity = capacity;
 	return (map);
 }

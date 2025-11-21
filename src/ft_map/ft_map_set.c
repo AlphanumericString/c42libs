@@ -12,12 +12,29 @@
 
 #include "ft_allocator__dev.h"
 #include "ft_map.h"
+#include <stdio.h>
 
 void	ft_map_set_cmp(t_map *map, t_data_cmp cmp)
 {
 	map->cmp = cmp;
 }
 
+// re-distribute existing elements according to new hash
+//	t_map_node	*cur;
+//	size_t		i;
+// 	i = 0;
+//	if (!map->nb_e_total)
+//		return ;
+// 	while (i < map->capacity)
+// 	{
+// 		cur = map->lists[i++];
+// 		while (cur)
+// 		{
+// 			cur->hash = map->hash(cur->key, cur->key_size);
+// 			cur = cur->next;
+// 		}
+// 	}
+// //TODO:	ft_map_resize(map, map->capacity);
 void	ft_map_set_hash(t_map *map, t_memhash hash)
 {
 	map->hash = hash;
@@ -27,7 +44,7 @@ bool	ft_map_set(t_map *m, const void *k, const void *v, size_t s)
 {
 	t_map_node	*mn;
 
-	if (!k || !v || !m || !s)
+	if (!k || !m || !s)
 		return (false);
 	mn = ft_map_get_node(m, k, s);
 	if (mn)
@@ -40,6 +57,7 @@ bool	ft_map_set(t_map *m, const void *k, const void *v, size_t s)
 	if (!mn)
 		return (false);
 	mn->key = k;
+	mn->key_size = s;
 	mn->data = (void *)v;
 	mn->hash = m->hash(k, s);
 	mn->next = m->lists[mn->hash % m->capacity];

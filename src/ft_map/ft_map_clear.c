@@ -20,11 +20,14 @@ void	ft_map_clear(t_map *restrict map)
 	i = 0;
 	while (i < map->capacity)
 	{
-		while (map->lists[i])
+		cur = map->lists[i];
+		while (cur && cur->next)
+			cur = cur->next;
+		if (cur)
 		{
-			cur = map->lists[i];
-			map->lists[i] = map->lists[i]->next;
 			cur->next = map->nodes_pool;
+			map->nodes_pool = map->lists[i];
+			map->lists[i] = NULL;
 		}
 		map->nb_e[i++] = 0;
 	}

@@ -10,62 +10,65 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_arr.h"
 #include "tests/map_tests.h"
-#include "ft_mem.h"
 #include "ft_map.h"
 #include "ft_string.h"
 #include "types/ft_map_types.h"
 #include "ft_string.h"
-#include <stdlib.h>
 
+static size_t	colision_prone_hash(const void *p, size_t s)
+{
+	(void)p;
+	(void)s;
+	return (42);
+}
+
+// map of size 1 to check list handling
 static int	tmap_remove_normal(void)
 {
-	char	*str;
-	void	*ret;
-	t_map	*map;
+	const void	*data = (void *)0xDEADBEAF;
+	const void	*data2 = (void *)0xBEAFCAFE;
+	void		*ret;
+	t_map		*map;
 
-	str = ft_strdup("value");
-	map = ft_map_create(10);
-	ft_map_set(map, "key", str, ft_strlen("key"));
+	map = ft_map_create(1);
+	if (ft_map_remove(NULL, "key", ft_strlen("key")) != NULL
+		|| ft_map_remove(map, NULL, ft_strlen("key")) != NULL
+		|| ft_map_remove(map, "key", 0) != NULL
+		|| ft_map_remove(map, "empty_map", ft_strlen("empty_map")) != NULL)
+		return (ft_map_destroy(map), 1);
+	ft_map_set(map, "key", data, ft_strlen("key"));
+	ft_map_set(map, "key2", data2, ft_strlen("key2"));
 	ret = ft_map_remove(map, "key", ft_strlen("key"));
-	if (!ret)
-		return (1);
-	else if (ret != str)
-		return (2);
+	if (!ret || ret != data)
+		return (ft_map_destroy(map), 2 + (ret != NULL));
+	if (ft_map_remove(map, "badkey", ft_strlen("badkey")) != NULL)
+		return (ft_map_destroy(map), 4);
 	ret = ft_map_remove(map, "key2", ft_strlen("key2"));
-	if (ret)
-		return (3);
-	ft_map_destroy(map);
-	ft_free(str);
-	return (EXIT_SUCCESS);
+	if (!ret || ret != data2)
+		return (ft_map_destroy(map), 5);
+	return (ft_map_destroy(map), EXIT_SUCCESS);
 }
 
 static int	tmap_remove_colision(void)
 {
-	const char	*keys[] = {"key", "key2", "key3", "key4", NULL};
-	const char	*str[] = {
-		ft_strdup("value"), ft_strdup("value2"), ft_strdup("value3"),
-		ft_strdup("value4"), NULL};
-	t_map		*map;
-	int			i;
+	const char		*key = "key_target";
+	const size_t	kl = ft_strlen(key);
+	t_map			*map;
+	void			*ret;
+	const void		*data = (void *)0xDEADCAFE;
 
-	map = ft_map_create(1);
-	i = 0;
-	while (str[i])
-	{
-		ft_map_set(map, keys[i], str[i], ft_strlen(keys[i]));
-		i++;
-	}
-	if (ft_map_remove(map, keys[2], ft_strlen(keys[2])) != str[2])
-		return (1);
-	if (ft_map_remove(map, keys[1], ft_strlen(keys[1])) != str[1])
-		return (2);
-	if (ft_map_remove(map, keys[0], ft_strlen(keys[0])) != str[0])
-		return (3);
-	if (ft_map_remove(map, keys[3], ft_strlen(keys[3])) != str[3])
-		return (4);
-	return (ft_map_destroy(map), ft_aapply((void **)str, ft_free), 0);
+	map = ft_map_create(10);
+	ft_map_set_hash(map, colision_prone_hash);
+	ft_map_set(map, key, data, kl);
+	ft_map_set(map, "colision", &ft_map_create, ft_strlen("colision"));
+	ft_map_set(map, "colision2", &ft_map_remove, ft_strlen("colision2"));
+	if (ft_map_get(map, key, kl) != data)
+		return (ft_map_destroy(map), 1);
+	ret = ft_map_remove(map, key, kl);
+	if (ret != data)
+		return (ft_map_destroy(map), 2);
+	return (ft_map_destroy(map), EXIT_SUCCESS);
 }
 
 int	tmap_remove(void)

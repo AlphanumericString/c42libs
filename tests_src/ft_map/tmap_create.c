@@ -16,7 +16,7 @@
 #include "types/ft_map_types.h"
 #include "ft_map.h"
 
-int	tmap_create(void)
+static int	tmap_create_alloc_failure(void)
 {
 	t_map	*map;
 	int		prev;
@@ -37,6 +37,35 @@ int	tmap_create(void)
 			return (talloc_set_failpoint(prev), 2 + total + 1);
 	}
 	talloc_set_failpoint(prev);
+	return (EXIT_SUCCESS);
+}
+
+static int	tmap_create_basic(void)
+{
+	t_map	*map;
+
+	map = ft_map_create(10);
+	if (!map)
+		return (1);
+	if (ft_map_capacity(map) != 10)
+		return (ft_map_destroy(map), 2);
+	ft_map_destroy(map);
+	map = ft_map_create(0);
+	if (map)
+		return (ft_map_destroy(map), 3);
+	return (EXIT_SUCCESS);
+}
+
+int	tmap_create(void)
+{
+	int	ret;
+
+	ret = tmap_create_alloc_failure();
+	if (ret != EXIT_SUCCESS)
+		return (ret + 10 * 0);
+	ret = tmap_create_basic();
+	if (ret != EXIT_SUCCESS)
+		return (ret + 10 * 1);
 	return (EXIT_SUCCESS);
 }
 /*

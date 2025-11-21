@@ -35,7 +35,7 @@ void	ft_map_destroy_free(t_map *m, t_data_apply f)
 	t_map_node	*cur;
 
 	i = 0;
-	if (!f || !m)
+	if (!m)
 		return ;
 	while (i < m->capacity)
 	{
@@ -47,6 +47,7 @@ void	ft_map_destroy_free(t_map *m, t_data_apply f)
 	while (cur)
 		cur = pop_f(cur, NULL);
 	ft_free(m->nb_e);
+	ft_free(m->lists);
 	ft_free(m);
 }
 /*

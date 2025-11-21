@@ -18,11 +18,16 @@
 #include <stdlib.h>
 
 // check valgrind for no memory leak
+// setting nodes to check node freeing path
+// removing node to check node reuse pool freeing path
 int	tmap_destroy(void)
 {
 	t_map	*map;
 
 	map = ft_map_create(10);
+	ft_map_set(map, "key1", "value1", ft_strlen("key1"));
+	ft_map_set(map, "key2", "value2", ft_strlen("key2"));
+	ft_map_remove(map, "key1", ft_strlen("key1"));
 	ft_map_destroy(map);
 	map = NULL;
 	ft_map_destroy(map);
@@ -38,6 +43,8 @@ int	tmap_destroy_free(void)
 	char	*key;
 	char	*value;
 
+	ft_map_destroy_free(NULL, NULL);
+	ft_map_destroy_free(NULL, ft_free);
 	key = ft_strdup("keys");
 	value = ft_strdup("values");
 	map = ft_map_create(10);

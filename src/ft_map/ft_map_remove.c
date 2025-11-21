@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_map.h"
+#include <stdio.h>
 
 static void	push_to_pool(t_map_node *prev, t_map_node *cur, t_map *m, size_t sh)
 {
@@ -37,7 +38,7 @@ void	*ft_map_remove(t_map *m, const void *k, size_t s)
 	cur = m->lists[s_hash % m->capacity];
 	while (cur)
 	{
-		if (cur->hash == s_hash && m->cmp(cur->data, k))
+		if (cur->hash == s_hash && !m->cmp(cur->key, k))
 			break ;
 		prev = cur;
 		cur = cur->next;

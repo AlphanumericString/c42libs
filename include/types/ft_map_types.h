@@ -22,6 +22,7 @@ typedef struct __attribute__((packed)) s_map_node
 {
 	void				*data;
 	const void			*key;
+	size_t				key_size;
 	size_t				hash;
 	struct s_map_node	*next;
 }		t_map_node;
