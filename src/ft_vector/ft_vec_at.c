@@ -12,10 +12,17 @@
 
 #include "ft_vector.h"
 
+size_t	ft_vec_inuse(const t_vector *vec)
+{
+	return (vec->n_e * vec->s_e);
+}
+
 // return elem n
 void	*ft_vec_at(const t_vector *restrict vec, size_t n)
 {
-	return (vec->datas[n]);
+	if (n >= vec->n_e)
+		return (NULL);
+	return (vec->data + (vec->s_e * n));
 }
 /*
 GPL-3.0 License:

@@ -27,43 +27,58 @@ t_vector	*ft_vec_from_size(size_t n)
 	ret = ft_calloc(sizeof(t_vector), 1);
 	if (!ret)
 		return (ret);
-	ret->datas = ft_calloc(sizeof(void *), n);
-	if (!ret->datas)
+	ret->data = ft_calloc(1, n);
+	if (!ret->data)
 		return (ft_free(ret), NULL);
 	ret->cappacity = n;
-	ret->nb_e = 0;
+	ret->n_e = 0;
+	ret->s_e = 1;
 	return (ret);
 }
 
-t_vector	*ft_vec_from_array(void **data, size_t count)
+t_vector	*ft_vec_create(size_t elem_size)
 {
 	t_vector	*ret;
-	size_t		i;
 
-	if (count < FT_VECTOR_BASE_LEN)
-		ret = ft_vec_from_size(FT_VECTOR_BASE_LEN);
-	else
-		ret = ft_vec_from_size(count);
-	i = 0;
-	while (i < count)
-	{
-		ret->datas[i] = data[i];
-		i++;
-	}
-	ret->nb_e = i;
+	if (!elem_size)
+		elem_size = 1;
+	ret = ft_vec_from_size(FT_VECTOR_BASE_LEN * elem_size);
+	if (ret)
+		ret->s_e = elem_size;
 	return (ret);
 }
 
-t_vector	*ft_vec_convert_alloccarray(void **data, size_t count)
+t_vector	*ft_vec_from_array(const void *data_src, size_t nmemb,
+				size_t elem_size)
 {
 	t_vector	*ret;
 
+	if (!nmemb || !elem_size)
+		return (NULL);
+	ret = ft_vec_from_size(nmemb * elem_size);
+	if (!ret)
+		return (ret);
+	ret->n_e = nmemb;
+	ret->s_e = elem_size;
+	ft_memcpy(ret->data, data_src, nmemb * elem_size);
+	return (ret);
+}
+
+// calloc ->dont remplace by malloc
+//		if meta_data block is set to null
+t_vector	*ft_vec_convert_alloccarray(void *data, size_t nmemb, size_t e_size)
+{
+	t_vector	*ret;
+
+	if (!nmemb || !e_size)
+		return (NULL);
 	ret = ft_calloc(sizeof(t_vector), 1);
 	if (!ret)
 		return (ret);
-	ret->datas = data;
-	ret->nb_e = count;
-	ret->cappacity = count;
+	ret->data = data;
+	ret->n_e = nmemb;
+	ret->s_e = e_size;
+	ret->cappacity = nmemb * e_size;
 	return (ret);
 }
 /*

@@ -14,12 +14,15 @@
 #include "types/ft_vector_types.h"
 #include "ft_vector.h"
 
-void	**ft_vec_to_array(t_vector **vec)
+void	*ft_vec_to_array(t_vector **vec)
 {
-	void	**array;
+	void	*array;
 
-	array = (*vec)->datas;
-	ft_free(*vec);
+	array = NULL;
+	if (*vec)
+		array = (*vec)->data;
+	if (*vec)
+		ft_free_clear((void **)vec);
 	return (array);
 }
 /*

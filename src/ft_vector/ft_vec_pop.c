@@ -15,13 +15,13 @@
 
 void	*ft_vec_pop(t_vector *vec)
 {
-	void	*data;
+	void	*ret;
 
-	if (vec->nb_e == 0)
+	if (!vec->n_e || !vec->s_e)
 		return (NULL);
-	data = vec->datas[vec->nb_e - 1];
-	vec->datas[--vec->nb_e] = NULL;
-	return (data);
+	ret = ft_vec_at(vec, vec->n_e - 1);
+	vec->n_e--;
+	return (ret);
 }
 /*
 GPL-3.0 License:

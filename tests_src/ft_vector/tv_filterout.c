@@ -1,44 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map_types.h                                     :+:      :+:    :+:   */
+/*   tv_remove_if.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 13:02:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/28 03:37:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/05/24 11:30:26 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/06/29 14:09:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MAP_TYPES_H
-# define FT_MAP_TYPES_H
+#include "ft_vector.h"
+#include "types/ft_vector_types.h"
+#include "tests/vector_tests.h"
+#include "tests/tests_lambda_functions.h"
 
-# include "types/ft_list_types.h"
-# include "ft_defs.h"
-# include "types/ft_vector_types.h"
-# include <stddef.h>
-
-typedef struct __attribute__((packed)) s_map_node
+int	tv_filterout(void)
 {
-	void				*data;
-	const void			*key;
-	size_t				key_size;
-	size_t				hash;
-	struct s_map_node	*next;
-}		t_map_node;
+	t_vector	*vec;
+	int			a[3] = {42, 43, 44};
 
-typedef struct s_map
-{
-	size_t		capacity;	// cap - useful for nb lists
-	t_map_node	**lists;
-	size_t		*nb_e;
-	size_t		nb_e_total; // total nb elem - useful for list imbalance
-	t_data_cmp	cmp;		// user must either provide the func or use default strcmp
-	t_memhash	hash;
-	t_map_node	*nodes_pool;// pool of 'saved' nodes for reuse
-}				t_map;
-
-#endif /* FT_MAP_TYPES_H */
+	vec = ft_vec_from_array(a, 3, sizeof(int));
+	ft_vec_filterout(vec, is42, NULL);
+	if (vec->n_e != 2)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 0) != 43)
+		return (1);
+	else if (*(int *)ft_vec_at(vec, 1) != 44)
+		return (1);
+	ft_vec_destroy(&vec);
+	return (EXIT_SUCCESS);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

@@ -17,25 +17,17 @@
 int	tv_swap(void)
 {
 	t_vector	*vec;
-	void		*data[3];
-	int			arr[3];
+	const int 	data[3] = {42, 43, 44};
 
-	arr[0] = 42;
-	arr[1] = 43;
-	arr[2] = 44;
-	data[0] = (void *)&arr[0];
-	data[1] = (void *)&arr[1];
-	data[2] = (void *)&arr[2];
-	vec = ft_vec_from_array(data, sizeof(data) / sizeof(data[0]));
+	vec = ft_vec_from_array(data, 3, sizeof(int));
 	ft_vec_swap(vec, 0, 2);
-	if (vec->nb_e != 3)
-		return (1);
-	else if (*(int *)ft_vec_at(vec, 0) != 44)
+	if (vec->n_e != 3)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 1) != 43)
-		return (1);
-	else if (*(int *)ft_vec_at(vec, 2) != 42)
-		return (1);
+		return (2);
+	else if (*(int *)ft_vec_at(vec, 0) != 44
+		|| *(int *)ft_vec_at(vec, 2) != 42)
+		return (3);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }

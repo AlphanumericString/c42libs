@@ -14,20 +14,24 @@
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 int	tv_new(void)
 {
 	t_vector	*vec;
 
 	vec = ft_vec_new();
-	if (vec->nb_e != 0)
+	if (vec->n_e != 0 || vec->s_e != 1 ||
+		vec->cappacity != FT_VECTOR_BASE_LEN)
 		return (1);
-	else if (vec->cappacity != FT_VECTOR_BASE_LEN)
-		return (1);
-	else if (!vec->datas)
-		return (1);
+	else if (!vec->data)
+		return (2);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }
+
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
+
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

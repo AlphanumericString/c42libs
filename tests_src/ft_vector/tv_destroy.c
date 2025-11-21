@@ -38,26 +38,24 @@ int	tv_delete(void)
 int	tv_destroy(void)
 {
 	t_vector	*vec;
-	int			a;
-	int			b;
-	int			c;
+	bool		ret;
+	int			a[] = {0, 1, 2};
+	void		*data;
 
-	a = 0;
-	b = 1;
-	c = 2;
-	vec = ft_vec_new();
-	ft_vec_add(&vec, &a);
-	ft_vec_add(&vec, &b);
-	ft_vec_add(&vec, &c);
-	if (ft_vec_destroy(&vec) != true)
+	vec = ft_vec_from_array(a, 3, sizeof(int));
+	ret = ft_vec_destroy(&vec);
+	if (vec || ret != true)
 		return (1);
-	if (vec)
+	ret = ft_vec_destroy(&vec);
+	if (vec || ret != false)
 		return (2);
-	if (ft_vec_destroy(&vec) != false)
+	vec = ft_vec_from_array(a, 3, sizeof(int));
+	data = vec->data;
+	vec->data = NULL;
+	ret = ft_vec_destroy(&vec);
+	if (vec || !ret)
 		return (3);
-	if (ft_vec_destroy(NULL) != false)
-		return (4);
-	return (EXIT_SUCCESS);
+	return (ft_free(data), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

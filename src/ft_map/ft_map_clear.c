@@ -11,24 +11,25 @@
 /* ************************************************************************** */
 
 #include "ft_map.h"
-#include "ft_vector.h"
 
 void	ft_map_clear(t_map *restrict map)
 {
-	size_t	i;
-	t_list	*cur;
+	size_t		i;
+	t_map_node	*cur;
 
 	i = 0;
 	while (i < map->capacity)
 	{
-		while (map->nodes[i])
+		cur = map->lists[i];
+		while (cur && cur->next)
+			cur = cur->next;
+		if (cur)
 		{
-			cur = map->nodes[i];
-			map->nodes[i] = map->nodes[i]->next;
-			ft_vec_add(&map->reserved_nodes, cur);
+			cur->next = map->nodes_pool;
+			map->nodes_pool = map->lists[i];
+			map->lists[i] = NULL;
 		}
-		map->nb_e[i] = 0;
-		i++;
+		map->nb_e[i++] = 0;
 	}
 	map->nb_e_total = 0;
 }

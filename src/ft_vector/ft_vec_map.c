@@ -10,23 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
+#include "types/ft_vector_types.h"
 
-t_vector	*ft_vec_map(const t_vector *restrict vec, const t_data_tr func)
+// TODO: ft_vec_apply(ft_vec_dup(vec), func)
+// missing: ft_vec_dup
+t_vector	*ft_vec_map(const t_vector *restrict vec, const t_data_apply func)
 {
 	t_vector	*ret;
+	void		*data_;
 	size_t		i;
 
 	i = 0;
-	ret = ft_vec_from_size(vec->nb_e);
-	if (!ret)
+	if (vec->n_e == 0 || vec->s_e == 0 || vec->data == NULL)
 		return (NULL);
-	while (i < vec->nb_e)
-	{
-		ret->datas[i] = func(vec->datas[i]);
-		i++;
-	}
-	ret->nb_e = i;
+	data_ = ft_calloc(vec->n_e, vec->s_e);
+	if (!data_)
+		return (NULL);
+	ft_memcpy(data_, vec->data, ft_vec_inuse(vec));
+	while (i < vec->n_e)
+		func(data_ + (i++ *vec->s_e));
+	ret = ft_vec_convert_alloccarray(data_, vec->n_e, vec->s_e);
+	if (!ret)
+		return (ft_free(data_), NULL);
 	return (ret);
 }
 /*

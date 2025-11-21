@@ -10,21 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
 
-bool	ft_vec_cat(t_vector **vec_a, const t_vector *vec_b)
+bool	ft_vec_cat(t_vector *vec_a, const t_vector *vec_b)
 {
-	size_t	i;
+	bool	ret;
 
-	i = 0;
-	if ((*vec_a)->cappacity < ((*vec_a)->nb_e + vec_b->nb_e))
+	ret = true;
+	if (vec_a->s_e != vec_b->s_e)
 		return (false);
-	while (i < vec_b->nb_e)
-	{
-		(*vec_a)->datas[(*vec_a)->nb_e + i] = vec_b->datas[i];
-		i++;
-	}
-	(*vec_a)->nb_e += i;
+	if (vec_a->cappacity < (ft_vec_inuse(vec_a) + ft_vec_inuse(vec_b)))
+		ret = ft_vec_reserve(vec_a, vec_a->cappacity + ft_vec_inuse(vec_b));
+	if (!ret)
+		return (false);
+	ft_memcpy(vec_a->data + ft_vec_inuse(vec_a), vec_b->data,
+		ft_vec_inuse(vec_b));
+	vec_a->n_e += vec_b->n_e;
 	return (true);
 }
 /*

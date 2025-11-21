@@ -17,26 +17,20 @@
 int	tv_clear(void)
 {
 	t_vector	*vec;
-	int			a;
-	int			b;
-	int			c;
+	const int	a[] = {0, 1, 2};
 
-	a = 0;
-	b = 1;
-	c = 2;
-	vec = ft_vec_new();
-	ft_vec_add(&vec, &a);
-	ft_vec_add(&vec, &b);
-	ft_vec_add(&vec, &c);
+	vec = ft_vec_from_array((t_any)a, sizeof(a) / sizeof(a[0]), sizeof(a[0]));
 	ft_vec_clear(vec);
-	if (vec->nb_e != 0)
+	if (vec->n_e != 0 || ft_vec_at(vec, 0) != NULL)
 		return (1);
 	else if (vec->cappacity == 0)
-		return (1);
-	else if (vec->datas[0])
-		return (1);
-	ft_vec_destroy(&vec);
-	return (EXIT_SUCCESS);
+		return (2);
+	ft_vec_clear(vec);
+	ft_vec_clear(vec);
+	ft_vec_clear(vec);
+	if (vec->n_e != 0 || ft_vec_at(vec, 0) != NULL || vec->cappacity == 0)
+		return (3);
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

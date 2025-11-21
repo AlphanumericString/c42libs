@@ -10,16 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
 
 void	ft_vec_shift(t_vector *vec, size_t start, size_t shift)
 {
-	while (start + shift < vec->nb_e)
-	{
-		vec->datas[start] = vec->datas[start + shift];
-		start++;
-	}
-	vec->nb_e -= shift;
+	if (!vec->n_e || !vec->s_e || start >= vec->n_e || !shift)
+		return ;
+	if (start + shift >= vec->n_e)
+		shift = vec->n_e - start - 1;
+	ft_memmove(ft_vec_at(vec, start), ft_vec_at(vec, start + shift),
+		(vec->n_e - start - shift) * vec->s_e);
+	vec->n_e -= shift;
 }
 /*
 GPL-3.0 License:

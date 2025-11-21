@@ -18,14 +18,23 @@
 int	tv_apply(void)
 {
 	t_vector	*vec;
-	int			i;
+	size_t		i;
 
 	i = 0;
-	vec = ft_vec_new();
-	ft_vec_add(&vec, &i);
+	vec = ft_vec_create(sizeof(i));
+	ft_vec_add(vec, &i);
 	ft_vec_apply(vec, add42);
-	if (*(int *)vec->datas[0] != 42)
+	if (*((size_t *)ft_vec_at(vec, 0)) != 42)
 		return (1);
+	vec->s_e = 0;
+	ft_vec_apply(vec, add42);
+	i = vec->n_e;
+	vec->n_e = 0;
+	ft_vec_apply(vec, add42);
+	vec->s_e = sizeof(i);
+	ft_vec_apply(vec, add42);
+	*vec = (t_vector){.cappacity = vec->cappacity, .data = vec->data,
+		.n_e = i, .s_e = sizeof(i)};
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }

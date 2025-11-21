@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
 
-bool	ft_vec_add(t_vector **vec, const void *restrict data)
+bool	ft_vec_add(t_vector *vec, const void *data)
 {
-	size_t	nw_size;
-
-	if ((*vec)->nb_e == (*vec)->cappacity)
-	{
-		nw_size = (*vec)->cappacity + FT_VECTOR_BASE_LEN;
-		if (ft_vec_reserve(vec, nw_size) == false)
+	if (!vec->s_e)
+		return (false);
+	if ((ft_vec_inuse(vec) + vec->s_e) > vec->cappacity)
+		if (!ft_vec_reserve(vec, vec->cappacity * 2))
 			return (false);
-	}
-	return ((*vec)->datas[(*vec)->nb_e++] = (void *)data, true);
+	ft_memcpy(vec->data + ft_vec_inuse(vec), data, vec->s_e);
+	vec->n_e++;
+	return (true);
 }
 /*
 GPL-3.0 License:

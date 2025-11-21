@@ -12,14 +12,15 @@
 
 #include "ft_vector.h"
 
-void	ft_vec_apply(t_vector *vec, void (*func)(void *))
+void	ft_vec_apply(t_vector *vec, t_data_apply func)
 {
 	size_t	i;
 
+	if (!vec->n_e || !vec->s_e)
+		return ;
 	i = 0;
-	while (i < vec->nb_e)
-		func(vec->datas[i++]);
-	return ;
+	while (i < vec->n_e)
+		func(vec->data + i++ *vec->s_e);
 }
 /*
 GPL-3.0 License:

@@ -10,39 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "types/ft_map_types.h"
-#include "types/ft_list_types.h"
-
 #include "ft_map.h"
-#include "ft_vector.h"
+#include <stdio.h>
 
-void	*ft_map_remove(t_map *map, const void *key, size_t size)
+static void	push_to_pool(t_map_node *prev, t_map_node *cur, t_map *m, size_t sh)
 {
-	size_t		hash;
-	t_list		*prev;
-	t_list		*cur;
+	if (!prev)
+		m->lists[sh % m->capacity] = cur->next;
+	else
+		prev->next = cur->next;
+	cur->next = m->nodes_pool;
+	m->nodes_pool = cur;
+	m->nb_e_total--;
+	m->nb_e[sh % m->capacity]--;
+}
 
-	hash = map->hash(key, size) % map->capacity;
+void	*ft_map_remove(t_map *m, const void *k, size_t s)
+{
+	t_map_node	*prev;
+	t_map_node	*cur;
+	size_t		s_hash;
+
+	if (!m || !k || !s || !m->nb_e_total)
+		return (NULL);
+	s_hash = m->hash(k, s);
 	prev = NULL;
-	cur = map->nodes[hash];
+	cur = m->lists[s_hash % m->capacity];
 	while (cur)
 	{
-		if (map->cmp(((t_map_node *)cur->data)->key, key) == 0)
+		if (cur->hash == s_hash && !m->cmp(cur->key, k))
 			break ;
 		prev = cur;
 		cur = cur->next;
 	}
 	if (!cur)
 		return (NULL);
-	if (!prev)
-		map->nodes[hash] = cur->next;
-	else
-		prev->next = cur->next;
-	cur->next = NULL;
-	ft_vec_add(&map->reserved_nodes, cur);
-	map->nb_e[hash]--;
-	map->nb_e_total--;
-	return (((t_map_node *)cur->data)->data);
+	return (push_to_pool(prev, cur, m, s_hash), cur->data);
 }
 /*
 GPL-3.0 License:

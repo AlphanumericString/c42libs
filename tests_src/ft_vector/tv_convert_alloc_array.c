@@ -17,33 +17,6 @@
 #include "ft_allocator__dev.h"
 #include "tests/fixtures.h"
 
-static int	**create_tb_int(size_t *size)
-{
-	int	**tab;
-	int	nb;
-	int	i;
-
-	if (!size)
-		nb = 10;
-	else if (size && *size)
-		nb = *size;
-	else
-	{
-		*size = 10;
-		nb = *size;
-	}
-	i = 0;
-	tab = ft_calloc(sizeof(int *), nb);
-	while (i < nb - 1)
-	{
-		tab[i] = ft_calloc(sizeof(int), 1);
-		*(tab[i]) = 42 + i;
-		i++;
-	}
-	tab[i] = NULL;
-	return (tab);
-}
-
 //	ft_vec_destroy(&vec);
 	//  free(data); -> segfault : double free or corruption.
 	// 	ft_vec_convert_alloccarray takes ownership of the data. refert to the
@@ -51,43 +24,43 @@ static int	**create_tb_int(size_t *size)
 static int	base_case(void)
 {
 	t_vector	*vec;
-	int			**a;
+	int			*a;
 	size_t		len;
 
-	len = 0;
-	a = create_tb_int(&len);
-	vec = ft_vec_convert_alloccarray((void **)a, len);
-	if (vec->nb_e != len || vec->cappacity != len || vec->datas != (void **)a)
-		return (1);
-	else if (*(int *)ft_vec_at(vec, 0) != 42
-		|| *(int *)ft_vec_at(vec, 1) != 43 || *(int *)ft_vec_at(vec, 2) != 44)
-		return (2);
-	(ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec));
-	a = create_tb_int(&len);
-	vec = ft_vec_convert_alloccarray((void **)a, len);
-	if (vec->nb_e != len || vec->cappacity != len || vec->datas != (void **)a)
-		return (3);
-	else if (*(int *)ft_vec_at(vec, 0) != 42
-		|| *(int *)ft_vec_at(vec, 1) != 43 || *(int *)ft_vec_at(vec, 2) != 44)
-		return (4);
-	return (ft_vec_apply(vec, ft_free), ft_vec_destroy(&vec), 0);
+	len = 3;
+	a = ft_calloc(len, sizeof(int));
+	a[0] = 42;
+	a[1] = 43;
+	a[2] = 44;
+	if (ft_vec_convert_alloccarray(a, 0, sizeof(int))
+		|| ft_vec_convert_alloccarray(a, len, 0))
+		return (ft_free(a), 1);
+	vec = ft_vec_convert_alloccarray(a, len, sizeof(int));
+	if (!vec)
+		return (ft_free(a), 2);
+	else if (vec->n_e != len || vec->s_e != sizeof(int) || !vec->data)
+		return (ft_vec_destroy(&vec), 3);
+	else if (*(int *)ft_vec_at(vec, 0) != a[0]
+		|| *(int *)ft_vec_at(vec, 1) != a[1]
+		|| *(int *)ft_vec_at(vec, 2) != a[2])
+		return (ft_vec_destroy(&vec), 4);
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 
 static int	mt_case(void)
 {
-	int			**arr;
+	int			*arr;
 	t_vector	*vec;
 	int			f_p;
 
-	arr = create_tb_int(NULL);
+	arr = ft_calloc(3, sizeof(int));
 	f_p = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	vec = ft_vec_convert_alloccarray((void *)arr, 0);
-	if (vec)
-		return (1);
+	vec = ft_vec_convert_alloccarray(arr, 3, sizeof(int));
 	talloc_set_failpoint(f_p);
-	ft_afree((void **)arr);
-	return (EXIT_SUCCESS);
+	if (vec)
+		return (ft_free(arr), ft_vec_destroy(&vec), 1 + 8);
+	return (ft_free(arr), EXIT_SUCCESS);
 }
 
 int	tv_convert_alloc_array(void)
@@ -99,7 +72,7 @@ int	tv_convert_alloc_array(void)
 		return (ret);
 	ret = mt_case();
 	if (ret)
-		return (ret + 10);
+		return (ret);
 	return (EXIT_SUCCESS);
 }
 /*

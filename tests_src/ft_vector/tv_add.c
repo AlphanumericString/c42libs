@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
@@ -19,42 +20,55 @@
 static int	bases_case(void)
 {
 	t_vector	*vec;
+	int			i;
 
-	vec = ft_vec_new();
-	ft_vec_add(&vec, (void *)42);
-	if (vec->nb_e != 1)
+	i = 42;
+	vec = ft_vec_create(sizeof(int));
+	ft_vec_add(vec, &i);
+	if (vec->s_e != sizeof(int) || vec->n_e != 1)
 		return (1);
-	if (vec->datas[0] != (void *)42)
+	if (ft_memcmp(ft_vec_at(vec, 0), &i, sizeof(int)))
 		return (2);
-	ft_vec_add(&vec, (void *)43);
-	ft_vec_add(&vec, (void *)44);
-	ft_vec_add(&vec, (void *)45);
-	ft_vec_add(&vec, (void *)46);
-	ft_vec_add(&vec, (void *)47);
-	if (vec->nb_e != 6)
-		return (3);
-	if (vec->datas[0] != (void *)42 || vec->datas[1] != (void *)43
-		|| vec->datas[2] != (void *)44 || vec->datas[3] != (void *)45
-		|| vec->datas[4] != (void *)46 || vec->datas[5] != (void *)47)
-		return (4);
+	while (i++ < 47)
+		ft_vec_add(vec, &i);
+	i = (42 - 1);
+	while (++i < 47)
+		if (ft_memcmp(ft_vec_at(vec, i - 42), &i, sizeof(int)))
+			return (i + 8);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
+}
+
+static int	err_case(void)
+{
+	t_vector	*vec;
+	int			i;
+
+	i = 42;
+	vec = ft_vec_create(sizeof(int));
+	vec->s_e = 0;
+	if (ft_vec_add(vec, &i) != false)
+		return (1 + 16);
+	return (ft_vec_delete(vec), EXIT_SUCCESS);
 }
 
 static int	mt_case(void)
 {
 	t_vector	*vec;
 	int			f_po;
+	int			i;
 
-	vec = ft_vec_new();
-	ft_vec_add(&vec, (void *)42);
+	vec = ft_vec_create(sizeof(int));
+	i = 42;
+	ft_vec_add(vec, &i);
 	ft_vec_shrink(vec);
 	f_po = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	ft_vec_add(&vec, (void *)43);
+	i = 43;
+	ft_vec_add(vec, &i);
 	talloc_set_failpoint(f_po);
-	if (vec->nb_e != 1)
-		return (1);
+	if (vec->n_e != 1)
+		return (1 + 32);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }
@@ -66,9 +80,12 @@ int	tv_add(void)
 	ret = bases_case();
 	if (ret)
 		return (ret);
+	ret = err_case();
+	if (ret)
+		return (ret);
 	ret = mt_case();
 	if (ret)
-		return (ret + 10);
+		return (ret);
 	return (EXIT_SUCCESS);
 }
 /*

@@ -14,29 +14,55 @@
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
 #include "tests/tests_lambda_functions.h"
+#include "types/ft_vector_types.h"
+#include <stdlib.h>
 
-int	tv_get(void)
+static int	edge(t_vector *vector, const char **src_2)
 {
+	const t_vector	original_state = *vector;
+
+	vector->n_e = 0;
+	if (ft_vec_find(vector, "Hello", cmp_str) != NULL)
+		return (4);
+	vector->n_e = original_state.n_e;
+	vector->s_e = 0;
+	if (ft_vec_find(vector, "Hello", cmp_str) != NULL)
+		return (5);
+	vector->s_e = original_state.s_e;
+	vector->data = NULL;
+	if (ft_vec_find(vector, "Hello", cmp_str) != NULL)
+		return (6);
+	vector->data = original_state.data;
+	if (*(char **)ft_vec_find(vector, src_2, cmp_str) != *src_2
+		|| *(char **)ft_vec_find(vector, ft_vec_at(vector, 2), NULL) != *src_2
+		|| ft_vec_find(vector, "zboub", NULL) != NULL)
+		return (6);
+	return (0);
+}
+
+int	tv_find(void)
+{
+	size_t		i;
+	const char	*src[] = {"Hello", "world", "this", "is", "Zod"};
 	t_vector	*vector;
 	void		*data_ret;
 
-	vector = ft_vec_new();
-	ft_vec_add(&vector, "Hello");
-	ft_vec_add(&vector, "world");
-	ft_vec_add(&vector, "this");
-	ft_vec_add(&vector, "is");
-	ft_vec_add(&vector, "Zod");
+	vector = ft_vec_create(sizeof(char *));
+	i = 0;
+	while (i < (sizeof(src) / sizeof(src[0])))
+		ft_vec_add(vector, &src[i++]);
 	data_ret = ft_vec_find(vector, "world", cmp_str);
-	if (ft_strcmp(data_ret, "world") != 0)
+	if (data_ret && ft_strcmp(data_ret, "world") != 0)
 		return (1);
 	data_ret = ft_vec_find(vector, "Zod", cmp_str);
-	if (ft_strcmp(data_ret, "Zod") != 0)
-		return (1);
-	data_ret = ft_vec_find(vector, "not here", cmp_str);
-	if (data_ret)
-		return (1);
-	ft_vec_destroy(&vector);
-	return (EXIT_SUCCESS);
+	if (data_ret && ft_strcmp(data_ret, "Zod") != 0)
+		return (2);
+	if (ft_vec_find(vector, "not here", cmp_str) != NULL)
+		return (3);
+	i = edge(vector, &src[2]);
+	if (i)
+		return (ft_vec_destroy(&vector), i);
+	return (ft_vec_destroy(&vector), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

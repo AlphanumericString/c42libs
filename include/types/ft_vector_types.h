@@ -17,22 +17,33 @@
 #  ifdef TEST
 #   define FT_VECTOR_BASE_LEN 5
 #  else
-#   define FT_VECTOR_BASE_LEN 4096
+#   define FT_VECTOR_BASE_LEN FT_STD_BUF_SIZE
 #  endif
 # endif
 
 # include <stddef.h>
 
-/// @brief vector structure
-/// @param datas array of pointers to the elements
-/// @param count number of elements in the vector
-/// @param cappacity number of elements that can be stored in the vector
+# ifdef MT_DATA_BLOCK
+
 typedef struct s_vector
 {
-	void	**datas;
-	size_t	nb_e;
+	void	*data;
+	size_t	n_e;
+	size_t	s_e;
+	size_t	cappacity;
+	void	*meta_data;
+}			t_vector;
+# else
+
+typedef struct s_vector
+{
+	void	*data;
+	size_t	n_e;
+	size_t	s_e;
 	size_t	cappacity;
 }			t_vector;
+
+# endif
 
 #endif /* FT_VECTOR_TYPES_H */
 /*

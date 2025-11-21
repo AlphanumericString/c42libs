@@ -18,24 +18,19 @@ int	tv_at(void)
 {
 	t_vector	*vec;
 	int			a;
-	int			b;
-	int			c;
 
-	a = 0;
-	b = 1;
-	c = 2;
-	vec = ft_vec_new();
-	ft_vec_add(&vec, &a);
-	ft_vec_add(&vec, &b);
-	ft_vec_add(&vec, &c);
+	vec = ft_vec_create(sizeof(int));
+	a = -1;
+	while (++a < 3)
+		ft_vec_add(vec, &a);
 	if (*(int *)ft_vec_at(vec, 0) != 0)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 1) != 1)
-		return (1);
+		return (2);
 	else if (*(int *)ft_vec_at(vec, 2) != 2)
-		return (1);
-	else if (ft_vec_at(vec, 3))
-		return (1);
+		return (3);
+	else if (ft_vec_at(vec, 3) || ft_vec_at(vec, 999))
+		return (4);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }

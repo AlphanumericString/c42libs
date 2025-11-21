@@ -25,6 +25,13 @@
 #include "ft_string.h"
 #include <stdlib.h>
 
+static size_t	colision_prone_hash(const void *p, size_t s)
+{
+	(void)p;
+	(void)s;
+	return (42);
+}
+
 static int	tmap_get_ultra_small(void)
 {
 	char		*str[2];
@@ -34,9 +41,9 @@ static int	tmap_get_ultra_small(void)
 	str[0] = ft_strdup("value");
 	str[1] = ft_strdup("value2");
 	map = ft_map_create(1);
-	ft_map_set(map, "key", str[0], ft_strlen("key"));
-	ft_map_set(map, "key2", str[1], ft_strlen("key"));
-	ret = ft_map_get(map, "key", ft_strlen("key"));
+	ft_map_set(map, "my_specific_key", str[0], ft_strlen("my_specific_key"));
+	ft_map_set(map, "key2", str[1], ft_strlen("key2"));
+	ret = ft_map_get(map, "my_specific_key", ft_strlen("my_specific_key"));
 	if (!ret)
 		return (1);
 	else if (ft_strcmp((char *)ret, "value"))
@@ -59,60 +66,51 @@ static int	tmap_normal(void)
 	str = ft_strdup("value");
 	map = ft_map_create(10);
 	ft_map_set(map, "key", str, ft_strlen("key"));
+	ft_map_set(map, "differing_key", str, ft_strlen("differing_key"));
 	ret = ft_map_get(map, "key", ft_strlen("key"));
-	if (!ret)
+	if (!ret || ft_strcmp((char *)ret, "value"))
 		return (1);
-	else if (ft_strcmp((char *)ret, "value"))
+	if (ft_map_get(map, "key2", ft_strlen("key2")) != NULL)
 		return (2);
-	ret = ft_map_get(map, "key2", ft_strlen("key2"));
-	if (ret)
-		return (3);
-	ret = ft_map_get(NULL, "key", ft_strlen("key"));
-	if (ret)
-		return (4);
-	ret = ft_map_get(map, NULL, ft_strlen("key"));
-	if (ret)
-		return (5);
 	ft_map_destroy(map);
-	ft_free(str);
-	return (EXIT_SUCCESS);
+	map = ft_map_create(10);
+	ft_map_set_hash(map, colision_prone_hash);
+	ft_map_set(map, "key", "value_prime", ft_strlen("key"));
+	ft_map_set(map, "differing_key2", str, ft_strlen("differing_key2"));
+	ret = ft_map_get(map, "differing_key2", ft_strlen("differing_key2"));
+	if (!ret || ft_strcmp((char *)ret, "value"))
+		return (3);
+	return (ft_map_destroy(map), ft_free(str), EXIT_SUCCESS);
 }
 
 static int	tmap_get_null(void)
 {
 	t_map		*map;
-	t_map_node	*node;
-	void		*ret;
 
 	map = ft_map_create(10);
-	ret = ft_map_get(map, "key", ft_strlen("key"));
-	if (ret)
-		return (1);
-	ret = ft_map_get(NULL, "key", ft_strlen("key"));
-	if (ret)
-		return (2);
-	ret = ft_map_get(map, NULL, ft_strlen("key"));
-	if (ret)
-		return (3);
-	node = ft_map_get_node(NULL, "key", ft_strlen("key"));
-	if (node)
-		return (4);
-	ft_map_destroy(map);
-	return (EXIT_SUCCESS);
+	if (ft_map_get(map, "badkey", ft_strlen("badkey")) != NULL)
+		return (ft_map_destroy(map), 1);
+	if (ft_map_get(NULL, "empty_map", ft_strlen("empty_map")) != NULL)
+		return (ft_map_destroy(map), 2);
+	if (ft_map_get(map, NULL, ft_strlen("bad_arg")) != NULL
+		|| ft_map_get(map, "bad_arg", 0) != NULL)
+		return (ft_map_destroy(map), 3);
+	return (ft_map_destroy(map), EXIT_SUCCESS);
 }
 
+// missing code coverage on hash collisions
 int	tmap_get(void)
 {
 	int	ret;
 
 	ret = tmap_get_ultra_small();
-	if (ret != 0)
+	if (ret != EXIT_SUCCESS)
 		return (ret + 10 * 0);
 	ret = tmap_normal();
-	if (ret != 0)
+	if (ret != EXIT_SUCCESS)
 		return (ret + 10 * 1);
 	ret = tmap_get_null();
-	if (ret != 0)
+	if (ret != EXIT_SUCCESS)
 		return (ret + 10 * 2);
 	return (EXIT_SUCCESS);
 }

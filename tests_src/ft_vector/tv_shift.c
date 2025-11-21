@@ -17,22 +17,11 @@
 int	tv_shift(void)
 {
 	t_vector	*vec;
-	int			a;
-	int			b;
-	int			c;
-	int			d;
+	int			a[4] = {42, 43, 44, 45};
 
-	a = 42;
-	b = 43;
-	c = 44;
-	d = 45;
-	vec = ft_vec_new();
-	ft_vec_add(&vec, &a);
-	ft_vec_add(&vec, &b);
-	ft_vec_add(&vec, &c);
-	ft_vec_add(&vec, &d);
+	vec = ft_vec_from_array(a, 4, sizeof(int));
 	ft_vec_shift(vec, 1, 2);
-	if (vec->nb_e != 2)
+	if (vec->n_e != 2)
 		return (1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42)
 		return (1);
