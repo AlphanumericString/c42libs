@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ts_strclen.c                                       :+:      :+:    :+:   */
+/*   ts_clen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 10:47:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/06 19:39:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:15:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	ts_clen(void)
 	if (ft_strclen("Hello World", 'o') != 4)
 		return (1);
 	if (ft_strclen("Hello World", 'z') != 11)
-		return (1);
+		return (2);
 	if (ft_strclen("Hello World", 'H') != 0)
-		return (1);
+		return (3);
 	if (ft_strclen("Hello World", 'd') != 10)
-		return (1);
+		return (4);
 	if (ft_strclen("Hello World", ' ') != 5)
-		return (1);
+		return (5);
 	return (EXIT_SUCCESS);
 }
 /*

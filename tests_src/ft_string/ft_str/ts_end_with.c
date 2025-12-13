@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ts_strend_with.c                                   :+:      :+:    :+:   */
+/*   ts_end_with.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 10:49:13 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/06 19:39:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:17:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	ts_end_with(void)
 	if (ft_strend_with("Hello World", "World") != 1)
 		return (1);
 	if (ft_strend_with("Hello World", "World!") != 0)
-		return (1);
+		return (2);
 	if (ft_strend_with("Hello World", "Hello") != 0)
-		return (1);
+		return (3);
 	if (ft_strend_with("Hello World", "Hello World") != 1)
-		return (1);
+		return (4);
 	if (ft_strend_with("Hello World", "Hello World!") != 0)
-		return (1);
+		return (5);
 	return (EXIT_SUCCESS);
 }
 /*

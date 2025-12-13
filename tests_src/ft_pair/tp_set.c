@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:09:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:06:59 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 22:03:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	tp_set(void)
 		return (1);
 	ft_pair_set(&pair, c, a);
 	if (pair.first != c || pair.second != a)
-		return (1);
+		return (2);
 	ft_pair_set(NULL, a, b);
 	return (EXIT_SUCCESS);
 }

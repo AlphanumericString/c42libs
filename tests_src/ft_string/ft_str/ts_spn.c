@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ts_strspn.c                                        :+:      :+:    :+:   */
+/*   ts_spn.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 10:48:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/06 19:40:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:20:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	ts_spn(void)
 	if (ft_strspn("Hello World", "o") != 0)
 		return (1);
 	if (ft_strspn("Hello World", "z") != 0)
-		return (1);
+		return (2);
 	if (ft_strspn("Hello World", "H") != 1)
-		return (1);
+		return (3);
 	if (ft_strspn("Hello World", "d") != 0)
-		return (1);
+		return (4);
 	if (ft_strspn("Hello World", "Helo Wrd") != 11)
-		return (1);
+		return (5);
 	return (EXIT_SUCCESS);
 }
 /*

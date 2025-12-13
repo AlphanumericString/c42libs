@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:57:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:08:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:22:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	test_string_roffset(void)
 		return (2);
 	c = '@';
 	if (ft_string_roffset(str, c) != -1)
-		return (4);
+		return (3);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tdl_dlist_sizers.c                                 :+:      :+:    :+:   */
+/*   tdl_sizers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:09:18 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:05:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:54:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	tdl_size(void)
 	if (size_ret[0] != 0)
 		return (1);
 	else if (size_ret[1] != 1)
-		return (1);
+		return (2);
 	else if (size_ret[2] != 2)
-		return (1);
+		return (3);
 	ft_dl_clear(&list, ft_free);
 	return (EXIT_SUCCESS);
 }

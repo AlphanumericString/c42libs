@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tll_list_sizers.c                                  :+:      :+:    :+:   */
+/*   tll_sizers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:43:28 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:06:10 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:58:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	t_ll_size(void)
 	if (size_ret[0] != 0)
 		return (1);
 	if (size_ret[1] != 1)
-		return (1);
+		return (2);
 	if (size_ret[2] != 2)
-		return (1);
+		return (3);
 	ft_ll_clear(&list, ft_free);
 	return (EXIT_SUCCESS);
 }
@@ -57,9 +57,9 @@ int	t_ll_size_match(void)
 	if (size_ret[0] != 0)
 		return (1);
 	if (size_ret[1] != 1)
-		return (1);
+		return (2);
 	if (size_ret[2] != 0)
-		return (1);
+		return (3);
 	ft_ll_clear(&list, ft_free);
 	return (EXIT_SUCCESS);
 }

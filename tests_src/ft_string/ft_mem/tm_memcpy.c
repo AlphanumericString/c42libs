@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 12:22:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:04:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_string.h"
 #include "tests/str__mem_tests.h"
 
-// last ft_memcpy is a test to check that we do nothing on 
+// last ft_memcpy is a test to check that we do nothing on
 // dst if src and dst are the same otherwise it will segfault
 int	tm_memcpy(void)
 {

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:56 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:06:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 22:02:16 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	tm_round(void)
 		return (1);
 	x = 42.52;
 	if (ft_round(x) != 43)
-		return (1);
+		return (2);
 	x = 42.499;
 	if (ft_round(x) != 42)
-		return (1);
+		return (3);
 	x = 42.5;
 	if (ft_round(x) != 43)
-		return (1);
+		return (4);
 	return (EXIT_SUCCESS);
 }
 /*

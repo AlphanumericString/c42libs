@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:46:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:06:19 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 22:01:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ int	tm_clamp(void)
 		return (1);
 	x = 21;
 	if (ft_clamp(x, min, max) != min)
-		return (1);
+		return (2);
 	x = 42;
 	if (ft_clamp(x, min, max) != max)
-		return (1);
+		return (3);
 	x = 84;
 	if (ft_clamp(x, min, max) != max)
-		return (1);
+		return (4);
 	x = 23;
 	if (ft_clamp(x, min, max) != x)
-		return (1);
+		return (5);
 	return (EXIT_SUCCESS);
 }
 
@@ -49,16 +49,16 @@ int	tm_clamp_f(void)
 		return (1);
 	x = 21;
 	if (ft_clamp_f(x, min, max) != min)
-		return (1);
+		return (2);
 	x = 42;
 	if (ft_clamp_f(x, min, max) != max)
-		return (1);
+		return (3);
 	x = 84;
 	if (ft_clamp_f(x, min, max) != max)
-		return (1);
+		return (4);
 	x = 23;
 	if (ft_clamp_f(x, min, max) != x)
-		return (1);
+		return (5);
 	return (EXIT_SUCCESS);
 }
 
@@ -73,16 +73,16 @@ int	tm_clamp_d(void)
 		return (1);
 	x = 21;
 	if (ft_clamp_d(x, min, max) != min)
-		return (1);
+		return (2);
 	x = 42;
 	if (ft_clamp_d(x, min, max) != max)
-		return (1);
+		return (3);
 	x = 84;
 	if (ft_clamp_d(x, min, max) != max)
-		return (1);
+		return (4);
 	x = 23;
 	if (ft_clamp_d(x, min, max) != x)
-		return (1);
+		return (5);
 	return (EXIT_SUCCESS);
 }
 /*

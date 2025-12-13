@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:21:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:06:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 22:02:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	tm_powd(void)
 		return (1);
 	y = 0;
 	if (ft_pow_d(x, y) != 1)
-		return (1);
+		return (2);
 	y = 1;
 	if (ft_pow_d(x, y) != 2)
-		return (1);
+		return (3);
 	if (ft_pow_d(0, y) != 0)
-		return (1);
+		return (4);
 	return (EXIT_SUCCESS);
 }
 
@@ -45,12 +45,12 @@ int	tm_pow(void)
 		return (1);
 	y = 0;
 	if (ft_pow(x, y) != 1)
-		return (1);
+		return (2);
 	y = 1;
 	if (ft_pow(x, y) != 2)
-		return (1);
+		return (3);
 	if (ft_pow(0, y) != 0)
-		return (1);
+		return (4);
 	return (EXIT_SUCCESS);
 }
 /*

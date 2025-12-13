@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 10:00:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/30 10:00:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:28:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	tca_atr(void)
 	if (ft_strcmp(arr[0], "HELLO") != 0
 		|| ft_strcmp(arr[1], "WORLD") != 0
 		|| ft_strcmp(arr[2], "42") != 0)
-		return (ft_afree((void **)arr), 1);
+		return (ft_afree((void **)arr), 2);
 	return (ft_afree((void **)arr), 0);
 }
 

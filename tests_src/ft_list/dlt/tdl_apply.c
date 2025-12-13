@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tdl_dlist_apply.c                                  :+:      :+:    :+:   */
+/*   tdl_apply.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:55:36 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:03:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:51:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	tdl_apply_range(void)
 	if (ft_dl_size(list) != 2)
 		return (1);
 	else if (*(int *)list->data != 84 || *(int *)list->next->data != 21)
-		return (1);
+		return (2);
 	return (ft_dl_clear(&list, ft_free), 0);
 }
 
@@ -61,7 +61,7 @@ int	tdl_apply_range_node(void)
 	if (ft_dl_size(list) != 2)
 		return (1);
 	else if (*(int *)list->data != 84 || *(int *)list->next->data != 21)
-		return (1);
+		return (2);
 	return (ft_dl_clear(&list, ft_free), 0);
 }
 /*

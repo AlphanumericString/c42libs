@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:21:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/29 11:31:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:08:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	tm_memrev(void)
 	i = 0;
 	while (off < inf.nmemb)
 		if (arr[off++] != (char)inf.nmemb - 1 - i++)
-			return (1);
+			return (2);
 	return (EXIT_SUCCESS);
 }
 

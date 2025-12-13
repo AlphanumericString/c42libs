@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/07/27 16:17:47 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:13:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ int	tsp_putunbr_base(void)
 	if (ft_putunbr_base_fd(default_nbr, FT_DECBASE, -3) != -1
 		|| ft_putunbr_base_fd(default_nbr, FT_DECBASE, 999) != -1
 		|| ft_putunbr_base_fd(default_nbr, FT_DECBASE, unopen_fd) != -1)
-		return (3);
+		return (2);
 	if (ft_putunbr_base_fd(default_nbr, NULL, STDOUT_FILENO) != -1
 		|| ft_putunbr_base_fd(default_nbr, "", STDOUT_FILENO) != -1
 		|| ft_putunbr_base_fd(default_nbr, "+abc", STDOUT_FILENO) != -1
 		|| ft_putunbr_base_fd(default_nbr, "01234567890", STDOUT_FILENO) != -1)
-		return (4);
+		return (3);
 	return (EXIT_SUCCESS);
 }
 /*

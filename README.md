@@ -14,58 +14,6 @@ norminette 3.3.58, Python 3.12.9, Linux-6.12.26-x86_64-with-glibc2.40
 github link to norminette:
 https://github.com/42school/norminette
 
-## contained libraries
-
-### ft_string
-
-The **ft_string** module contains all basic operations one should expect of
-string.h header with some extra such as ft_gnl, ft_strreplace.
-This module also contains t_string operations.
-A t_string is a smart implementation of a string keeping both the size of the
-allocated memory block and the size of the string in memory.
-This module also contains memory operations.
-The memory operation include some basics such as memcpy but also some more
-advanced such as memmap.
-
-### ft_list
-
-The **ft_list** module contains all basic operations one should expect of a
-linked list library with support for:
-    -simply linked list
-    -doubly linked list
-    -doubly linked circular list
-
-
-### ft_vector
-
-The **ft_vector** module contains all basic operations one should expect of a
-vector library.
-WARNING: THIS IS NOT A MATH VECTOR BUT A C++ VECTOR.
-This is basically a smart array.
-
-### ft_map
-
-The **ft_map** module provides a basic implementation of maps in c.
-The t_map type is generic and uses void * keys and values.
-
-### ft_optional
-
-The **ft_optional** module provides a basic implementation of optional in c.
-The t_optional type is generic.
-
-### ft_pair
-
-The **ft_pair** module contains all basic operations one should expect of a
-pair type.
-This is basically a c++ pair implemented using `void *`.
-
-### ft_args
-
-The **ft_args** module provides a basic implementation of arguments parser in
-c.
-It also can set and hold ac, av, ev.
-
-
 ## Usage
 
 Does **NOT** follow the define xxx_IMPLEMENTATION and #include xxx convention.

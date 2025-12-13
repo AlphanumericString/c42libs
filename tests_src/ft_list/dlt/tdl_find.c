@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tdl_dlist_find.c                                   :+:      :+:    :+:   */
+/*   tdl_find.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:01:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:03:38 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:52:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	tdl_find(void)
 	if (ft_dl_size(found_ret[0]) != 1 || found_ret[0]->data != data2)
 		return (1);
 	else if (found_ret[1])
-		return (1);
+		return (2);
 	else if (ft_dl_size(found_ret[2]) != 1 || found_ret[2]->data != data2)
-		return (1);
+		return (3);
 	return (ft_dl_clear(&list, ft_free), free(data3), 0);
 }
 /*

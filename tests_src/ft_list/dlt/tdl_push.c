@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tdl_dlist_push.c                                   :+:      :+:    :+:   */
+/*   tdl_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:07:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:05:24 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:53:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ int	tdl_pop_back(void)
 	if (!list)
 		return (1);
 	else if (data3 != data2)
-		return (1);
+		return (2);
 	data3 = ft_dl_pop_back(&list);
 	if (list)
-		return (1);
+		return (3);
 	else if (data3 != data1)
-		return (1);
+		return (4);
 	data3 = ft_dl_pop_back(NULL);
 	if (data3)
-		return (1);
+		return (5);
 	data3 = ft_dl_pop_back(&list);
 	if (data3)
-		return (1);
+		return (6);
 	ft_free(data1);
 	ft_free(data2);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:46:50 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:06:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 22:01:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	tm_complex_addl(void)
 		return (1);
 	res = ft_complex_addl(y, 42);
 	if (res.real != 42 || res.imaginary != 84)
-		return (1);
+		return (2);
 	return (EXIT_SUCCESS);
 }
 
@@ -60,7 +60,7 @@ int	tm_complex_mull(void)
 		return (1);
 	res = ft_complex_mull(y, 2);
 	if (res.real != 0 || res.imaginary != 84)
-		return (1);
+		return (2);
 	return (EXIT_SUCCESS);
 }
 
@@ -75,7 +75,7 @@ int	tm_complex_muld(void)
 		return (1);
 	res = ft_complex_muld(y, 2.5);
 	if (res.real != 0 || res.imaginary != 105)
-		return (1);
+		return (2);
 	return (EXIT_SUCCESS);
 }
 /*

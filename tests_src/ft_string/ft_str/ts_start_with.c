@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ts_strstart_with.c                                 :+:      :+:    :+:   */
+/*   ts_start_with.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 10:49:38 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/06 19:40:30 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:20:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	ts_start_with(void)
 	if (ft_strstart_with("Hello World", "Hello") != 1)
 		return (1);
 	if (ft_strstart_with("Hello World", "Hello!") != 0)
-		return (1);
+		return (2);
 	if (ft_strstart_with("Hello World", "World") != 0)
-		return (1);
+		return (3);
 	if (ft_strstart_with("Hello World", "Hello World") != 1)
-		return (1);
+		return (4);
 	if (ft_strstart_with("Hello World", "Hello World!") != 0)
-		return (1);
+		return (5);
 	return (EXIT_SUCCESS);
 }
 /*

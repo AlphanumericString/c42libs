@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 01:50:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/07/03 01:54:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:27:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ int	tca_anmap(void)
 		return (ft_afree(result), 2);
 	if (ft_anmap(NULL, 1, (t_data_tr)ft_strdup) != NULL
 		|| ft_anmap((t_const_arr)arr, 1, NULL) != NULL)
-		return (2);
+		return (3);
 	ft_afree(result);
 	result = ft_anmap((t_const_arr)arr, 0, (t_data_tr)ft_strdup);
 	if (!result || ft_alen((t_const_arr)result) != 0)
-		return (ft_afree(result), 3);
+		return (ft_afree(result), 4);
 	return (ft_afree(result), mt_tcaanmap());
 }
 /*

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:21:33 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:06:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:59:10 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ int	tmap_hash(void)
 	ret = ft_hash_sdbm("key", ft_strlen("key"));
 	ret2 = ft_hash_sdbm("key2", ft_strlen("key2"));
 	if (ret == ret2)
-		return (1);
+		return (2);
 	ret = ft_hash_fnv1a("key", ft_strlen("key"));
 	ret2 = ft_hash_fnv1a("key2", ft_strlen("key2"));
 	if (ret == ret2)
-		return (1);
+		return (3);
 	ret = ft_hash_dummy("key", ft_strlen("key"));
 	ret2 = ft_hash_dummy("key2", ft_strlen("key2"));
 	if (ret == ret2)
-		return (1);
+		return (4);
 	return (EXIT_SUCCESS);
 }
 /*

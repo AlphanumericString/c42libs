@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tll_list_apply.c                                   :+:      :+:    :+:   */
+/*   tll_apply.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:18:39 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:05:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:55:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	t_ll_apply(void)
 	ft_ll_apply(list, NULL);
 	if (!list || !list->next || list->next->next
 		|| *(int *)list->data != data4 || *(int *)list->next->data != data3)
-		return (1);
+		return (2);
 	ft_ll_clear(&list, ft_free);
 	return (EXIT_SUCCESS);
 }
@@ -52,16 +52,16 @@ int	t_ll_apply_range(void)
 	if (*(int *)list->data != data3)
 		return (1);
 	else if (ft_ll_size(list) != 2)
-		return (1);
+		return (2);
 	else if (*(int *)list->next->data != 21)
-		return (1);
+		return (3);
 	ft_ll_apply_range(list, list->next, NULL);
 	if (ft_ll_size(list) != 2)
-		return (1);
+		return (4);
 	else if (*(int *)list->data != data3)
-		return (1);
+		return (5);
 	else if (*(int *)list->next->data != 21)
-		return (1);
+		return (5);
 	ft_ll_apply_range(NULL, NULL, add42);
 	ft_ll_clear(&list, ft_free);
 	return (EXIT_SUCCESS);
@@ -82,7 +82,7 @@ int	t_ll_apply_range_node(void)
 	ft_ll_apply_range_node(list, list->next, NULL);
 	if (*(int *)list->data != data3 || !list->next
 		|| *(int *)list->next->data != 21 || list->next->next)
-		return (1);
+		return (2);
 	ft_ll_apply_range_node(NULL, NULL, lnode_add42);
 	ft_ll_clear(&list, ft_free);
 	return (EXIT_SUCCESS);

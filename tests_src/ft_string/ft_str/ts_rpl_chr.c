@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:13:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/18 11:25:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:19:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ts_rplchr(void)
 	res = ft_strrpl_chr(str, 'o', '\0');
 	if (ft_strcmp(res, "Hell") != 0 || ft_strcmp(res + 5, " W") != 0
 		|| ft_strcmp(res + 8, "rld!") != 0)
-		return (4);
+		return (2);
 	ft_free(res);
 	return (EXIT_SUCCESS);
 }

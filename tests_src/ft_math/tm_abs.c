@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:20:34 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:06:18 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:59:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	tm_abs_l(void)
 		return (1);
 	x = 42;
 	if (ft_abs_l(x) != 42)
-		return (1);
+		return (2);
 	x = 0;
 	if (ft_abs_l(x) != 0)
-		return (1);
+		return (3);
 	return (EXIT_SUCCESS);
 }
 
@@ -40,10 +40,10 @@ int	tm_abs_ssize(void)
 		return (1);
 	x = 42;
 	if (ft_abs_ssize_t(x) != 42)
-		return (1);
+		return (2);
 	x = 0;
 	if (ft_abs_ssize_t(x) != 0)
-		return (1);
+		return (3);
 	return (EXIT_SUCCESS);
 }
 
@@ -56,10 +56,10 @@ int	tm_abs(void)
 		return (1);
 	x = 42;
 	if (ft_abs(x) != 42)
-		return (1);
+		return (2);
 	x = 0;
 	if (ft_abs(x) != 0)
-		return (1);
+		return (3);
 	return (EXIT_SUCCESS);
 }
 /*

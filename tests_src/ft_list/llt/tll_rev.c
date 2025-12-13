@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tll_list_rev.c                                     :+:      :+:    :+:   */
+/*   tll_rev.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:40:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:06:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:57:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int	t_ll_rev(void)
 	if (ft_ll_size(list) != 2)
 		return (1);
 	else if (rev->data != data2)
-		return (1);
+		return (2);
 	else if (rev->next->data != data)
-		return (1);
+		return (3);
 	ft_ll_clear(&rev, ft_free);
 	rev = NULL;
 	rev = ft_ll_rev(NULL);
 	if (rev || ft_ll_rev(&rev))
-		return (1);
+		return (4);
 	return (EXIT_SUCCESS);
 }
 /*

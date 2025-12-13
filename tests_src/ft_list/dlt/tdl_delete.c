@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tdl_dlist_delete.c                                 :+:      :+:    :+:   */
+/*   tdl_delete.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:01:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:03:37 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:52:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	tdl_delete_self(void)
 	ft_dl_add_back(&list, ft_dl_create(data2));
 	ft_dl_delete_self(list->next, ft_free);
 	if (list->next || list->data != data3)
-		return (1);
+		return (2);
 	return (ft_dl_clear(&list, ft_free), ft_dl_delete_self(NULL, NULL),
 		ft_dl_delete_self(ft_dl_create(data3), NULL), 0);
 }
@@ -84,8 +84,7 @@ int	tdl_delete_range(void)
 		|| *(int *)list2->next->data != *data_array[2])
 		return (2);
 	ft_dl_clear(&list2, ft_free);
-	ft_dl_delete_range(NULL, NULL, ft_free);
-	return (EXIT_SUCCESS);
+	return (ft_dl_delete_range(NULL, NULL, ft_free), EXIT_SUCCESS);
 }
 
 int	tdl_delete(void)

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:15:20 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:03:47 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	error_case(void)
 	malice_fd = 999;
 	ret = ft_fd_to_buff(malice_fd);
 	if (ret)
-		return (3);
+		return (2);
 	return (EXIT_SUCCESS);
 }
 
