@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
 #include "ft_mem.h"
 #include "ft_vector.h"
 
@@ -24,6 +23,8 @@ bool	ft_vec_shrink(t_vector *vec)
 	size_t			new_size;
 	void			*data_empl;
 
+	if (!vec)
+		return (false);
 	if (!vec->s_e || curr_size >= vec->cappacity || !vec->data)
 		return (false);
 	new_size = curr_size;

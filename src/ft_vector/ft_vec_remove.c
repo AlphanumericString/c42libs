@@ -18,7 +18,7 @@
 
 void	ft_vec_remove(t_vector *vec, size_t idx, t_data_apply del)
 {
-	if (!vec->n_e || !vec->s_e || idx >= vec->n_e)
+	if (!vec || !vec->n_e || !vec->s_e || idx >= vec->n_e)
 		return ;
 	if (del)
 		del(ft_vec_at(vec, idx));
@@ -35,7 +35,7 @@ void	ft_vec_filterout(t_vector *vec, t_data_is func, t_data_apply del)
 	size_t	i;
 	size_t	j;
 
-	if (vec->n_e == 0 || vec->s_e == 0)
+	if (!vec || vec->n_e == 0 || vec->s_e == 0)
 		return ;
 	i = 0;
 	while (i < vec->n_e)
@@ -59,7 +59,7 @@ void	ft_vec_nremove(t_vector *vec, size_t start, size_t nb_todel,
 	size_t	i;
 
 	i = 0;
-	if (!vec->n_e || !vec->s_e || start > vec->n_e || !nb_todel)
+	if (!vec || !vec->n_e || !vec->s_e || start > vec->n_e || !nb_todel)
 		return ;
 	if ((start + nb_todel) >= vec->n_e)
 	{

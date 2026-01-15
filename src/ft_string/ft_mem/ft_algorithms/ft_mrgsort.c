@@ -69,7 +69,7 @@ void	*ft_mrgsort_r(void *data, t_arrinfo infos, t_data_cmp cmp, void *buff)
 {
 	t_minfo	merge;
 
-	if (infos.nmemb < 2 || infos.sz < 1)
+	if (infos.nmemb < 2 || infos.sz < 1 || !data)
 		return (data);
 	merge.anf.buf = buff;
 	merge.anf.cmp = cmp;
@@ -89,7 +89,7 @@ void	*ft_mrgsort(void *data, t_arrinfo infos, t_data_cmp cmp, int flag)
 	void				*ret;
 
 	buffer = NULL;
-	if (ord == FT_SORT_ORD_UNO)
+	if (ord == FT_SORT_ORD_UNO || !data)
 		return (data);
 	if (ord == FT_SORT_ORD_DES)
 		return (ft_memnrev(ft_mrgsort(data, infos, cmp, FT_SORT_ORD_ASC),

@@ -14,13 +14,15 @@
 
 size_t	ft_vec_inuse(const t_vector *vec)
 {
+	if (!vec)
+		return (0);
 	return (vec->n_e * vec->s_e);
 }
 
 // return elem n
 void	*ft_vec_at(const t_vector *restrict vec, size_t n)
 {
-	if (n >= vec->n_e)
+	if (!vec || n >= vec->n_e)
 		return (NULL);
 	return (vec->data + (vec->s_e * n));
 }

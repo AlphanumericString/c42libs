@@ -102,7 +102,7 @@ size_t	*ft_sbcksort(size_t *data, size_t nb_elem, int flags)
 	size_t			*bk_idx;
 	size_t			i;
 
-	if (nb_elem < 2 || k < 2)
+	if (nb_elem < 2 || k < 2 || !data)
 		return (data);
 	buckets = (size_t **)ft_aalloc(k, nb_elem, sizeof(size_t));
 	bk_idx = ft_calloc(k, sizeof(size_t));

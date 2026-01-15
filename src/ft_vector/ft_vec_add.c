@@ -15,7 +15,7 @@
 
 bool	ft_vec_add(t_vector *vec, const void *data)
 {
-	if (!vec->s_e)
+	if (!vec || !data || !vec->s_e)
 		return (false);
 	if ((ft_vec_inuse(vec) + vec->s_e) > vec->cappacity)
 		if (!ft_vec_reserve(vec, vec->cappacity * 2))

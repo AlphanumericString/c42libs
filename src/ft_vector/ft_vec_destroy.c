@@ -16,13 +16,15 @@
 
 bool	ft_vec_destroy(t_vector **vec)
 {
-	if (!*vec)
+	if (!vec || !*vec)
 		return (false);
 	return (ft_vec_delete(*vec), *vec = NULL, true);
 }
 
 bool	ft_vec_delete(t_vector *vec)
 {
+	if (!vec)
+		return (false);
 	if (vec->data)
 		ft_free(vec->data);
 	ft_free(vec);

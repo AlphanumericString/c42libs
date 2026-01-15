@@ -17,7 +17,7 @@ void	*ft_vec_pop(t_vector *vec)
 {
 	void	*ret;
 
-	if (!vec->n_e || !vec->s_e)
+	if (!vec || !vec->n_e || !vec->s_e)
 		return (NULL);
 	ret = ft_vec_at(vec, vec->n_e - 1);
 	vec->n_e--;

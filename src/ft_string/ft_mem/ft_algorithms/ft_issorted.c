@@ -12,16 +12,16 @@
 
 #include "ft_algorithms.h"
 
-bool	ft_is_sorted(void *array, size_t nmb, size_t size, t_data_cmp cmp)
+bool	ft_is_sorted(void *data, size_t nmb, size_t size, t_data_cmp cmp)
 {
 	size_t	i;
 
-	if (nmb < 2 || !size)
+	if (nmb < 2 || !size || !data)
 		return (true);
 	i = 1;
 	while (i < nmb)
 	{
-		if (cmp(array + (i - 1) * size, array + i * size) > 0)
+		if (cmp(data + (i - 1) * size, data + i * size) > 0)
 			return (false);
 		i++;
 	}

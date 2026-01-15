@@ -37,7 +37,7 @@ void	*ft_isrtsort_b(void *data, const t_arrinfo infos, t_data_cmp cmp,
 	size_t				i_place;
 	size_t				i;
 
-	if (infos.nmemb < 2 || infos.sz < 1)
+	if (infos.nmemb < 2 || infos.sz < 1 || !data)
 		return (data);
 	i = 1;
 	i_place = 0;
@@ -62,7 +62,7 @@ void	*ft_isrtsort(void *data, const t_arrinfo infos, t_data_cmp cmp, int flg)
 	const t_sort_order	ord = flg & FT_SORT_ORD_MASK;
 	void				*tmp;
 
-	if (infos.nmemb < 2 || infos.sz < 1 || ord == FT_SORT_ORD_UNO)
+	if (infos.nmemb < 2 || infos.sz < 1 || ord == FT_SORT_ORD_UNO || !data)
 		return (data);
 	if (ord == FT_SORT_ORD_DES)
 		return (ft_memnrev(ft_isrtsort(data, infos, cmp, FT_SORT_ORD_ASC),

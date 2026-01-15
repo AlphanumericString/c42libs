@@ -18,7 +18,7 @@ bool	ft_vec_cat(t_vector *vec_a, const t_vector *vec_b)
 	bool	ret;
 
 	ret = true;
-	if (vec_a->s_e != vec_b->s_e)
+	if (!vec_a || !vec_b || vec_a->s_e != vec_b->s_e)
 		return (false);
 	if (vec_a->cappacity < (ft_vec_inuse(vec_a) + ft_vec_inuse(vec_b)))
 		ret = ft_vec_reserve(vec_a, vec_a->cappacity + ft_vec_inuse(vec_b));

@@ -15,7 +15,8 @@
 
 void	ft_vec_reverse(t_vector *vec)
 {
-	ft_memnrev(vec->data, vec->n_e, vec->s_e);
+	if (vec)
+		ft_memnrev(vec->data, vec->n_e, vec->s_e);
 }
 /*
 GPL-3.0 License:
