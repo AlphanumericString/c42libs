@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:19:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/07 23:19:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:40:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,33 @@ int	ft_cmp_ptr(const void *a, const void *b)
 
 int	ft_cmp_int_p(const void *a, const void *b)
 {
-	const bool	eq = *(int *)a == *(int *)b;
-	bool		lt;
-
-	if (eq)
+	if (!a || !b)
+		return ((b == NULL) * 1 - (a == NULL) * 1);
+	if (*(int *)a == *(int *)b)
 		return (0);
-	lt = *(int *)a < *(int *)b;
-	if (lt)
+	if (*(int *)a < *(int *)b)
 		return (-1);
 	return (1);
 }
 
 int	ft_cmp_szt_p(const void *a, const void *b)
 {
-	const bool	eq = *(size_t *)a == *(size_t *)b;
-	bool		lt;
-
-	if (eq)
+	if (!a || !b)
+		return ((b == NULL) * 1 - (a == NULL) * 1);
+	if (*(size_t *)a == *(size_t *)b)
 		return (0);
-	lt = *(size_t *)a < *(size_t *)b;
-	if (lt)
+	if (*(size_t *)a < *(size_t *)b)
 		return (-1);
 	return (1);
 }
 
 int	ft_cmp_sszt_p(const void *a, const void *b)
 {
-	const bool	eq = *(ssize_t *)a == *(ssize_t *)b;
-	bool		lt;
-
-	if (eq)
+	if (!a || !b)
+		return ((b == NULL) * 1 - (a == NULL) * 1);
+	if (*(ssize_t *)a == *(ssize_t *)b)
 		return (0);
-	lt = *(ssize_t *)a < *(ssize_t *)b;
-	if (lt)
+	if (*(ssize_t *)a < *(ssize_t *)b)
 		return (-1);
 	return (1);
 }

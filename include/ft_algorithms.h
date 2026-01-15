@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:01:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/01/15 14:22:22 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:29:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,9 @@ void		*ft_mrgsort(void *data, t_arrinfo info, t_data_cmp cmp, int flag);
 /// @param cmp comparison function
 /// @warning Do not use. Not implemented fully.
 void		ft_qsort(void *array, size_t nmb, size_t size, t_data_cmp cmp);
-bool		ft_is_sorted(void *array, size_t nmb, size_t size,
-				t_data_cmp cmp);
-void		*ft_getmax(const void *data, t_arrinfo infos,
-				t_data_cmp cmp);
-void		*ft_getmin(const void *data, t_arrinfo infos,
-				t_data_cmp cmp);
+bool		ft_is_sorted(void *array, size_t nmb, size_t size, t_data_cmp cmp);
+void		*ft_getmax(const void *data, t_arrinfo infos, t_data_cmp cmp);
+void		*ft_getmin(const void *data, t_arrinfo infos, t_data_cmp cmp);
 
 #endif // !FT_ALGORITHMS_H
 /*
