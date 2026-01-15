@@ -53,7 +53,7 @@ t_vector	*ft_vec_from_array(const void *data_src, size_t nmemb,
 {
 	t_vector	*ret;
 
-	if (!nmemb || !elem_size)
+	if (!nmemb || !elem_size || !data_src)
 		return (NULL);
 	ret = ft_vec_from_size(nmemb * elem_size);
 	if (!ret)
@@ -70,7 +70,7 @@ t_vector	*ft_vec_convert_alloccarray(void *data, size_t nmemb, size_t e_size)
 {
 	t_vector	*ret;
 
-	if (!nmemb || !e_size)
+	if (!nmemb || !e_size || !data)
 		return (NULL);
 	ret = ft_calloc(sizeof(t_vector), 1);
 	if (!ret)

@@ -24,7 +24,7 @@ size_t	ft_binsrch(const void *data, const t_arrinfo infos, const void *elem,
 	const char		*mid_elem;
 	int				ret;
 
-	if (nb_elem == 0 || e_size == 0)
+	if (nb_elem == 0 || e_size == 0 || !data)
 		return (0);
 	mid_elem = byte_data + ((nb_elem - 1) / 2) * e_size;
 	ret = cmp(mid_elem, elem);

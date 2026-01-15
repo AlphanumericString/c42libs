@@ -17,7 +17,7 @@
 // or for a good enough compromise ft_bzero(vec->data, ft_vec_inuse(vec));
 void	ft_vec_clear(t_vector *vec)
 {
-	if (!vec->n_e)
+	if (!vec || !vec->n_e)
 		return ;
 	ft_bzero(vec->data, ft_vec_inuse(vec));
 	vec->n_e = 0;

@@ -36,7 +36,7 @@ void	*ft_bblsort(void *data, const t_arrinfo infos, t_data_cmp cmp, int flg)
 	const t_sort_order	order = (flg & FT_SORT_ORD_MASK);
 	size_t				i;
 
-	if (nb < 2 || se == 0 || order == FT_SORT_ORD_UNO)
+	if (nb < 2 || se == 0 || order == FT_SORT_ORD_UNO || !data)
 		return ((void *)data);
 	i = 1;
 	while (i < nb)

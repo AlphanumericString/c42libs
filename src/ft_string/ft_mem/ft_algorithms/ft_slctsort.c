@@ -22,7 +22,7 @@ void	*ft_slctsort(void *data, const t_arrinfo infos,
 	void				*elem;
 	size_t				i;
 
-	if (ord == FT_SORT_ORD_UNO || infos.sz == 0 || infos.nmemb < 2)
+	if (ord == FT_SORT_ORD_UNO || infos.sz == 0 || infos.nmemb < 2 || !data)
 		return (data);
 	i = 0;
 	while (i != infos.nmemb - 1)

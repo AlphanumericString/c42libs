@@ -18,7 +18,7 @@ void	*ft_getmin(const void *data, t_arrinfo infos, t_data_cmp cmp)
 	size_t	i;
 	size_t	min;
 
-	if (!infos.nmemb || !infos.sz)
+	if (!infos.nmemb || !infos.sz || !data)
 		return (NULL);
 	min = 0;
 	i = 0;

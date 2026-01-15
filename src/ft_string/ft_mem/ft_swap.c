@@ -74,6 +74,8 @@ void	ft_swap_ptr(void **a, void **b)
 
 void	ft_swap_xor(void *a, void *b, size_t size)
 {
+	if (!a || !b)
+		return ;
 	xor_nst(a, b, size);
 	xor_nst(b, a, size);
 	xor_nst(a, b, size);
@@ -85,7 +87,7 @@ void	ft_swap(void *a, void *b, size_t size)
 	void	*tmp;
 
 	tmp = medium_buffer;
-	if (a == b || size == 0)
+	if (!a || !b || a == b || size == 0)
 		return ;
 	if (!(a + size > b && a < b + size))
 		return (ft_swap_xor(a, b, size), (void)0);

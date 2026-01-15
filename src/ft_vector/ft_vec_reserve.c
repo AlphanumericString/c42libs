@@ -19,6 +19,8 @@ bool	ft_vec_reserve(t_vector *vec, size_t size)
 	void	*data_empl;
 	size_t	tmp;
 
+	if (!vec)
+		return (false);
 	if (vec->cappacity > size)
 		return (true);
 	tmp = FT_VECTOR_BASE_LEN;

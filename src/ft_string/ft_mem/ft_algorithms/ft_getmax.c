@@ -18,10 +18,10 @@ void	*ft_getmax(const void *data, t_arrinfo infos, t_data_cmp cmp)
 	size_t	i;
 	size_t	max;
 
+	if (!infos.nmemb || !infos.sz || !data)
+		return (NULL);
 	i = 0;
 	max = 0;
-	if (infos.nmemb < 1 || infos.sz < 1)
-		return (NULL);
 	while (i < infos.nmemb)
 	{
 		if (cmp(data + i * infos.sz, data + max * infos.sz) > 0)

@@ -23,7 +23,7 @@ t_vector	*ft_vec_map(const t_vector *restrict vec, const t_data_apply func)
 	size_t		i;
 
 	i = 0;
-	if (vec->n_e == 0 || vec->s_e == 0 || vec->data == NULL)
+	if (vec->n_e == 0 || vec->s_e == 0 || vec->data == NULL || !vec || !func)
 		return (NULL);
 	data_ = ft_calloc(vec->n_e, vec->s_e);
 	if (!data_)

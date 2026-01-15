@@ -19,10 +19,11 @@ void	*ft_vec_to_array(t_vector **vec)
 	void	*array;
 
 	array = NULL;
-	if (*vec)
+	if (vec && *vec)
+	{
 		array = (*vec)->data;
-	if (*vec)
 		ft_free_clear((void **)vec);
+	}
 	return (array);
 }
 /*

@@ -13,20 +13,20 @@
 #include "types/ft_vector_types.h"
 #include "ft_vector.h"
 
-void	*ft_vec_find(const t_vector *restrict vector,
+void	*ft_vec_find(const t_vector *restrict vec,
 			const void *restrict key, const t_data_cmp cmp)
 {
 	size_t	i;
+	void	*elem;
 
-	if (!vector->s_e || !vector->n_e || !vector->data)
+	if (!vec || !vec->s_e || !vec->n_e || !vec->data)
 		return (NULL);
 	i = 0;
-	while (i < vector->n_e)
+	while (i < vec->n_e)
 	{
-		if (key == ft_vec_at(vector, i) || (cmp
-				&& cmp(ft_vec_at(vector, i), key) == 0))
-			return (ft_vec_at(vector, i));
-		i++;
+		elem = ft_vec_at(vec, i++);
+		if (key == elem || (cmp && cmp(elem, key) == 0))
+			return (elem);
 	}
 	return (NULL);
 }
