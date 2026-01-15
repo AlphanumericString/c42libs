@@ -6,14 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:01:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/27 15:15:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:22:22 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ALGORITHMS_H
 # define FT_ALGORITHMS_H
-
-// NOTE: maybe rename to ft_algos.h
 
 // defs -> size_t, ssize_t, NULL, bool ...
 # include "ft_defs.h"
@@ -27,64 +25,49 @@ typedef struct arr_info
 
 // cmp utils
 // rcmp
-int			ft_cmp_rptr(const void *a, const void *b)
-			__attribute__((nonnull(1, 2), hot));
-int			ft_cmp_rint_p(const void *a, const void *b)
-			__attribute__((nonnull(1, 2), hot));
-int			ft_cmp_rszt_p(const void *a, const void *b)
-			__attribute__((nonnull(1, 2), hot));
-int			ft_cmp_rsszt_p(const void *a, const void *b)
-			__attribute__((nonnull(1, 2), hot));
+int			ft_cmp_rptr(const void *a, const void *b);
+int			ft_cmp_rint_p(const void *a, const void *b);
+int			ft_cmp_rszt_p(const void *a, const void *b);
+int			ft_cmp_rsszt_p(const void *a, const void *b);
 // cmp
-int			ft_cmp_ptr(const void *a, const void *b)
-			__attribute__((nonnull(1, 2), hot));
-int			ft_cmp_szt_p(const void *a, const void *b)
-			__attribute__((nonnull(1, 2), hot));
-int			ft_cmp_sszt_p(const void *a, const void *b)
-			__attribute__((nonnull(1, 2), hot));
-int			ft_cmp_int_p(const void *a, const void *b)
-			__attribute__((nonnull(1, 2), hot));
+int			ft_cmp_ptr(const void *a, const void *b);
+int			ft_cmp_szt_p(const void *a, const void *b);
+int			ft_cmp_sszt_p(const void *a, const void *b);
+int			ft_cmp_int_p(const void *a, const void *b);
 
 // srch
 size_t		ft_binsrch(const void *data, const t_arrinfo infos,
-				const void *elem, t_data_cmp cmp)
-			__attribute__((nonnull(1, 4)));
+				const void *elem, t_data_cmp cmp);
 
 // buble sort - dont use.
-ssize_t		*ft_ssbblsort(ssize_t *data, size_t nb_elem, int flags)
-			__attribute__((nonnull(1)));
-size_t		*ft_sbblsort(size_t *data, size_t nb_elem, int flags)
-			__attribute__((nonnull(1)));
+ssize_t		*ft_ssbblsort(ssize_t *data, size_t nb_elem, int flags);
+size_t		*ft_sbblsort(size_t *data, size_t nb_elem, int flags);
 void		*ft_bblsort(void *data, const t_arrinfo i, t_data_cmp cmp,
-				int flags) __attribute__((nonnull(1, 3)));
+				int flags);
 
 // bucket sort - dont use for large collections. great at medium targets.
 size_t		*ft_sbcksort(size_t *data, size_t nb_elem,
-				int flags) __attribute__((nonnull(1)));
+				int flags);
 
 // insertion sort - good for small collections.
-size_t		*ft_sisrtsort(size_t *data, size_t nb_e, int flags)
-			__attribute__((nonnull(1)));
-ssize_t		*ft_ssisrtsort(ssize_t *data, size_t nb_e, int flags)
-			__attribute__((nonnull(1)));
+size_t		*ft_sisrtsort(size_t *data, size_t nb_e, int flags);
+ssize_t		*ft_ssisrtsort(ssize_t *data, size_t nb_e, int flags);
 void		*ft_isrtsort( void *data, const t_arrinfo infos, t_data_cmp cmp,
-				int flags) __attribute__((nonnull(1, 3)));
+				int flags);
 void		*ft_isrtsort_b(void *data, const t_arrinfo infos, t_data_cmp cmp,
-				void *buff) __attribute__((nonnull(1, 3, 4)));
+				void *buff);
 
 // selection sort (aka bblsort wihout the reset to 0 after every swap)
 void		*ft_slctsort(void *data, const t_arrinfo infos, t_data_cmp cmp,
-				int fg) __attribute__((nonnull(1, 3)));
+				int fg);
 
 // shakersort
-void		*ft_shkrsort(void *data, t_arrinfo nf, t_data_cmp cmp, int flag)
-			__attribute__((nonnull(1, 3)));
+void		*ft_shkrsort(void *data, t_arrinfo nf, t_data_cmp cmp, int flag);
 
 // mergesort
 void		*ft_mrgsort_r(void *data, t_arrinfo infos, t_data_cmp cmp,
-				void *buff) __attribute__((nonnull(1, 3, 4)));
-void		*ft_mrgsort(void *data, t_arrinfo info, t_data_cmp cmp, int flag)
-			__attribute__((nonnull(1, 3)));
+				void *buff);
+void		*ft_mrgsort(void *data, t_arrinfo info, t_data_cmp cmp, int flag);
 
 /// @brief sort the memory with the cmp function by chunks of size
 /// @param array pointer to the memory
@@ -92,15 +75,13 @@ void		*ft_mrgsort(void *data, t_arrinfo info, t_data_cmp cmp, int flag)
 /// @param size size of each chunk
 /// @param cmp comparison function
 /// @warning Do not use. Not implemented fully.
-void		ft_qsort(void *array, size_t nmb, size_t size, t_data_cmp cmp)
-			__attribute__((nonnull(1, 4)));
-
+void		ft_qsort(void *array, size_t nmb, size_t size, t_data_cmp cmp);
 bool		ft_is_sorted(void *array, size_t nmb, size_t size,
-				t_data_cmp cmp) __attribute__((nonnull(1, 4)));
+				t_data_cmp cmp);
 void		*ft_getmax(const void *data, t_arrinfo infos,
-				t_data_cmp cmp) __attribute__((nonnull(1, 3)));
+				t_data_cmp cmp);
 void		*ft_getmin(const void *data, t_arrinfo infos,
-				t_data_cmp cmp) __attribute__((nonnull(1, 3)));
+				t_data_cmp cmp);
 
 #endif // !FT_ALGORITHMS_H
 /*

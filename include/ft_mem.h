@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 20:57:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/08 20:57:54 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:21:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,13 @@ void		ft_swap_ptr(void **a, void **b);
 ///	@warning if overlap and n > FT_STD_BUF_SIZE the function will
 ///		try to allocate a temp buffer. allocation might fail and no swap
 ///		will occur.
-void		ft_swap(void *a, void *b, size_t size)
-			__attribute__((nonnull(1, 2), hot));
+void		ft_swap(void *a, void *b, size_t size);
 
 /// @brief swap the memory but uses the xor operation
 /// @param a first memory
 /// @param b second memory
 /// @param size size of the memory to swap
-void		ft_swap_xor(void *a, void *b, size_t size)
-			__attribute__((nonnull(1, 2), hot));
+void		ft_swap_xor(void *a, void *b, size_t size);
 
 /// @brief reverse the memory in chunks of n bytes
 /// @param data start of the memory
