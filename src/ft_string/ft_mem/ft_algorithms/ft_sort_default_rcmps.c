@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_default_cmps.c                             :+:      :+:    :+:   */
+/*   ft_sort_default_rcmps.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:19:23 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/07 23:19:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:37:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,33 @@ int	ft_cmp_rptr(const void *a, const void *b)
 
 int	ft_cmp_rint_p(const void *a, const void *b)
 {
-	const bool	eq = *(int *)b == *(int *)a;
-	bool		lt;
-
-	if (eq)
+	if (!a || !b)
+		return ((b == NULL) * 1 - (a == NULL) * 1);
+	if (*(int *)b == *(int *)a)
 		return (0);
-	lt = *(int *)b < *(int *)a;
-	if (lt)
+	if (*(int *)b < *(int *)a)
 		return (-1);
 	return (1);
 }
 
 int	ft_cmp_rszt_p(const void *a, const void *b)
 {
-	const bool	eq = *(size_t *)b == *(size_t *)a;
-	bool		lt;
-
-	if (eq)
+	if (!a || !b)
+		return ((b == NULL) * 1 - (a == NULL) * 1);
+	if (*(size_t *)b == *(size_t *)a)
 		return (0);
-	lt = *(size_t *)b < *(size_t *)a;
-	if (lt)
+	if (*(size_t *)b < *(size_t *)a)
 		return (-1);
 	return (1);
 }
 
 int	ft_cmp_rsszt_p(const void *a, const void *b)
 {
-	const bool	eq = *(ssize_t *)b == *(ssize_t *)a;
-	bool		lt;
-
-	if (eq)
+	if (!a || !b)
+		return ((b == NULL) * 1 - (a == NULL) * 1);
+	if (*(ssize_t *)b == *(ssize_t *)a)
 		return (0);
-	lt = *(ssize_t *)b < *(ssize_t *)a;
-	if (lt)
+	if (*(ssize_t *)b < *(ssize_t *)a)
 		return (-1);
 	return (1);
 }
