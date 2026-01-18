@@ -29,9 +29,11 @@ int	tv_delete(void)
 	vec = ft_vec_create(sizeof(void *));
 	hold = vec->data;
 	vec->data = NULL;
+	ft_free(hold);
 	if (ft_vec_delete(vec) != true)
 		return (3);
-	ft_free(hold);
+	if (ft_vec_delete(NULL) != false)
+		return (4);
 	return (EXIT_SUCCESS);
 }
 
@@ -52,10 +54,13 @@ int	tv_destroy(void)
 	vec = ft_vec_from_array(a, 3, sizeof(int));
 	data = vec->data;
 	vec->data = NULL;
+	ft_free(data);
 	ret = ft_vec_destroy(&vec);
-	if (vec || !ret)
+	if (vec || !ret || ft_vec_destroy(NULL) != false)
 		return (3);
-	return (ft_free(data), EXIT_SUCCESS);
+	if (ft_vec_destroy(NULL) != false)
+		return (4);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -27,6 +27,9 @@ static int	error_cases(void)
 	v = ft_vec_from_array(ar, 4, 0);
 	if (v)
 		return (EXIT_FAILURE);
+	v = ft_vec_from_array(NULL, 4, 4);
+	if (v)
+		return (EXIT_FAILURE);
 	fp = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	v = ft_vec_from_array(ar, 4, sizeof(*ar));

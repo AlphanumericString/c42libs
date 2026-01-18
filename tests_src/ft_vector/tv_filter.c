@@ -26,6 +26,8 @@ static int	edge(void)
 	if (vec->n_e != 3)
 		return (1);
 	ft_vec_filter(vec, is42, NULL);
+	ft_vec_filter(NULL, is42, NULL);
+	ft_vec_filter(vec, NULL, NULL);
 	if (vec->n_e != 3)
 		return (2);
 	return (ft_vec_destroy(&vec), EXIT_SUCCESS);

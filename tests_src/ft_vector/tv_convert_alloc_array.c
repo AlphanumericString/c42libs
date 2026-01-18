@@ -47,6 +47,18 @@ static int	base_case(void)
 	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 
+static int	error_case(void)
+{
+	int			*arr;
+	t_vector	*vec;
+
+	arr = ft_calloc(3, sizeof(int));
+	vec = ft_vec_convert_alloccarray(NULL, 3, sizeof(int));
+	if (vec)
+		return (ft_free(arr), ft_vec_destroy(&vec), 1 + 8 * 2);
+	return (ft_free(arr), EXIT_SUCCESS);
+}
+
 static int	mt_case(void)
 {
 	int			*arr;
@@ -71,6 +83,9 @@ int	tv_convert_alloc_array(void)
 	if (ret)
 		return (ret);
 	ret = mt_case();
+	if (ret)
+		return (ret);
+	ret = error_case();
 	if (ret)
 		return (ret);
 	return (EXIT_SUCCESS);

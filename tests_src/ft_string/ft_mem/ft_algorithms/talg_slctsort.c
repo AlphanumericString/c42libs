@@ -50,6 +50,8 @@ int	talg_slctsort(void)
 		return (2);
 	randomize_sarr(arr, nf.nmemb, 0, nf.nmemb);
 	ord = FT_SORT_ORD_DES;
+	ft_slctsort(arr, nf, NULL, ord);
+	ft_slctsort(NULL, nf, ft_cmp_szt_p, ord);
 	ft_slctsort(arr, (t_arrinfo){.nmemb = 2, .sz = 0}, ft_cmp_szt_p, ord);
 	ft_slctsort(arr, (t_arrinfo){.nmemb = 0, .sz = 1}, ft_cmp_szt_p, ord);
 	ft_slctsort(arr, (t_arrinfo){.nmemb = 1, .sz = 1}, ft_cmp_szt_p, ord);

@@ -17,22 +17,22 @@
 
 static int	null_cmps_checks(void)
 {
-	if (ft_cmp_int_p(NULL, (int *)0xDEAD) >= 0
-		|| ft_cmp_szt_p(NULL, (size_t *)0xDEAD) >= 0
-		|| ft_cmp_sszt_p(NULL, (ssize_t *)0xDEAD) >= 0)
+	if (ft_cmp_rint_p((int *)0xDEAD, NULL) <= 0
+		|| ft_cmp_rszt_p((size_t *)0xDEAD, NULL) <= 0
+		|| ft_cmp_rsszt_p((ssize_t *)0xDEAD, NULL) <= 0)
 		return (7 * 10);
-	if (ft_cmp_int_p((int *)0xDEAD, NULL) <= 0
-		|| ft_cmp_szt_p((size_t *)0xDEAD, NULL) <= 0
-		|| ft_cmp_sszt_p((ssize_t *)0xDEAD, NULL) <= 0)
+	if (ft_cmp_rint_p(NULL, (int *)0xDEAD) >= 0
+		|| ft_cmp_rszt_p(NULL, (size_t *)0xDEAD) >= 0
+		|| ft_cmp_rsszt_p(NULL, (ssize_t *)0xDEAD) >= 0)
 		return (8 * 10);
-	if (ft_cmp_int_p(NULL, NULL) != 0
-		|| ft_cmp_szt_p(NULL, NULL) != 0
-		|| ft_cmp_sszt_p(NULL, NULL) != 0)
+	if (ft_cmp_rint_p(NULL, NULL) != 0
+		|| ft_cmp_rszt_p(NULL, NULL) != 0
+		|| ft_cmp_rsszt_p(NULL, NULL) != 0)
 		return (9 * 10);
 	return (EXIT_SUCCESS);
 }
 
-static int	void_cmps(void)
+static int	void_rcmps(void)
 {
 	const void	*v_set[] = {0x00, (void *)0xCAFE, (void *)0xDEAD,
 		(void *)0xFFEE, (void *)0xFFFF};
@@ -40,18 +40,18 @@ static int	void_cmps(void)
 
 	i = 0;
 	while (++i < 5 - 1)
-		if (ft_cmp_ptr(&v_set[i - 1], &v_set[i]) >= 0)
+		if (ft_cmp_rptr(&v_set[i - 1], &v_set[i]) <= 0)
 			return (4 * 10 + i);
 	while (--i)
-		if (ft_cmp_ptr(&v_set[i + 1], &v_set[i]) <= 0)
+		if (ft_cmp_rptr(&v_set[i + 1], &v_set[i]) >= 0)
 			return (5 * 10 + i);
 	while (++i < 5)
-		if (ft_cmp_ptr(&v_set[i], &v_set[i]) != 0)
+		if (ft_cmp_rptr(&v_set[i], &v_set[i]) != 0)
 			return (6 * 10);
 	return (null_cmps_checks());
 }
 
-int	talg_cmps(void)
+int	talg_rcmps(void)
 {
 	const int		i_set[] = {-2147483648, 0, 2, 3, 2147483647};
 	const size_t	s_set[] = {FT_SIZE_MIN, 12, 42, 45, FT_SIZE_MAX};
@@ -60,21 +60,21 @@ int	talg_cmps(void)
 
 	i = 0;
 	while (++i < 5 - 1)
-		if (ft_cmp_int_p(&i_set[i - 1], &i_set[i]) >= 0
-			|| ft_cmp_szt_p(&s_set[i - 1], &s_set[i]) >= 0
-			|| ft_cmp_sszt_p(&ss_set[i - 1], &ss_set[i]) >= 0)
+		if (ft_cmp_rint_p(&i_set[i - 1], &i_set[i]) <= 0
+			|| ft_cmp_rszt_p(&s_set[i - 1], &s_set[i]) <= 0
+			|| ft_cmp_rsszt_p(&ss_set[i - 1], &ss_set[i]) <= 0)
 			return (1 * 10 + i);
 	while (--i)
-		if (ft_cmp_int_p(&i_set[i + 1], &i_set[i]) <= 0
-			|| ft_cmp_szt_p(&s_set[i + 1], &s_set[i]) <= 0
-			|| ft_cmp_sszt_p(&ss_set[i + 1], &ss_set[i]) <= 0)
+		if (ft_cmp_rint_p(&i_set[i + 1], &i_set[i]) >= 0
+			|| ft_cmp_rszt_p(&s_set[i + 1], &s_set[i]) >= 0
+			|| ft_cmp_rsszt_p(&ss_set[i + 1], &ss_set[i]) >= 0)
 			return (2 * 10 + i);
 	while (++i < 5)
-		if (ft_cmp_int_p(&i_set[i], &i_set[i]) != 0
-			|| ft_cmp_szt_p(&s_set[i], &s_set[i]) != 0
-			|| ft_cmp_sszt_p(&ss_set[i], &ss_set[i]) != 0)
+		if (ft_cmp_rint_p(&i_set[i], &i_set[i]) != 0
+			|| ft_cmp_rszt_p(&s_set[i], &s_set[i]) != 0
+			|| ft_cmp_rsszt_p(&ss_set[i], &ss_set[i]) != 0)
 			return (3 * 10 + i);
-	return (void_cmps());
+	return (void_rcmps());
 }
 /*
 GPL-3.0 License:

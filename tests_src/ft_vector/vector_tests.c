@@ -15,9 +15,7 @@
 #include "tests/vector_tests.h"
 
 // TODO: pure tests for already implemented functions:
-// TODO: tv_delete
 // TODO: tv_remove_at
-// TODO: tv_inuse
 //
 // TODO: with implementation functions:
 // TODO: tv_insert
@@ -31,11 +29,11 @@ static const t_fnamed	*tv_tests(void)
 	static const t_fnamed	tests[] = {
 	{"add", tv_add}, {"apply", tv_apply}, {"at", tv_at}, {"cat", tv_cat},
 	{"clear", tv_clear},{"convert_alloc_array", tv_convert_alloc_array},
-	{"create", tv_create},
-  /*{"delete", tv_delete},*/ {"destroy", tv_destroy}, // {"dup", tv_dup},
+	{"create", tv_create}, {"delete", tv_delete},
+	{"destroy", tv_destroy}, // {"dup", tv_dup},
 	{"filter-out", tv_filterout}, {"filter", tv_filter}, {"find", tv_find},
 	{"from_array", tv_from_array}, {"from_size", tv_from_size},
-	// {"insert", tv_insert}, {"inuse", tv_inuse},
+	{"inuse", tv_inuse}, // {"insert", tv_insert},
 	{"map", tv_map}, {"new", tv_new}, {"pop", tv_pop}, {"remove", tv_remove},
   /*{"remove_at", tv_remove_at},*/ {"reserve", tv_reserve},
 	{"reverse", tv_reverse}, {"shift", tv_shift}, {"shrink", tv_shrink},

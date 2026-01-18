@@ -29,7 +29,7 @@ int	tv_at(void)
 		return (2);
 	else if (*(int *)ft_vec_at(vec, 2) != 2)
 		return (3);
-	else if (ft_vec_at(vec, 3) || ft_vec_at(vec, 999))
+	else if (ft_vec_at(vec, 3) || ft_vec_at(vec, 999) || ft_vec_at(NULL, 0))
 		return (4);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);

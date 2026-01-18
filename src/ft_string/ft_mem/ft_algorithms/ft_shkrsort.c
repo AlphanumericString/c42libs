@@ -44,7 +44,7 @@ void	*ft_shkrsort(void *data, t_arrinfo nf, t_data_cmp cmp, int flag)
 	size_t				left;
 	size_t				right;
 
-	if (nf.nmemb < 2 || nf.sz < 1 || ord == FT_SORT_ORD_UNO || !data)
+	if (nf.nmemb < 2 || nf.sz < 1 || ord == FT_SORT_ORD_UNO || !data || !cmp)
 		return (data);
 	left = 0;
 	right = nf.nmemb - 1;

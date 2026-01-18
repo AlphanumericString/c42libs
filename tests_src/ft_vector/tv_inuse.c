@@ -1,50 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tm_qsort.c                                         :+:      :+:    :+:   */
+/*   tv_inuse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 12:20:05 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:07:20 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/01/18 16:44:03 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/01/18 16:44:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
-#include "ft_algorithms.h"
-#include "tests/tests_lambda_functions.h"
-#include "tests/str__mem_tests.h"
-#include <stdlib.h>
+#include "ft_vector.h"
+#include "types/ft_vector_types.h"
+#include "tests/vector_tests.h"
 
-#define NB_TESTS 100
-
-static int	tm_set(void)
+int	tv_inuse(void)
 {
-	const t_arrinfo	infos = {.nmemb = FT_STD_BUF_SIZE, .sz = sizeof(int)};
-	int				ar_out[FT_STD_BUF_SIZE];
+	t_vector	*vec;
+	int			a;
 
-	randomize_iarr(ar_out, infos.nmemb, 0, infos.nmemb * 2);
-	ft_qsort(ar_out, infos.nmemb, infos.sz, ft_cmp_int_p);
-	if (!ft_is_sorted(ar_out, infos.nmemb, infos.sz, ft_cmp_int_p))
+	vec = ft_vec_create(sizeof(int));
+	a = -1;
+	while (++a < 3)
+		ft_vec_add(vec, &a);
+	if (ft_vec_inuse(vec) != (vec->n_e * vec->s_e) 
+		|| ft_vec_inuse(vec) > vec->cappacity)
 		return (1);
-	return (EXIT_SUCCESS);
-}
-
-int	talg_qsort(void)
-{
-	const t_arrinfo	nf = {.nmemb = 3, .sz = sizeof(int)};
-	int				ar_err[3];
-	int				i;
-
-	i = 0;
-	while (i++ < NB_TESTS)
-		if (tm_set() == 1)
-			return (1);
-	ft_qsort(ar_err, nf.nmemb, nf.sz, NULL);
-	ft_qsort(NULL, nf.nmemb, nf.sz, (t_data_cmp)ft_cmp_int_p);
-	ft_qsort(ar_err, 1, nf.sz, (t_data_cmp)ft_cmp_int_p);
-	ft_qsort(ar_err, nf.nmemb, 0, (t_data_cmp)ft_cmp_int_p);
-	ft_qsort(ar_err, 0, nf.sz, (t_data_cmp)ft_cmp_int_p);
+	if (ft_vec_inuse(NULL) != 0)
+		return (2);
+	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }
 /*

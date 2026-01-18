@@ -16,7 +16,7 @@ bool	ft_is_sorted(void *data, size_t nmb, size_t size, t_data_cmp cmp)
 {
 	size_t	i;
 
-	if (nmb < 2 || !size || !data)
+	if (nmb < 2 || !size || !data || !cmp)
 		return (true);
 	i = 1;
 	while (i < nmb)

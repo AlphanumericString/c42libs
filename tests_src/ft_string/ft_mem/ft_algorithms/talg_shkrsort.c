@@ -28,6 +28,8 @@ int	talg_shkrsort(void)
 	ft_shkrsort(arr, (t_arrinfo){0, 32}, ft_cmp_szt_p, FT_SORT_ORD_ASC);
 	ft_shkrsort(arr, (t_arrinfo){1, 32}, ft_cmp_szt_p, FT_SORT_ORD_ASC);
 	ft_shkrsort(arr, (t_arrinfo){nf.nmemb, 0}, ft_cmp_szt_p, FT_SORT_ORD_ASC);
+	ft_shkrsort(arr, nf, NULL, FT_SORT_ORD_ASC);
+	ft_shkrsort(NULL, nf, ft_cmp_szt_p, FT_SORT_ORD_ASC);
 	ft_shkrsort(arr, nf, ft_cmp_szt_p, FT_SORT_ORD_UNO);
 	if (ft_is_sorted(arr, nf.nmemb, nf.sz, ft_cmp_szt_p))
 		return (2);

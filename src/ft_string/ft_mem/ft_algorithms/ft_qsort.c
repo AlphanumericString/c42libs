@@ -13,27 +13,27 @@
 #include "ft_mem.h"
 #include "ft_algorithms.h"
 
-void	ft_qsort(void *data, size_t nmb, size_t size, t_data_cmp cmp)
+void	ft_qsort(void *data, size_t nmb, size_t size, t_data_cmp c)
 {
 	size_t	left;
 	size_t	right;
 
-	if (nmb < 2 || size < 1 || !data || ft_is_sorted(data, nmb, size, cmp))
+	if (nmb < 2 || size < 1 || !c|| !data || ft_is_sorted(data, nmb, size, c))
 		return ;
 	left = 0;
 	right = nmb - 1;
 	while (left < right)
 	{
-		while (left < nmb && cmp(data + left * size, data) <= 0)
+		while (left < nmb && c(data + left * size, data) <= 0)
 			left++;
-		while (right > 0 && cmp(data + right * size, data) > 0)
+		while (right > 0 && c(data + right * size, data) > 0)
 			right--;
 		if (left < right)
 			ft_swap(data + left * size, data + right * size, size);
 	}
 	ft_swap(data, data + right * size, size);
-	ft_qsort(data, right, size, cmp);
-	ft_qsort(data + (right + 1) * size, nmb - right - 1, size, cmp);
+	ft_qsort(data, right, size, c);
+	ft_qsort(data + (right + 1) * size, nmb - right - 1, size, c);
 }
 /*
 GPL-3.0 License:

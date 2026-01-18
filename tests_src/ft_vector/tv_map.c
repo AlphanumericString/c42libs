@@ -20,6 +20,19 @@
 
 #include <stdlib.h>
 
+static int	error_case(void)
+{
+	t_vector	*vec;
+	int			arr[3] = {42, 43, 44};
+
+	vec = ft_vec_from_array(arr, 3, sizeof(int));
+	if (ft_vec_map(NULL, add42) != NULL)
+		return (1);
+	if (ft_vec_map(vec, NULL) != NULL)
+		return (2);
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
+
+}
 static int	base_case(void)
 {
 	t_vector	hold;
@@ -80,6 +93,9 @@ int	tv_map(void)
 	if (ret)
 		return (ret);
 	ret = mt_case();
+	if (ret)
+		return (ret);
+	ret = error_case();
 	if (ret)
 		return (ret);
 	return (EXIT_SUCCESS);

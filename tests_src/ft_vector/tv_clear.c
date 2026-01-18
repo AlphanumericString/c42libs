@@ -28,6 +28,7 @@ int	tv_clear(void)
 	ft_vec_clear(vec);
 	ft_vec_clear(vec);
 	ft_vec_clear(vec);
+	ft_vec_clear(NULL);
 	if (vec->n_e != 0 || ft_vec_at(vec, 0) != NULL || vec->cappacity == 0)
 		return (3);
 	return (ft_vec_destroy(&vec), EXIT_SUCCESS);

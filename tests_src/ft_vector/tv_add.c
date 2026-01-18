@@ -35,6 +35,10 @@ static int	bases_case(void)
 	while (++i < 47)
 		if (ft_memcmp(ft_vec_at(vec, i - 42), &i, sizeof(int)))
 			return (i + 8);
+	if (ft_vec_add(NULL, &i) != false)
+		return (1 + 8 * 2);
+	if (ft_vec_add(vec, NULL) != false)
+		return (2 + 8 * 2);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }

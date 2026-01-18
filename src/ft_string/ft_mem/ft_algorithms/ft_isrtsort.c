@@ -37,7 +37,7 @@ void	*ft_isrtsort_b(void *data, const t_arrinfo infos, t_data_cmp cmp,
 	size_t				i_place;
 	size_t				i;
 
-	if (infos.nmemb < 2 || infos.sz < 1 || !data)
+	if (infos.nmemb < 2 || infos.sz < 1 || !data || !cmp)
 		return (data);
 	i = 1;
 	i_place = 0;
@@ -69,8 +69,8 @@ void	*ft_isrtsort(void *data, const t_arrinfo infos, t_data_cmp cmp, int flg)
 				infos.nmemb, infos.sz));
 	tmp = ft_calloc(1, infos.sz);
 	if (tmp)
-		ft_isrtsort_b(data, infos, cmp, tmp);
-	return (ft_free(tmp), data);
+		ft_isrtsort_b(data, infos, cmp, tmp), ft_free(tmp);
+	return (data);
 }
 /*
 GPL-3.0 License:

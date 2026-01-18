@@ -644,6 +644,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_algorithms/talg_bcksort.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_algorithms/talg_binsrch.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_algorithms/talg_cmps.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_algorithms/talg_rcmps.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_algorithms/talg_getmax.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_algorithms/talg_getmin.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_algorithms/talg_isord_ok.c		\
@@ -840,6 +841,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tv_add.c									\
 			$(TESTS_DIR)/ft_vector/tv_apply.c								\
 			$(TESTS_DIR)/ft_vector/tv_at.c									\
+			$(TESTS_DIR)/ft_vector/tv_inuse.c								\
 			$(TESTS_DIR)/ft_vector/tv_cat.c									\
 			$(TESTS_DIR)/ft_vector/tv_clear.c								\
 			$(TESTS_DIR)/ft_vector/tv_convert_alloc_array.c					\

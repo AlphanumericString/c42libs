@@ -37,6 +37,7 @@ int	talg_binsrch(void)
 	i = ft_binsrch(arr, (t_arrinfo){0}, &target, ft_cmp_int_p);
 	if (i != 0)
 		return (16 + 2);
+	i += ft_binsrch(NULL, infos, &target, ft_cmp_int_p);
 	i += ft_binsrch(arr, (t_arrinfo){infos.nmemb, 0}, &target, ft_cmp_int_p);
 	i += ft_binsrch(arr, (t_arrinfo){0, infos.sz}, &target, ft_cmp_int_p);
 	if (i != 0)

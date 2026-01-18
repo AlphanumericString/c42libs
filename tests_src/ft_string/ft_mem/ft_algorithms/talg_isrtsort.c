@@ -48,6 +48,8 @@ int	talg_isrtsort(void)
 	ft_isrtsort(arr, (t_arrinfo){infos.nmemb, 0}, ft_cmp_rint_p,
 		FT_SORT_ORD_DES);
 	ft_isrtsort(arr, infos, ft_cmp_rint_p, FT_SORT_ORD_UNO);
+	ft_isrtsort(NULL, infos, ft_cmp_rint_p, FT_SORT_ORD_ASC);
+	ft_isrtsort(arr, infos, NULL, FT_SORT_ORD_ASC);
 	if (ft_is_sorted(arr, infos.nmemb, infos.sz, ft_cmp_int_p))
 		return (2);
 	randomize_iarr(arr, infos.nmemb, 0, FT_SMALL_BUF_SIZE);
@@ -96,6 +98,8 @@ int	talg_isrtsort_b(void)
 	ft_isrtsort_b(arr, (t_arrinfo){nf.nmemb, 0}, ft_cmp_int_p, &buff);
 	ft_isrtsort_b(arr, (t_arrinfo){0, nf.sz}, ft_cmp_int_p, &buff);
 	ft_isrtsort_b(arr, (t_arrinfo){1, nf.sz}, ft_cmp_int_p, &buff);
+	ft_isrtsort_b(NULL, nf, ft_cmp_int_p, &buff);
+	ft_isrtsort_b(arr, nf, NULL, &buff);
 	if (ft_is_sorted(arr, nf.nmemb, nf.sz, ft_cmp_int_p))
 		return (2);
 	return (EXIT_SUCCESS);

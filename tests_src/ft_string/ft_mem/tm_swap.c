@@ -59,6 +59,8 @@ int	tm_swap_xor(void)
 			return (1 + i);
 		i++;
 	}
+	(ft_swap_xor(stra, NULL, 4), ft_swap_xor(NULL, stra, 4),
+		ft_swap_xor(NULL, NULL, 4));
 	i = tm_swap_unaligned_tests_nooverlaps();
 	return (i);
 }
@@ -97,6 +99,7 @@ int	tm_swap(void)
 		return (2);
 	(ft_strlcpy(stra, srca, T_SIZE), ft_strlcpy(strb, srcb, T_SIZE));
 	(ft_swap(stra, strb, 0), ft_swap(stra, stra, 4));
+	(ft_swap(stra, NULL, 4), ft_swap(NULL, stra, 4), ft_swap(NULL, NULL, 4));
 	ft_swap(strb, strb, T_SIZE);
 	if (ft_strcmp(stra, srca) != 0)
 		return (3);
