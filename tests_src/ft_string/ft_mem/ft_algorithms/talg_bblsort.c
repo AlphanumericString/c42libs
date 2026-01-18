@@ -41,6 +41,8 @@ static int	te_cases(void)
 		return (8 + 3);
 	infos = (t_arrinfo){.nmemb = FT_SMALL_BUF_SIZE, .sz = sizeof(int)};
 	ft_bblsort(arr, infos, ft_cmp_int_p, FT_SORT_ORD_UNO);
+	ft_bblsort(NULL, infos, ft_cmp_int_p, FT_SORT_ORD_ASC);
+	ft_bblsort(arr, infos, NULL, FT_SORT_ORD_ASC);
 	if (ft_is_sorted(arr, FT_SMALL_BUF_SIZE, sizeof(int), ft_cmp_int_p))
 		return (8 + 4);
 	return (EXIT_SUCCESS);

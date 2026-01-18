@@ -17,25 +17,26 @@
 #include "types/ft_vector_types.h"
 #include <stdlib.h>
 
-static int	edge(t_vector *vector, const char **src_2)
+static int	edge(t_vector *vect, const char **src_2)
 {
-	const t_vector	original_state = *vector;
+	const t_vector	original_state = *vect;
 
-	vector->n_e = 0;
-	if (ft_vec_find(vector, "Hello", cmp_str) != NULL)
+	vect->n_e = 0;
+	if (ft_vec_find(vect, "Hello", cmp_str) != NULL)
 		return (4);
-	vector->n_e = original_state.n_e;
-	vector->s_e = 0;
-	if (ft_vec_find(vector, "Hello", cmp_str) != NULL)
+	vect->n_e = original_state.n_e;
+	vect->s_e = 0;
+	if (ft_vec_find(vect, "Hello", cmp_str) != NULL)
 		return (5);
-	vector->s_e = original_state.s_e;
-	vector->data = NULL;
-	if (ft_vec_find(vector, "Hello", cmp_str) != NULL)
+	vect->s_e = original_state.s_e;
+	vect->data = NULL;
+	if (ft_vec_find(vect, "Hello", cmp_str) != NULL)
 		return (6);
-	vector->data = original_state.data;
-	if (*(char **)ft_vec_find(vector, src_2, cmp_str) != *src_2
-		|| *(char **)ft_vec_find(vector, ft_vec_at(vector, 2), NULL) != *src_2
-		|| ft_vec_find(vector, "zboub", NULL) != NULL)
+	vect->data = original_state.data;
+	if (*(char **)ft_vec_find(vect, src_2, cmp_str) != *src_2
+		|| *(char **)ft_vec_find(vect, ft_vec_at(vect, 2), NULL) != *src_2
+		|| ft_vec_find(NULL, ft_vec_at(vect, 2), cmp_str) != NULL
+		|| ft_vec_find(vect, "zboub", NULL) != NULL)
 		return (6);
 	return (0);
 }

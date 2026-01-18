@@ -25,9 +25,31 @@
 // might be a tad confusing at first but it is what it is with void* as ret
 
 // TODO: ft_vec_popi(vec, &ret); returns and puts the value in ret
-int	tv_pop(void)
+// to avoid all the hasle of *(type *)ft_vec_pop ....
+static int	error_cases(void)
 {
+	t_vector	*vec;
 	size_t		tmp;
+	const char	*strs[3] = {"value1", "value2", "value3"};
+
+	vec = ft_vec_from_array(strs, 3, sizeof(char *));
+	if (ft_vec_pop(NULL) != NULL)
+		return (ft_vec_destroy(&vec), 1);
+	tmp = vec->s_e;
+	vec->s_e = 0;
+	if (ft_vec_pop(vec))
+		return (ft_vec_destroy(&vec), 2);
+	vec->s_e = tmp;
+	ft_vec_pop(vec);
+	ft_vec_pop(vec);
+	ft_vec_pop(vec);
+	if (ft_vec_pop(vec) != NULL)
+		return (ft_vec_destroy(&vec), 3);
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
+}
+
+static int	normal_cases(void)
+{
 	t_vector	*vec;
 	const char	*strs[3] = {"value1", "value2", "value3"};
 	const char	*str;
@@ -39,17 +61,23 @@ int	tv_pop(void)
 	str = *(char **)ft_vec_pop(vec);
 	if (!str || ft_strcmp(str, "value2") != 0 || vec->n_e != 1)
 		return (2);
-	tmp = vec->s_e;
-	vec->s_e = 0;
-	if (ft_vec_pop(vec))
-		return (3);
-	vec->s_e = tmp;
 	str = *(char **)ft_vec_pop(vec);
 	if (!str || ft_strcmp(str, "value1") != 0 || vec->n_e != 0)
 		return (4);
-	if (ft_vec_pop(vec))
-		return (5);
-	return (ft_vec_destroy(&vec), 0);
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
+}
+
+int	tv_pop(void)
+{
+	int ret = 0;
+
+	ret = normal_cases();
+	if (ret)
+	  return (ret);
+	ret = error_cases();
+	if (ret)
+	  return (ret + 32);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

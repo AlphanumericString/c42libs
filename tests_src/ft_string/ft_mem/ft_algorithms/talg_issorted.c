@@ -34,6 +34,9 @@ int	talg_issorted(void)
 		|| !ft_is_sorted(arr, 0, infos.sz, ft_cmp_int_p)
 		|| !ft_is_sorted(arr, infos.nmemb, 0, ft_cmp_int_p))
 		return (3);
+	if (ft_is_sorted(NULL, infos.nmemb, infos.sz, ft_cmp_int_p) != true
+		|| ft_is_sorted(arr, infos.nmemb, infos.sz, NULL) != true)
+		return (4);
 	return (EXIT_SUCCESS);
 }
 /*

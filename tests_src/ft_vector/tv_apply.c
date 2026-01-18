@@ -23,6 +23,7 @@ int	tv_apply(void)
 	i = 0;
 	vec = ft_vec_create(sizeof(i));
 	ft_vec_add(vec, &i);
+	(ft_vec_apply(NULL, add42), ft_vec_apply(vec, NULL));
 	ft_vec_apply(vec, add42);
 	if (*((size_t *)ft_vec_at(vec, 0)) != 42)
 		return (1);

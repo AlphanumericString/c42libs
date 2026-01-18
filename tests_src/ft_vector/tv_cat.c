@@ -75,30 +75,27 @@ static int	mt_test(void)
 
 int	tv_cat(void)
 {
-	bool		ret;
-	t_vector	*vec_a;
-	t_vector	*vec_b;
+	t_vector	*va;
+	t_vector	*vb;
 
-	init_vec_cat(&vec_a, &vec_b);
-	ret = ft_vec_cat(vec_a, vec_b);
-	if (ret != true || vec_a->n_e != 6)
+	init_vec_cat(&va, &vb);
+	if (ft_vec_cat(va, vb) != true || va->n_e != 6)
 		return (1);
-	else if (*(int *)ft_vec_at(vec_a, 0) != 42
-		|| *(int *)ft_vec_at(vec_a, 1) != 43
-		|| *(int *)ft_vec_at(vec_a, 2) != 44
-		|| *(int *)ft_vec_at(vec_a, 3) != 45
-		|| *(int *)ft_vec_at(vec_a, 4) != 46
-		|| *(int *)ft_vec_at(vec_a, 5) != 47)
+	else if (*(int *)ft_vec_at(va, 0) != 42 || *(int *)ft_vec_at(va, 1) != 43
+		|| *(int *)ft_vec_at(va, 2) != 44 || *(int *)ft_vec_at(va, 3) != 45
+		|| *(int *)ft_vec_at(va, 4) != 46 || *(int *)ft_vec_at(va, 5) != 47)
 		return (2);
-	vec_a = (ft_vec_destroy(&vec_a), ft_vec_create(sizeof(long)));
-	if (ft_vec_cat(vec_a, vec_b) != false || vec_a->n_e != 0)
+	va = (ft_vec_destroy(&va), ft_vec_create(sizeof(long)));
+	if (ft_vec_cat(va, vb) != false || va->n_e != 0)
 		return (3);
-	vec_a = (ft_vec_destroy(&vec_a), ft_vec_create(vec_b->s_e));
-	if (ft_vec_cat(vec_a, vec_b) != true || vec_a->n_e != vec_b->n_e)
+	va = (ft_vec_destroy(&va), ft_vec_create(vb->s_e));
+	if (ft_vec_cat(va, vb) != true || va->n_e != vb->n_e)
 		return (4);
-	else if (ft_memcmp(vec_a->data, vec_b->data, ft_vec_inuse(vec_b)) != 0)
+	else if (ft_memcmp(va->data, vb->data, ft_vec_inuse(vb)) != 0)
 		return (5);
-	return (ft_vec_destroy(&vec_a), ft_vec_destroy(&vec_b), mt_test());
+	if (ft_vec_cat(NULL, vb) || ft_vec_cat(va, NULL) || ft_vec_cat(NULL, NULL))
+		return (6);
+	return (ft_vec_destroy(&va), ft_vec_destroy(&vb), mt_test());
 }
 /*
 GPL-3.0 License:

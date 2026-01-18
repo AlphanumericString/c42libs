@@ -59,6 +59,7 @@ int	talg_sbcksort(void)
 	ft_sbcksort(arr, 0, FT_SORT_ORD_ASC);
 	ft_sbcksort(arr, 1, FT_SORT_ORD_ASC);
 	ft_sbcksort(arr, 2, FT_SORT_ORD_ASC);
+	ft_sbcksort(NULL, infos.nmemb, FT_SORT_ORD_ASC);
 	if (ft_is_sorted(arr, infos.nmemb, infos.sz, (t_data_cmp)ft_cmp_szt_p))
 		return (3);
 	return (mt_sbcksrt());
