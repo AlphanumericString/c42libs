@@ -16,7 +16,6 @@
 #include "tests/vector_tests.h"
 
 #include "tests/fixtures.h"
-#include <stdio.h>
 
 static int	edge(void)
 {
@@ -29,9 +28,9 @@ static int	edge(void)
 	v->data = NULL;
 	ret = ft_vec_reserve(v, FT_VECTOR_BASE_LEN);
 	ft_free(d);
-	ft_vec_delete(v);
 	if (!v->data || !ret)
 		return (1 + 8);
+	ft_vec_delete(v);
 	if (ft_vec_reserve(NULL, 42) != false
 		|| ft_vec_reserve((t_vector *)0xDEAD, 0) != false)
 		return (2 + 8);

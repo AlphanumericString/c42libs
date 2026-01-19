@@ -43,6 +43,7 @@ static int	error_case(void)
 	vec->data = NULL;
 	if (ft_vec_map(vec, add42) != NULL)
 		return (ft_vec_destroy(&vec), 5);
+	vec->data = hold.data;
 	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 

@@ -35,7 +35,7 @@ void	ft_vec_filterout(t_vector *vec, t_data_is func, t_data_apply del)
 	size_t	i;
 	size_t	j;
 
-	if (!vec || vec->n_e == 0 || vec->s_e == 0)
+	if (!vec || vec->n_e == 0 || vec->s_e == 0 || vec->data == NULL || !func)
 		return ;
 	i = 0;
 	while (i < vec->n_e)
