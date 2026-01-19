@@ -48,6 +48,10 @@ static void	intermediary(void *d)
 	ft_free(*(int **)d);
 }
 
+// TODO: cleanup.
+// use string & do an aplly w strdup
+// vec_remove w intermediary
+// add checks to !vec !vec->s_e !vec->n_e !vec->data
 int	tv_remove(void)
 {
 	t_vector	*vec;
