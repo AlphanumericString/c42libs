@@ -28,7 +28,7 @@ static const t_fnamed	*tv_tests(void)
 {
 	static const t_fnamed	tests[] = {
 	{"add", tv_add}, {"apply", tv_apply}, {"at", tv_at}, {"cat", tv_cat},
-	{"clear", tv_clear},{"convert_alloc_array", tv_convert_alloc_array},
+	{"clear", tv_clear}, {"convert_alloc_array", tv_convert_alloc_array},
 	{"create", tv_create}, {"delete", tv_delete},
 	{"destroy", tv_destroy}, // {"dup", tv_dup},
 	{"filter-out", tv_filterout}, {"filter", tv_filter}, {"find", tv_find},

@@ -20,6 +20,16 @@ static int	cmp_fun(const void *a, const void *b)
 	return (*(long *)a - *(long *)b);
 }
 
+static int	error_cases(void)
+{
+	t_vector	*vec;
+
+	vec = NULL;
+	ft_vec_sort(vec, NULL);
+	ft_vec_sort(vec, cmp_fun);
+	return (EXIT_SUCCESS);
+}
+
 static int	base_cases(void)
 {
 	t_vector	*vec;
@@ -48,6 +58,9 @@ int	tv_sort(void)
 	int	ret;
 
 	ret = base_cases();
+	if (ret)
+		return (ret);
+	ret = error_cases();
 	if (ret)
 		return (ret);
 	return (EXIT_SUCCESS);

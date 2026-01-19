@@ -15,8 +15,11 @@
 
 void	ft_vec_swap(t_vector *vec, size_t a, size_t b)
 {
-	if (vec)
-		ft_swap(ft_vec_at(vec, a), ft_vec_at(vec, b), vec->s_e);
+	if (!vec || !vec->s_e || !vec->n_e)
+		return ;
+	if (vec->n_e < a || vec->n_e < b)
+		return ;
+	ft_swap(ft_vec_at(vec, a), ft_vec_at(vec, b), vec->s_e);
 }
 /*
 GPL-3.0 License:

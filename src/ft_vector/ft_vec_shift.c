@@ -20,7 +20,7 @@ void	ft_vec_shift(t_vector *vec, size_t start, size_t shift)
 	if (!vec->n_e || !vec->s_e || start >= vec->n_e || !shift)
 		return ;
 	if (start + shift >= vec->n_e)
-		shift = vec->n_e - start - 1;
+		return (vec->n_e = start, (void) 0);
 	ft_memmove(ft_vec_at(vec, start), ft_vec_at(vec, start + shift),
 		(vec->n_e - start - shift) * vec->s_e);
 	vec->n_e -= shift;

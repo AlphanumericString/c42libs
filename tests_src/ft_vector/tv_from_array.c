@@ -18,7 +18,7 @@
 static int	error_cases(void)
 {
 	int			fp;
-	int			ar[] = {21, 42, 63, 84};
+	const int	ar[] = {21, 42, 63, 84};
 	t_vector	*v;
 
 	v = ft_vec_from_array(ar, 0, 4);
@@ -38,7 +38,6 @@ static int	error_cases(void)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-
 
 static int	checks_01(t_vector *vec, const void **data)
 {
@@ -65,8 +64,6 @@ static int	checks_02(t_vector *vec, const void **data)
 	return (EXIT_SUCCESS);
 }
 
-// TODO: add mt case
-// add errcases like 0 nmemb or 0 elem_size
 int	tv_from_array(void)
 {
 	const void	*data[3] = {(void *)12, (void *)13, (void *)14};

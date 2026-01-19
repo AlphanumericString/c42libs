@@ -18,7 +18,7 @@
 int	tv_filterout(void)
 {
 	t_vector	*vec;
-	int			a[3] = {42, 43, 44};
+	const int	a[3] = {42, 43, 44};
 
 	vec = ft_vec_from_array(a, 3, sizeof(int));
 	ft_vec_filterout(vec, is42, NULL);

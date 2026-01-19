@@ -36,10 +36,10 @@ static int	checks_01(t_vector *vec)
 static int	checks_02(t_vector *vec, const int *arr)
 {
 	if (vec->n_e != 2)
-		return (4);
+		return (1);
 	if (**(int **)ft_vec_at(vec, 0) != arr[0]
 		|| **(int **)ft_vec_at(vec, 1) != arr[2])
-		return (5);
+		return (2);
 	return (EXIT_SUCCESS);
 }
 
@@ -56,21 +56,20 @@ int	tv_remove(void)
 	size_t		i;
 
 	vec = ft_vec_from_array(arr, 3, sizeof(int));
-	ft_vec_remove(vec, 1, NULL);
-	if (checks_01(vec))
-		return (checks_01(vec));
-	ft_vec_destroy(&vec);
-	vec = ft_vec_create(sizeof(int *));
+	i = (ft_vec_remove(vec, 1, NULL), checks_01(vec));
+	if (i)
+		return (i);
 	i = 0;
+	vec = (ft_vec_destroy(&vec), ft_vec_create(sizeof(int *)));
 	while (i < 3)
 	{
 		ptr = (int *)ft_malloc(sizeof(int));
 		*ptr = arr[i++];
 		ft_vec_add(vec, &ptr);
 	}
-	ft_vec_remove(vec, 1, intermediary);
-	if (checks_02(vec, arr))
-		return (checks_02(vec, arr));
+	i = (ft_vec_remove(vec, 1, intermediary), checks_02(vec, arr));
+	if (i)
+		return (i + 8);
 	return (ft_vec_apply(vec, intermediary), ft_vec_destroy(&vec), 0);
 }
 /*
