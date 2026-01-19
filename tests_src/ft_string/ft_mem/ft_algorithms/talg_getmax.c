@@ -30,9 +30,9 @@ int	talg_getmax(void)
 	elem = ft_getmax(arr, infos, ft_cmp_szt_p);
 	if (elem != &arr[pos])
 		return (1);
-	if (ft_getmax(arr, (t_arrinfo){.nmemb = 1, 0}, ft_cmp_szt_p) != NULL)
+	if (ft_getmax(arr, (t_arrinfo){1, 0}, ft_cmp_szt_p) != NULL)
 		return (2);
-	if (ft_getmax(arr, (t_arrinfo){.nmemb = 0, 1}, ft_cmp_szt_p) != NULL)
+	if (ft_getmax(arr, (t_arrinfo){0, 1}, ft_cmp_szt_p) != NULL)
 		return (3);
 	if (ft_getmax(NULL, infos, ft_cmp_szt_p) != NULL)
 		return (4);

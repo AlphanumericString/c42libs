@@ -41,7 +41,7 @@ int	tv_destroy(void)
 {
 	t_vector	*vec;
 	bool		ret;
-	int			a[] = {0, 1, 2};
+	const int	a[] = {0, 1, 2};
 	void		*data;
 
 	vec = ft_vec_from_array(a, 3, sizeof(int));

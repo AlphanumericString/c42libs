@@ -67,6 +67,8 @@ static int	edge_cases(void)
 	if (ft_vec_shrink(vec) != false || vec->data != NULL)
 		return (3);
 	*vec = hold;
+	if (ft_vec_shrink(NULL) != false)
+		return (4);
 	return (ft_vec_delete(vec), EXIT_SUCCESS);
 }
 

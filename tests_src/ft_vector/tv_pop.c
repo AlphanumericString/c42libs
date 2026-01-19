@@ -69,14 +69,14 @@ static int	normal_cases(void)
 
 int	tv_pop(void)
 {
-	int ret = 0;
+	int	ret;
 
 	ret = normal_cases();
 	if (ret)
-	  return (ret);
+		return (ret);
 	ret = error_cases();
 	if (ret)
-	  return (ret + 32);
+		return (ret + 32);
 	return (EXIT_SUCCESS);
 }
 /*

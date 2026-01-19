@@ -34,7 +34,7 @@
 
 static void	init_vec_cat(t_vector **vec_a, t_vector **vec_b)
 {
-	int i;
+	int	i;
 
 	*vec_a = ft_vec_create(sizeof(int));
 	i = 42 - 1;
@@ -57,7 +57,7 @@ static int	mt_test(void)
 	i = 0;
 	vec_a = ft_vec_create(sizeof(i));
 	vec_b = ft_vec_create(sizeof(i));
-	while(i < (vec_a->cappacity / vec_a->s_e))
+	while (i < (vec_a->cappacity / vec_a->s_e))
 	{
 		ft_vec_add(vec_a, &i);
 		ft_vec_add(vec_b, &i);

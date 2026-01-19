@@ -14,21 +14,56 @@
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 
-int	tv_swap(void)
+static int	error_case(void)
+{
+	t_vector	hold;
+	t_vector	*vec;
+	const int	data[3] = {42, 43, 44};
+
+	vec = ft_vec_from_array(data, 3, sizeof(int));
+	hold = *vec;
+	vec->n_e = 0;
+	ft_vec_swap(vec, 0, 2);
+	*vec = hold;
+	vec->s_e = 0;
+	ft_vec_swap(vec, 0, 2);
+	*vec = hold;
+	vec->data = NULL;
+	ft_vec_swap(vec, 0, 2);
+	*vec = hold;
+	ft_vec_swap(NULL, 0, 2);
+	ft_vec_swap(vec, 999, 2);
+	ft_vec_swap(vec, 0, 999);
+	return (ft_vec_delete(vec), EXIT_SUCCESS);
+}
+
+static int	base_case(void)
 {
 	t_vector	*vec;
-	const int 	data[3] = {42, 43, 44};
+	const int	data[3] = {42, 43, 44};
 
 	vec = ft_vec_from_array(data, 3, sizeof(int));
 	ft_vec_swap(vec, 0, 2);
 	if (vec->n_e != 3)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	else if (*(int *)ft_vec_at(vec, 1) != 43)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	else if (*(int *)ft_vec_at(vec, 0) != 44
 		|| *(int *)ft_vec_at(vec, 2) != 42)
-		return (3);
-	ft_vec_destroy(&vec);
+		return (ft_vec_destroy(&vec), 3);
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
+}
+
+int	tv_swap(void)
+{
+	int	ret;
+
+	ret = base_case();
+	if (ret)
+		return (ret);
+	ret = error_case();
+	if (ret)
+		return (ret + 8);
 	return (EXIT_SUCCESS);
 }
 /*

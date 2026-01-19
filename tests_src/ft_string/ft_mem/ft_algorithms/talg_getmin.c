@@ -30,9 +30,9 @@ int	talg_getmin(void)
 	elem = ft_getmin(arr, infos, ft_cmp_szt_p);
 	if (elem != &arr[pos])
 		return (1);
-	if (ft_getmin(arr, (t_arrinfo){.nmemb = 1, 0}, ft_cmp_szt_p) != NULL)
+	if (ft_getmin(arr, (t_arrinfo){1, 0}, ft_cmp_szt_p) != NULL)
 		return (2);
-	if (ft_getmin(arr, (t_arrinfo){.nmemb = 0, 1}, ft_cmp_szt_p) != NULL)
+	if (ft_getmin(arr, (t_arrinfo){0, 1}, ft_cmp_szt_p) != NULL)
 		return (3);
 	if (ft_getmin(NULL, infos, ft_cmp_szt_p) != NULL)
 		return (4);

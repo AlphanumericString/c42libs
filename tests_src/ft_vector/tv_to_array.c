@@ -16,7 +16,29 @@
 #include "tests/vector_tests.h"
 #include <stdio.h>
 
-int	tv_to_array(void)
+static int	error_case(void)
+{
+	t_vector	*vec;
+	const char	*arr_src[] = {"Hello", "world", "this", "is", "Zod"};
+	const char	**arr_r;
+	t_vector	*ar;
+	size_t		i;
+
+	i = 0;
+	vec = ft_vec_create(sizeof(char *));
+	while (i < (sizeof(arr_src) / sizeof(arr_src[0])))
+		ft_vec_add(vec, &arr_src[i++]);
+	arr_r = (t_any)ft_vec_to_array(NULL);
+	if (arr_r != NULL)
+		return (ft_vec_destroy(&vec), 1);
+	ar = NULL;
+	arr_r = (t_any)ft_vec_to_array(&ar);
+	if (arr_r != NULL)
+		return (ft_vec_destroy(&vec), 2);
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
+}
+
+static int	base_case(void)
 {
 	t_vector	*vector;
 	const char	*array_src[] = {"Hello", "world", "this", "is", "Zod"};
@@ -39,6 +61,19 @@ int	tv_to_array(void)
 	array_ret = ft_vec_to_array(&vector);
 	if (array_ret || vector)
 		return (3);
+	return (EXIT_SUCCESS);
+}
+
+int	tv_to_array(void)
+{
+	int	ret;
+
+	ret = base_case();
+	if (ret)
+		return (ret);
+	ret = error_case();
+	if (ret)
+		return (ret);
 	return (EXIT_SUCCESS);
 }
 /*

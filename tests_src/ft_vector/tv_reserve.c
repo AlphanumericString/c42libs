@@ -28,9 +28,14 @@ static int	edge(void)
 	d = v->data;
 	v->data = NULL;
 	ret = ft_vec_reserve(v, FT_VECTOR_BASE_LEN);
+	ft_free(d);
+	ft_vec_delete(v);
 	if (!v->data || !ret)
-		return (ft_free(d), ft_vec_delete(v), 1 + 8);
-	return (ft_free(d), ft_vec_delete(v), EXIT_SUCCESS);
+		return (1 + 8);
+	if (ft_vec_reserve(NULL, 42) != false
+		|| ft_vec_reserve((t_vector *)0xDEAD, 0) != false)
+		return (2 + 8);
+	return (EXIT_SUCCESS);
 }
 
 int	tv_reserve(void)

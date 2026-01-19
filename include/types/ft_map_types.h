@@ -32,8 +32,8 @@ typedef struct s_map
 	size_t		capacity;	// cap - useful for nb lists
 	t_map_node	**lists;
 	size_t		*nb_e;
-	size_t		nb_e_total; // total nb elem - useful for list imbalance
-	t_data_cmp	cmp;		// user must either provide the func or use default strcmp
+	size_t		nb_e_total; // total nb elem
+	t_data_cmp	cmp;		// provided otherwise default to strcmp
 	t_memhash	hash;
 	t_map_node	*nodes_pool;// pool of 'saved' nodes for reuse
 }				t_map;

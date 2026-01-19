@@ -22,44 +22,43 @@
 
 static int	error_case(void)
 {
+	t_vector	hold;
 	t_vector	*vec;
-	int			arr[3] = {42, 43, 44};
+	const int	arr[3] = {42, 43, 44};
 
 	vec = ft_vec_from_array(arr, 3, sizeof(int));
 	if (ft_vec_map(NULL, add42) != NULL)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	if (ft_vec_map(vec, NULL) != NULL)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
+	hold = *vec;
+	vec->s_e = 0;
+	if (ft_vec_map(vec, add42) != NULL)
+		return (ft_vec_destroy(&vec), 3);
+	ft_memcpy(vec, &hold, sizeof(t_vector));
+	vec->n_e = 0;
+	if (ft_vec_map(vec, add42) != NULL)
+		return (ft_vec_destroy(&vec), 4);
+	ft_memcpy(vec, &hold, sizeof(t_vector));
+	vec->data = NULL;
+	if (ft_vec_map(vec, add42) != NULL)
+		return (ft_vec_destroy(&vec), 5);
 	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
-
 }
+
 static int	base_case(void)
 {
-	t_vector	hold;
 	t_vector	*vec;
 	t_vector	*ret;
-	int			arr[3] = {42, 43, 44};
+	const int	arr[3] = {42, 43, 44};
 
 	vec = ft_vec_from_array(arr, 3, sizeof(int));
 	ret = ft_vec_map(vec, add42);
 	if (ret->n_e != 3)
-		return (1);
+		return (ft_vec_destroy(&vec), ft_vec_destroy(&ret), 1);
 	else if (*(int *)ft_vec_at(ret, 0) != 84 || *(int *)ft_vec_at(ret, 1) != 85
 		|| *(int *)ft_vec_at(ret, 2) != 86)
 		return (ft_vec_destroy(&vec), ft_vec_destroy(&ret), 2);
-	ft_vec_destroy(&ret);
-	hold = *vec;
-	vec->s_e = 0;
-	if (ft_vec_map(vec, add42) != NULL)
-		return (3);
-	ft_memcpy(vec, &hold, sizeof(t_vector));
-	vec->n_e = 0;
-	if (ft_vec_map(vec, add42) != NULL)
-		return (4);
-	ft_memcpy(vec, &hold, sizeof(t_vector));
-	vec->data = NULL;
-	if (ft_vec_map(vec, add42) != NULL)
-		return (5);
 	return (ft_vec_destroy(&vec), ft_vec_destroy(&ret), EXIT_SUCCESS);
 }
 
@@ -67,7 +66,7 @@ static int	mt_case(void)
 {
 	t_vector	*vec;
 	t_vector	*ret;
-	int			ar[3] = {42, 43, 44};
+	const int	ar[3] = {42, 43, 44};
 	int			f_point;
 
 	vec = ft_vec_from_array(ar, 3, sizeof(int *));

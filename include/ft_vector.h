@@ -34,13 +34,13 @@
 t_vector	*ft_vec_new(void) __attribute__((
 					__deprecated__("please use create instead",
 						"ft_vec_create")));
-t_vector	*ft_vec_create(size_t elem_size);
+t_vector	*ft_vec_create(size_t size_of_elements);
 t_vector	*ft_vec_from_size(size_t n);
-t_vector	*ft_vec_from_array(const void *src, size_t nmemb, size_t e_size);
+t_vector	*ft_vec_from_array(const void *src, size_t nmemb, size_t size);
 	// crea as in create a new vector w rets from the mapping
 t_vector	*ft_vec_map(const t_vector *vec, t_data_apply	func);
 // TODO: ft_vec_dup
-t_vector	*ft_vec_convert_alloccarray(void *data, size_t nmemb, size_t e_size);
+t_vector	*ft_vec_convert_alloccarray(void *data, size_t nmemb, size_t size);
 bool		ft_vec_reserve(t_vector *vec, size_t size);
 
 // destroy
