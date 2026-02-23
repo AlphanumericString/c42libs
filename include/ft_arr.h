@@ -99,6 +99,13 @@ void			ft_alcpy(t_iconst_arr dst, size_t mx, t_const_arr src);
 /// @note AC-Safe
 /// @note AS-Safe
 size_t			ft_alen(t_const_arr ar);
+/// @brief	returns the length of an array or n
+/// @param	ar the array to gets the length of.
+/// @param	n the max number of elements accessed.
+/// @note MT-safe
+/// @note AC-Safe
+/// @note AS-Safe
+size_t			ft_anlen(t_const_arr array, size_t n);
 
 /// @brief	sets all field of an array to null bytes
 /// @param	ar the array to null the field of
@@ -300,6 +307,65 @@ t_arr			ft_amap(t_const_arr ar, t_data_tr f);
 ///	@note no guarantee of AC-Safe - if interruptted might leak memory
 ///	@note no guarantee of AS-Safe - if interruptted might leak memory
 t_arr			ft_anmap(t_const_arr ar, size_t n, t_data_tr f);
+
+/// @brief itterate over the array with a function f and collects the result
+/// in a value that is returned. The array is not modified.
+///	@param	ar the array to collect
+///	@param start_val the starting value for the collection
+///	@param	f the function to apply to each element of ar
+void	*ft_acollect(t_const_arr *ar, void *start_val, t_data_tr_w f);
+/// @brief itterate over the array with a function f and collects the result
+/// in a value that is returned. The array is not modified.
+///	@param	ar the array to collect
+///	@param	n the number of max elements to map
+///	@param start_val the starting value for the collection
+///	@param	f the function to apply to each element of ar
+void	*ft_ancollect(t_const_arr *ar, size_t n, void *start_val,
+			   t_data_tr_w f);
+/// @brief itterate over the array in a reverse oreder with a function f and
+/// collects the result in a value that is returned. The array is not modified.
+///	@param	ar the array to collect
+///	@param	n the number of max elements to map
+///	@param start_val the starting value for the collection
+///	@param	f the function to apply to each element of ar
+void	*ft_ancollect_r(t_const_arr *ar, size_t n, void *start_val,
+			   t_data_tr_w f);
+
+/// @brief divides the length of the array by 2 by pairing up values and
+/// inscribing result in the array.
+///	@param	ar the array to fold
+///	@param	f the function to apply to each element of ar
+void	ft_afold(t_arr *ar, t_data_tr_w f);
+/// @brief divides the length of the array by 2 by pairing up values and
+/// inscribing result in the array. Reads at most N elements.
+///	@param	ar the array to fold
+///	@param  n  The number of max elements
+///	@param	f the function to apply to each element of ar
+void	ft_anfold(t_arr *ar, size_t n, t_data_tr_w f);
+/// @brief divides the length of the array by 2 by pairing up values and
+/// inscribing result in the array. Itterates over in a reverse order.
+/// Reads at most N elements.
+///	@param	ar the array to fold
+///	@param  n  The number of max elements
+///	@param	f the function to apply to each element of ar
+void	ft_anfold_r(t_arr *ar, size_t n, t_data_tr_w f);
+/// @brief divides the length of the array by 2 by pairing up values and
+/// inscribing result in the array. Iterate mlt times over the results in the
+/// array dividing each times the lenght by 2. Reads at most N elements.
+///	@param	ar the array to fold
+///	@param  n  The number of max elements
+///	@param  mlt  The number of iterations.
+///	@param	f the function to apply to each element of ar
+void	ft_anfold_mltp(t_arr *ar, size_t n, t_data_tr_w f, size_t mlt);
+/// @brief divides the length of the array by 2 by pairing up values and
+/// inscribing result in the array. Iterate mlt times over the results in the
+/// array dividing each times the lenght by 2. Reads at most N elements.
+/// Itterates over in a reverse order.
+///	@param	ar the array to fold
+///	@param  n  The number of max elements
+///	@param  mlt  The number of iterations.
+///	@param	f the function to apply to each element of ar
+void	ft_anfold_r_mltp(t_arr *ar, size_t n, t_data_tr_w f, size_t mlt);
 
 /// @brief	reverse the array given
 /// @param	ar the array to reverse

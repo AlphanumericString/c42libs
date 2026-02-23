@@ -149,6 +149,12 @@ typedef int					(*t_data_cmp)(const void *a, const void *b);
 /// @return Void
 typedef void				(*t_data_apply)(void *data);
 
+/// @brief	Type of function to apply on a node data with an arg
+/// @param	data The data to apply the function on
+/// @param	arg	The argument to feed to the function
+/// @return Void
+typedef void				(*t_data_apply_with)(void *data, void *arg);
+
 /// @brief	Type of function to see if a node data is something
 /// @return	True if the data is what we are looking for, false otherwise
 typedef bool				(*t_data_is)(const void *);
@@ -156,6 +162,10 @@ typedef bool				(*t_data_is)(const void *);
 /// @brief	Type of function to transform a data into something else
 /// @return	The new data
 typedef void				*(*t_data_tr)(const void *);
+
+/// @brief	Type of function to transform a data into something else with an arg
+/// @return	The new data
+typedef void				*(*t_data_tr_w)(const void *, void *);
 
 /// @brief	Type of function to transform inplace a data into some other data
 /// @param	data The data to transform in place

@@ -1,38 +1,74 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alen.c                                          :+:      :+:    :+:   */
+/*   ft_fold.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 09:41:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/16 16:02:01 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/02/23 18:08:49 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/02/23 18:08:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_arr.h"
 
-size_t	ft_alen(t_const_arr array)
-{
-	size_t	len;
-
-	len = 0;
-	if (!array)
-		return (0);
-	while (array[len])
-		len++;
-	return (len);
+void	ft_afold(t_arr *ar, t_data_tr_w f) {
+	if (!ar || !f)
+		 return ;
+	return (ft_anfold(ar, ft_alen((t_const_arr)ar), f));
 }
-size_t	ft_anlen(t_const_arr array, size_t n)
-{
-	size_t	len;
 
-	len = 0;
-	if (!array || !n)
-		return (0);
-	while (len < n && array[len])
-		len++;
-	return (len);
+void	ft_anfold(t_arr *ar, size_t n, t_data_tr_w f)
+{
+	size_t	i;
+
+	if (!ar || n < 2 || !f)
+		return ;
+	i = 1;
+	while (ar[i] && i < n) {
+		f(ar[i - 1], ar[i]);
+		i += 2;
+	}
+}
+
+void	ft_anfold_r(t_arr *ar, size_t n, t_data_tr_w f)
+{
+	size_t	i;
+
+	if (!ar || n < 2 || !f)
+		return ;
+	i = ft_anlen((t_const_arr)ar, n);
+	if (i != 0 && !ar[i])
+		i--;
+	while (i > 1)
+	{
+		f(ar[i - 1], ar[i]);
+		i -= 2;
+	}
+}
+
+void	ft_anfold_mltp(t_arr *ar, size_t n, t_data_tr_w f, size_t mlt)
+{
+	if (!ar || n < 2 || !f || !mlt)
+		return ;
+	while (mlt && n > 1)
+	{
+		ft_anfold(ar, n, f);
+		n = (n / 2) + (n % 2);
+		mlt--;
+	}
+}
+
+void	ft_anfold_r_mltp(t_arr *ar, size_t n, t_data_tr_w f, size_t mlt)
+{
+	if (!ar || n < 2 || !f || !mlt)
+		return ;
+	while (mlt && n > 1)
+	{
+		ft_anfold_r(ar, n, f);
+		n = (n / 2) + (n % 2);
+		mlt--;
+	}
 }
 /*
 GPL-3.0 License:

@@ -1,38 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alen.c                                          :+:      :+:    :+:   */
+/*   ft_fold.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 09:41:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/16 16:02:01 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/02/23 17:39:42 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/02/23 17:39:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_defs.h"
 #include "ft_arr.h"
 
-size_t	ft_alen(t_const_arr array)
+void	*ft_acollect(t_const_arr *arr, void *start_val, t_data_tr_w f)
 {
-	size_t	len;
-
-	len = 0;
-	if (!array)
-		return (0);
-	while (array[len])
-		len++;
-	return (len);
+	return (ft_ancollect(arr, -1, start_val, f));
 }
-size_t	ft_anlen(t_const_arr array, size_t n)
-{
-	size_t	len;
 
-	len = 0;
-	if (!array || !n)
-		return (0);
-	while (len < n && array[len])
-		len++;
-	return (len);
+void	*ft_ancollect(t_const_arr *arr, size_t n, void *start_val,
+			   t_data_tr_w f)
+{
+	size_t	i;
+	void	*ret;
+
+	i = 0;
+	if (!f || !arr)
+		return (NULL);
+	while (i < n && arr[i])
+		ret = f(arr[i++], start_val);
+	return (ret);
+}
+void	*ft_ancollect_r(t_const_arr *ar, size_t n, void *start_val,
+			   t_data_tr_w f)
+{
+	void	*ret;
+	size_t	i;
+
+	i = 0;
+	if (!f || !ar)
+		return (NULL);
+	i = ft_anlen((t_const_arr)ar, n);
+	if (i != 0 && !ar[i])
+		i--;
+	while (i)
+		ret = f(ar[i--], start_val);
+	return (ret);
 }
 /*
 GPL-3.0 License:
