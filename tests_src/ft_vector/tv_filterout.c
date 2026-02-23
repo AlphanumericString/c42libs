@@ -56,8 +56,8 @@ static int	base_case(void)
 
 int	tv_filterout(void)
 {
-	int a;
-	int b;
+	int	a;
+	int	b;
 
 	a = base_case();
 	b = error_case();

@@ -1,44 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_create.c                                        :+:      :+:    :+:   */
+/*   ft_vec_insert.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 23:57:53 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/10/01 23:57:53 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/02/23 06:16:26 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/02/23 06:16:26 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
-#include "tests/fixtures.h"
-#include "tests/vector_tests.h"
+#include <stdio.h>
 
-static int	mt_error(void)
+// INFO: vec->n_e++ before manip for vec_at not to fail to null on bad access
+bool	ft_vec_insert(t_vector *vec, size_t pos, const void *elem)
 {
-	const int	fp = *talloc_get_failpoint();
-	t_vector	*vec;
-
-	talloc_set_failpoint(0);
-	vec = ft_vec_create(4);
-	talloc_set_failpoint(fp);
-	if (vec)
-		return (ft_vec_destroy(&vec), 4);
-	return (EXIT_SUCCESS);
-}
-
-int	tv_create(void)
-{
-	t_vector	*v;
-
-	v = ft_vec_create(12);
-	if (v->cappacity < FT_VECTOR_BASE_LEN)
-		return (ft_vec_destroy(&v), 1);
-	if (v->n_e != 0 || v->s_e != 12)
-		return (ft_vec_destroy(&v), 2);
-	if (ft_vec_create(0) != NULL)
-		return (ft_vec_destroy(&v), 3);
-	return (ft_vec_destroy(&v), mt_error());
+	if (!vec || !vec->data || !vec->n_e || !vec->s_e)
+		return (false);
+	if (pos >= vec->n_e)
+		return (ft_vec_add(vec, elem));
+	if ((vec->n_e + 1) > vec->cappacity)
+		if (ft_vec_reserve(vec, vec->n_e + 1) != true)
+			return (false);
+	vec->n_e++;
+	ft_memmove(ft_vec_at(vec, pos + 1), ft_vec_at(vec, pos),
+			vec->s_e * (vec->n_e - pos));
+	ft_memcpy(ft_vec_at(vec, pos), elem, vec->s_e);
+	return (true);
 }
 /*
 GPL-3.0 License:

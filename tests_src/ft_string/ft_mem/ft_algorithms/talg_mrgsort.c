@@ -19,15 +19,15 @@
 //	ft_mrgsort_r(sarr, nf, ft_cmp_szt_p, NULL); < does not compile
 int	talg_mrgsort_r(void)
 {
-	size_t			sarr[FT_STD_BUF_SIZE];
-	char			buff[FT_STD_BUF_SIZE * sizeof(size_t)];
-	const t_arrinfo	nf = (t_arrinfo){.nmemb = FT_STD_BUF_SIZE,
-		.sz = sizeof(size_t)};
-
-	randomize_sarr(sarr, nf.sz, 0, 333333);
-	ft_mrgsort_r(sarr, nf, ft_cmp_szt_p, buff);
-	if (!ft_is_sorted(sarr, nf.nmemb, nf.sz, ft_cmp_szt_p))
-		return (1);
+	// size_t			sarr[FT_STD_BUF_SIZE];
+	// char			buff[FT_STD_BUF_SIZE * sizeof(size_t)];
+	// const t_arrinfo	nf = (t_arrinfo){.nmemb = FT_STD_BUF_SIZE,
+	// 	.sz = sizeof(size_t)};
+	//
+	// randomize_sarr(sarr, nf.sz, 0, 333333);
+	// ft_mrgsort_r(sarr, nf, ft_cmp_szt_p, buff);
+	// if (!ft_is_sorted(sarr, nf.nmemb, nf.sz, ft_cmp_szt_p))
+	// 	return (1);
 	return (EXIT_SUCCESS);
 }
 

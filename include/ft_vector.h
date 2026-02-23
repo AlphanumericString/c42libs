@@ -36,10 +36,10 @@ t_vector	*ft_vec_new(void) __attribute__((
 						"ft_vec_create")));
 t_vector	*ft_vec_create(size_t size_of_elements);
 t_vector	*ft_vec_from_size(size_t n);
-t_vector	*ft_vec_from_array(const void *src, size_t nmemb, size_t size);
-	// crea as in create a new vector w rets from the mapping
-t_vector	*ft_vec_map(const t_vector *vec, t_data_apply	func);
-// TODO: ft_vec_dup
+t_vector	*ft_vec_from_array(const void *src, size_t nmemb, size_t elem_size);
+			// new vector w rets from the function func
+t_vector	*ft_vec_map(const t_vector *vec, t_data_apply func);
+t_vector	*ft_vec_dup(const t_vector *vec);
 t_vector	*ft_vec_convert_alloccarray(void *data, size_t nmemb, size_t size);
 bool		ft_vec_reserve(t_vector *vec, size_t size);
 
@@ -47,6 +47,7 @@ bool		ft_vec_reserve(t_vector *vec, size_t size);
 bool		ft_vec_destroy(t_vector **vec);
 bool		ft_vec_delete(t_vector *vec);
 void		*ft_vec_pop(t_vector *vec);
+// TODO: push -> links backs to ft_vec_add
 // TODO: ft_vec_pop_front
 void		ft_vec_remove(t_vector *vector, size_t n,
 				t_data_apply del);
@@ -54,16 +55,15 @@ void		ft_vec_nremove(t_vector *vec, size_t start, size_t n,
 				t_data_apply del);
 void		ft_vec_filterout(t_vector *vector, t_data_is func,
 				t_data_apply del);
-// TODO: ft_vec_remove_if -> rename -> ft_vec_filterout
 
 // add
 bool		ft_vec_add(t_vector *vec, const void *data);
 bool		ft_vec_cat(t_vector *vec_dst, const t_vector *vec_src);
+bool		ft_vec_insert(t_vector *vec, size_t pos, const void *elem);
 
 // alter
 void		ft_vec_apply(t_vector *vec, t_data_apply func);
 void		ft_vec_clear(t_vector *vec);
-	// true -> elem kept, false->elem free'd
 void		ft_vec_filter(t_vector *vec, t_data_is func,
 				t_data_apply del);
 void		ft_vec_sort(t_vector *vec, t_data_cmp cmp_f);

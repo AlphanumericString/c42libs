@@ -17,8 +17,8 @@ bool	ft_vec_add(t_vector *vec, const void *data)
 {
 	if (!vec || !data || !vec->s_e)
 		return (false);
-	if ((ft_vec_inuse(vec) + vec->s_e) > vec->cappacity)
-		if (!ft_vec_reserve(vec, vec->cappacity * 2))
+	if ((vec->n_e + 1) > vec->cappacity)
+		if (!ft_vec_reserve(vec, vec->n_e + 1))
 			return (false);
 	ft_memcpy(vec->data + ft_vec_inuse(vec), data, vec->s_e);
 	vec->n_e++;

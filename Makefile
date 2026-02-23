@@ -255,8 +255,10 @@ FT_VEC_SRC	=	\
 			$(FT_VEC_DIR)/ft_vec_cat.c		\
 			$(FT_VEC_DIR)/ft_vec_clear.c	\
 			$(FT_VEC_DIR)/ft_vec_destroy.c	\
+			$(FT_VEC_DIR)/ft_vec_dup.c		\
 			$(FT_VEC_DIR)/ft_vec_filter.c	\
 			$(FT_VEC_DIR)/ft_vec_find.c		\
+			$(FT_VEC_DIR)/ft_vec_insert.c	\
 			$(FT_VEC_DIR)/ft_vec_map.c		\
 			$(FT_VEC_DIR)/ft_vec_new.c		\
 			$(FT_VEC_DIR)/ft_vec_pop.c		\
@@ -841,21 +843,24 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tv_add.c									\
 			$(TESTS_DIR)/ft_vector/tv_apply.c								\
 			$(TESTS_DIR)/ft_vector/tv_at.c									\
-			$(TESTS_DIR)/ft_vector/tv_inuse.c								\
 			$(TESTS_DIR)/ft_vector/tv_cat.c									\
 			$(TESTS_DIR)/ft_vector/tv_clear.c								\
 			$(TESTS_DIR)/ft_vector/tv_convert_alloc_array.c					\
 			$(TESTS_DIR)/ft_vector/tv_create.c								\
 			$(TESTS_DIR)/ft_vector/tv_destroy.c								\
+			$(TESTS_DIR)/ft_vector/tv_dup.c									\
 			$(TESTS_DIR)/ft_vector/tv_filter.c								\
 			$(TESTS_DIR)/ft_vector/tv_filterout.c							\
 			$(TESTS_DIR)/ft_vector/tv_find.c								\
 			$(TESTS_DIR)/ft_vector/tv_from_array.c							\
 			$(TESTS_DIR)/ft_vector/tv_from_size.c							\
+			$(TESTS_DIR)/ft_vector/tv_insert.c								\
+			$(TESTS_DIR)/ft_vector/tv_inuse.c								\
 			$(TESTS_DIR)/ft_vector/tv_map.c									\
 			$(TESTS_DIR)/ft_vector/tv_new.c									\
 			$(TESTS_DIR)/ft_vector/tv_pop.c									\
 			$(TESTS_DIR)/ft_vector/tv_remove.c								\
+			$(TESTS_DIR)/ft_vector/tv_nremove.c								\
 			$(TESTS_DIR)/ft_vector/tv_reserve.c								\
 			$(TESTS_DIR)/ft_vector/tv_reverse.c								\
 			$(TESTS_DIR)/ft_vector/tv_shift.c								\

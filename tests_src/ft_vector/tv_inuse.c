@@ -23,8 +23,7 @@ int	tv_inuse(void)
 	a = -1;
 	while (++a < 3)
 		ft_vec_add(vec, &a);
-	if (ft_vec_inuse(vec) != (vec->n_e * vec->s_e)
-		|| ft_vec_inuse(vec) > vec->cappacity)
+	if (ft_vec_inuse(vec) != (vec->n_e * vec->s_e))
 		return (1);
 	if (ft_vec_inuse(NULL) != 0)
 		return (2);
