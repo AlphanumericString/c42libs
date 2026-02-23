@@ -18,7 +18,7 @@
 #include "tests/fixtures.h"
 #include "tests/list__ll_tests.h"
 
-int	t_ll_get_datas(void)
+int	tll_get_datas(void)
 {
 	t_list	*list;
 	int		*data;
@@ -42,7 +42,7 @@ int	t_ll_get_datas(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_get_nodes(void)
+int	tll_get_nodes(void)
 {
 	t_list	*list;
 	int		*data;

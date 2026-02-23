@@ -1,64 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_print_type.c                              :+:      :+:    :+:   */
+/*   targp_perror_pa_state.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/15 14:30:59 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/15 15:42:24 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/12/20 19:32:38 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/12/20 19:32:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "internal/args_helper.h"
+#include "ft_mem.h"
 #include "ft_string.h"
+#include "internal/args_helper.h"
+#include "internal/args_helper_types.h"
+#include "tests/args_tests.h"
 
-static const char	*at_type_toa(enum e_arg_types type)
+#include <unistd.h>
+
+#define EXPECTED_LINE1 "Error:  Option `--test' : str.\n"
+#define EXPECTED_LINE2 "Error: toto: Option `--test' : str.\n"
+
+int	targ_perror_pa_state(void)
 {
-	static const char	*types[] = {
-	[FT_AT_UNSPECIFIED] = "unspecified",
-	[FT_AT_INT] = "int",
-	[FT_AT_LONG] = "long",
-	[FT_AT_NBR] = "number",
-	[FT_AT_HEX] = "hexadecimal",
-	[FT_AT_OCT] = "octal",
-	[FT_AT_STR] = "string",
-	[FT_AT_FNAME] = "file name",
-	[FT_AT_BOOL] = "boolean",
-	[FT_AT_FLOAT] = "float",
-	[FT_AT_DOUBLE] = "double",
-	[FT_AT_ALPHANUM] = "alphanumeric",
-	[FT_AT_CUSTOM] = "custom",
-	};
+	int				ppe[2];
+	const char		*args[] = {"--test", "argument"};
+	t_parser_state	st;
+	char			buffer[1024];
 
-	if (type > FT_AT_CUSTOM)
-		return ("unknown");
-	return (types[type]);
-}
-
-void	put_type_fd(uint16_t type, int fd)
-{
-	const char	*at_type;
-	char		sep;
-	char		braces[3];
-
-	if (!type || (type & FT_AH_MASK) == FT_AH_NO)
-		return ;
-	at_type = at_type_toa(type & FT_AT_MASK);
-	if ((type & FT_AS_MASK) == FT_AS_NEXT_ARG)
-		sep = ' ';
-	else if ((type & FT_AS_MASK) == FT_AS_EQSIGN)
-		sep = '=';
-	else
-		sep = '?';
-	if ((type & FT_AH_MASK) == FT_AH_YES)
-		ft_strlcpy(braces, "<>", 3);
-	else if ((type & FT_AH_MASK) == FT_AH_MAYBE)
-		ft_strlcpy(braces, "[]", 3);
-	else
-		ft_strlcpy(braces, "??", 3);
-	ft_print_fd(fd, "%c%c%s%c", sep, braces[0], at_type, braces[1]);
-	return ;
+	ft_bzero(&st, sizeof(st));
+	st.args = args;
+	st.mode = FTPA_LONG;
+	(pipe(ppe), dup2(ppe[1], STDERR_FILENO));
+	perror_pa_state(&st, "str");
+	ft_set_progname("toto");
+	perror_pa_state(&st, "str");
+	ft_bzero(buffer, 1024);
+	read(ppe[0], &buffer, 1024);
+	(dup2(STDERR_FILENO, ppe[1]), close(ppe[0]), close(ppe[1]));
+	if (ft_strcmp(buffer, EXPECTED_LINE1 EXPECTED_LINE2) != 0)
+		return (1);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

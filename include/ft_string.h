@@ -67,13 +67,13 @@ int			ft_putstr_fd(const char *s, int fd);
 /// @return The value returned bu the write syscall
 int			ft_putnbr_fd(int nbr, int fd);
 /// @brief print the number on the specified file descriptor using given base
-/// @param nbr string to print
+/// @param nb string to print
 /// @param base the base to use for the conversion
 /// @param fd file descriptor to print on
 /// @return The value returned bu the write syscall
 int			ft_putnbr_base_fd(ssize_t nb, const char *base, int fd);
 /// @brief print the number on the specified file descriptor using given base
-/// @param nbr string to print
+/// @param nb string to print
 /// @param base the base to use for the conversion
 /// @param fd file descriptor to print on
 /// @return The value returned bu the write syscall
@@ -254,8 +254,15 @@ char		*ft_gnl(int fd);
 /// @note You must free the returned string
 /// @note This function is thread safe if each thread uses its own buffer
 char		*ft_gnl_r(int fd, char **buffer);
-//TODO: ft_gnl_rn(int fd, void *buf, size_t n); // maybe for static buffers
-//  -> n size of the buffer
+/// @brief Read the next line from the file descriptor using the provided buffer
+/// as a persistent buffer between calls
+/// @param fd file descriptor to read from
+/// @param buffer pointer to the buffer to use between calls
+/// @param buffer_size size of the provided buffer
+/// @return the next line from the file descriptor otherwise NULL
+/// @note You must free the returned string
+/// @note This function is thread safe if each thread uses its own buffer
+char		*ft_gnl_rn(int fd, char *buffer, ssize_t buffer_size);
 
 /// @brief load the content of the file descriptor into a string
 /// @param fd file descriptor to read from
@@ -506,16 +513,15 @@ size_t		ft_strncnb(const char *str, size_t n, char c);
 ///		3. this modify the string str
 char		*ft_strtok(char *str_init, const char *delims);
 /// @brief strtok_r - str tokenzier reentrant
-/// @param str_init string to search into
+/// @param str string to search into (should be NULL on subsequent calls)
 /// @param delims string of delimiters
 /// @param saveptr a string pointer that 'holds' the value in between calls
 ///  of the function.
 /// @return a pointer to the first word separated by character in the string
 ///  delims str otherwise NULL
-/// @warning:
-///		2. you lose the information on the separator that was used to split
-///		3. this modify the string str
-char		*ft_strtok_r(char *str, const char *delim, char **saveptr);
+/// @warning: you lose the information on the separator that was used to split,
+///		and this modifies the string str.
+char		*ft_strtok_r(char *str, const char *delims, char **saveptr);
 
 /// @brief Calculate the length of the starting segment of str that contain
 /// char from the accept string

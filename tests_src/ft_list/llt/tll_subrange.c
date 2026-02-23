@@ -25,7 +25,7 @@
 	sub = ft_ll_subrange(list, (const t_list *)data2); // (21)-> (42)-> NULL
 */
 
-int	t_ll_subrange(void)
+int	tll_subrange(void)
 {
 	t_list	*list;
 	int		*data;

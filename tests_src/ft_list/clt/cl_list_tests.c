@@ -34,7 +34,7 @@ static const t_fnamed	*cl_tests(void)
 	{"subrange", tcl_subrange},
 	{"xtract_max", tcl_extract_max}, {"xtract_max_node", tcl_extract_max_node},
 	{"xtract_min", tcl_extract_min}, {"xtract_min_node", tcl_extract_min_node},
-	{"issort", tcl_issort}, {"sort", tcl_sort},
+	{"issort", tcl_issort}, {"sort", tcl_sort}, {"mid", tcl_mid},
 	{NULL, NULL}};
 
 	return (var);

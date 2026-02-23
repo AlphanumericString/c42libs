@@ -17,7 +17,7 @@
 #include "types/ft_list_types.h"
 #include <stdio.h>
 
-int	t_ll_extract_min(void)
+int	tll_extract_min(void)
 {
 	const char	*strs[] = {"hello", "world", "42", "school", NULL};
 	t_list		*list;
@@ -38,7 +38,7 @@ int	t_ll_extract_min(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_extract_min_node(void)
+int	tll_extract_min_node(void)
 {
 	const char	*strs[] = {"hello", "world", "42", "school", NULL};
 	t_list		*list;

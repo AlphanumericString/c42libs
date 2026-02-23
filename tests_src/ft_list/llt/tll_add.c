@@ -25,7 +25,7 @@
 	ft_ll_clear(&list, ft_free);
 */
 
-int	t_ll_add_front(void)
+int	tll_add_front(void)
 {
 	t_list	*list;
 	int		*data;
@@ -48,7 +48,7 @@ int	t_ll_add_front(void)
 	return (ft_ll_clear(&list, ft_free), 0);
 }
 
-int	t_ll_add_back(void)
+int	tll_add_back(void)
 {
 	t_list	*list;
 	int		*data;

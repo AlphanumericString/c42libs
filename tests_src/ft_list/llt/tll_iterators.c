@@ -17,7 +17,7 @@
 #include "tests/list__ll_tests.h"
 #include <stdlib.h>
 
-int	t_ll_begin(void)
+int	tll_begin(void)
 {
 	t_list	*list;
 	int		*data;
@@ -39,7 +39,7 @@ int	t_ll_begin(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_end(void)
+int	tll_end(void)
 {
 	t_list	*list;
 	int		*data;
@@ -61,7 +61,7 @@ int	t_ll_end(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_at(void)
+int	tll_at(void)
 {
 	t_list	*list;
 	int		*data;

@@ -23,7 +23,10 @@ static const t_fnamed	*targ_tests(void)
 	{"prog_name", targ_program_name_test}, {"opt_list", targ_opt_list_test},
 	{"custom checker", targ_custom_checker_test},
 	{"consume_args", targ_consume_args_test}, {"shift_args", targ_shift_args},
-	{"parse_args", targ_parse}, {NULL, NULL}};
+	{"arg_printopts", targ_printopts}, {"parser_perror", targ_perror_pa_state},
+	{"put_type", targ_puttype_fd}, {"parse_args", targ_parse},
+	{"disp loaded", targ_disploaded},
+	{NULL, NULL}};
 
 	return (var);
 }

@@ -59,7 +59,6 @@ bool		ft_str_isfloat(const char *str);
 /// @brief Check if the string is a float
 /// @param str string to check
 /// @return 1 if the string is a float, 0 otherwise
-/// @file: src/ft_string/ft_char/ft_isdouble.c
 bool		ft_str_isdouble(const char *str);
 
 /// @brief Check if the string is an int valid value

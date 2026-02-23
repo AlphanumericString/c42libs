@@ -38,7 +38,6 @@ t_pair	*ft_pair_new(const void *first, const void *second);
 /// @param pair The pointer to the pair to set
 /// @param first The first element of the pair
 /// @param second The second element of the pair
-/// @return void
 void	ft_pair_set(t_pair *const pair, const void *first,
 			const void *second);
 

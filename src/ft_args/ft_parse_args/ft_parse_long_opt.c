@@ -81,7 +81,7 @@ static void	explain(const char *arg)
 	ft_print_fd(STDERR_FILENO, "Unkown long option '%s'\n", arg);
 	ft_print_fd(STDERR_FILENO, "To supress this and run as program's argumen"
 		"run with %s `--' '%s'\n", ft_progname(), arg);
-	disp_loaded();
+	disp_loaded(STDERR_FILENO);
 }
 
 void	v2_parse_long_opt(t_parser_state *st, const char **av, void *data)

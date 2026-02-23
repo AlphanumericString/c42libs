@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_helper_types.h                                :+:      :+:    :+:   */
+/*   tcl_mid.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 17:47:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/15 00:35:09 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/18 12:57:50 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/01/04 22:31:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_HELPER_TYPES_H
-# define ARGS_HELPER_TYPES_H
+#include "ft_defs.h"
+#include "ft_list.h"
+#include "types/ft_list_types.h"
+#include "tests/list__cl_tests.h"
 
-# include "types/ft_args_types.h"
-# include "ft_defs.h"
-# include <stddef.h>
-
-enum e_parser_type
+int	tcl_mid(void)
 {
-	FTPA_SHORT = 0,
-	FTPA_LONG
-};
+	t_clist		*lst;
+	t_clist		*got[4];
+	const void	*exp[4] = {NULL, (t_any)0xDEAD, (t_any)0xCAFE, (t_any)0xCAFE};
 
-typedef struct s_parser_state
-{
-	size_t				arg_it;
-	size_t				in_arg_it;
-	const t_opt			*opt_list;
-	int					err;
-	enum e_parser_type	mode;
-	const char *const	*args;
-}	t_parser_state;
-
-struct s_local_table
-{
-	t_data_is			checker;
-	enum e_arg_types	type;
-	char				*name;
-};
-
-#endif
+	lst = NULL;
+	got[0] = ft_cl_mid(lst);
+	ft_cl_push(&lst, (t_any)0xDEAD);
+	got[1] = ft_cl_mid(lst);
+	ft_cl_push(&lst, (t_any)0xCAFE);
+	got[2] = ft_cl_mid(lst);
+	ft_cl_push(&lst, (t_any)0xBEEF);
+	got[3] = ft_cl_mid(lst);
+	if (got[0])
+		return (1);
+	if (got[1]->data != exp[1])
+		return (2);
+	if (got[2]->data != exp[2])
+		return (3);
+	if (got[3]->data != exp[2])
+		return (4);
+	ft_cl_delete(&lst, NULL);
+	return (EXIT_SUCCESS);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

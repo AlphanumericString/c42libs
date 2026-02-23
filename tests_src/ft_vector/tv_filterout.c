@@ -36,7 +36,7 @@ static int	error_case(void)
 	*vec = hold;
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
-}
+}src/ft_vector/ft_vec_insert.c
 
 static int	base_case(void)
 {

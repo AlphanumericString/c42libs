@@ -15,7 +15,6 @@
 #include "ft_mem.h"
 
 #include "tests/argp_tests.h"
-#include <stdio.h>
 
 int	set_digit(void *user_struct, const char *arg)
 {

@@ -16,7 +16,7 @@
 #include "tests/list__ll_tests.h"
 #include "types/ft_list_types.h"
 
-int	t_ll_extract_max(void)
+int	tll_extract_max(void)
 {
 	const char	*strs[] = {"hello", "world", "42", "school", NULL};
 	t_list		*list;
@@ -38,7 +38,7 @@ int	t_ll_extract_max(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_extract_max_node(void)
+int	tll_extract_max_node(void)
 {
 	const char	*strs[] = {"hello", "world", "42", "school", NULL};
 	t_list		*list;

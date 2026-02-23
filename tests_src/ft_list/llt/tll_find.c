@@ -18,7 +18,7 @@
 #include "tests/list__ll_tests.h"
 #include <stdlib.h>
 
-int	t_ll_find(void)
+int	tll_find(void)
 {
 	t_list	*list;
 	int		*data;

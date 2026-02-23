@@ -18,7 +18,7 @@
 #include "tests/list__ll_tests.h"
 #include <stdlib.h>
 
-int	t_ll_push(void)
+int	tll_push(void)
 {
 	t_list			*list;
 	t_list			*list_rep1;
@@ -45,7 +45,7 @@ int	t_ll_push(void)
 	return (ft_ll_push(NULL, NULL), 0);
 }
 
-int	t_ll_push_back(void)
+int	tll_push_back(void)
 {
 	t_list	*list;
 	int		prev;
@@ -68,7 +68,7 @@ int	t_ll_push_back(void)
 	return (ft_ll_push_back(NULL, NULL), 0);
 }
 
-int	t_ll_pop(void)
+int	tll_pop(void)
 {
 	t_list	*list;
 	int		*data;
@@ -108,7 +108,7 @@ int	t_ll_pop(void)
 	pop = ft_ll_pop_back(&list); // 42 : (63)-> NULL
 
 */
-int	t_ll_pop_back(void)
+int	tll_pop_back(void)
 {
 	t_list	*list;
 	int		*data;
