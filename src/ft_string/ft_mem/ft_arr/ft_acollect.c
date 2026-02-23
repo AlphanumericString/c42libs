@@ -19,7 +19,7 @@ void	*ft_acollect(t_const_arr *arr, void *start_val, t_data_tr_w f)
 }
 
 void	*ft_ancollect(t_const_arr *arr, size_t n, void *start_val,
-			   t_data_tr_w f)
+		t_data_tr_w f)
 {
 	size_t	i;
 	void	*ret;
@@ -31,8 +31,9 @@ void	*ft_ancollect(t_const_arr *arr, size_t n, void *start_val,
 		ret = f(arr[i++], start_val);
 	return (ret);
 }
+
 void	*ft_ancollect_r(t_const_arr *ar, size_t n, void *start_val,
-			   t_data_tr_w f)
+		t_data_tr_w f)
 {
 	void	*ret;
 	size_t	i;
