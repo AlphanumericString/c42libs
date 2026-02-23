@@ -18,8 +18,10 @@
 
 void	ft_vec_remove(t_vector *vec, size_t idx, t_data_apply del)
 {
-	if (!vec || !vec->n_e || !vec->s_e || idx >= vec->n_e)
+	if (!vec || !vec->n_e || !vec->s_e)
 		return ;
+	if (idx > vec->n_e)
+		idx = vec->n_e;
 	if (del)
 		del(ft_vec_at(vec, idx));
 	if (idx + 1 >= vec->n_e)
@@ -50,6 +52,17 @@ void	ft_vec_filterout(t_vector *vec, t_data_is func, t_data_apply del)
 	}
 }
 
+static void ft_vec_nrm_start(t_vector *vec, size_t nb, t_data_apply del) {
+	size_t i = 0;
+
+	if (nb >= vec->n_e)
+		return (ft_vec_apply(vec, del), ft_vec_clear(vec));
+	if (del)
+		while (i != nb)
+			del(ft_vec_at(vec, i++));
+	ft_vec_shift(vec, 0, nb);
+	return ;
+}
 // NOTE: maybe move the ft_bzero calls to another ft_vec_* function to allow
 //	for : 1. better performance, 2. might be usefull in some other cases to
 //	keep the array clean
@@ -59,25 +72,21 @@ void	ft_vec_nremove(t_vector *vec, size_t start, size_t nb_todel,
 	size_t	i;
 
 	i = 0;
-	if (!vec || !vec->n_e || !vec->s_e || start > vec->n_e || !nb_todel)
+	if (!vec || !vec->n_e || !vec->s_e || !vec->data || start > vec->n_e
+		|| !nb_todel)
 		return ;
-	if ((start + nb_todel) >= vec->n_e)
-	{
-		while (++i < nb_todel + 1 && del)
-			del(ft_vec_at(vec, i - 1));
-		ft_bzero(ft_vec_at(vec, start), (vec->n_e - start) * vec->s_e);
-		vec->n_e = start;
-		return ;
-	}
-	while (++i < (nb_todel + 1) && del)
-		del(ft_vec_at(vec, i - 1));
-	i = 0;
-	i = vec->n_e - (start + nb_todel);
-	ft_memcpy(ft_vec_at(vec, start), ft_vec_at(vec, start + nb_todel),
-		i * vec->s_e);
+	if (!start)
+		return (ft_vec_nrm_start(vec, nb_todel, del));
+	if ((start + nb_todel) > vec->n_e)
+		nb_todel = vec->n_e - start;
+	if (del)
+		while (i++ < nb_todel)
+			del(ft_vec_at(vec, start + (i - 1)));
+	if (start + nb_todel < vec->n_e)
+		ft_memmove(ft_vec_at(vec, start), ft_vec_at(vec, start + nb_todel),
+			vec->s_e * ((vec->n_e - start) - nb_todel));
 	vec->n_e -= nb_todel;
-	ft_bzero(vec->data + (vec->n_e * vec->s_e),
-		vec->cappacity - ft_vec_inuse(vec));
+	return ;
 }
 /*
 GPL-3.0 License:

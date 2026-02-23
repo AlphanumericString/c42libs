@@ -41,10 +41,12 @@ t_vector	*ft_vec_create(size_t elem_size)
 	t_vector	*ret;
 
 	if (!elem_size)
-		elem_size = 1;
+		return (NULL);
 	ret = ft_vec_from_size(FT_VECTOR_BASE_LEN * elem_size);
-	if (ret)
-		ret->s_e = elem_size;
+	if (!ret)
+		return (NULL);
+	ret->s_e = elem_size;
+	ret->cappacity = FT_VECTOR_BASE_LEN;
 	return (ret);
 }
 
@@ -60,6 +62,7 @@ t_vector	*ft_vec_from_array(const void *data_src, size_t nmemb,
 		return (ret);
 	ret->n_e = nmemb;
 	ret->s_e = elem_size;
+	ret->cappacity = nmemb;
 	ft_memcpy(ret->data, data_src, nmemb * elem_size);
 	return (ret);
 }
@@ -78,7 +81,7 @@ t_vector	*ft_vec_convert_alloccarray(void *data, size_t nmemb, size_t e_size)
 	ret->data = data;
 	ret->n_e = nmemb;
 	ret->s_e = e_size;
-	ret->cappacity = nmemb * e_size;
+	ret->cappacity = nmemb;
 	return (ret);
 }
 /*

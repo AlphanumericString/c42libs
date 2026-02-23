@@ -57,7 +57,7 @@ static int	mt_test(void)
 	i = 0;
 	vec_a = ft_vec_create(sizeof(i));
 	vec_b = ft_vec_create(sizeof(i));
-	while (i < (vec_a->cappacity / vec_a->s_e))
+	while (i < FT_VECTOR_BASE_LEN)
 	{
 		ft_vec_add(vec_a, &i);
 		ft_vec_add(vec_b, &i);

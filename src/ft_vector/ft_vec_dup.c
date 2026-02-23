@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_create.c                                        :+:      :+:    :+:   */
+/*   ft_vec_dup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 23:57:53 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/10/01 23:57:53 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/02/23 05:58:13 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/02/23 05:58:13 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
-#include "tests/fixtures.h"
-#include "tests/vector_tests.h"
 
-static int	mt_error(void)
+t_vector *ft_vec_dup(const t_vector *o)
 {
-	const int	fp = *talloc_get_failpoint();
-	t_vector	*vec;
+	t_vector *ret;
+	void		*data_;
 
-	talloc_set_failpoint(0);
-	vec = ft_vec_create(4);
-	talloc_set_failpoint(fp);
-	if (vec)
-		return (ft_vec_destroy(&vec), 4);
-	return (EXIT_SUCCESS);
-}
-
-int	tv_create(void)
-{
-	t_vector	*v;
-
-	v = ft_vec_create(12);
-	if (v->cappacity < FT_VECTOR_BASE_LEN)
-		return (ft_vec_destroy(&v), 1);
-	if (v->n_e != 0 || v->s_e != 12)
-		return (ft_vec_destroy(&v), 2);
-	if (ft_vec_create(0) != NULL)
-		return (ft_vec_destroy(&v), 3);
-	return (ft_vec_destroy(&v), mt_error());
+	if (!o || !o->data || !o->s_e)
+		return (NULL);
+	data_ = ft_calloc(o->n_e, o->s_e);
+	if (!data_)
+		return (NULL);
+	ft_memcpy(data_, o->data, ft_vec_inuse(o));
+	ret = ft_calloc(sizeof(t_vector), 1);
+	if (!ret)
+		return (ft_free(data_), NULL);
+	*ret = *o;
+	ret->data = data_;
+	return (ret);
 }
 /*
 GPL-3.0 License:

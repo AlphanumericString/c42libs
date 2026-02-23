@@ -1,44 +1,76 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_create.c                                        :+:      :+:    :+:   */
+/*   tv_dup.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 23:57:53 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/10/01 23:57:53 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/02/23 05:44:17 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/02/23 05:44:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "tests/fixtures.h"
+#include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 
-static int	mt_error(void)
+static int	mt_cases(void)
 {
-	const int	fp = *talloc_get_failpoint();
+	const int	f_po = *talloc_get_failpoint();
 	t_vector	*vec;
+	const int	a[] = {0, 1, 2};
+	int			ret;
+	t_vector	*dup;
 
+	vec = ft_vec_from_array(a, sizeof(int), 3);
+	ret = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
-	vec = ft_vec_create(4);
-	talloc_set_failpoint(fp);
-	if (vec)
-		return (ft_vec_destroy(&vec), 4);
-	return (EXIT_SUCCESS);
+	dup = ft_vec_dup(vec);
+	if (dup)
+		ret = 8;
+	talloc_set_failpoint(f_po);
+	ft_vec_destroy(&vec);
+	return (ret);
 }
 
-int	tv_create(void)
+static int	bad_vector(void)
 {
-	t_vector	*v;
+	t_vector	hold;
+	t_vector	*vec;
+	const int	a[] = {0, 1, 2};
+	t_vector	*cpy;
 
-	v = ft_vec_create(12);
-	if (v->cappacity < FT_VECTOR_BASE_LEN)
-		return (ft_vec_destroy(&v), 1);
-	if (v->n_e != 0 || v->s_e != 12)
-		return (ft_vec_destroy(&v), 2);
-	if (ft_vec_create(0) != NULL)
-		return (ft_vec_destroy(&v), 3);
-	return (ft_vec_destroy(&v), mt_error());
+	vec = ft_vec_from_array(a, sizeof(int), 3);
+	cpy = ft_vec_dup(NULL);
+	if (cpy)
+		return (ft_vec_destroy(&vec), 4);
+	hold = *vec;
+	vec->s_e = 0;
+	cpy = ft_vec_dup(vec);
+	if (cpy)
+		return (ft_vec_destroy(&vec), 5);
+	*vec = hold;
+	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
+}
+
+int	tv_dup(void)
+{
+	t_vector	*vec;
+	const int	a[] = {0, 1, 2};
+	t_vector	*cpy;
+	int			err_scenarios;
+
+	vec = ft_vec_from_array(a, sizeof(int), 3);
+	cpy = ft_vec_dup(vec);
+	if (vec->data == cpy->data)
+		return (ft_vec_destroy(&vec), 1);
+	if (vec->n_e != cpy->n_e || vec->s_e != cpy->s_e)
+		return (ft_vec_destroy(&vec), ft_vec_destroy(&cpy), 2);
+	err_scenarios = bad_vector();
+	if (!err_scenarios)
+		err_scenarios = mt_cases();
+	return (ft_vec_destroy(&vec), ft_vec_destroy(&cpy), err_scenarios);
 }
 /*
 GPL-3.0 License:

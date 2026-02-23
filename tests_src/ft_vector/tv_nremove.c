@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_remove.c                                        :+:      :+:    :+:   */
+/*   tv_nremove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 10:13:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:09:17 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/02/23 10:27:31 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/02/23 10:27:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
-#include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 
 static bool	*was_called(void)
@@ -27,46 +26,54 @@ static void	dummy_recorder(void *e)
 	(void)e;
 }
 
-// crashes on fail so no returns lol
-static int	error_cases(void)
+static int	tv_nremove_error(void)
 {
 	t_vector	bad_vec;
 	void		*fake_data;
+	t_vector	*vec;
 
+	vec = ft_vec_from_array((int []){1, 2, 3, 4, 5}, 5, sizeof(int));
 	fake_data = (void *)0xDEAD;
-	ft_vec_remove(NULL, 3, NULL);
+	ft_vec_nremove(NULL, 0, 12, NULL);
 	bad_vec = (t_vector){.data = NULL, .n_e = 2, .s_e = 4, .cappacity = 5};
-	ft_vec_remove(&bad_vec, 0, NULL);
+	ft_vec_nremove(&bad_vec, 0, 12, NULL);
 	bad_vec = (t_vector){.data = fake_data, .n_e = 0, .s_e = 4, .cappacity = 5};
-	ft_vec_remove(&bad_vec, 0, NULL);
+	ft_vec_nremove(&bad_vec, 0, 12, NULL);
 	bad_vec = (t_vector){.data = fake_data, .n_e = 2, .s_e = 0, .cappacity = 5};
-	ft_vec_remove(&bad_vec, 0, NULL);
+	ft_vec_nremove(&bad_vec, 0, 12, NULL);
+	ft_vec_nremove(vec, vec->n_e + 3, 2, NULL);
+	ft_vec_nremove(vec, 1, 0, NULL);
+	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }
 
-int	tv_remove(void)
+int	tv_nremove(void)
 {
 	t_vector	*vec;
-	const int	arr[3] = {42, 43, 44};
 
-	vec = ft_vec_from_array(arr, 3, sizeof(int));
-	ft_vec_remove(vec, 1, NULL);
-	if (vec->n_e != 2 || *(int *)ft_vec_at(vec, 0) != 42
-		|| *(int *)ft_vec_at(vec, 1) != 44)
-		return (1);
-	ft_vec_remove(vec, 0, NULL);
-	if (vec->n_e != 1 || *(int *)ft_vec_at(vec, 0) != 44)
-		return (2);
-	ft_vec_remove(vec, 0, NULL);
-	if (vec->n_e != 0)
-		return (3);
-	ft_vec_destroy(&vec);
-	error_cases();
-	vec = ft_vec_from_array(arr, 3, sizeof(int));
-	ft_vec_remove(vec, 999, dummy_recorder);
+	vec = ft_vec_from_array((int []){1, 2, 3, 4, 5}, 5, sizeof(int));
+	ft_vec_nremove(vec, 2, 2, dummy_recorder);
+	if (vec->n_e != 3 || *(int *)ft_vec_at(vec, 0) != 1
+		|| *(int *)ft_vec_at(vec, 1) != 2
+		|| *(int *)ft_vec_at(vec, 2) != 5)
+		return (ft_vec_destroy(&vec), 1);
 	if (*was_called() != true)
+		return (2);
+	ft_vec_nremove(vec, 1, 9999, NULL);
+	if (vec->n_e != 1 || *(int *)ft_vec_at(vec, 0) != 1)
+		return (ft_vec_destroy(&vec), 2);
+	ft_vec_destroy(&vec);
+	*was_called() = false;
+	vec = ft_vec_from_array((int []){1, 2, 3, 4, 5}, 5, sizeof(int));
+	ft_vec_nremove(vec, 0, 3, dummy_recorder);
+	if (vec->n_e != 0 && *was_called() != true)
+		return (ft_vec_destroy(&vec), 3);
+	*was_called() = (ft_vec_destroy(&vec), false);
+	vec = ft_vec_from_array((int []){1, 2, 3, 4, 5}, 5, sizeof(int));
+	ft_vec_nremove(vec, 0, -1, dummy_recorder);
+	if (vec->n_e != 0 && *was_called() != true)
 		return (ft_vec_destroy(&vec), 4);
-	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
+	return (ft_vec_destroy(&vec), tv_nremove_error(), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

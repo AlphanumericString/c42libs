@@ -12,7 +12,6 @@
 
 #include "ft_defs.h"
 #include "ft_vector.h"
-#include <stdio.h>
 
 void	ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del)
 {

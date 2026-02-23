@@ -40,7 +40,8 @@ typedef struct s_vector
 	void	*data;
 	size_t	n_e;
 	size_t	s_e;
-	size_t	cappacity;
+	size_t	cappacity; // number max of ELEMENTS it can store. 
+	// not total storage disponible.
 }			t_vector;
 
 # endif

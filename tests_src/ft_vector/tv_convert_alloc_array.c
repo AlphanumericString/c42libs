@@ -38,7 +38,8 @@ static int	base_case(void)
 	vec = ft_vec_convert_alloccarray(a, len, sizeof(int));
 	if (!vec)
 		return (ft_free(a), 2);
-	else if (vec->n_e != len || vec->s_e != sizeof(int) || !vec->data)
+	else if (vec->n_e != len || vec->s_e != sizeof(int) || !vec->data
+		|| vec->cappacity != len)
 		return (ft_vec_destroy(&vec), 3);
 	else if (*(int *)ft_vec_at(vec, 0) != a[0]
 		|| *(int *)ft_vec_at(vec, 1) != a[1]

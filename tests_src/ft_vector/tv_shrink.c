@@ -30,7 +30,7 @@ static int	base_cases(void)
 		ft_vec_add(vec, &data[i++]);
 	ft_vec_shrink(vec);
 	state_1 = *vec;
-	if (vec->n_e != 3 || vec->cappacity != (vec->n_e * vec->s_e))
+	if (vec->n_e != 3 || vec->cappacity != vec->n_e)
 		return (1);
 	else if (*(long *)ft_vec_at(vec, 0) != 42
 		|| *(long *)ft_vec_at(vec, 1) != 43 || *(long *)ft_vec_at(vec, 2) != 44)
@@ -58,11 +58,10 @@ static int	edge_cases(void)
 	vec->s_e = 0;
 	if (ft_vec_shrink(vec) != false)
 		return (1);
-	*vec = hold;
 	vec->n_e = 0;
-	if (ft_vec_shrink(vec) != true || vec->cappacity != vec->s_e)
+	if (ft_vec_shrink(vec) != false)
 		return (2);
-	hold = *vec;
+	*vec = hold;
 	vec->data = NULL;
 	if (ft_vec_shrink(vec) != false || vec->data != NULL)
 		return (3);
