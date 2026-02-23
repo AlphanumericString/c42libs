@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 10:36:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/21 14:16:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/02/23 16:01:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*ft_binsrch(const void *data, const t_arrinfo infos, const void *elem,
 			.nmemb = nb_elem / 2, .sz = e_size}, elem, cmp));
 }
 
-size_t	ft_binsrch_pos(const void *data, const t_arrinfo infos, const void *elem,
+size_t	ft_binsrch_pos(const void *data, const t_arrinfo infos, const void *e,
 					t_data_cmp cmp)
 {
 	const size_t	nb_elem = infos.nmemb;
@@ -51,16 +51,16 @@ size_t	ft_binsrch_pos(const void *data, const t_arrinfo infos, const void *elem,
 	if (nb_elem == 0 || e_size == 0 || !data)
 		return (0);
 	mid_elem = byte_data + ((nb_elem - 1) / 2) * e_size;
-	ret = cmp(mid_elem, elem);
+	ret = cmp(mid_elem, e);
 	if (ret == 0)
 		return ((size_t)((mid_elem - byte_data) / e_size));
 	else if (ret > 0)
 		return (ft_binsrch_pos(byte_data, (t_arrinfo){
 				.nmemb = (nb_elem - 1) / 2,
-				.sz = e_size}, elem, cmp));
+				.sz = e_size}, e, cmp));
 	return (ft_binsrch_pos(mid_elem + e_size, (t_arrinfo){
 			.nmemb = nb_elem / 2,
-			.sz = e_size}, elem, cmp)
+			.sz = e_size}, e, cmp)
 		+ (nb_elem - 1) / 2 + 1);
 }
 /*

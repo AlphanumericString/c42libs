@@ -980,8 +980,8 @@ lib$(NAME).a:	$(OBJ)
 $(QTEST_NAME): lib$(NAME).a	$(QTEST_OBJ) ctestinglib/libsimple_tests.a
 	@$(PRINTF) "$(BG_INFO)Compiling quick tests $(LOG_INFO)%-*s ...$(RESET)"	\
 	$(TEST_MAX_FILE_LEN) $(QTEST_NAME)											&& \
-	$(CC) $(CFLAGS) $(OBJ) $(QTEST_OBJ) -o $(QTEST_NAME) -L.	 				\
-	-l$(NAME) -lm $(LDFLAGS) 2>> $(CLOG_FILE)									&& \
+	$(CC) $(CFLAGS) $(OBJ) $(QTEST_OBJ) -o $(QTEST_NAME) -L./					\
+	-l:lib$(NAME).a -lm $(LDFLAGS) 2>> $(CLOG_FILE)								&& \
 	$(RM) -- $(CLOG_FILE)														&& \
 	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"									|| \
 	$(PRINTF) "$(ERROR_COLOR)Failed$(LOG_INFO)\tSee:%s$(RESET)\n"				\
