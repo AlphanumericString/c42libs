@@ -342,9 +342,11 @@ FT_MEM_SRC		=\
 			$(FT_MEM_DIR)/ft_arr/ft_acat.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_aclear.c		\
 			$(FT_MEM_DIR)/ft_arr/ft_acmp.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_acollect.c		\
 			$(FT_MEM_DIR)/ft_arr/ft_acpy.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_adup.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_afind.c			\
+			$(FT_MEM_DIR)/ft_arr/ft_afold.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_afree.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_alen.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_amap.c			\
