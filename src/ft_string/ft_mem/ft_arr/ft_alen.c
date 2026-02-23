@@ -23,6 +23,7 @@ size_t	ft_alen(t_const_arr array)
 		len++;
 	return (len);
 }
+
 size_t	ft_anlen(t_const_arr array, size_t n)
 {
 	size_t	len;
