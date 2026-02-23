@@ -1,34 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_remove_if.c                                     :+:      :+:    :+:   */
+/*   tcl_mid.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 11:30:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:09:18 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/06/18 12:57:50 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/01/04 22:31:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
-#include "types/ft_vector_types.h"
-#include "tests/vector_tests.h"
-#include "tests/tests_lambda_functions.h"
+#include "ft_defs.h"
+#include "ft_list.h"
+#include "types/ft_list_types.h"
+#include "tests/list__cl_tests.h"
 
-int	tv_filterout(void)
+int	tcl_mid(void)
 {
-	t_vector	*vec;
-	const int	a[3] = {42, 43, 44};
+	t_clist		*lst;
+	t_clist		*got[4];
+	const void	*exp[4] = {NULL, (t_any)0xDEAD, (t_any)0xCAFE, (t_any)0xCAFE};
 
-	vec = ft_vec_from_array(a, 3, sizeof(int));
-	ft_vec_filterout(vec, is42, NULL);
-	if (vec->n_e != 2)
+	lst = NULL;
+	got[0] = ft_cl_mid(lst);
+	ft_cl_push(&lst, (t_any)0xDEAD);
+	got[1] = ft_cl_mid(lst);
+	ft_cl_push(&lst, (t_any)0xCAFE);
+	got[2] = ft_cl_mid(lst);
+	ft_cl_push(&lst, (t_any)0xBEEF);
+	got[3] = ft_cl_mid(lst);
+	if (got[0])
 		return (1);
-	else if (*(int *)ft_vec_at(vec, 0) != 43)
-		return (1);
-	else if (*(int *)ft_vec_at(vec, 1) != 44)
-		return (1);
-	ft_vec_destroy(&vec);
+	if (got[1]->data != exp[1])
+		return (2);
+	if (got[2]->data != exp[2])
+		return (3);
+	if (got[3]->data != exp[2])
+		return (4);
+	ft_cl_delete(&lst, NULL);
 	return (EXIT_SUCCESS);
 }
 /*

@@ -20,19 +20,28 @@
 
 #include <stdlib.h>
 
+static int	checks(t_vector *v)
+{
+	if (!v)
+		return (1);
+	else if (v->n_e != 3)
+		return (2);
+	else if (*(int *)ft_vec_at(v, 0) != 84 || *(int *)ft_vec_at(v, 1) != 85
+		|| *(int *)ft_vec_at(v, 2) != 86)
+		return (3);
+	return (EXIT_SUCCESS);
+}
+
 static int	base_case(void)
 {
 	t_vector	hold;
 	t_vector	*vec;
 	t_vector	*ret;
-	int			arr[3] = {42, 43, 44};
+	const int	arr[3] = {42, 43, 44};
 
 	vec = ft_vec_from_array(arr, 3, sizeof(int));
 	ret = ft_vec_map(vec, add42);
-	if (ret->n_e != 3)
-		return (1);
-	else if (*(int *)ft_vec_at(ret, 0) != 84 || *(int *)ft_vec_at(ret, 1) != 85
-		|| *(int *)ft_vec_at(ret, 2) != 86)
+	if (checks(ret))
 		return (ft_vec_destroy(&vec), ft_vec_destroy(&ret), 2);
 	ft_vec_destroy(&ret);
 	hold = *vec;
@@ -54,7 +63,7 @@ static int	mt_case(void)
 {
 	t_vector	*vec;
 	t_vector	*ret;
-	int			ar[3] = {42, 43, 44};
+	const int	ar[3] = {42, 43, 44};
 	int			f_point;
 
 	vec = ft_vec_from_array(ar, 3, sizeof(int *));

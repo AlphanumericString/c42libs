@@ -34,15 +34,14 @@
 
 /// @brief Return the nearest aligned value of nbr on the alignment
 /// @param nbr The nbr to align
-/// @param alignment The alignment to use
+/// @param pow_2_alignement The alignment to use
 /// @return The aligned value of nbr on the alignment
 /// @note Optimized for power of 2 alignment
-size_t		ft_align_multiple_2(size_t size, size_t pow_2);
+size_t		ft_align_multiple_2(size_t nbr, size_t pow_2_alignement);
 
 /// @brief Return the nearest aligned value of nbr on the alignment
 /// @param nbr The nbr to align
-/// @param alignment The alignment to use
-/// @return The aligned value of nbr on the alignment
+/// @return The aligned value of nbr on the alignment of 2
 /// @note Optimized for power of 2 alignment
 size_t		ft_align_2(size_t nbr);
 
@@ -76,11 +75,11 @@ int			ft_logof(int nbr, int base);
 
 /// @brief return the logaritm of the number in the specified base
 /// @param nbr number to get the logaritm
-/// @param base base of the logaritm
 /// @return the logaritm of the number in the specified base. in case of error
 /// return -1
 int			ft_log(int nbr);
 
+// TODO: Add doc
 ssize_t		ft_mod(ssize_t nbr, ssize_t modulus);
 int			ft_unbrlen_base(size_t nbr, size_t blen);
 int			ft_nbrlen_base(ssize_t nbr, size_t blen);
@@ -105,7 +104,6 @@ int			ft_max(int a, int b);
 /// @return The clamped value between or at the minimum or maximum
 /// @note This is a clamp function aka inferior and superior to min and max
 /// are set to min and max
-/// @file ft_clamp.c
 int			ft_clamp(int value, int min, int max);
 
 /// @brief Clamp a value between a minimum and a maximum
@@ -114,7 +112,6 @@ int			ft_clamp(int value, int min, int max);
 /// @param max The maximum value
 /// @return The clamped value between or at the minimum or maximum
 /// @note See ft_clamp.
-/// @file ft_clamp.c
 float		ft_clamp_f(float value, float min, float max);
 
 /// @brief Clamp a value between a minimum and a maximum
@@ -123,7 +120,6 @@ float		ft_clamp_f(float value, float min, float max);
 /// @param max The maximum value
 /// @return The clamped value between or at the minimum or maximum
 /// @note See ft_clamp.
-/// @file ft_clamp.c
 double		ft_clamp_d(double value, double min, double max);
 
 /// @brief Take a value in a range and puts it in another range of 1 to new_max
@@ -157,14 +153,14 @@ double		ft_range_d(double value, double min, double max, double new_max);
 /// @return The absolute value of a
 int			ft_abs(int a);
 
-/// @brief Return the absolute value of a
-/// @param a The value to get the absolute value
-/// @return The absolute value of a
+/// @brief Return the absolute value of a long
+/// @param x The value to get the absolute value
+/// @return The absolute value of x
 long		ft_abs_l(long x);
 
-/// @brief Return the absolute value of a
-/// @param a The value to get the absolute value
-/// @return The absolute value of a
+/// @brief Return the absolute value of a signed size_t
+/// @param x The value to get the absolute value
+/// @return The absolute value of x
 ssize_t		ft_abs_ssize_t(ssize_t x);
 
 /// @brief Return the rounded value of x
@@ -185,12 +181,11 @@ double		ft_pow_d(double x, double y);
 /// @return The root square of nb
 /// @note This function use the newton's method to get the root square
 /// @note If nb is negative, return -1
-/// @file ft_sqrt.c
 double		ft_sqrt(double nb);
 
 /// @brief Return the absolute value of a
-/// @param a The value to get the absolute value
-/// @return The absolute value of a
+/// @param nb The value to get the absolute value
+/// @return The absolute value of a complex number as a double
 /// @note See ft_abs.
 double		ft_complex_abs(t_complex nb);
 

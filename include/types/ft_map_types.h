@@ -33,7 +33,7 @@ typedef struct s_map
 	t_map_node	**lists;
 	size_t		*nb_e;
 	size_t		nb_e_total; // total nb elem - useful for list imbalance
-	t_data_cmp	cmp;		// user must either provide the func or use default strcmp
+	t_data_cmp	cmp;		// user provide the func or use ft_strcmp
 	t_memhash	hash;
 	t_map_node	*nodes_pool;// pool of 'saved' nodes for reuse
 }				t_map;

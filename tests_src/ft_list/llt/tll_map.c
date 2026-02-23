@@ -19,7 +19,7 @@
 #include "tests/list__ll_tests.h"
 #include <stdlib.h>
 
-int	t_ll_map(void)
+int	tll_map(void)
 {
 	t_list	*list;
 	int		*datas[2];

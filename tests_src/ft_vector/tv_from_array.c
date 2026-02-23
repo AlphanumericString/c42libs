@@ -18,7 +18,7 @@
 static int	error_cases(void)
 {
 	int			fp;
-	int			ar[] = {21, 42, 63, 84};
+	const int	ar[] = {21, 42, 63, 84};
 	t_vector	*v;
 
 	v = ft_vec_from_array(ar, 0, 4);
@@ -35,7 +35,6 @@ static int	error_cases(void)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-
 
 static int	checks_01(t_vector *vec, const void **data)
 {

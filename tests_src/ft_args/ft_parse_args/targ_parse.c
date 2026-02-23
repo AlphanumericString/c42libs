@@ -21,35 +21,13 @@
 #include <unistd.h>
 #include <stddef.h>
 
-// FT_AT_INT = 1 << 4,	// todo: maybe add uint ?
-// FT_AT_NBR = 3 << 4,
-// FT_AT_LONG = 2 << 4,
-// FT_AT_HEX = 4 << 4,
-//
-// FT_AT_OCT = 5 << 4,
-// FT_AT_STR = 6 << 4,
-//
-// FT_AT_FNAME = 7 << 4,
-// FT_AT_BOOL = 8 << 4,
-// FT_AT_FLOAT = 9 << 4,
-// FT_AT_DOUBLE = 10 << 4, // same checks - idk diff in range w flts
-// FT_AT_ALPHANUM = 11 << 4,
-// FT_AT_CUSTOM = 12 << 4, // keep last defined (used in code)
+#define F1 "Error: pname: Short option `-d' : Invalid argument (type check).\n"
+#define F2 "Error: pname: Option `--int' : Missing argument.\n"
+#define F3 "Error: pname: Option `--long' : Missing argument.\n"
+#define F4 "Error: pname: Short option `-l' : Missing argument.\n"
 
-#define PREDICATE "Error: pname: "
-
-#define E_S1 "Short option `-d' : Invalid argument (type check).\n"
-#define E_S2 "Option `--int' : Missing argument.\n"
-#define E_S3 "Option `--long' : Missing argument.\n"
-#define E_S4 "Short option `-l' : Missing argument.\n"
-
-// {"str", 's', set_str, FT_AT_STR, ""},
-// {"file", 'f', set_digit, FT_AT_NBR | FT_AS_NEXT_ARG, ""},
-// {"bool", 'b', set_digit, FT_AT_NBR | FT_AS_NEXT_ARG, ""},
-// {"float", 'f', set_digit, FT_AT_NBR | FT_AS_NEXT_ARG, ""},
-// {"double", '2', set_digit, FT_AT_NBR | FT_AS_NEXT_ARG, ""},
-// {"alnum", 'a', set_digit, FT_AT_NBR | FT_AS_NEXT_ARG, ""},
-// {"custom", 'c', set_digit, FT_AT_NBR | FT_AS_NEXT_ARG, ""},
+// short hand for norming
+#define E_S EXIT_SUCCESS
 
 static t_opt	*get_test_topt(void)
 {
@@ -66,25 +44,53 @@ static t_opt	*get_test_topt(void)
 	return ((t_opt *)opts);
 }
 
-static int	targp_err(int err_fd, const char **args_to_test,
-				const char *err_str)
+static int	do_bad_calls(void)
 {
 	t_usr		test;
-	const char	*err;
-	char		str[256];
+	int			i;
+	const char	*bad_type_args[] = {"pname", "-d", "a42", "--int", "420",
+		"--hex=0xDEAD", "--hex2", "-o", "0o31", "--", "toto", NULL};
+	const char	*bad_missing_args[][3] = { {"pname", "--int", NULL},
+		{"pname", "--long", NULL}, {"pname", "-l", NULL},
+	};
 
-	if (ft_parse_args(args_to_test, &test) == EXIT_SUCCESS)
-		return (5);
-	if (!err_str)
-		return (EXIT_SUCCESS);
-	err = ft_gnl(err_fd);
-	ft_strlcpy(str, PREDICATE, sizeof(str));
-	ft_strlcat(str, err_str, sizeof(str));
-	if (!err || ft_strcmp(err, str) != 0)
-		return (6);
-	ft_free_clear((void *)&err);
+	i = 0;
+	ft_bzero(&test, sizeof(t_usr));
+	if (ft_parse_args(NULL, &test) == EXIT_SUCCESS)
+		return (1);
+	if (ft_parse_args(bad_type_args, &test) == EXIT_SUCCESS)
+		return (1);
+	while (i < 3) {
+		if (ft_parse_args(bad_missing_args[i++], &test) == EXIT_SUCCESS)
+			return (1);
+	}
 	return (EXIT_SUCCESS);
 }
+
+#define BUFF_SIZE 4096
+
+static int file_cmp(int fd, const char *expected)
+{
+	char	buff[BUFF_SIZE + 1];
+	ssize_t	i;
+	size_t	j;
+
+	i = BUFF_SIZE;
+	j = 0;
+	while (i == BUFF_SIZE)
+	{
+		i = read(fd, buff, BUFF_SIZE);
+		if (i < 0)
+			return (1);
+		buff[i] = 0;
+		if (ft_strncmp(buff, expected + (j++ * BUFF_SIZE), i) != 0)
+			return (1);
+	}
+	return (EXIT_SUCCESS);
+}
+
+// TODO: tests: parse args until "general args"
+// TODO: tests: parse args until w/o val until EOL
 
 int	targ_parse(void)
 {
@@ -92,26 +98,29 @@ int	targ_parse(void)
 	int			_ppe[2];
 	const char	*args[] = {"pname", "-d", "42", "--int", "420",
 		"--hex=0xDEAD", "--hex2", "-o", "0o31", "--", "toto", NULL};
-	const char	*args_2[] = {"pname", "-d", "a42", "--int", "420",
-		"--hex=0xDEAD", "--hex2", "-o", "0o31", "--", "toto", NULL};
 
+	(pipe(_ppe), dup2(_ppe[1], STDERR_FILENO));
+	if (ft_parse_args(args, &test) == EXIT_SUCCESS)
+		return (1);
 	ft_bzero(&test, sizeof(t_usr));
 	ft_set_opt_list(get_test_topt());
-	if (ft_get_opt_list() != get_test_topt())
-		return (1);
-	(pipe(_ppe), dup2(_ppe[1], STDERR_FILENO));
+	if (ft_parse_args(args, NULL) == EXIT_SUCCESS)
+		return (2);
 	if (ft_parse_args(args, &test) != EXIT_SUCCESS)
-		return (close(_ppe[0]), close(_ppe[1]), 2);
+		return (close(_ppe[0]), close(_ppe[1]), 3);
 	if (test.nbr != 42 || test.i_nbr != 420 || test.hex != 0xDEAD
 		|| test.hex2 != 0xDEADBEEF || test.oct != 25 || ft_get_nbparg() != 10)
-		return ((close(_ppe[0]), close(_ppe[1]), 3));
-	if (targp_err(_ppe[0], NULL, NULL) || targp_err(_ppe[0], args_2, E_S1)
-		|| targp_err(_ppe[0], (const char *[]){"pname", "--int", NULL}, E_S2)
-		|| targp_err(_ppe[0], (const char *[]){"pname", "--long", NULL}, E_S3)
-		|| targp_err(_ppe[0], (const char *[]){"pname", "-l", NULL}, E_S4))
+		return ((close(_ppe[0]), close(_ppe[1]), 4));
+	if (do_bad_calls() != E_S || file_cmp(_ppe[0], F1 F2 F3 F4) != E_S)
 		return ((close(_ppe[0]), close(_ppe[1]), 5));
-	return (dup2(STDERR_FILENO, _ppe[1]), close(_ppe[0]), close(_ppe[1]), 0);
+	return (dup2(STDERR_FILENO, _ppe[1]), close(_ppe[0]), close(_ppe[1]), E_S);
 }
+
+#undef F1
+#undef F2
+#undef F3
+#undef F4
+
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

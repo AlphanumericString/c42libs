@@ -1,34 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_remove_if.c                                     :+:      :+:    :+:   */
+/*   targp_perror_pa_state.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 11:30:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:09:18 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/12/20 19:32:38 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/12/20 19:32:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
-#include "types/ft_vector_types.h"
-#include "tests/vector_tests.h"
-#include "tests/tests_lambda_functions.h"
+#include "ft_mem.h"
+#include "ft_string.h"
+#include "internal/args_helper.h"
+#include "internal/args_helper_types.h"
+#include "tests/args_tests.h"
 
-int	tv_filterout(void)
+#include <unistd.h>
+
+#define EXPECTED_LINE1 "Error:  Option `--test' : str.\n"
+#define EXPECTED_LINE2 "Error: toto: Option `--test' : str.\n"
+
+int	targ_perror_pa_state(void)
 {
-	t_vector	*vec;
-	const int	a[3] = {42, 43, 44};
+	int				ppe[2];
+	const char		*args[] = {"--test", "argument"};
+	t_parser_state	st;
+	char			buffer[1024];
 
-	vec = ft_vec_from_array(a, 3, sizeof(int));
-	ft_vec_filterout(vec, is42, NULL);
-	if (vec->n_e != 2)
+	ft_bzero(&st, sizeof(st));
+	st.args = args;
+	st.mode = FTPA_LONG;
+	(pipe(ppe), dup2(ppe[1], STDERR_FILENO));
+	perror_pa_state(&st, "str");
+	ft_set_progname("toto");
+	perror_pa_state(&st, "str");
+	ft_bzero(buffer, 1024);
+	read(ppe[0], &buffer, 1024);
+	(dup2(STDERR_FILENO, ppe[1]), close(ppe[0]), close(ppe[1]));
+	if (ft_strcmp(buffer, EXPECTED_LINE1 EXPECTED_LINE2) != 0)
 		return (1);
-	else if (*(int *)ft_vec_at(vec, 0) != 43)
-		return (1);
-	else if (*(int *)ft_vec_at(vec, 1) != 44)
-		return (1);
-	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }
 /*

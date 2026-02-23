@@ -50,6 +50,25 @@ t_clist	*ft_cl_begin(const t_clist *head)
 {
 	return ((t_clist *)head);
 }
+
+// yes head->nxt->nxt == head is not necessary but we do that for consistency
+//	sake w ll_mid and dl_mid
+t_clist	*ft_cl_mid(const t_clist *head)
+{
+	const t_clist	*a;
+	const t_clist	*b;
+
+	a = head;
+	b = head;
+	while (b && b->next != head)
+	{
+		a = a->next;
+		b = b->next;
+		if (b && b->next != head)
+			b = b->next;
+	}
+	return ((t_clist *)a);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

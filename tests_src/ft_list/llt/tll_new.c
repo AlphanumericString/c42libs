@@ -16,7 +16,7 @@
 #include "tests/fixtures.h"
 #include "tests/list__ll_tests.h"
 
-int	t_ll_new(void)
+int	tll_new(void)
 {
 	t_list	*list;
 	int		prev;

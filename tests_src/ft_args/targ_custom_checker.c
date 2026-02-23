@@ -25,9 +25,12 @@ static bool	loc_checker(const void *arg)
 
 int	targ_custom_checker_test(void)
 {
+	ft_arg_set_custom_checker(NULL);
+	if (ft_arg_get_custom_checker() != NULL)
+		return (1);
 	ft_arg_set_custom_checker(loc_checker);
 	if (ft_arg_get_custom_checker() != loc_checker)
-		return (1);
+		return (2);
 	return (EXIT_SUCCESS);
 }
 /*

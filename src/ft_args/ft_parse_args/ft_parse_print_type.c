@@ -31,7 +31,7 @@ static const char	*at_type_toa(enum e_arg_types type)
 	[FT_AT_CUSTOM] = "custom",
 	};
 
-	if (type < FT_AT_UNSPECIFIED || type > FT_AT_CUSTOM)
+	if (type > FT_AT_CUSTOM)
 		return ("unknown");
 	return (types[type]);
 }
@@ -42,7 +42,7 @@ void	put_type_fd(uint16_t type, int fd)
 	char		sep;
 	char		braces[3];
 
-	if (!type)
+	if (!type || (type & FT_AH_MASK) == FT_AH_NO)
 		return ;
 	at_type = at_type_toa(type & FT_AT_MASK);
 	if ((type & FT_AS_MASK) == FT_AS_NEXT_ARG)

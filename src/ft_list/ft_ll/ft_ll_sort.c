@@ -39,6 +39,17 @@ bool	ft_ll_issort(const t_list *head, const t_data_cmp cmp, int flag)
 	return (head->next == NULL);
 }
 
+// static t_list	*loc_rec(t_list **head, t_data_cmp cmp, t_sort_order ord)
+// {
+// 	t_list	*mid;
+// 	t_list	*tmp;
+//
+// 	if (!head || !*head)
+// 		return (NULL);
+// 	mid = ft_ll_mid(*head);
+// 	tmp = NULL;
+// }
+
 // elem =null and if (elem) are sefty but can likely be dropped
 t_list	*ft_ll_sort(t_list **head, const t_data_cmp cmp, int flags)
 {
@@ -66,3 +77,21 @@ t_list	*ft_ll_sort(t_list **head, const t_data_cmp cmp, int flags)
 	}
 	return (*head);
 }
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

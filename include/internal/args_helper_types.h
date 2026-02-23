@@ -17,9 +17,9 @@
 # include "ft_defs.h"
 # include <stddef.h>
 
-enum e_mode
+enum e_parser_type
 {
-	FTPA_SHORT,
+	FTPA_SHORT = 0,
 	FTPA_LONG
 };
 
@@ -29,7 +29,7 @@ typedef struct s_parser_state
 	size_t				in_arg_it;
 	const t_opt			*opt_list;
 	int					err;
-	enum e_mode			mode;
+	enum e_parser_type	mode;
 	const char *const	*args;
 }	t_parser_state;
 

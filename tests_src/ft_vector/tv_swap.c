@@ -17,7 +17,7 @@
 int	tv_swap(void)
 {
 	t_vector	*vec;
-	const int 	data[3] = {42, 43, 44};
+	const int	data[3] = {42, 43, 44};
 
 	vec = ft_vec_from_array(data, 3, sizeof(int));
 	ft_vec_swap(vec, 0, 2);

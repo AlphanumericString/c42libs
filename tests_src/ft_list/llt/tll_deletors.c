@@ -19,7 +19,7 @@
 #include "tests/lists_test_utils.h"
 #include "tests/list__ll_tests.h"
 
-int	t_ll_delone(void)
+int	tll_delone(void)
 {
 	t_list	*list;
 	int		*data;
@@ -34,7 +34,7 @@ int	t_ll_delone(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_delete_range(void)
+int	tll_delete_range(void)
 {
 	t_list	*list;
 	t_list	*nxt;
@@ -57,7 +57,7 @@ int	t_ll_delete_range(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_delete(void)
+int	tll_delete(void)
 {
 	t_list	*list;
 	int		*data;

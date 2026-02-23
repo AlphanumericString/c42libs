@@ -17,7 +17,7 @@
 int	tv_shift(void)
 {
 	t_vector	*vec;
-	int			a[4] = {42, 43, 44, 45};
+	const int	a[4] = {42, 43, 44, 45};
 
 	vec = ft_vec_from_array(a, 4, sizeof(int));
 	ft_vec_shift(vec, 1, 2);
