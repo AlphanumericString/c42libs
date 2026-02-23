@@ -1,52 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   talg_binsrch.c                                     :+:      :+:    :+:   */
+/*   ft_binsrch.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 16:08:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/09/21 16:08:52 by bgoulard         ###   ########.fr       */
+/*   Created: 2025/09/21 10:36:47 by bgoulard          #+#    #+#             */
+/*   Updated: 2025/09/21 14:16:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_defs.h"
 #include "ft_algorithms.h"
-#include "tests/str__mem_tests.h"
-#include "tests/tests_lambda_functions.h"
-#include <stdlib.h>
-#define TEST_ROUNDS	16
+#include <stddef.h>
+#include <stdio.h>
 
-int	talg_binsrch(void)
+size_t ft_linsrch_pos(const void *data, const t_arrinfo infos, const void *elem,
+					t_data_cmp cmp)
 {
-	const t_arrinfo	infos = {FT_STD_BUF_SIZE, sizeof(int)};
-	int				arr[FT_STD_BUF_SIZE];
-	int				nb_tries;
-	int				target;
-	int				i;
+	size_t i;
 
-	randomize_iarr(arr, infos.nmemb, 0, infos.nmemb);
-	ft_qsort(arr, infos.nmemb, infos.sz, ft_cmp_int_p);
-	nb_tries = TEST_ROUNDS;
-	while (nb_tries-- > 0)
-	{
-		target = rand() % FT_STD_BUF_SIZE;
-		i = ft_binsrch_pos(arr, infos, &arr[target], ft_cmp_int_p);
-		if (arr[i] != arr[target])
-			return (TEST_ROUNDS - nb_tries + 1);
-	}
-	i = ft_binsrch_pos(arr, (t_arrinfo){0}, &target, ft_cmp_int_p);
-	if (i != 0)
-		return (TEST_ROUNDS + 2);
-	i += ft_binsrch_pos(NULL, infos, &target, ft_cmp_int_p);
-	i += ft_binsrch_pos(arr, (t_arrinfo){infos.nmemb, 0}, &target, ft_cmp_int_p);
-	i += ft_binsrch_pos(arr, (t_arrinfo){0, infos.sz}, &target, ft_cmp_int_p);
-	if (i != 0)
-		return (TEST_ROUNDS + 3);
-	return (0);
+	if (!data || !infos.sz || !infos.nmemb || !cmp)
+		return (0);
+	i = 0;
+	while (cmp((char *)data + i, elem) > 0)
+		i++;
+	return (i);
 }
 
-#undef TEST_ROUNDS
+void	*ft_linsrch(const void *data, const t_arrinfo infos, const void *elem,
+					t_data_cmp cmp)
+{
+	size_t i;
+
+	i = 0;
+	if (!data || !infos.sz || !infos.nmemb || !cmp)
+		return (NULL);
+	while (i < infos.nmemb)
+	{
+		if (!cmp((char *)data + i, elem))
+			return ((void *)((char *)data + i));
+		i++;
+	}
+	return (NULL);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

@@ -46,7 +46,7 @@ void	*ft_isrtsort_b(void *data, const t_arrinfo infos, t_data_cmp cmp,
 		if (cmp(data + (i - 1) * infos.sz, data + i * infos.sz) > 0)
 		{
 			ft_memcpy(buff, (data + i * infos.sz), infos.sz);
-			i_place = ft_binsrch(data, (t_arrinfo){i, infos.sz}, buff, cmp);
+			i_place = ft_binsrch_pos(data, (t_arrinfo){i, infos.sz}, buff, cmp);
 			ft_memmove((data + (i_place + 1) * infos.sz),
 				(data + i_place * infos.sz),
 				(i - i_place) * infos.sz);

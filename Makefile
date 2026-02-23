@@ -318,6 +318,7 @@ FT_ALG_SRC		=\
 			$(FT_ALG_DIR)/ft_bcksort.c				\
 			$(FT_ALG_DIR)/ft_isrtsort.c				\
 			$(FT_ALG_DIR)/ft_issorted.c				\
+			$(FT_ALG_DIR)/ft_linsrch.c				\
 			$(FT_ALG_DIR)/ft_isord_ok.c				\
 			$(FT_ALG_DIR)/ft_slctsort.c				\
 			$(FT_ALG_DIR)/ft_shkrsort.c				\

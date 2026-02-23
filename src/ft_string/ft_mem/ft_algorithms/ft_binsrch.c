@@ -12,10 +12,34 @@
 
 #include "ft_defs.h"
 #include "ft_algorithms.h"
+#include "sys/cdefs.h"
 #include <stddef.h>
 #include <stdio.h>
 
-size_t	ft_binsrch(const void *data, const t_arrinfo infos, const void *elem,
+void	*ft_binsrch(const void *data, const t_arrinfo infos, const void *elem,
+					t_data_cmp cmp)
+{
+	const size_t	nb_elem = infos.nmemb;
+	const size_t	e_size = infos.sz;
+	const char		*byte_data = data;
+	const char		*mid_elem;
+	int				ret;
+
+	if (nb_elem == 0 || e_size == 0 || !data)
+		return (NULL);
+	mid_elem = byte_data + ((nb_elem - 1) / 2) * e_size;
+	ret = cmp(mid_elem, elem);
+	if (ret == 0)
+		return ((void *)mid_elem);
+	else if (ret > 0)
+		return (ft_binsrch(byte_data, (t_arrinfo){
+				.nmemb = (nb_elem - 1) / 2,
+				.sz = e_size}, elem, cmp));
+	return (ft_binsrch(mid_elem + e_size, (t_arrinfo){
+			.nmemb = nb_elem / 2, .sz = e_size}, elem, cmp));
+}
+
+size_t	ft_binsrch_pos(const void *data, const t_arrinfo infos, const void *elem,
 					t_data_cmp cmp)
 {
 	const size_t	nb_elem = infos.nmemb;
@@ -31,10 +55,10 @@ size_t	ft_binsrch(const void *data, const t_arrinfo infos, const void *elem,
 	if (ret == 0)
 		return ((size_t)((mid_elem - byte_data) / e_size));
 	else if (ret > 0)
-		return (ft_binsrch(byte_data, (t_arrinfo){
+		return (ft_binsrch_pos(byte_data, (t_arrinfo){
 				.nmemb = (nb_elem - 1) / 2,
 				.sz = e_size}, elem, cmp));
-	return (ft_binsrch(mid_elem + e_size, (t_arrinfo){
+	return (ft_binsrch_pos(mid_elem + e_size, (t_arrinfo){
 			.nmemb = nb_elem / 2,
 			.sz = e_size}, elem, cmp)
 		+ (nb_elem - 1) / 2 + 1);

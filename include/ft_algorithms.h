@@ -36,7 +36,15 @@ int			ft_cmp_sszt_p(const void *a, const void *b);
 int			ft_cmp_int_p(const void *a, const void *b);
 
 // srch
-size_t		ft_binsrch(const void *data, const t_arrinfo infos,
+void		*ft_binsrch(const void *data, const t_arrinfo infos,
+				const void *elem, t_data_cmp cmp);
+void		*ft_linsrch(const void *data, const t_arrinfo infos,
+				const void *elem, t_data_cmp cmp);
+// _pos searches the position where e would be inserted
+// _pos assumes the array of elemnets sorted
+size_t		ft_binsrch_pos(const void *data, const t_arrinfo infos,
+				const void *elem, t_data_cmp cmp);
+size_t		ft_linsrch_pos(const void *data, const t_arrinfo infos,
 				const void *elem, t_data_cmp cmp);
 
 // buble sort - dont use.
