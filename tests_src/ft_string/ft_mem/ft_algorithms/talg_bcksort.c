@@ -18,7 +18,6 @@
 #include "tests/tests_lambda_functions.h"
 
 #include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 static int	mt_sbcksrt(void)

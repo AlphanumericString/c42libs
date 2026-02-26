@@ -13,7 +13,6 @@
 #include "ft_defs.h"
 #include "ft_algorithms.h"
 #include <stddef.h>
-#include <stdio.h>
 
 size_t	ft_binsrch(const void *data, const t_arrinfo infos, const void *elem,
 					t_data_cmp cmp)

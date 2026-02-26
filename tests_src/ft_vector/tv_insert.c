@@ -14,7 +14,6 @@
 #include "tests/fixtures.h"
 #include "tests/vector_tests.h"
 #include "ft_vector.h"
-#include <stdio.h>
 
 static int	mt_error(void)
 {

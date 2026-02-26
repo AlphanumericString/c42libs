@@ -15,7 +15,6 @@
 #include "tests/fixtures.h"
 #include "tests/str__mem_tests.h"
 #include "ft_string.h"
-#include <stdio.h>
 
 #define T_SIZE	64
 

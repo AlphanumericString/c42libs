@@ -19,7 +19,6 @@
 #include "types/ft_args_types.h"
 
 #include <unistd.h>
-#include <stdio.h>
 
 static t_opt	*get_test_topt(void)
 {

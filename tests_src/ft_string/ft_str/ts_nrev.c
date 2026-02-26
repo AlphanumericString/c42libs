@@ -12,7 +12,6 @@
 
 #include "ft_string.h"
 #include "tests/str__str_tests.h"
-#include <stdio.h>
 
 int	ts_nrev(void)
 {

@@ -15,7 +15,6 @@
 #include "tests/str__mem_tests.h"
 #include "tests/tests_lambda_functions.h"
 
-#include <stdio.h>
 
 int	talg_shkrsort(void)
 {

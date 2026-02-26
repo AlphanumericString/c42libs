@@ -15,7 +15,6 @@
 #include "ft_stris.h"
 #include <stddef.h>
 #include <linux/limits.h>
-#include <stdio.h>
 
 bool	ft_str_ispath(const char *path)
 {

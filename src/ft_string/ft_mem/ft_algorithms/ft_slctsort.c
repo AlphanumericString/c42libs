@@ -13,7 +13,6 @@
 #include "ft_defs.h"
 #include "ft_mem.h"
 #include "ft_algorithms.h"
-#include <stdio.h>
 
 void	*ft_slctsort(void *data, const t_arrinfo infos,
 			t_data_cmp cmp, int fg)

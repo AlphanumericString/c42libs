@@ -13,7 +13,6 @@
 #include "ft_math.h"
 #include "internal/print.h"
 #include "ft_string.h"
-#include <stdio.h>
 
 int	flt_processor(va_list args, int fd)
 {

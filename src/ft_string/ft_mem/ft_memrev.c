@@ -12,7 +12,6 @@
 
 #include "ft_mem.h"
 #include <stddef.h>
-#include <stdio.h>
 
 // e_n -> elements number
 // e_s -> elements size

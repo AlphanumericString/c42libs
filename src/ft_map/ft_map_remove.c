@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_map.h"
-#include <stdio.h>
 
 static void	push_to_pool(t_map_node *prev, t_map_node *cur, t_map *m, size_t sh)
 {

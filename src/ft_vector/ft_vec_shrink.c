@@ -33,6 +33,30 @@ bool	ft_vec_shrink(t_vector *vec)
 	vec->data = data_empl;
 	return (true);
 }
+
+bool	ft_vec_shrink_min(t_vector *v, size_t n)
+{
+	size_t	target_size;
+	void	*data_empl;
+
+	if (!v)
+		return (false);
+	if (!n || v->cappacity == v->n_e)
+		return (ft_vec_shrink(v));
+	target_size = ft_vec_inuse(v);
+	if (!v->data || !target_size)
+		return (false);
+	if (target_size < (v->s_e * n))
+		target_size = v->s_e * n;
+	data_empl = ft_calloc(target_size, 0);
+	if (!data_empl)
+		return (false);
+	ft_memcpy(data_empl, v->data, ft_vec_inuse(v));
+	ft_free(v->data);
+	v->cappacity = v->n_e;
+	v->data = data_empl;
+	return (true);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

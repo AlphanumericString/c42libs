@@ -25,6 +25,18 @@ t_vector	*ft_vec_map(const t_vector *restrict vec, const t_data_apply func)
 	ft_vec_apply(ret, func);
 	return (ret);
 }
+t_vector	*ft_vec_nmap(const t_vector *vec, size_t n, t_data_apply func)
+{
+	t_vector *ret;
+
+	if (!vec || !func || !vec->n_e)
+		return (NULL);
+	ret = ft_vec_ndup(vec, n);
+	if (!ret)
+		return (NULL);
+	ft_vec_napply(ret, n, func);
+	return (ret);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

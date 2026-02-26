@@ -15,7 +15,6 @@
 #include "ft_string.h"
 
 #include <stddef.h>
-#include <stdio.h>
 
 char	*ft_strwlgn_inplace(char *str, size_t width)
 {

@@ -14,12 +14,18 @@
 
 void	ft_vec_apply(t_vector *vec, t_data_apply func)
 {
+	return (ft_vec_napply(vec, -1, func));
+}
+void		ft_vec_napply(t_vector *vec, size_t n, t_data_apply func)
+{
 	size_t	i;
 
-	if (!vec || !func || !vec->n_e || !vec->s_e)
+	if (!vec || !func || !vec->n_e || !vec->s_e || !n)
 		return ;
 	i = 0;
-	while (i < vec->n_e)
+	if (n > vec->n_e)
+		n = vec->n_e;
+	while (i < n)
 		func(vec->data + i++ *vec->s_e);
 }
 /*

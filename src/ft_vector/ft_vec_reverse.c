@@ -13,10 +13,19 @@
 #include "ft_mem.h"
 #include "ft_vector.h"
 
-void	ft_vec_reverse(t_vector *vec)
+bool	ft_vec_reverse(t_vector *vec)
 {
-	if (vec)
-		ft_memnrev(vec->data, vec->n_e, vec->s_e);
+	return (ft_vec_nreverse(vec, -1));
+}
+
+bool		ft_vec_nreverse(t_vector *vec, size_t n)
+{
+	if (!vec)
+		return (false);
+	if (n >= vec->n_e)
+		n = vec->n_e;
+	ft_memnrev(vec->data, n, vec->s_e);
+	return (true);
 }
 /*
 GPL-3.0 License:

@@ -41,16 +41,14 @@ static int	base_case(void)
 {
 	t_vector	*vec;
 	const int	data[3] = {42, 43, 44};
+	const int	exp[3] = {44, 43, 42};
 
 	vec = ft_vec_from_array(data, 3, sizeof(int));
 	ft_vec_swap(vec, 0, 2);
 	if (vec->n_e != 3)
 		return (ft_vec_destroy(&vec), 1);
-	else if (*(int *)ft_vec_at(vec, 1) != 43)
+	else if (ft_vec_acmp(vec, exp, NULL))
 		return (ft_vec_destroy(&vec), 2);
-	else if (*(int *)ft_vec_at(vec, 0) != 44
-		|| *(int *)ft_vec_at(vec, 2) != 42)
-		return (ft_vec_destroy(&vec), 3);
 	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 

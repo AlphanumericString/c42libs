@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_algorithms.h"
-#include <stdio.h>
 
 void	*ft_getmin(const void *data, t_arrinfo infos, t_data_cmp cmp)
 {

@@ -14,7 +14,6 @@
 #include "ft_mem.h"
 #include "ft_algorithms.h"
 #include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 size_t	*ft_sisrtsort(size_t *data, size_t nb_e, int flags)

@@ -17,7 +17,6 @@
 #include "ft_string.h"
 
 #include <stddef.h>
-#include <stdio.h>
 #include <unistd.h>
 
 static bool	maybe_run(const char **args, t_parser_state state,

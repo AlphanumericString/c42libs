@@ -15,7 +15,6 @@
 #include "ft_string.h"
 #include "tests/list__ll_tests.h"
 #include "types/ft_list_types.h"
-#include <stdio.h>
 
 int	tll_extract_min(void)
 {

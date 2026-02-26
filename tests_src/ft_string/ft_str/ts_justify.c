@@ -14,7 +14,6 @@
 #include "tests/str__str_tests.h"
 #include "ft_string.h"
 #include "ft_mem.h"
-#include <stdio.h>
 
 static int	mt_jstfy_nospace(void)
 {

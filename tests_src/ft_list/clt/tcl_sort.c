@@ -14,7 +14,6 @@
 #include "ft_list.h"
 #include "ft_string.h"
 #include "tests/list__cl_tests.h"
-#include <stdio.h>
 
 static void	push_arr(t_clist **list, size_t *i, const char **arr)
 {

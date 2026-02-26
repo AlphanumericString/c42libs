@@ -14,7 +14,6 @@
 #include "ft_list.h"
 #include "ft_string.h"
 #include "tests/list__dl_tests.h"
-#include <stdio.h>
 
 int	tdl_extract_max(void)
 {

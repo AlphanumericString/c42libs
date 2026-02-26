@@ -14,6 +14,18 @@
 #include "ft_vector.h"
 #include <stdlib.h>
 
+bool		ft_vec_wipe(t_vector *v)
+{
+	if (!v)
+		return (false);
+	if (v->data)
+		ft_free(v->data);
+	v->data = NULL;
+	v->cappacity = 0;
+	v->n_e = 0;
+	return (true);
+}
+
 bool	ft_vec_destroy(t_vector **vec)
 {
 	if (!vec || !*vec)
@@ -25,10 +37,8 @@ bool	ft_vec_delete(t_vector *vec)
 {
 	if (!vec)
 		return (false);
-	if (vec->data)
-		ft_free(vec->data);
-	ft_free(vec);
-	return (true);
+	ft_vec_wipe(vec);
+	return (ft_free(vec), true);
 }
 /*
 GPL-3.0 License:

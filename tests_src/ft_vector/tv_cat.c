@@ -16,7 +16,6 @@
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 #include <stdbool.h>
-#include <stdio.h>
 
 /*
 	ft_vec_add(&vec_a, &a); // 42

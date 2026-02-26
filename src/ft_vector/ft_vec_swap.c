@@ -13,13 +13,31 @@
 #include "ft_mem.h"
 #include "ft_vector.h"
 
-void	ft_vec_swap(t_vector *vec, size_t a, size_t b)
+static size_t	loc_abs(ssize_t i)
+{
+	if (i < 0)
+		return ((size_t)(i * -1));
+	return ((size_t)i);
+}
+
+void	ft_vec_swap(t_vector *vec, ssize_t a, ssize_t b)
 {
 	if (!vec || !vec->s_e || !vec->n_e)
 		return ;
-	if (vec->n_e < a || vec->n_e < b)
+	if (loc_abs(a) >= vec->n_e || loc_abs(b) >= vec->n_e)
 		return ;
 	ft_swap(ft_vec_at(vec, a), ft_vec_at(vec, b), vec->s_e);
+}
+
+void		ft_vec_nswap(t_vector *vec, size_t n, ssize_t a, ssize_t b)
+{
+	if (!vec || !vec->s_e || !vec->n_e || !n)
+		return ;
+	if (n >= vec->n_e)
+		return ;
+	if (loc_abs(a) + n >= vec->n_e || loc_abs(b) + n >= vec->n_e)
+		return ;
+	ft_swap(ft_vec_at(vec, a), ft_vec_at(vec, b), vec->s_e * n);
 }
 /*
 GPL-3.0 License:

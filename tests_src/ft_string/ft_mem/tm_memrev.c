@@ -14,7 +14,6 @@
 #include "ft_mem.h"
 #include "ft_algorithms.h"
 #include "tests/str__mem_tests.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 int	tm_memrev(void)

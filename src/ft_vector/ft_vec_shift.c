@@ -25,6 +25,17 @@ void	ft_vec_shift(t_vector *vec, size_t start, size_t shift)
 		(vec->n_e - start - shift) * vec->s_e);
 	vec->n_e -= shift;
 }
+
+bool		ft_vec_advance(t_vector *v, size_t n)
+{
+	if (!v || !n)
+		return (false);
+	if (v->n_e >= n)
+		return (ft_vec_clear(v), true);
+	ft_memmove(ft_vec_at(v, 0), ft_vec_at(v, n), (v->n_e - n) * v->s_e);
+	v->n_e -= n;
+	return (false);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

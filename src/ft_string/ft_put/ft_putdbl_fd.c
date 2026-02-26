@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdio.h>
 
 #include "ft_mem.h"
 #include "ft_string.h"

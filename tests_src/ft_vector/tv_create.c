@@ -14,6 +14,8 @@
 #include "tests/fixtures.h"
 #include "tests/vector_tests.h"
 
+// allow's next alloc and fail after:
+// talloc_set_failpoint(*talloc_get_currentpoint() + 1);
 static int	mt_error(void)
 {
 	const int	fp = *talloc_get_failpoint();
@@ -24,6 +26,11 @@ static int	mt_error(void)
 	talloc_set_failpoint(fp);
 	if (vec)
 		return (ft_vec_destroy(&vec), 4);
+	talloc_set_failpoint(*talloc_get_currentpoint() + 1);
+	vec = ft_vec_create(4);
+	talloc_set_failpoint(fp);
+	if (vec)
+		return (ft_vec_destroy(&vec), 5);
 	return (EXIT_SUCCESS);
 }
 

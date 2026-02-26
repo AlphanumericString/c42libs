@@ -12,7 +12,6 @@
 
 #include "ft_algorithms.h"
 #include <stddef.h>
-#include <stdio.h>
 
 int	ft_cmp_rptr(const void *a, const void *b)
 {

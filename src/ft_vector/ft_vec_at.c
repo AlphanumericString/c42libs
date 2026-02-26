@@ -10,7 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_vector.h"
+
+static size_t	loc_abs(ssize_t i)
+{
+	if (i < 0)
+		return ((size_t)(i * -1));
+	return ((size_t)i);
+}
 
 size_t	ft_vec_inuse(const t_vector *vec)
 {
@@ -20,11 +28,22 @@ size_t	ft_vec_inuse(const t_vector *vec)
 }
 
 // return elem n
-void	*ft_vec_at(const t_vector *restrict vec, size_t n)
+void	*ft_vec_at(const t_vector *vec, ssize_t n)
 {
-	if (!vec || n >= vec->n_e)
+	if (!vec || loc_abs(n) >= vec->n_e)
 		return (NULL);
+	if (n < 0)
+		return (vec->data + (vec->s_e * (vec->n_e - n)));
 	return (vec->data + (vec->s_e * n));
+}
+
+void	*ft_vec_get(const t_vector *v, ssize_t n, void *e)
+{
+	const void *e_src = ft_vec_at(v, n);
+
+	if (e_src && e)
+		return (ft_memcpy(e, e_src, v->s_e));
+	return (NULL);
 }
 /*
 GPL-3.0 License:

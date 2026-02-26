@@ -42,11 +42,11 @@ t_vector	*ft_vec_create(size_t elem_size)
 
 	if (!elem_size)
 		return (NULL);
-	ret = ft_vec_from_size(FT_VECTOR_BASE_LEN * elem_size);
+	ret = ft_malloc(sizeof(t_vector));
 	if (!ret)
 		return (NULL);
-	ret->s_e = elem_size;
-	ret->cappacity = FT_VECTOR_BASE_LEN;
+	if (!ft_vec_init(ret, FT_VECTOR_BASE_LEN, elem_size))
+		return (ft_free(ret), NULL);
 	return (ret);
 }
 
@@ -57,13 +57,11 @@ t_vector	*ft_vec_from_array(const void *data_src, size_t nmemb,
 
 	if (!nmemb || !elem_size || !data_src)
 		return (NULL);
-	ret = ft_vec_from_size(nmemb * elem_size);
+	ret = ft_malloc(sizeof(t_vector));
 	if (!ret)
-		return (ret);
-	ret->n_e = nmemb;
-	ret->s_e = elem_size;
-	ret->cappacity = nmemb;
-	ft_memcpy(ret->data, data_src, nmemb * elem_size);
+		return (NULL);
+	if (ft_vec_ifrom_array(ret, data_src, nmemb, elem_size) == NULL)
+		return (ft_free(ret), NULL);
 	return (ret);
 }
 
@@ -78,11 +76,7 @@ t_vector	*ft_vec_convert_alloccarray(void *data, size_t nmemb, size_t e_size)
 	ret = ft_calloc(sizeof(t_vector), 1);
 	if (!ret)
 		return (ret);
-	ret->data = data;
-	ret->n_e = nmemb;
-	ret->s_e = e_size;
-	ret->cappacity = nmemb;
-	return (ret);
+	return (ft_vec_iconvert_allocarray(ret, data, nmemb, e_size));
 }
 /*
 GPL-3.0 License:

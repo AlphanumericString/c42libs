@@ -12,7 +12,6 @@
 
 #include "ft_list.h"
 #include "types/ft_list_types.h"
-#include <stdio.h>
 
 t_list	*ft_ll_begin(const t_list *lst)
 {

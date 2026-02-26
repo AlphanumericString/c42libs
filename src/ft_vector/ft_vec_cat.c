@@ -13,20 +13,33 @@
 #include "ft_mem.h"
 #include "ft_vector.h"
 
-bool	ft_vec_cat(t_vector *vec_a, const t_vector *vec_b)
+bool	ft_vec_cat(t_vector *dst, const t_vector *src)
 {
 	bool	ret;
 
-	ret = true;
-	if (!vec_a || !vec_b || vec_a->s_e != vec_b->s_e)
+	if (!dst || !src || dst->s_e != src->s_e)
 		return (false);
-	if (vec_a->cappacity < (vec_a->n_e + vec_b->n_e))
-		ret = ft_vec_reserve(vec_a, vec_a->n_e + vec_b->n_e);
+	ret = ft_vec_reserve(dst, src->n_e);
 	if (!ret)
 		return (false);
-	ft_memcpy(vec_a->data + ft_vec_inuse(vec_a), vec_b->data,
-		ft_vec_inuse(vec_b));
-	vec_a->n_e += vec_b->n_e;
+	ft_memcpy(dst->data + ft_vec_inuse(dst), src->data, ft_vec_inuse(src));
+	dst->n_e += src->n_e;
+	return (true);
+}
+
+bool		ft_vec_ncat(t_vector *dst, const t_vector *src, size_t n)
+{
+	bool	ret;
+
+	if (!dst || !src || !n || dst->n_e != src->n_e)
+		return (false);
+	if (n > dst->n_e)
+		n = dst->n_e;
+	ret = ft_vec_reserve(dst, n);
+	if (!ret)
+		return (false);
+	ft_memcpy(dst->data + ft_vec_inuse(dst), src->data, src->s_e * n);
+	dst->n_e += n;
 	return (true);
 }
 /*
