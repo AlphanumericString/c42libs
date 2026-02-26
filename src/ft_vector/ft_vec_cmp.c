@@ -48,7 +48,6 @@ int	ft_vec_ncmp(const t_vector *a, size_t n, const t_vector *b, t_data_cmp fc)
 int	ft_vec_acmp(const t_vector *a, const void *b, t_data_cmp fc)
 {
 	return (ft_vec_ancmp(a, -1, b, fc));
-
 }
 
 int	ft_vec_ancmp(const t_vector *a, size_t n, const void *b, t_data_cmp fc)

@@ -14,7 +14,7 @@
 #include "ft_vector.h"
 #include <stdlib.h>
 
-bool		ft_vec_wipe(t_vector *v)
+bool	ft_vec_wipe(t_vector *v)
 {
 	if (!v)
 		return (false);

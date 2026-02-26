@@ -12,7 +12,7 @@
 
 #include "tests/vector_tests.h"
 
-int tv_collect(void)
+int	tv_collect(void)
 {
 	return (0);
 }

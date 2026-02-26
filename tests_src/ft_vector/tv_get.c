@@ -13,10 +13,10 @@
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
 
-int tv_get(void)
+int	tv_get(void)
 {
 	const t_vector	v = (t_vector){
-		.data = (int[]){21, 42, 63},
+		.data = (int []){21, 42, 63},
 		.cappacity = 3,
 		.n_e = 3,
 		.s_e = sizeof(int)

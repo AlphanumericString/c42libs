@@ -18,7 +18,7 @@ void	ft_qsort(void *data, size_t nmb, size_t size, t_data_cmp c)
 	size_t	left;
 	size_t	right;
 
-	if (nmb < 2 || size < 1 || !c|| !data || ft_is_sorted(data, nmb, size, c))
+	if (nmb < 2 || size < 1 || !c || !data || ft_is_sorted(data, nmb, size, c))
 		return ;
 	left = 0;
 	right = nmb - 1;

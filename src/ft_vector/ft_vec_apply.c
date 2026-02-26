@@ -16,7 +16,8 @@ void	ft_vec_apply(t_vector *vec, t_data_apply func)
 {
 	return (ft_vec_napply(vec, -1, func));
 }
-void		ft_vec_napply(t_vector *vec, size_t n, t_data_apply func)
+
+void	ft_vec_napply(t_vector *vec, size_t n, t_data_apply func)
 {
 	size_t	i;
 

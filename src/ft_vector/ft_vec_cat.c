@@ -27,7 +27,7 @@ bool	ft_vec_cat(t_vector *dst, const t_vector *src)
 	return (true);
 }
 
-bool		ft_vec_ncat(t_vector *dst, const t_vector *src, size_t n)
+bool	ft_vec_ncat(t_vector *dst, const t_vector *src, size_t n)
 {
 	bool	ret;
 

@@ -13,13 +13,13 @@
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
 
-int tv_nset(void)
+int	tv_nset(void)
 {
 	t_vector	v;
-	int			arr[] = {1, 2, 3};
+	const int	arr[] = {1, 2, 3};
 	const int	new_vals[] = {999, 998};
 
-	v = (t_vector){.s_e = sizeof(int), .n_e = 3, .cappacity = 3, .data=arr};
+	ft_vec_ifrom_array(&v, arr, 3, sizeof(arr[0]));
 	if (ft_vec_nset(&v, 99, 2, NULL) != false)
 		return (1);
 	if (ft_vec_nset(NULL, 1, 2, (void *)0xDEAD) != false)
@@ -28,7 +28,7 @@ int tv_nset(void)
 		return (3);
 	if (ft_vec_nset(&v, 1, 2, new_vals) != true)
 		return (4);
-	if (((int*)v.data)[1] != new_vals[0] || ((int *)v.data)[2] != new_vals[1])
+	if (((int *)v.data)[1] != new_vals[0] || ((int *)v.data)[2] != new_vals[1])
 		return (5);
 	return (0);
 }

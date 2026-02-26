@@ -15,7 +15,7 @@
 
 static void	*add_ints(void *a, void *b)
 {
-	static int res = 0;
+	static int	res = 0;
 
 	res = *(int *)a + *(int *)b;
 	return (&res);
@@ -42,13 +42,13 @@ static int	check_vec(t_vector *v, const int *exp, size_t nexp_size)
 	return (0);
 }
 
-static int base_cases(void)
+static int	base_cases(void)
 {
 	const int	asrc[] = {1, 2, 3, 4, 5, 6, 7};
 	const int	nexp[][7] = {{1, 2, 3, 4, 5, 6, 7},
-		{3, 3, 4, 5, 6, 7},
-		{3, 7, 5, 6, 7},
-		{3, 7, 11, 7}};
+	{3, 3, 4, 5, 6, 7},
+	{3, 7, 5, 6, 7},
+	{3, 7, 11, 7}};
 	t_vector	v;
 	size_t		i;
 	int			ret;
@@ -78,7 +78,7 @@ static int	error_cases(void)
 
 int	tv_nfold(void)
 {
-	int r;
+	int	r;
 
 	r = error_cases();
 	if (r)

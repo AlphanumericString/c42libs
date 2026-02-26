@@ -13,14 +13,14 @@
 #include "ft_mem.h"
 #include "ft_vector.h"
 
-t_vector *ft_vec_dup(const t_vector *o)
+t_vector	*ft_vec_dup(const t_vector *o)
 {
 	return (ft_vec_ndup(o, -1));
 }
 
-t_vector *ft_vec_ndup(const t_vector *o, size_t n)
+t_vector	*ft_vec_ndup(const t_vector *o, size_t n)
 {
-	t_vector *ret;
+	t_vector	*ret;
 	void		*data_;
 
 	if (!o || !o->data || !o->s_e)

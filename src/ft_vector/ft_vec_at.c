@@ -39,7 +39,7 @@ void	*ft_vec_at(const t_vector *vec, ssize_t n)
 
 void	*ft_vec_get(const t_vector *v, ssize_t n, void *e)
 {
-	const void *e_src = ft_vec_at(v, n);
+	const void	*e_src = ft_vec_at(v, n);
 
 	if (e_src && e)
 		return (ft_memcpy(e, e_src, v->s_e));

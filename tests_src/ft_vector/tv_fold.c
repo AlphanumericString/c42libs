@@ -13,23 +13,15 @@
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
 
-// printf("exp:");
-// for (size_t i = 0; i < (nb_as / 2); printf("%d ", aexp[i++]))
-// 	;
-// printf("\n");
-// printf("v:"); ft_vec_apply(&v, dump_ints); printf("\n");
-// ft_vec_fold(&v, add_ints);
-// printf("v:"); ft_vec_apply(&v, dump_ints); printf("\n");
-
 static void	*add_ints(void *a, void *b)
 {
-	static int res = 0;
+	static int	res = 0;
 
 	res = *(int *)a + *(int *)b;
 	return (&res);
 }
 
-static int check_fold(int *asrc, int *aexp, size_t nb_as)
+static int	check_fold(const int *asrc, const int *aexp, size_t nb_as)
 {
 	size_t		i;
 	t_vector	v;
@@ -50,12 +42,12 @@ static int check_fold(int *asrc, int *aexp, size_t nb_as)
 	return (0);
 }
 
-int tv_fold(void)
+int	tv_fold(void)
 {
-	int			asrcevn[] = {1, 2, 3, 4, 5, 6, 7, 8};
-	int			aexpevn[] = {3, 7, 11, 15};
-	int			asrcodd[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-	int			aexpodd[] = {1, 5, 9, 13, 8};
+	const int	asrcevn[] = {1, 2, 3, 4, 5, 6, 7, 8};
+	const int	aexpevn[] = {3, 7, 11, 15};
+	const int	asrcodd[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+	const int	aexpodd[] = {1, 5, 9, 13, 8};
 	int			ret;
 
 	ret = check_fold(asrcevn, aexpevn, sizeof(asrcevn) / sizeof(asrcevn[0]));

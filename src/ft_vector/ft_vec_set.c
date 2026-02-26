@@ -20,7 +20,7 @@ static size_t	loc_abs(ssize_t i)
 	return ((size_t)(i * -1));
 }
 
-bool		ft_vec_set(t_vector *vec, ssize_t pos, const void *data)
+bool	ft_vec_set(t_vector *vec, ssize_t pos, const void *data)
 {
 	if (!vec || loc_abs(pos) > vec->n_e)
 		return (false);
@@ -30,7 +30,8 @@ bool		ft_vec_set(t_vector *vec, ssize_t pos, const void *data)
 		ft_memcpy(ft_vec_at(vec, loc_abs(pos)), data, vec->s_e);
 	return (true);
 }
-bool		ft_vec_nset(t_vector *vec, ssize_t pos, size_t n, const void *datas)
+
+bool	ft_vec_nset(t_vector *vec, ssize_t pos, size_t n, const void *datas)
 {
 	if (!vec || loc_abs(pos) + n > vec->n_e)
 		return (false);

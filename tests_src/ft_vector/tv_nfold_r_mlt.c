@@ -13,16 +13,6 @@
 #include "tests/vector_tests.h"
 #include "ft_vector.h"
 
-// printf("v:"); ft_vec_apply(v, dump_ints); printf("\n");
-// printf("e:");
-// for (size_t i = 0; i < nexp_size; printf("%02d ", exp[i++]))
-//		;
-// printf("\n");
-// static void	dump_ints(void *a)
-// {
-// 	printf("%02d ", *(int *)a);
-// }
-
 static void	*add_ints(void *a, void *b)
 {
 	static int	res = 0;
@@ -52,17 +42,17 @@ __attribute_maybe_unused__	static int	b_cases(void)
 	int			g;
 
 	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-	ft_vec_nfold_mltp(&v, -1, add_ints, -1);
+	ft_vec_nfold_r_mltp(&v, -1, add_ints, -1);
 	if (ft_vec_get(&v, 0, &g) != &g || g != 28)
 		return (ft_vec_wipe(&v), 1);
 	ft_vec_wipe(&v);
 	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-	ft_vec_nfold_mltp(&v, 3, add_ints, 1);
+	ft_vec_nfold_r_mltp(&v, 3, add_ints, 1);
 	if (v.n_e != 7 - (3 / 2))
 		return (ft_vec_wipe(&v), 2);
 	ft_vec_wipe(&v);
 	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-	ft_vec_nfold_mltp(&v, 4, add_ints, -1);
+	ft_vec_nfold_r_mltp(&v, 4, add_ints, -1);
 	if (ft_vec_get(&v, 0, &g) != &g || g != 10)
 		return (ft_vec_wipe(&v), 3);
 	return (ft_vec_wipe(&v), 0);
@@ -75,9 +65,9 @@ int	tv_nfold_r_mltp(void)
 	r = e_cases();
 	if (r)
 		return (r);
-	// r = b_cases();
-	// if (r)
-	// 	return (r);
+	r = b_cases();
+	if (r)
+		return (r);
 	return (0);
 }
 /*

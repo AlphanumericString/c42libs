@@ -26,7 +26,7 @@ void	ft_vec_shift(t_vector *vec, size_t start, size_t shift)
 	vec->n_e -= shift;
 }
 
-bool		ft_vec_advance(t_vector *v, size_t n)
+bool	ft_vec_advance(t_vector *v, size_t n)
 {
 	if (!v || !n)
 		return (false);

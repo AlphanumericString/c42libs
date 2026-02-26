@@ -35,7 +35,6 @@ bool	ft_vec_nadd(t_vector *vec, size_t n, const void *data)
 	ft_memcpy(vec->data + ft_vec_inuse(vec), data, vec->s_e * n);
 	vec->n_e += n;
 	return (true);
-
 }
 /*
 GPL-3.0 License:
