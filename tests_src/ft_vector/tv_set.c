@@ -14,22 +14,24 @@
 #include "tests/vector_tests.h"
 #include "types/ft_vector_types.h"
 
-int tv_set(void)
+int	tv_set(void)
 {
 	t_vector	v;
-	int			arr[] = {1, 2, 3};
+	const int	arr[] = {1, 2, 3};
 	const int	new_val = 999;
 
-	v = (t_vector){.s_e = sizeof(int), .n_e = 3, .cappacity = 3, .data=arr};
+	v = (t_vector){.s_e = sizeof(int), .n_e = 3, .cappacity = 3,
+		.data = (void *)0xDEAD};
 	if (ft_vec_set(&v, 99, NULL) != false)
 		return (1);
 	if (ft_vec_set(NULL, 2, (void *)0xDEAD) != false)
 		return (2);
+	ft_vec_ifrom_array(&v, arr, 3, sizeof(int));
 	if (ft_vec_set(&v, 1, &new_val) != true)
-		return (3);
-	if (((int*)v.data)[1] != new_val)
-		return (4);
-	return (0);
+		return (ft_vec_wipe(&v), 3);
+	if (((int *)v.data)[1] != new_val)
+		return (ft_vec_wipe(&v), 4);
+	return (ft_vec_wipe(&v), 0);
 }
 /*
 GPL-3.0 License:

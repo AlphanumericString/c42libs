@@ -13,16 +13,6 @@
 #include "tests/vector_tests.h"
 #include "ft_vector.h"
 
-// printf("v:"); ft_vec_apply(v, dump_ints); printf("\n");
-// printf("e:");
-// for (size_t i = 0; i < nexp_size; printf("%02d ", exp[i++]))
-//		;
-// printf("\n");
-// static void	dump_ints(void *a)
-// {
-// 	printf("%02d ", *(int *)a);
-// }
-
 static void	*add_ints(void *a, void *b)
 {
 	static int	res = 0;

@@ -22,13 +22,13 @@ int	tv_wipe(void)
 	if (ft_vec_wipe(NULL) != false)
 		return (1);
 	data = ft_malloc(12);
-	v = (t_vector) {.n_e = 3, .cappacity = 3, .s_e = sizeof(int), .data = NULL};
+	v = (t_vector){.n_e = 3, .cappacity = 3, .s_e = sizeof(int), .data = NULL};
 	if (ft_vec_wipe(&v) != true)
 		return (2);
 	if (v.s_e != sizeof(int) || v.n_e != 0 || v.cappacity != 0
 		|| v.data != NULL)
 		return (3);
-	v = (t_vector) {.n_e = 3, .cappacity = 3, .s_e = sizeof(int), .data = data};
+	v = (t_vector){.n_e = 3, .cappacity = 3, .s_e = sizeof(int), .data = data};
 	if (ft_vec_wipe(&v) != true)
 		return (4);
 	if (v.s_e != sizeof(int) || v.n_e != 0 || v.cappacity != 0

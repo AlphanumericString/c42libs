@@ -68,7 +68,10 @@ void	*ft_isrtsort(void *data, const t_arrinfo infos, t_data_cmp cmp, int flg)
 				infos.nmemb, infos.sz));
 	tmp = ft_calloc(1, infos.sz);
 	if (tmp)
-		ft_isrtsort_b(data, infos, cmp, tmp), ft_free(tmp);
+	{
+		ft_isrtsort_b(data, infos, cmp, tmp);
+		ft_free(tmp);
+	}
 	return (data);
 }
 /*

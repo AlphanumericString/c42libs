@@ -28,6 +28,7 @@ t_vector	*ft_vec_init(t_vector *v, size_t n, size_t s)
 	*v = (t_vector){.s_e = s, .n_e = 0, .cappacity = cap, .data = d};
 	return (v);
 }
+
 t_vector	*ft_vec_ifrom_array(t_vector *v, const void *a, size_t n, size_t s)
 {
 	void	*d;
@@ -41,7 +42,8 @@ t_vector	*ft_vec_ifrom_array(t_vector *v, const void *a, size_t n, size_t s)
 	return (ft_vec_iconvert_allocarray(v, d, n, s));
 }
 
-t_vector	*ft_vec_iconvert_allocarray(t_vector *v, void *d, size_t n, size_t s)
+t_vector	*ft_vec_iconvert_allocarray(t_vector *v, void *d, size_t n,
+				size_t s)
 {
 	if (!v)
 		return (NULL);

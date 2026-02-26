@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_vector.h"
 
 void	*ft_vec_collect(const t_vector *v, void *u_val, t_data_apply_with fw)
@@ -18,14 +17,16 @@ void	*ft_vec_collect(const t_vector *v, void *u_val, t_data_apply_with fw)
 	return (ft_vec_ncollect(v, -1, u_val, fw));
 }
 
-void	*ft_vec_ncollect(const t_vector *v, size_t n, void *u_val, t_data_apply_with fw)
+void	*ft_vec_ncollect(const t_vector *v, size_t n, void *u_val,
+			t_data_apply_with fw)
 {
-	size_t	i	= 0;
+	size_t	i;
 
 	if (!v || !fw || !n)
 		return (u_val);
 	if (n > v->n_e)
 		n = v->n_e;
+	i = 0;
 	while (i < n)
 		fw(u_val, ft_vec_at(v, i++));
 	return (u_val);
@@ -34,10 +35,11 @@ void	*ft_vec_ncollect(const t_vector *v, size_t n, void *u_val, t_data_apply_wit
 void	*ft_vec_ncollect_r(const t_vector *v, size_t n, void *u_val,
 		t_data_apply_with fw)
 {
-	size_t	i	= 0;
+	size_t	i;
 
 	if (!v || !fw || !n)
 		return (u_val);
+	i = n;
 	if (i > v->n_e)
 		i = v->n_e;
 	while (i)

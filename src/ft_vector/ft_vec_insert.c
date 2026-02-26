@@ -25,10 +25,11 @@ bool	ft_vec_insert(t_vector *vec, size_t pos, const void *elem)
 			return (false);
 	vec->n_e++;
 	ft_memmove(ft_vec_at(vec, pos + 1), ft_vec_at(vec, pos),
-			vec->s_e * (vec->n_e - pos));
+		vec->s_e * (vec->n_e - pos));
 	ft_memcpy(ft_vec_at(vec, pos), elem, vec->s_e);
 	return (true);
 }
+
 bool	ft_vec_ninsert(t_vector *vec, size_t pos, size_t n, const void *elems)
 {
 	if (!vec || !vec->data || !vec->n_e || !vec->s_e || !elems)
@@ -40,8 +41,7 @@ bool	ft_vec_ninsert(t_vector *vec, size_t pos, size_t n, const void *elems)
 			return (false);
 	vec->n_e += n;
 	ft_memmove(ft_vec_at(vec, pos + n), ft_vec_at(vec, pos),
-			vec->s_e * (vec->n_e - pos));
-
+		vec->s_e * (vec->n_e - pos));
 	ft_memcpy(ft_vec_at(vec, pos), elems, vec->s_e);
 	return (true);
 }

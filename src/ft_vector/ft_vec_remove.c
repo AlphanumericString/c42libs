@@ -31,17 +31,20 @@ void	ft_vec_remove(t_vector *vec, size_t idx, t_data_apply del)
 	return ;
 }
 
-static void ft_vec_nrm_start(t_vector *vec, size_t nb, t_data_apply del) {
-	size_t i = 0;
+static void	ft_vec_nrm_start(t_vector *vec, size_t nb, t_data_apply del)
+{
+	size_t	i;
 
 	if (nb >= vec->n_e)
 		return (ft_vec_apply(vec, del), ft_vec_clear(vec));
+	i = 0;
 	if (del)
 		while (i != nb)
 			del(ft_vec_at(vec, i++));
 	ft_vec_shift(vec, 0, nb);
 	return ;
 }
+
 // NOTE: maybe move the ft_bzero calls to another ft_vec_* function to allow
 //	for : 1. better performance, 2. might be usefull in some other cases to
 //	keep the array clean

@@ -18,7 +18,7 @@ bool	ft_vec_reverse(t_vector *vec)
 	return (ft_vec_nreverse(vec, -1));
 }
 
-bool		ft_vec_nreverse(t_vector *vec, size_t n)
+bool	ft_vec_nreverse(t_vector *vec, size_t n)
 {
 	if (!vec)
 		return (false);

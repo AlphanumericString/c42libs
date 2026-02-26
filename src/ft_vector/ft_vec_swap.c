@@ -29,7 +29,7 @@ void	ft_vec_swap(t_vector *vec, ssize_t a, ssize_t b)
 	ft_swap(ft_vec_at(vec, a), ft_vec_at(vec, b), vec->s_e);
 }
 
-void		ft_vec_nswap(t_vector *vec, size_t n, ssize_t a, ssize_t b)
+void	ft_vec_nswap(t_vector *vec, size_t n, ssize_t a, ssize_t b)
 {
 	if (!vec || !vec->s_e || !vec->n_e || !n)
 		return ;

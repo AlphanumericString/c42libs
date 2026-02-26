@@ -29,7 +29,7 @@ static int	mt_init(void)
 	return (0);
 }
 
-int tv_init(void)
+int	tv_init(void)
 {
 	t_vector	v;
 
@@ -43,7 +43,7 @@ static int	mt_fromarr(void)
 {
 	const int	fp = *talloc_get_failpoint();
 	t_vector	v;
-	int			arr[] = {1, 2, 3};
+	const int	arr[] = {1, 2, 3};
 	t_vector	*ret;
 
 	talloc_set_failpoint(0);
@@ -56,8 +56,8 @@ static int	mt_fromarr(void)
 
 int	tv_ifrom_array(void)
 {
-	t_vector v;
-	int		arr[] = {1, 2, 3};
+	t_vector	v;
+	const int	arr[] = {1, 2, 3};
 
 	ft_vec_ifrom_array(&v, arr, 3, sizeof(int));
 	if (!v.data || v.data == arr)

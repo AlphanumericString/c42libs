@@ -56,7 +56,8 @@ void	ft_vec_nfold_r(t_vector *v, size_t n, void *(*f)(void *, void *))
 	w_off = v->n_e - 1;
 	while (i < n)
 	{
-		new_val = f(ft_vec_at(v, (v->n_e - 1) - i - 1), ft_vec_at(v, (v->n_e - 1) - i));
+		new_val = f(ft_vec_at(v, (v->n_e - 1) - i - 1),
+				ft_vec_at(v, (v->n_e - 1) - i));
 		ft_vec_set(v, w_off--, new_val);
 		i += 2;
 	}
