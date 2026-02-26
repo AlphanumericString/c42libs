@@ -17,7 +17,6 @@
 
 #include <stdint.h>
 #include <limits.h>
-#include <stdio.h>
 
 static bool	check(ssize_t nbr, const char *base, const char *exp)
 {

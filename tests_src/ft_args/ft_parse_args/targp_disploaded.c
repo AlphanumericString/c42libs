@@ -19,7 +19,6 @@
 #include "tests/fixtures.h"
 #include "types/ft_args_types.h"
 
-#include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
 

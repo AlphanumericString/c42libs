@@ -13,8 +13,8 @@
 #include "ft_math.h"
 #include "ft_string.h"
 #include "sys/types.h"
-#include "unistd.h"
-#include <stdio.h>
+
+#include <unistd.h>
 #include <stddef.h>
 
 // Size_t

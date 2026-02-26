@@ -13,8 +13,6 @@
 #include "ft_defs.h"
 #include "ft_mem.h"
 #include "ft_algorithms.h"
-#include <stddef.h>
-#include <stdio.h>
 
 #define INFS_LEFT	0
 #define INFS_RIGHT	1

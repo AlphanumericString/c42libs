@@ -14,7 +14,6 @@
 #include "ft_mem.h"
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
-#include <stdio.h>
 
 static int	error_case(void)
 {

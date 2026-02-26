@@ -12,7 +12,6 @@
 
 #include "ft_algorithms.h"
 #include <stddef.h>
-#include <stdio.h>
 
 int	ft_cmp_ptr(const void *a, const void *b)
 {

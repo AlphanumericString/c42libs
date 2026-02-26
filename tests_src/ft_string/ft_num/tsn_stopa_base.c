@@ -14,7 +14,6 @@
 #include "tests/str__num_tests.h"
 #include "ft_defs.h"
 #include <stddef.h>
-#include <stdio.h>
 
 #define BUFF_SZ	200
 

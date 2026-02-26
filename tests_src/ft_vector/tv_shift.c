@@ -13,7 +13,6 @@
 #include "ft_vector.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
-#include <stdio.h>
 
 static int	error_cases(void)
 {

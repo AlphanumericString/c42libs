@@ -18,17 +18,14 @@ int	tv_reverse(void)
 {
 	t_vector	*vec;
 	const int	a[3] = {42, 43, 44};
+	const int	exp[3] = {44, 43, 42};
 
 	vec = ft_vec_from_array(a, 3, sizeof(int));
 	ft_vec_reverse(vec);
 	if (vec->n_e != 3)
 		return (1);
-	else if (*(int *)ft_vec_at(vec, 0) != 44)
-		return (1);
-	else if (*(int *)ft_vec_at(vec, 1) != 43)
-		return (1);
-	else if (*(int *)ft_vec_at(vec, 2) != 42)
-		return (1);
+	if (ft_vec_acmp(vec, exp, NULL) != 0)
+		return (2);
 	ft_vec_destroy(&vec);
 	ft_vec_reverse(NULL);
 	return (EXIT_SUCCESS);

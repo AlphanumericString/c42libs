@@ -17,7 +17,6 @@
 #include "tests/args_tests.h"
 #include "ft_mem.h"
 
-#include <stdio.h>
 #include <unistd.h>
 #include <stddef.h>
 

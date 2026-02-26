@@ -16,8 +16,18 @@
 
 void	ft_vec_sort(t_vector *vec, t_data_cmp cmp_f)
 {
-	if (vec)
-		ft_qsort(vec->data, vec->n_e, vec->s_e, cmp_f);
+	if (!vec || !cmp_f)
+		return ;
+	return (ft_vec_nsort(vec, -1, cmp_f));
+}
+
+void	ft_vec_nsort(t_vector *vec, size_t n, t_data_cmp cmp_f)
+{
+	if (!vec)
+		return ;
+	if (n > vec->n_e)
+		n = vec->n_e;
+	ft_qsort(vec->data, n, vec->s_e, cmp_f);
 }
 /*
 GPL-3.0 License:

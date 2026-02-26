@@ -15,7 +15,6 @@
 #include "ft_mem.h"
 #include "tests/str__mem_tests.h"
 #include "tests/tests_lambda_functions.h"
-#include <stdio.h>
 
 // 0 is swapped w 3
 // 4 is swapped w 3

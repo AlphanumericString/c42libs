@@ -15,7 +15,6 @@
 // #include <stddef.h>
 // #include <stdlib.h>
 // #include <stdbool.h>
-// #include <stdio.h>
 // #include <stdlib.h>
 // #include <strings.h>
 // #include <unistd.h>
@@ -29,9 +28,8 @@
 #include "sys/wait.h"
 #include "types/ft_list_types.h"
 #include "types/ft_string_types.h"
-#include "unistd.h"
+#include <unistd.h>
 #define _GNU_SOURCE
-#include <stdio.h>
 #define FT_CLASSIC_COLORS
 #include "ft_colors.h"
 #include "ft_allocator__dev.h"

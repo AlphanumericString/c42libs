@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include <stdio.h>
 
 void	ft_strnrev(char *s, size_t n)
 {

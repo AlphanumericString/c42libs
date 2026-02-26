@@ -12,7 +12,6 @@
 
 #include "ft_string.h"
 #include <stddef.h>
-#include <stdio.h>
 
 char	*ft_strrpl_chr(char *str, char srch, char rpl_c)
 {

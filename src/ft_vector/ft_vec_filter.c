@@ -32,6 +32,26 @@ void	ft_vec_filter(t_vector *vec, t_data_is func, t_data_apply del)
 			ft_vec_nremove(vec, i, j, del);
 	}
 }
+
+void	ft_vec_filterout(t_vector *vec, t_data_is func, t_data_apply del)
+{
+	size_t	i;
+	size_t	j;
+
+	if (!vec || vec->n_e == 0 || vec->s_e == 0 || vec->data == NULL || !func)
+		return ;
+	i = 0;
+	while (i < vec->n_e)
+	{
+		while (i < vec->n_e && func(ft_vec_at(vec, i)) == false)
+			i++;
+		j = 0;
+		while ((i + j) < vec->n_e && func(ft_vec_at(vec, i + j)) == true)
+			j++;
+		if (j)
+			ft_vec_nremove(vec, i, j, del);
+	}
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

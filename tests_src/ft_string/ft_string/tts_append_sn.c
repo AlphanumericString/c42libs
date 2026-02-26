@@ -14,7 +14,6 @@
 #include "tests/fixtures.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 

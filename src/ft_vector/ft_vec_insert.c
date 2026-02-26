@@ -12,22 +12,37 @@
 
 #include "ft_mem.h"
 #include "ft_vector.h"
-#include <stdio.h>
 
-// INFO: vec->n_e++ before manip for vec_at not to fail to null on bad access
+// NOTE: vec->n_e++ before manip for vec_at not to fail to null on bad access
 bool	ft_vec_insert(t_vector *vec, size_t pos, const void *elem)
 {
-	if (!vec || !vec->data || !vec->n_e || !vec->s_e)
+	if (!vec || !vec->data || !vec->n_e || !vec->s_e || !elem)
 		return (false);
 	if (pos >= vec->n_e)
 		return (ft_vec_add(vec, elem));
 	if ((vec->n_e + 1) > vec->cappacity)
-		if (ft_vec_reserve(vec, vec->n_e + 1) != true)
+		if (ft_vec_reserve(vec, 1) != true)
 			return (false);
 	vec->n_e++;
 	ft_memmove(ft_vec_at(vec, pos + 1), ft_vec_at(vec, pos),
 			vec->s_e * (vec->n_e - pos));
 	ft_memcpy(ft_vec_at(vec, pos), elem, vec->s_e);
+	return (true);
+}
+bool	ft_vec_ninsert(t_vector *vec, size_t pos, size_t n, const void *elems)
+{
+	if (!vec || !vec->data || !vec->n_e || !vec->s_e || !elems)
+		return (false);
+	if (pos >= vec->n_e)
+		return (ft_vec_nadd(vec, n, elems));
+	if ((vec->n_e + n) > vec->cappacity)
+		if (ft_vec_reserve(vec, n) != true)
+			return (false);
+	vec->n_e += n;
+	ft_memmove(ft_vec_at(vec, pos + n), ft_vec_at(vec, pos),
+			vec->s_e * (vec->n_e - pos));
+
+	ft_memcpy(ft_vec_at(vec, pos), elems, vec->s_e);
 	return (true);
 }
 /*

@@ -15,21 +15,26 @@
 
 t_vector *ft_vec_dup(const t_vector *o)
 {
+	return (ft_vec_ndup(o, -1));
+}
+
+t_vector *ft_vec_ndup(const t_vector *o, size_t n)
+{
 	t_vector *ret;
 	void		*data_;
 
 	if (!o || !o->data || !o->s_e)
 		return (NULL);
-	data_ = ft_calloc(o->n_e, o->s_e);
+	if (n > o->n_e)
+		n = o->n_e;
+	data_ = ft_calloc(n, o->s_e);
 	if (!data_)
 		return (NULL);
-	ft_memcpy(data_, o->data, ft_vec_inuse(o));
+	ft_memcpy(data_, o->data, n * o->s_e);
 	ret = ft_calloc(sizeof(t_vector), 1);
 	if (!ret)
 		return (ft_free(data_), NULL);
-	*ret = *o;
-	ret->data = data_;
-	return (ret);
+	return (ft_vec_iconvert_allocarray(ret, data_, n, o->s_e));
 }
 /*
 GPL-3.0 License:

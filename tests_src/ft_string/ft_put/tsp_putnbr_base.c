@@ -17,7 +17,6 @@
 
 #include <fcntl.h>
 #include <limits.h>
-#include <stdio.h>
 #include <unistd.h>
 
 static int	nb_to_file(const int *nbs, size_t size, const char *file_name,

@@ -15,7 +15,6 @@
 #include "ft_arr.h"
 #include "tests/fixtures.h"
 #include "tests/str__str_tests.h"
-#include <stdio.h>
 
 static int	mt_strtrim(void)
 {

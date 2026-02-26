@@ -15,7 +15,6 @@
 #include "ft_string.h"
 
 #include <stddef.h>
-#include <stdio.h>
 #include <unistd.h>
 
 static char	*extract_to(char **dst, char *from, char delim)

@@ -13,7 +13,6 @@
 #include "ft_char.h"
 #include "ft_string.h"
 #include <stddef.h>
-#include <stdio.h>
 
 char	*ft_strcapitalize_grammar(char *str)
 {

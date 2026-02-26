@@ -21,7 +21,7 @@ bool	ft_vec_reserve(t_vector *vec, size_t size)
 
 	if (!vec || !size)
 		return (false);
-	if (vec->cappacity > size)
+	if (vec->n_e + size < vec->cappacity)
 		return (true);
 	new_cap = FT_VECTOR_BASE_LEN;
 	while (new_cap < (size + vec->cappacity))

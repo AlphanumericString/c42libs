@@ -17,12 +17,25 @@ bool	ft_vec_add(t_vector *vec, const void *data)
 {
 	if (!vec || !data || !vec->s_e)
 		return (false);
-	if ((vec->n_e + 1) > vec->cappacity)
-		if (!ft_vec_reserve(vec, vec->n_e + 1))
-			return (false);
+	if (!ft_vec_reserve(vec, 1))
+		return (false);
 	ft_memcpy(vec->data + ft_vec_inuse(vec), data, vec->s_e);
 	vec->n_e++;
 	return (true);
+}
+
+bool	ft_vec_nadd(t_vector *vec, size_t n, const void *data)
+{
+	if (!vec || !data || !vec->s_e)
+		return (false);
+	if (!n)
+		return (true);
+	if (!ft_vec_reserve(vec, n))
+		return (false);
+	ft_memcpy(vec->data + ft_vec_inuse(vec), data, vec->s_e * n);
+	vec->n_e += n;
+	return (true);
+
 }
 /*
 GPL-3.0 License:

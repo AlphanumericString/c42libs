@@ -14,7 +14,6 @@
 #include "ft_mem.h"
 #include "ft_vector.h"
 #include <stddef.h>
-#include <stdio.h>
 
 void	ft_vec_remove(t_vector *vec, size_t idx, t_data_apply del)
 {
@@ -30,26 +29,6 @@ void	ft_vec_remove(t_vector *vec, size_t idx, t_data_apply del)
 		vec->s_e * (vec->n_e - idx - 1));
 	vec->n_e--;
 	return ;
-}
-
-void	ft_vec_filterout(t_vector *vec, t_data_is func, t_data_apply del)
-{
-	size_t	i;
-	size_t	j;
-
-	if (!vec || vec->n_e == 0 || vec->s_e == 0 || vec->data == NULL || !func)
-		return ;
-	i = 0;
-	while (i < vec->n_e)
-	{
-		while (i < vec->n_e && func(ft_vec_at(vec, i)) == false)
-			i++;
-		j = 0;
-		while ((i + j) < vec->n_e && func(ft_vec_at(vec, i + j)) == true)
-			j++;
-		if (j)
-			ft_vec_nremove(vec, i, j, del);
-	}
 }
 
 static void ft_vec_nrm_start(t_vector *vec, size_t nb, t_data_apply del) {

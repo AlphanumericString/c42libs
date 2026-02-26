@@ -15,7 +15,6 @@
 #include "ft_string.h"
 #include "tests/list__ll_tests.h"
 #include "types/ft_list_types.h"
-#include <stdio.h>
 
 static void	push_arr(t_list **list, size_t *i, const char **arr)
 {

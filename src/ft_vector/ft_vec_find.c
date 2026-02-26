@@ -10,9 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "types/ft_vector_types.h"
+#include "ft_mem.h"
 #include "ft_vector.h"
 
+// PERF: 
+// (char *)key)[0] == ((char *)elem)[0]
+// performance trick, we check only the first char to check if we need the call
 void	*ft_vec_find(const t_vector *restrict vec,
 			const void *restrict key, const t_data_cmp cmp)
 {
@@ -25,10 +28,27 @@ void	*ft_vec_find(const t_vector *restrict vec,
 	while (i < vec->n_e)
 	{
 		elem = ft_vec_at(vec, i++);
-		if (key == elem || (cmp && cmp(elem, key) == 0))
+		if ((key == elem) || (cmp && cmp(elem, key) == 0))
+			return (elem);
+		else if (((char *)key)[0] == ((char *)elem)[0]
+			&& ft_memcmp(elem, key, vec->s_e))
 			return (elem);
 	}
 	return (NULL);
+}
+
+void	*ft_vec_findget(const t_vector *vector, const void *key,
+				t_data_cmp cmp, void *ret)
+{
+	void	*e;
+
+	if (!vector || !ret)
+		return (NULL);
+	e = ft_vec_find(vector, key, cmp);
+	if (!e)
+		return (NULL);
+	ft_memcpy(ret, e, vector->s_e);
+	return (ret);
 }
 /*
 GPL-3.0 License:

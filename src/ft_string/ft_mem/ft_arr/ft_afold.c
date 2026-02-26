@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fold.c                                          :+:      :+:    :+:   */
+/*   ft_afold.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:08:49 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/02/23 18:08:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/02/24 19:18:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_arr.h"
 
-void	ft_afold(t_arr *ar, t_data_tr_w f) {
+void	ft_afold(t_arr *ar, t_data_tr_w f)
+{
 	if (!ar || !f)
-		 return ;
+		return ;
 	return (ft_anfold(ar, ft_alen((t_const_arr)ar), f));
 }
 
 void	ft_anfold(t_arr *ar, size_t n, t_data_tr_w f)
 {
 	size_t	i;
+	size_t	offset;
 
 	if (!ar || n < 2 || !f)
 		return ;
 	i = 1;
-	while (ar[i] && i < n) {
-		f(ar[i - 1], ar[i]);
+	offset = 0;
+	while (ar[i] && i < n)
+	{
+		ar[offset++] = f(ar[i - 1], ar[i]);
 		i += 2;
 	}
 }
@@ -34,15 +38,17 @@ void	ft_anfold(t_arr *ar, size_t n, t_data_tr_w f)
 void	ft_anfold_r(t_arr *ar, size_t n, t_data_tr_w f)
 {
 	size_t	i;
+	size_t	offset;
 
 	if (!ar || n < 2 || !f)
 		return ;
 	i = ft_anlen((t_const_arr)ar, n);
 	if (i != 0 && !ar[i])
 		i--;
-	while (i > 1)
+	offset = i;
+	while (i >= 1)
 	{
-		f(ar[i - 1], ar[i]);
+		ar[offset--] = f(ar[i - 1], ar[i]);
 		i -= 2;
 	}
 }

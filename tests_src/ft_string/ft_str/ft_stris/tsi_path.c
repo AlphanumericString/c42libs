@@ -13,7 +13,6 @@
 #include "ft_defs.h"
 #include "ft_stris.h"
 #include "tests/str__str_sis_tests.h"
-#include <stdio.h>
 
 int	tsi_ispath(void)
 {

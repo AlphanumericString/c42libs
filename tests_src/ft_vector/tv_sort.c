@@ -34,20 +34,17 @@ static int	base_cases(void)
 {
 	t_vector	*vec;
 	const long	nbrs[3] = {44, 43, 42};
+	const long	exp[3] = {42, 43, 44};
 
 	vec = ft_vec_from_array(nbrs, 3, sizeof(long));
 	ft_vec_sort(vec, cmp_fun);
 	if (vec->n_e != 3)
 		return (1);
-	else if (*(long *)ft_vec_at(vec, 0) != 42
-		|| *(long *)ft_vec_at(vec, 1) != 43
-		|| *(long *)ft_vec_at(vec, 2) != 44)
+	else if (ft_vec_acmp(vec, exp, NULL) != 0)
 		return (2);
 	ft_vec_sort(vec, cmp_fun);
 	ft_vec_sort(vec, cmp_fun);
-	if (*(long *)ft_vec_at(vec, 0) != 42
-		|| *(long *)ft_vec_at(vec, 1) != 43
-		|| *(long *)ft_vec_at(vec, 2) != 44)
+	if (ft_vec_acmp(vec, exp, NULL) != 0)
 		return (3);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);

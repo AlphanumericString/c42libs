@@ -12,7 +12,6 @@
 
 #include "ft_allocator__dev.h"
 #include "ft_map.h"
-#include <stdio.h>
 
 void	ft_map_set_cmp(t_map *map, t_data_cmp cmp)
 {

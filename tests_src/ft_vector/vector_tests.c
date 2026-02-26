@@ -16,39 +16,100 @@
 
 // TODO: pure tests for already implemented functions:
 //
-// TODO: maybe add iterators for :{max min last first} ?
-// TODO: tv_fold (doesn't take initial value)
-// TODO: tv_reduce (takes initial value)
+// TODO: maybe add iterators for :{max min last first} {get} ?
+// TODO: tv_collect
+// TODO: tv_fold
 
 // static const t_fnamed	tests[] = {
-// {"add", tv_add}, {"apply", tv_apply}, {"at", tv_at}, {"cat", tv_cat},
-// {"clear", tv_clear}, {"convert_alloc_array", tv_convert_alloc_array},
-// {"create", tv_create},
-//  /*{"delete", tv_delete},*/ {"destroy", tv_destroy}, // {"dup", tv_dup},
-// {"filter-out", tv_filterout}, {"filter", tv_filter}, {"find", tv_find},
-// {"from_array", tv_from_array}, {"from_size", tv_from_size},
-// // {"insert", tv_insert}, {"inuse", tv_inuse},
-// {"map", tv_map}, {"new", tv_new}, {"pop", tv_pop}, {"remove", tv_remove},
-//  /*{"remove_at", tv_remove_at},*/ {"reserve", tv_reserve},
-// {"reverse", tv_reverse}, {"shift", tv_shift}, {"shrink", tv_shrink},
-// {"sort", tv_sort}, {"swap", tv_swap}, {"to_array", tv_to_array},
+//	{"add", tv_add},
+//	{"apply", tv_apply},
+//	{"at", tv_at},
+//	{"cat", tv_cat},
+//	{"clear", tv_clear},
+//	{"collect", tv_collect},
+//	{"convert_alloc_array", tv_convert_alloc_array},
+//	{"create", tv_create},
+//	{"delete", tv_delete},
+//	{"destroy", tv_destroy},
+//	{"dup", tv_dup},
+//	{"filter-out", tv_filterout},
+//	{"filter", tv_filter},
+//	{"find", tv_find},
+//	{"fold", tv_fold},
+//	{"from_array", tv_from_array},
+//	{"from_size", tv_from_size},
+//	{"get", tv_get},
+//	{"init", tv_init},
+//	{"insert", tv_insert},
+//	{"inuse", tv_inuse},
+//	{"map", tv_map},
+//	{"new", tv_new},
+//	{"nremove", tv_nremove},
+//	{"pop", tv_pop},
+//	{"remove", tv_remove},
+//	{"reserve", tv_reserve},
+//	{"reverse", tv_reverse},
+//	{"set", tv_set},
+//	{"nset", tv_nset},
+//	{"shift", tv_shift},
+//	{"shrink", tv_shrink},
+//	{"sort", tv_sort},
+//	{"swap", tv_swap},
+//	{"to_array", tv_to_array},
+//	{"wipe", tv_wipe},
+//	{"nfold", tv_nfold}
+//
+//  /*{"remove_at", tv_remove_at},*/
+//
 // {NULL, NULL}
 // };
 
 static const t_fnamed	*tv_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"add", tv_add}, {"apply", tv_apply}, {"at", tv_at}, {"cat", tv_cat},
-	{"clear", tv_clear}, {"convert_alloc_array", tv_convert_alloc_array},
-	{"create", tv_create}, {"delete", tv_delete}, {"destroy", tv_destroy},
-	{"dup", tv_dup}, {"filter-out", tv_filterout}, {"filter", tv_filter},
-	{"find", tv_find}, {"from_array", tv_from_array},
-	{"from_size", tv_from_size}, {"inuse", tv_inuse}, {"insert", tv_insert},
-	{"map", tv_map}, {"new", tv_new}, {"pop", tv_pop},
-	{"remove", tv_remove}, {"nremove", tv_nremove},
-	{"reserve", tv_reserve}, {"reverse", tv_reverse}, {"shift", tv_shift},
-	{"shrink", tv_shrink}, {"sort", tv_sort}, {"swap", tv_swap},
-	{"to_array", tv_to_array}, {NULL, NULL}
+	{"add", tv_add},
+	{"apply", tv_apply},
+	{"at", tv_at},
+	{"cat", tv_cat},
+	{"clear", tv_clear},
+	{"collect", tv_collect},
+	{"convert_alloc_array", tv_convert_alloc_array},
+	{"create", tv_create},
+	{"delete", tv_delete},
+	{"destroy", tv_destroy},
+	{"dup", tv_dup},
+	{"filter-out", tv_filterout},
+	{"filter", tv_filter},
+	{"find", tv_find},
+	{"fold", tv_fold},
+	{"from_array", tv_from_array},
+	{"from_size", tv_from_size},
+	{"get", tv_get},
+	{"iconvert_allocarray", tv_iconvert_allocarray},
+	{"ifrom_array", tv_ifrom_array},
+	{"init", tv_init},
+	{"insert", tv_insert},
+	{"inuse", tv_inuse},
+	{"map", tv_map},
+	{"new", tv_new},
+	{"nfold_mltp", tv_nfold_mltp},
+	{"nfold_r_mltp", tv_nfold_r_mltp},
+	{"nfold_r", tv_nfold_r},
+	{"nfold", tv_nfold},
+	{"nremove", tv_nremove},
+	{"nset", tv_nset},
+	{"pop", tv_pop},
+	{"remove", tv_remove},
+	{"reserve", tv_reserve},
+	{"reverse", tv_reverse},
+	{"set", tv_set},
+	{"shift", tv_shift},
+	{"shrink", tv_shrink},
+	{"sort", tv_sort},
+	{"swap", tv_swap},
+	{"to_array", tv_to_array},
+	{"wipe", tv_wipe},
+	{NULL, NULL}
 	};
 
 	return (tests);
