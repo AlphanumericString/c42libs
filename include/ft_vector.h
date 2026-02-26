@@ -25,7 +25,6 @@
 
 # include <stdbool.h>
 # include <stddef.h>
-#include <wctype.h>
 
 # include "ft_defs.h"
 # include "types/ft_vector_types.h"
@@ -126,7 +125,8 @@ bool		ft_vec_ncat(t_vector *vec_dst, const t_vector *vec_src, size_t n);
 //			INFO: append elem to vec at position pos
 bool		ft_vec_insert(t_vector *vec, size_t pos, const void *elem);
 //			INFO: append n elems to vec from elem at position pos
-bool		ft_vec_ninsert(t_vector *vec, size_t pos, size_t n, const void *elem);
+bool		ft_vec_ninsert(t_vector *vec, size_t pos, size_t n,
+				const void *elem);
 
 // MODIFY
 //			INFO: apply function func to all elements of vector vec
