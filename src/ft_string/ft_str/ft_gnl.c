@@ -77,6 +77,32 @@ char	*ft_gnl_r(int fd, char **buffer)
 		ft_free_clear((t_any)buffer);
 	return (ret);
 }
+
+// TODO: test it
+// NOTE: we cant use it for ft_gnl_r as gnl_r handles it's own buffer where as
+// here we only take a buffer and a size in case of read error we dont handle
+// any free'ing of said buffer
+char	*ft_gnl_rn(int fd, char *buffer, ssize_t buffer_size)
+{
+	char	*ret;
+	ssize_t	rep;
+
+	ret = NULL;
+	rep = buffer_size;
+	if (buffer_size < 1 || !buffer)
+		return (ret);
+	while (ft_strchr(buffer, '\n') == NULL && rep == buffer_size)
+	{
+		if ((buffer)[0] && !extract_to(&ret, buffer, '\n'))
+			return (NULL);
+		rep = read(fd, buffer, (size_t)buffer_size);
+		if (rep <= 0)
+			return (ret);
+		(buffer)[rep] = 0;
+	}
+	ret = extract_to(&ret, buffer, '\n');
+	return (ret);
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

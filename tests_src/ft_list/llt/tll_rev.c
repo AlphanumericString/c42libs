@@ -18,7 +18,7 @@
 
 #include <stdlib.h>
 
-int	t_ll_rev(void)
+int	tll_rev(void)
 {
 	t_list	*list;
 	t_list	*rev;

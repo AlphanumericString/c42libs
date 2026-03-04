@@ -49,6 +49,7 @@
 int					ft_arg_set_custom_checker(t_data_is custom_checker);
 int					ft_set_opt_list(t_opt *opt_list);
 void				ft_print_opts(const t_opt opt, int fd);
+void				ft_print_fopts(const t_opt *opt, int fd);
 int					ft_parse_args(const char **argv,
 						void *usr_control_struct);
 
@@ -82,7 +83,8 @@ const char			*ft_get_env(const char *key);
 ///  and decreases ac by one and increase args by one. It effectively 'shift'
 ///  the table by one while keeping the count of element consistent.
 /// @param	args Pointer to a list of const char pointer
-/// @param	index Number of elements in Args remaining in args
+/// @param	ac Pointer to the number of elements in Args remaining
+///		(argument count)
 /// @return	The first string in args or NULL if it fails.
 /// fail reasons might be: bad `args` pointer, `index` is 0 or negative.
 ///

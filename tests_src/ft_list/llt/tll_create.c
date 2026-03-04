@@ -17,7 +17,7 @@
 
 #include <stdlib.h>
 
-int	t_ll_create(void)
+int	tll_create(void)
 {
 	t_list	*list;
 	int		*data;

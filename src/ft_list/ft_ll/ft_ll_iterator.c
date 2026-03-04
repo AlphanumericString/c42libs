@@ -12,6 +12,7 @@
 
 #include "ft_list.h"
 #include "types/ft_list_types.h"
+#include <stdio.h>
 
 t_list	*ft_ll_begin(const t_list *lst)
 {
@@ -44,6 +45,29 @@ t_list	*ft_ll_at(const t_list *const lst, size_t index)
 	if (i != index)
 		return (NULL);
 	return ((t_list *)it);
+}
+
+t_list	*ft_ll_mid(const t_list *const lst)
+{
+	const t_list	*a;
+	const t_list	*b;
+
+	if (!lst)
+		return (NULL);
+	if (!lst->next)
+		return ((t_list *)lst);
+	a = lst;
+	b = lst;
+	while (b)
+	{
+		if (b->next)
+			b = b->next->next;
+		else
+			b = b->next;
+		if (b)
+			a = a->next;
+	}
+	return ((t_list *)a);
 }
 /*
 GPL-3.0 License:

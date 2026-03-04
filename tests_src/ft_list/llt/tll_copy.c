@@ -17,7 +17,7 @@
 #include "tests/fixtures.h"
 #include <stdlib.h>
 
-int	t_ll_copy_node(void)
+int	tll_copy_node(void)
 {
 	t_list	*list;
 	t_list	*copy;
@@ -43,7 +43,7 @@ int	t_ll_copy_node(void)
 	return (ft_free(data), ft_free(list), 0);
 }
 
-int	t_ll_copy_list(void)
+int	tll_copy_list(void)
 {
 	t_list	*list;
 	t_list	*copy;

@@ -17,21 +17,21 @@
 #include "ft_stris.h"
 #include "internal/args_helper.h"
 #include "internal/args_helper_types.h"
+
 #include <stddef.h>
 #include <unistd.h>
 
-void	disp_loaded(void)
+void	disp_loaded(int fd)
 {
 	const t_opt	*ls = ft_get_opt_list();
 	size_t		i;
 
 	i = 0;
-	ft_print_fd(STDERR_FILENO,
-		"Disponible options loaded for %s:\n", ft_progname());
-	while (ls[i].func)
+	ft_print_fd(fd, "%s:\n", ft_progname());
+	while (ls && ls[i].func)
 	{
 		if (ls[i].short_name || ls[i].long_name)
-			ft_print_opts(ls[i], STDERR_FILENO);
+			ft_print_opts(ls[i], fd);
 		i++;
 	}
 }
@@ -81,9 +81,7 @@ static const struct s_local_table	*get_table(void)
 	};
 
 	i = 0;
-	while (table[i].type != FT_AT_CUSTOM)
-		i++;
-	if (table[i].type == FT_AT_CUSTOM)
+	if (table[i].type == FT_AT_CUSTOM && ft_arg_get_custom_checker())
 		table[i].checker = ft_arg_get_custom_checker();
 	return ((const struct s_local_table *)table);
 }

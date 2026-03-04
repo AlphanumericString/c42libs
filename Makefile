@@ -489,6 +489,10 @@ QTEST_SRC	=\
 TESTS_SRC	=\
 			$(TESTS_DIR)/ft_args/args_tests.c								\
 			$(TESTS_DIR)/ft_args/ft_parse_args/targ_parse.c					\
+			$(TESTS_DIR)/ft_args/ft_parse_args/targp_disploaded.c			\
+			$(TESTS_DIR)/ft_args/ft_parse_args/targp_perror_pa_state.c		\
+			$(TESTS_DIR)/ft_args/ft_parse_args/targp_printopts.c			\
+			$(TESTS_DIR)/ft_args/ft_parse_args/targp_puttype_fd.c			\
 			$(TESTS_DIR)/ft_args/ft_parse_args/targp_usrt_bindings_utils1.c	\
 			$(TESTS_DIR)/ft_args/ft_parse_args/targp_usrt_bindings_utils2.c	\
 			$(TESTS_DIR)/ft_args/ft_set/targ__ac_av_ev.c					\
@@ -536,6 +540,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/clt/tcl_issort.c							\
 			$(TESTS_DIR)/ft_list/clt/tcl_iterators.c						\
 			$(TESTS_DIR)/ft_list/clt/tcl_map.c								\
+			$(TESTS_DIR)/ft_list/clt/tcl_mid.c								\
 			$(TESTS_DIR)/ft_list/clt/tcl_new.c								\
 			$(TESTS_DIR)/ft_list/clt/tcl_pop.c								\
 			$(TESTS_DIR)/ft_list/clt/tcl_push.c								\
@@ -582,6 +587,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/llt/tll_issort.c							\
 			$(TESTS_DIR)/ft_list/llt/tll_iterators.c						\
 			$(TESTS_DIR)/ft_list/llt/tll_map.c								\
+			$(TESTS_DIR)/ft_list/llt/tll_mid.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_new.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_push.c								\
 			$(TESTS_DIR)/ft_list/llt/tll_rev.c								\
@@ -1013,7 +1019,7 @@ $(COVERAGE_DIR): $(TEST_NAME)
 	-instr-profile=$(TEST_NAME).profdata						\
 	-ignore-filename-regex=$(TESTS_DIR)/*						\
 	-ignore-filename-regex=$(FT_MEM_DIR)/ft_allocator/ft_al_memimpl.c	\
-	--show-branches=count										\
+	--show-branches=count	--show-directory-coverage			\
 	./$(TEST_NAME) -output-dir=$(COVERAGE_DIR)					&& \
 	$(PRINTF) "$(GOOD_COLOR)Success$(RESET)\n"					|| \
 	$(PRINTF) "$(ERROR_COLOR)Failed$(RESET)\n"

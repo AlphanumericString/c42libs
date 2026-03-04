@@ -18,7 +18,7 @@
 
 #include "tests/list__ll_tests.h"
 
-int	t_ll_check_circular(void)
+int	tll_check_circular(void)
 {
 	t_list	*lst;
 	t_list	*nodes[11];
@@ -44,7 +44,7 @@ int	t_ll_check_circular(void)
 	return (ft_aapply((void **)nodes, ft_free), EXIT_SUCCESS);
 }
 
-int	t_ll_check_sorted(void)
+int	tll_check_sorted(void)
 {
 	t_list	*lst;
 
@@ -63,7 +63,7 @@ int	t_ll_check_sorted(void)
 	return (ft_ll_delete(&lst, NULL), EXIT_SUCCESS);
 }
 
-int	t_ll_check_health(void)
+int	tll_check_health(void)
 {
 	t_list	*lst;
 

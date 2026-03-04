@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:33:46 by iron              #+#    #+#             */
-/*   Updated: 2025/09/29 11:29:57 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/03/04 13:37:57 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,20 @@
 static t_mod_constructor	*get_tests(void)
 {
 	static t_mod_constructor	tests[] = {
-		tests_vector, 
-		// tests_lists, tests_string, tests_map, tests_optional,
-		// tests_args, tests_math, tests_pair, tests_bitset,
+		tests_vector, tests_lists, tests_string, tests_map, tests_optional,
+		tests_args, tests_math, tests_pair, tests_bitset,
 		NULL};
 
 	return (tests);
 }
 
 // setup stuff for tests
+//	printf("seed used for tests: %u\n", seed);
 static void	setup(const char *av[])
 {
 	const unsigned int	seed = time(NULL);
 
-	ft_setup_prog((char const *const *)av);
-	printf("seed used for tests: %u\n", seed);
+	(void)av;
 	srand(seed);
 	ft_set_gnu_alloc();
 	talloc_wrapper_setup();

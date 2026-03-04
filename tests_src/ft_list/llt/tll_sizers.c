@@ -22,7 +22,7 @@
 
 #include <stdlib.h>
 
-int	t_ll_size(void)
+int	tll_size(void)
 {
 	t_list	*list;
 	int		*data;
@@ -43,7 +43,7 @@ int	t_ll_size(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_size_match(void)
+int	tll_size_match(void)
 {
 	t_list	*list;
 	int		*data;
@@ -64,7 +64,7 @@ int	t_ll_size_match(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_size_cmp(void)
+int	tll_size_cmp(void)
 {
 	const char	*datas[] = {"this", "is", "a", "test", "zod", NULL};
 	t_list		*list;

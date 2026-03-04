@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "types/ft_list_types.h"
 
 t_dlist	*ft_dl_at(const t_dlist *head, size_t index)
 {
@@ -45,6 +46,25 @@ t_dlist	*ft_dl_begin(const t_dlist *head)
 	while (it->prev)
 		it = it->prev;
 	return (it);
+}
+
+t_dlist	*ft_dl_mid(const t_dlist *head)
+{
+	const t_dlist	*a;
+	const t_dlist	*b;
+
+	if (!head)
+		return (NULL);
+	a = head;
+	b = head;
+	while (b)
+	{
+		a = a->next;
+		b = b->next;
+		if (b)
+			b = b->next;
+	}
+	return ((t_dlist *)a);
 }
 /*
 GPL-3.0 License:

@@ -15,7 +15,7 @@
 #include "tests/list__ll_tests.h"
 #include <stdlib.h>
 
-int	t_ll_clear(void)
+int	tll_clear(void)
 {
 	t_list	*list;
 	int		*data;

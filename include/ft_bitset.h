@@ -101,7 +101,7 @@ void		ft_bs_free_inner(t_bitset *bitset);
 
 /// @brief Get the value of a bit in the bitset
 /// @param bitset The bitset to get the value from
-/// @param index The index of the raw to get
+/// @param raw_index The index of the raw to get
 /// @return The value of the raw at this index
 /// @note If the index is out of bounds, the function will return 0
 ///
@@ -123,7 +123,7 @@ bool		ft_bs_get(t_bitset *bitset, size_t index);
 
 /// @brief Set the value of a raw in the bitset
 /// @param bitset The bitset to set the raw value in
-/// @param index The index of the raw to set (will be multed by 8)
+/// @param raw_index The index of the raw to set (will be multed by 8)
 /// @param value The value of the raw to set
 /// @return False if out of bounds, True otherwise
 ///
@@ -135,7 +135,7 @@ bool		ft_bs_set_raw(t_bitset *bitset, size_t raw_index, uint8_t value);
 /// @brief Set the value of a bool in the bitset
 /// @param bitset The bitset to set the value in
 /// @param index The index of the bool to set
-/// @return The value of the bool to set (0 - False, 1 - True)
+/// @param value The value to set the bool to
 /// @return False if out of bounds, True otherwise
 ///
 /// @note MT-safe

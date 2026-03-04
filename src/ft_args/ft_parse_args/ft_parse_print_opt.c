@@ -37,6 +37,17 @@ void	ft_print_opts(const t_opt opt, int fd)
 			put_type_fd(opt.type, fd));
 	if (opt.desc)
 		print_desc(opt.desc, fd);
+	else
+		ft_print_fd(fd, "\n");
+}
+
+void	ft_print_fopts(const t_opt *opt, int fd)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (opt[i].func)
+		ft_print_opts(opt[i++], fd);
 }
 /*
 GPL-3.0 License:

@@ -41,19 +41,16 @@ t_map		*ft_map_create(size_t capacity);
 
 /// @brief Destroy a map and free the nodes
 /// @param map map to destroy
-/// @return void
 void		ft_map_destroy(t_map *map);
 
 /// @brief Destroy a map and free the nodes and the user data in them using a
 /// function passed as an argument
 /// @param map map to destroy
 /// @param free_data function to free the data in the map
-/// @return void
 void		ft_map_destroy_free(t_map *map, t_data_apply free_data);
 
 /// @brief Clears a map
 /// @param map map to clear
-/// @return void
 /// @note does not free the user data in the nodes, just turns the node into
 /// "empty"
 void		ft_map_clear(t_map *map);
@@ -70,13 +67,11 @@ bool		ft_map_set(t_map *map, const void *key,
 /// @brief Set the compare function of a map
 /// @param map map to set the compare function
 /// @param cmp compare function newly set
-/// @return void
 void		ft_map_set_cmp(t_map *map, const t_data_cmp cmp);
 
 /// @brief Set the hash function of a map
 /// @param map map to set the hash function
 /// @param hash hash function newly set
-/// @return void
 void		ft_map_set_hash(t_map *map, t_memhash hash);
 
 /// @brief Get a node from a map

@@ -19,7 +19,7 @@
 #include "tests/list__ll_tests.h"
 #include <stdlib.h>
 
-int	t_ll_apply(void)
+int	tll_apply(void)
 {
 	const int	data3 = 63;
 	const int	data4 = 84;
@@ -40,7 +40,7 @@ int	t_ll_apply(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_apply_range(void)
+int	tll_apply_range(void)
 {
 	t_list		*list;
 	int			*data;
@@ -67,7 +67,7 @@ int	t_ll_apply_range(void)
 	return (EXIT_SUCCESS);
 }
 
-int	t_ll_apply_range_node(void)
+int	tll_apply_range_node(void)
 {
 	const int	data3 = 84;
 	t_list		*list;

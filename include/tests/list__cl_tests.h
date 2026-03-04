@@ -40,6 +40,7 @@ int	tcl_get_datas(void);
 int	tcl_get_nodes(void);
 int	tcl_issort(void);
 int	tcl_map(void);
+int	tcl_mid(void);
 int	tcl_new(void);
 int	tcl_pop_back(void);
 int	tcl_pop(void);
