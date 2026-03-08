@@ -110,6 +110,12 @@ typedef enum e_sort_order
 	FT_SORT_ORD_MASK = 7 << 5, // (2^3 - 1) << 5 = 0b11100000
 }	t_sort_order;
 
+
+typedef struct {
+	void		*func;
+	const char	*f_name;
+} t_named_func;
+
 /// @brief	Type maping to remove checks on type on any ptrs
 typedef void				*t_any;
 

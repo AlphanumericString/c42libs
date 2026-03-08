@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_string.h"
 #include <stddef.h>
 
@@ -96,10 +97,25 @@ static const char	*block_3(int errnum)
 	return (str[errnum - 93]);
 }
 
+static const char	*block_4(int errnum)
+{
+	const char	*prefix = "Unknown error ";
+	static char	errs_unknown[19];
+
+	ft_memcpy(errs_unknown, prefix, ft_strlen(prefix));
+	errs_unknown[ft_strlen(prefix)] = (errnum / 100) + '0';
+	errnum %= 100;
+	errs_unknown[ft_strlen(prefix) + 1] = errnum / 10 + '0';
+	errnum %= 10;
+	errs_unknown[ft_strlen(prefix) + 2] = errnum + '0';
+	errs_unknown[ft_strlen(prefix) + 3] = 0;
+	return (errs_unknown);
+}
+
 const char	*ft_strerror(int errnum)
 {
 	if (errnum > 133)
-		return (NULL);
+		return (block_4(errnum));
 	if (errnum < 51)
 		return (block_1(errnum));
 	if (errnum < 93)

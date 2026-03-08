@@ -236,6 +236,8 @@ bool		ft_base_valid(const char *base);
 /// @param errnum Error code
 /// @return A pointer to a constant string describing the error code
 /// @note The returned pointer can be null if errnum is out of range (0 - 133)
+/// @warning Not thread safe on errno > 133. (returns a poitner to a static
+///  string array "Unkown error \d\d\d").
 const char	*ft_strerror(int errnum);
 
 /// @brief Read the next line from the file descriptor
