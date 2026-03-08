@@ -102,11 +102,13 @@ CFLAGS		=\
 			$(VAR_FLAGS)
 CFLAGS		+=\
 			-fPIC -fdiagnostics-color -fno-inline -fno-inline-functions	\
+			-g3
 
 TEST_FLAGS	=\
 			-fprofile-instr-generate -ftest-coverage -fcoverage-mapping	\
 			-fno-inline -fno-inline-functions							\
-			-O0	-DTEST -I./ctestinglib/include
+			-O0	-DTEST -I./ctestinglib/include							\
+			-g3
 
 #-DVERBOSE=1
 
@@ -414,6 +416,7 @@ FT_STR_SRC		=\
 			$(FT_STR_DIR)/ft_stris/ft_sis_oct.c			\
 			$(FT_STR_DIR)/ft_stris/ft_sis_valid.c		\
 			$(FT_STR_DIR)/ft_gnl.c					\
+			$(FT_STR_DIR)/ft_printf.c				\
 			$(FT_STR_DIR)/ft_split.c			\
 			$(FT_STR_DIR)/ft_splits.c			\
 			$(FT_STR_DIR)/ft_strappend_c.c		\
