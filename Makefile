@@ -854,10 +854,14 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/ts_upper.c						\
 			$(TESTS_DIR)/ft_string/string_tests.c							\
 			$(TESTS_DIR)/ft_vector/tv_add.c									\
+			$(TESTS_DIR)/ft_vector/tv_findget.c								\
+			$(TESTS_DIR)/ft_vector/tv_advance.c								\
+			$(TESTS_DIR)/ft_vector/tv_ancmp.c								\
 			$(TESTS_DIR)/ft_vector/tv_apply.c								\
 			$(TESTS_DIR)/ft_vector/tv_at.c									\
 			$(TESTS_DIR)/ft_vector/tv_cat.c									\
 			$(TESTS_DIR)/ft_vector/tv_clear.c								\
+			$(TESTS_DIR)/ft_vector/tv_cmp.c									\
 			$(TESTS_DIR)/ft_vector/tv_collect.c								\
 			$(TESTS_DIR)/ft_vector/tv_convert_alloc_array.c					\
 			$(TESTS_DIR)/ft_vector/tv_create.c								\

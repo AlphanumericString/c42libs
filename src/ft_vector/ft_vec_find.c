@@ -44,6 +44,7 @@ void	*ft_vec_findget(const t_vector *vector, const void *key,
 
 	if (!vector || !ret)
 		return (NULL);
+	ft_bzero(ret, vector->s_e);
 	e = ft_vec_find(vector, key, cmp);
 	if (!e)
 		return (NULL);

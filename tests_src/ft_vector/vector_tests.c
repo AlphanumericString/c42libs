@@ -15,17 +15,29 @@
 #include "tests/vector_tests.h"
 
 // TODO: pure tests for already implemented functions:
+//	{"nadd", tv_nadd},
+//	{"nadd", tv_nadd},
+//	{"ncat", tv_ncat},
+//	{"ncmp", tv_ncmp},
+//	{"ncollect_r", tv_ncollect_r},
+//	{"ncollect", tv_ncollect},
+//	{"ninsert", tv_ninsert},
+//	{"nmap", tv_nmap},
+//	{"nswap", tv_nswap},
+//	{"shrink_min", tv_shrink_min},
 //
 // TODO: maybe add iterators for :{max min last first} {get} ?
-// TODO: tv_collect
-// TODO: tv_fold
 
 // static const t_fnamed	tests[] = {
 //	{"add", tv_add},
+//	{"advance", tv_advance},
+//	{"ancmp", tv_ancmp},
 //	{"apply", tv_apply},
 //	{"at", tv_at},
 //	{"cat", tv_cat},
 //	{"clear", tv_clear},
+//	{"cmp", tv_cmp},
+//	{"collect", tv_collect},
 //	{"collect", tv_collect},
 //	{"convert_alloc_array", tv_convert_alloc_array},
 //	{"create", tv_create},
@@ -34,6 +46,7 @@
 //	{"dup", tv_dup},
 //	{"filter-out", tv_filterout},
 //	{"filter", tv_filter},
+//	{"findget", tv_findget},
 //	{"find", tv_find},
 //	{"fold", tv_fold},
 //	{"from_array", tv_from_array},
@@ -43,35 +56,52 @@
 //	{"insert", tv_insert},
 //	{"inuse", tv_inuse},
 //	{"map", tv_map},
+//	{"nadd", tv_nadd},
+//	{"nadd", tv_nadd},
+//	{"ncat", tv_ncat},
+//	{"ncmp", tv_ncmp},
+//	{"ncollect_r", tv_ncollect_r},
+//	{"ncollect", tv_ncollect},
 //	{"new", tv_new},
+//	{"nfold", tv_nfold}
+//	{"ninsert", tv_ninsert},
+//	{"nmap", tv_nmap},
 //	{"nremove", tv_nremove},
+//	{"nset", tv_nset},
+//	{"nswap", tv_nswap},
 //	{"pop", tv_pop},
 //	{"remove", tv_remove},
 //	{"reserve", tv_reserve},
 //	{"reverse", tv_reverse},
 //	{"set", tv_set},
-//	{"nset", tv_nset},
 //	{"shift", tv_shift},
+//	{"shrink_min", tv_shrink_min},
 //	{"shrink", tv_shrink},
 //	{"sort", tv_sort},
 //	{"swap", tv_swap},
 //	{"to_array", tv_to_array},
 //	{"wipe", tv_wipe},
-//	{"nfold", tv_nfold}
 //
 //  /*{"remove_at", tv_remove_at},*/
 //
 // {NULL, NULL}
 // };
 
+/*
+
+*/
 static const t_fnamed	*tv_tests(void)
 {
 	static const t_fnamed	tests[] = {
+	{"acmp", tv_acmp},
 	{"add", tv_add},
+	{"advance", tv_advance},
+	{"ancmp", tv_ancmp},
 	{"apply", tv_apply},
 	{"at", tv_at},
 	{"cat", tv_cat},
 	{"clear", tv_clear},
+	{"cmp", tv_cmp},
 	{"collect", tv_collect},
 	{"convert_alloc_array", tv_convert_alloc_array},
 	{"create", tv_create},
@@ -91,6 +121,7 @@ static const t_fnamed	*tv_tests(void)
 	{"insert", tv_insert},
 	{"inuse", tv_inuse},
 	{"map", tv_map},
+	{"ncmp", tv_ncmp},
 	{"new", tv_new},
 	{"nfold_mltp", tv_nfold_mltp},
 	{"nfold_r_mltp", tv_nfold_r_mltp},
@@ -109,6 +140,7 @@ static const t_fnamed	*tv_tests(void)
 	{"swap", tv_swap},
 	{"to_array", tv_to_array},
 	{"wipe", tv_wipe},
+	{"findget", tv_findget},
 	{NULL, NULL}
 	};
 

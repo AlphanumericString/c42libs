@@ -30,11 +30,11 @@ bool	ft_vec_advance(t_vector *v, size_t n)
 {
 	if (!v || !n)
 		return (false);
-	if (v->n_e >= n)
+	if (v->n_e <= n)
 		return (ft_vec_clear(v), true);
 	ft_memmove(ft_vec_at(v, 0), ft_vec_at(v, n), (v->n_e - n) * v->s_e);
 	v->n_e -= n;
-	return (false);
+	return (true);
 }
 /*
 GPL-3.0 License:
