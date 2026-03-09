@@ -13,11 +13,15 @@
 #ifndef VECTOR_TESTS_H
 # define VECTOR_TESTS_H
 
+int	tv_acmp(void);
 int	tv_add(void);
+int	tv_advance(void);
+int	tv_ancmp(void);
 int	tv_apply(void);
 int	tv_at(void);
 int	tv_cat(void);
 int	tv_clear(void);
+int	tv_cmp(void);
 int	tv_collect(void);
 int	tv_convert_alloc_array(void);
 int	tv_create(void);
@@ -26,8 +30,8 @@ int	tv_destroy(void);
 int	tv_dup(void);
 int	tv_filterout(void);
 int	tv_filter(void);
+int	tv_findget(void);
 int	tv_find(void);
-int	tv_nfold_r(void);
 int	tv_fold(void);
 int	tv_from_array(void);
 int	tv_from_size(void);
@@ -38,12 +42,14 @@ int	tv_init(void);
 int	tv_insert(void);
 int	tv_inuse(void);
 int	tv_map(void);
+int	tv_ncmp(void);
 int	tv_new(void);
+int	tv_nfold_mltp(void);
+int	tv_nfold_r_mltp(void);
+int	tv_nfold_r(void);
 int	tv_nfold(void);
 int	tv_nremove(void);
 int	tv_nset(void);
-int	tv_nfold_mltp(void);
-int	tv_nfold_r_mltp(void);
 int	tv_pop(void);
 int	tv_remove(void);
 int	tv_reserve(void);

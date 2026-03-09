@@ -47,6 +47,9 @@
 //			void		*ft_vec_popget(t_vector *vec, void *holder);
 //			void		*ft_vec_npopget(t_vector *vec, size_t n, void *holder);
 //			void		*ft_vec_popfront(t_vector *vec, void *holder);
+// TODO: void->bool
+//			void		ft_vec_shift(...); -> bool		ft_vec_shift(...);
+
 
 // ALLOC
 //			INFO: allocates a new vector using a standard number of elements
