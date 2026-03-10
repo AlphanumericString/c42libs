@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bits/posix1_lim.h"
 #include "ft_defs.h"
 #include "ft_math.h"
 
 #include <limits.h>
+#include <stdint.h>
 
-int	ft_unbrlen_base(size_t nbr, size_t blen)
+int	ft_unbrlen_base(uintmax_t nbr, size_t blen)
 {
 	size_t	nbr_len;
 
@@ -27,7 +27,7 @@ int	ft_unbrlen_base(size_t nbr, size_t blen)
 	return (nbr_len);
 }
 
-int	ft_nbrlen_base(ssize_t nbr, size_t blen)
+int	ft_nbrlen_base(intmax_t nbr, size_t blen)
 {
 	size_t	nbr_len;
 
@@ -50,7 +50,7 @@ int	ft_nbrlen_base(ssize_t nbr, size_t blen)
 	return (nbr_len);
 }
 
-int	ft_nbrlen(ssize_t nbr)
+int	ft_nbrlen(intmax_t nbr)
 {
 	return (ft_nbrlen_base(nbr, 10));
 }

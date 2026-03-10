@@ -15,6 +15,8 @@
 #include "ft_string.h"
 #include "ft_stris.h"
 #include "internal/print.h"
+#include "ft_math.h"
+#include "sys/cdefs.h"
 
 #include <stdint.h>
 #include <unistd.h>
@@ -409,6 +411,205 @@ static int process_nb(t_ft_printf *inf, t_ft_printf_arg *arg, va_list list)
 
 	return (0);
 }
+// Unsigned
+// Maxint_t
+// To
+// Pointed Array
+static bool	__attribute_maybe_unused__ ft_umtopa_base(uintmax_t nbr, const char *base, char *ptr, size_t max)
+{
+	t_uint	blen;
+	t_uint	nblen;
+
+	if (!base | !ptr | max <= 1 || ft_base_valid(base) == false)
+		return (false);
+	blen = ft_strlen(base);
+	nblen = ft_unbrlen_base(nbr, blen);
+	if (nblen + 1 > max)
+		return (false);
+	if (!nbr)
+		return (ft_strlcpy(ptr, base, 2), true);
+	ptr[nblen] = '\0';
+	while (nbr)
+	{
+		ptr[--nblen] = base[nbr % blen];
+		nbr /= blen;
+	}
+	return (true);
+}
+
+static bool	__attribute_maybe_unused__ ft_imtopa_base(intmax_t nbr, const char *base, char *ptr, size_t max)
+{
+	t_uint	blen;
+	t_uint	nblen;
+	char	hold;
+
+	if (!base | !ptr | max <= 1 || ft_base_valid(base) == false)
+		return (false);
+	blen = ft_strlen(base);
+	nblen = ft_nbrlen_base(nbr, blen);
+	if (nblen + 1 > max)
+		return (false);
+	if (nbr >= 0)
+		return (ft_umtopa_base((uintmax_t)nbr, base, ptr, max));
+	ptr[0] = '-';
+	ptr[nblen] = '\0';
+	hold = base[ft_mod((ssize_t)nbr, (ssize_t)blen)];
+	nbr = (nbr / blen) * -1;
+	ft_umtopa_base(nbr, base, ptr + 1, max - 1);
+	ptr[--nblen] = hold;
+	return (true);
+}
+
+static int process_uteger(t_ft_printf *inf, t_ft_printf_arg *arg, va_list list)
+{
+	uintmax_t	number;
+	char		buff[64];
+	char		pad = ' ';
+	const int	start_offset = inf->buf_offset;
+	int			wdth;
+	int			prec;
+	int			append_needed;
+	int			nb_len;
+
+	set_wp(&wdth, &prec, arg, list);
+	if ((arg->flags & F_ZERO) == F_ZERO)
+		pad = '0';
+	switch (arg->len_mod) {
+	case FT_PR_LONG_LONG: // ll q
+		number = (uintmax_t)va_arg(list, unsigned long long);
+		break;
+	case FT_PR_LONG: // l    - char->wint_t || wchar_t, FLOAT_* = ignore
+		number = (uintmax_t)va_arg(list, unsigned long);
+		break;
+	case FT_PR_STD_MAXINT: // j
+		number = (uintmax_t)va_arg(list, uintmax_t);
+		break;
+	case FT_PR_STD_SIZE: // z Z
+		number = (uintmax_t)va_arg(list, size_t);
+		break;
+	case FT_PR_STD_PTRDIFF: // t
+		number = (uintmax_t)va_arg(list, ptrdiff_t);
+		break;
+	case FT_PR_CHAR_LEN: // hh - char
+	case FT_PR_SHORT: // h - short
+	default:
+		number = (uintmax_t)va_arg(list, unsigned int);
+		break;
+	}
+	ft_umtopa_base(number, FT_DECBASE, buff, 64);
+	append_needed = 0;
+	nb_len = ft_strlen(buff);
+	if ((arg->flags & F_MINUS) != F_MINUS) {
+		if (arg->width && ft_max(nb_len, prec) < wdth) {
+			while (append_needed++ + ft_max(nb_len, prec) < wdth)
+				inf->buf[inf->buf_offset++] = pad;
+			append_needed--;
+		}
+	}
+
+	int needed = 0;
+	if (arg->prec && nb_len < prec)
+	{
+		while (nb_len + needed++ < prec)
+			inf->buf[inf->buf_offset++] = '0';
+		needed--;
+	}
+	int i = 0;
+	while (buff[i])
+		inf->buf[inf->buf_offset++] = buff[i++];
+
+	if ((arg->flags & F_MINUS) == F_MINUS) {
+		if (arg->width && ft_max(nb_len, prec) < wdth) {
+			while (append_needed++ + ft_max(nb_len, prec) < wdth)
+				inf->buf[inf->buf_offset++] = ' ';
+			append_needed--;
+		}
+	}
+	return (inf->buf_offset - start_offset);
+}
+
+static int process_integer(t_ft_printf *inf, t_ft_printf_arg *arg, va_list list)
+{
+	intmax_t	number;
+	int			neg = 0;
+	char		buff[64];
+	char		pad = ' ';
+	const int	start_offset = inf->buf_offset;
+	int			wdth;
+	int			prec;
+	int			append_needed;
+	int			nb_len;
+
+	set_wp(&wdth, &prec, arg, list);
+	if ((arg->flags & F_ZERO) == F_ZERO)
+		pad = '0';
+	switch (arg->len_mod) {
+	case FT_PR_LONG_LONG: // ll q
+		number = (intmax_t)va_arg(list, long long);
+		break;
+	case FT_PR_LONG: // l    - char->wint_t || wchar_t, FLOAT_* = ignore
+		number = (intmax_t)va_arg(list, long);
+		break;
+	case FT_PR_STD_MAXINT: // j
+		number = va_arg(list, intmax_t);
+		break;
+	case FT_PR_STD_SIZE: // z Z
+		number = va_arg(list, ssize_t);
+		break;
+	case FT_PR_STD_PTRDIFF: // t
+		number = va_arg(list, ptrdiff_t);
+		break;
+	case FT_PR_CHAR_LEN: // hh - char
+	case FT_PR_SHORT: // h - short
+	default:
+		number = (intmax_t)va_arg(list, int);
+		break;
+	}
+
+	// HERE - !!! 2026-03-10 20:58
+
+	if (number < 0)
+	{
+		number *= -1;
+		neg = 1;
+	}
+
+	ft_umtopa_base((uintmax_t)number, FT_DECBASE, buff, 64);
+	append_needed = 0;
+	nb_len = ft_strlen(buff) + (neg > 0 || ((arg->flags & F_PLUS) == F_PLUS));
+
+	if ((arg->flags & F_MINUS) != F_MINUS) {
+		if (arg->width && ft_max(nb_len, prec) < wdth) {
+			while (append_needed++ + ft_max(nb_len, prec) < wdth)
+				inf->buf[inf->buf_offset++] = pad;
+			append_needed--;
+		}
+	}
+	if (neg)
+		inf->buf[inf->buf_offset++] = '-';
+	else if ((arg->flags & F_PLUS) == F_PLUS)
+		inf->buf[inf->buf_offset++] = '+';
+	int needed = 0;
+	if (arg->prec && (nb_len - neg) < prec)
+	{
+		while ((nb_len - neg) + needed++ < prec)
+			inf->buf[inf->buf_offset++] = '0';
+		needed--;
+	}
+
+	int i = 0;
+	while (buff[i])
+		inf->buf[inf->buf_offset++] = buff[i++];
+
+	if ((arg->flags & F_MINUS) == F_MINUS) {
+		if (arg->width && ft_max(nb_len, prec) < wdth) {
+			while (append_needed++ + ft_max(nb_len, prec) < wdth)
+				inf->buf[inf->buf_offset++] = ' ';
+			append_needed--;
+		}
+	}
+	return (inf->buf_offset - start_offset);
+}
 
 static int	treat_arg(t_ft_printf *inf, va_list list)
 {
@@ -436,6 +637,10 @@ static int	treat_arg(t_ft_printf *inf, va_list list)
 		return (process_mod(inf, &arg, list));
 	case 'n':
 		return (process_nb(inf, &arg, list));
+	case 'd':
+		return (process_integer(inf, &arg, list));
+	case 'u':
+		return (process_uteger(inf, &arg, list));
 	default:
 		inf->buf[(inf->buf_offset)++] = inf->fmt[(inf->fmt_offset)++];
 		return (1);

@@ -25,6 +25,7 @@
 
 // float for INFINITY
 # include <float.h>
+#include <stdint.h>
 # include <sys/types.h>
 
 # include "types/ft_math_types.h"
@@ -81,9 +82,9 @@ int			ft_log(int nbr);
 
 // TODO: Add doc
 ssize_t		ft_mod(ssize_t nbr, ssize_t modulus);
-int			ft_unbrlen_base(size_t nbr, size_t blen);
-int			ft_nbrlen_base(ssize_t nbr, size_t blen);
-int			ft_nbrlen(ssize_t nbr);
+int			ft_unbrlen_base(uintmax_t nbr, size_t blen);
+int			ft_nbrlen_base(intmax_t nbr, size_t blen);
+int			ft_nbrlen(intmax_t nbr);
 
 /// @brief returns the minimum of a and b
 /// @param a first number
