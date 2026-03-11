@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:10:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/20 04:01:46 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:38:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	tv_init(void);
 int	tv_insert(void);
 int	tv_inuse(void);
 int	tv_map(void);
+int	tv_nadd(void);
+int	tv_ncat(void);
 int	tv_ncmp(void);
 int	tv_new(void);
 int	tv_nfold_mltp(void);

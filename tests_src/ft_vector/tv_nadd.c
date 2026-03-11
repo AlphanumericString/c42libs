@@ -1,51 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_findget.c                                       :+:      :+:    :+:   */
+/*   tv_nadd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/09 11:19:19 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/03/11 01:31:32 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/10 23:22:36 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/11 00:28:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include "tests/fixtures.h"
 #include "tests/vector_tests.h"
 
-static int	loc_int_it_eq(void *a, void *b)
+static int	mt_cases(void)
 {
-	return (*(int *)a - *(int *)b);
+	t_vector	v;
+	bool		ret;
+	const int	a_src[] = {42, 84, 126};
+	const int	fp = *talloc_get_failpoint();
+
+	ft_vec_ifrom_array(&v, a_src, 3, sizeof(int));
+	if (v.n_e != 3)
+		return (ft_vec_wipe(&v), 7);
+	talloc_set_failpoint(0);
+	ret = ft_vec_nadd(&v, v.cappacity, a_src);
+	talloc_set_failpoint(fp);
+	ft_vec_wipe(&v);
+	if (ret != false)
+		return (8);
+	return (0);
 }
 
-static int	loc_int_it_inf(void *a, void *b)
+int	tv_nadd(void)
 {
-	if (*(int *)a <= *(int *)b)
-		return (0);
-	return (-1);
-}
+	const int	a_src[] = {42, 84, 126};
+	const int	b_src[] = {21, 42, 84};
+	t_vector	bad_formed;
+	t_vector	v;
 
-int	tv_findget(void)
-{
-	const int	src[] = {23, 45, 67, 42};
-	t_vector	a;
-	int			res;
-	int			arg;
-
-	res = 0;
-	ft_vec_ifrom_array(&a, src, sizeof(src) / sizeof(src[0]), sizeof(int));
-	arg = 42;
-	ft_vec_findget(&a, &arg, (t_data_cmp)loc_int_it_inf, &res);
-	if (res != 23)
-		return (ft_vec_wipe(&a), 1);
-	arg = 33;
-	ft_vec_findget(&a, &arg, (t_data_cmp)loc_int_it_eq, &res);
-	if (res != 0)
-		return (ft_vec_wipe(&a), 2);
-	if (ft_vec_findget(NULL, &arg, (t_data_cmp)loc_int_it_eq, &res) != NULL
-		|| ft_vec_findget(&a, &arg, (t_data_cmp)loc_int_it_eq, NULL) != NULL)
-		return (ft_vec_wipe(&a), 3);
-	return (ft_vec_wipe(&a), 0);
+	ft_vec_ifrom_array(&v, a_src, 3, sizeof(int));
+	if (v.n_e != 3)
+		return (ft_vec_wipe(&v), 1);
+	if (ft_vec_nadd(&v, 2, b_src) != true || v.n_e != 5)
+		return (ft_vec_wipe(&v), 2);
+	if (ft_vec_nadd(&v, 2, b_src) != true || v.n_e != 7)
+		return (ft_vec_wipe(&v), 2);
+	if (ft_vec_nadd(&v, 0, b_src) != true || v.n_e != 7)
+		return (ft_vec_wipe(&v), 3);
+	if (ft_vec_nadd(&v, 9, NULL) == true
+		|| ft_vec_nadd(NULL, 9, b_src) == true || v.n_e != 7)
+		return (ft_vec_wipe(&v), 4);
+	bad_formed = v;
+	bad_formed.s_e = 0;
+	if (ft_vec_nadd(&bad_formed, 2, b_src) == true)
+		return (ft_vec_wipe(&v), 5);
+	return (ft_vec_wipe(&v), mt_cases());
 }
 /*
 GPL-3.0 License:

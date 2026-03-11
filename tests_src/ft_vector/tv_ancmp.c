@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:58:00 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/03/08 22:58:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:27:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	loc_strcmp_spe(const char **a, const char **b)
 
 int	tv_acmp(void)
 {
-	void		*a_src[] = {(void *)0xDEAD, (void *)0, (void *)0xBEEFCAFE};
-	void		*new_val = (void *)0xCAFE;
+	const void	*a_src[] = {(void *)0xDEAD, (void *)0, (void *)0xBEEFCAFE};
+	const void	*new_val = (void *)0xCAFE;
 	t_vector	v;
 
 	ft_vec_ifrom_array(&v, a_src, 3, sizeof(void *));

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:40:24 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/01/28 11:37:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:38:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 bool	ft_vec_cat(t_vector *dst, const t_vector *src)
 {
-	bool	ret;
-
 	if (!dst || !src || dst->s_e != src->s_e)
 		return (false);
-	ret = ft_vec_reserve(dst, src->n_e);
-	if (!ret)
+	if (!src->n_e)
+		return (true);
+	if (!ft_vec_reserve(dst, src->n_e))
 		return (false);
 	ft_memcpy(dst->data + ft_vec_inuse(dst), src->data, ft_vec_inuse(src));
 	dst->n_e += src->n_e;
@@ -29,14 +28,13 @@ bool	ft_vec_cat(t_vector *dst, const t_vector *src)
 
 bool	ft_vec_ncat(t_vector *dst, const t_vector *src, size_t n)
 {
-	bool	ret;
-
-	if (!dst || !src || !n || dst->n_e != src->n_e)
+	if (!dst || !src || dst->s_e != src->s_e)
 		return (false);
-	if (n > dst->n_e)
-		n = dst->n_e;
-	ret = ft_vec_reserve(dst, n);
-	if (!ret)
+	if (n > src->n_e)
+		n = src->n_e;
+	if (!n)
+		return (true);
+	if (!ft_vec_reserve(dst, n))
 		return (false);
 	ft_memcpy(dst->data + ft_vec_inuse(dst), src->data, src->s_e * n);
 	dst->n_e += n;

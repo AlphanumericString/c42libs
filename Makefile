@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2025/09/29 11:32:22 by bgoulard         ###   ########.fr        #
+#    Updated: 2026/03/11 01:34:57 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -854,7 +854,6 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_str/ts_upper.c						\
 			$(TESTS_DIR)/ft_string/string_tests.c							\
 			$(TESTS_DIR)/ft_vector/tv_add.c									\
-			$(TESTS_DIR)/ft_vector/tv_findget.c								\
 			$(TESTS_DIR)/ft_vector/tv_advance.c								\
 			$(TESTS_DIR)/ft_vector/tv_ancmp.c								\
 			$(TESTS_DIR)/ft_vector/tv_apply.c								\
@@ -870,6 +869,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tv_filter.c								\
 			$(TESTS_DIR)/ft_vector/tv_filterout.c							\
 			$(TESTS_DIR)/ft_vector/tv_find.c								\
+			$(TESTS_DIR)/ft_vector/tv_findget.c								\
 			$(TESTS_DIR)/ft_vector/tv_fold.c								\
 			$(TESTS_DIR)/ft_vector/tv_from_array.c							\
 			$(TESTS_DIR)/ft_vector/tv_from_size.c							\
@@ -878,6 +878,8 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tv_insert.c								\
 			$(TESTS_DIR)/ft_vector/tv_inuse.c								\
 			$(TESTS_DIR)/ft_vector/tv_map.c									\
+			$(TESTS_DIR)/ft_vector/tv_nadd.c								\
+			$(TESTS_DIR)/ft_vector/tv_ncat.c								\
 			$(TESTS_DIR)/ft_vector/tv_new.c									\
 			$(TESTS_DIR)/ft_vector/tv_nfold.c								\
 			$(TESTS_DIR)/ft_vector/tv_nfold_mlt.c							\

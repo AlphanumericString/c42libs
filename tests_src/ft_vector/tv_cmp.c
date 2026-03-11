@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 10:48:55 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/03/09 10:48:55 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:30:38 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	tv_cmp(void)
 	t_vector	v1;
 	t_vector	v2;
 	t_vector	v3;
-	
+
 	ft_vec_ifrom_array(&v1, src_1, 3, sizeof(const char *));
 	ft_vec_ifrom_array(&v2, src_1, 3, sizeof(const char *));
 	ft_vec_ifrom_array(&v3, src_2, 3, sizeof(const char *));
