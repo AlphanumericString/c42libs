@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:30:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/30 07:28:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:32:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 #include "tests/vector_tests.h"
 
 // TODO: pure tests for already implemented functions:
-//	{"nadd", tv_nadd},
-//	{"nadd", tv_nadd},
-//	{"ncat", tv_ncat},
 //	{"ncmp", tv_ncmp},
 //	{"ncollect_r", tv_ncollect_r},
 //	{"ncollect", tv_ncollect},
@@ -110,6 +107,7 @@ static const t_fnamed	*tv_tests(void)
 	{"dup", tv_dup},
 	{"filter-out", tv_filterout},
 	{"filter", tv_filter},
+	{"findget", tv_findget},
 	{"find", tv_find},
 	{"fold", tv_fold},
 	{"from_array", tv_from_array},
@@ -121,6 +119,8 @@ static const t_fnamed	*tv_tests(void)
 	{"insert", tv_insert},
 	{"inuse", tv_inuse},
 	{"map", tv_map},
+	{"nadd", tv_nadd},
+	{"ncat", tv_ncat},
 	{"ncmp", tv_ncmp},
 	{"new", tv_new},
 	{"nfold_mltp", tv_nfold_mltp},
@@ -140,7 +140,6 @@ static const t_fnamed	*tv_tests(void)
 	{"swap", tv_swap},
 	{"to_array", tv_to_array},
 	{"wipe", tv_wipe},
-	{"findget", tv_findget},
 	{NULL, NULL}
 	};
 

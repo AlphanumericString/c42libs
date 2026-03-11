@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 06:16:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/02/23 06:16:26 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:09:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	ft_vec_insert(t_vector *vec, size_t pos, const void *elem)
 			return (false);
 	vec->n_e++;
 	ft_memmove(ft_vec_at(vec, pos + 1), ft_vec_at(vec, pos),
-		vec->s_e * (vec->n_e - pos));
+		vec->s_e * (vec->n_e - pos - 1));
 	ft_memcpy(ft_vec_at(vec, pos), elem, vec->s_e);
 	return (true);
 }

@@ -6,12 +6,13 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:27:31 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/02/23 10:27:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:27:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
+#include "types/ft_vector_types.h"
 
 static bool	*was_called(void)
 {
@@ -47,6 +48,13 @@ static int	tv_nremove_error(void)
 	return (EXIT_SUCCESS);
 }
 
+static void	reset_vec(t_vector **res)
+{
+	ft_vec_destroy(res);
+	*res = ft_vec_from_array((int []){1, 2, 3, 4, 5}, 5, sizeof(int));
+	*was_called() = false;
+}
+
 int	tv_nremove(void)
 {
 	t_vector	*vec;
@@ -62,14 +70,11 @@ int	tv_nremove(void)
 	ft_vec_nremove(vec, 1, 9999, NULL);
 	if (vec->n_e != 1 || *(int *)ft_vec_at(vec, 0) != 1)
 		return (ft_vec_destroy(&vec), 2);
-	ft_vec_destroy(&vec);
-	*was_called() = false;
-	vec = ft_vec_from_array((int []){1, 2, 3, 4, 5}, 5, sizeof(int));
+	reset_vec(&vec);
 	ft_vec_nremove(vec, 0, 3, dummy_recorder);
 	if (vec->n_e != 0 && *was_called() != true)
 		return (ft_vec_destroy(&vec), 3);
-	*was_called() = (ft_vec_destroy(&vec), false);
-	vec = ft_vec_from_array((int []){1, 2, 3, 4, 5}, 5, sizeof(int));
+	reset_vec(&vec);
 	ft_vec_nremove(vec, 0, -1, dummy_recorder);
 	if (vec->n_e != 0 && *was_called() != true)
 		return (ft_vec_destroy(&vec), 4);

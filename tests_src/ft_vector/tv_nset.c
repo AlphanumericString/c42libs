@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 09:23:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/02/25 09:23:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:02:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ int	tv_nset(void)
 
 	ft_vec_ifrom_array(&v, arr, 3, sizeof(arr[0]));
 	if (ft_vec_nset(&v, 99, 2, NULL) != false)
-		return (1);
+		return (ft_vec_wipe(&v), 1);
 	if (ft_vec_nset(NULL, 1, 2, (void *)0xDEAD) != false)
-		return (2);
+		return (ft_vec_wipe(&v), 2);
 	if (ft_vec_nset(&v, 2, 2, new_vals) != false)
-		return (3);
+		return (ft_vec_wipe(&v), 3);
 	if (ft_vec_nset(&v, 1, 2, new_vals) != true)
-		return (4);
+		return (ft_vec_wipe(&v), 4);
 	if (((int *)v.data)[1] != new_vals[0] || ((int *)v.data)[2] != new_vals[1])
-		return (5);
-	return (0);
+		return (ft_vec_wipe(&v), 5);
+	return (ft_vec_wipe(&v), 0);
 }
 /*
 GPL-3.0 License:
