@@ -34,15 +34,17 @@ bool	ft_vec_ninsert(t_vector *vec, size_t pos, size_t n, const void *elems)
 {
 	if (!vec || !vec->data || !vec->n_e || !vec->s_e || !elems)
 		return (false);
+	if (!n)
+		return (true);
 	if (pos >= vec->n_e)
 		return (ft_vec_nadd(vec, n, elems));
-	if ((vec->n_e + n) > vec->cappacity)
+	if ((vec->n_e + n) >= vec->cappacity)
 		if (ft_vec_reserve(vec, n) != true)
 			return (false);
 	vec->n_e += n;
 	ft_memmove(ft_vec_at(vec, pos + n), ft_vec_at(vec, pos),
 		vec->s_e * (vec->n_e - pos));
-	ft_memcpy(ft_vec_at(vec, pos), elems, vec->s_e);
+	ft_memcpy(ft_vec_at(vec, pos), elems, vec->s_e * n);
 	return (true);
 }
 /*

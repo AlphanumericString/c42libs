@@ -10,40 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_algorithms.h"
 #include "ft_mem.h"
 #include "ft_vector.h"
 #include "tests/fixtures.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 #include <stdbool.h>
-
-/*
-	ft_vec_add(&vec_a, &a); // 42
-	ft_vec_add(&vec_a, &b); // 42 43
-	ft_vec_add(&vec_a, &c); // 42 43 44
-	ft_vec_add(&vec_b, &d); // 45
-	ft_vec_add(&vec_b, &e); // 45 46
-	ft_vec_add(&vec_b, &f); // 45 46 47
-	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
-	ft_vec_add(&vec_a, &a); // 42
-	ft_vec_add(&vec_a, &b); // 42 43
-	ft_vec_add(&vec_a, &c); // 42 43 44
-	ret = ft_vec_cat(&vec_a, vec_b); // 42 43 44 + 45 46 47
-*/
-
-static void	init_vec_cat(t_vector **vec_a, t_vector **vec_b)
-{
-	int	i;
-
-	*vec_a = ft_vec_create(sizeof(int));
-	i = 42 - 1;
-	while (++i - 42 < 3)
-		ft_vec_add(*vec_a, &i);
-	i = 45 - 1;
-	*vec_b = ft_vec_create(sizeof(int));
-	while (++i - 45 < 3)
-		ft_vec_add(*vec_b, &i);
-}
 
 static int	mt_test(void)
 {
@@ -56,12 +29,8 @@ static int	mt_test(void)
 	i = 0;
 	vec_a = ft_vec_create(sizeof(i));
 	vec_b = ft_vec_create(sizeof(i));
-	while (i < FT_VECTOR_BASE_LEN)
-	{
-		ft_vec_add(vec_a, &i);
-		ft_vec_add(vec_b, &i);
-		i++;
-	}
+	while (i++ < FT_VECTOR_BASE_LEN)
+		(ft_vec_add(vec_a, &i), ft_vec_add(vec_b, &i));
 	fp = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	ret = ft_vec_cat(vec_a, vec_b);
@@ -72,29 +41,46 @@ static int	mt_test(void)
 	return (EXIT_SUCCESS);
 }
 
-int	tv_cat(void)
+static int	err_cases(void)
 {
 	t_vector	*va;
 	t_vector	*vb;
+	const int	a_src[] = {42, 43, 44};
+	const int	b_src[] = {45, 46, 47};
 
-	init_vec_cat(&va, &vb);
+	va = ft_vec_from_array(a_src, 3, sizeof(int));
+	vb = ft_vec_from_array(b_src, 3, sizeof(int));
+	if (ft_vec_cat(NULL, vb) || ft_vec_cat(va, NULL) || ft_vec_cat(NULL, NULL))
+		return (ft_vec_destroy(&va), ft_vec_destroy(&vb), 6);
+	ft_vec_clear(vb);
+	if (ft_vec_cat(va, vb) != true && va->n_e != 3)
+		return (ft_vec_destroy(&va), ft_vec_destroy(&vb), 7);
+	return (ft_vec_destroy(&va), ft_vec_destroy(&vb), mt_test());
+}
+
+int	tv_cat(void)
+{
+	const int	exp[] = {42, 43, 44, 45, 46, 47};
+	const int	a_src[] = {42, 43, 44};
+	const int	b_src[] = {45, 46, 47};
+	t_vector	*va;
+	t_vector	*vb;
+
+	va = ft_vec_from_array(a_src, 3, sizeof(int));
+	vb = ft_vec_from_array(b_src, 3, sizeof(int));
 	if (ft_vec_cat(va, vb) != true || va->n_e != 6)
-		return (1);
-	else if (*(int *)ft_vec_at(va, 0) != 42 || *(int *)ft_vec_at(va, 1) != 43
-		|| *(int *)ft_vec_at(va, 2) != 44 || *(int *)ft_vec_at(va, 3) != 45
-		|| *(int *)ft_vec_at(va, 4) != 46 || *(int *)ft_vec_at(va, 5) != 47)
-		return (2);
+		return (ft_vec_destroy(&va), ft_vec_destroy(&vb), 1);
+	else if (ft_vec_acmp(va, exp, ft_cmp_int_p))
+		return (ft_vec_destroy(&va), ft_vec_destroy(&vb), 2);
 	va = (ft_vec_destroy(&va), ft_vec_create(sizeof(long)));
 	if (ft_vec_cat(va, vb) != false || va->n_e != 0)
-		return (3);
+		return (ft_vec_destroy(&va), ft_vec_destroy(&vb), 3);
 	va = (ft_vec_destroy(&va), ft_vec_create(vb->s_e));
 	if (ft_vec_cat(va, vb) != true || va->n_e != vb->n_e)
-		return (4);
+		return (ft_vec_destroy(&va), ft_vec_destroy(&vb), 4);
 	else if (ft_memcmp(va->data, vb->data, ft_vec_inuse(vb)) != 0)
-		return (5);
-	if (ft_vec_cat(NULL, vb) || ft_vec_cat(va, NULL) || ft_vec_cat(NULL, NULL))
-		return (6);
-	return (ft_vec_destroy(&va), ft_vec_destroy(&vb), mt_test());
+		return (ft_vec_destroy(&va), ft_vec_destroy(&vb), 5);
+	return (ft_vec_destroy(&va), ft_vec_destroy(&vb), err_cases());
 }
 /*
 GPL-3.0 License:

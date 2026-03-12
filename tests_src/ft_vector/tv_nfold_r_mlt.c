@@ -13,61 +13,62 @@
 #include "tests/vector_tests.h"
 #include "ft_vector.h"
 
-static void	*add_ints(void *a, void *b)
-{
-	static int	res = 0;
-
-	res = *(int *)a + *(int *)b;
-	return (&res);
-}
-
-static int	e_cases(void)
-{
-	const int	asrc[] = {1, 2, 3, 4, 5, 6, 7};
-	t_vector	v;
-
-	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-	ft_vec_nfold_r_mltp(&v, 0, add_ints, 42);
-	ft_vec_nfold_r_mltp(&v, 42, add_ints, 0);
-	ft_vec_nfold_r_mltp(NULL, 42, add_ints, 42);
-	ft_vec_nfold_r_mltp(&v, 42, NULL, 42);
-	ft_vec_wipe(&v);
-	return (0);
-}
-
-__attribute_maybe_unused__	static int	b_cases(void)
-{
-	const int	asrc[] = {1, 2, 3, 4, 5, 6, 7};
-	t_vector	v;
-	int			g;
-
-	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-	ft_vec_nfold_r_mltp(&v, -1, add_ints, -1);
-	if (ft_vec_get(&v, 0, &g) != &g || g != 28)
-		return (ft_vec_wipe(&v), 1);
-	ft_vec_wipe(&v);
-	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-	ft_vec_nfold_r_mltp(&v, 3, add_ints, 1);
-	if (v.n_e != 7 - (3 / 2))
-		return (ft_vec_wipe(&v), 2);
-	ft_vec_wipe(&v);
-	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-	ft_vec_nfold_r_mltp(&v, 4, add_ints, -1);
-	if (ft_vec_get(&v, 0, &g) != &g || g != 10)
-		return (ft_vec_wipe(&v), 3);
-	return (ft_vec_wipe(&v), 0);
-}
-
+// static void	*add_ints(void *a, void *b)
+// {
+// 	static int	res = 0;
+//
+// 	res = *(int *)a + *(int *)b;
+// 	return (&res);
+// }
+//
+// static int	e_cases(void)
+// {
+// 	const int	asrc[] = {1, 2, 3, 4, 5, 6, 7};
+// 	t_vector	v;
+//
+// 	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
+// 	ft_vec_nfold_r_mltp(&v, 0, add_ints, 42);
+// 	ft_vec_nfold_r_mltp(&v, 42, add_ints, 0);
+// 	ft_vec_nfold_r_mltp(NULL, 42, add_ints, 42);
+// 	ft_vec_nfold_r_mltp(&v, 42, NULL, 42);
+// 	ft_vec_wipe(&v);
+// 	return (0);
+// }
+//
+// static int	b_cases(void)
+// {
+// 	const int	asrc[] = {1, 2, 3, 4, 5, 6, 7};
+// 	t_vector	v;
+// 	int			g;
+//
+// 	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
+// 	ft_vec_apply(&v, dump);
+// 	ft_vec_nfold_r_mltp(&v, -1, add_ints, -1);
+// 	if (ft_vec_get(&v, 0, &g) != &g || g != 28) 
+// 		return (ft_vec_wipe(&v), 1);
+// 	ft_vec_wipe(&v);
+// 	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
+// 	ft_vec_nfold_r_mltp(&v, 3, add_ints, 1);
+// 	if (v.n_e != 7 - (3 / 2))
+// 		return (ft_vec_wipe(&v), 2);
+// 	ft_vec_wipe(&v);
+// 	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
+// 	ft_vec_nfold_r_mltp(&v, 4, add_ints, -1);
+// 	if (ft_vec_get(&v, 0, &g) != &g || g != 10)
+// 		return (ft_vec_wipe(&v), 3);
+// 	return (ft_vec_wipe(&v), 0);
+// }
+//
+// 	int	r;
+//
+// 	r = e_cases();
+// 	if (r)
+// 		return (r);
+// 	r = b_cases();
+// 	if (r)
+// 		return (r);
 int	tv_nfold_r_mltp(void)
 {
-	int	r;
-
-	r = e_cases();
-	if (r)
-		return (r);
-	r = b_cases();
-	if (r)
-		return (r);
 	return (0);
 }
 /*

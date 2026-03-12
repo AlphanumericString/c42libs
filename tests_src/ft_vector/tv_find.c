@@ -32,7 +32,7 @@ static int	edge(t_vector *vect, const char **src_2)
 	vect->data = NULL;
 	if (ft_vec_find(vect, "Hello", cmp_str) != NULL)
 		return (6);
-	vect->data = original_state.data;
+	*vect = original_state;
 	if (*(char **)ft_vec_find(vect, src_2, cmp_str) != *src_2
 		|| *(char **)ft_vec_find(vect, ft_vec_at(vect, 2), NULL) != *src_2
 		|| ft_vec_find(NULL, ft_vec_at(vect, 2), cmp_str) != NULL
@@ -58,7 +58,8 @@ int	tv_find(void)
 	data_ret = ft_vec_find(vector, "Zod", cmp_str);
 	if (data_ret && ft_strcmp(data_ret, "Zod") != 0)
 		return (2);
-	if (ft_vec_find(vector, "not here", cmp_str) != NULL)
+	if (ft_vec_find(vector, "not here", cmp_str) != NULL
+		|| ft_vec_find(vector, "not here", NULL) != NULL)
 		return (3);
 	i = edge(vector, &src[2]);
 	if (i)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_collect.c                                       :+:      :+:    :+:   */
+/*   tv_ncollec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 08:47:41 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/02/25 08:47:41 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/12 15:33:18 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/12 15:33:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,45 @@ static void	join_it(void *p_val, void *v_val)
 	*p_val_s = tmp;
 }
 
-int	tv_collect(void)
+static int	err_cases(void)
 {
-	const char	*exp = "this is a test zod";
 	const char	*src[] = {"this", "is", "a", "test", "zod"};
 	t_vector	v;
 	char		*res;
 
 	res = NULL;
 	ft_vec_ifrom_array(&v, src, 5, sizeof(const char *));
-	ft_vec_collect(&v, &res, (t_data_apply_with)join_it);
-	if (ft_strcmp(res, exp) != 0)
-		return (ft_vec_wipe(&v), ft_free(res), 1);
-	return (ft_vec_wipe(&v), ft_free(res), 0);
+	ft_vec_ncollect(&v, 0, &res, (t_data_apply_with)join_it);
+	if (res != NULL)
+		return (ft_vec_wipe(&v), 1);
+	ft_vec_ncollect(NULL, 12, &res, (t_data_apply_with)join_it);
+	if (res != NULL)
+		return (ft_vec_wipe(&v), 2);
+	ft_vec_ncollect(&v, -1, &res, NULL);
+	if (res != NULL)
+		return (ft_vec_wipe(&v), 3);
+	return (ft_vec_wipe(&v), 0);
 }
+
+int	tv_ncollect(void)
+{
+	const char	*exp[] = {"this is a test zod", "this is a test"};
+	const char	*src[] = {"this", "is", "a", "test", "zod"};
+	t_vector	v;
+	char		*res;
+
+	res = NULL;
+	ft_vec_ifrom_array(&v, src, 5, sizeof(const char *));
+	ft_vec_ncollect(&v, -1, &res, (t_data_apply_with) join_it);
+	if (ft_strcmp(res, exp[0]) != 0)
+		return (ft_vec_wipe(&v), ft_free(res), 1);
+	ft_free_clear((t_any) & res);
+	ft_vec_ncollect(&v, 4, &res, (t_data_apply_with) join_it);
+	if (ft_strcmp(res, exp[1]) != 0)
+		return (ft_vec_wipe(&v), ft_free(res), 2);
+	return (ft_vec_wipe(&v), ft_free(res), err_cases());
+}
+
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

@@ -1,48 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_reverse.c                                       :+:      :+:    :+:   */
+/*   tv_nswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 11:30:26 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 14:09:19 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/12 10:13:51 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/12 10:13:51 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_algorithms.h"
 #include "ft_vector.h"
-#include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
+#include "types/ft_vector_types.h"
 
-int	tv_nrev(void)
+static int	err_cases(void)
 {
-	t_vector	vec;
-	const int	a[3] = {42, 43, 44};
-	const int	exp[3] = {43, 42, 44};
+	t_vector	v;
+	const int	a_src[] = {0, 1, 2, 3};
 
-	ft_vec_ifrom_array(&vec, a, 3, sizeof(int));
-	ft_vec_nreverse(&vec, 2);
-	if (vec.n_e != 3 || ft_vec_acmp(&vec, exp, NULL))
-		return (ft_vec_wipe(&vec), 1);
-	ft_vec_wipe(&vec);
-	return (EXIT_SUCCESS);
+	ft_vec_nswap(NULL, 1, 0, -1);
+	ft_vec_ifrom_array(&v, a_src, 4, sizeof(int));
+	ft_vec_nswap(&v, 99, 0, -1);
+	ft_vec_nswap(&v, 1, 12, -1);
+	ft_vec_nswap(&v, 1, 0, -12);
+	ft_vec_wipe(&v);
+	v = (t_vector){.s_e = 1, .n_e = 0, .cappacity = 1, .data = (t_any)0xCAFE};
+	ft_vec_nswap(&v, 1, 0, 1);
+	v = (t_vector){.s_e = 0, .n_e = 2, .cappacity = 1, .data = (t_any)0xCAFE};
+	ft_vec_nswap(&v, 1, 0, -1);
+	v = (t_vector){.s_e = 1, .n_e = 2, .cappacity = 1, .data = NULL};
+	ft_vec_nswap(&v, 0, 0, -1);
+	return (0);
 }
 
-int	tv_reverse(void)
+int	tv_nswap(void)
 {
-	t_vector	*vec;
-	const int	a[3] = {42, 43, 44};
-	const int	exp[3] = {44, 43, 42};
+	t_vector	v;
+	const int	a_src[] = {0, 1, 2, 3};
+	const int	exp_1[] = {3, 1, 2, 0};
 
-	vec = ft_vec_from_array(a, 3, sizeof(int));
-	ft_vec_reverse(vec);
-	if (vec->n_e != 3)
-		return (1);
-	if (ft_vec_acmp(vec, exp, NULL) != 0)
-		return (2);
-	ft_vec_destroy(&vec);
-	ft_vec_reverse(NULL);
-	return (EXIT_SUCCESS);
+	ft_vec_ifrom_array(&v, a_src, 4, sizeof(int));
+	ft_vec_nswap(&v, 1, 0, -1);
+	if (ft_vec_acmp(&v, exp_1, ft_cmp_int_p))
+		return (ft_vec_wipe(&v), 1);
+	return (ft_vec_wipe(&v), err_cases());
 }
 /*
 GPL-3.0 License:

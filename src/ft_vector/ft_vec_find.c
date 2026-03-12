@@ -28,10 +28,7 @@ void	*ft_vec_find(const t_vector *restrict vec,
 	while (i < vec->n_e)
 	{
 		elem = ft_vec_at(vec, i++);
-		if ((key == elem) || (cmp && cmp(elem, key) == 0))
-			return (elem);
-		else if (((char *)key)[0] == ((char *)elem)[0]
-			&& ft_memcmp(elem, key, vec->s_e))
+		if (key == elem || (cmp && !cmp(elem, key)))
 			return (elem);
 	}
 	return (NULL);
@@ -48,8 +45,7 @@ void	*ft_vec_findget(const t_vector *vector, const void *key,
 	e = ft_vec_find(vector, key, cmp);
 	if (!e)
 		return (NULL);
-	ft_memcpy(ret, e, vector->s_e);
-	return (ret);
+	return (ft_memcpy(ret, e, vector->s_e));
 }
 /*
 GPL-3.0 License:

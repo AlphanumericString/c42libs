@@ -48,12 +48,8 @@ static int	edge_cases(void)
 	t_vector	hold;
 	t_vector	*vec;
 	const long	data[] = {1, 2, 3};
-	size_t		i;
 
-	vec = ft_vec_create(sizeof(long));
-	i = 0;
-	while (i < (sizeof(data) / sizeof(data[0])))
-		ft_vec_add(vec, &data[i++]);
+	vec = ft_vec_from_array(data, 3, sizeof(int));
 	hold = *vec;
 	vec->s_e = 0;
 	if (ft_vec_shrink(vec) != false)
@@ -64,6 +60,10 @@ static int	edge_cases(void)
 	*vec = hold;
 	vec->data = NULL;
 	if (ft_vec_shrink(vec) != false || vec->data != NULL)
+		return (3);
+	*vec = hold;
+	vec->cappacity = 0;
+	if (ft_vec_shrink(vec) != false)
 		return (3);
 	*vec = hold;
 	if (ft_vec_shrink(NULL) != false)

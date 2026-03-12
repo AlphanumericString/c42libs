@@ -10,10 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_algorithms.h"
 #include "ft_vector.h"
 #include "types/ft_vector_types.h"
 #include "tests/vector_tests.h"
 #include "tests/tests_lambda_functions.h"
+
+int	tv_napply(void)
+{
+	t_vector	v;
+	const int	exp[] = {1 + 42, 2 + 42, 3, 4};
+
+	ft_vec_ifrom_array(&v, (int []){1, 2, 3, 4}, 4, sizeof(int));
+	ft_vec_napply(&v, 0, add42);
+	ft_vec_napply(&v, 2, add42);
+	if (ft_vec_acmp(&v, exp, ft_cmp_int_p))
+		return (ft_vec_wipe(&v), 1);
+	return (ft_vec_wipe(&v), 0);
+}
 
 int	tv_apply(void)
 {

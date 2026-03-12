@@ -33,7 +33,8 @@ bool	ft_vec_set(t_vector *vec, ssize_t pos, const void *data)
 
 bool	ft_vec_nset(t_vector *vec, ssize_t pos, size_t n, const void *datas)
 {
-	if (!vec || loc_abs(pos) + n > vec->n_e)
+	if (!vec || (pos > 0 && pos + n > vec->n_e)
+		|| (pos < 0 && loc_abs(pos) - 1 + n > vec->n_e))
 		return (false);
 	if (pos < 0)
 		ft_memcpy(ft_vec_at(vec, vec->n_e - loc_abs(pos)), datas, vec->s_e * n);

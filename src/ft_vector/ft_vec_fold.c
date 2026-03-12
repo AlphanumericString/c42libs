@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include <stdio.h>
 
 // INFO: leave new_val for debugging when things inevitably break please.
 
@@ -42,27 +43,27 @@ void	ft_vec_nfold(t_vector *v, size_t n, void *(*f)(void *, void *))
 	ft_vec_nremove(v, w_offset, n / 2, NULL);
 }
 
-void	ft_vec_nfold_r(t_vector *v, size_t n, void *(*f)(void *, void *))
-{
-	size_t	w_off;
-	size_t	i;
-	void	*new_val;
-
-	if (!v || !f || n < 2)
-		return ;
-	i = 0;
-	if (n >= v->n_e)
-		n = v->n_e - 1;
-	w_off = v->n_e - 1;
-	while (i < n)
-	{
-		new_val = f(ft_vec_at(v, (v->n_e - 1) - i - 1),
-				ft_vec_at(v, (v->n_e - 1) - i));
-		ft_vec_set(v, w_off--, new_val);
-		i += 2;
-	}
-	ft_vec_nremove(v, v->n_e - n, n / 2, NULL);
-}
+// void	ft_vec_nfold_r(t_vector *v, size_t n, void *(*f)(void *, void *))
+// {
+// 	size_t	w_off;
+// 	size_t	i;
+// 	void	*new_val;
+//
+// 	if (!v || !f || n < 2)
+// 		return ;
+// 	i = 0;
+// 	if (n >= v->n_e)
+// 		n = v->n_e - 1;
+// 	w_off = v->n_e - 1;
+// 	while (i < n)
+// 	{
+// 		new_val = f(ft_vec_at(v, (v->n_e - 1) - i - 1),
+// 				ft_vec_at(v, (v->n_e - 1) - i));
+// 		ft_vec_set(v, w_off--, new_val);
+// 		i += 2;
+// 	}
+// 	ft_vec_nremove(v, v->n_e - n, n / 2, NULL);
+// }
 
 void	ft_vec_nfold_mltp(t_vector *v, size_t n, void *(*f)(void *, void *),
 			size_t mlt)
@@ -77,18 +78,18 @@ void	ft_vec_nfold_mltp(t_vector *v, size_t n, void *(*f)(void *, void *),
 	}
 }
 
-void	ft_vec_nfold_r_mltp(t_vector *v, size_t n, void *(*f)(void *, void *),
-			size_t mlt)
-{
-	if (!v || n < 2 || !f || !mlt)
-		return ;
-	while (mlt && n > 1)
-	{
-		ft_vec_nfold_r(v, n, f);
-		n = (n / 2) + (n % 2);
-		mlt--;
-	}
-}
+// void	ft_vec_nfold_r_mltp(t_vector *v, size_t n, void *(*f)(void *, void *),
+// 			size_t mlt)
+// {
+// 	if (!v || n < 2 || !f || !mlt)
+// 		return ;
+// 	while (mlt && n > 1)
+// 	{
+// 		ft_vec_nfold_r(v, n, f);
+// 		n = (n / 2) + (n % 2);
+// 		mlt--;
+// 	}
+// }
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

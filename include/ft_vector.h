@@ -49,7 +49,17 @@
 //			void		*ft_vec_popfront(t_vector *vec, void *holder);
 // TODO: void->bool
 //			void		ft_vec_shift(...); -> bool		ft_vec_shift(...);
-
+// TODO:
+//		bugs on size = 3/2/1
+// //		: merge values of n elements using f and reduce size
+// //			accordingly. Do it starting from the back of the array.
+// //			the property of f(element@n, element@n+1) is always valid
+// void		ft_vec_nfold_r(t_vector *v, size_t n,
+// 				void *(*f)(void *, void *));
+// //		: same as nfold_mltp but runs through the vector in reverse
+// //			{1, 2, 3, 4, 5} 3 add_number 2 -> {(1+(2+3)), 4, 5}
+// void		ft_vec_nfold_r_mltp(t_vector *v, size_t n,
+// 				void *(*f)(void *, void *), size_t mlt);
 
 // ALLOC
 //			INFO: allocates a new vector using a standard number of elements
@@ -184,18 +194,9 @@ void		ft_vec_fold(t_vector *v, void *(*f)(void *, void *));
 //			the property of f(element@n, element@n+1) is always valid
 void		ft_vec_nfold(t_vector *v, size_t n,
 				void *(*f)(void *, void *));
-//			INFO: merge values of n elements using f and reduce size
-//			accordingly. Do it starting from the back of the array.
-//			the property of f(element@n, element@n+1) is always valid
-void		ft_vec_nfold_r(t_vector *v, size_t n,
-				void *(*f)(void *, void *));
 //			INFO: call a fold function mlt times on n elements.
 //			{1, 2, 3, 4, 5} 3 add_number 2 -> {((1+2)+3), 4, 5}
 void		ft_vec_nfold_mltp(t_vector *v, size_t n,
-				void *(*f)(void *, void *), size_t mlt);
-//			INFO: same as nfold_mltp but runs through the vector in reverse
-//			{1, 2, 3, 4, 5} 3 add_number 2 -> {(1+(2+3)), 4, 5}
-void		ft_vec_nfold_r_mltp(t_vector *v, size_t n,
 				void *(*f)(void *, void *), size_t mlt);
 
 //			INFO: set to 0 all the data and reset count

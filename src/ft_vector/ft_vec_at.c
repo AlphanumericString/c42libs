@@ -33,7 +33,7 @@ void	*ft_vec_at(const t_vector *vec, ssize_t n)
 	if (!vec || loc_abs(n) >= vec->n_e)
 		return (NULL);
 	if (n < 0)
-		return (vec->data + (vec->s_e * (vec->n_e - n)));
+		return (vec->data + (vec->s_e * ((ssize_t)vec->n_e + n)));
 	return (vec->data + (vec->s_e * n));
 }
 

@@ -43,7 +43,7 @@ void	*ft_vec_ncollect_r(const t_vector *v, size_t n, void *u_val,
 	if (i > v->n_e)
 		i = v->n_e;
 	while (i)
-		fw(u_val, ft_vec_at(v, i--));
+		fw(u_val, ft_vec_at(v, --i));
 	return (u_val);
 }
 /*
