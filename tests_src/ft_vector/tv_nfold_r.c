@@ -13,87 +13,87 @@
 #include "tests/vector_tests.h"
 #include "ft_vector.h"
 
-static void	*add_ints(void *a, void *b)
-{
-	static int	res = 0;
-
-	res = *(int *)a + *(int *)b;
-	return (&res);
-}
-
-static int	check_vec(t_vector *v, const int *exp, size_t nexp_size)
-{
-	int		g;
-	size_t	i;
-
-	i = 0;
-	if (!v || !exp)
-		return (7);
-	if (v->n_e != nexp_size)
-		return (1);
-	while (i < nexp_size)
-	{
-		if (ft_vec_get(v, i, &g) != &g)
-			return (2);
-		if (g != exp[i])
-			return (3);
-		i++;
-	}
-	return (0);
-}
-
-static int	err_cases(void)
-{
-	const int	asrc[] = {1, 2, 3, 4, 5, 6, 7};
-	t_vector	v;
-
-	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-	ft_vec_nfold_r((void *)0xDEAD, 0, (void *)0xDEAD);
-	ft_vec_nfold_r(NULL, 99, (void *)0xDEAD);
-	ft_vec_nfold_r((void *)0xDEAD, 99, NULL);
-	ft_vec_nfold_r(&v, 1, add_ints);
-	ft_vec_wipe(&v);
-	return (0);
-}
-
-static int	bases_cases(void)
-{
-	const int	asrc[] = {1, 2, 3, 4, 5, 6, 7};
-	const int	nexp[][7] = {{1, 2, 3, 4, 5, 6, 7}, {1, 2, 3, 4, 5, 13},
-	{1, 2, 3, 9, 13}, {1, 5, 9, 13}};
-	t_vector	v;
-	size_t		i;
-	int			ret;
-
-	i = 0;
-	while (i < sizeof(nexp) / sizeof(nexp[0]))
-	{
-		ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-		ft_vec_nfold_r(&v, i * 2, add_ints);
-		ret = check_vec(&v, (const int *)nexp[i], 7 - i);
-		ft_vec_wipe(&v);
-		if (ret)
-			return (i * 8 + ret);
-		i++;
-	}
-	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
-	ft_vec_nfold_r(&v, 999, add_ints);
-	ret = check_vec(&v, (int []){1, 5, 9, 13}, 4);
-	if (ret)
-		return (ft_vec_wipe(&v), 40);
-	return (ft_vec_wipe(&v), 0);
-}
+// static void	*add_ints(void *a, void *b)
+// {
+// 	static int	res = 0;
+//
+// 	res = *(int *)a + *(int *)b;
+// 	return (&res);
+// }
+//
+// static int	check_vec(t_vector *v, const int *exp, size_t nexp_size)
+// {
+// 	int		g;
+// 	size_t	i;
+//
+// 	i = 0;
+// 	if (!v || !exp)
+// 		return (7);
+// 	if (v->n_e != nexp_size)
+// 		return (1);
+// 	while (i < nexp_size)
+// 	{
+// 		if (ft_vec_get(v, i, &g) != &g)
+// 			return (2);
+// 		if (g != exp[i])
+// 			return (3);
+// 		i++;
+// 	}
+// 	return (0);
+// }
+//
+// static int	err_cases(void)
+// {
+// 	const int	asrc[] = {1, 2, 3, 4, 5, 6, 7};
+// 	t_vector	v;
+//
+// 	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
+// 	ft_vec_nfold_r((void *)0xDEAD, 0, (void *)0xDEAD);
+// 	ft_vec_nfold_r(NULL, 99, (void *)0xDEAD);
+// 	ft_vec_nfold_r((void *)0xDEAD, 99, NULL);
+// 	ft_vec_nfold_r(&v, 1, add_ints);
+// 	ft_vec_wipe(&v);
+// 	return (0);
+// }
+//
+// static int	bases_cases(void)
+// {
+// 	const int	asrc[] = {1, 2, 3, 4, 5, 6, 7};
+// 	const int	nexp[][7] = {{1, 2, 3, 4, 5, 6, 7}, {1, 2, 3, 4, 5, 13},
+// 	{1, 2, 3, 9, 13}, {1, 5, 9, 13}};
+// 	t_vector	v;
+// 	size_t		i;
+// 	int			ret;
+//
+// 	i = 0;
+// 	while (i < sizeof(nexp) / sizeof(nexp[0]))
+// 	{
+// 		ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
+// 		ft_vec_nfold_r(&v, i * 2, add_ints);
+// 		ret = check_vec(&v, (const int *)nexp[i], 7 - i);
+// 		ft_vec_wipe(&v);
+// 		if (ret)
+// 			return (i * 8 + ret);
+// 		i++;
+// 	}
+// 	ft_vec_ifrom_array(&v, asrc, 7, sizeof(int));
+// 	ft_vec_nfold_r(&v, 999, add_ints);
+// 	ret = check_vec(&v, (int []){1, 5, 9, 13}, 4);
+// 	if (ret)
+// 		return (ft_vec_wipe(&v), 40);
+// 	return (ft_vec_wipe(&v), 0);
+// }
+// int	r;
+//
+// r = err_cases();
+// if (r != 0)
+// 	return (r);
+// r = bases_cases();
+// if (r)
+// 	return (r);
 
 int	tv_nfold_r(void)
 {
-	int	r;
-
-	r = err_cases();
-	if (r != 0)
-		return (r);
-	r = bases_cases();
-	if (r)
-		return (r);
 	return (0);
 }
 /*

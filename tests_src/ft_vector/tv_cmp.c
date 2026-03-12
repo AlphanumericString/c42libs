@@ -67,6 +67,7 @@ int	tv_ncmp(void)
 		return (ft_vec_wipe(&v1), ft_vec_wipe(&v2), ft_vec_wipe(&v3), 2);
 	if (ft_vec_ncmp(&v1, 999, &v1, (t_data_cmp)loc_cmp_str_it) != 0
 		|| ft_vec_ncmp(&v1, 999, &v2, (t_data_cmp)loc_cmp_str_it) != 0
+		|| ft_vec_ncmp(&v1, 0, &v3, (t_data_cmp)loc_cmp_str_it) != 0
 		|| ft_vec_ncmp(&v1, 999, &v3, (t_data_cmp)loc_cmp_str_it) == 0)
 		return (ft_vec_wipe(&v1), ft_vec_wipe(&v2), ft_vec_wipe(&v3), 2);
 	return (ft_vec_wipe(&v1), ft_vec_wipe(&v2), ft_vec_wipe(&v3), 0);

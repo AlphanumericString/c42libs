@@ -20,7 +20,7 @@ bool	ft_vec_shrink(t_vector *vec)
 
 	if (!vec)
 		return (false);
-	if (!vec->data || !curr_size)
+	if (!vec->data || !curr_size || !vec->cappacity)
 		return (false);
 	if (vec->cappacity == vec->n_e)
 		return (true);
@@ -44,16 +44,16 @@ bool	ft_vec_shrink_min(t_vector *v, size_t n)
 	if (!n || v->cappacity == v->n_e)
 		return (ft_vec_shrink(v));
 	target_size = ft_vec_inuse(v);
-	if (!v->data || !target_size)
+	if (!v->data || !target_size || !v->cappacity)
 		return (false);
 	if (target_size < (v->s_e * n))
 		target_size = v->s_e * n;
-	data_empl = ft_calloc(target_size, 0);
+	data_empl = ft_calloc(target_size, 1);
 	if (!data_empl)
 		return (false);
 	ft_memcpy(data_empl, v->data, ft_vec_inuse(v));
 	ft_free(v->data);
-	v->cappacity = v->n_e;
+	v->cappacity = target_size / v->s_e;
 	v->data = data_empl;
 	return (true);
 }

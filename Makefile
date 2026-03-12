@@ -880,13 +880,19 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tv_map.c									\
 			$(TESTS_DIR)/ft_vector/tv_nadd.c								\
 			$(TESTS_DIR)/ft_vector/tv_ncat.c								\
+			$(TESTS_DIR)/ft_vector/tv_ncollect.c							\
+			$(TESTS_DIR)/ft_vector/tv_ncollect_r.c							\
 			$(TESTS_DIR)/ft_vector/tv_new.c									\
 			$(TESTS_DIR)/ft_vector/tv_nfold.c								\
 			$(TESTS_DIR)/ft_vector/tv_nfold_mlt.c							\
 			$(TESTS_DIR)/ft_vector/tv_nfold_r.c								\
 			$(TESTS_DIR)/ft_vector/tv_nfold_r_mlt.c							\
+			$(TESTS_DIR)/ft_vector/tv_ninsert.c								\
+			$(TESTS_DIR)/ft_vector/tv_nmap.c								\
 			$(TESTS_DIR)/ft_vector/tv_nremove.c								\
 			$(TESTS_DIR)/ft_vector/tv_nset.c								\
+			$(TESTS_DIR)/ft_vector/tv_nsort.c								\
+			$(TESTS_DIR)/ft_vector/tv_nswap.c								\
 			$(TESTS_DIR)/ft_vector/tv_pop.c									\
 			$(TESTS_DIR)/ft_vector/tv_remove.c								\
 			$(TESTS_DIR)/ft_vector/tv_reserve.c								\
@@ -894,6 +900,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_vector/tv_set.c									\
 			$(TESTS_DIR)/ft_vector/tv_shift.c								\
 			$(TESTS_DIR)/ft_vector/tv_shrink.c								\
+			$(TESTS_DIR)/ft_vector/tv_shrink_min.c							\
 			$(TESTS_DIR)/ft_vector/tv_sort.c								\
 			$(TESTS_DIR)/ft_vector/tv_swap.c								\
 			$(TESTS_DIR)/ft_vector/tv_to_array.c							\

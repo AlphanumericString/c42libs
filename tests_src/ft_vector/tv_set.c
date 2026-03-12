@@ -10,28 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_algorithms.h"
 #include "ft_vector.h"
 #include "tests/vector_tests.h"
 #include "types/ft_vector_types.h"
+
+static int	err_cases(void)
+{
+	t_vector	v;
+
+	v = (t_vector){.s_e = sizeof(int), .n_e = 3, .cappacity = 3,
+		.data = (void *)0xDEAD};
+	if (ft_vec_set(&v, 99, NULL) != false)
+		return (1 + 8);
+	if (ft_vec_set(NULL, 2, (void *)0xDEAD) != false)
+		return (2 + 8);
+	if (ft_vec_set(&v, -99, NULL) != false)
+		return (3 + 8);
+	return (0);
+}
 
 int	tv_set(void)
 {
 	t_vector	v;
 	const int	arr[] = {1, 2, 3};
 	const int	new_val = 999;
+	const int	exp[][3] = {{1, 999, 3}, {999, 999, 3}, {1, 999, 3}};
 
-	v = (t_vector){.s_e = sizeof(int), .n_e = 3, .cappacity = 3,
-		.data = (void *)0xDEAD};
-	if (ft_vec_set(&v, 99, NULL) != false)
-		return (1);
-	if (ft_vec_set(NULL, 2, (void *)0xDEAD) != false)
-		return (2);
 	ft_vec_ifrom_array(&v, arr, 3, sizeof(int));
 	if (ft_vec_set(&v, 1, &new_val) != true)
+		return (ft_vec_wipe(&v), 1);
+	if (ft_vec_acmp(&v, exp[0], ft_cmp_int_p))
+		return (ft_vec_wipe(&v), 2);
+	if (ft_vec_set(&v, 0, &new_val) != true)
 		return (ft_vec_wipe(&v), 3);
-	if (((int *)v.data)[1] != new_val)
+	if (ft_vec_acmp(&v, exp[1], ft_cmp_int_p))
 		return (ft_vec_wipe(&v), 4);
-	return (ft_vec_wipe(&v), 0);
+	if (ft_vec_set(&v, -3, &arr[0]) != true)
+		return (ft_vec_wipe(&v), 5);
+	if (ft_vec_acmp(&v, exp[2], ft_cmp_int_p))
+		return (ft_vec_wipe(&v), 6);
+	return (ft_vec_wipe(&v), err_cases());
 }
 /*
 GPL-3.0 License:

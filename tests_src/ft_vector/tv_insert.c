@@ -46,6 +46,9 @@ static int	error_cases(void)
 	vec = (t_vector){.cappacity = 1, .n_e = 1, .s_e = 0, .data = (t_any)0xCAFE};
 	if (ft_vec_insert(&vec, 990, (void *)0xDEAD) != false)
 		return (18);
+	vec = (t_vector){.cappacity = 1, .n_e = 1, .s_e = 1, .data = (t_any)0xCAFE};
+	if (ft_vec_insert(&vec, 990, NULL) != false)
+		return (18);
 	return (mt_error());
 }
 

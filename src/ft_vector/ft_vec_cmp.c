@@ -23,7 +23,7 @@ int	ft_vec_ncmp(const t_vector *a, size_t n, const t_vector *b, t_data_cmp fc)
 	size_t	i;
 	int		r;
 
-	if (a == b)
+	if (a == b || !n)
 		return (0);
 	if (!b)
 		return (1);

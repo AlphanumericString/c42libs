@@ -1,59 +1,69 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tv_nset.c                                          :+:      :+:    :+:   */
+/*   tv_nmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 09:23:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/03/11 01:02:58 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/12 09:51:04 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/12 09:51:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_algorithms.h"
 #include "ft_vector.h"
+#include "tests/fixtures.h"
+#include "tests/tests_lambda_functions.h"
 #include "tests/vector_tests.h"
-#include <stdio.h>
+#include "types/ft_vector_types.h"
+
+static int	mt_cases(void)
+{
+	t_vector	v;
+	t_vector	*res;
+	const int	d_src[] = {1, 2, 3};
+	const int	fp = *talloc_get_failpoint();
+
+	ft_vec_ifrom_array(&v, d_src, 3, sizeof(int));
+	talloc_set_failpoint(0);
+	res = ft_vec_nmap(&v, 3, add42);
+	talloc_set_failpoint(fp);
+	ft_vec_wipe(&v);
+	if (res)
+		return (16);
+	return (0);
+}
 
 static int	err_cases(void)
 {
 	t_vector	v;
-	const int	arr[] = {1, 2, 3};
-	const int	new_vals[] = {999, 998};
+	const int	d_src[] = {1, 2, 3};
 
-	ft_vec_ifrom_array(&v, arr, 3, sizeof(arr[0]));
-	if (ft_vec_nset(&v, 99, 2, NULL) != false)
-		return (ft_vec_wipe(&v), 1 + 8);
-	if (ft_vec_nset(NULL, 1, 2, (void *)0xDEAD) != false)
-		return (ft_vec_wipe(&v), 2 + 8);
-	if (ft_vec_nset(&v, 2, 2, new_vals) != false)
-		return (ft_vec_wipe(&v), 3 + 8);
-	if (ft_vec_nset(&v, -2, 3, new_vals) != false)
-		return (ft_vec_wipe(&v), 4 + 8);
-	return (ft_vec_wipe(&v), 0);
+	ft_vec_ifrom_array(&v, d_src, 3, sizeof(int));
+	if (ft_vec_nmap(NULL, 3, add42) != NULL)
+		return (ft_vec_wipe(&v), 8);
+	if (ft_vec_nmap(&v, 3, NULL))
+		return (ft_vec_wipe(&v), 9);
+	ft_vec_wipe(&v);
+	if (ft_vec_nmap(&v, 3, add42))
+		return (10);
+	return (mt_cases());
 }
 
-int	tv_nset(void)
+int	tv_nmap(void)
 {
 	t_vector	v;
-	const int	arr[] = {1, 2, 3};
-	const int	new_vals[] = {999, 998};
-	const int	exp[][3] = {{1, 999, 998}, {1, 2, 3}, {1, 999, 998}};
+	t_vector	*res;
+	const int	d_src[] = {1, 2, 3};
+	const int	d_exp1[] = {42 + 1, 42 + 2, 42 + 3};
 
-	ft_vec_ifrom_array(&v, arr, 3, sizeof(arr[0]));
-	if (ft_vec_nset(&v, 1, 2, new_vals) != true)
-		return (ft_vec_wipe(&v), 1);
-	if (ft_vec_acmp(&v, exp[0], ft_cmp_int_p))
-		return (ft_vec_wipe(&v), 2);
-	if (ft_vec_nset(&v, 0, 3, arr) != true)
-		return (ft_vec_wipe(&v), 3);
-	if (ft_vec_acmp(&v, exp[1], ft_cmp_int_p))
-		return (ft_vec_wipe(&v), 4);
-	if (ft_vec_nset(&v, -2, 2, new_vals) != true)
-		return (ft_vec_wipe(&v), 5);
-	if (ft_vec_acmp(&v, exp[2], ft_cmp_int_p))
-		return (ft_vec_wipe(&v), 6);
-	return (ft_vec_wipe(&v), err_cases());
+	ft_vec_ifrom_array(&v, d_src, 3, sizeof(int));
+	res = ft_vec_nmap(&v, 3, add42);
+	if (!res || res->n_e != 3 || ft_vec_acmp(res, d_exp1, ft_cmp_int_p))
+		return (ft_vec_wipe(&v), ft_vec_destroy(&res), 1);
+	if (ft_vec_acmp(&v, d_src, ft_cmp_int_p))
+		return (ft_vec_wipe(&v), ft_vec_destroy(&res), 2);
+	return (ft_vec_wipe(&v), ft_vec_destroy(&res), err_cases());
 }
 /*
 GPL-3.0 License:

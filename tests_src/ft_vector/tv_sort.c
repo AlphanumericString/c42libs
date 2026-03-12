@@ -22,11 +22,8 @@ static int	cmp_fun(const void *a, const void *b)
 
 static int	error_cases(void)
 {
-	t_vector	*vec;
-
-	vec = NULL;
-	ft_vec_sort(vec, NULL);
-	ft_vec_sort(vec, cmp_fun);
+	ft_vec_sort((t_any)0xDEAD, NULL);
+	ft_vec_sort(NULL, cmp_fun);
 	return (EXIT_SUCCESS);
 }
 
