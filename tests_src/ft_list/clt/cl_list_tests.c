@@ -14,28 +14,76 @@
 #include "tests/tests.h"
 #include "tests/list__cl_tests.h"
 
+/*
+TODOS for tests:
+	check dl
+
+ * sorted list of tests:
+
+{"add_back", tcl_add_back},
+{"add_front", tcl_add_front},
+{"apply_range_node", tcl_apply_range_node},
+{"apply_range", tcl_apply_range},
+{"apply", tcl_apply},
+{"at", tcl_at},
+{"begin", tcl_begin},
+{"check_circular", tcl_check_circular},
+{"check_health", tcl_check_health},
+{"check_sorted", tcl_check_sorted},
+{"clear_range", tcl_clear_range},
+{"clear", tcl_clear},
+{"copy_list", tcl_copy_list},
+{"copy_node", tcl_copy_node},
+{"create", tcl_create},
+{"delete_range", tcl_delete_range},
+{"delete", tcl_delete},
+{"end", tcl_end},
+{"find", tcl_find},
+{"get_datas", tcl_get_datas},
+{"get_nodes", tcl_get_nodes},
+{"issort", tcl_issort},
+{"map", tcl_map},
+{"mid", tcl_mid},
+{"new", tcl_new},
+{"nsize", tcl_nsize},
+{"pop_back", tcl_pop_back},
+{"pop", tcl_pop},
+{"push_back", tcl_push_back},
+{"push", tcl_push},
+{"rev", tcl_rev},
+{"size_cmp", tcl_size_cmp},
+{"size_data_is", tcl_size_data_is},
+{"size", tcl_size},
+{"sort", tcl_sort},
+{"subrange", tcl_subrange},
+{"xtract_max_node", tcl_extract_max_node},
+{"xtract_max", tcl_extract_max},
+{"xtract_min_node", tcl_extract_min_node},
+{"xtract_min", tcl_extract_min},
+
+*/
+
 static const t_fnamed	*cl_tests(void)
 {
 	static const t_fnamed	var[] = {
-	{"add_front", tcl_add_front}, {"add_back", tcl_add_back},
-	{"apply", tcl_apply}, {"apply_range", tcl_apply_range},
+	{"add_back", tcl_add_back}, {"add_front", tcl_add_front},
 	{"apply_range_node", tcl_apply_range_node},
-	{"check_circular", tcl_check_circular}, {"check_sorted", tcl_check_sorted},
-	{"check_health", tcl_check_health}, {"clear", tcl_clear},
-	{"clear_range", tcl_clear_range}, {"create", tcl_create},
-	{"copy_node", tcl_copy_node}, {"copy_list", tcl_copy_list},
-	{"delete", tcl_delete}, {"delete_range", tcl_delete_range},
-	{"find", tcl_find}, {"get_datas", tcl_get_datas},
-	{"get_nodes", tcl_get_nodes}, {"at", tcl_at}, {"begin", tcl_begin},
-	{"end", tcl_end}, {"map", tcl_map}, {"new", tcl_new}, {"push", tcl_push},
-	{"push_back", tcl_push_back}, {"pop", tcl_pop},
-	{"pop_back", tcl_pop_back}, {"rev", tcl_rev}, {"size", tcl_size},
-	{"size_data_is", tcl_size_data_is}, {"size_cmp", tcl_size_cmp},
-	{"subrange", tcl_subrange},
-	{"xtract_max", tcl_extract_max}, {"xtract_max_node", tcl_extract_max_node},
-	{"xtract_min", tcl_extract_min}, {"xtract_min_node", tcl_extract_min_node},
-	{"issort", tcl_issort}, {"sort", tcl_sort}, {"mid", tcl_mid},
-	{NULL, NULL}};
+	{"apply_range", tcl_apply_range}, {"apply", tcl_apply}, {"at", tcl_at},
+	{"begin", tcl_begin}, {"check_circular", tcl_check_circular},
+	{"check_health", tcl_check_health}, {"check_sorted", tcl_check_sorted},
+	{"clear_range", tcl_clear_range}, {"clear", tcl_clear},
+	{"copy_list", tcl_copy_list}, {"copy_node", tcl_copy_node},
+	{"create", tcl_create}, {"delete_range", tcl_delete_range},
+	{"delete", tcl_delete}, {"end", tcl_end}, {"find", tcl_find},
+	{"get_datas", tcl_get_datas}, {"get_nodes", tcl_get_nodes},
+	{"issort", tcl_issort}, {"map", tcl_map}, {"mid", tcl_mid},
+	{"new", tcl_new}, {"nsize", tcl_nsize}, {"pop_back", tcl_pop_back},
+	{"pop", tcl_pop}, {"push_back", tcl_push_back}, {"push", tcl_push},
+	{"rev", tcl_rev}, {"size_cmp", tcl_size_cmp},
+	{"size_data_is", tcl_size_data_is}, {"size", tcl_size}, {"sort", tcl_sort},
+	{"subrange", tcl_subrange}, {"xtract_max_node", tcl_extract_max_node},
+	{"xtract_max", tcl_extract_max}, {"xtract_min_node", tcl_extract_min_node},
+	{"xtract_min", tcl_extract_min}, {NULL, NULL}};
 
 	return (var);
 }

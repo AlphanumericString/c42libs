@@ -25,22 +25,36 @@
 int	tll_size(void)
 {
 	t_list	*list;
-	int		*data;
-	int		*data2;
-	size_t	size_ret[3];
 
-	create_2elem_list(&list, (void **)&data, (void **)&data2);
-	size_ret[0] = ft_ll_size(NULL);
-	size_ret[1] = ft_ll_size(list->next);
-	size_ret[2] = ft_ll_size(list);
-	if (size_ret[0] != 0)
+	list = NULL;
+	if (ft_ll_size(list) != 0)
 		return (1);
-	if (size_ret[1] != 1)
-		return (2);
-	if (size_ret[2] != 2)
-		return (3);
-	ft_ll_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+	ft_ll_push(&list, (t_any)42);
+	if (ft_ll_size(list) != 1)
+		return (ft_ll_delete(&list, NULL), 2);
+	ft_ll_push(&list, (t_any)43);
+	ft_ll_push(&list, (t_any)44);
+	if (ft_ll_size(list) != 3)
+		return (ft_ll_delete(&list, NULL), 3);
+	return (ft_ll_delete(&list, NULL), EXIT_SUCCESS);
+}
+
+int	tll_nsize(void)
+{
+	t_list	*list;
+
+	list = NULL;
+	if (ft_ll_nsize(list, 12) != 0 || ft_ll_nsize((t_any)0xDEAD, 0) != 0)
+		return (1);
+	ft_ll_push(&list, (t_any)42);
+	if (ft_ll_nsize(list, 0) != 0 || ft_ll_nsize(list, 12) != 1)
+		return (ft_ll_delete(&list, NULL), 2);
+	ft_ll_push(&list, (t_any)43);
+	ft_ll_push(&list, (t_any)44);
+	if (ft_ll_nsize(list, 0) != 0 || ft_ll_nsize(list, 1) != 1
+		|| ft_ll_nsize(list, -1) != 3)
+		return (ft_ll_delete(&list, NULL), 3);
+	return (ft_ll_delete(&list, NULL), EXIT_SUCCESS);
 }
 
 int	tll_size_match(void)
@@ -54,13 +68,13 @@ int	tll_size_match(void)
 	size_ret[0] = ft_ll_size_data_is(NULL, is42);
 	size_ret[1] = ft_ll_size_data_is(list, is42);
 	size_ret[2] = ft_ll_size_data_is(list->next, is42);
+	ft_ll_delete(&list, ft_free);
 	if (size_ret[0] != 0)
 		return (1);
 	if (size_ret[1] != 1)
 		return (2);
 	if (size_ret[2] != 0)
 		return (3);
-	ft_ll_clear(&list, ft_free);
 	return (EXIT_SUCCESS);
 }
 
@@ -75,13 +89,12 @@ int	tll_size_cmp(void)
 	while (datas[offset])
 		ft_ll_push_back(&list, datas[offset++]);
 	if (ft_ll_size_cmp(list, "test", cmp_string_length) != 2)
-		return (1);
+		return (ft_ll_clear(&list, NULL), 1);
 	if (ft_ll_size_cmp(list, "this", (t_data_cmp)ft_strcmp) != 1)
-		return (2);
+		return (ft_ll_clear(&list, NULL), 2);
 	if (ft_ll_size_cmp(list, "zod", (t_data_cmp)ft_strcmp) != 1)
-		return (3);
-	ft_ll_clear(&list, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_ll_clear(&list, NULL), 3);
+	return (ft_ll_clear(&list, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

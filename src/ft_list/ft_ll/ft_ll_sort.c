@@ -47,7 +47,22 @@ bool	ft_ll_issort(const t_list *head, const t_data_cmp cmp, int flag)
 // 	if (!head || !*head)
 // 		return (NULL);
 // 	mid = ft_ll_mid(*head);
-// 	tmp = NULL;
+// 	if (ft_ll_nsize(*head, 2) < 2)
+// 		return (*head);
+// 	if (ft_ll_nsize(*head, 2) == 2)
+// 	{
+// 		if ((cmp((*head)->data, mid->data) > 0 && ord != FT_SORT_ORD_ASC)
+// 			|| (cmp((*head)->data, mid->data) < 0 && ord != FT_SORT_ORD_DES))
+// 			ft_swap((*head)->data, mid->data, sizeof(void *));
+// 		return (*head);
+// 	}
+// 	tmp = mid->next; // [n / 2 + 1] [n / 2] | head= [n/2+1] mid= [n/2]
+// 	mid->next = NULL;
+// 	mid = tmp;
+// 	tmp = *head;
+// 	loc_rec(&tmp, cmp, ord);
+// 	loc_rec(&mid, cmp, ord);
+// 	*head = sorted_merge(head, mid, cmp, 0 | ord);
 // }
 
 // elem =null and if (elem) are sefty but can likely be dropped
@@ -70,10 +85,8 @@ t_list	*ft_ll_sort(t_list **head, const t_data_cmp cmp, int flags)
 			elem = ft_ll_extract_min_node(runner, cmp);
 		else
 			elem = ft_ll_extract_max_node(runner, cmp);
-		if (elem)
-			ft_swap(&elem->data, &runner->data, sizeof(runner->data));
+		ft_swap(&elem->data, &runner->data, sizeof(runner->data));
 		runner = runner->next;
-		elem = NULL;
 	}
 	return (*head);
 }

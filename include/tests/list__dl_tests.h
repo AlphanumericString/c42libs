@@ -39,9 +39,11 @@ int	tdl_extract_min(void);
 int	tdl_find(void);
 int	tdl_get_datas(void);
 int	tdl_get_nodes(void);
-int	tdl_sort(void);
+int	tdl_issort(void);
 int	tdl_map(void);
+int	tdl_mid(void);
 int	tdl_new(void);
+int	tdl_nsize(void);
 int	tdl_pop_back(void);
 int	tdl_pop(void);
 int	tdl_push_back(void);
@@ -50,8 +52,8 @@ int	tdl_rev(void);
 int	tdl_size_cmp(void);
 int	tdl_size_datais(void);
 int	tdl_size(void);
+int	tdl_sort(void);
 int	tdl_subrange(void);
-int	tdl_issort(void);
 
 #endif /* LIST__DL_TESTS_H */
 /*

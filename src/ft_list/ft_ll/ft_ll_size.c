@@ -14,12 +14,17 @@
 
 size_t	ft_ll_size(const t_list *lst)
 {
+	return (ft_ll_nsize(lst, -1));
+}
+
+size_t	ft_ll_nsize(const t_list *lst, size_t n)
+{
 	t_list	*it;
 	size_t	i;
 
 	i = 0;
 	it = (t_list *)lst;
-	while (it)
+	while (it && i < n)
 	{
 		it = it->next;
 		i++;

@@ -14,14 +14,19 @@
 
 size_t	ft_cl_size(const t_clist *head)
 {
+	return (ft_cl_nsize(head, -1));
+}
+
+size_t	ft_cl_nsize(const t_clist *head, size_t n)
+{
 	t_clist	*it;
 	size_t	i;
 
-	if (!head)
+	if (!head || !n)
 		return (0);
 	i = 1;
 	it = (t_clist *)head->next;
-	while (it != head)
+	while (it != head && i < n)
 	{
 		i++;
 		if (it->next == head)

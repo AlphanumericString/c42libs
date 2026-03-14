@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tll_mid.c                                          :+:      :+:    :+:   */
+/*   tdl_mid.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/03 19:53:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2026/01/03 19:53:46 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/13 09:16:01 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/13 09:16:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "tests/list__dl_tests.h"
+#include "types/ft_list_types.h"
+#include <stdio.h>
 
-#include "tests/list__ll_tests.h"
-
-int	tll_mid(void)
+int	tdl_mid(void)
 {
-	t_list		*lst;
-	t_list		*res[4];
+	t_dlist		*lst;
+	t_dlist		*got[4];
 	const void	*exp[4] = {NULL, (t_any)0xDEAD, (t_any)0xCAFE, (t_any)0xCAFE};
 
 	lst = NULL;
-	res[0] = ft_ll_mid(lst);
-	ft_ll_push(&lst, (t_any)0xDEAD);
-	res[1] = ft_ll_mid(lst);
-	ft_ll_push(&lst, (t_any)0xCAFE);
-	res[2] = ft_ll_mid(lst);
-	ft_ll_push(&lst, (t_any)0xBEEF);
-	res[3] = ft_ll_mid(lst);
-	ft_ll_delete(&lst, NULL);
-	if (res[0])
-		return (1);
-	if (res[1]->data != exp[1])
-		return (2);
-	if (res[2]->data != exp[2])
-		return (3);
-	if (res[3]->data != exp[2])
-		return (4);
-	return (EXIT_SUCCESS);
+	got[0] = ft_dl_mid(lst);
+	ft_dl_push(&lst, (t_any)0xDEAD);
+	got[1] = ft_dl_mid(lst);
+	ft_dl_push(&lst, (t_any)0xCAFE);
+	got[2] = ft_dl_mid(lst);
+	ft_dl_push(&lst, (t_any)0xBEEF);
+	got[3] = ft_dl_mid(lst);
+	if (got[0] != exp[0])
+		return (ft_dl_delete(&lst, NULL), 1);
+	if (!got[1] || got[1]->data != exp[1])
+		return (ft_dl_delete(&lst, NULL), 2);
+	if (!got[2] || got[2]->data != exp[2])
+		return (ft_dl_delete(&lst, NULL), 3);
+	if (!got[3] || got[3]->data != exp[3])
+		return (ft_dl_delete(&lst, NULL), 4);
+	return (ft_dl_delete(&lst, NULL), 0);
 }
 /*
 GPL-3.0 License:

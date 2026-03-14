@@ -19,7 +19,7 @@ int	tcl_mid(void)
 {
 	t_clist		*lst;
 	t_clist		*got[4];
-	const void	*exp[4] = {NULL, (t_any)0xDEAD, (t_any)0xCAFE, (t_any)0xCAFE};
+	const void	*exp[4] = {NULL, (t_any)0xDEAD, (t_any)0xDEAD, (t_any)0xCAFE};
 
 	lst = NULL;
 	got[0] = ft_cl_mid(lst);
@@ -29,16 +29,15 @@ int	tcl_mid(void)
 	got[2] = ft_cl_mid(lst);
 	ft_cl_push(&lst, (t_any)0xBEEF);
 	got[3] = ft_cl_mid(lst);
-	if (got[0])
-		return (1);
+	if (got[0] != exp[0])
+		return (ft_cl_delete(&lst, NULL), 1);
 	if (got[1]->data != exp[1])
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	if (got[2]->data != exp[2])
-		return (3);
-	if (got[3]->data != exp[2])
-		return (4);
-	ft_cl_delete(&lst, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_cl_delete(&lst, NULL), 3);
+	if (got[3]->data != exp[3])
+		return (ft_cl_delete(&lst, NULL), 4);
+	return (ft_cl_delete(&lst, NULL), 0);
 }
 /*
 GPL-3.0 License:

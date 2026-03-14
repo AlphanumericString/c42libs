@@ -26,22 +26,36 @@
 int	tdl_size(void)
 {
 	t_dlist	*list;
-	int		*data1;
-	int		*data2;
-	size_t	size_ret[3];
 
-	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
-	size_ret[0] = ft_dl_size(NULL);
-	size_ret[1] = ft_dl_size(list->next);
-	size_ret[2] = ft_dl_size(list);
-	if (size_ret[0] != 0)
-		return (1);
-	else if (size_ret[1] != 1)
-		return (2);
-	else if (size_ret[2] != 2)
-		return (3);
-	ft_dl_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+	list = NULL;
+	if (ft_dl_size(list) != 0)
+		return (ft_dl_delete(&list, NULL), 1);
+	ft_dl_push(&list, (void *)42);
+	if (ft_dl_size(list) != 1)
+		return (ft_dl_delete(&list, NULL), 2);
+	ft_dl_push(&list, (void *)43);
+	ft_dl_push(&list, (void *)43);
+	if (ft_dl_size(list) != 3)
+		return (ft_dl_delete(&list, NULL), 3);
+	return (ft_dl_delete(&list, NULL), EXIT_SUCCESS);
+}
+
+int	tdl_nsize(void)
+{
+	t_dlist	*list;
+
+	list = NULL;
+	if (ft_dl_nsize(list, 99) != 0 || ft_dl_nsize((t_any)0xDEAD, 0) != 0)
+		return (ft_dl_delete(&list, NULL), 1);
+	ft_dl_push(&list, (void *)42);
+	if (ft_dl_nsize(list, 0) != 0 || ft_dl_nsize(list, 12) != 1)
+		return (ft_dl_delete(&list, NULL), 2);
+	ft_dl_push(&list, (void *)43);
+	ft_dl_push(&list, (void *)43);
+	if (ft_dl_nsize(list, 0) != 0 || ft_dl_nsize(list, 1) != 1
+		|| ft_dl_nsize(list, -1) != 3)
+		return (ft_dl_delete(&list, NULL), 3);
+	return (ft_dl_delete(&list, NULL), EXIT_SUCCESS);
 }
 
 int	tdl_size_datais(void)
@@ -55,13 +69,13 @@ int	tdl_size_datais(void)
 	size_ret[0] = ft_dl_size_data_is(NULL, is42);
 	size_ret[1] = ft_dl_size_data_is(list->next, is42);
 	size_ret[2] = ft_dl_size_data_is(list, is42);
+	ft_dl_delete(&list, ft_free);
 	if (size_ret[0] != 0)
 		return (1);
 	else if (size_ret[1] != 0)
 		return (2);
 	else if (size_ret[2] != 1)
 		return (3);
-	ft_dl_clear(&list, ft_free);
 	return (EXIT_SUCCESS);
 }
 
@@ -78,9 +92,8 @@ int	tdl_size_cmp(void)
 	if (!lst)
 		return (1);
 	if (ft_dl_size_cmp(lst, "this", (t_data_cmp)ft_strcmp) != 2)
-		return (2);
-	ft_dl_clear(&lst, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_dl_clear(&lst, NULL), 2);
+	return (ft_dl_clear(&lst, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:
