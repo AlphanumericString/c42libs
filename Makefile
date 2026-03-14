@@ -571,6 +571,7 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_list/dlt/tdl_issort.c							\
 			$(TESTS_DIR)/ft_list/dlt/tdl_iterators.c						\
 			$(TESTS_DIR)/ft_list/dlt/tdl_map.c								\
+			$(TESTS_DIR)/ft_list/dlt/tdl_mid.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_new.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_push.c								\
 			$(TESTS_DIR)/ft_list/dlt/tdl_rev.c								\

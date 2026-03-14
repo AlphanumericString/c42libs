@@ -42,6 +42,7 @@ int	tcl_issort(void);
 int	tcl_map(void);
 int	tcl_mid(void);
 int	tcl_new(void);
+int	tcl_nsize(void);
 int	tcl_pop_back(void);
 int	tcl_pop(void);
 int	tcl_push_back(void);

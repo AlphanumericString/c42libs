@@ -16,6 +16,7 @@
 
 /*
  * todos :
+	- check dl
 
  * Sorted list:
 
@@ -44,6 +45,7 @@
 {"map", tll_map},
 {"mid", tll_mid},
 {"new", tll_new},
+{"nsize", tll_nsize},
 {"pop_back", tll_pop_back},
 {"pop", tll_pop},
 {"push_back", tll_push_back},
@@ -63,9 +65,8 @@
 
 static const t_fnamed	*ll_tests(void)
 {
-	static const t_fnamed	test[] = {
-	{"add_back", tll_add_back}, {"add_front", tll_add_front},
-	{"apply_range_node", tll_apply_range_node},
+	static const t_fnamed	test[] = {{"add_back", tll_add_back},
+	{"add_front", tll_add_front}, {"apply_range_node", tll_apply_range_node},
 	{"apply_range", tll_apply_range}, {"apply", tll_apply}, {"at", tll_at},
 	{"begin", tll_begin}, {"check_circular", tll_check_circular},
 	{"check_health", tll_check_health}, {"check_sorted", tll_check_sorted},
@@ -75,13 +76,13 @@ static const t_fnamed	*ll_tests(void)
 	{"delone", tll_delone}, {"end", tll_end}, {"find", tll_find},
 	{"get_datas", tll_get_datas}, {"get_nodes", tll_get_nodes},
 	{"issort", tll_issort}, {"map", tll_map}, {"mid", tll_mid},
-	{"new", tll_new}, {"pop_back", tll_pop_back}, {"pop", tll_pop},
-	{"push_back", tll_push_back}, {"push", tll_push}, {"rev", tll_rev},
-	{"size_cmp", tll_size_cmp}, {"size_match", tll_size_match},
-	{"size", tll_size}, {"sort", tll_sort}, {"subrange", tll_subrange},
-	{"xtrct_max_node", tll_extract_max_node}, {"xtrct_max", tll_extract_max},
-	{"xtrct_min_node", tll_extract_min_node}, {"xtrct_min", tll_extract_min},
-	{NULL, NULL}};
+	{"new", tll_new}, {"nsize", tll_nsize}, {"pop_back", tll_pop_back},
+	{"pop", tll_pop}, {"push_back", tll_push_back}, {"push", tll_push},
+	{"rev", tll_rev}, {"size_cmp", tll_size_cmp},
+	{"size_match", tll_size_match}, {"size", tll_size}, {"sort", tll_sort},
+	{"subrange", tll_subrange}, {"xtrct_max_node", tll_extract_max_node},
+	{"xtrct_max", tll_extract_max}, {"xtrct_min_node", tll_extract_min_node},
+	{"xtrct_min", tll_extract_min}, {NULL, NULL}};
 
 	return (test);
 }

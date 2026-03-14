@@ -1,68 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ll_size.c                                       :+:      :+:    :+:   */
+/*   tdl_mid.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:38:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/05/25 19:25:29 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/13 09:16:01 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/13 09:16:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "tests/list__dl_tests.h"
+#include "types/ft_list_types.h"
+#include <stdio.h>
 
-size_t	ft_ll_size(const t_list *lst)
+int	tdl_mid(void)
 {
-	return (ft_ll_nsize(lst, -1));
-}
+	t_dlist		*lst;
+	t_dlist		*got[4];
+	const void	*exp[4] = {NULL, (t_any)0xDEAD, (t_any)0xCAFE, (t_any)0xCAFE};
 
-size_t	ft_ll_nsize(const t_list *lst, size_t n)
-{
-	t_list	*it;
-	size_t	i;
-
-	i = 0;
-	it = (t_list *)lst;
-	while (it && i < n)
-	{
-		it = it->next;
-		i++;
-	}
-	return (i);
-}
-
-size_t	ft_ll_size_data_is(const t_list *lst, t_data_is function)
-{
-	size_t	i;
-	t_list	*it;
-
-	i = 0;
-	it = (t_list *)lst;
-	while (it)
-	{
-		if (function(it->data))
-			i++;
-		it = it->next;
-	}
-	return (i);
-}
-
-size_t	ft_ll_size_cmp(const t_list *lst, const void *restrict data,
-		const t_data_cmp cmp)
-{
-	size_t	i;
-	t_list	*it;
-
-	i = 0;
-	it = (t_list *)lst;
-	while (it)
-	{
-		if (cmp(it->data, data) == 0)
-			i++;
-		it = it->next;
-	}
-	return (i);
+	lst = NULL;
+	got[0] = ft_dl_mid(lst);
+	ft_dl_push(&lst, (t_any)0xDEAD);
+	got[1] = ft_dl_mid(lst);
+	ft_dl_push(&lst, (t_any)0xCAFE);
+	got[2] = ft_dl_mid(lst);
+	ft_dl_push(&lst, (t_any)0xBEEF);
+	got[3] = ft_dl_mid(lst);
+	if (got[0] != exp[0])
+		return (ft_dl_delete(&lst, NULL), 1);
+	if (!got[1] || got[1]->data != exp[1])
+		return (ft_dl_delete(&lst, NULL), 2);
+	if (!got[2] || got[2]->data != exp[2])
+		return (ft_dl_delete(&lst, NULL), 3);
+	if (!got[3] || got[3]->data != exp[3])
+		return (ft_dl_delete(&lst, NULL), 4);
+	return (ft_dl_delete(&lst, NULL), 0);
 }
 /*
 GPL-3.0 License:

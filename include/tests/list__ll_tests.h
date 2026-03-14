@@ -42,6 +42,7 @@ int	tll_issort(void);
 int	tll_map(void);
 int	tll_mid(void);
 int	tll_new(void);
+int	tll_nsize(void);
 int	tll_pop_back(void);
 int	tll_pop(void);
 int	tll_push_back(void);

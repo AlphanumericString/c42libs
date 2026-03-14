@@ -21,13 +21,30 @@ int	tcl_size(void)
 	t_clist	*lst;
 
 	if (ft_cl_size(NULL) != 0)
-		return (1);
+		return (ft_cl_delete(&lst, NULL), 1);
 	lst = ft_cl_create((void *)42);
 	if (ft_cl_size(lst) != 1)
 		return (ft_cl_delete(&lst, NULL), 2);
 	ft_cl_push(&lst, (void *)43);
 	ft_cl_push(&lst, (void *)44);
 	if (ft_cl_size(lst) != 3)
+		return (ft_cl_delete(&lst, NULL), 3);
+	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
+}
+
+int	tcl_nsize(void)
+{
+	t_clist	*lst;
+
+	if (ft_cl_nsize(NULL, 99) != 0 || ft_cl_nsize((t_any)0xDEAD, 0) != 0)
+		return (ft_cl_delete(&lst, NULL), 1);
+	lst = ft_cl_create((void *)42);
+	if (ft_cl_nsize(lst, 0) != 0 || ft_cl_nsize(lst, 12) != 1)
+		return (ft_cl_delete(&lst, NULL), 2);
+	ft_cl_push(&lst, (void *)43);
+	ft_cl_push(&lst, (void *)44);
+	if (ft_cl_nsize(lst, 0) != 0 || ft_cl_nsize(lst, 1) != 1
+		|| ft_cl_nsize(lst, -1) != 3)
 		return (ft_cl_delete(&lst, NULL), 3);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }

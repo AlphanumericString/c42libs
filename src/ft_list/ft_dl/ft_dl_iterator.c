@@ -57,12 +57,10 @@ t_dlist	*ft_dl_mid(const t_dlist *head)
 		return (NULL);
 	a = head;
 	b = head;
-	while (b)
+	while (b->next && b->next->next)
 	{
 		a = a->next;
-		b = b->next;
-		if (b)
-			b = b->next;
+		b = b->next->next;
 	}
 	return ((t_dlist *)a);
 }
