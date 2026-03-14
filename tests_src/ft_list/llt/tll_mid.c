@@ -28,7 +28,6 @@ int	tll_mid(void)
 	res[2] = ft_ll_mid(lst);
 	ft_ll_push(&lst, (t_any)0xBEEF);
 	res[3] = ft_ll_mid(lst);
-	ft_ll_delete(&lst, NULL);
 	if (res[0])
 		return (ft_ll_delete(&lst, NULL), 1);
 	if (res[1]->data != exp[1])
