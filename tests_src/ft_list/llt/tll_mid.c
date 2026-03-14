@@ -28,16 +28,15 @@ int	tll_mid(void)
 	res[2] = ft_ll_mid(lst);
 	ft_ll_push(&lst, (t_any)0xBEEF);
 	res[3] = ft_ll_mid(lst);
-	ft_ll_delete(&lst, NULL);
 	if (res[0])
-		return (1);
+		return (ft_ll_delete(&lst, NULL), 1);
 	if (res[1]->data != exp[1])
-		return (2);
+		return (ft_ll_delete(&lst, NULL), 2);
 	if (res[2]->data != exp[2])
-		return (3);
+		return (ft_ll_delete(&lst, NULL), 3);
 	if (res[3]->data != exp[2])
-		return (4);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&lst, NULL), 4);
+	return (ft_ll_delete(&lst, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:
