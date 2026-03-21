@@ -48,7 +48,7 @@ int	ts_trim(void)
 		|| ft_strcmp(res[2], "Hello World!")
 		|| ft_strcmp(res[3], "Hello Worl") || ft_strcmp(res[4], str_ugly)
 		|| ft_strcmp(res[5], "") || res[6])
-		return (1);
+		return (ft_aapply((t_arr)res, ft_free), 1);
 	return (ft_aapply((t_arr)res, ft_free), mt_strtrim());
 }
 

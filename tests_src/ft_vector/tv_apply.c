@@ -40,7 +40,7 @@ int	tv_apply(void)
 	(ft_vec_apply(NULL, add42), ft_vec_apply(vec, NULL));
 	ft_vec_apply(vec, add42);
 	if (*((size_t *)ft_vec_at(vec, 0)) != 42)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	vec->s_e = 0;
 	ft_vec_apply(vec, add42);
 	i = vec->n_e;

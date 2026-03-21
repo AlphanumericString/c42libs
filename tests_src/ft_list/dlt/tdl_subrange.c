@@ -32,18 +32,18 @@ static int	base_cases(void)
 	ft_dl_push_back(&list, data3);
 	sub = ft_dl_subrange(list, list->next);
 	if (ft_dl_size(sub) != 1 || sub->data != data1)
-		return (1);
-	ft_dl_clear(&sub, NULL);
+		return (ft_dl_delete(&sub, NULL), ft_dl_delete(&list, ft_free), 1);
+	ft_dl_delete(&sub, NULL);
 	sub = ft_dl_subrange(list, list->next->next);
-	if (ft_dl_size(sub) != 2 || sub->data != data1
-		|| sub->next->data != data2 || (ft_dl_clear(&sub, NULL), 0))
-		return (2);
+	if (ft_dl_size(sub) != 2 || sub->data != data1 || sub->next->data != data2)
+		return (ft_dl_delete(&sub, NULL), ft_dl_delete(&list, ft_free), 2);
 	if (ft_dl_subrange(NULL, NULL))
-		return (3);
+		return (ft_dl_delete(&sub, NULL), ft_dl_delete(&list, ft_free), 3);
+	ft_dl_delete(&sub, NULL);
 	sub = ft_dl_subrange(list, list);
 	if (ft_dl_size(sub) != 1 || sub->data != data1)
-		return (4);
-	return (ft_dl_clear(&sub, NULL), ft_dl_clear(&list, ft_free), 0);
+		return (ft_dl_delete(&sub, NULL), ft_dl_delete(&list, ft_free), 4);
+	return (ft_dl_delete(&sub, NULL), ft_dl_delete(&list, ft_free), 0);
 }
 
 static int	mt_cases(void)
@@ -62,8 +62,8 @@ static int	mt_cases(void)
 	lists[1] = ft_dl_subrange(lists[0], lists[0]->next->next);
 	talloc_set_failpoint(f_point);
 	if (lists[1])
-		return (ft_dl_clear(&lists[0], ft_free), 1);
-	ft_dl_clear(&lists[0], ft_free);
+		return (ft_dl_delete(&lists[0], ft_free), 1);
+	ft_dl_delete(&lists[0], ft_free);
 	return (EXIT_SUCCESS);
 }
 

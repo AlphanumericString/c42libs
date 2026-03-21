@@ -22,21 +22,20 @@ int	ts_ndup(void)
 	str = "Hello World!";
 	res = ft_strndup(str, 5);
 	if (ft_strcmp(res, "Hello") != 0)
-		return (1);
+		return (ft_free(res), 1);
 	ft_free(res);
 	res = ft_strndup(str, 0);
 	if (ft_strcmp(res, "") != 0)
-		return (2);
+		return (ft_free(res), 2);
 	ft_free(res);
 	res = ft_strndup(str, 12);
 	if (ft_strcmp(res, "Hello World!") != 0)
-		return (3);
+		return (ft_free(res), 3);
 	ft_free(res);
 	res = ft_strndup(str, 15);
 	if (ft_strcmp(res, "Hello World!") != 0)
-		return (4);
-	ft_free(res);
-	return (EXIT_SUCCESS);
+		return (ft_free(res), 4);
+	return (ft_free(res), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -29,15 +29,15 @@ int	tcl_pop(void)
 		return (1);
 	data = ft_cl_pop(&lst);
 	if (data != NULL || lst != NULL)
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	lst = ft_cl_create((void *)42);
 	data = ft_cl_pop(&lst);
 	if (data != (void *)42 || lst != NULL)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	lst = a_to_cl((int []){44, 43, 42}, 3);
 	data = ft_cl_pop(&lst);
 	if (data != (void *)44 || lst->data != (void *)43)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 4);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 

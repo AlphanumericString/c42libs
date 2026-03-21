@@ -14,9 +14,12 @@
 #include "internal/args_helper.h"
 
 #include "types/ft_args_types.h"
+
 #include <stdlib.h>
 #include <stddef.h>
 #include <unistd.h>
+
+#define SE	STDERR_FILENO
 
 static int	arg_ok(const char **args, t_parser_state *state,
 				enum e_separator sep)
@@ -43,15 +46,16 @@ static const char	*maybe_get_arg(const char **args, t_parser_state *state,
 			return (args[state->arg_it + 1]);
 		else if (sep == FT_AS_EQSIGN)
 			return (&args[state->arg_it][state->in_arg_it + 2]);
-		return (perror_pa_state(state, "Unkown separator flag"), NULL);
+		return (perror_pa_state(state, "Unkown separator flag", SE), NULL);
 	}
 	else if (harg == FT_AH_YES || harg == FT_AH_MAYBE)
 	{
 		if (arg_ok(args, state, sep) == 1)
-			return (perror_pa_state(state, "Couldn't find separator"), NULL);
-		return (perror_pa_state(state, "Missing argument"), NULL);
+			return (perror_pa_state(state,
+					"Couldn't find separator", SE), NULL);
+		return (perror_pa_state(state, "Missing argument", SE), NULL);
 	}
-	return (perror_pa_state(state, "Couldn't parse harg flag"), NULL);
+	return (perror_pa_state(state, "Couldn't parse harg flag", SE), NULL);
 }
 
 static void	v2_parse_short_opt_inner(t_parser_state *state, size_t op,
@@ -92,7 +96,7 @@ static void	char_runner(t_parser_state *state, const char **args,
 		op++;
 	if (!ls[op].func || !ls[op].short_name || ls[op].short_name != c)
 	{
-		perror_pa_state(state, "Unknown short option");
+		perror_pa_state(state, "Unknown short option", SE);
 		return ;
 	}
 	return (v2_parse_short_opt_inner(state, op, args, data));

@@ -10,26 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "internal/args_helper.h"
 #include "ft_args.h"
-#include "ft_string.h"
-#include <unistd.h>
+#include "internal/args_helper.h"
+
 #include "tests/args_tests.h"
 
 int	targ_version_test(void)
 {
-	char	*s1;
-	char	*s2;
+	const char	*prev = ft_version();
+	char		*s1;
+	char		*s2;
 
 	s1 = "toto";
 	s2 = 0;
 	ft_set_version(s1);
 	if (ft_version() != s1)
-		return (ft_putstr_fd(ft_version(), STDERR_FILENO), 1);
+		return (ft_set_version(prev), 1);
 	ft_set_version(s2);
 	if (ft_version() == s2)
-		return (2);
-	return (EXIT_SUCCESS);
+		return (ft_set_version(prev), 2);
+	return (ft_set_version(prev), 0);
 }
 /*
 GPL-3.0 License:

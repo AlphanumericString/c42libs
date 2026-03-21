@@ -25,21 +25,21 @@ int	ts_lcat(void)
 	ft_bzero(res, size);
 	ret = ft_strlcat(res, "Hello", size);
 	if (ft_strcmp(res, "Hello") != 0 || ret != 5)
-		return (1);
+		return (ft_free(res), 1);
 	ret = ft_strlcat(res, " World!", size);
 	if (ft_strcmp(res, "Hello World!") != 0 || ret != 12)
-		return (2);
+		return (ft_free(res), 2);
 	ret = ft_strlcat(res, "This is zod!", size);
 	if (ft_strcmp(res, "Hello World!Th") != 0 || ret != 24)
-		return (3);
+		return (ft_free(res), 3);
 	ret = ft_strlcat(res, "This is zod!", 5);
 	if (ft_strcmp(res, "Hello World!Th") != 0 || ret != 5 + 12)
-		return (4);
+		return (ft_free(res), 4);
 	if (ft_strlcat(NULL, "test", 0) != 0 || ft_strlcat(NULL, "test", 5) != 0)
-		return (5);
+		return (ft_free(res), 5);
 	ret = ft_strlcat(res, NULL, size);
 	if (ft_strcmp(res, "Hello World!Th") != 0 || ret != 14)
-		return (6);
+		return (ft_free(res), 6);
 	return (ft_free(res), 0);
 }
 /*

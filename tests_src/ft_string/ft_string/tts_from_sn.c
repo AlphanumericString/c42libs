@@ -27,7 +27,7 @@ static int	mt_string_from_sn(void)
 	talloc_set_failpoint(fp);
 	ft_string_destroy(&str_src);
 	if (str != NULL)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	return (EXIT_SUCCESS);
 }
 
@@ -39,19 +39,19 @@ int	test_string_from_sn(void)
 	str_src = ft_string_from("Hello World");
 	str = ft_string_from_s_n(str_src, 5);
 	if (ft_string_cmp(str, "Hello") != 0)
-		return (1);
+		return (ft_string_destroy(&str), ft_string_destroy(&str_src), 1);
 	if (str->length != 5)
-		return (2);
+		return (ft_string_destroy(&str), ft_string_destroy(&str_src), 2);
 	if (str->capacity < 5)
-		return (3);
+		return (ft_string_destroy(&str), ft_string_destroy(&str_src), 3);
 	ft_string_destroy(&str);
 	str = ft_string_from_s_n(NULL, 5);
 	if (str->length != 0 || str->capacity < 1)
-		return (4);
+		return (ft_string_destroy(&str), ft_string_destroy(&str_src), 4);
 	ft_string_destroy(&str);
 	str = ft_string_from_s_n(str_src, 0);
 	if (str->length != 0 || str->capacity < 1)
-		return (5);
+		return (ft_string_destroy(&str), ft_string_destroy(&str_src), 5);
 	return (ft_string_destroy(&str), ft_string_destroy(&str_src),
 		mt_string_from_sn());
 }

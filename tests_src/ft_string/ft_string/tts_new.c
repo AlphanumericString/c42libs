@@ -27,7 +27,7 @@ static int	mt_string_new(void)
 	str2 = ft_string_new(42);
 	talloc_set_failpoint(fp);
 	if (str || str2)
-		return (1);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 1);
 	return (EXIT_SUCCESS);
 }
 
@@ -37,11 +37,11 @@ int	test_string_new(void)
 
 	str = ft_string_new(42);
 	if (!str->str || str->length != 0 || str->capacity < 42)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_destroy(&str);
 	str = ft_string_new(0);
 	if (!str->str || str->length != 0 || str->capacity < 1)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	ft_string_destroy(&str);
 	return (mt_string_new());
 }

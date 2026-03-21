@@ -21,7 +21,7 @@ int	tb_new_from_mem(void)
 	if (!bitset || ft_bs_get_raw(bitset, 0) != '0'
 		|| ft_bs_get_raw(bitset, 1) != '1' || ft_bs_get_raw(bitset, 2) != 'b'
 		|| ft_bs_get_raw(bitset, 3) != 'i' || ft_bs_get_raw(bitset, 4) != 'n')
-		return (1);
+		return (ft_bs_free(&bitset), 1);
 	ft_bs_free(&bitset);
 	bitset = ft_bs_new_from_mem("11111111", 4);
 	if (!bitset || bitset->_capacity != 4)

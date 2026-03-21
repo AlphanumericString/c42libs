@@ -26,19 +26,19 @@ static int	bases_case(void)
 	vec = ft_vec_create(sizeof(int));
 	ft_vec_add(vec, &i);
 	if (vec->s_e != sizeof(int) || vec->n_e != 1)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	if (ft_memcmp(ft_vec_at(vec, 0), &i, sizeof(int)))
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	while (i++ < 47)
 		ft_vec_add(vec, &i);
 	i = (42 - 1);
 	while (++i < 47)
 		if (ft_memcmp(ft_vec_at(vec, i - 42), &i, sizeof(int)))
-			return (i + 8);
+			return (ft_vec_destroy(&vec), i + 8);
 	if (ft_vec_add(NULL, &i) != false)
-		return (1 + 8 * 2);
+		return (ft_vec_destroy(&vec), 1 + 8 * 2);
 	if (ft_vec_add(vec, NULL) != false)
-		return (2 + 8 * 2);
+		return (ft_vec_destroy(&vec), 2 + 8 * 2);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }
@@ -52,7 +52,7 @@ static int	err_case(void)
 	vec = ft_vec_create(sizeof(int));
 	vec->s_e = 0;
 	if (ft_vec_add(vec, &i) != false)
-		return (1 + 16);
+		return (ft_vec_destroy(&vec), 1 + 16);
 	return (ft_vec_delete(vec), EXIT_SUCCESS);
 }
 
@@ -72,7 +72,7 @@ static int	mt_case(void)
 	ft_vec_add(vec, &i);
 	talloc_set_failpoint(f_po);
 	if (vec->n_e != 1)
-		return (1 + 32);
+		return (ft_vec_destroy(&vec), 1 + 32);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }

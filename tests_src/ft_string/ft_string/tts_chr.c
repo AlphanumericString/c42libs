@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
 #include "ft_string.h"
 #include "ft_tstring.h"
 #include "types/ft_string_types.h"
@@ -29,11 +28,10 @@ int	test_string_chr(void)
 	{
 		ptr_exp[i] = ft_strchr(str->str, c[i]);
 		if (ft_string_chr(str, c[i]) != ptr_exp[i])
-			return (i + 1);
+			return (ft_string_destroy(&str), i + 1);
 		i++;
 	}
-	ft_string_destroy(&str);
-	return (EXIT_SUCCESS);
+	return (ft_string_destroy(&str), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

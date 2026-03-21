@@ -864,7 +864,7 @@ size_t	ft_cl_size_cmp(const t_clist *lst, const void *data,
 /*                                  SUB									      */
 /* ************************************************************************** */
 
-/// @brief Get a sublist of a list
+/// @brief Get a sublist of a list (aka list_copy)
 /// @param lst The list
 /// @param end The node until which to get the sublist
 /// @return The sublist
@@ -872,7 +872,7 @@ size_t	ft_cl_size_cmp(const t_clist *lst, const void *data,
 /// the data in a new ptr. This is why it doesn't need a delete function.
 t_dlist	*ft_dl_subrange(const t_dlist *lst, const t_dlist *end);
 
-/// @brief Get a sublist of a list
+/// @brief Get a sublist of a list (aka list_copy)
 /// @param lst The list
 /// @param end The node until which to get the sublist
 /// @note The sublist is a copy of the original list but does not copy
@@ -880,7 +880,7 @@ t_dlist	*ft_dl_subrange(const t_dlist *lst, const t_dlist *end);
 /// @return The sublist
 t_list	*ft_ll_subrange(const t_list *lst, const t_list *end);
 
-/// @brief Get a sublist of a list
+/// @brief Get a sublist of a list (aka list_copy)
 /// @param src The list
 /// @param end The node until which to get the sublist
 /// @note The sublist is a copy of the original list but does not copy

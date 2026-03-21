@@ -28,7 +28,7 @@ static int	mt_string_resize(void)
 	talloc_set_failpoint(fp);
 	if (ft_string_cmp(str, "Hello") != 0 || str->length != 5
 		|| str->capacity != prev_cap)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
 }
@@ -40,14 +40,14 @@ int	test_string_resize(void)
 	str = ft_string_from("Hello");
 	ft_string_resize(str, 42);
 	if (ft_string_cmp(str, "Hello") != 0)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	if (str->length != 5)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	if (str->capacity < 42)
-		return (3);
+		return (ft_string_destroy(&str), 3);
 	ft_string_resize(str, 4);
 	if (str->capacity < 42)
-		return (4);
+		return (ft_string_destroy(&str), 4);
 	ft_string_destroy(&str);
 	ft_string_resize(NULL, -1);
 	return (mt_string_resize());

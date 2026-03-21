@@ -21,13 +21,15 @@ static int	mt_cl_create(void)
 {
 	const int	fp = *talloc_get_failpoint();
 	t_clist		*node;
+	int			r;
 
+	r = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
 	node = ft_cl_create(NULL);
 	if (node)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(fp);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 int	tcl_create(void)
@@ -37,12 +39,12 @@ int	tcl_create(void)
 	node = ft_cl_create(NULL);
 	if (!node || node->data != NULL
 		|| node->next != node || node->prev != node)
-		return (1);
+		return (ft_free(node), 1);
 	ft_free(node);
 	node = ft_cl_create((void *)42);
 	if (!node || node->data != (void *)42
 		|| node->next != node || node->prev != node)
-		return (2);
+		return (ft_free(node), 2);
 	ft_free(node);
 	return (mt_cl_create());
 }

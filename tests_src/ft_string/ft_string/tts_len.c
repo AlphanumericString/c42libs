@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
 #include "ft_tstring.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+#include <stdlib.h>
 
 int	test_string_len(void)
 {
@@ -21,7 +21,7 @@ int	test_string_len(void)
 
 	str = ft_string_from("Hello worlds!");
 	if (ft_string_len(str) != 13)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
 }

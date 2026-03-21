@@ -25,9 +25,8 @@ static int	mt_string_append_c(void)
 	ft_string_append_c(str, ' ');
 	talloc_set_failpoint(fp);
 	if (ft_string_cmp(str, "Hello") != 0)
-		return (1);
-	ft_string_destroy(&str);
-	return (EXIT_SUCCESS);
+		return (ft_string_destroy(&str), 1);
+	return (ft_string_destroy(&str), EXIT_SUCCESS);
 }
 
 // second test for ft_string_append_c is to check in case buffer is greater
@@ -39,18 +38,19 @@ int	test_string_append_c(void)
 	str = ft_string_from("Hello");
 	ft_string_append_c(str, ' ');
 	if (ft_string_cmp(str, "Hello ") != 0)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	if (str->length != 6 || str->capacity < 6)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	ft_string_destroy(&str);
 	str = ft_string_from("hi");
 	ft_string_append_c(str, 'i');
 	if (ft_string_cmp(str, "hii") != 0)
-		return (3);
+		return (ft_string_destroy(&str), 3);
 	if (str->length != 3 || str->capacity < 3)
-		return (4);
+		return (ft_string_destroy(&str), 4);
+	ft_string_destroy(&str);
 	ft_string_append_c(NULL, ' ');
-	return (ft_string_destroy(&str), mt_string_append_c());
+	return (mt_string_append_c());
 }
 /*
 GPL-3.0 License:

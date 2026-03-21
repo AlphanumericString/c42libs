@@ -24,13 +24,13 @@ static int	error_cases(void)
 
 	v = ft_vec_from_array(ar, 0, 4);
 	if (v)
-		return (EXIT_FAILURE);
+		return (ft_vec_destroy(&v), EXIT_FAILURE);
 	v = ft_vec_from_array(ar, 4, 0);
 	if (v)
-		return (EXIT_FAILURE);
+		return (ft_vec_destroy(&v), EXIT_FAILURE);
 	v = ft_vec_from_array(NULL, 4, 4);
 	if (v)
-		return (EXIT_FAILURE);
+		return (ft_vec_destroy(&v), EXIT_FAILURE);
 	fp = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	v = ft_vec_from_array(ar, 4, sizeof(*ar));
@@ -38,7 +38,7 @@ static int	error_cases(void)
 	v2 = ft_vec_from_array(ar, 4, sizeof(*ar));
 	talloc_set_failpoint(fp);
 	if (v || v2)
-		return (EXIT_FAILURE);
+		return (ft_vec_destroy(&v), ft_vec_destroy(&v2), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

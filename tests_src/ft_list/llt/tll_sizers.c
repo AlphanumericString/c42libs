@@ -34,13 +34,12 @@ int	tll_size(void)
 	size_ret[1] = ft_ll_size(list->next);
 	size_ret[2] = ft_ll_size(list);
 	if (size_ret[0] != 0)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), 1);
 	if (size_ret[1] != 1)
-		return (2);
+		return (ft_ll_delete(&list, ft_free), 2);
 	if (size_ret[2] != 2)
-		return (3);
-	ft_ll_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, ft_free), 3);
+	return (ft_ll_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tll_size_match(void)
@@ -55,13 +54,12 @@ int	tll_size_match(void)
 	size_ret[1] = ft_ll_size_data_is(list, is42);
 	size_ret[2] = ft_ll_size_data_is(list->next, is42);
 	if (size_ret[0] != 0)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), 1);
 	if (size_ret[1] != 1)
-		return (2);
+		return (ft_ll_delete(&list, ft_free), 2);
 	if (size_ret[2] != 0)
-		return (3);
-	ft_ll_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, ft_free), 3);
+	return (ft_ll_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tll_size_cmp(void)
@@ -75,13 +73,12 @@ int	tll_size_cmp(void)
 	while (datas[offset])
 		ft_ll_push_back(&list, datas[offset++]);
 	if (ft_ll_size_cmp(list, "test", cmp_string_length) != 2)
-		return (1);
+		return (ft_ll_delete(&list, NULL), 1);
 	if (ft_ll_size_cmp(list, "this", (t_data_cmp)ft_strcmp) != 1)
-		return (2);
+		return (ft_ll_delete(&list, NULL), 2);
 	if (ft_ll_size_cmp(list, "zod", (t_data_cmp)ft_strcmp) != 1)
-		return (3);
-	ft_ll_clear(&list, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, NULL), 3);
+	return (ft_ll_delete(&list, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

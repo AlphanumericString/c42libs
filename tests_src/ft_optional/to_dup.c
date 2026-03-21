@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_optional.h"
+#include "ft_mem.h"
 #include "types/ft_optional_types.h"
 #include "tests/fixtures.h"
 #include "tests/optional_tests.h"
@@ -27,16 +28,16 @@ int	to_dup(void)
 	if (!opt_b)
 		return (1);
 	if (opt_b->pres != OPT_SOME)
-		return (2);
+		return (ft_free(opt_b), 2);
 	if (opt_b->val != (void *)42)
-		return (3);
-	opt_b->pres = OPT_NONE;
-	ft_optional_destroy(opt_b);
+		return (ft_free(opt_b), 3);
+	ft_free(opt_b);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_optional_dup(&opt_a))
-		return (4);
+	opt_b = ft_optional_dup(&opt_a);
 	talloc_set_failpoint(prev);
+	if (opt_b)
+		return (ft_free(opt_b), 4);
 	return (EXIT_SUCCESS);
 }
 /*

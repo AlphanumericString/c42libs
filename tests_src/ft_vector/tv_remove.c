@@ -53,13 +53,13 @@ int	tv_remove(void)
 	ft_vec_remove(vec, 1, NULL);
 	if (vec->n_e != 2 || *(int *)ft_vec_at(vec, 0) != 42
 		|| *(int *)ft_vec_at(vec, 1) != 44)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	ft_vec_remove(vec, 0, NULL);
 	if (vec->n_e != 1 || *(int *)ft_vec_at(vec, 0) != 44)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	ft_vec_remove(vec, 0, NULL);
 	if (vec->n_e != 0)
-		return (3);
+		return (ft_vec_destroy(&vec), 3);
 	ft_vec_destroy(&vec);
 	error_cases();
 	vec = ft_vec_from_array(arr, 3, sizeof(int));

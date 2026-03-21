@@ -31,7 +31,7 @@ int	test_string_trim(void)
 	ft_string_trim(str);
 	if (ft_string_cmp(str, "Hello_World") != 0 || str->length != 11
 		|| str->capacity < 11)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_trim(NULL);
 	ft_string_trim(&((t_string){.str = NULL, .capacity = 99, .length = 32}));
 	ft_string_trim(&((t_string)

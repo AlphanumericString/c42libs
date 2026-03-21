@@ -24,11 +24,11 @@ static int	mt_string_set_n(void)
 	talloc_set_failpoint(0);
 	ft_string_set_n(str, "this is a long zod message", 20);
 	if (str->capacity != 6 || str->length != 0)
-		return (talloc_set_failpoint(fp), 1);
+		return (talloc_set_failpoint(fp), ft_string_destroy(&str), 1);
 	ft_string_set_n(str, "this", 4);
 	if (str->capacity != 6 || str->length != 4
 		|| ft_string_cmp(str, "this") != 0)
-		return (talloc_set_failpoint(fp), 2);
+		return (talloc_set_failpoint(fp), ft_string_destroy(&str), 2);
 	talloc_set_failpoint(fp);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
@@ -42,7 +42,7 @@ int	test_string_set_n(void)
 	str = ft_string_new(0);
 	ft_string_set_n(str, src, 5);
 	if (ft_strcmp("Hello", ft_string_get(str)) != 0)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_set_n(str, NULL, 9);
 	ft_string_set_n(NULL, src, 9);
 	ft_string_set_n(str, src, 9999999999);

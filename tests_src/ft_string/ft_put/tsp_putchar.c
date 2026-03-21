@@ -24,9 +24,9 @@ static int	test_bad_fd(char *file)
 	const int	fd = -1;
 
 	if (ft_putchar_fd('a', fd) != -1)
-		return (11);
+		return (ft_free(file), 11);
 	if (ft_putchar_fd('\n', fd) != -1)
-		return (12);
+		return (ft_free(file), 12);
 	ft_free(file);
 	return (EXIT_SUCCESS);
 }

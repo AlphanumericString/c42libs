@@ -18,8 +18,8 @@
 
 #include <unistd.h>
 
-#define EXPECTED_LINE1 "Error:  Option `--test' : str.\n"
-#define EXPECTED_LINE2 "Error: toto: Option `--test' : str.\n"
+#define EL_1 "Error:  Option `--test' : str.\n"
+#define EL_2 "Error: toto: Option `--test' : str.\n"
 
 int	targ_perror_pa_state(void)
 {
@@ -31,14 +31,14 @@ int	targ_perror_pa_state(void)
 	ft_bzero(&st, sizeof(st));
 	st.args = args;
 	st.mode = FTPA_LONG;
-	(pipe(ppe), dup2(ppe[1], STDERR_FILENO));
-	perror_pa_state(&st, "str");
+	pipe(ppe);
+	perror_pa_state(&st, "str", ppe[1]);
 	ft_set_progname("toto");
-	perror_pa_state(&st, "str");
+	perror_pa_state(&st, "str", ppe[1]);
 	ft_bzero(buffer, 1024);
 	read(ppe[0], &buffer, 1024);
-	(dup2(STDERR_FILENO, ppe[1]), close(ppe[0]), close(ppe[1]));
-	if (ft_strcmp(buffer, EXPECTED_LINE1 EXPECTED_LINE2) != 0)
+	(close(ppe[0]), close(ppe[1]));
+	if (ft_strcmp(buffer, EL_1 EL_2) != 0)
 		return (1);
 	return (EXIT_SUCCESS);
 }

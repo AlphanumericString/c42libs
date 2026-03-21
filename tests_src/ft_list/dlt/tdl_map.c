@@ -21,6 +21,16 @@
 #include "tests/list__dl_tests.h"
 #include "tests/fixtures.h"
 
+static void	destroy_all(t_dlist **a, t_dlist **b, t_dlist **c)
+{
+	if (a && *a)
+		ft_dl_delete(a, ft_free);
+	if (b && *b)
+		ft_dl_delete(b, ft_free);
+	if (c && *c)
+		ft_dl_delete(c, ft_free);
+}
+
 static int	base_case(void)
 {
 	t_dlist	*list;
@@ -33,21 +43,21 @@ static int	base_case(void)
 	map2 = ft_dl_map(list, NULL, ft_free);
 	map = ft_dl_map(list, add42_ret, ft_free);
 	if (!map)
-		return (1);
+		return (destroy_all(&list, &map, &map2), 1);
 	else if (*(int *)map->data != 84)
-		return (2);
+		return (destroy_all(&list, &map, &map2), 2);
 	else if (!map->next)
-		return (3);
+		return (destroy_all(&list, &map, &map2), 3);
 	else if (*(int *)map->next->data != 63)
-		return (4);
+		return (destroy_all(&list, &map, &map2), 4);
 	else if (map->next->next)
-		return (5);
+		return (destroy_all(&list, &map, &map2), 5);
 	else if (map2)
-		return (6);
+		return (destroy_all(&list, &map, &map2), 6);
 	map2 = ft_dl_map(NULL, NULL, NULL);
 	if (map2)
-		return (7);
-	return (ft_dl_clear(&list, ft_free), ft_dl_delete(&map, ft_free), 0);
+		return (destroy_all(&list, &map, &map2), 7);
+	return (destroy_all(&list, &map, &map2), EXIT_SUCCESS);
 }
 
 static int	mt_case(void)
@@ -63,10 +73,9 @@ static int	mt_case(void)
 	talloc_set_failpoint(0);
 	map = ft_dl_map(list, add42_ret, ft_free);
 	if (map)
-		return (talloc_set_failpoint(prev), 8);
+		return (talloc_set_failpoint(prev), ft_dl_delete(&list, ft_free), 8);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+	return (ft_dl_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tdl_map(void)

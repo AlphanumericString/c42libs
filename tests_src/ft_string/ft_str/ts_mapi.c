@@ -48,7 +48,7 @@ int	ts_mapi(void)
 
 	res = ft_strmapi(str, &local_mapi);
 	if (ft_strcmp(res, "hELLO5wORLD!") != 0)
-		return (1);
+		return (ft_free(res), 1);
 	ft_free(res);
 	if (ft_strmapi(NULL, &local_mapi))
 		return (2);

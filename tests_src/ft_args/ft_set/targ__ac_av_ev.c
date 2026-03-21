@@ -45,13 +45,16 @@ int	targ_ev_from_acav(void)
 
 	ft_set_ev_from_av(av_fake, 2);
 	if (ft_ev() != av_fake + 3)
-		return (1);
+		return (ft_set_ev(prev_ev), ft_set_av(prev_av),
+			ft_set_ac(prev_ac), 1);
 	ft_set_ev_from_av(av_fake, 1);
 	if (ft_ev() == av_fake + 1)
-		return (2);
+		return (ft_set_ev(prev_ev), ft_set_av(prev_av),
+			ft_set_ac(prev_ac), 2);
 	if (ft_set_ev_from_av(NULL, 0) != EXIT_FAILURE
 		|| ft_ev() != av_fake + 3)
-		return (3);
+		return (ft_set_ev(prev_ev), ft_set_av(prev_av),
+			ft_set_ac(prev_ac), 3);
 	return (ft_set_ev(prev_ev), ft_set_av(prev_av),
 		ft_set_ac(prev_ac), 0);
 }
@@ -64,13 +67,13 @@ int	targ_ev(void)
 	prev = ft_ev();
 	ft_set_ev((const char *const *)evs[0]);
 	if (ft_ev() != (const char *const *)evs[0])
-		return (1);
+		return (ft_set_ev(prev), 1);
 	ft_set_ev((const char *const *)evs[1]);
 	if (ft_ev() != (const char *const *)evs[1])
-		return (2);
+		return (ft_set_ev(prev), 2);
 	ft_set_ev(NULL);
 	if (ft_ev() != NULL)
-		return (3);
+		return (ft_set_ev(prev), 3);
 	return (ft_set_ev(prev), 0);
 }
 
@@ -82,12 +85,12 @@ int	targ_av(void)
 	{"0", "1", "2", NULL}};
 
 	if (ft_set_av(args[0]) != EXIT_SUCCESS || ft_av() != args[0])
-		return (1);
+		return (ft_set_av(prev), ft_set_ac(prev_ac), 1);
 	if (ft_set_av(args[1]) != EXIT_SUCCESS || ft_av() != args[1])
-		return (2);
+		return (ft_set_av(prev), ft_set_ac(prev_ac), 2);
 	if (ft_set_av(NULL) != EXIT_FAILURE || ft_av() != args[1])
-		return (3);
-	return (ft_set_av(prev), ft_set_ac(prev_ac));
+		return (ft_set_av(prev), ft_set_ac(prev_ac), 3);
+	return (ft_set_av(prev), ft_set_ac(prev_ac), 0);
 }
 /*
 GPL-3.0 License:

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "tests/map_tests.h"
-#include "ft_defs.h"
 #include "ft_map.h"
 #include "ft_string.h"
 

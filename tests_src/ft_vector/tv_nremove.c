@@ -66,7 +66,7 @@ int	tv_nremove(void)
 		|| *(int *)ft_vec_at(vec, 2) != 5)
 		return (ft_vec_destroy(&vec), 1);
 	if (*was_called() != true)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	ft_vec_nremove(vec, 1, 9999, NULL);
 	if (vec->n_e != 1 || *(int *)ft_vec_at(vec, 0) != 1)
 		return (ft_vec_destroy(&vec), 2);

@@ -25,11 +25,10 @@ int	tmap_clear(void)
 	map = ft_map_create(10);
 	ft_map_set(map, "key", "value", ft_strlen("key"));
 	ft_map_clear(map);
-	if (ft_map_get(map, "key", ft_strlen("key")))
-		return (1);
+	if (ft_map_get(map, "key", ft_strlen("key")) != NULL)
+		return (ft_map_destroy(map), 1);
 	ft_map_clear(map);
-	ft_map_destroy(map);
-	return (EXIT_SUCCESS);
+	return (ft_map_destroy(map), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

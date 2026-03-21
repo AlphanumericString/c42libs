@@ -67,7 +67,10 @@ static int	mt_gnl(int fd, const char **tl, int lc)
 	talloc_set_failpoint(0);
 	line = ft_gnl(fd);
 	if (line != NULL)
+	{
+		ft_free(line);
 		ret = 1;
+	}
 	talloc_set_failpoint(fp);
 	destroy_test_file(fd, TESTS_FPREFIX "gnl.txt");
 	return (ret);
@@ -90,12 +93,12 @@ int	ts_gnl(void)
 	{
 		line = ft_gnl(fd);
 		if (ft_strcmp(line, test_lines[i++]) != 0)
-			return (i + 1);
+			return (ft_free(line), i + 1);
 		ft_free(line);
 	}
 	line = ft_gnl(fd);
 	if (line)
-		return (2);
+		return (ft_free(line), 2);
 	return (mt_gnl(fd, test_lines, lines_count));
 }
 /*

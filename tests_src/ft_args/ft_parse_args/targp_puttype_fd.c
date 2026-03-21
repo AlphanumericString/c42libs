@@ -91,9 +91,10 @@ S_BOL S_FLT S_DBL S_ALP1 S_ALP2 S_CST S_UKN S_BAD_AH S_BAD_AS;
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(buff, sizeof(buff));
 	read(fd, buff, sizeof(buff));
+	destroy_test_file(fd, file_name);
 	if (ft_strcmp(buff, expe))
-		return (destroy_test_file(fd, file_name), EXIT_FAILURE);
-	return (destroy_test_file(fd, file_name), EXIT_SUCCESS);
+		return (1);
+	return (EXIT_SUCCESS);
 }
 
 int	targ_puttype_fd(void)

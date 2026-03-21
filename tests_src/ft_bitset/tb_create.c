@@ -18,13 +18,15 @@ static int	mt_bsnew(void)
 {
 	const int	fp = *talloc_get_failpoint();
 	t_bitset	bitset;
+	int			r;
 
+	r = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
 	bitset = ft_bs_create(12);
 	if (bitset.bits)
-		return (1 + 10);
+		r = 1 + 10;
 	talloc_set_failpoint(fp);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 int	tb_create(void)
@@ -33,13 +35,13 @@ int	tb_create(void)
 
 	bitset = ft_bs_create(64);
 	if (bitset._capacity != 64 / 8)
-		return (1);
+		return (ft_bs_free_inner(&bitset), 1);
 	if (!bitset.bits)
-		return (2);
+		return (ft_bs_free_inner(&bitset), 2);
 	ft_bs_free_inner(&bitset);
 	bitset = ft_bs_create(0);
 	if (bitset._capacity != 0 || bitset.bits != NULL)
-		return (3);
+		return (ft_bs_free_inner(&bitset), 3);
 	return (mt_bsnew());
 }
 /*

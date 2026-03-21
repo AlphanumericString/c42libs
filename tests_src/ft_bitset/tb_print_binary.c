@@ -54,9 +54,8 @@ int	tb_print_binary(void)
 	ft_bzero(buff, (sizeof buff / sizeof buff[0]));
 	if (read(fd, buff, (sizeof buff / sizeof buff[0]) - 1) < 0
 		|| ft_strcmp(buff, expecteds))
-		return (1);
-	destroy_test_file(fd, file_name);
-	return (EXIT_SUCCESS);
+		return (destroy_test_file(fd, file_name), 1);
+	return (destroy_test_file(fd, file_name), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

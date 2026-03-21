@@ -25,13 +25,15 @@ static bool	loc_checker(const void *arg)
 
 int	targ_custom_checker_test(void)
 {
+	const t_data_is	prev = ft_arg_get_custom_checker();
+
 	ft_arg_set_custom_checker(NULL);
 	if (ft_arg_get_custom_checker() != NULL)
-		return (1);
+		return (ft_arg_set_custom_checker(prev), 1);
 	ft_arg_set_custom_checker(loc_checker);
 	if (ft_arg_get_custom_checker() != loc_checker)
-		return (2);
-	return (EXIT_SUCCESS);
+		return (ft_arg_set_custom_checker(prev), 2);
+	return (ft_arg_set_custom_checker(prev), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -26,19 +26,18 @@ int	tdl_at(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	at = ft_dl_at(list, 1);
 	if (!at || at == list)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), 1);
 	else if (at->data != data2 || at->next || at->prev != list)
-		return (2);
+		return (ft_dl_delete(&list, ft_free), 2);
 	at = ft_dl_at(list, 0);
 	if (!at || at != list)
-		return (3);
+		return (ft_dl_delete(&list, ft_free), 3);
 	else if (at->data != data || at->next != list->next || at->prev)
-		return (4);
+		return (ft_dl_delete(&list, ft_free), 4);
 	at = ft_dl_at(list, 32);
 	if (at)
-		return (5);
-	ft_dl_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_dl_delete(&list, ft_free), 5);
+	return (ft_dl_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tdl_begin(void)
@@ -51,17 +50,16 @@ int	tdl_begin(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	begin = ft_dl_begin(list->next);
 	if (!begin)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), 1);
 	else if (begin != list)
-		return (2);
+		return (ft_dl_delete(&list, ft_free), 2);
 	else if (begin->data != data)
-		return (3);
+		return (ft_dl_delete(&list, ft_free), 3);
 	else if (begin->next != list->next)
-		return (4);
+		return (ft_dl_delete(&list, ft_free), 4);
 	else if (begin->prev)
-		return (5);
-	ft_dl_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_dl_delete(&list, ft_free), 5);
+	return (ft_dl_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tdl_end(void)
@@ -74,15 +72,14 @@ int	tdl_end(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	end = ft_dl_end(list);
 	if (!end)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), 1);
 	else if (end->data != data2)
-		return (2);
+		return (ft_dl_delete(&list, ft_free), 2);
 	else if (end->next)
-		return (3);
+		return (ft_dl_delete(&list, ft_free), 3);
 	else if (end->prev != list)
-		return (4);
-	ft_dl_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_dl_delete(&list, ft_free), 4);
+	return (ft_dl_delete(&list, ft_free), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

@@ -33,9 +33,10 @@ int	tll_create(void)
 	ft_ll_delete(&list, ft_free);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_ll_create(data))
-		return (talloc_set_failpoint(prev), 4);
+	list = ft_ll_create(data);
 	talloc_set_failpoint(prev);
+	if (list)
+		return (ft_free(list), 4);
 	return (EXIT_SUCCESS);
 }
 /*

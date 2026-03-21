@@ -25,17 +25,16 @@ int	tll_extract_max(void)
 
 	list = NULL;
 	if (ft_ll_extract_max(list, NULL) != NULL)
-		return (EXIT_FAILURE);
+		return (1);
 	i = 0;
 	while (strs[i])
 		ft_ll_push_back(&list, (void *)strs[i++]);
 	if (ft_ll_extract_max(list, NULL) != NULL)
-		return (2);
+		return (ft_ll_delete(&list, NULL), 2);
 	ret = ft_ll_extract_max(list, (t_data_cmp)ft_strcmp);
 	if (!ret || ft_strcmp((char *)ret, "world") != 0)
-		return (3);
-	ft_ll_clear(&list, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, NULL), 3);
+	return (ft_ll_delete(&list, NULL), EXIT_SUCCESS);
 }
 
 int	tll_extract_max_node(void)
@@ -47,17 +46,16 @@ int	tll_extract_max_node(void)
 
 	list = NULL;
 	if (ft_ll_extract_max_node(list, NULL) != NULL)
-		return (1);
+		return (ft_ll_delete(&list, NULL), 1);
 	i = 0;
 	while (strs[i])
 		ft_ll_push_back(&list, (void *)strs[i++]);
 	if (ft_ll_extract_max_node(list, NULL) != NULL)
-		return (2);
+		return (ft_ll_delete(&list, NULL), 2);
 	ret = ft_ll_extract_max_node(list, (t_data_cmp)ft_strcmp);
 	if (!ret || ft_strcmp(ret->data, "world") != 0)
-		return (3);
-	ft_ll_clear(&list, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, NULL), 3);
+	return (ft_ll_delete(&list, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

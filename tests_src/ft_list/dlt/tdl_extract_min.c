@@ -26,10 +26,10 @@ int	tdl_extract_min(void)
 	while (arr[i])
 		ft_dl_push(&list, (void *)arr[i++]);
 	if (ft_dl_extract_min(list, (t_any)ft_strcmp) != (void *)arr[1])
-		return (1);
+		return (ft_dl_delete(&list, NULL), 1);
 	if (ft_dl_extract_min(NULL, (t_any)ft_strcmp) != NULL
 		|| ft_dl_extract_min(list, NULL) != NULL)
-		return (2);
+		return (ft_dl_delete(&list, NULL), 2);
 	return (ft_dl_delete(&list, NULL), EXIT_SUCCESS);
 }
 
@@ -44,10 +44,10 @@ int	tdl_extract_min_node(void)
 	while (arr[i])
 		ft_dl_push(&list, (void *)arr[i++]);
 	if (ft_dl_extract_min_node(list, (t_any)ft_strcmp)->data != (void *)arr[1])
-		return (1);
+		return (ft_dl_delete(&list, NULL), 1);
 	if (ft_dl_extract_min_node(NULL, (t_any)ft_strcmp) != NULL
 		|| ft_dl_extract_min_node(list, NULL) != NULL)
-		return (2);
+		return (ft_dl_delete(&list, NULL), 2);
 	return (ft_dl_delete(&list, NULL), EXIT_SUCCESS);
 }
 /*

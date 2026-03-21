@@ -13,7 +13,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "ft_defs.h"
 #include "ft_mem.h"
 #include "ft_string.h"
 #include "ft_tstring.h"
@@ -32,16 +31,16 @@ static int	normal_cases(void)
 	str = ft_string_from(src);
 	fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (fd == -1)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_put(str, fd);
 	close(fd);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	res = ft_fd_to_buff(fd);
 	destroy_test_file(fd, file);
 	if (ft_strcmp(src, res) != 0)
-		return (3);
+		return (ft_string_destroy(&str), ft_free(res), 3);
 	return (ft_free(res), ft_string_destroy(&str), 0);
 }
 
@@ -52,16 +51,16 @@ static int	error_case(void)
 
 	str = ft_string_from("Hello");
 	if (ft_string_put(str, fd) != -1)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	if (ft_string_put(NULL, STDOUT_FILENO) != -1)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	ft_free_clear((void **)&str->str);
 	if (ft_string_put(str, STDOUT_FILENO) != -1)
-		return (3);
+		return (ft_string_destroy(&str), 3);
 	str->str = NULL;
 	str->length = 0;
 	if (ft_string_put(str, STDOUT_FILENO) != 0)
-		return (4);
+		return (ft_string_destroy(&str), 4);
 	return (ft_string_destroy(&str), 0);
 }
 

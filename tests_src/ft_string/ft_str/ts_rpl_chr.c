@@ -22,13 +22,13 @@ int	ts_rplchr(void)
 	str = ft_strdup("Hello World!");
 	res = ft_strrpl_chr(str, 'o', 'a');
 	if (ft_strcmp(res, "Hella Warld!") != 0)
-		return (1);
+		return (ft_free(res), 1);
 	ft_free(res);
 	str = ft_strdup("Hello World!");
 	res = ft_strrpl_chr(str, 'o', '\0');
 	if (ft_strcmp(res, "Hell") != 0 || ft_strcmp(res + 5, " W") != 0
 		|| ft_strcmp(res + 8, "rld!") != 0)
-		return (2);
+		return (ft_free(res), 2);
 	ft_free(res);
 	return (EXIT_SUCCESS);
 }

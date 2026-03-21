@@ -19,25 +19,21 @@
 
 int	to_from_val(void)
 {
-	int			*ptr;
 	t_optional	*opt;
 	int			prev;
 
-	ptr = ft_malloc(sizeof(int));
-	*ptr = 42;
-	opt = ft_optional_from_val(ptr);
-	if (!opt || !opt->val || opt->val != ptr)
-		return (ft_free(ptr), ft_free(opt), 1);
+	opt = ft_optional_from_val((void *)0xDEAD);
+	if (!opt || !opt->val || opt->val != (void *)0xDEAD)
+		return (ft_free(opt), 1);
 	if (opt->pres != OPT_SOME)
-		return (ft_optional_destroy(opt), ft_free(ptr), 2);
-	opt->pres = OPT_NONE;
-	ft_optional_destroy(opt);
+		return (ft_free(opt), 2);
+	ft_free(opt);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_optional_from_val(ptr))
-		return (talloc_set_failpoint(prev), 3);
+	opt = ft_optional_from_val((void *)0xDEAD);
 	talloc_set_failpoint(prev);
-	ft_free(ptr);
+	if (opt)
+		return (ft_free(opt), 3);
 	return (EXIT_SUCCESS);
 }
 /*

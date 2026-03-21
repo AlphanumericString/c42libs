@@ -23,7 +23,7 @@ void	ft_afree(void **arr)
 	ft_free(arr);
 }
 
-void	ft_anfree(void **arr, size_t	n)
+void	ft_anfree(void **arr, size_t n)
 {
 	if (!arr || !n)
 		return ;

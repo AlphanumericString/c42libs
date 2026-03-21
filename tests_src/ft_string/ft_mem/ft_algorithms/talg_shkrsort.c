@@ -15,7 +15,6 @@
 #include "tests/str__mem_tests.h"
 #include "tests/tests_lambda_functions.h"
 
-
 int	talg_shkrsort(void)
 {
 	const t_arrinfo	nf = (t_arrinfo){FT_STD_BUF_SIZE, sizeof(size_t)};

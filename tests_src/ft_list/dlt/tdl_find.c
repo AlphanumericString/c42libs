@@ -39,12 +39,12 @@ int	tdl_find(void)
 	found_ret[1] = ft_dl_find(list, data3, NULL);
 	found_ret[2] = ft_dl_find(list, data3, ft_cmp_int_p);
 	if (ft_dl_size(found_ret[0]) != 1 || found_ret[0]->data != data2)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), 1);
 	else if (found_ret[1])
-		return (2);
+		return (ft_dl_delete(&list, ft_free), 2);
 	else if (ft_dl_size(found_ret[2]) != 1 || found_ret[2]->data != data2)
-		return (3);
-	return (ft_dl_clear(&list, ft_free), free(data3), 0);
+		return (ft_dl_delete(&list, ft_free), 3);
+	return (ft_dl_delete(&list, ft_free), ft_free(data3), 0);
 }
 /*
 GPL-3.0 License:

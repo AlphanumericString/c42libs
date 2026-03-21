@@ -25,7 +25,7 @@ static int	mt_string_insert_c(void)
 	ft_string_insert_c(str, 'a', -1);
 	talloc_set_failpoint(fp);
 	if (ft_string_cmp(str, "Hello") != 0 || str->length != 5)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
 }
@@ -37,14 +37,14 @@ int	test_string_insert_c(void)
 	str = ft_string_from("Hello");
 	ft_string_insert_c(str, ' ', 0);
 	if (ft_string_cmp(str, " Hello") != 0)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	if (str->length != 6 || str->capacity < 6)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	ft_string_insert_c(str, '!', 99);
 	if (ft_string_cmp(str, " Hello!") != 0)
-		return (3);
+		return (ft_string_destroy(&str), 3);
 	if (str->length != 7 || str->capacity < 7)
-		return (4);
+		return (ft_string_destroy(&str), 4);
 	ft_string_destroy(&str);
 	return (mt_string_insert_c());
 }

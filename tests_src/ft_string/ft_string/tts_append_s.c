@@ -27,10 +27,8 @@ static int	mt_string_append_s(void)
 	ft_string_append_s(str, src);
 	talloc_set_failpoint(fp);
 	if (ft_string_cmp(str, "Hello") != 0)
-		return (1);
-	ft_string_destroy(&str);
-	ft_string_destroy(&src);
-	return (EXIT_SUCCESS);
+		return (ft_string_destroy(&str), ft_string_destroy(&src), 1);
+	return (ft_string_destroy(&str), ft_string_destroy(&src), EXIT_SUCCESS);
 }
 
 int	test_string_append_s(void)
@@ -42,23 +40,23 @@ int	test_string_append_s(void)
 	str2 = ft_string_from(" World");
 	ft_string_append_s(str, str2);
 	if (ft_string_cmp(str, "Hello World") != 0)
-		return (1);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 1);
 	if (str->length != 11)
-		return (2);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 2);
 	if (str->capacity < 11)
-		return (3);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 3);
 	ft_string_destroy(&str);
 	ft_string_destroy(&str2);
 	str = ft_string_from("hi");
 	str2 = ft_string_from("i");
 	ft_string_append_s(str, str2);
 	if (ft_string_cmp(str, "hii") != 0)
-		return (4);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 4);
 	if (str->length != 3 || str->capacity < 3)
-		return (5);
-	ft_string_append_s(str, NULL);
-	ft_string_append_s(NULL, str2);
-	return (ft_string_destroy(&str), ft_string_destroy(&str2),
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 5);
+	ft_string_destroy(&str);
+	ft_string_destroy(&str2);
+	return (ft_string_append_s(str, NULL), ft_string_append_s(NULL, str2),
 		mt_string_append_s());
 }
 /*

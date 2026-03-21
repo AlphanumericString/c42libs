@@ -33,9 +33,9 @@ static int	check_fold(const int *asrc, const int *aexp, size_t nb_as)
 	while (i < (nb_as / 2) + nb_as % 2)
 	{
 		if (ft_vec_get(&v, i, &g) != &g)
-			return (i * 2 + 1);
+			return (ft_vec_wipe(&v), i * 2 + 1);
 		if (g != aexp[i])
-			return (i * 2 + 2);
+			return (ft_vec_wipe(&v), i * 2 + 2);
 		i++;
 	}
 	ft_vec_wipe(&v);

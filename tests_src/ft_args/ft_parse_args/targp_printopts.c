@@ -59,13 +59,14 @@ int	targ_printopts(void)
 	ft_bzero(&test, sizeof(t_usr));
 	ft_set_opt_list(get_test_topt());
 	opts = ft_get_opt_list();
-	(pipe(ppe), dup2(ppe[1], STDERR_FILENO));
-	ft_print_fopts(opts, STDERR_FILENO);
+	pipe(ppe);
+	ft_print_fopts(opts, ppe[1]);
 	ft_bzero(err_desc, DESC_SIZE);
 	read(ppe[0], &err_desc, DESC_SIZE);
+	(close(ppe[0]), close(ppe[1]));
 	if (ft_strcmp(err_desc, desc) != 0)
-		return (dup2(STDERR_FILENO, ppe[1]), close(ppe[0]), close(ppe[1]), 1);
-	return (dup2(STDERR_FILENO, ppe[1]), close(ppe[0]), close(ppe[1]), 0);
+		return (1);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

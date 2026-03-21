@@ -22,7 +22,7 @@ int	ts_dup(void)
 	str = "Hello World!";
 	res = ft_strdup(str);
 	if (ft_strcmp(res, str) != 0)
-		return (1);
+		return (ft_free(res), 1);
 	ft_free(res);
 	return (EXIT_SUCCESS);
 }

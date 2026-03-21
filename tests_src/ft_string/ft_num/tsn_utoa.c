@@ -25,7 +25,7 @@ static int	mt_utoa(void)
 	res = ft_utoa(42);
 	talloc_set_failpoint(fp);
 	if (res)
-		return (32);
+		return (ft_free(res), 32);
 	return (EXIT_SUCCESS);
 }
 
@@ -42,7 +42,7 @@ int	tsn_utoa(void)
 	{
 		res = ft_utoa(t_cases[i]);
 		if (ft_strcmp(res, expected_results[i++]) != 0)
-			return (i + 1);
+			return (ft_free(res), i + 1);
 		ft_free(res);
 	}
 	return (mt_utoa());

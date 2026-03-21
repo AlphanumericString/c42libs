@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "types/ft_list_types.h"
 
@@ -25,19 +26,19 @@ int	tcl_add_front(void)
 	node[1] = ft_cl_create((void *)43);
 	node[2] = ft_cl_create((void *)44);
 	if (!node[0] || !node[1] || !node[2])
-		return (1);
+		return (ft_free(node[0]), ft_free(node[1]), ft_free(node[2]), 1);
 	ft_cl_add_front(&cl, node[0]);
 	if (!cl || cl->data != (void *)42 || cl->next != cl
 		|| cl->prev != cl)
-		return (2);
+		return (ft_free(node[0]), ft_free(node[1]), ft_free(node[2]), 2);
 	ft_cl_add_front(&cl, node[1]);
 	if (!cl || cl->data != (void *)43 || cl->next != node[0]
 		|| cl->prev != node[0])
-		return (3);
+		return (ft_free(node[0]), ft_free(node[1]), ft_free(node[2]), 3);
 	ft_cl_add_front(&cl, node[2]);
 	if (!cl || cl->data != (void *)44 || cl->next != node[1]
 		|| cl->prev != node[0])
-		return (4);
+		return (ft_free(node[0]), ft_free(node[1]), ft_free(node[2]), 4);
 	ft_cl_add_front(&cl, NULL);
 	ft_cl_add_front(NULL, node[0]);
 	return (ft_cl_delete(&cl, NULL), 0);
@@ -53,19 +54,19 @@ int	tcl_add_back(void)
 	node[1] = ft_cl_create((void *)43);
 	node[2] = ft_cl_create((void *)44);
 	if (!node[0] || !node[1] || !node[2])
-		return (1);
+		return (ft_free(node[0]), ft_free(node[1]), ft_free(node[2]), 1);
 	ft_cl_add_back(&cl, node[0]);
 	if (!cl || cl->data != (void *)42 || cl->next != cl
 		|| cl->prev != cl)
-		return (2);
+		return (ft_free(node[0]), ft_free(node[1]), ft_free(node[2]), 2);
 	ft_cl_add_back(&cl, node[1]);
 	if (!cl || cl->data != (void *)42 || cl->next != node[1]
 		|| cl->prev != node[1])
-		return (3);
+		return (ft_free(node[0]), ft_free(node[1]), ft_free(node[2]), 3);
 	ft_cl_add_back(&cl, node[2]);
 	if (!cl || cl->data != (void *)42 || cl->next != node[1]
 		|| cl->prev != node[2])
-		return (4);
+		return (ft_free(node[0]), ft_free(node[1]), ft_free(node[2]), 4);
 	ft_cl_add_back(&cl, NULL);
 	ft_cl_add_back(NULL, node[0]);
 	return (ft_cl_delete(&cl, NULL), 0);

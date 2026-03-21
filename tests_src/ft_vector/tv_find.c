@@ -54,13 +54,13 @@ int	tv_find(void)
 		ft_vec_add(vector, &src[i++]);
 	data_ret = ft_vec_find(vector, "world", cmp_str);
 	if (data_ret && ft_strcmp(data_ret, "world") != 0)
-		return (1);
+		return (ft_vec_destroy(&vector), 1);
 	data_ret = ft_vec_find(vector, "Zod", cmp_str);
 	if (data_ret && ft_strcmp(data_ret, "Zod") != 0)
-		return (2);
+		return (ft_vec_destroy(&vector), 2);
 	if (ft_vec_find(vector, "not here", cmp_str) != NULL
 		|| ft_vec_find(vector, "not here", NULL) != NULL)
-		return (3);
+		return (ft_vec_destroy(&vector), 3);
 	i = edge(vector, &src[2]);
 	if (i)
 		return (ft_vec_destroy(&vector), i);

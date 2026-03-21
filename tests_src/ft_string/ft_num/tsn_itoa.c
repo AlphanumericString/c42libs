@@ -20,20 +20,22 @@ static int	mt_cases(void)
 {
 	char		*res;
 	const int	p_fp = *talloc_get_failpoint();
+	int			r;
 
 	res = ft_itoa(INT_MAX);
 	if (res == NULL || ft_strcmp(res, "2147483647") != 0)
-		return (1);
+		return (ft_free(res), 1);
 	ft_free(res);
 	res = ft_itoa(INT_MIN);
 	if (res == NULL || ft_strcmp(res, "-2147483648") != 0)
-		return (2);
+		return (ft_free(res), 2);
 	ft_free(res);
+	r = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
 	if (ft_itoa(42) != NULL || ft_itoa(-42) != NULL)
-		return (3);
+		r = 3;
 	talloc_set_failpoint(p_fp);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 int	tsn_itoa(void)
@@ -48,7 +50,7 @@ int	tsn_itoa(void)
 	{
 		res = ft_itoa(t_cases[i]);
 		if (ft_strcmp(res, expected_results[i++]) != 0)
-			return (i + 1);
+			return (ft_free(res), i + 1);
 		ft_free(res);
 	}
 	return (mt_cases());

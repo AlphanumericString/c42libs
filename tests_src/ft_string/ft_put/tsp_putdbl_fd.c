@@ -68,7 +68,7 @@ int	tsp_putdbl_fd(void)
 	destroy_test_file(fd, file_name);
 	ft_free((t_any) file_name);
 	if (ft_strcmp(expected, res) != 0)
-		return (1);
+		return (ft_free(res), 2);
 	return (ft_free(res), bad_fd_tests());
 }
 /*

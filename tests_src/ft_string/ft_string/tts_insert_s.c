@@ -26,9 +26,11 @@ static int	mt_string_insert_s(void)
 	talloc_set_failpoint(0);
 	if (ft_string_insert_s(str, src, -1) != 0
 		|| ft_string_insert_s(str, src, -1) != 0)
-		return (talloc_set_failpoint(fp), 1);
+		return (talloc_set_failpoint(fp), ft_string_destroy(&str),
+			ft_string_destroy(&src), 1);
 	if (ft_string_cmp(str, "Hello") != 0 || str->length != 5)
-		return (talloc_set_failpoint(fp), 2);
+		return (talloc_set_failpoint(fp), ft_string_destroy(&str),
+			ft_string_destroy(&src), 2);
 	ft_string_destroy(&str);
 	ft_string_destroy(&src);
 	talloc_set_failpoint(fp);
@@ -44,14 +46,14 @@ int	test_string_insert_s(void)
 	str2 = ft_string_from(" World");
 	ft_string_insert_s(str, str2, 0);
 	if (ft_string_cmp(str, " WorldHello") != 0)
-		return (1);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 2);
 	if (str->length != 11 || str->capacity < 11)
-		return (2);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 2);
 	ft_string_insert_s(str, str2, 99);
 	if (ft_string_cmp(str, " WorldHello World") != 0)
-		return (3);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 3);
 	if (str->length != 17 || str->capacity < 17)
-		return (4);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 4);
 	ft_string_destroy(&str);
 	ft_string_destroy(&str2);
 	return (mt_string_insert_s());

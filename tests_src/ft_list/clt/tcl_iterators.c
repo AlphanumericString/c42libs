@@ -47,17 +47,17 @@ int	tcl_begin(void)
 	lst = NULL;
 	begin = ft_cl_begin(NULL);
 	if (begin != NULL)
-		return (1);
+		return (ft_cl_delete(&lst, NULL), 1);
 	lst = ft_cl_create((void *)42);
 	if (!lst)
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	begin = ft_cl_begin(lst);
 	if (!begin || begin != lst)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	ft_cl_push_back(&lst, (void *)43);
 	begin = ft_cl_begin(lst);
 	if (!begin || begin != lst)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 4);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 
@@ -72,15 +72,15 @@ int	tcl_end(void)
 		return (1);
 	lst = ft_cl_create((void *)42);
 	if (!lst)
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	end = ft_cl_end(lst);
 	if (!end || end != lst)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	ft_cl_push_back(&lst, (void *)43);
 	ft_cl_push_back(&lst, (void *)44);
 	end = ft_cl_end(lst);
 	if (!end || end->data != (void *)44 || end != lst->prev)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 4);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 /*

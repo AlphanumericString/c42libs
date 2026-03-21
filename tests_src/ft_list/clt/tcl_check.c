@@ -14,6 +14,7 @@
 #include "ft_arr.h"
 #include "ft_algorithms.h"
 #include "types/ft_list_types.h"
+#include "ft_mem.h"
 
 #include "tests/list__cl_tests.h"
 
@@ -32,16 +33,15 @@ int	tcl_check_circular(void)
 		return (1);
 	nodes = ft_cl_get_nodes(lst);
 	if (!nodes || ft_cl_check_circular(lst) != true)
-		return (2);
+		return (ft_afree((void **)nodes), 2);
 	nodes[5]->next = nodes[0];
 	if (ft_cl_check_circular(lst) != true)
-		return (3);
+		return (ft_afree((void **)nodes), 3);
 	nodes[5]->next = NULL;
 	nodes[5]->prev = NULL;
 	if (ft_cl_check_circular(lst) != false)
-		return (4);
-	ft_afree((void **)nodes);
-	return (EXIT_SUCCESS);
+		return (ft_afree((void **)nodes), 4);
+	return (ft_afree((void **)nodes), EXIT_SUCCESS);
 }
 
 int	tcl_check_sorted(void)
@@ -50,17 +50,17 @@ int	tcl_check_sorted(void)
 
 	lst = NULL;
 	if (ft_cl_check_sorted(lst, ft_cmp_ptr) != true)
-		return (1);
+		return (ft_cl_delete(&lst, NULL), 1);
 	ft_cl_push(&lst, (void *)9);
 	if (ft_cl_check_sorted(lst, ft_cmp_ptr) != true)
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	ft_cl_push(&lst, (void *)8);
 	ft_cl_push(&lst, (void *)7);
 	if (ft_cl_check_sorted(lst, ft_cmp_ptr) != true)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	ft_cl_push(&lst, (void *)10);
 	if (ft_cl_check_sorted(lst, ft_cmp_ptr) != false)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 4);
 	ft_cl_check_sorted(lst, NULL);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
@@ -68,18 +68,18 @@ int	tcl_check_sorted(void)
 static int	tcl_check_health_p2(t_clist *lst, t_clist **nodes)
 {
 	if (ft_cl_check_health(NULL) != true)
-		return (4);
+		return (ft_aapply((void **)nodes, ft_free), 4);
 	nodes[5]->next = NULL;
 	if (ft_cl_check_health(nodes[7]) != false
 		|| ft_cl_check_health(lst) != false)
-		return (5);
+		return (ft_aapply((void **)nodes, ft_free), 5);
 	nodes[5]->next = nodes[6];
 	nodes[5]->prev = NULL;
 	if (ft_cl_check_health(nodes[7]) != false
 		|| ft_cl_check_health(lst) != false)
-		return (6);
+		return (ft_aapply((void **)nodes, ft_free), 6);
 	nodes[5]->prev = nodes[4];
-	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
+	return (ft_aapply((void **)nodes, ft_free), EXIT_SUCCESS);
 }
 
 int	tcl_check_health(void)
@@ -96,16 +96,16 @@ int	tcl_check_health(void)
 	while (i--)
 		nodes[i] = ft_cl_at(lst, i);
 	if (ft_cl_check_health(lst) != true)
-		return (1);
+		return (ft_aapply((void **)nodes, ft_free), 1);
 	nodes[5]->next = nodes[0];
 	if (ft_cl_check_health(lst) != false
 		|| ft_cl_check_health(nodes[7]) != false)
-		return (2);
+		return (ft_aapply((void **)nodes, ft_free), 2);
 	nodes[5]->next = nodes[6];
 	nodes[3]->prev = nodes[6];
 	if (ft_cl_check_health(nodes[7]) != false
 		|| ft_cl_check_health(lst) != false)
-		return (3);
+		return (ft_aapply((void **)nodes, ft_free), 3);
 	nodes[3]->prev = nodes[2];
 	return (tcl_check_health_p2(lst, nodes));
 }

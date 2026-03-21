@@ -14,21 +14,45 @@
 #include "tests/tests.h"
 #include "tests/str__mem_tests.h"
 
-int	talg_isrtsort_b(void);
+/*
+ * sorted list:
+
+{"bblsort", talg_bblsort},
+{"binsrch", talg_binsrch},
+{"cmps", talg_cmps},
+{"getmax", talg_getmax},
+{"getmin", talg_getmin},
+{"isord_ok", talg_isord_ok},
+{"isrtsort_b", talg_isrtsort_b},
+{"isrtsort", talg_isrtsort},
+{"is_sorted", talg_issorted},
+{"mrgsort_r", talg_mrgsort_r},
+{"mrgsort", talg_mrgsort},
+{"qsort", talg_qsort},
+{"rcmp", talg_rcmps},
+{"sbblsort", talg_sbblsort},
+{"sbcksort", talg_sbcksort},
+{"shkrsort", talg_shkrsort},
+{"sisrtsort", talg_sisrtsort},
+{"slctsort", talg_slctsort},
+{"ssbblsort", talg_ssbblsort},
+{"ssisrtsort", talg_ssisrtsort},
+
+*/
 
 static const t_fnamed	*talg_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"binsrch", talg_binsrch}, {"qsort", talg_qsort},
-	{"is_sorted", talg_issorted}, {"bblsort", talg_bblsort},
-	{"sbblsort", talg_sbblsort}, {"ssbblsort", talg_ssbblsort},
-	{"isrtsort", talg_isrtsort}, {"sisrtsort", talg_sisrtsort},
-	{"ssisrtsort", talg_ssisrtsort}, {"isrtsort_b", talg_isrtsort_b},
-	{"sbcksort", talg_sbcksort}, {"cmps", talg_cmps}, {"rcmp", talg_rcmps},
-	{"slctsort", talg_slctsort}, {"getmax", talg_getmax},
-	{"getmin", talg_getmin}, {"isord_ok", talg_isord_ok},
-	{"mrgsort", talg_mrgsort}, {"shkrsort", talg_shkrsort},
-	{"mrgsort_r", talg_mrgsort_r}, {NULL, NULL}};
+	{"bblsort", talg_bblsort}, {"binsrch", talg_binsrch}, {"cmps", talg_cmps},
+	{"getmax", talg_getmax}, {"getmin", talg_getmin},
+	{"isord_ok", talg_isord_ok}, {"isrtsort_b", talg_isrtsort_b},
+	{"isrtsort", talg_isrtsort}, {"is_sorted", talg_issorted},
+	{"mrgsort_r", talg_mrgsort_r}, {"mrgsort", talg_mrgsort},
+	{"qsort", talg_qsort}, {"rcmp", talg_rcmps}, {"sbblsort", talg_sbblsort},
+	{"sbcksort", talg_sbcksort}, {"shkrsort", talg_shkrsort},
+	{"sisrtsort", talg_sisrtsort}, {"slctsort", talg_slctsort},
+	{"ssbblsort", talg_ssbblsort}, {"ssisrtsort", talg_ssisrtsort},
+	{NULL, NULL}};
 
 	return (tests);
 }

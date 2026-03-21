@@ -22,7 +22,9 @@ static int	mt_clsubrange(void)
 	const int	fp = *talloc_get_failpoint();
 	t_clist		*cl;
 	t_clist		*sub;
+	int			r;
 
+	r = EXIT_SUCCESS;
 	cl = NULL;
 	ft_cl_push(&cl, "toto");
 	ft_cl_push(&cl, "titi");
@@ -30,10 +32,10 @@ static int	mt_clsubrange(void)
 	talloc_set_failpoint(0);
 	sub = ft_cl_subrange(cl, cl->prev);
 	if (sub)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(fp);
 	ft_cl_delete(&cl, NULL);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 static int	tcl_subrange_partial(t_clist *lst)
@@ -45,14 +47,14 @@ static int	tcl_subrange_partial(t_clist *lst)
 		|| subrange->data != (void *)42
 		|| subrange->next->data != (void *)43
 		|| subrange->next->next->data != (void *)44)
-		return (4);
+		return (ft_cl_delete(&subrange, NULL), 4);
 	ft_cl_delete(&subrange, NULL);
 	subrange = ft_cl_subrange(lst, lst->next->next);
 	if (!subrange || ft_cl_size(subrange) != 2
 		|| subrange->data != (void *)42
 		|| subrange->next->data != (void *)43
 		|| subrange->next->next != subrange)
-		return (5);
+		return (ft_cl_delete(&subrange, NULL), 5);
 	return (ft_cl_delete(&subrange, NULL), EXIT_SUCCESS);
 }
 
@@ -67,7 +69,7 @@ int	tcl_subrange(void)
 	lst = ft_cl_create((void *)42);
 	subrange = ft_cl_subrange(lst, NULL);
 	if (!subrange || subrange->data != (void *)42 || !lst)
-		return (2);
+		return (ft_cl_delete(&subrange, NULL), 2);
 	ft_cl_delete(&subrange, NULL);
 	ft_cl_delete(&lst, NULL);
 	lst = a_to_cl((int []){42, 43, 44}, 3);
@@ -75,13 +77,12 @@ int	tcl_subrange(void)
 	if (!subrange || subrange->next != subrange
 		|| subrange->prev != subrange
 		|| subrange->data != (void *)42 || lst->data != (void *)42)
-		return (3);
+		return (ft_cl_delete(&subrange, NULL), 3);
 	ft_cl_delete(&subrange, NULL);
 	err = tcl_subrange_partial(lst);
 	if (err != 0)
 		return (err);
-	return (ft_cl_delete(&lst, NULL), ft_cl_delete(&subrange, NULL),
-		mt_clsubrange());
+	return (ft_cl_delete(&lst, NULL), mt_clsubrange());
 }
 /*
 GPL-3.0 License:

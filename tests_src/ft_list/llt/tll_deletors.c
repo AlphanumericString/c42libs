@@ -49,12 +49,11 @@ int	tll_delete_range(void)
 	nxt = list->next;
 	nb_deleted = ft_ll_delete_range(list, list->next, ft_free);
 	if (nb_deleted != 1)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), 1);
 	nb_deleted = ft_ll_delete_range(NULL, nxt, ft_free);
 	if (nb_deleted != 0)
-		return (2);
-	ft_ll_delete(&nxt, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, ft_free), 1);
+	return (ft_ll_delete(&nxt, ft_free), EXIT_SUCCESS);
 }
 
 int	tll_delete(void)
@@ -67,17 +66,15 @@ int	tll_delete(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	nb_del = ft_ll_delete(&list, NULL);
 	if (nb_del != 2 || list)
-		return (1);
+		return (ft_ll_delete(&list, NULL), 1);
 	list = ft_ll_create(data);
 	ft_ll_push_back(&list, data2);
 	nb_del = ft_ll_delete(&list, ft_free);
 	if (list || nb_del != 2)
-		return (2);
-	nb_del = ft_ll_delete(NULL, NULL);
-	if (nb_del != 0)
+		return (ft_ll_delete(&list, NULL), 2);
+	if (ft_ll_delete(&list, ft_free) != 0)
 		return (3);
-	nb_del = ft_ll_delete(&list, ft_free);
-	if (nb_del != 0)
+	if (ft_ll_delete(NULL, NULL) != 0)
 		return (4);
 	return (EXIT_SUCCESS);
 }

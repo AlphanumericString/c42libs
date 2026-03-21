@@ -23,9 +23,9 @@ int	tv_new(void)
 	vec = ft_vec_new();
 	if (vec->n_e != 0 || vec->s_e != 1
 		|| vec->cappacity != FT_VECTOR_BASE_LEN)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	else if (!vec->data)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }

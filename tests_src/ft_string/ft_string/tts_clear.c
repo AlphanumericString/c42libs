@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
 #include "ft_tstring.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+#include <stdlib.h>
 
 int	test_string_clear(void)
 {
@@ -24,13 +24,12 @@ int	test_string_clear(void)
 	capacity = str->capacity;
 	ft_string_clear(str);
 	if (ft_string_cmp(str, "") != 0)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	if (str->length != 0)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	if (str->capacity != capacity)
-		return (3);
-	ft_string_destroy(&str);
-	return (EXIT_SUCCESS);
+		return (ft_string_destroy(&str), 3);
+	return (ft_string_destroy(&str), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

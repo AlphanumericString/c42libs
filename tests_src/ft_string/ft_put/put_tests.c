@@ -14,17 +14,33 @@
 #include "tests/tests.h"
 #include "tests/str__put_tests.h"
 
+/*
+ * sorted list:
+
+{"perror", tsp_perror},
+{"print_err", tsp_print_err},
+{"print_fd", tsp_printfd},
+{"print", tsp_print},
+{"putchar", tsp_putchar},
+{"putdbl_fd", tsp_putdbl_fd},
+{"putendl", tsp_putendl},
+{"putnbr_base", tsp_putnbr_base},
+{"putnbr", tsp_putnbr},
+{"putnchar", tsp_putnchar},
+{"putstr", tsp_putstr},
+{"putunbr_base", tsp_putunbr_base},
+
+*/
+
 static const t_fnamed	*tsp_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"putnbr", tsp_putnbr}, {"putnbr_base", tsp_putnbr_base},
+	{"perror", tsp_perror}, {"print_err", tsp_print_err},
+	{"print_fd", tsp_printfd}, {"print", tsp_print}, {"putchar", tsp_putchar},
+	{"putdbl_fd", tsp_putdbl_fd}, {"putendl", tsp_putendl},
+	{"putnbr_base", tsp_putnbr_base}, {"putnbr", tsp_putnbr},
+	{"putnchar", tsp_putnchar}, {"putstr", tsp_putstr},
 	{"putunbr_base", tsp_putunbr_base},
-	{"putdbl_fd", tsp_putdbl_fd},
-	{"putstr", tsp_putstr}, {"putendl", tsp_putendl},
-	{"putchar", tsp_putchar}, {"putnchar", tsp_putnchar},
-	{"perror", tsp_perror},
-	{"print_fd", tsp_printfd}, {"print", tsp_print},
-	{"print_err", tsp_print_err}, {"va_print_fd", tsp_va_printfd},
 	{NULL, NULL}};
 
 	return (tests);

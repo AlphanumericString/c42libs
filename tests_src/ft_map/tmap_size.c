@@ -27,10 +27,10 @@ int	tmap_size(void)
 	map = ft_map_create(10);
 	ft_map_set(map, "key", str, ft_strlen("key"));
 	ret = ft_map_size(map);
+	ft_free(str);
+	ft_map_destroy(map);
 	if (ret != 1)
 		return (1);
-	ft_map_destroy(map);
-	ft_free(str);
 	return (EXIT_SUCCESS);
 }
 /*

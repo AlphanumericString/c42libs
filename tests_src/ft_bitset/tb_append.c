@@ -21,18 +21,20 @@ static int	mt_bsappend(void)
 	t_bitset	*b1;
 	t_bitset	*b2;
 	const int	fp = *talloc_get_failpoint();
+	int			r;
 
 	b1 = ft_bs_new(8);
 	ft_bs_set_raw(b1, 0, 0xDE);
 	b2 = ft_bs_new(8);
 	ft_bs_set_raw(b2, 0, 0xAD);
+	r = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
 	if (ft_bs_append(b1, b2) != false)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(fp);
 	ft_bs_free(&b1);
 	ft_bs_free(&b2);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 static void	reset_bitsets(t_bitset **b1, t_bitset **b2)

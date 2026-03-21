@@ -26,10 +26,10 @@ int	tdl_extract_max(void)
 	while (arr[i])
 		ft_dl_push(&list, (void *)arr[i++]);
 	if (ft_dl_extract_max(list, (t_any)ft_strcmp) != (void *)arr[i - 1])
-		return (1);
+		return (ft_dl_delete(&list, NULL), 1);
 	if (ft_dl_extract_max(NULL, (t_any)ft_strcmp) != NULL
 		|| ft_dl_extract_max(list, NULL) != NULL)
-		return (2);
+		return (ft_dl_delete(&list, NULL), 2);
 	return (ft_dl_delete(&list, NULL), EXIT_SUCCESS);
 }
 
@@ -45,10 +45,10 @@ int	tdl_extract_max_node(void)
 		ft_dl_push_back(&list, (void *)arr[i++]);
 	if (ft_dl_extract_max_node(list, (t_any)ft_strcmp)->data
 		!= (void *)arr[i - 1])
-		return (1);
+		return (ft_dl_delete(&list, NULL), 1);
 	if (ft_dl_extract_max_node(NULL, (t_any)ft_strcmp) != NULL
 		|| ft_dl_extract_max_node(list, NULL) != NULL)
-		return (2);
+		return (ft_dl_delete(&list, NULL), 2);
 	return (ft_dl_delete(&list, NULL), EXIT_SUCCESS);
 }
 /*

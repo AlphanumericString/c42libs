@@ -34,13 +34,13 @@ int	tdl_size(void)
 	size_ret[0] = ft_dl_size(NULL);
 	size_ret[1] = ft_dl_size(list->next);
 	size_ret[2] = ft_dl_size(list);
+	ft_dl_delete(&list, ft_free);
 	if (size_ret[0] != 0)
 		return (1);
 	else if (size_ret[1] != 1)
 		return (2);
 	else if (size_ret[2] != 2)
 		return (3);
-	ft_dl_clear(&list, ft_free);
 	return (EXIT_SUCCESS);
 }
 
@@ -55,13 +55,13 @@ int	tdl_size_datais(void)
 	size_ret[0] = ft_dl_size_data_is(NULL, is42);
 	size_ret[1] = ft_dl_size_data_is(list->next, is42);
 	size_ret[2] = ft_dl_size_data_is(list, is42);
+	ft_dl_delete(&list, ft_free);
 	if (size_ret[0] != 0)
 		return (1);
 	else if (size_ret[1] != 0)
 		return (2);
 	else if (size_ret[2] != 1)
 		return (3);
-	ft_dl_clear(&list, ft_free);
 	return (EXIT_SUCCESS);
 }
 
@@ -78,7 +78,7 @@ int	tdl_size_cmp(void)
 	if (!lst)
 		return (1);
 	if (ft_dl_size_cmp(lst, "this", (t_data_cmp)ft_strcmp) != 2)
-		return (2);
+		return (ft_dl_delete(&lst, NULL), 2);
 	ft_dl_clear(&lst, NULL);
 	return (EXIT_SUCCESS);
 }

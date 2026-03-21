@@ -35,30 +35,30 @@ static int	test_bad_fd(char *file)
 
 int	tsp_putnchar(void)
 {
-	const char	*file = "ft_putchar";
+	const char	*f = "ft_putchar";
 	char		buf[256 * 3];
 	char		c;
 	int			fd;
 	int			ret;
 
 	c = 0;
-	fd = open_test_file((char **)&file);
+	fd = open_test_file((char **)&f);
 	if (fd < 0)
 		return (1);
 	while ((unsigned char)c < 255)
 		if (ft_putnchar_fd(c++, fd, 3) == -1)
-			return (2);
-	fd = (close(fd), open(file, O_RDONLY));
+			return (destroy_test_file(fd, (char *)f), ft_free((char *)f), 2);
+	fd = (close(fd), open(f, O_RDONLY));
 	if (fd < 0)
-		return (3);
+		return (destroy_test_file(fd, (char *)f), ft_free((char *)f), 3);
 	ret = read(fd, buf, 256 * 3);
 	if (ret != 255 * 3)
-		return (4);
+		return (destroy_test_file(fd, (char *)f), ft_free((char *)f), 4);
 	buf[255 * 3] = 0;
 	while (ret--)
 		if (buf[ret] != (char)(ret / 3))
-			return (5);
-	return (destroy_test_file(fd, (char *)file), test_bad_fd((char *)file));
+			return (destroy_test_file(fd, (char *)f), ft_free((char *)f), 5);
+	return (destroy_test_file(fd, (char *)f), test_bad_fd((char *)f));
 }
 /*
 GPL-3.0 License:

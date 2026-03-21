@@ -51,7 +51,7 @@ static int	mt_strjoin(void)
 	res = ft_strjoin(str, str2);
 	talloc_set_failpoint(fp);
 	if (res)
-		return (1);
+		return (ft_free(res), 1);
 	return (EXIT_SUCCESS);
 }
 
@@ -64,7 +64,7 @@ int	ts_join(void)
 
 	res = ft_strjoin(str, str2);
 	if (ft_strcmp(res, "Hello World!Hello World!") != 0)
-		return (1);
+		return (ft_free(res), 1);
 	ft_free(res);
 	ret = test_side_empty();
 	if (ret)

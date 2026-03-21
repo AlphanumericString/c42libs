@@ -43,20 +43,20 @@ int	tdl_issort(void)
 
 	(push_arr(&lst_fwd, &i, arr), push_arr(&lst_bwd, &i, arr));
 	if (cmp_all(lst_fwd, (bool [3]){false, false, true}) != false)
-		return (1);
+		return (ft_dl_delete(&lst_fwd, NULL), ft_dl_delete(&lst_bwd, NULL), 1);
 	ft_dl_sort(&lst_fwd, (t_data_cmp)ft_strcmp, FT_SORT_ORD_ASC);
 	ft_dl_sort(&lst_bwd, (t_data_cmp)ft_strcmp, FT_SORT_ORD_DES);
 	if (cmp_all(lst_fwd, (bool [3]){true, false, true}) != false
 		|| cmp_all(lst_bwd, (bool [3]){false, true, true}) != false)
-		return (2);
+		return (ft_dl_delete(&lst_fwd, NULL), ft_dl_delete(&lst_bwd, NULL), 2);
 	if (ft_dl_issort(lst_fwd, NULL, FT_SORT_ORD_ASC) != false
 		|| ft_dl_issort(lst_bwd, NULL, FT_SORT_ORD_ASC) != false)
-		return (3);
+		return (ft_dl_delete(&lst_fwd, NULL), ft_dl_delete(&lst_bwd, NULL), 3);
 	(ft_dl_delete(&lst_fwd, NULL), ft_dl_delete(&lst_bwd, NULL));
 	ft_dl_push(&lst_fwd, (t_any)"single");
 	if (cmp_all(lst_bwd, (bool [3]){true, true, true}) != false
 		|| cmp_all(lst_fwd, (bool [3]){true, true, true}) != false)
-		return (4);
+		return (ft_dl_delete(&lst_fwd, NULL), 4);
 	return (ft_dl_delete(&lst_fwd, NULL), EXIT_SUCCESS);
 }
 /*

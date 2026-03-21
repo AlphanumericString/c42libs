@@ -29,11 +29,11 @@ static int	edge(void)
 	ret = ft_vec_reserve(v, FT_VECTOR_BASE_LEN);
 	ft_free(d);
 	if (!v->data || !ret)
-		return (1 + 8);
+		return (ft_vec_delete(v), 1 + 16);
 	ft_vec_delete(v);
 	if (ft_vec_reserve(NULL, 42) != false
 		|| ft_vec_reserve((t_vector *)0xDEAD, 0) != false)
-		return (2 + 8);
+		return (2 + 16);
 	return (EXIT_SUCCESS);
 }
 
@@ -55,9 +55,9 @@ int	tv_reserve(void)
 	i = 0;
 	while (i < 4)
 		if (ret[i++] != true)
-			return (i);
+			return (ft_vec_destroy(&vec), i);
 	if (vec->cappacity != (FT_VECTOR_BASE_LEN * 2))
-		return (5 + 1);
+		return (ft_vec_destroy(&vec), 8 + 1);
 	return (ft_vec_destroy(&vec), edge());
 }
 /*

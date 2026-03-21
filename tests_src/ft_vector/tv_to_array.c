@@ -50,7 +50,7 @@ static int	base_case(void)
 		ft_vec_add(vector, &array_src[i++]);
 	array_ret = (t_any)ft_vec_to_array(&vector);
 	if (vector)
-		return (1);
+		return (ft_free(array_ret), ft_free(vector), 1);
 	i = 0;
 	while (array_ret && i < 5 && !ft_strcmp(array_ret[i], array_src[i]))
 		i++;
@@ -59,7 +59,7 @@ static int	base_case(void)
 	ft_free(array_ret);
 	array_ret = ft_vec_to_array(&vector);
 	if (array_ret || vector)
-		return (3);
+		return (ft_free(array_ret), 3);
 	return (EXIT_SUCCESS);
 }
 

@@ -36,15 +36,15 @@ int	tcl_sort(void)
 	push_arr(&lst, &i, arr);
 	if (ft_cl_sort(&lst, NULL, FT_SORT_ORD_ASC) != NULL
 		|| ft_cl_sort(&lst, (t_any)ft_strcmp, FT_SORT_ORD_UNO) != lst)
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	if ((ft_cl_sort(&lst, (t_any)ft_strcmp, FT_SORT_ORD_ASC) == NULL
 			|| ft_cl_issort(lst, (t_any)ft_strcmp, FT_SORT_ORD_ASC) != true)
 		|| (ft_cl_sort(&lst, (t_any)ft_strcmp, 0) == NULL
 			|| ft_cl_issort(lst, (t_any)ft_strcmp, FT_SORT_ORD_ASC) != true))
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	if (ft_cl_sort(&lst, (t_any)ft_strcmp, FT_SORT_ORD_DES) == NULL
 		|| ft_cl_issort(lst, (t_any)ft_strcmp, FT_SORT_ORD_DES) != true)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 4);
 	ft_cl_delete(&lst, NULL);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }

@@ -31,7 +31,7 @@ int	tdl_new(void)
 	if (ft_dl_new())
 		return (talloc_set_failpoint(prev), 2);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, ft_free);
+	ft_dl_delete(&list, ft_free);
 	return (EXIT_SUCCESS);
 }
 /*

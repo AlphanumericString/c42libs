@@ -28,12 +28,12 @@ int	tll_rev(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	rev = ft_ll_rev(&list);
 	if (ft_ll_size(list) != 2)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), 1);
 	else if (rev->data != data2)
-		return (2);
+		return (ft_ll_delete(&list, ft_free), 2);
 	else if (rev->next->data != data)
-		return (3);
-	ft_ll_clear(&rev, ft_free);
+		return (ft_ll_delete(&list, ft_free), 3);
+	ft_ll_delete(&rev, ft_free);
 	rev = NULL;
 	rev = ft_ll_rev(NULL);
 	if (rev || ft_ll_rev(&rev))

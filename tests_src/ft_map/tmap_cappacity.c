@@ -22,9 +22,8 @@ int	tmap_capacity(void)
 	map = ft_map_create(10);
 	ret = ft_map_capacity(map);
 	if (ret != 10)
-		return (1);
-	ft_map_destroy(map);
-	return (EXIT_SUCCESS);
+		return (ft_map_destroy(map), 1);
+	return (ft_map_destroy(map), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

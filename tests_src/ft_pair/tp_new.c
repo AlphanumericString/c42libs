@@ -28,16 +28,17 @@ int	tp_new(void)
 	if (!pair)
 		return (1);
 	if (pair->first || pair->second)
-		return (2);
+		return (ft_pair_destroy(&pair, NULL), 2);
 	ft_pair_set(pair, a, b);
 	if (pair->first != a || pair->second != b)
-		return (3);
+		return (ft_pair_destroy(&pair, NULL), 3);
+	ft_pair_destroy(&pair, NULL);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_pair_new(NULL, NULL))
-		return (4);
+	pair = ft_pair_new(NULL, NULL);
 	talloc_set_failpoint(prev);
-	ft_pair_destroy_sep(&pair, NULL, NULL);
+	if (pair)
+		return (ft_pair_destroy(&pair, NULL), 4);
 	return (EXIT_SUCCESS);
 }
 /*

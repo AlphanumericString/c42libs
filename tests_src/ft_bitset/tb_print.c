@@ -40,7 +40,7 @@ static void	loc_print_to_fd(int fd)
 int	tb_print(void)
 {
 	const char	file_name[] = TESTS_FPREFIX "bs_print.txt";
-	const char	*expecteds = ""
+	const char	*expected = ""
 		"false, true, false, false, false, true, true, true\n\n"
 		"true, true, true, true, true, true, true, true\n"
 		"false, false, false, false, false, false, false, false\n";
@@ -53,7 +53,7 @@ int	tb_print(void)
 	fd = open(file_name, O_RDONLY);
 	ft_bzero(buff, (sizeof buff / sizeof buff[0]));
 	if (read(fd, buff, (sizeof buff / sizeof buff[0]) - 1) < 0
-		|| ft_strcmp(buff, expecteds))
+		|| ft_strcmp(buff, expected))
 		return (destroy_test_file(fd, file_name), 1);
 	return (destroy_test_file(fd, file_name), 0);
 }

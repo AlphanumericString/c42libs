@@ -29,15 +29,15 @@ int	tcl_delete(void)
 	lst = ft_cl_create((void *)42);
 	deleted = ft_cl_delete(&lst, NULL);
 	if (deleted != 1 || lst != NULL)
-		return (3);
+		return (2);
 	lst = a_to_cl((int []){1, 2, 3}, 3);
 	deleted = ft_cl_delete(&lst, NULL);
 	if (deleted != 3 || lst != NULL)
-		return (4);
+		return (3);
 	lst = a_to_cl((int []){1, 2}, 2);
 	deleted = ft_cl_delete(&lst, do_nothing);
 	if (deleted != 2 || lst != NULL)
-		return (5);
+		return (4);
 	return (EXIT_SUCCESS);
 }
 
@@ -54,18 +54,18 @@ int	tcl_delete_range(void)
 	ft_cl_push_back(&lst, (void *)2);
 	ft_cl_push_back(&lst, (void *)3);
 	if (!lst)
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	deleted = ft_cl_delete_range(lst->next, NULL, NULL);
 	if (deleted != 0)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	deleted = ft_cl_delete_range(lst->next, lst->prev, NULL);
 	if (deleted != 2 || lst->next != lst || lst->prev != lst)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 4);
 	ft_cl_push_back(&lst, (void *)4);
 	ft_cl_push_back(&lst, (void *)5);
 	deleted = ft_cl_delete_range(lst->next, lst->prev, do_nothing);
 	if (deleted != 2 || lst->next != lst || lst->prev != lst)
-		return (5);
+		return (ft_cl_delete(&lst, NULL), 5);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 /*

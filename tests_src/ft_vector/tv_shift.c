@@ -37,9 +37,9 @@ int	tv_shift(void)
 	vec = ft_vec_from_array(a, 4, sizeof(int));
 	ft_vec_shift(vec, 1, 2);
 	if (vec->n_e != 2)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	else if (*(int *)ft_vec_at(vec, 0) != 42 || *(int *)ft_vec_at(vec, 1) != 45)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	vec = (ft_vec_destroy(&vec), ft_vec_from_array(a, 4, sizeof(int)));
 	ft_vec_shift(NULL, 1, 1);
 	ft_vec_shift(vec, 99, sizeof(int));

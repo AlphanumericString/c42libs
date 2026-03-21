@@ -24,12 +24,12 @@ static int	edge(void)
 
 	vec = ft_vec_from_array(arr, 3, sizeof(int));
 	if (vec->n_e != 3)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	ft_vec_filter(vec, is42, NULL);
 	ft_vec_filter(NULL, is42, NULL);
 	ft_vec_filter(vec, NULL, NULL);
 	if (vec->n_e != 3)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 
@@ -43,14 +43,14 @@ static int	base_case(void)
 	vec = ft_vec_from_array(arr, 3, sizeof(int));
 	ft_vec_filter(vec, is42, NULL);
 	if (vec->n_e != 1 || *(int *)ft_vec_at(vec, 0) != 42)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	ft_vec_destroy(&vec);
 	pp = ft_calloc(sizeof(int), 10);
 	ft_memcpy(pp, src_arr, sizeof(src_arr));
 	vec = ft_vec_convert_alloccarray(pp, 10, sizeof(int));
 	ft_vec_filter(vec, is42, NULL);
 	if (vec->n_e != 4)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	vec->s_e = 0;
 	ft_vec_filter(vec, is42, NULL);
 	vec->s_e = sizeof(int);

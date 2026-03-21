@@ -26,9 +26,11 @@
 static t_mod_constructor	*get_tests(void)
 {
 	static t_mod_constructor	tests[] = {
-		tests_vector,
-		tests_lists, tests_string, tests_map, tests_optional,
-		tests_args, tests_math, tests_pair, tests_bitset,
+		tests_lists,tests_map, tests_optional,tests_math, tests_pair, 
+		tests_bitset,
+		tests_args, 
+		tests_string, 
+		// tests_vector,
 		NULL};
 
 	return (tests);

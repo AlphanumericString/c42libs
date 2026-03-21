@@ -14,19 +14,45 @@
 #include "tests/tests.h"
 #include "tests/args_tests.h"
 
+/*
+ * todos:
+ * moar tests for parse_args
+
+ * list sorted:
+
+{"ac", targ_ac},
+{"arg_printopts", targ_printopts},
+{"av", targ_av},
+{"consume_args", targ_consume_args_test},
+{"custom checker", targ_custom_checker_test},
+{"disp loaded", targ_disploaded},
+{"ev_from_acav", targ_ev_from_acav},
+{"ev", targ_ev},
+{"getenv", targ_getenvp},
+{"opt_list", targ_opt_list_test},
+{"parse_args", targ_parse},
+{"parser_perror", targ_perror_pa_state},
+{"prog_name", targ_program_name_test},
+{"put_type", targ_puttype_fd},
+{"setup_prog", targ_setup_prog},
+{"shift_args", targ_shift_args},
+{"version", targ_version_test},
+
+*/
+
 static const t_fnamed	*targ_tests(void)
 {
 	static const t_fnamed	var[] = {
-	{"ac", targ_ac}, {"av", targ_av}, {"ev", targ_ev},
-	{"ev_from_acav", targ_ev_from_acav}, {"getenv", targ_getenvp},
-	{"setup_prog", targ_setup_prog}, {"version", targ_version_test},
-	{"prog_name", targ_program_name_test}, {"opt_list", targ_opt_list_test},
+	{"ac", targ_ac}, {"arg_printopts", targ_printopts}, {"av", targ_av},
+	{"consume_args", targ_consume_args_test},
 	{"custom checker", targ_custom_checker_test},
-	{"consume_args", targ_consume_args_test}, {"shift_args", targ_shift_args},
-	{"arg_printopts", targ_printopts}, {"parser_perror", targ_perror_pa_state},
-	{"put_type", targ_puttype_fd}, {"parse_args", targ_parse},
-	{"disp loaded", targ_disploaded},
-	{NULL, NULL}};
+	{"disp loaded", targ_disploaded}, {"ev_from_acav", targ_ev_from_acav},
+	{"ev", targ_ev}, {"getenv", targ_getenvp},
+	{"opt_list", targ_opt_list_test}, {"parse_args", targ_parse},
+	{"parser_perror", targ_perror_pa_state},
+	{"prog_name", targ_program_name_test}, {"put_type", targ_puttype_fd},
+	{"setup_prog", targ_setup_prog}, {"shift_args", targ_shift_args},
+	{"version", targ_version_test}, {NULL, NULL}};
 
 	return (var);
 }

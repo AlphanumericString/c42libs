@@ -27,16 +27,15 @@ int	tll_begin(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	first = ft_ll_begin(list);
 	if (!first)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), 1);
 	else if (first->data != data)
-		return (2);
+		return (ft_ll_delete(&list, ft_free), 2);
 	else if (first->next != list->next)
-		return (3);
+		return (ft_ll_delete(&list, ft_free), 3);
 	first = ft_ll_begin(NULL);
 	if (first)
-		return (4);
-	ft_ll_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, ft_free), 4);
+	return (ft_ll_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tll_end(void)
@@ -49,16 +48,15 @@ int	tll_end(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	last = ft_ll_end(list);
 	if (!last)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), 1);
 	else if (last->data != data2)
-		return (2);
+		return (ft_ll_delete(&list, ft_free), 2);
 	else if (last->next)
-		return (3);
+		return (ft_ll_delete(&list, ft_free), 3);
 	last = ft_ll_end(NULL);
 	if (last)
-		return (4);
-	ft_ll_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, ft_free), 4);
+	return (ft_ll_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tll_at(void)
@@ -71,18 +69,17 @@ int	tll_at(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	at = ft_ll_at(list, 1);
 	if (!at || at == list)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), 1);
 	else if (at->data != data2 || at->next)
-		return (2);
+		return (ft_ll_delete(&list, ft_free), 2);
 	at = ft_ll_at(list, 0);
 	if (!at || at != list)
-		return (3);
+		return (ft_ll_delete(&list, ft_free), 3);
 	else if (at->data != data || at->next != list->next)
-		return (4);
+		return (ft_ll_delete(&list, ft_free), 4);
 	if (ft_ll_at(list, 32) || ft_ll_at(NULL, 0))
-		return (5);
-	ft_ll_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, ft_free), 5);
+	return (ft_ll_delete(&list, ft_free), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

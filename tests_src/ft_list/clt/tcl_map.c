@@ -22,18 +22,20 @@ static int	mt_clmap(void)
 	t_clist		*lst;
 	t_clist		*mapped;
 	const int	fp = *talloc_get_failpoint();
+	int			r;
 
 	lst = NULL;
+	r = EXIT_SUCCESS;
 	ft_cl_push_back(&lst, (void *)42);
 	ft_cl_push_back(&lst, (void *)43);
 	ft_cl_push_back(&lst, (void *)44);
 	talloc_set_failpoint(0);
 	mapped = ft_cl_map(lst, double_ptr, NULL);
 	if (mapped)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(fp);
 	ft_cl_delete(&lst, NULL);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 int	tcl_map(void)
@@ -46,21 +48,21 @@ int	tcl_map(void)
 	lst = ft_cl_create((void *)42);
 	mapped = ft_cl_map(lst, double_ptr, NULL);
 	if (!mapped || mapped->data != (void *)84)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), ft_cl_delete(&mapped, NULL), 3);
 	ft_cl_delete(&mapped, NULL);
 	(ft_cl_push_back(&lst, (void *)43), ft_cl_push_back(&lst, (void *)44));
 	mapped = ft_cl_map(lst, double_ptr, NULL);
 	if (!mapped || ft_cl_size(mapped) != 3 || mapped->data != (void *)84
 		|| mapped->next->data != (void *)86
 		|| mapped->next->next->data != (void *)88)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), ft_cl_delete(&mapped, NULL), 4);
 	ft_cl_delete(&mapped, NULL);
 	mapped = ft_cl_map(lst, double_ptr, do_nothing);
 	if (!mapped)
-		return (5);
+		return (ft_cl_delete(&lst, NULL), ft_cl_delete(&mapped, NULL), 5);
 	ft_cl_delete(&mapped, NULL);
 	if (ft_cl_map(lst, NULL, do_nothing) != NULL)
-		return (6);
+		return (ft_cl_delete(&lst, NULL), ft_cl_delete(&mapped, NULL), 6);
 	return (ft_cl_delete(&lst, NULL), ft_cl_delete(&mapped, NULL), mt_clmap());
 }
 /*

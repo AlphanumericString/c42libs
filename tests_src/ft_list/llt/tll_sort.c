@@ -45,13 +45,13 @@ int	tll_sort(void)
 	(ft_ll_sort(&lst, cmp, flg), ft_ll_sort(&lst, cmp, flg));
 	if (ft_ll_sort(&lst, cmp, FT_SORT_ORD_UNO) != lst
 		|| bad_list(lst, cmp, flg, i))
-		return (1);
+		return (ft_ll_delete(&lst, NULL), 1);
 	flg = FT_SORT_ORD_DES;
 	if (ft_ll_sort(&lst, cmp, flg) != lst || bad_list(lst, cmp, flg, i))
-		return (2);
+		return (ft_ll_delete(&lst, NULL), 2);
 	flg = FT_SORT_ORD_ASC;
 	if (ft_ll_sort(&lst, cmp, 0) != lst || bad_list(lst, cmp, flg, i))
-		return (3);
+		return (ft_ll_delete(&lst, NULL), 3);
 	ft_ll_delete(&lst, NULL);
 	if (ft_ll_sort(&lst, cmp, 0) != NULL || ft_ll_sort(NULL, cmp, 0) != NULL
 		|| ft_ll_sort((t_any)0xDEADBEEF, NULL, 0) != NULL)

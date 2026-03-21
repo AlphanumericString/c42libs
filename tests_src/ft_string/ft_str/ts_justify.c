@@ -24,7 +24,7 @@ static int	mt_jstfy_nospace(void)
 	str = ft_strwlgn_nospace("Hello this is a test string.", 11);
 	talloc_set_failpoint(fp);
 	if (str != NULL)
-		return (6);
+		return (ft_free(str), 6);
 	return (EXIT_SUCCESS);
 }
 
@@ -65,16 +65,16 @@ int	ts_justify_nospace(void)
 
 	str = ft_strwlgn_nospace(src[0], 11);
 	if (!str || ft_strcmp(str, exp) != 0)
-		return (1);
+		return (ft_free(str), 1);
 	str = (ft_free(str), ft_strwlgn_nospace(src[1], 11));
 	if (!str || ft_strcmp(str, exp) != 0)
-		return (2);
+		return (ft_free(str), 2);
 	str = (ft_free(str), ft_strwlgn_nospace(src[2], 11));
 	if (!str || ft_strcmp(str, "") != 0)
-		return (3);
+		return (ft_free(str), 3);
 	str = (ft_free(str), ft_strwlgn_nospace(src[3], 11));
 	if (!str || ft_strcmp(str, "Faaart...\nOupsi") != 0)
-		return (4);
+		return (ft_free(str), 4);
 	str = (ft_free(str), ft_strwlgn_nospace(NULL, 10));
 	if (str != NULL)
 		return (5);

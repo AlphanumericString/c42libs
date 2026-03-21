@@ -24,9 +24,9 @@ int	tv_inuse(void)
 	while (++a < 3)
 		ft_vec_add(vec, &a);
 	if (ft_vec_inuse(vec) != (vec->n_e * vec->s_e))
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	if (ft_vec_inuse(NULL) != 0)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }

@@ -12,23 +12,23 @@
 
 #include "internal/args_helper.h"
 #include "ft_args.h"
-#include "ft_string.h"
 #include "tests/args_tests.h"
 
 int	targ_program_name_test(void)
 {
-	char	*s1;
-	char	*s2;
+	const char	*prev = ft_progname();
+	char		*s1;
+	char		*s2;
 
 	s1 = "toto";
 	s2 = 0;
 	ft_set_progname(s1);
 	if (ft_progname() != s1)
-		return (1);
+		return (ft_set_progname(prev), 1);
 	ft_set_progname(s2);
 	if (ft_progname() == s2)
-		return (2);
-	return (EXIT_SUCCESS);
+		return (ft_set_progname(prev), 2);
+	return (ft_set_progname(prev), 0);
 }
 /*
 GPL-3.0 License:

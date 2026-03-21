@@ -22,17 +22,17 @@ int	tb_remove_front(void)
 	ft_bs_set_raw(bitset, 1, 0b01010101);
 	ft_bs_remove_front(bitset, 1);
 	if (!bitset || ft_bs_get_raw(bitset, 0) != 0b01010101)
-		return (ft_bs_free(&bitset), 2);
+		return (ft_bs_free(&bitset), 1);
 	ft_bs_free(&bitset);
 	bitset = ft_bs_new(8);
 	ft_bs_remove_front(bitset, 1);
 	if (!bitset || bitset->bits != NULL || bitset->_capacity != 0)
-		return (ft_bs_free(&bitset), 4);
+		return (ft_bs_free(&bitset), 2);
 	ft_bs_free(&bitset);
 	bitset = ft_bs_new(4);
 	ft_bs_remove_front(bitset, 10);
 	if (!bitset || bitset->bits != NULL || bitset->_capacity != 0)
-		return (ft_bs_free(&bitset), 6);
+		return (ft_bs_free(&bitset), 3);
 	ft_bs_free(&bitset);
 	bitset = ft_bs_new(8);
 	ft_bs_remove_front(bitset, 0);

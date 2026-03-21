@@ -43,10 +43,10 @@ int	ts_substr(void)
 	res[6] = ft_substr(NULL, 0, 5);
 	if (ft_strcmp(res[0], "Hello") != 0 || ft_strcmp(res[1], "World!") != 0
 		|| ft_strcmp(res[2], "World!") != 0)
-		return (1);
+		return (ft_aapply((t_any)res, ft_free), 1);
 	if (ft_strcmp(res[3], "") != 0 || ft_strcmp(res[4], "") != 0
 		|| ft_strcmp(res[5], "") != 0 || res[6])
-		return (2);
+		return (ft_aapply((t_any)res, ft_free), 2);
 	return (ft_aapply((t_arr)res, ft_free), mt_substr());
 }
 /*
