@@ -15,6 +15,7 @@
 #include "ft_mem.h"
 #include "types/ft_list_types.h"
 #include "internal/algo_util.h"
+#include <stdio.h>
 
 bool	ft_ll_issort(const t_list *head, const t_data_cmp cmp, int flag)
 {
@@ -39,56 +40,74 @@ bool	ft_ll_issort(const t_list *head, const t_data_cmp cmp, int flag)
 	return (head->next == NULL);
 }
 
-// static t_list	*loc_rec(t_list **head, t_data_cmp cmp, t_sort_order ord)
-// {
-// 	t_list	*mid;
-// 	t_list	*tmp;
-//
-// 	if (!head || !*head)
-// 		return (NULL);
-// 	mid = ft_ll_mid(*head);
-// 	if (ft_ll_nsize(*head, 2) < 2)
-// 		return (*head);
-// 	if (ft_ll_nsize(*head, 2) == 2)
-// 	{
-// 		if ((cmp((*head)->data, mid->data) > 0 && ord != FT_SORT_ORD_ASC)
-// 			|| (cmp((*head)->data, mid->data) < 0 && ord != FT_SORT_ORD_DES))
-// 			ft_swap((*head)->data, mid->data, sizeof(void *));
-// 		return (*head);
-// 	}
-// 	tmp = mid->next; // [n / 2 + 1] [n / 2] | head= [n/2+1] mid= [n/2]
-// 	mid->next = NULL;
-// 	mid = tmp;
-// 	tmp = *head;
-// 	loc_rec(&tmp, cmp, ord);
-// 	loc_rec(&mid, cmp, ord);
-// 	*head = sorted_merge(head, mid, cmp, 0 | ord);
-// }
+static t_list	*recursive_merge(t_list *head, t_list *to_mrg, t_data_cmp cmp, int flag)
+{
+	const t_sort_order	ord = (flag & FT_SORT_ORD_MASK);
+	t_list				*r;
 
-// elem =null and if (elem) are sefty but can likely be dropped
+	if (!head)
+		return (to_mrg);
+	if (!to_mrg)
+		return (head);
+	if ((cmp(head->data, to_mrg->data) < 0 && ord == FT_SORT_ORD_ASC) ||
+		(cmp(head->data, to_mrg->data) >= 0 && ord == FT_SORT_ORD_DES))
+	{
+		r = head;
+		r->next = recursive_merge(r->next, to_mrg, cmp, ord);
+	}
+	else
+	{
+		r = to_mrg;
+		r->next = recursive_merge(head, r->next, cmp, ord);
+	}
+	return (r);
+}
+
+static t_list	*ft_ll_merge_sorted(t_list **head, t_list *to_merge, t_data_cmp cmp, int flags)
+{
+	const t_sort_order	ord = (flags & FT_SORT_ORD_MASK);
+	t_list	*new_head;
+
+	if (!cmp || !head)
+		return (NULL);
+	if (!*head || ord == FT_SORT_ORD_UNO)
+		return (ft_ll_add_back(head, to_merge), *head);
+	if (!to_merge)
+		return (*head);
+	new_head = recursive_merge(*head, to_merge, cmp, ord);
+	*head = new_head;
+	return (new_head);
+}
+
+static t_list	*recursive_sort(t_list **head, const t_data_cmp cmp, int flg)
+{
+	t_list				*mid;
+	t_list				*tmp;
+
+	if (!*head || !(*head)->next)
+		return (*head);
+	mid = ft_ll_mid(*head);
+	if (!mid)
+		return (*head);
+	tmp = mid->next;
+	mid->next = NULL;
+	mid = tmp;
+	recursive_sort(head, cmp, flg);
+	recursive_sort(&mid, cmp, flg);
+	return (ft_ll_merge_sorted(head, mid, cmp, flg));
+}
+
 t_list	*ft_ll_sort(t_list **head, const t_data_cmp cmp, int flags)
 {
 	const t_sort_order	ord = (flags & FT_SORT_ORD_MASK);
-	t_list				*runner;
-	t_list				*elem;
 
 	if (!head || !cmp)
 		return (NULL);
-	if (!*head || ord == FT_SORT_ORD_UNO)
+	if (!*head || ord == FT_SORT_ORD_UNO || !(*head)->next)
 		return (*head);
 	if (!flags)
 		return (ft_ll_sort(head, cmp, FT_SORT_ORD_ASC));
-	runner = *head;
-	while (ft_ll_issort(runner, cmp, flags) == false)
-	{
-		if (ord == FT_SORT_ORD_ASC)
-			elem = ft_ll_extract_min_node(runner, cmp);
-		else
-			elem = ft_ll_extract_max_node(runner, cmp);
-		ft_swap(&elem->data, &runner->data, sizeof(runner->data));
-		runner = runner->next;
-	}
-	return (*head);
+	return (recursive_sort(head, cmp, flags));
 }
 /*
 GPL-3.0 License:
