@@ -21,16 +21,18 @@ static int	mt_clpush_back(void)
 	const int	fp = *talloc_get_failpoint();
 	t_clist		*lst;
 	t_clist		*other;
+	int			r;
 
 	lst = NULL;
 	lst = ft_cl_push(&lst, "toto");
+	r = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
 	other = ft_cl_push_back(&lst, "titi");
 	if (other)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(fp);
 	ft_cl_delete(&lst, NULL);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 static int	mt_clpush(void)
@@ -38,16 +40,18 @@ static int	mt_clpush(void)
 	const int	fp = *talloc_get_failpoint();
 	t_clist		*lst;
 	t_clist		*other;
+	int			r;
 
 	lst = NULL;
 	lst = ft_cl_push(&lst, "toto");
+	r = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
 	other = ft_cl_push(&lst, "titi");
 	if (other)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(fp);
 	ft_cl_delete(&lst, NULL);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 int	tcl_push(void)
@@ -61,17 +65,17 @@ int	tcl_push(void)
 		return (1);
 	lst = ft_cl_push(&lst, NULL);
 	if (!lst || lst->data != NULL)
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	ft_cl_delete(&lst, NULL);
 	lst = ft_cl_push(&lst, (void *)42);
 	if (!lst || lst->data != (void *)42)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	lst = ft_cl_push(&lst, (void *)43);
 	if (!lst || lst->data != (void *)43)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 4);
 	lst = ft_cl_push(&lst, (void *)44);
 	if (!lst || lst->data != (void *)44)
-		return (5);
+		return (ft_cl_delete(&lst, NULL), 5);
 	return (ft_cl_delete(&lst, NULL), mt_clpush());
 }
 
@@ -86,19 +90,19 @@ int	tcl_push_back(void)
 		return (1);
 	result = ft_cl_push_back(&lst, NULL);
 	if (!result || result->data != NULL)
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	ft_cl_delete(&lst, NULL);
 	result = ft_cl_push_back(&lst, (void *)42);
 	if (!result || result->data != (void *)42)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	result = ft_cl_push_back(&lst, (void *)43);
 	if (!result || result->data != (void *)42)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 4);
 	result = ft_cl_push_back(&lst, (void *)44);
 	if (!result || result->data != (void *)42)
-		return (5);
+		return (ft_cl_delete(&lst, NULL), 5);
 	if (lst->prev->data != (void *)44)
-		return (6);
+		return (ft_cl_delete(&lst, NULL), 6);
 	return (ft_cl_delete(&lst, NULL), mt_clpush_back());
 }
 /*

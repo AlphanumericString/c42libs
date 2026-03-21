@@ -41,19 +41,19 @@ int	test_string_shrink(void)
 	ft_string_shrink(str);
 	if (ft_string_cmp(str, "Hello") != 0 || str->length != 5
 		|| str->capacity < 5)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_destroy(&str);
 	str = ft_string_from("^_^");
 	if (str->length != 3 || str->capacity != FT_TSTR_BUFF)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	ft_string_shrink(str);
 	if (ft_string_cmp(str, "^_^") != 0 || str->length != 3
 		|| str->capacity < 3)
-		return (3);
+		return (ft_string_destroy(&str), 3);
 	ft_string_shrink(str);
 	if (ft_string_cmp(str, "^_^") != 0 || str->length != 3
 		|| str->capacity < 3)
-		return (4);
+		return (ft_string_destroy(&str), 4);
 	ft_string_shrink(NULL);
 	return (ft_string_destroy(&str), mt_string_shrink());
 }

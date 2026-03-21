@@ -16,12 +16,10 @@
 int	ts_cmp(void)
 {
 	const char	*buffs[] = {
-		"none",
-		"some",
+		"none", "some",
 		"nonethensome",
 		"nonethensome",
-		"!\0a",
-		"!\0b",
+		"!\0a", "!\0b",
 	};
 
 	if (ft_strcmp(buffs[0], buffs[1]) >= 0)

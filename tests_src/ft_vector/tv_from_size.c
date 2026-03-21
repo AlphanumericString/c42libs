@@ -39,9 +39,9 @@ int	tv_from_size(void)
 
 	vec = ft_vec_from_size(42);
 	if (vec->n_e != 0 || vec->s_e != 1)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	else if (vec->cappacity != 42 || !vec->data)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	ft_vec_destroy(&vec);
 	return (mt_tests());
 }

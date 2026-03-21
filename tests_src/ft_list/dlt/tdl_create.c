@@ -21,6 +21,7 @@ int	tdl_create(void)
 	t_dlist	*list;
 	int		*data;
 	int		prev;
+	int		r;
 
 	data = ft_malloc(sizeof(int));
 	*data = 42;
@@ -29,12 +30,13 @@ int	tdl_create(void)
 		return (ft_free(data), ft_free(list), 1);
 	else if (list->next || list->prev)
 		return (ft_free(data), ft_free(list), 2);
+	r = EXIT_SUCCESS;
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_dl_create(data))
-		return (talloc_set_failpoint(prev), 5);
+		r = 5;
 	talloc_set_failpoint(prev);
-	return (ft_dl_clear(&list, ft_free), 0);
+	return (ft_dl_clear(&list, ft_free), r);
 }
 /*
 GPL-3.0 License:

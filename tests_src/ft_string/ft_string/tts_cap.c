@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
 #include "ft_tstring.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+#include <stdlib.h>
 
 int	test_string_cap(void)
 {
@@ -21,9 +21,8 @@ int	test_string_cap(void)
 
 	str = ft_string_from("Hello world this is zod!");
 	if (str->capacity != ft_string_cap(str))
-		return (1);
-	ft_string_destroy(&str);
-	return (EXIT_SUCCESS);
+		return (ft_string_destroy(&str), 1);
+	return (ft_string_destroy(&str), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

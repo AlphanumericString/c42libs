@@ -13,18 +13,41 @@
 #include "tests/tests.h"
 #include "tests/str__mem_tests.h"
 #include "ft_mem.h"
+
 #include <stddef.h>
+
+/*
+ * sorted lists:
+
+{"bzero", tm_bzero},
+{"calloc", tm_calloc},
+{"fd_to_buff", tm_fd_to_buff},
+{"free_clear", tm_freecl},
+{"free", tm_free},
+{"memchr", tm_memchr},
+{"memcmp", tm_memcmp},
+{"memcpy", tm_memcpy},
+{"memmap", tm_memmap},
+{"memmove", tm_memmove},
+{"memnrev", tm_memnrev},
+{"memrev", tm_memrev},
+{"memset", tm_memset},
+{"realloc", tm_realloc},
+{"swap_ptr", tm_swap_ptr},
+{"swap", tm_swap},
+{"swap_xor", tm_swap_xor},
+
+*/
 
 static const t_fnamed	*tm_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"fd_to_buff", tm_fd_to_buff}, {"bzero", tm_bzero},
-	{"calloc", tm_calloc}, {"realloc", tm_realloc}, {"free", tm_free},
-	{"free_clear", tm_freecl}, {"memchr", tm_memchr}, {"memcmp", tm_memcmp},
-	{"memcpy", tm_memcpy}, {"memmap", tm_memmap}, {"memmove", tm_memmove},
-	{"memset", tm_memset}, {"swap_ptr", tm_swap_ptr}, {"memrev", tm_memrev},
-	{"memnrev", tm_memnrev}, {"swap", tm_swap}, {"swap_xor", tm_swap_xor},
-	{NULL, NULL}};
+	{"bzero", tm_bzero}, {"calloc", tm_calloc}, {"fd_to_buff", tm_fd_to_buff},
+	{"free_clear", tm_freecl}, {"free", tm_free}, {"memchr", tm_memchr},
+	{"memcmp", tm_memcmp}, {"memcpy", tm_memcpy}, {"memmap", tm_memmap},
+	{"memmove", tm_memmove}, {"memnrev", tm_memnrev}, {"memrev", tm_memrev},
+	{"memset", tm_memset}, {"realloc", tm_realloc}, {"swap_ptr", tm_swap_ptr},
+	{"swap", tm_swap}, {"swap_xor", tm_swap_xor}, {NULL, NULL}};
 
 	return (tests);
 }

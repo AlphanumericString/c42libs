@@ -14,12 +14,25 @@
 #include "tests/str__mem_tests.h"
 #include "tests/tests.h"
 
+/*
+ * sorted list:
+
+{"allocator_ctl", tmal_allocator},
+{"calloc", tmal_calloc},
+{"free", tmal_free},
+{"malloc", tmal_malloc},
+{"reallocarray", tmal_reallocarray},
+{"realloc", tmal_realloc},
+
+*/
+
 static const t_fnamed	*tmal_tests(void)
 {
 	static const t_fnamed	tests[] = {
 	{"allocator_ctl", tmal_allocator}, {"calloc", tmal_calloc},
-	{"realloc", tmal_realloc}, {"reallocarray", tmal_reallocarray},
-	{"malloc", tmal_malloc}, {"free", tmal_free}, {NULL, NULL}};
+	{"free", tmal_free}, {"malloc", tmal_malloc},
+	{"reallocarray", tmal_reallocarray}, {"realloc", tmal_realloc},
+	{NULL, NULL}};
 
 	return (tests);
 }

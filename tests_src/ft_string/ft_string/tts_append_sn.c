@@ -29,7 +29,7 @@ static int	mt_string_append_sn(void)
 	ft_string_append_s_n(str, src, 5);
 	talloc_set_failpoint(fp);
 	if (ft_string_cmp(str, "Hello") != 0)
-		return (1);
+		return (ft_string_destroy(&str), ft_string_destroy(&src), 1);
 	return (ft_string_destroy(&str), ft_string_destroy(&src), EXIT_SUCCESS);
 }
 
@@ -42,22 +42,22 @@ int	test_string_append_sn(void)
 	str2 = ft_string_from(" World!!!!");
 	ft_string_append_s_n(str, str2, 6);
 	if (ft_string_cmp(str, "Hello World") != 0)
-		return (1);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 1);
 	if (str->length != 11 || str->capacity < 11)
-		return (2);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 2);
 	ft_string_destroy(&str);
 	ft_string_destroy(&str2);
 	str = ft_string_from("hi");
 	str2 = ft_string_from("ii");
 	ft_string_append_s_n(str, str2, 1);
 	if (ft_string_cmp(str, "hii") != 0)
-		return (3);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 3);
 	if (str->length != 3 || str->capacity < 3)
-		return (4);
-	ft_string_append_s_n(str, NULL, 1);
-	ft_string_append_s_n(NULL, str2, 1);
-	return (ft_string_destroy(&str), ft_string_destroy(&str2),
-		mt_string_append_sn());
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 4);
+	ft_string_destroy(&str);
+	ft_string_destroy(&str2);
+	return (ft_string_append_s_n(str, NULL, 1),
+		ft_string_append_s_n(NULL, str2, 1), mt_string_append_sn());
 }
 /*
 GPL-3.0 License:

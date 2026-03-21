@@ -30,21 +30,20 @@ int	tdl_get_datas(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	datas = ft_dl_get_datas(list);
 	if (!datas)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), 1);
 	else if (datas[0] != data)
-		return (2);
+		return (ft_dl_delete(&list, ft_free), ft_free(datas), 2);
 	else if (datas[1] != data2)
-		return (3);
+		return (ft_dl_delete(&list, ft_free), ft_free(datas), 3);
+	ft_free(datas);
 	if (ft_dl_get_datas(NULL))
-		return (4);
+		return (ft_dl_delete(&list, ft_free), 4);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_dl_get_datas(list))
-		return (talloc_set_failpoint(prev), ft_dl_clear(&list, ft_free), 5);
+		return (talloc_set_failpoint(prev), ft_dl_delete(&list, ft_free), 5);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, ft_free);
-	free(datas);
-	return (EXIT_SUCCESS);
+	return (ft_dl_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tdl_get_nodes(void)
@@ -58,21 +57,20 @@ int	tdl_get_nodes(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	nodes = ft_dl_get_nodes(list);
 	if (!nodes)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), 1);
 	else if (nodes[0] != list)
-		return (2);
+		return (ft_dl_delete(&list, ft_free), ft_free(nodes), 2);
 	else if (nodes[1] != list->next)
-		return (3);
+		return (ft_dl_delete(&list, ft_free), ft_free(nodes), 3);
+	ft_free(nodes);
 	if (ft_dl_get_nodes(NULL))
-		return (4);
+		return (ft_dl_delete(&list, ft_free), 4);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_dl_get_nodes(list))
-		return (talloc_set_failpoint(prev), ft_dl_clear(&list, ft_free), 5);
+		return (talloc_set_failpoint(prev), ft_dl_delete(&list, ft_free), 5);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, ft_free);
-	free(nodes);
-	return (EXIT_SUCCESS);
+	return (ft_dl_delete(&list, ft_free), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

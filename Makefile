@@ -739,7 +739,6 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_putnchar.c					\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_putstr.c						\
 			$(TESTS_DIR)/ft_string/ft_put/tsp_putunbr_base.c				\
-			$(TESTS_DIR)/ft_string/ft_put/tsp_va_printfd.c					\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/stris_tests.c			\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_alnum.c				\
 			$(TESTS_DIR)/ft_string/ft_str/ft_stris/tsi_alpha.c				\

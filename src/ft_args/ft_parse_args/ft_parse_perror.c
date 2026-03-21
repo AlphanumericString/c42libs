@@ -17,20 +17,20 @@
 
 #include <unistd.h>
 
-void	perror_pa_state(t_parser_state *st, const char *error)
+void	perror_pa_state(t_parser_state *st, const char *error, int fd)
 {
 	char	str[2];
 
 	str[0] = st->args[st->arg_it][st->in_arg_it];
 	str[1] = '\0';
 	if (ft_progname())
-		ft_print_fd(STDERR_FILENO, "Error: %s:", ft_progname());
+		ft_print_fd(fd, "Error: %s:", ft_progname());
 	else
-		ft_print_fd(STDERR_FILENO, "Error: ");
+		ft_print_fd(fd, "Error: ");
 	if (st->mode == FTPA_SHORT)
-		ft_print_fd(STDERR_FILENO, " Short option `-%s' : %s.\n", str, error);
+		ft_print_fd(fd, " Short option `-%s' : %s.\n", str, error);
 	else
-		ft_print_fd(STDERR_FILENO, " Option `%s' : %s.\n",
+		ft_print_fd(fd, " Option `%s' : %s.\n",
 			st->args[st->arg_it], error);
 	st->err = 1;
 }

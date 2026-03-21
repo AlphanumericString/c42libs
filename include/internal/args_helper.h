@@ -46,7 +46,7 @@ const char	*get_arg(enum e_separator sep_flag, t_parser_state *state,
 				const char **args);
 int			check_arg(enum e_arg_types type, t_parser_state *state,
 				const char *arg);
-void		perror_pa_state(t_parser_state *st, const char *error);
+void		perror_pa_state(t_parser_state *st, const char *error, int fd);
 //
 // Parse utils (semi-private)
 //

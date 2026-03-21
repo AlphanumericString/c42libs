@@ -29,7 +29,7 @@ int	test_string_set(void)
 		return (ft_string_destroy(&str), 2);
 	ft_string_set(str, NULL);
 	ft_string_set(NULL, src);
-	return (ft_string_destroy(&str), 0);
+	return (ft_string_destroy(&str), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

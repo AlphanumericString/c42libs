@@ -26,21 +26,21 @@ static int	local_check_circular_special_cases(void)
 	ft_dl_push(&lst, (void *)1);
 	if (ft_dl_check_circular(NULL) != false
 		|| ft_dl_check_circular(lst) != false)
-		return (1);
+		return (ft_free(lst->next), ft_free(lst), 1);
 	lst->next = lst;
 	if (ft_dl_check_circular(lst) != true)
-		return (2);
+		return (ft_free(lst->next), ft_free(lst), 2);
 	lst->next = NULL;
 	lst->prev = lst;
 	if (ft_dl_check_circular(lst) != true)
-		return (3);
+		return (ft_free(lst->next), ft_free(lst), 3);
 	lst->prev = NULL;
 	ft_dl_push(&lst, (void *)2);
 	if (ft_dl_check_circular(lst) != false)
-		return (4);
+		return (ft_free(lst->next), ft_free(lst), 4);
 	lst->prev = lst;
 	if (ft_dl_check_circular(lst->next) != true)
-		return (5);
+		return (ft_free(lst->next), ft_free(lst), 5);
 	return (ft_free(lst->next), ft_free(lst), EXIT_SUCCESS);
 }
 
@@ -58,16 +58,16 @@ int	tdl_check_circular(void)
 	while (i--)
 		nodes[i] = ft_dl_at(lst, i);
 	if (ft_dl_check_circular(lst) == true)
-		return (1);
+		return (ft_aapply((void **)nodes, ft_free), 1);
 	nodes[5]->next = nodes[0];
 	if (ft_dl_check_circular(lst) != true
 		|| ft_dl_check_circular(nodes[4]) != true)
-		return (2);
+		return (ft_aapply((void **)nodes, ft_free), 2);
 	nodes[5]->next = nodes[6];
 	nodes[3]->prev = nodes[6];
 	if (ft_dl_check_circular(nodes[7]) != true
 		|| ft_dl_check_circular(lst) != true)
-		return (3);
+		return (ft_aapply((void **)nodes, ft_free), 3);
 	return (ft_aapply((void **)nodes, ft_free),
 		local_check_circular_special_cases());
 }
@@ -78,17 +78,17 @@ int	tdl_check_sorted(void)
 
 	lst = NULL;
 	if (ft_dl_check_sorted(lst, ft_cmp_ptr) != true)
-		return (1);
+		return (ft_dl_delete(&lst, NULL), 1);
 	ft_dl_push(&lst, (void *)7);
 	if (ft_dl_check_sorted(lst, ft_cmp_ptr) != true)
-		return (2);
+		return (ft_dl_delete(&lst, NULL), 2);
 	ft_dl_push(&lst, (void *)8);
 	ft_dl_push(&lst, (void *)9);
 	if (ft_dl_check_sorted(lst, ft_cmp_ptr) != true)
-		return (3);
+		return (ft_dl_delete(&lst, NULL), 3);
 	ft_dl_push(&lst, (void *)3);
 	if (ft_dl_check_sorted(lst, ft_cmp_ptr) != false)
-		return (4);
+		return (ft_dl_delete(&lst, NULL), 4);
 	return (ft_dl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 
@@ -106,18 +106,18 @@ int	tdl_check_health(void)
 	while (i--)
 		nodes[i] = ft_dl_at(lst, i);
 	if (ft_dl_check_health(lst) != true)
-		return (1);
+		return (ft_aapply((void **)nodes, ft_free), 1);
 	nodes[5]->next = nodes[0];
 	if (ft_dl_check_health(lst) != false
 		|| ft_dl_check_health(nodes[4]) != false)
-		return (2);
+		return (ft_aapply((void **)nodes, ft_free), 2);
 	nodes[5]->next = nodes[6];
 	nodes[3]->prev = nodes[6];
 	if (ft_dl_check_health(nodes[7]) != false
 		|| ft_dl_check_health(lst) != false)
-		return (3);
+		return (ft_aapply((void **)nodes, ft_free), 3);
 	if (ft_dl_check_health(NULL) != true)
-		return (4);
+		return (ft_aapply((void **)nodes, ft_free), 4);
 	return (ft_aapply((void **)nodes, ft_free), EXIT_SUCCESS);
 }
 /*

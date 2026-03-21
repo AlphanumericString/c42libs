@@ -26,15 +26,14 @@ int	tll_extract_min(void)
 	list = NULL;
 	ret = ft_ll_extract_min(list, NULL);
 	if (ret != NULL)
-		return (1);
+		return (ft_ll_delete(&list, NULL), 1);
 	i = 0;
 	while (strs[i])
 		ft_ll_push_back(&list, (void *)strs[i++]);
 	ret = ft_ll_extract_min(list, (t_data_cmp)ft_strcmp);
 	if (!ret || ft_strcmp((char *)ret, "42") != 0)
-		return (2);
-	ft_ll_clear(&list, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, NULL), 2);
+	return (ft_ll_delete(&list, NULL), EXIT_SUCCESS);
 }
 
 int	tll_extract_min_node(void)
@@ -47,18 +46,17 @@ int	tll_extract_min_node(void)
 	list = NULL;
 	ret = ft_ll_extract_min_node(list, NULL);
 	if (ret != NULL)
-		return (1);
+		return (ft_ll_delete(&list, NULL), 1);
 	i = 0;
 	while (strs[i])
 		ft_ll_push_back(&list, (void *)strs[i++]);
 	ret = ft_ll_extract_min_node(list, (t_data_cmp)ft_strcmp);
 	if (!ret || ft_strcmp(ret->data, "42") != 0)
-		return (2);
+		return (ft_ll_delete(&list, NULL), 2);
 	ret = ft_ll_extract_min_node(list, NULL);
 	if (ret)
-		return (3);
-	ft_ll_clear(&list, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, NULL), 3);
+	return (ft_ll_delete(&list, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

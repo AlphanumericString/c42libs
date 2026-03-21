@@ -11,17 +11,16 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "sys/cdefs.h"
 #include "tests/list__ll_tests.h"
 #include "types/ft_list_types.h"
-#include "tests/lists_test_utils.h"
 
 int	tll_mid(void)
 {
-	t_list	*lst = NULL;
-	t_list	*res[4];
-	const void *exp[4] = { NULL, (t_any)0xDEAD, (t_any)0xCAFE, (t_any)0xCAFE};
+	t_list		*lst;
+	t_list		*res[4];
+	const void	*exp[4] = {NULL, (t_any)0xDEAD, (t_any)0xCAFE, (t_any)0xCAFE};
 
+	lst = NULL;
 	res[0] = ft_ll_mid(lst);
 	ft_ll_push(&lst, (t_any)0xDEAD);
 	res[1] = ft_ll_mid(lst);
@@ -30,15 +29,14 @@ int	tll_mid(void)
 	ft_ll_push(&lst, (t_any)0xBEEF);
 	res[3] = ft_ll_mid(lst);
 	if (res[0])
-		return (1);
+		return (ft_ll_delete(&lst, NULL), 1);
 	if (res[1]->data != exp[1])
-		return (2);
+		return (ft_ll_delete(&lst, NULL), 2);
 	if (res[2]->data != exp[2])
-		return (3);
+		return (ft_ll_delete(&lst, NULL), 3);
 	if (res[3]->data != exp[2])
-		return (4);
-	ft_ll_clear(&lst, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&lst, NULL), 4);
+	return (ft_ll_delete(&lst, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

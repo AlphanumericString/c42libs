@@ -20,17 +20,17 @@ static int	mt_string_insert_sn(void)
 {
 	const int	fp = *talloc_get_failpoint();
 	t_string	*str;
-	t_string	*src;
+	t_string	*str2;
 
 	str = ft_string_from("Hello");
-	src = ft_string_from("World! < of magic > ");
+	str2 = ft_string_from("World! < of magic > ");
 	talloc_set_failpoint(0);
-	ft_string_insert_s_n(str, src, -1, 5);
-	ft_string_insert_s_n(str, src, -1, 20);
+	ft_string_insert_s_n(str, str2, -1, 5);
+	ft_string_insert_s_n(str, str2, -1, 20);
 	talloc_set_failpoint(fp);
 	if (ft_string_cmp(str, "Hello") != 0 || str->length != 5)
-		return (1);
-	ft_string_destroy(&src);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 1);
+	ft_string_destroy(&str2);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
 }
@@ -44,14 +44,14 @@ int	test_string_insert_sn(void)
 	str2 = ft_string_from(" World!!!!");
 	ft_string_insert_s_n(str, str2, 0, 5);
 	if (ft_string_cmp(str, " WorlHello") != 0)
-		return (1);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 1);
 	if (str->length != 10 || str->capacity < 10)
-		return (2);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 2);
 	ft_string_insert_s_n(str, str2, 99, 1);
 	if (ft_string_cmp(str, " WorlHello ") != 0)
-		return (3);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 3);
 	if (str->length != 11 || str->capacity < 11)
-		return (4);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 4);
 	ft_string_destroy(&str);
 	ft_string_destroy(&str2);
 	return (mt_string_insert_sn());

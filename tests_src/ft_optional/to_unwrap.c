@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mem.h"
 #include "ft_optional.h"
 #include "types/ft_optional_types.h"
 #include "tests/optional_tests.h"
@@ -18,17 +17,14 @@
 int	to_unwrap(void)
 {
 	t_optional	opt;
-	int			*ptr;
+	const void	*ptr = (void *)0xDEAD;
 
 	opt.pres = OPT_SOME;
-	ptr = ft_malloc(sizeof(int));
-	*ptr = 42;
-	opt.val = ptr;
+	opt.val = (void *)ptr;
 	if (ft_optional_unwrap(opt) != ptr)
 		return (1);
-	ft_free(ptr);
 	opt.pres = OPT_NONE;
-	opt.val = (void *)0xDEADBEEF;
+	opt.val = (void *)0xCAFE;
 	if (ft_optional_unwrap(opt) != NULL)
 		return (2);
 	return (EXIT_SUCCESS);

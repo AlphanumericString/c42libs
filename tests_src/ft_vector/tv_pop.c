@@ -57,13 +57,13 @@ static int	normal_cases(void)
 	vec = ft_vec_from_array(strs, 3, sizeof(char *));
 	str = *(char **)ft_vec_pop(vec);
 	if (!str || ft_strcmp(str, "value3") != 0 || vec->n_e != 2)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	str = *(char **)ft_vec_pop(vec);
 	if (!str || ft_strcmp(str, "value2") != 0 || vec->n_e != 1)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	str = *(char **)ft_vec_pop(vec);
 	if (!str || ft_strcmp(str, "value1") != 0 || vec->n_e != 0)
-		return (4);
+		return (ft_vec_destroy(&vec), 4);
 	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 

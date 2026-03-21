@@ -60,7 +60,7 @@ static int	base_cases(void)
 		ft_vec_nfold(&v, i * 2, add_ints);
 		ret = check_vec(&v, (const int *)nexp[i], 7 - i);
 		if (ret)
-			return (i * 8 + ret);
+			return (ft_vec_wipe(&v), i * 8 + ret);
 		ft_vec_wipe(&v);
 		i++;
 	}

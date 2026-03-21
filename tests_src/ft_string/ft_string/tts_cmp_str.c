@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
 #include "ft_tstring.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+#include <stdlib.h>
 
 int	test_string_cmp_str(void)
 {
@@ -23,15 +23,15 @@ int	test_string_cmp_str(void)
 	str = ft_string_from("Hello");
 	str2 = ft_string_from("Hello");
 	if (ft_string_cmpstr(str, str2) != 0)
-		return (1);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 1);
 	ft_string_destroy(&str2);
 	str2 = ft_string_from("Hello World");
 	if (ft_string_cmpstr(str, str2) >= 0)
-		return (2);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 2);
 	ft_string_destroy(&str2);
 	str2 = ft_string_from("Hell");
 	if (ft_string_cmpstr(str, str2) <= 0)
-		return (3);
+		return (ft_string_destroy(&str), ft_string_destroy(&str2), 3);
 	ft_string_destroy(&str);
 	ft_string_destroy(&str2);
 	return (EXIT_SUCCESS);

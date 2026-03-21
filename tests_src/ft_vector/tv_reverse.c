@@ -37,9 +37,9 @@ int	tv_reverse(void)
 	vec = ft_vec_from_array(a, 3, sizeof(int));
 	ft_vec_reverse(vec);
 	if (vec->n_e != 3)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	if (ft_vec_acmp(vec, exp, NULL) != 0)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	ft_vec_destroy(&vec);
 	ft_vec_reverse(NULL);
 	return (EXIT_SUCCESS);

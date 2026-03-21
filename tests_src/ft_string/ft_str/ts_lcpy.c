@@ -25,12 +25,12 @@ static int	base_cases(void)
 	res = ft_calloc(sizeof(char), size);
 	ret = ft_strlcpy(res, str, size);
 	if (ft_strcmp(res, "Hello World!") != 0 || ret != 12)
-		return (1);
+		return (ft_free(res), 1);
 	ft_free(res);
 	res = ft_malloc(sizeof(char) * size);
 	ret = ft_strlcpy(res, "This is zod!", size);
 	if (ft_strcmp(res, "This is zod!") != 0 || ret != 12)
-		return (2);
+		return (ft_free(res), 2);
 	return (ft_free(res), 0);
 }
 
@@ -45,18 +45,18 @@ static int	error_cases(void)
 	ret = ft_strlcpy(res, "This is too large!", size);
 	if (ft_strncmp(res, "This is too large!", size - 1) != 0 || ret != (int)
 		ft_strlen("This is too large!"))
-		return (3);
+		return (ft_free(res), 3);
 	ft_free(res);
 	res = ft_calloc(sizeof(char), 1);
 	ret = ft_strlcpy(res, "Hello World!", 0);
 	if (ft_strcmp(res, "") != 0 || ret != 12)
-		return (4);
+		return (ft_free(res), 4);
 	ret = ft_strlcpy(res, NULL, 42);
 	if (ft_strcmp(res, "") != 0 || ret != 0)
-		return (5);
+		return (ft_free(res), 5);
 	ret = ft_strlcpy(NULL, "Hello World!", 42);
 	if (ret != 42)
-		return (6);
+		return (ft_free(res), 6);
 	return (ft_free(res), 0);
 }
 

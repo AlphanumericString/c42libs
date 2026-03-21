@@ -40,18 +40,18 @@ int	tcl_clear(void)
 		return (2);
 	size = ft_cl_clear(&lst, NULL);
 	if (size != 1 || lst == NULL || lst->data != NULL)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	ft_cl_delete(&lst, NULL);
 	lst = a_to_cl((int []){1, 2, 3}, 3);
 	size = ft_cl_clear(&lst, NULL);
 	if (size != 3 || lst == NULL || lst->data != NULL
 		|| lst->next->data != NULL || lst->prev->data != NULL)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 4);
 	ft_cl_delete(&lst, NULL);
 	lst = a_to_cl((int []){1, 2}, 2);
 	size = ft_cl_clear(&lst, do_nothing);
 	if (size != 2 || lst == NULL || lst->data != NULL)
-		return (5);
+		return (ft_cl_delete(&lst, NULL), 5);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 

@@ -12,7 +12,6 @@
 
 #include "tests/vector_tests.h"
 
-#include "ft_arr.h"
 #include "ft_vector.h"
 #include "ft_allocator__dev.h"
 #include "tests/fixtures.h"

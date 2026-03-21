@@ -66,11 +66,11 @@ static int	tv_insert_grow(void)
 	vec = ft_vec_convert_alloccarray(src_arr, FT_VECTOR_BASE_LEN - 1,
 			sizeof(int));
 	if (vec->cappacity != FT_VECTOR_BASE_LEN - 1)
-		return (8);
+		return (ft_vec_destroy(&vec), 8);
 	to_insert = 666;
 	ret = ft_vec_insert(vec, 2, &to_insert);
 	if (ret != true || *((int *)ft_vec_at(vec, 2)) != 666)
-		return (9);
+		return (ft_vec_destroy(&vec), 9);
 	ft_vec_destroy(&vec);
 	return (error_cases());
 }

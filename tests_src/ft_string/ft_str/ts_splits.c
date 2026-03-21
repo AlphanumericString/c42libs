@@ -54,17 +54,17 @@ int	ts_splits(void)
 		|| ft_strcmp(res[4], "path") != 0 || ft_strcmp(res[5], "yet") != 0
 		|| ft_strcmp(res[6], "another") != 0 || ft_strcmp(res[7], "path") != 0
 		|| res[8])
-		return (1);
+		return (ft_afree((void **)res), 1);
 	res = (ft_afree((t_arr)res), ft_splits(s_test, "z"));
 	if (!res || ft_strcmp(res[0], s_test) != 0 || res[1] != NULL)
-		return (2);
+		return (ft_afree((void **)res), 2);
 	res = (ft_afree((t_arr)res), ft_splits(NULL, "z"));
 	if (!res || res[0] != NULL)
-		return (3);
+		return (ft_afree((void **)res), 3);
 	res = (ft_afree((t_any)res), ft_splits(s_test2, "/"));
 	if (ft_strcmp(res[0], "path") != 0 || ft_strcmp(res[1], "to") != 0
 		|| ft_strcmp(res[2], "my") != 0 || ft_strcmp(res[3], "file.type") != 0)
-		return (4);
+		return (ft_afree((void **)res), 4);
 	return (ft_afree((t_arr)res), mt_tssplits());
 }
 /*

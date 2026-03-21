@@ -28,7 +28,7 @@ static int	mt_string_sub(void)
 	talloc_set_failpoint(fp);
 	ft_string_destroy(&str);
 	if (sub)
-		return (1);
+		return (ft_string_destroy(&sub), 1);
 	return (EXIT_SUCCESS);
 }
 
@@ -41,18 +41,18 @@ int	test_string_substr(void)
 	sub = ft_string_substr(str, 0, 5);
 	if (!sub || ft_strcmp(sub->str, "Hello") != 0 || sub->length != 5
 		|| sub->capacity < 5)
-		return (1);
+		return (ft_string_destroy(&str), ft_string_destroy(&sub), 1);
 	ft_string_destroy(&sub);
 	sub = ft_string_substr(str, 99, 100);
 	if (sub)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	sub = ft_string_substr(str, 0, -1);
 	if (ft_string_cmpstr(str, sub) != 0)
-		return (3);
+		return (ft_string_destroy(&str), ft_string_destroy(&sub), 3);
 	ft_string_destroy(&sub);
 	sub = ft_string_substr(NULL, 0, 100);
 	if (sub)
-		return (4);
+		return (ft_string_destroy(&str), 4);
 	return (ft_string_destroy(&str), mt_string_sub());
 }
 /*

@@ -36,22 +36,22 @@ int	tll_subrange(void)
 	ft_ll_rev(&list);
 	sub = ft_ll_subrange(list, list->next);
 	if (ft_ll_size(sub) != 1 || sub->data != data2)
-		return (1);
-	ft_ll_clear(&sub, NULL);
+		return (ft_ll_delete(&list, ft_free), 1);
+	ft_ll_delete(&sub, NULL);
 	sub = ft_ll_subrange(list, NULL);
 	if (ft_ll_size(sub) != 2 || sub->data != data2 || sub->next->data != data)
-		return (2);
-	ft_ll_clear(&sub, NULL);
+		return (ft_ll_delete(&list, ft_free), 2);
+	ft_ll_delete(&sub, NULL);
 	sub = ft_ll_subrange(list, (const t_list *)data2);
 	if (ft_ll_size(sub) != 2 || sub->data != data2 || sub->next->data != data)
-		return (3);
-	ft_ll_clear(&sub, NULL);
+		return (ft_ll_delete(&list, ft_free), 3);
+	ft_ll_delete(&sub, NULL);
 	if (ft_ll_subrange(NULL, NULL))
-		return (4);
+		return (ft_ll_delete(&list, ft_free), 4);
 	sub = ft_ll_subrange(list, list);
 	if (ft_ll_size(sub) != 1 || sub->data != data2)
-		return (5);
-	return (ft_ll_clear(&sub, NULL), ft_ll_clear(&list, ft_free), 0);
+		return (ft_ll_delete(&list, ft_free), 5);
+	return (ft_ll_delete(&sub, NULL), ft_ll_delete(&list, ft_free), 0);
 }
 /*
 GPL-3.0 License:

@@ -25,11 +25,11 @@ int	tcl_apply(void)
 	create_2elem_clist(&list, (void *)&data, (void *)&data2);
 	ft_cl_apply(list, add42);
 	if (ft_cl_size(list) != 2)
-		return (1);
+		return (ft_cl_delete(&list, NULL), 1);
 	else if (*(int *)list->data != 84)
-		return (2);
+		return (ft_cl_delete(&list, NULL), 2);
 	else if (*(int *)list->next->data != 63)
-		return (3);
+		return (ft_cl_delete(&list, NULL), 3);
 	return (ft_cl_delete(&list, NULL), 0);
 }
 
@@ -55,7 +55,7 @@ int	tcl_apply_range(void)
 				&& *(int *)ft_cl_at(list, i)->data != (int)i)
 			|| ((pair_idx[0] < i && i < pair_idx[1])
 				&& *(int *)ft_cl_at(list, i)->data != (int)(i + 42)))
-			return (i);
+			return (ft_cl_delete(&list, NULL), i);
 		i++;
 	}
 	return (ft_cl_delete(&list, NULL), 0);
@@ -74,7 +74,7 @@ int	tcl_apply_range_node(void)
 	while (i--)
 		ft_cl_push(&list, (void *)&nbrs[i]);
 	if (list && ft_cl_check_health(list) == false)
-		return (1);
+		return (ft_cl_delete(&list, NULL), 1);
 	pair[0] = ft_cl_at(list, 2);
 	pair[1] = ft_cl_at(list, 5);
 	ft_cl_apply_range_node(pair[0], pair[1], add42_clnode);
@@ -82,7 +82,7 @@ int	tcl_apply_range_node(void)
 	{
 		if (((i >= 2 && i <= 5) && ft_cl_at(list, i) != (void *)(i + 42)) ||
 		(!(i >= 2 && i <= 5) && ft_cl_at(list, i) != (void *)(i)))
-			return (i);
+			return (ft_cl_delete(&list, NULL), i);
 		i++;
 	}
 	ft_cl_apply_range_node(NULL, pair[1], add42_clnode);

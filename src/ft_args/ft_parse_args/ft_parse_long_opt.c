@@ -72,7 +72,7 @@ static void	v2_parse_long_opt_inner(t_parser_state *st, size_t op,
 		st->err = ((int (*)(void *, const char *))o_lst[op].func)(data, value);
 		return ;
 	}
-	perror_pa_state(st, "Couldn't parse harg flag ");
+	perror_pa_state(st, "Couldn't parse harg flag ", STDERR_FILENO);
 }
 
 static void	explain(const char *arg)

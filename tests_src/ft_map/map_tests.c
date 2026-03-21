@@ -14,21 +14,35 @@
 #include "tests/tests.h"
 #include "tests/map_tests.h"
 
+/*
+ * todos:
+
+ * sorted list
+
+{"capacity", tmap_capacity},
+{"clear", tmap_clear}, // *
+{"create", tmap_create},
+{"destroy_free", tmap_destroy_free},
+{"destroy", tmap_destroy}, // *
+{"get", tmap_get},
+{"hash", tmap_hash},
+{"remove", tmap_remove}, // *
+{"set_cmp", tmap_set_cmp},
+{"set_hash", tmap_set_hash},
+{"set", tmap_set},
+{"size", tmap_size},
+
+ *
+*/
+
 static const t_fnamed	*tmap_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"create", tmap_create},
-	{"destroy", tmap_destroy}, // here
-	{"destroy_free", tmap_destroy_free},
-	{"clear", tmap_clear}, // here
-	{"set", tmap_set},
-	{"set_cmp", tmap_set_cmp},
-	{"set_hash", tmap_set_hash},
-	{"get", tmap_get},
-	{"size", tmap_size},
-	{"capacity", tmap_capacity},
-	{"remove", tmap_remove}, // here
-	{"hash", tmap_hash},
+	{"capacity", tmap_capacity}, {"clear", tmap_clear},
+	{"create", tmap_create}, {"destroy_free", tmap_destroy_free},
+	{"destroy", tmap_destroy}, {"get", tmap_get}, {"hash", tmap_hash},
+	{"remove", tmap_remove}, {"set_cmp", tmap_set_cmp},
+	{"set_hash", tmap_set_hash}, {"set", tmap_set}, {"size", tmap_size},
 	{NULL, NULL}
 	};
 

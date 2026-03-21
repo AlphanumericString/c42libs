@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
-#include "ft_mem.h"
 #include "ft_tstring.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
+#include <stdlib.h>
 
 int	test_string_replace_chr(void)
 {
@@ -25,10 +24,10 @@ int	test_string_replace_chr(void)
 	ft_string_rpl_chr(str, 'o', 'O');
 	ft_string_rpl_chr(str, 'z', 'Z');
 	if (ft_string_cmp(str, "HellO wOrlds!"))
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_destroy(&str);
 	ft_string_rpl_chr(NULL, 'o', 'O');
-	ft_bzero(&str2, sizeof(str2));
+	str2 = (t_string){0};
 	ft_string_rpl_chr(&str2, 'o', '0');
 	return (EXIT_SUCCESS);
 }

@@ -26,7 +26,7 @@ static int	tmap_create_alloc_failure(void)
 	map = ft_map_create(10);
 	total = *talloc_get_currentpoint() - total;
 	if (!map)
-		return (1);
+		return (ft_map_destroy(map), 1);
 	ft_map_destroy(map);
 	prev = *talloc_get_failpoint();
 	while (total >= 0)
@@ -34,7 +34,8 @@ static int	tmap_create_alloc_failure(void)
 		talloc_set_failpoint(*talloc_get_currentpoint() + --total);
 		map = ft_map_create(10);
 		if (map)
-			return (talloc_set_failpoint(prev), 2 + total + 1);
+			return (talloc_set_failpoint(prev),
+				ft_map_destroy(map), 2 + total + 1);
 	}
 	talloc_set_failpoint(prev);
 	return (EXIT_SUCCESS);

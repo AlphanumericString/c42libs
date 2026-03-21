@@ -33,19 +33,19 @@ int	tll_map(void)
 	map_err[1] = ft_ll_map(NULL, add42_ret, ft_free);
 	map_err[2] = ft_ll_map(list, add42_ret, NULL);
 	if (!map || *(int *)map->data != 84 || !map->next)
-		return (1);
-	else if (*(int *)map->next->data != 63)
-		return (2);
-	else if (map->next->next)
-		return (3);
+		return (ft_ll_delete(&list, ft_free), 1);
+	else if (*(int *)map->next->data != 63 || map->next->next)
+		return (ft_ll_delete(&list, ft_free), 2);
 	else if (map_err[0] || map_err[1] || map_err[2])
-		return (4);
+		return (ft_ll_delete(&list, ft_free), 3);
+	ft_ll_delete(&map, ft_free);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_ll_map(list, add42_ret, ft_free))
-		return (talloc_set_failpoint(prev), 5);
-	talloc_set_failpoint(prev);
-	return (ft_ll_clear(&list, ft_free), ft_ll_clear(&map, ft_free), 0);
+	map = ft_ll_map(list, add42_ret, ft_free);
+	(talloc_set_failpoint(prev), ft_ll_delete(&list, ft_free));
+	if (map)
+		return (ft_ll_delete(&map, ft_free), 4);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

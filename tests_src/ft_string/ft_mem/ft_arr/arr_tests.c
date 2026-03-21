@@ -14,6 +14,39 @@
 #include "tests/str__mem_tests.h"
 #include "tests/tests.h"
 
+/*
+ * sorted list:
+
+{"aaloc", tca_aaloc},
+{"aapply", tca_aapply},
+{"acat", tca_acat},
+{"aclear", tca_aclear},
+{"acmp", tca_acmp},
+{"acmpwith", tca_acmpwith},
+{"acpy", tca_acpy},
+{"adup", tca_adup},
+{"afind", tca_afind},
+{"afindwith", tca_afindwith},
+{"afree", tca_afree},
+{"alcat", tca_alcat},
+{"alcpy", tca_alcpy},
+{"alen", tca_alen},
+{"amap", tca_amap},
+{"anapply", tca_anapply},
+{"ancmp", tca_ancmp},
+{"ancmpwith", tca_ancmpwith},
+{"andup", tca_andup},
+{"anfree", tca_anfree},
+{"anmap", tca_anmap},
+{"anrev", tca_anrev},
+{"antr", tca_antr},
+{"arev", tca_arev},
+{"arfind", tca_arfind},
+{"arfindwith", tca_arfindwith},
+{"atr", tca_atr},
+
+*/
+
 static const t_fnamed	*tca_tests(void)
 {
 	static const t_fnamed	tests[] = {
@@ -23,11 +56,10 @@ static const t_fnamed	*tca_tests(void)
 	{"afindwith", tca_afindwith}, {"afree", tca_afree}, {"alcat", tca_alcat},
 	{"alcpy", tca_alcpy}, {"alen", tca_alen}, {"amap", tca_amap},
 	{"anapply", tca_anapply}, {"ancmp", tca_ancmp},
-	{"ancmpwith", tca_ancmpwith}, {"andup", tca_andup},
-	{"anfree", tca_anfree}, {"anmap", tca_anmap}, {"anrev", tca_anrev},
-	{"antr", tca_antr}, {"arev", tca_arev}, {"arfind", tca_arfind},
-	{"arfindwith", tca_arfindwith}, {"atr", tca_atr},
-	{NULL, NULL}};
+	{"ancmpwith", tca_ancmpwith}, {"andup", tca_andup}, {"anfree", tca_anfree},
+	{"anmap", tca_anmap}, {"anrev", tca_anrev}, {"antr", tca_antr},
+	{"arev", tca_arev}, {"arfind", tca_arfind}, {"arfindwith", tca_arfindwith},
+	{"atr", tca_atr}, {NULL, NULL}};
 
 	return (tests);
 }

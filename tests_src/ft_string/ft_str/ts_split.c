@@ -34,6 +34,15 @@ static int	mt_ts_split(void)
 	return (EXIT_SUCCESS);
 }
 
+static void	clear_all(char ***r)
+{
+	ft_afree((t_arr)r[0]);
+	ft_afree((t_arr)r[1]);
+	ft_afree((t_arr)r[2]);
+	ft_afree((t_arr)r[3]);
+	ft_afree((t_arr)r[4]);
+}
+
 int	ts_split(void)
 {
 	const char	*str = "  Hello World!  ";
@@ -46,18 +55,16 @@ int	ts_split(void)
 	r[3] = ft_split(str, 'z');
 	r[4] = ft_split(str, 0);
 	if (r[0][0] != NULL)
-		return (1);
+		return (clear_all(r), 1);
 	if (ft_strcmp(r[1][0], "Hello") != 0 || ft_strcmp(r[1][1], "World!") != 0
 		|| r[1][2]
 		|| ft_strcmp(r[2][0], "Hello") != 0 || ft_strcmp(r[2][1], "World!") != 0
 		|| r[2][2])
-		return (2);
+		return (clear_all(r), 2);
 	if (ft_strcmp(r[3][0], str) != 0 || r[3][1] != NULL
 		|| ft_strcmp(r[4][0], str) != 0 || r[4][1] != NULL)
-		return (3);
-	return (ft_afree((t_arr)r[0]), ft_afree((t_arr)r[1]),
-		ft_afree((t_arr)r[2]), ft_afree((t_arr)r[3]), ft_afree((t_arr)r[4]),
-		mt_ts_split());
+		return (clear_all(r), 3);
+	return (clear_all(r), mt_ts_split());
 }
 /*
 GPL-3.0 License:

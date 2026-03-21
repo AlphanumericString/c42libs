@@ -49,8 +49,8 @@ static int	do_bad_calls(void)
 	int			i;
 	const char	*bad_type_args[] = {"pname", "-d", "a42", "--int", "420",
 		"--hex=0xDEAD", "--hex2", "-o", "0o31", "--", "toto", NULL};
-	const char	*bad_missing_args[][3] = { {"pname", "--int", NULL},
-		{"pname", "--long", NULL}, {"pname", "-l", NULL},
+	const char	*bad_missing_args[][3] = {{"pname", "--int", NULL},
+	{"pname", "--long", NULL}, {"pname", "-l", NULL},
 	};
 
 	i = 0;
@@ -58,17 +58,16 @@ static int	do_bad_calls(void)
 	if (ft_parse_args(NULL, &test) == EXIT_SUCCESS)
 		return (1);
 	if (ft_parse_args(bad_type_args, &test) == EXIT_SUCCESS)
-		return (1);
-	while (i < 3) {
+		return (2);
+	while (i < 3)
 		if (ft_parse_args(bad_missing_args[i++], &test) == EXIT_SUCCESS)
-			return (1);
-	}
+			return (3);
 	return (EXIT_SUCCESS);
 }
 
 #define BUFF_SIZE 4096
 
-static int file_cmp(int fd, const char *expected)
+static int	file_cmp(int fd, const char *expected)
 {
 	char	buff[BUFF_SIZE + 1];
 	ssize_t	i;
@@ -82,8 +81,8 @@ static int file_cmp(int fd, const char *expected)
 		if (i < 0)
 			return (1);
 		buff[i] = 0;
-		if (ft_strncmp(buff, expected + (j++ * BUFF_SIZE), i) != 0)
-			return (1);
+		if (ft_strncmp(buff, expected + (j++ *BUFF_SIZE), i) != 0)
+			return (2);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -100,19 +99,19 @@ int	targ_parse(void)
 
 	(pipe(_ppe), dup2(_ppe[1], STDERR_FILENO));
 	if (ft_parse_args(args, &test) == EXIT_SUCCESS)
-		return (1);
+		return (close(_ppe[0]), close(_ppe[1]), close(STDERR_FILENO), 1);
 	ft_bzero(&test, sizeof(t_usr));
 	ft_set_opt_list(get_test_topt());
 	if (ft_parse_args(args, NULL) == EXIT_SUCCESS)
-		return (2);
+		return (close(_ppe[0]), close(_ppe[1]), close(STDERR_FILENO), 2);
 	if (ft_parse_args(args, &test) != EXIT_SUCCESS)
-		return (close(_ppe[0]), close(_ppe[1]), 3);
+		return (close(_ppe[0]), close(_ppe[1]), close(STDERR_FILENO), 3);
 	if (test.nbr != 42 || test.i_nbr != 420 || test.hex != 0xDEAD
 		|| test.hex2 != 0xDEADBEEF || test.oct != 25 || ft_get_nbparg() != 10)
-		return ((close(_ppe[0]), close(_ppe[1]), 4));
+		return (close(_ppe[0]), close(_ppe[1]), close(STDERR_FILENO), 4);
 	if (do_bad_calls() != E_S || file_cmp(_ppe[0], F1 F2 F3 F4) != E_S)
-		return ((close(_ppe[0]), close(_ppe[1]), 5));
-	return (dup2(STDERR_FILENO, _ppe[1]), close(_ppe[0]), close(_ppe[1]), E_S);
+		return (close(_ppe[0]), close(_ppe[1]), close(STDERR_FILENO), 5);
+	return (close(_ppe[0]), close(_ppe[1]), close(STDERR_FILENO), 0);
 }
 
 #undef F1

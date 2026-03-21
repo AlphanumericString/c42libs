@@ -23,18 +23,20 @@ static int	mt_cl_getnodes(void)
 	t_clist		**datas;
 	t_clist		*set1;
 	size_t		i;
+	int			r;
 
 	i = 0;
 	set1 = NULL;
+	r = EXIT_SUCCESS;
 	while (i < 10)
 		ft_cl_push_back(&set1, (void *)(long)i++);
 	talloc_set_failpoint(0);
 	datas = ft_cl_get_nodes(set1);
 	if (datas)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(fp);
 	ft_cl_delete(&set1, NULL);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 static int	mt_cl_getdatas(void)
@@ -43,18 +45,20 @@ static int	mt_cl_getdatas(void)
 	void		**datas;
 	t_clist		*set1;
 	size_t		i;
+	int			r;
 
 	i = 0;
 	set1 = NULL;
+	r = EXIT_SUCCESS;
 	while (i < 10)
 		ft_cl_push_back(&set1, (void *)(long)i++);
 	talloc_set_failpoint(0);
 	datas = ft_cl_get_datas(set1);
 	if (datas)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(fp);
 	ft_cl_delete(&set1, NULL);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 int	tcl_get_datas(void)
@@ -68,7 +72,7 @@ int	tcl_get_datas(void)
 	lst = ft_cl_create((void *)42);
 	datas = ft_cl_get_datas(lst);
 	if (!datas || datas[0] != (void *)42 || datas[1] != NULL)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), ft_free(datas), 3);
 	ft_free(datas);
 	(ft_cl_push_back(&lst, (void *)43), ft_cl_push_back(&lst, (void *)44));
 	datas = ft_cl_get_datas(lst);
@@ -76,7 +80,7 @@ int	tcl_get_datas(void)
 		|| datas[0] != (void *)42
 		|| datas[1] != (void *)43
 		|| datas[2] != (void *)44)
-		return (6);
+		return (ft_cl_delete(&lst, NULL), ft_free(datas), 6);
 	return (ft_free(datas), ft_cl_delete(&lst, NULL), mt_cl_getdatas());
 }
 
@@ -91,7 +95,7 @@ int	tcl_get_nodes(void)
 	lst = ft_cl_create((void *)42);
 	nodes = ft_cl_get_nodes(lst);
 	if (!nodes || nodes[0] != lst || nodes[1] != NULL)
-		return (3);
+		return (ft_free(nodes), ft_cl_delete(&lst, NULL), 3);
 	ft_free(nodes);
 	(ft_cl_push_back(&lst, (void *)43), ft_cl_push_back(&lst, (void *)44));
 	nodes = ft_cl_get_nodes(lst);
@@ -99,7 +103,7 @@ int	tcl_get_nodes(void)
 		|| nodes[0]->data != (void *)42
 		|| nodes[1]->data != (void *)43
 		|| nodes[2]->data != (void *)44)
-		return (6);
+		return (ft_free(nodes), ft_cl_delete(&lst, NULL), 6);
 	return (ft_free(nodes), ft_cl_delete(&lst, NULL), mt_cl_getnodes());
 }
 /*

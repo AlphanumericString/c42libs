@@ -30,15 +30,13 @@ int	tdl_rev(void)
 	original_data2 = data2;
 	ft_dl_rev(&list);
 	if (ft_dl_size(list) != 2)
-		return (1);
+		return (ft_dl_delete(&list, NULL), ft_free(data1), ft_free(data2), 1);
 	else if (list->data != original_data2 || list->next->data != original_data1)
-		return (2);
-	ft_dl_clear(&list, ft_free);
-	if (ft_dl_rev(NULL))
-		return (3);
+		return (ft_dl_delete(&list, ft_free), 2);
+	ft_dl_delete(&list, ft_free);
 	list = NULL;
-	if (ft_dl_rev(&list))
-		return (4);
+	if (ft_dl_rev(NULL) || ft_dl_rev(&list))
+		return (3);
 	return (EXIT_SUCCESS);
 }
 /*

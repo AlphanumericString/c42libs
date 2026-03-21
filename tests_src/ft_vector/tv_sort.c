@@ -36,13 +36,13 @@ static int	base_cases(void)
 	vec = ft_vec_from_array(nbrs, 3, sizeof(long));
 	ft_vec_sort(vec, cmp_fun);
 	if (vec->n_e != 3)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	else if (ft_vec_acmp(vec, exp, NULL) != 0)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	ft_vec_sort(vec, cmp_fun);
 	ft_vec_sort(vec, cmp_fun);
 	if (ft_vec_acmp(vec, exp, NULL) != 0)
-		return (3);
+		return (ft_vec_destroy(&vec), 3);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }

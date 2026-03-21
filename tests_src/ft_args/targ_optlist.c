@@ -24,17 +24,19 @@ static void	empty(void *ar, char *arg)
 
 int	targ_opt_list_test(void)
 {
+	const t_opt		*prev;
 	static t_opt	op1[] = {
 	{"--test", 't', &empty, 0, NULL},
 	{NULL, 0, NULL, 0, NULL}
 	};
 
+	prev = ft_get_opt_list();
 	ft_set_opt_list(op1);
 	if (ft_get_opt_list() != op1)
-		return (1);
+		return (ft_set_opt_list((t_opt *)prev), 1);
 	ft_set_opt_list(NULL);
 	if (ft_get_opt_list() != op1)
-		return (2);
+		return (ft_set_opt_list((t_opt *)prev), 2);
 	return (EXIT_SUCCESS);
 }
 /*

@@ -25,9 +25,8 @@ static int	mt_string_append_n(void)
 	ft_string_append_n(str, " World", 5);
 	talloc_set_failpoint(fp);
 	if (ft_string_cmp(str, "Hello") != 0)
-		return (1);
-	ft_string_destroy(&str);
-	return (EXIT_SUCCESS);
+		return (ft_string_destroy(&str), 1);
+	return (ft_string_destroy(&str), EXIT_SUCCESS);
 }
 
 int	test_string_append_n(void)
@@ -37,21 +36,22 @@ int	test_string_append_n(void)
 	str = ft_string_from("Hello");
 	ft_string_append_n(str, " World", 5);
 	if (ft_string_cmp(str, "Hello Worl") != 0)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	if (str->length != 10)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	if (str->capacity < 10)
-		return (3);
+		return (ft_string_destroy(&str), 3);
 	ft_string_destroy(&str);
 	str = ft_string_from("hi");
 	ft_string_append_n(str, "i", 1);
 	if (ft_string_cmp(str, "hii") != 0)
-		return (4);
+		return (ft_string_destroy(&str), 4);
 	if (str->length != 3 || str->capacity < 3)
-		return (5);
+		return (ft_string_destroy(&str), 5);
+	ft_string_destroy(&str);
 	ft_string_append_n(NULL, "i", 1);
 	ft_string_append_n(str, NULL, 1);
-	return (ft_string_destroy(&str), mt_string_append_n());
+	return (mt_string_append_n());
 }
 /*
 GPL-3.0 License:

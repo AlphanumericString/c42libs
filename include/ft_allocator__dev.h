@@ -33,13 +33,7 @@ void				ft_set_ft_alloc(void);
 void				ft_set_gnu_alloc(void);
 
 // hooks
-// aka call the allocator_group ptrs
-// equivalent to doing:
-//	ft_get_allocator()->[allocator_function](args);
-//	eg:
-//	ft_malloc(42) == ft_get_allocator()->ptr_alloc(42);
-//	ft_calloc(42) == ft_get_allocator()->ptr_calloc(42);
-//	...
+// aka vtable access
 void				*ft_malloc(size_t size);
 void				ft_free(void *ptr);
 void				*ft_calloc(size_t nmemb, size_t size);

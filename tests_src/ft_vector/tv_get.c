@@ -25,11 +25,9 @@ int	tv_get(void)
 
 	if (ft_vec_get(&v, 1, &hold) == NULL || hold != 42)
 		return (1);
-	if (ft_vec_get(NULL, 1, &hold) != NULL)
-		return (2);
-	if (ft_vec_get(&v, 99, &hold) != NULL)
-		return (2);
-	if (ft_vec_get(&v, 2, NULL) != NULL)
+	if (ft_vec_get(NULL, 1, &hold) != NULL
+		|| ft_vec_get(&v, 99, &hold) != NULL
+		|| ft_vec_get(&v, 2, NULL) != NULL)
 		return (2);
 	return (0);
 }

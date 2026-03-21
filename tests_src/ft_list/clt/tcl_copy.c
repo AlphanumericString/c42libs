@@ -25,20 +25,22 @@ static int	mt_cl_copy_list(void)
 	t_clist		*original;
 	t_clist		*copy;
 	size_t		i;
+	int			r;
 
 	i = 0;
 	original = NULL;
+	r = EXIT_SUCCESS;
 	while (i < 10)
 		ft_cl_push(&original, (void *)(long)i++);
 	if (!original || ft_cl_size(original) != 10)
-		return (1);
+		return (ft_cl_delete(&original, NULL), 1);
 	talloc_set_failpoint(0);
 	copy = ft_cl_copy_list(original);
 	if (copy != NULL)
-		return (2);
+		r = 2;
 	talloc_set_failpoint(fp);
 	ft_cl_delete(&original, NULL);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 static int	mt_cl_copy_node(void)
@@ -46,15 +48,17 @@ static int	mt_cl_copy_node(void)
 	const int	fp = *talloc_get_failpoint();
 	t_clist		*node1;
 	t_clist		*node;
+	int			r;
 
 	node1 = ft_cl_create(&mt_cl_copy_node);
+	r = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
 	node = ft_cl_copy_node(node1);
 	if (node)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(fp);
 	ft_free(node1);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 int	tcl_copy_node(void)
@@ -72,10 +76,8 @@ int	tcl_copy_node(void)
 	if (!copy || copy->data != original->data
 		|| copy->next != original->next
 		|| copy->prev != original->prev)
-		return (3);
-	ft_free(original);
-	ft_free(copy);
-	return (mt_cl_copy_node());
+		return (ft_free(original), ft_free(copy), 3);
+	return (ft_free(original), ft_free(copy), mt_cl_copy_node());
 }
 
 static int	check_nodes(t_clist *original, t_clist *copy)
@@ -109,14 +111,14 @@ int	tcl_copy_list(void)
 	original = ft_cl_create((void *)42);
 	copy = ft_cl_copy_list(original);
 	if (!copy || copy->data != original->data || copy->next != copy)
-		return (3);
+		return (ft_cl_delete(&original, NULL), ft_cl_delete(&copy, NULL), 3);
 	(ft_cl_delete(&original, NULL), ft_cl_delete(&copy, NULL));
 	original = a_to_cl((int []){1, 2, 3}, 3);
 	copy = ft_cl_copy_list(original);
 	if (!copy || ft_cl_size(copy) != ft_cl_size(original))
-		return (4);
+		return (ft_cl_delete(&original, NULL), ft_cl_delete(&copy, NULL), 4);
 	if (check_nodes(original, copy) != 0)
-		return (5);
+		return (ft_cl_delete(&original, NULL), ft_cl_delete(&copy, NULL), 5);
 	return (ft_cl_delete(&original, NULL), ft_cl_delete(&copy, NULL),
 		mt_cl_copy_list());
 }

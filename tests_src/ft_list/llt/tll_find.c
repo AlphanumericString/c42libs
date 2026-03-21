@@ -30,21 +30,19 @@ int	tll_find(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	found = ft_ll_find(list, data2, NULL);
 	if (!found || *(int *)found->data != *data2)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), ft_free(data3), 1);
 	*data3 = 63;
 	found = ft_ll_find(list, data3, ft_cmp_int_p);
 	if (found)
-		return (2);
+		return (ft_ll_delete(&list, ft_free), ft_free(data3), 2);
 	found = ft_ll_find(NULL, data2, NULL);
 	if (found)
-		return (3);
+		return (ft_ll_delete(&list, ft_free), ft_free(data3), 3);
 	*data3 = 42;
 	found = ft_ll_find(list, data3, ft_cmp_int_p);
 	if (!found || *(int *)found->data != *data)
-		return (4);
-	ft_ll_clear(&list, ft_free);
-	free(data3);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, ft_free), ft_free(data3), 4);
+	return (ft_ll_delete(&list, ft_free), ft_free(data3), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

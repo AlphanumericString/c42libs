@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
 #include "ft_string.h"
 #include "ft_tstring.h"
 #include "types/ft_string_types.h"
@@ -24,7 +23,7 @@ int	test_string_get(void)
 	str = ft_string_from("Hello worlds!");
 	c_str = ft_string_get(str);
 	if (ft_strncmp(str->str, c_str, str->length) != 0)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
 }

@@ -14,13 +14,23 @@
 #include "tests/str__mem_tests.h"
 #include "tests/tests.h"
 
+/*
+ * sorted list:
+
+{"arena", tma_arena},
+{"narena_alloc", tma_narena_alloc},
+{"narena_belong", tma_narena_belong},
+{"narena_calloc", tma_narena_calloc},
+{"narena_free", tma_narena_free},
+
+*/
+
 static const t_fnamed	*tma_tests(void)
 {
 	static const t_fnamed	tests[] = {
 	{"arena", tma_arena}, {"narena_alloc", tma_narena_alloc},
-	{"narena_calloc", tma_narena_calloc}, {"narena_belong", tma_narena_belong},
-	{"narena_free", tma_narena_free},
-	{NULL, NULL}};
+	{"narena_belong", tma_narena_belong}, {"narena_calloc", tma_narena_calloc},
+	{"narena_free", tma_narena_free}, {NULL, NULL}};
 
 	return (tests);
 }

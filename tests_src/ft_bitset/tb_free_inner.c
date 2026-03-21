@@ -28,8 +28,7 @@ static	int	check_for_n(size_t	n)
 	ft_bs_free_inner(bitset);
 	if (bitset->bits != NULL)
 		return (ft_free(bitset), 2);
-	ft_free(bitset);
-	return (EXIT_SUCCESS);
+	return (ft_free(bitset), EXIT_SUCCESS);
 }
 
 int	tb_free_inner(void)

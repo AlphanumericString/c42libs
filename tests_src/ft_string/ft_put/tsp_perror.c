@@ -64,7 +64,7 @@ int	tsp_perror(void)
 	{
 		rd_buff = ft_gnl(fd);
 		if (ft_strcmp(rd_buff, expected[i++]))
-			return (i);
+			return (ft_free(rd_buff), i);
 		ft_free_clear((void **)&rd_buff);
 	}
 	return (destroy_test_file(fd, file), free(file), EXIT_SUCCESS);

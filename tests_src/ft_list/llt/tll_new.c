@@ -28,7 +28,7 @@ int	tll_new(void)
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_ll_new())
-		return (2);
+		return (talloc_set_failpoint(prev), 2);
 	talloc_set_failpoint(prev);
 	return (EXIT_SUCCESS);
 }

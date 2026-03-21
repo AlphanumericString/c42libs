@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
-#include "ft_mem.h"
 #include "ft_string.h"
 #include "ft_tstring.h"
 #include "tests/fixtures.h"
@@ -29,7 +27,7 @@ static int	mt_string_replace(void)
 	ft_string_rpl(str, "Hell", "Heaven");
 	talloc_set_failpoint(fp);
 	if (ft_string_cmp(str, src) != 0 || str->length != ft_strlen(src))
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
 }
@@ -42,14 +40,14 @@ int	test_string_replace(void)
 	str = ft_string_from("Hello worlds!");
 	ft_string_rpl(str, "worlds", "Worlds");
 	if (ft_string_cmp(str, "Hello Worlds!"))
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_append(str, " Worlds!");
 	ft_string_rpl(str, "Worlds", "earth");
 	if (ft_string_cmp(str, "Hello earth! earth!"))
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	ft_string_destroy(&str);
 	ft_string_rpl(NULL, "string1", "string2");
-	ft_bzero(&str2, sizeof(str2));
+	str2 = (t_string){0};
 	ft_string_rpl(&str2, "string1", "string2");
 	return (mt_string_replace());
 }

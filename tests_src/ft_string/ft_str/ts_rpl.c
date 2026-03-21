@@ -25,7 +25,7 @@ static int	mt_ts_rpl(void)
 	res = ft_strrpl(str, "World", "Zod");
 	talloc_set_failpoint(fp);
 	if (res)
-		return (1);
+		return (ft_free(res), 1);
 	return (EXIT_SUCCESS);
 }
 
@@ -37,16 +37,16 @@ int	ts_rpl(void)
 	str = "Hello World!";
 	res = ft_strrpl(str, "World", "Zod");
 	if (ft_strcmp(res, "Hello Zod!") != 0)
-		return (1);
+		return (ft_free(res), 1);
 	ft_free(res);
 	res = ft_strrpl(str, "World", "");
 	if (ft_strcmp(res, "Hello !") != 0)
-		return (2);
+		return (ft_free(res), 2);
 	ft_free(res);
 	str = "Hello World!";
 	res = ft_strrpl(str, "toto", "tutu");
 	if (ft_strcmp(res, "Hello World!") != 0)
-		return (3);
+		return (ft_free(res), 3);
 	return (ft_free(res), mt_ts_rpl());
 }
 /*

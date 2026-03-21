@@ -28,7 +28,7 @@ int	test_string_rchr(void)
 	{
 		ptr_exp[i] = ft_strrchr(str->str, c[i]);
 		if (ft_string_rchr(str, c[i]) != ptr_exp[i])
-			return (i + 1);
+			return (ft_string_destroy(&str), i + 1);
 		i++;
 	}
 	ft_string_destroy(&str);

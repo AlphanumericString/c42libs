@@ -14,25 +14,44 @@
 #include "ft_allocator__dev.h"
 #include "tests/tests.h"
 
-// {"new", tb_new}, {"create", tb_create}, {"new_from_str", tb_new_from_str},
-// {"clear", tb_clear}, {"free", tb_free}, {"free_inner", tb_free_inner},
-// {"get_raw", tb_get_raw}, {"get", tb_get}, {"set_raw", tb_set_raw},
-// {"set", tb_set}, {"toggle", tb_toggle}, {"toggle_raw", tb_toggle_raw},
-// {"print", tb_print}, {"print_binary", tb_print_binary},
-// {"print_hex", tb_print_hex}, {"print_decimal", tb_print_decimal},
-// {"append", tb_append}, {"remove", tb_remove},
-// {"remove_front", tb_remove_front}, {NULL, NULL}};
+/*
+ * todos:
+	TODO: check if for new_from_mem we can tjust use a memcmp to be clearer
+
+ * sorted list:
+
+{"append", tb_append},
+{"clear", tb_clear},
+{"create", tb_create},
+{"free_inner", tb_free_inner},
+{"free", tb_free},
+{"get_raw", tb_get_raw},
+{"get", tb_get},
+{"new_from_mem", tb_new_from_mem},
+{"new", tb_new},
+{"print_binary", tb_print_binary},
+{"print_decimal", tb_print_decimal},
+{"print_hex", tb_print_hex},
+{"print", tb_print},
+{"remove_front", tb_remove_front}
+{"remove", tb_remove},
+{"set_raw", tb_set_raw},
+{"set", tb_set},
+{"toggle_raw", tb_toggle_raw},
+{"toggle", tb_toggle},
+
+*/
 static const t_fnamed	*tb_tests(void)
 {
 	static const t_fnamed	var[] = {
-	{"new", tb_new}, {"create", tb_create}, {"new_from_mem", tb_new_from_mem},
-	{"clear", tb_clear}, {"free", tb_free}, {"free_inner", tb_free_inner},
-	{"get_raw", tb_get_raw}, {"get", tb_get}, {"set_raw", tb_set_raw},
-	{"set", tb_set}, {"toggle", tb_toggle}, {"toggle_raw", tb_toggle_raw},
-	{"print", tb_print}, {"print_binary", tb_print_binary},
-	{"print_hex", tb_print_hex}, {"print_decimal", tb_print_decimal},
-	{"append", tb_append}, {"remove", tb_remove},
-	{"remove_front", tb_remove_front}, {NULL, NULL}};
+	{"append", tb_append}, {"clear", tb_clear}, {"create", tb_create},
+	{"free_inner", tb_free_inner}, {"free", tb_free}, {"get_raw", tb_get_raw},
+	{"get", tb_get}, {"new_from_mem", tb_new_from_mem}, {"new", tb_new},
+	{"print_binary", tb_print_binary}, {"print_decimal", tb_print_decimal},
+	{"print_hex", tb_print_hex}, {"print", tb_print},
+	{"remove_front", tb_remove_front}, {"remove", tb_remove},
+	{"set_raw", tb_set_raw}, {"set", tb_set}, {"toggle_raw", tb_toggle_raw},
+	{"toggle", tb_toggle}, {NULL, NULL}};
 
 	return (var);
 }

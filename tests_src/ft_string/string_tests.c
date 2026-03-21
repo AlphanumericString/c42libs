@@ -18,8 +18,8 @@
 t_module	*tests_string(void)
 {
 	int						i;
-	const t_mod_constructor	sbm[] = {char_tests, mem_tests, str_tests,
-		t_string_tests, put_tests, num_conv_tests, NULL};
+	const t_mod_constructor	sbm[] = {char_tests, mem_tests, num_conv_tests,
+		put_tests, str_tests, t_string_tests, NULL};
 	t_module				*args;
 
 	i = 0;

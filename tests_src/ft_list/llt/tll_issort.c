@@ -45,21 +45,21 @@ int	tll_issort(void)
 
 	push_arr(&lst, &i, arr);
 	if (cmp_all(lst, (bool [3]){false, false, true}) != false)
-		return (2);
+		return (ft_ll_delete(&lst, NULL), 1);
 	(ft_ll_delete(&lst, NULL), push_arr(&lst, &i, arr2));
 	if (cmp_all(lst, (bool [3]){false, true, true}) != false)
-		return (3);
+		return (ft_ll_delete(&lst, NULL), 2);
 	(ft_ll_delete(&lst, NULL), push_arr(&lst, &i, arr3));
 	if (cmp_all(lst, (bool [3]){true, false, true}) != false)
-		return (4);
+		return (ft_ll_delete(&lst, NULL), 3);
 	if (ft_ll_issort(lst, NULL, FT_SORT_ORD_ASC) != false
 		|| ft_ll_issort(lst, NULL, FT_SORT_ORD_DES) != false
 		|| ft_ll_issort(lst, NULL, FT_SORT_ORD_UNO) != true)
-		return (5);
+		return (ft_ll_delete(&lst, NULL), 4);
 	ft_ll_delete(&lst, NULL);
 	if (cmp_all(lst, (bool [3]){true, true, true}) != false)
-		return (6);
-	return (ft_ll_delete(&lst, NULL), EXIT_SUCCESS);
+		return (5);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

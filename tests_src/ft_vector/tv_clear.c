@@ -22,15 +22,15 @@ int	tv_clear(void)
 	vec = ft_vec_from_array((t_any)a, sizeof(a) / sizeof(a[0]), sizeof(a[0]));
 	ft_vec_clear(vec);
 	if (vec->n_e != 0 || ft_vec_at(vec, 0) != NULL)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	else if (vec->cappacity == 0)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	ft_vec_clear(vec);
 	ft_vec_clear(vec);
 	ft_vec_clear(vec);
 	ft_vec_clear(NULL);
 	if (vec->n_e != 0 || ft_vec_at(vec, 0) != NULL || vec->cappacity == 0)
-		return (3);
+		return (ft_vec_destroy(&vec), 3);
 	return (ft_vec_destroy(&vec), EXIT_SUCCESS);
 }
 /*

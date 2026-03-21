@@ -21,16 +21,16 @@ int	test_string_trimstr(void)
 	str = ft_string_from("   Hello World   ");
 	ft_string_trimstr(str, " d");
 	if (ft_string_cmp(str, "Hello Worl") != 0)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	if (str->length != 10 || str->capacity < 10)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	ft_string_trimstr(str, NULL);
 	ft_string_trimstr(NULL, " d");
 	ft_string_destroy(&str);
 	str = ft_string_from("    , ");
 	ft_string_trimstr(str, " ,");
 	if (ft_string_cmp(str, "") != 0)
-		return (3);
+		return (ft_string_destroy(&str), 3);
 	return (ft_string_destroy(&str), 0);
 }
 /*

@@ -24,13 +24,13 @@ int	tv_at(void)
 	while (++a < 3)
 		ft_vec_add(vec, &a);
 	if (*(int *)ft_vec_at(vec, 0) != 0)
-		return (1);
+		return (ft_vec_destroy(&vec), 1);
 	else if (*(int *)ft_vec_at(vec, 1) != 1)
-		return (2);
+		return (ft_vec_destroy(&vec), 2);
 	else if (*(int *)ft_vec_at(vec, 2) != 2)
-		return (3);
+		return (ft_vec_destroy(&vec), 3);
 	else if (ft_vec_at(vec, 3) || ft_vec_at(vec, 999) || ft_vec_at(NULL, 0))
-		return (4);
+		return (ft_vec_destroy(&vec), 4);
 	ft_vec_destroy(&vec);
 	return (EXIT_SUCCESS);
 }

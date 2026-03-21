@@ -14,15 +14,30 @@
 #include "tests/str__char_tests.h"
 #include "tests/tests.h"
 
+/*
+ *
+ * sorted list:
+
+{"isalnum", tc_isalnum},
+{"isalpha", tc_isalpha},
+{"isascii", tc_isascii},
+{"isdigit", tc_isdigit},
+{"ishexdigit", tc_ishexdigit},
+{"isoctdigit", tc_isoctdigit},
+{"isprint", tc_isprint},
+{"isspace", tc_isspace},
+{"tolower", tc_tolower},
+{"toupper", tc_toupper},
+
+*/
+
 static const t_fnamed	*tc_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"isalnum", tc_isalnum}, {"isalpha", tc_isalpha},
-	{"isascii", tc_isascii}, {"isdigit", tc_isdigit},
-	{"isprint", tc_isprint}, {"tolower", tc_tolower},
-	{"toupper", tc_toupper}, {"isalnum", tc_isalnum},
-	{"ishexdigit", tc_ishexdigit},
-	{"isoctdigit", tc_isoctdigit}, {"isspace", tc_isspace},
+	{"isalnum", tc_isalnum}, {"isalpha", tc_isalpha}, {"isascii", tc_isascii},
+	{"isdigit", tc_isdigit}, {"ishexdigit", tc_ishexdigit},
+	{"isoctdigit", tc_isoctdigit}, {"isprint", tc_isprint},
+	{"isspace", tc_isspace}, {"tolower", tc_tolower}, {"toupper", tc_toupper},
 	{NULL, NULL}};
 
 	return (tests);

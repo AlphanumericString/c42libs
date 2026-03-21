@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_allocator__dev.h"
+#include "ft_mem.h"
 #include "ft_list.h"
 #include "tests/lists_test_utils.h"
 #include "tests/list__ll_tests.h"
@@ -29,18 +29,19 @@ int	tll_copy_node(void)
 	list = ft_ll_create(data);
 	copy = ft_ll_copy_node(list);
 	if (!copy)
-		return (1);
+		return (ft_free(list), ft_free(data), 1);
 	else if (copy->data != list->data)
-		return (2);
-	else if (copy->next != list->next)
-		return (3);
-	free(copy);
+		return (ft_free(list), ft_free(data), ft_free(copy), 2);
+	else if (copy->next != list->next || copy->next != NULL)
+		return (ft_free(list), ft_free(data), ft_free(copy), 3);
+	ft_free(copy);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_ll_copy_node(list))
-		return (talloc_set_failpoint(prev), ft_free(data), ft_free(list), 4);
+	copy = ft_ll_copy_node(list);
 	talloc_set_failpoint(prev);
-	return (ft_free(data), ft_free(list), 0);
+	if (copy)
+		return (ft_free(data), ft_free(list), ft_free(copy), 4);
+	return (ft_free(data), ft_free(list), EXIT_SUCCESS);
 }
 
 int	tll_copy_list(void)

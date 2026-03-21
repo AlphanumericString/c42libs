@@ -57,18 +57,17 @@ int	tdl_clear_range(void)
 		|| list->data != (void *)42
 		|| list->next->data != NULL
 		|| list->next->next->data != (void *)63)
-		return (ft_dl_clear(&list, NULL), 1);
+		return (ft_dl_delete(&list, NULL), 1);
 	ft_dl_push_back(&list, (void *)21);
 	ft_dl_clear_range(list->next->next, NULL, do_nothing);
 	if (ft_dl_size(list) != 4
 		|| list->data != (void *)42
 		|| list->next->data
 		|| list->next->next->data)
-		return (2);
+		return (ft_dl_delete(&list, NULL), 2);
 	ft_dl_clear_range(list, NULL, do_nothing);
 	ft_dl_clear_range(NULL, NULL, do_nothing);
-	ft_dl_delete_range(list, NULL, NULL);
-	return (EXIT_SUCCESS);
+	return (ft_dl_delete(&list, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

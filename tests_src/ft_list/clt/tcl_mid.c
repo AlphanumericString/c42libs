@@ -30,15 +30,14 @@ int	tcl_mid(void)
 	ft_cl_push(&lst, (t_any)0xBEEF);
 	got[3] = ft_cl_mid(lst);
 	if (got[0])
-		return (1);
+		return (ft_cl_delete(&lst, NULL), 1);
 	if (got[1]->data != exp[1])
-		return (2);
+		return (ft_cl_delete(&lst, NULL), 2);
 	if (got[2]->data != exp[2])
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 3);
 	if (got[3]->data != exp[2])
-		return (4);
-	ft_cl_delete(&lst, NULL);
-	return (EXIT_SUCCESS);
+		return (ft_cl_delete(&lst, NULL), 4);
+	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

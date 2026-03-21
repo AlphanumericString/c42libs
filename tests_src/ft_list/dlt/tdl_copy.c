@@ -26,25 +26,27 @@ int	tdl_copy_node(void)
 	t_dlist	*list;
 	t_dlist	*copy;
 	int		prev;
+	int		r;
 
 	data = ft_malloc(sizeof(int));
 	*data = 42;
 	list = ft_dl_create(data);
 	copy = ft_dl_copy_node(list);
+	r = EXIT_SUCCESS;
 	if (!copy)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), 1);
 	else if (copy->data != list->data)
-		return (2);
+		return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), 2);
 	else if (copy->next != list->next)
-		return (3);
+		return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), 3);
 	else if (copy->prev != list->prev)
-		return (4);
+		return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), 4);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_dl_copy_node(list))
-		return (talloc_set_failpoint(prev), 5);
+		r = 5;
 	talloc_set_failpoint(prev);
-	return (ft_dl_clear(&list, ft_free), ft_dl_clear(&copy, NULL), 0);
+	return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), r);
 }
 
 int	tdl_copy_list(void)
@@ -53,24 +55,25 @@ int	tdl_copy_list(void)
 	t_dlist	*copy;
 	int		*data;
 	int		*data2;
-	int		prev;
+	int		ints[2];
 
+	ints[0] = EXIT_SUCCESS;
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	copy = ft_dl_copy_list(list);
 	if (!copy || copy->data != list->data)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), 1);
 	else if (!copy->next || copy->next->data != list->next->data)
-		return (4);
+		return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), 2);
 	else if (copy->next->next)
-		return (5);
+		return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), 3);
 	else if (copy->next->prev != copy)
-		return (6);
-	prev = *talloc_get_failpoint();
+		return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), 4);
+	ints[1] = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_dl_copy_list(list))
-		return (talloc_set_failpoint(prev), 7);
-	talloc_set_failpoint(prev);
-	return (ft_dl_clear(&list, ft_free), ft_dl_clear(&copy, NULL), 0);
+		ints[0] = 7;
+	talloc_set_failpoint(ints[1]);
+	return (ft_dl_delete(&list, ft_free), ft_dl_delete(&copy, NULL), ints[0]);
 }
 /*
 GPL-3.0 License:

@@ -14,27 +14,73 @@
 #include "tests/tests.h"
 #include "tests/list__dl_tests.h"
 
+/*
+ * todos:
+
+ * Sorted list:
+
+{"add_back", tdl_add_back},
+{"add_front", tdl_add_front},
+{"apply_range_node", tdl_apply_range_node},
+{"apply_range", tdl_apply_range},
+{"apply", tdl_apply},
+{"at", tdl_at},
+{"begin", tdl_begin},
+{"check_circular", tdl_check_circular},
+{"check_health", tdl_check_health},
+{"check_sorted", tdl_check_sorted},
+{"clear_range", tdl_clear_range},
+{"clear", tdl_clear},
+{"copy_list", tdl_copy_list},
+{"copy_node", tdl_copy_node},
+{"create", tdl_create},
+{"delete_range", tdl_delete_range},
+{"delete_self", tdl_delete_self},
+{"delete", tdl_delete},
+{"end", tdl_end},
+{"find", tdl_find},
+{"get_datas", tdl_get_datas},
+{"get_nodes", tdl_get_nodes},
+{"issort", tdl_issort},
+{"map", tdl_map},
+{"new", tdl_new},
+{"pop_back", tdl_pop_back},
+{"pop", tdl_pop},
+{"push_back", tdl_push_back},
+{"push", tdl_push},
+{"rev", tdl_rev},
+{"size_datacmp", tdl_size_cmp},
+{"size_datais", tdl_size_datais},
+{"size", tdl_size},
+{"sort", tdl_sort},
+{"subrange", tdl_subrange},
+{"xtract_max_node", tdl_extract_max_node},
+{"xtract_max", tdl_extract_max},
+{"xtract_min_node", tdl_extract_min_node},
+{"xtract_min", tdl_extract_min},
+
+*/
+
 static const t_fnamed	*dl_tests(void)
 {
 	static const t_fnamed	var[] = {
-	{"add_front", tdl_add_front}, {"add_back", tdl_add_back},
-	{"apply", tdl_apply}, {"apply_range", tdl_apply_range},
-	{"apply_range_node", tdl_apply_range_node}, {"clear", tdl_clear},
-	{"clear_range", tdl_clear_range}, {"create", tdl_create},
-	{"copy_node", tdl_copy_node}, {"copy_list", tdl_copy_list},
-	{"delete_self", tdl_delete_self}, {"delete_range", tdl_delete_range},
-	{"delete", tdl_delete}, {"find", tdl_find},
-	{"get_datas", tdl_get_datas}, {"get_nodes", tdl_get_nodes},
-	{"at", tdl_at}, {"begin", tdl_begin}, {"end", tdl_end},
-	{"map", tdl_map}, {"new", tdl_new}, {"pop", tdl_pop},
-	{"pop_back", tdl_pop_back}, {"push", tdl_push},
-	{"push_back", tdl_push_back}, {"rev", tdl_rev}, {"size", tdl_size},
-	{"size_datais", tdl_size_datais}, {"size_datacmp", tdl_size_cmp},
-	{"subrange", tdl_subrange}, {"check_circular", tdl_check_circular},
-	{"check_sorted", tdl_check_sorted}, {"check_health", tdl_check_health},
-	{"xtract_max", tdl_extract_max}, {"xtract_max_node", tdl_extract_max_node},
-	{"xtract_min", tdl_extract_min}, {"xtract_min_node", tdl_extract_min_node},
-	{"issort", tdl_issort}, {"sort", tdl_sort},
+	{"add_back", tdl_add_back}, {"add_front", tdl_add_front},
+	{"apply_range_node", tdl_apply_range_node},
+	{"apply_range", tdl_apply_range}, {"apply", tdl_apply}, {"at", tdl_at},
+	{"begin", tdl_begin}, {"check_circular", tdl_check_circular},
+	{"check_health", tdl_check_health}, {"check_sorted", tdl_check_sorted},
+	{"clear_range", tdl_clear_range}, {"clear", tdl_clear},
+	{"copy_list", tdl_copy_list}, {"copy_node", tdl_copy_node},
+	{"create", tdl_create}, {"delete_range", tdl_delete_range},
+	{"delete_self", tdl_delete_self}, {"delete", tdl_delete}, {"end", tdl_end},
+	{"find", tdl_find}, {"get_datas", tdl_get_datas},
+	{"get_nodes", tdl_get_nodes}, {"issort", tdl_issort}, {"map", tdl_map},
+	{"new", tdl_new}, {"pop_back", tdl_pop_back}, {"pop", tdl_pop},
+	{"push_back", tdl_push_back}, {"push", tdl_push}, {"rev", tdl_rev},
+	{"size_datacmp", tdl_size_cmp}, {"size_datais", tdl_size_datais},
+	{"size", tdl_size}, {"sort", tdl_sort}, {"subrange", tdl_subrange},
+	{"xtract_max_node", tdl_extract_max_node}, {"xtract_max", tdl_extract_max},
+	{"xtract_min_node", tdl_extract_min_node}, {"xtract_min", tdl_extract_min},
 	{NULL, NULL}};
 
 	return (var);

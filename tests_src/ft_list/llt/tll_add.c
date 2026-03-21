@@ -22,7 +22,7 @@
 	ft_ll_add_front(&list, ft_ll_create(data)); // (42)-> (21)-> NULL
 	---
 	ft_ll_add_front(NULL, list); // null resiliency
-	ft_ll_clear(&list, ft_free);
+	ft_ll_delete(&list, ft_free);
 */
 
 int	tll_add_front(void)
@@ -45,7 +45,7 @@ int	tll_add_front(void)
 		return (ft_free(data), ft_free(data2), ft_free(list->next),
 			ft_free(list), 2);
 	ft_ll_add_front(NULL, list);
-	return (ft_ll_clear(&list, ft_free), 0);
+	return (ft_ll_delete(&list, ft_free), 0);
 }
 
 int	tll_add_back(void)
@@ -66,8 +66,8 @@ int	tll_add_back(void)
 		return (ft_free(data), ft_free(data2), ft_free(list->next),
 			ft_free(list), 2);
 	else if (list->next->data != data2 || list->next->next)
-		return (ft_free(data), ft_free(data2), ft_ll_clear(&list, NULL), 3);
-	ft_ll_clear(&list, ft_free);
+		return (ft_free(data), ft_free(data2), ft_ll_delete(&list, NULL), 3);
+	ft_ll_delete(&list, ft_free);
 	return (EXIT_SUCCESS);
 }
 /*

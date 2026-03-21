@@ -27,9 +27,9 @@ static int	error_cases(int fd, const char *const f_name)
 		return (destroy_test_file(fd, f_name), 1);
 	fd = (close(fd), open(f_name, O_RDONLY));
 	bread = read(fd, buff, 100);
-	if (bread != 0)
-		return (destroy_test_file(fd, f_name), 2);
 	destroy_test_file(fd, f_name);
+	if (bread != 0)
+		return (2);
 	fd = -1;
 	if (ft_putendl_fd("bad fd", fd) != -1)
 		return (3);

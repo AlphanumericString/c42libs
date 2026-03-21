@@ -27,11 +27,10 @@ int	to_copy(void)
 	opt_a.val = ptr;
 	ft_optional_copy(&opt_b, &opt_a);
 	if (opt_b.pres != OPT_SOME)
-		return (1);
+		return (ft_free(ptr), 1);
 	if (*(int *)opt_b.val != 42)
-		return (2);
-	ft_free(ptr);
-	return (EXIT_SUCCESS);
+		return (ft_free(ptr), 2);
+	return (ft_free(ptr), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

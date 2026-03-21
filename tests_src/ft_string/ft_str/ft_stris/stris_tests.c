@@ -14,18 +14,35 @@
 #include "tests/str__str_sis_tests.h"
 #include "tests/tests.h"
 
+/*
+ * sorted list:
+
+{"alnum", tsi_isalnum},
+{"isalpha", tsi_isalpha},
+{"isbool", tsi_isbool},
+{"isdigit", tsi_isdigit},
+{"isdouble", tsi_isdouble},
+{"isfloat", tsi_isfloat},
+{"isfname", tsi_isfname},
+{"ishex", tsi_ishex},
+{"isint", tsi_isint},
+{"islong", tsi_islong},
+{"isnum", tsi_isnum},
+{"isoct", tsi_isoct},
+{"ispath", tsi_ispath},
+{"isvalid", tsi_isvalid},
+
+*/
+
 static const t_fnamed	*tsi_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"isalpha", tsi_isalpha},
-	{"isbool", tsi_isbool}, {"alnum", tsi_isalnum},
+	{"alnum", tsi_isalnum}, {"isalpha", tsi_isalpha}, {"isbool", tsi_isbool},
 	{"isdigit", tsi_isdigit}, {"isdouble", tsi_isdouble},
-	{"ishex", tsi_ishex}, {"islong", tsi_islong},
-	{"isnum", tsi_isnum}, {"isoct", tsi_isoct},
-	{"ispath", tsi_ispath},
-	{"isint", tsi_isint}, {"isfloat", tsi_isfloat},
-	{"isfname", tsi_isfname},
-	{"isvalid", tsi_isvalid}, {NULL, NULL}};
+	{"isfloat", tsi_isfloat}, {"isfname", tsi_isfname}, {"ishex", tsi_ishex},
+	{"isint", tsi_isint}, {"islong", tsi_islong}, {"isnum", tsi_isnum},
+	{"isoct", tsi_isoct}, {"ispath", tsi_ispath}, {"isvalid", tsi_isvalid},
+	{NULL, NULL}};
 
 	return (tests);
 }

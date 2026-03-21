@@ -11,7 +11,9 @@
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
+#include "ft_arr.h"
 #include "ft_list.h"
+#include "ft_mem.h"
 #include "types/ft_list_types.h"
 
 #include "tests/lists_test_utils.h"
@@ -29,16 +31,17 @@ int	tll_get_datas(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	datas = ft_ll_get_datas(list);
 	if (!datas || datas[2] || datas[0] != data || datas[1] != data2)
-		return (1);
+		return (ft_ll_delete(&list, NULL), ft_afree(datas), 1);
 	if (ft_ll_get_datas(NULL))
-		return (2);
+		return (ft_ll_delete(&list, NULL), ft_afree(datas), 2);
+	ft_free_clear((void **)&datas);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_ll_get_datas(list))
-		return (talloc_set_failpoint(prev), 3);
+	datas = ft_ll_get_datas(list);
 	talloc_set_failpoint(prev);
-	ft_ll_clear(&list, ft_free);
-	ft_free(datas);
+	ft_ll_delete(&list, ft_free);
+	if (datas != NULL)
+		return (ft_free(datas), 3);
 	return (EXIT_SUCCESS);
 }
 
@@ -53,16 +56,17 @@ int	tll_get_nodes(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	nodes = ft_ll_get_nodes(list);
 	if (!nodes || nodes[2] || nodes[0] != list || nodes[1] != list->next)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), ft_free(nodes), 1);
 	if (ft_ll_get_nodes(NULL))
-		return (2);
+		return (ft_ll_delete(&list, ft_free), ft_free(nodes), 2);
+	ft_free_clear((void **)&nodes);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
-	if (ft_ll_get_nodes(list))
-		return (talloc_set_failpoint(prev), 3);
+	nodes = ft_ll_get_nodes(list);
 	talloc_set_failpoint(prev);
 	ft_ll_clear(&list, ft_free);
-	ft_free(nodes);
+	if (nodes)
+		return (ft_free(nodes), 3);
 	return (EXIT_SUCCESS);
 }
 /*

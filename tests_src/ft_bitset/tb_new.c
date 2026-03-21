@@ -19,17 +19,19 @@ static int	mt_bsnew(void)
 {
 	const int	fp = *talloc_get_failpoint();
 	t_bitset	*bs;
+	int			r;
 
+	r = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
 	bs = ft_bs_new(12);
 	if (bs)
-		return (1);
+		r = 1;
 	talloc_set_failpoint(*talloc_get_currentpoint() + 1);
 	bs = ft_bs_new(12);
-	if (bs)
-		return (2);
+	if (!r && bs)
+		r = 2;
 	talloc_set_failpoint(fp);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 int	tb_new(void)
@@ -38,9 +40,9 @@ int	tb_new(void)
 
 	bs = ft_bs_new(64);
 	if (!bs)
-		return (1);
+		return (ft_bs_free(&bs), 1);
 	if (bs->_capacity != 64 / 8)
-		return (2);
+		return (ft_bs_free(&bs), 2);
 	ft_bs_free(&bs);
 	return (mt_bsnew());
 }

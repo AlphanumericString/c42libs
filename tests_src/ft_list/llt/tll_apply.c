@@ -31,13 +31,12 @@ int	tll_apply(void)
 	ft_ll_apply(list, add42);
 	if (!list || !list->next || list->next->next
 		|| *(int *)list->data != data4 || *(int *)list->next->data != data3)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), 1);
 	ft_ll_apply(list, NULL);
 	if (!list || !list->next || list->next->next
 		|| *(int *)list->data != data4 || *(int *)list->next->data != data3)
-		return (2);
-	ft_ll_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_ll_delete(&list, ft_free), 2);
+	return (ft_ll_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tll_apply_range(void)
@@ -50,20 +49,20 @@ int	tll_apply_range(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	ft_ll_apply_range(list, list->next, add42);
 	if (*(int *)list->data != data3)
-		return (1);
+		return (ft_ll_delete(&list, ft_free), 1);
 	else if (ft_ll_size(list) != 2)
-		return (2);
+		return (ft_ll_delete(&list, ft_free), 2);
 	else if (*(int *)list->next->data != 21)
-		return (3);
+		return (ft_ll_delete(&list, ft_free), 3);
 	ft_ll_apply_range(list, list->next, NULL);
 	if (ft_ll_size(list) != 2)
-		return (4);
+		return (ft_ll_delete(&list, ft_free), 4);
 	else if (*(int *)list->data != data3)
-		return (5);
+		return (ft_ll_delete(&list, ft_free), 5);
 	else if (*(int *)list->next->data != 21)
-		return (5);
-	ft_ll_apply_range(NULL, NULL, add42);
+		return (ft_ll_delete(&list, ft_free), 5);
 	ft_ll_clear(&list, ft_free);
+	ft_ll_apply_range(NULL, NULL, add42);
 	return (EXIT_SUCCESS);
 }
 
@@ -78,13 +77,13 @@ int	tll_apply_range_node(void)
 	ft_ll_apply_range_node(list, list->next, lnode_add42);
 	if (*(int *)list->data != data3 || !list->next
 		|| *(int *)list->next->data != 21 || list->next->next)
-		return (1);
+		return (ft_ll_clear(&list, ft_free), 1);
 	ft_ll_apply_range_node(list, list->next, NULL);
 	if (*(int *)list->data != data3 || !list->next
 		|| *(int *)list->next->data != 21 || list->next->next)
-		return (2);
-	ft_ll_apply_range_node(NULL, NULL, lnode_add42);
+		return (ft_ll_clear(&list, ft_free), 2);
 	ft_ll_clear(&list, ft_free);
+	ft_ll_apply_range_node(NULL, NULL, lnode_add42);
 	return (EXIT_SUCCESS);
 }
 /*

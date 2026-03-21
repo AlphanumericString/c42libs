@@ -41,7 +41,7 @@ int	tll_push(void)
 	if (ft_ll_push(&list, (void *)42))
 		return (talloc_set_failpoint(prev), 6);
 	talloc_set_failpoint(prev);
-	ft_ll_clear(&list, NULL);
+	ft_ll_delete(&list, NULL);
 	return (ft_ll_push(NULL, NULL), 0);
 }
 
@@ -54,17 +54,17 @@ int	tll_push_back(void)
 	ft_ll_push_back(&list, (void *)42);
 	ft_ll_push_back(&list, (void *)84);
 	if (ft_ll_size(list) != 2)
-		return (1);
+		return (ft_ll_delete(&list, NULL), 1);
 	else if (list->data != (void *)42)
-		return (2);
+		return (ft_ll_delete(&list, NULL), 2);
 	else if (list->next->data != (void *)84)
-		return (3);
+		return (ft_ll_delete(&list, NULL), 3);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_ll_push_back(&list, (void *)42))
-		return (talloc_set_failpoint(prev), 4);
+		return (talloc_set_failpoint(prev), ft_ll_delete(&list, NULL), 4);
 	talloc_set_failpoint(prev);
-	ft_ll_clear(&list, NULL);
+	ft_ll_delete(&list, NULL);
 	return (ft_ll_push_back(NULL, NULL), 0);
 }
 
@@ -78,11 +78,11 @@ int	tll_pop(void)
 	create_2elem_list(&list, (void **)&data, (void **)&data2);
 	pop = ft_ll_pop(&list);
 	if (!list || ft_ll_size(list) != 1)
-		return (1);
+		return (ft_ll_clear(&list, ft_free), ft_free(pop), 1);
 	else if (list->data != data2)
-		return (2);
+		return (ft_ll_clear(&list, ft_free), ft_free(pop), 2);
 	else if (pop != data)
-		return (3);
+		return (ft_ll_clear(&list, ft_free), ft_free(pop), 3);
 	ft_ll_clear(&list, ft_free);
 	ft_free(pop);
 	if (ft_ll_pop(&list) || ft_ll_pop(NULL))
@@ -122,16 +122,16 @@ int	tll_pop_back(void)
 	ft_ll_push(&list, data3);
 	pop = ft_ll_pop_back(&list);
 	if (ft_ll_size(list) != 2)
-		return (1);
+		return (ft_free(data), ft_free(data2), ft_free(data3), 1);
 	else if (list->data != data3 || list->next->data != data || pop != data2)
-		return (2);
+		return (ft_free(data), ft_free(data2), ft_free(data3), 2);
 	pop = ft_ll_pop_back(&list);
 	if (ft_ll_size(list) != 1 || list->data != data3 || pop != data)
-		return (3);
+		return (ft_free(data), ft_free(data2), ft_free(data3), 3);
 	pop = ft_ll_pop_back(&list);
 	if (list || pop != data3 || ft_ll_size(list) != 0 || ft_ll_pop_back(&list)
 		|| ft_ll_pop_back(NULL))
-		return (4);
+		return (ft_free(data), ft_free(data2), ft_free(data3), 4);
 	return (ft_free(data), ft_free(data2), ft_free(data3), 0);
 }
 /*

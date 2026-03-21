@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_defs.h"
+#include <stdlib.h>
+
 #include "ft_tstring.h"
 #include "types/ft_string_types.h"
 #include "tests/str__t_str_test.h"
@@ -25,13 +26,13 @@ int	test_string_offset(void)
 	str = ft_string_from(src);
 	c = 'z';
 	if (ft_string_offset(str, c) != 20)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	c = '!';
 	if (ft_string_offset(str, c) != 23)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	c = '@';
 	if (ft_string_offset(str, c) != -1)
-		return (3);
+		return (ft_string_destroy(&str), 3);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
 }

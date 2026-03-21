@@ -30,7 +30,7 @@ static int	mt_string_to_str(void)
 	talloc_set_failpoint(fp);
 	ft_string_destroy(&str);
 	if (cstr)
-		return (1);
+		return (ft_free(cstr), 1);
 	return (EXIT_SUCCESS);
 }
 
@@ -42,7 +42,7 @@ int	test_string_to_str(void)
 	str = ft_string_from("Hello World");
 	cstr = ft_string_to_str(str);
 	if (ft_strcmp(cstr, "Hello World") != 0)
-		return (1);
+		return (ft_free(cstr), 1);
 	ft_string_destroy(&str);
 	ft_free(cstr);
 	return (mt_string_to_str());

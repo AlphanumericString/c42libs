@@ -14,16 +14,37 @@
 #include "tests/tests.h"
 #include "tests/str__num_tests.h"
 
+/*
+ * sorted lists:
+
+{"atod", tsn_atod},
+{"atoi_base", tsn_atoi_base},
+{"atoi", tsn_atoi},
+{"atol_base", tsn_atol_base},
+{"atol_base", tsn_atol_base},
+{"atoll", tsn_atoll},
+{"atol", tsn_atol},
+{"base_valid", tsn_base_valid},
+{"itoa_base", tsn_itoa_base},
+{"itoa", tsn_itoa},
+{"sstoa_base", tsn_sstoa_base},
+{"sstopa_base", tsn_sstopa_base},
+{"stoa_base", tsn_stoa_base},
+{"stopa_base", tsn_stopa_base},
+{"utoa", tsn_utoa},
+
+*/
+
 static const t_fnamed	*tsn_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"base_valid", tsn_base_valid}, {"itoa", tsn_itoa}, {"utoa", tsn_utoa},
-	{"itoa_base", tsn_itoa_base}, {"atoi", tsn_atoi}, {"atod", tsn_atod},
-	{"atol_base", tsn_atol_base}, {"atoi_base", tsn_atoi_base},
-	{"atol", tsn_atol}, {"atoll", tsn_atoll}, {"atol_base", tsn_atol_base},
-	{"sstoa_base", tsn_sstoa_base}, {"stoa_base", tsn_stoa_base},
-	{"stopa_base", tsn_stopa_base}, {"sstopa_base", tsn_sstopa_base},
-	{NULL, NULL}};
+	{"atod", tsn_atod}, {"atoi_base", tsn_atoi_base}, {"atoi", tsn_atoi},
+	{"atol_base", tsn_atol_base}, {"atol_base", tsn_atol_base},
+	{"atoll", tsn_atoll}, {"atol", tsn_atol}, {"base_valid", tsn_base_valid},
+	{"itoa_base", tsn_itoa_base}, {"itoa", tsn_itoa},
+	{"sstoa_base", tsn_sstoa_base}, {"sstopa_base", tsn_sstopa_base},
+	{"stoa_base", tsn_stoa_base}, {"stopa_base", tsn_stopa_base},
+	{"utoa", tsn_utoa}, {NULL, NULL}};
 
 	return (tests);
 }

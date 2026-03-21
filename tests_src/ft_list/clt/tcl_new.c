@@ -19,15 +19,15 @@
 
 static int	mt_cl_new(void)
 {
-	t_clist		*node;
 	const int	talloc_fp = *talloc_get_failpoint();
+	int			r;
 
+	r = EXIT_SUCCESS;
 	talloc_set_failpoint(0);
-	node = ft_cl_new();
-	if (node)
-		return (1);
+	if (ft_cl_new() != NULL)
+		r = 1;
 	talloc_set_failpoint(talloc_fp);
-	return (EXIT_SUCCESS);
+	return (r);
 }
 
 int	tcl_new(void)
@@ -36,15 +36,14 @@ int	tcl_new(void)
 	size_t	i;
 
 	i = 0;
-	while (i < 10)
+	while (i++ < 10)
 	{
 		node = ft_cl_new();
 		if (!node)
-			return (5);
+			return (ft_free(node), 5);
 		if (node->data != NULL || node->next != node || node->prev != node)
-			return (6);
+			return (ft_free(node), 6);
 		ft_free(node);
-		i++;
 	}
 	return (mt_cl_new());
 }

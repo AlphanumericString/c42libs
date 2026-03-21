@@ -37,7 +37,7 @@ int	tcl_find(void)
 	lst = ft_cl_new();
 	if (ft_cl_find(NULL, (void *)42, cmp_ptr_as_long) != NULL
 		|| ft_cl_find(lst, (void *)42, cmp_ptr_as_long) != NULL || !lst)
-		return (1);
+		return (ft_cl_delete(&lst, NULL), 1);
 	ft_cl_delete(&lst, NULL);
 	lst = ft_cl_create((void *)42);
 	found = ft_cl_find(lst, (void *)42, cmp_ptr_as_long);

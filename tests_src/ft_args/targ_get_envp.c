@@ -25,16 +25,16 @@ int	targ_getenvp(void)
 
 	ft_set_ev(test_ev);
 	if (ft_get_env("giberish") || ft_get_env("") || ft_get_env(NULL))
-		return (1);
+		return (ft_set_ev(prev_ev), 1);
 	s = ft_get_env("user");
 	if (!s || ft_strcmp(s, "tests"))
-		return (2);
+		return (ft_set_ev(prev_ev), 2);
 	s = ft_get_env("TOTO");
 	if (!s || ft_strcmp(s, "TITI"))
-		return (3);
+		return (ft_set_ev(prev_ev), 3);
 	ft_set_ev(NULL);
 	if (ft_get_env("TOTO"))
-		return (4);
+		return (ft_set_ev(prev_ev), 4);
 	return (ft_set_ev(prev_ev), 0);
 }
 /*

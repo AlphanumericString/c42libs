@@ -61,9 +61,9 @@ int	tv_ifrom_array(void)
 
 	ft_vec_ifrom_array(&v, arr, 3, sizeof(int));
 	if (!v.data || v.data == arr)
-		return (1);
+		return (ft_vec_wipe(&v), 1);
 	if (v.n_e != 3 || v.s_e != sizeof(int) || v.cappacity < 3)
-		return (2);
+		return (ft_vec_wipe(&v), 2);
 	ft_vec_wipe(&v);
 	if (ft_vec_ifrom_array(&v, NULL, 3, sizeof(int)) != NULL)
 		return (4);

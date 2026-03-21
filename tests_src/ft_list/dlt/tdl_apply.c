@@ -26,13 +26,12 @@ int	tdl_apply(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	ft_dl_apply(list, add42);
 	if (ft_dl_size(list) != 2)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), 1);
 	else if (*(int *)list->data != 84)
-		return (2);
+		return (ft_dl_delete(&list, ft_free), 2);
 	else if (*(int *)list->next->data != 63)
-		return (3);
-	ft_dl_clear(&list, ft_free);
-	return (EXIT_SUCCESS);
+		return (ft_dl_delete(&list, ft_free), 3);
+	return (ft_dl_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tdl_apply_range(void)
@@ -44,10 +43,10 @@ int	tdl_apply_range(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	ft_dl_apply_range(list, list->next, add42);
 	if (ft_dl_size(list) != 2)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), 1);
 	else if (*(int *)list->data != 84 || *(int *)list->next->data != 21)
-		return (2);
-	return (ft_dl_clear(&list, ft_free), 0);
+		return (ft_dl_delete(&list, ft_free), 2);
+	return (ft_dl_delete(&list, ft_free), EXIT_SUCCESS);
 }
 
 int	tdl_apply_range_node(void)
@@ -59,10 +58,10 @@ int	tdl_apply_range_node(void)
 	create_2elem_dlist(&list, (void **)&data, (void **)&data2);
 	ft_dl_apply_range_node(list, list->next, dnode_add42);
 	if (ft_dl_size(list) != 2)
-		return (1);
+		return (ft_dl_delete(&list, ft_free), 1);
 	else if (*(int *)list->data != 84 || *(int *)list->next->data != 21)
-		return (2);
-	return (ft_dl_clear(&list, ft_free), 0);
+		return (ft_dl_delete(&list, ft_free), 2);
+	return (ft_dl_clear(&list, ft_free), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

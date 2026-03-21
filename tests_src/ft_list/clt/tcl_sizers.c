@@ -24,11 +24,11 @@ int	tcl_size(void)
 		return (1);
 	lst = ft_cl_create((void *)42);
 	if (ft_cl_size(lst) != 1)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 2);
 	ft_cl_push(&lst, (void *)43);
 	ft_cl_push(&lst, (void *)44);
 	if (ft_cl_size(lst) != 3)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 3);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 
@@ -44,11 +44,11 @@ int	tcl_size_data_is(void)
 	ft_cl_delete(&lst, NULL);
 	lst = ft_cl_create((void *)43);
 	if (ft_cl_size_data_is(lst, is_even) != 0)
-		return (5);
+		return (ft_cl_delete(&lst, NULL), 3);
 	(ft_cl_push(&lst, (void *)44), ft_cl_push(&lst, (void *)45));
 	ft_cl_push(&lst, (void *)46);
 	if (ft_cl_size_data_is(lst, is_even) != 2)
-		return (6);
+		return (ft_cl_delete(&lst, NULL), 4);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 
@@ -57,18 +57,18 @@ int	tcl_size_cmp(void)
 	t_clist	*lst;
 
 	if (ft_cl_size_cmp(NULL, (void *)42, cmp_ptr_as_long) != 0)
-		return (1);
+		return (ft_cl_delete(&lst, NULL), 1);
 	lst = ft_cl_create((void *)42);
 	if (ft_cl_size_cmp(lst, (void *)42, cmp_ptr_as_long) != 1)
-		return (3);
+		return (ft_cl_delete(&lst, NULL), 2);
 	if (ft_cl_size_cmp(lst, (void *)43, cmp_ptr_as_long) != 0)
-		return (4);
+		return (ft_cl_delete(&lst, NULL), 3);
 	(ft_cl_push(&lst, (void *)42), ft_cl_push(&lst, (void *)43));
 	ft_cl_push(&lst, (void *)42);
 	if (ft_cl_size_cmp(lst, (void *)42, cmp_ptr_as_long) != 3)
-		return (5);
+		return (ft_cl_delete(&lst, NULL), 4);
 	if (ft_cl_size_cmp(lst, (void *)43, cmp_ptr_as_long) != 1)
-		return (6);
+		return (ft_cl_delete(&lst, NULL), 5);
 	return (ft_cl_delete(&lst, NULL), EXIT_SUCCESS);
 }
 /*

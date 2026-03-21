@@ -39,21 +39,21 @@ int	ts_append_c(void)
 
 	str = ft_strdup("Hello");
 	if (!str)
-		return (1);
+		return (ft_free(str), 1);
 	if (ft_strappend_c(&str, ' ') == 0 || ft_strcmp(str, "Hello ") != 0)
-		return (2);
+		return (ft_free(str), 2);
 	if (ft_strappend_c(&str, 'W') == 0 || ft_strcmp(str, "Hello W") != 0)
-		return (3);
+		return (ft_free(str), 3);
 	if (ft_strappend_c(NULL, '\0'))
-		return (4);
+		return (ft_free(str), 4);
 	ft_free(str);
 	str = ft_calloc(1, 1);
 	if (!str || ft_strappend_c(&str, ' ') == 0 || ft_strcmp(str, " ") != 0)
-		return (5);
+		return (ft_free(str), 5);
 	ft_free(str);
 	str = NULL;
 	if (ft_strappend_c(&str, ' ') == 0 || ft_strcmp(str, " ") != 0)
-		return (6);
+		return (ft_free(str), 6);
 	return (ft_free(str), mt_tsappend_c());
 }
 /*

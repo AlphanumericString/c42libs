@@ -25,22 +25,16 @@ int	tdl_pop(void)
 
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
 	ret = ft_dl_pop(&list);
-	if (!list)
-		return (1);
-	else if (ret != data1)
-		return (2);
+	if (!list || ret != data1)
+		return (ft_free(data1), ft_free(data2), ft_dl_delete(&list, NULL), 1);
 	ret = ft_dl_pop(&list);
-	if (ret != data2)
+	if (ret != data2 || list != NULL)
+		return (ft_free(data1), ft_free(data2), ft_dl_delete(&list, NULL), 2);
+	ft_free(data1);
+	ft_free(data2);
+	if (ft_dl_pop(&list) != NULL || ft_dl_pop(NULL) != NULL)
 		return (3);
-	if (list)
-		return (4);
-	ret = ft_dl_pop(&list);
-	if (ret)
-		return (5);
-	ret = ft_dl_pop(NULL);
-	if (ret)
-		return (6);
-	return (ft_free(data1), ft_free(data2), 0);
+	return (EXIT_SUCCESS);
 }
 
 int	tdl_pop_back(void)
@@ -48,27 +42,19 @@ int	tdl_pop_back(void)
 	t_dlist	*list;
 	int		*data1;
 	int		*data2;
-	int		*data3;
+	int		*ret;
 
 	create_2elem_dlist(&list, (void **)&data1, (void **)&data2);
-	data3 = ft_dl_pop_back(&list);
-	if (!list)
-		return (1);
-	else if (data3 != data2)
-		return (2);
-	data3 = ft_dl_pop_back(&list);
-	if (list)
-		return (3);
-	else if (data3 != data1)
-		return (4);
-	data3 = ft_dl_pop_back(NULL);
-	if (data3)
-		return (5);
-	data3 = ft_dl_pop_back(&list);
-	if (data3)
-		return (6);
+	ret = ft_dl_pop_back(&list);
+	if (!list || ret != data2)
+		return (ft_free(data1), ft_free(data2), ft_dl_delete(&list, NULL), 1);
+	ret = ft_dl_pop_back(&list);
+	if (list != NULL || ret != data1)
+		return (ft_free(data1), ft_free(data2), ft_dl_delete(&list, NULL), 2);
 	ft_free(data1);
 	ft_free(data2);
+	if (ft_dl_pop_back(NULL) != NULL || ft_dl_pop_back(&list) != NULL)
+		return (3);
 	return (EXIT_SUCCESS);
 }
 
@@ -80,21 +66,20 @@ int	tdl_push(void)
 	list = NULL;
 	ft_dl_push(&list, (void *)42);
 	if (!list || list->data != (void *)42)
-		return (1);
+		return (ft_dl_delete(&list, NULL), 1);
 	else if (list->next)
-		return (2);
-	prev = *talloc_get_failpoint();
+		return (ft_dl_delete(&list, NULL), 2);
 	ft_dl_push(&list, (void *)84);
 	if (!list || !list->next)
-		return (5);
+		return (ft_dl_delete(&list, NULL), 3);
 	else if (list->next->data != (void *)42 || list->data != (void *)84)
-		return (6);
+		return (ft_dl_delete(&list, NULL), 4);
+	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	if (ft_dl_push(&list, (void *)126))
-		return (talloc_set_failpoint(prev), 4);
+		return (talloc_set_failpoint(prev), ft_dl_delete(&list, NULL), 5);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, NULL);
-	return (EXIT_SUCCESS);
+	return (ft_dl_delete(&list, NULL), EXIT_SUCCESS);
 }
 
 int	tdl_push_back(void)
@@ -107,18 +92,17 @@ int	tdl_push_back(void)
 	ft_dl_push_back(&list, (void *)84);
 	ft_dl_push_back(&list, (void *)126);
 	if (ft_dl_size(list) != 3)
-		return (1);
+		return (ft_dl_delete(&list, NULL), 1);
 	else if (list->data != (void *)42 || list->next->data != (void *)84
 		|| list->next->next->data != (void *)126)
-		return (2);
+		return (ft_dl_delete(&list, NULL), 2);
 	prev = *talloc_get_failpoint();
 	talloc_set_failpoint(0);
 	ft_dl_push_back(&list, (void *)42);
 	if (ft_dl_size(list) != 3)
-		return (talloc_set_failpoint(prev), 3);
+		return (talloc_set_failpoint(prev), ft_dl_delete(&list, NULL), 3);
 	talloc_set_failpoint(prev);
-	ft_dl_clear(&list, NULL);
-	return (EXIT_SUCCESS);
+	return (ft_dl_delete(&list, NULL), EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:

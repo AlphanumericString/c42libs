@@ -26,7 +26,7 @@ static int	mt_string_insert_n(void)
 	ft_string_insert_n(str, "             long world!", -1, 24);
 	talloc_set_failpoint(fp);
 	if (ft_string_cmp(str, "Hello") != 0 || str->length != 5)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	ft_string_destroy(&str);
 	return (EXIT_SUCCESS);
 }
@@ -38,14 +38,14 @@ int	test_string_insert_n(void)
 	str = ft_string_from("Hello");
 	ft_string_insert_n(str, " World", 0, 5);
 	if (ft_string_cmp(str, " WorlHello") != 0)
-		return (1);
+		return (ft_string_destroy(&str), 1);
 	if (str->length != 10 || str->capacity < 10)
-		return (2);
+		return (ft_string_destroy(&str), 2);
 	ft_string_insert_n(str, "!", 99, 1);
 	if (ft_string_cmp(str, " WorlHello!") != 0)
-		return (3);
+		return (ft_string_destroy(&str), 3);
 	if (str->length != 11 || str->capacity < 11)
-		return (4);
+		return (ft_string_destroy(&str), 4);
 	ft_string_destroy(&str);
 	return (mt_string_insert_n());
 }

@@ -21,7 +21,7 @@ int	tmap_set_cmp(void)
 	map = ft_map_create(10);
 	ft_map_set_cmp(map, NULL);
 	if (map->cmp)
-		return (1);
+		return (ft_map_destroy(map), 1);
 	ft_map_destroy(map);
 	return (EXIT_SUCCESS);
 }
@@ -33,7 +33,7 @@ int	tmap_set_hash(void)
 	map = ft_map_create(10);
 	ft_map_set_hash(map, NULL);
 	if (map->hash)
-		return (1);
+		return (ft_map_destroy(map), 1);
 	ft_map_destroy(map);
 	return (EXIT_SUCCESS);
 }
