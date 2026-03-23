@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ll_add.c                                        :+:      :+:    :+:   */
+/*   ft_cl_to.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:48:35 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 23:40:02 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/22 14:47:41 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/22 14:47:41 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	ft_ll_add_front(t_list **lst, t_list *new)
+void	**ft_cl_to_array(t_clist **head)
 {
-	if (!lst)
-		return ;
-	new->next = *lst;
-	*lst = new;
-}
+	void	**d;
 
-void	ft_ll_add_back(t_list **lst, t_list *new)
-{
-	if (!lst)
-		return ;
-	if (!*lst)
-		*lst = new;
-	else
-		ft_ll_end(*lst)->next = new;
+	if (!head)
+		return (NULL);
+	d = ft_cl_get_datas(*head);
+	if (d)
+		ft_cl_delete(head, NULL);
+	return (d);
 }
 /*
 GPL-3.0 License:

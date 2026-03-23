@@ -189,24 +189,27 @@ FT_MAP_SRC	=	\
 			$(FT_MAP_DIR)/ft_map_set.c
 
 FT_LIST_LL_SRC	=	\
-			$(FT_LIST_LL_DIR)/ft_ll_find.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_add.c			\
-			$(FT_LIST_LL_DIR)/ft_ll_clear.c			\
-			$(FT_LIST_LL_DIR)/ft_ll_check.c			\
-			$(FT_LIST_LL_DIR)/ft_ll_delete.c		\
-			$(FT_LIST_LL_DIR)/ft_ll_extract_min.c	\
-			$(FT_LIST_LL_DIR)/ft_ll_extract_max.c	\
 			$(FT_LIST_LL_DIR)/ft_ll_apply.c			\
+			$(FT_LIST_LL_DIR)/ft_ll_check.c			\
+			$(FT_LIST_LL_DIR)/ft_ll_clear.c			\
+			$(FT_LIST_LL_DIR)/ft_ll_create.c		\
+			$(FT_LIST_LL_DIR)/ft_ll_delete.c		\
+			$(FT_LIST_LL_DIR)/ft_ll_extract_max.c	\
+			$(FT_LIST_LL_DIR)/ft_ll_extract_min.c	\
+			$(FT_LIST_LL_DIR)/ft_ll_find.c			\
+			$(FT_LIST_LL_DIR)/ft_ll_from.c			\
+			$(FT_LIST_LL_DIR)/ft_ll_getters.c		\
 			$(FT_LIST_LL_DIR)/ft_ll_iterator.c		\
 			$(FT_LIST_LL_DIR)/ft_ll_map.c			\
+			$(FT_LIST_LL_DIR)/ft_ll_merge.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_new.c			\
+			$(FT_LIST_LL_DIR)/ft_ll_pushpop.c		\
 			$(FT_LIST_LL_DIR)/ft_ll_rev.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_size.c			\
-			$(FT_LIST_LL_DIR)/ft_ll_create.c		\
-			$(FT_LIST_LL_DIR)/ft_ll_getters.c		\
-			$(FT_LIST_LL_DIR)/ft_ll_pushpop.c		\
 			$(FT_LIST_LL_DIR)/ft_ll_sort.c			\
 			$(FT_LIST_LL_DIR)/ft_ll_sub.c			\
+			$(FT_LIST_LL_DIR)/ft_ll_to.c			\
 
 FT_LIST_DL_SRC	=	\
 			$(FT_LIST_DL_DIR)/ft_dl_add.c			\
@@ -218,15 +221,18 @@ FT_LIST_DL_SRC	=	\
 			$(FT_LIST_DL_DIR)/ft_dl_extract_max.c	\
 			$(FT_LIST_DL_DIR)/ft_dl_extract_min.c	\
 			$(FT_LIST_DL_DIR)/ft_dl_find.c			\
+			$(FT_LIST_DL_DIR)/ft_dl_from.c			\
 			$(FT_LIST_DL_DIR)/ft_dl_getters.c		\
 			$(FT_LIST_DL_DIR)/ft_dl_iterator.c		\
 			$(FT_LIST_DL_DIR)/ft_dl_map.c			\
+			$(FT_LIST_DL_DIR)/ft_dl_merge.c			\
 			$(FT_LIST_DL_DIR)/ft_dl_new.c			\
 			$(FT_LIST_DL_DIR)/ft_dl_pushpop.c		\
 			$(FT_LIST_DL_DIR)/ft_dl_rev.c			\
 			$(FT_LIST_DL_DIR)/ft_dl_size.c			\
 			$(FT_LIST_DL_DIR)/ft_dl_sort.c			\
-			$(FT_LIST_DL_DIR)/ft_dl_sub.c			\
+			$(FT_LIST_DL_DIR)/ft_dl_sub.c 			\
+			$(FT_LIST_DL_DIR)/ft_dl_to.c  			\
 
 FT_LIST_CL_SRC	=	\
 			$(FT_LIST_CL_DIR)/ft_cl_add.c			\
@@ -238,15 +244,18 @@ FT_LIST_CL_SRC	=	\
 			$(FT_LIST_CL_DIR)/ft_cl_extract_max.c	\
 			$(FT_LIST_CL_DIR)/ft_cl_extract_min.c	\
 			$(FT_LIST_CL_DIR)/ft_cl_find.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_from.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_getters.c		\
 			$(FT_LIST_CL_DIR)/ft_cl_iterator.c		\
 			$(FT_LIST_CL_DIR)/ft_cl_map.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_merge.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_new.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_pushpop.c		\
 			$(FT_LIST_CL_DIR)/ft_cl_rev.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_size.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_sort.c			\
 			$(FT_LIST_CL_DIR)/ft_cl_sub.c			\
+			$(FT_LIST_CL_DIR)/ft_cl_to.c			\
 
 FT_VEC_SRC	=	\
 			$(FT_VEC_DIR)/ft_vec_add.c		\

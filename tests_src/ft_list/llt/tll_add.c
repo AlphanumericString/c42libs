@@ -68,6 +68,7 @@ int	tll_add_back(void)
 	else if (list->next->data != data2 || list->next->next)
 		return (ft_free(data), ft_free(data2), ft_ll_delete(&list, NULL), 3);
 	ft_ll_delete(&list, ft_free);
+	ft_ll_add_back(NULL, (void *)0xDEAD);
 	return (EXIT_SUCCESS);
 }
 /*

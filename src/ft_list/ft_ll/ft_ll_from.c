@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ll_add.c                                        :+:      :+:    :+:   */
+/*   ft_ll_from.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:48:35 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/02/10 23:40:02 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/22 10:33:31 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/22 10:33:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	ft_ll_add_front(t_list **lst, t_list *new)
+t_list	*ft_ll_from_array(const void **e, size_t nb_elems)
 {
-	if (!lst)
-		return ;
-	new->next = *lst;
-	*lst = new;
-}
+	t_list	*ret;
 
-void	ft_ll_add_back(t_list **lst, t_list *new)
-{
-	if (!lst)
-		return ;
-	if (!*lst)
-		*lst = new;
-	else
-		ft_ll_end(*lst)->next = new;
+	if (!e || !nb_elems)
+		return (ft_ll_new());
+	ret = NULL;
+	while (nb_elems)
+		ft_ll_push(&ret, e[--nb_elems]);
+	return (ret);
 }
 /*
 GPL-3.0 License:

@@ -12,7 +12,6 @@
 
 #include "ft_defs.h"
 #include "ft_list.h"
-#include "ft_mem.h"
 #include "types/ft_list_types.h"
 #include "internal/algo_util.h"
 #include <stdio.h>
@@ -38,45 +37,6 @@ bool	ft_ll_issort(const t_list *head, const t_data_cmp cmp, int flag)
 	if (ft_isord_ok(ord, ret) == false)
 		return (false);
 	return (head->next == NULL);
-}
-
-static t_list	*recursive_merge(t_list *head, t_list *to_mrg, t_data_cmp cmp, int flag)
-{
-	const t_sort_order	ord = (flag & FT_SORT_ORD_MASK);
-	t_list				*r;
-
-	if (!head)
-		return (to_mrg);
-	if (!to_mrg)
-		return (head);
-	if ((cmp(head->data, to_mrg->data) < 0 && ord == FT_SORT_ORD_ASC) ||
-		(cmp(head->data, to_mrg->data) >= 0 && ord == FT_SORT_ORD_DES))
-	{
-		r = head;
-		r->next = recursive_merge(r->next, to_mrg, cmp, ord);
-	}
-	else
-	{
-		r = to_mrg;
-		r->next = recursive_merge(head, r->next, cmp, ord);
-	}
-	return (r);
-}
-
-static t_list	*ft_ll_merge_sorted(t_list **head, t_list *to_merge, t_data_cmp cmp, int flags)
-{
-	const t_sort_order	ord = (flags & FT_SORT_ORD_MASK);
-	t_list	*new_head;
-
-	if (!cmp || !head)
-		return (NULL);
-	if (!*head || ord == FT_SORT_ORD_UNO)
-		return (ft_ll_add_back(head, to_merge), *head);
-	if (!to_merge)
-		return (*head);
-	new_head = recursive_merge(*head, to_merge, cmp, ord);
-	*head = new_head;
-	return (new_head);
 }
 
 static t_list	*recursive_sort(t_list **head, const t_data_cmp cmp, int flg)

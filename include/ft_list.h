@@ -47,15 +47,12 @@
 // // TODO:
 // // t_dlist	*ft_dl_from_ll(const t_list *head);
 // //		t_dlist	*ft_dl_from_cl(const t_clist *head);
-// // t_dlist	*ft_dl_from_array(const void *arr, size_t n, size_t size_elem);
 // // TODO:
 // // t_list	*ft_ll_from_dl(const t_dlist *head);
 // // t_list	*ft_ll_from_cl(const t_clist *head);
-// // t_list	*ft_ll_from_array(const void *arr, size_t n, size_t size_elem);
 // // TODO:
 // // t_clist	*ft_cl_from_ll(const t_list *head);
 // //		t_clist	*ft_cl_from_dl(const t_dlist *head);
-// // t_clist	*ft_cl_from_array(const void *arr, size_t n, size_t size_elem);
 // // TODO:
 // // t_dlist	*ft_dl_node_from_ll(t_list *head);
 // //		t_dlist	*ft_dl_node_from_cl(t_clist *head);
@@ -65,12 +62,6 @@
 // // TODO:
 // // t_clist	*ft_cl_node_from_ll(t_list *head);
 // //		t_clist	*ft_cl_node_from_dl(t_dlist *head);
-
-// CONVERTIONS -TO
-// // TODO:
-// // void	**ft_ll_to_array(t_list **head); // is freed
-// // void	**ft_dl_to_array(t_list **head); // is freed
-// // void	**ft_cl_to_array(t_list **head); // is freed
 
 // TODO: implement clear range for ll
 // /// @brief Clear a list until the element end (if no end, clear all)
@@ -99,13 +90,15 @@
 // TODO: ft_[type]_delete_node([t_type] **head, [t_type] *node,
 //			t_data_apply f)
 //		if (node == *head)
-//		if (type == cl || type == dl) prev->nxt re-eval
+//		if (type == cl || type == dl) [prev->nxt && nxt->prev re-eval]
 //		if (f) f(node->data)
 //		free node
 
 // TODO:fix clear / delete:
-//	- clear should ONLY EVER set data to NULL + maybe call f on said data;
-//	- delete should BOTH delete data with f and node with ft_free;
+//	- clear should free only nodes and maybe call f on node->data but this
+//		shoudl be reserved to removing dependencies on node itself in usr
+//		struct. NOT to free the node->data;
+//	- delete should BOTH call f on data and, free data with node with ft_free;
 
 // TODO: add advance -> ptr = ptr->nxt; if rename of nxt wont break everything
 // maybe an inline?
@@ -487,9 +480,96 @@ t_clist	*ft_cl_copy_list(const t_clist *other);
 /*							   CONVERTIONS - FROM							  */
 /* ************************************************************************** */
 
+//	@brief Copies an array in a new doubly linked list;
+//	@param e The value to copy
+//	@param nb_elem The number of values to read for the copy
+//	@return The newly allocated list or null in case of error.
+//	@WARNING	in case of failed allocation in the middle of the list is not
+//		specifically handled. if you want to check for that do it manually.
+t_dlist	*ft_dl_from_array(const void **e, size_t nb_el);
+
+//	@brief Copies an array in a new simply linked list;
+//	@param e The value to copy
+//	@param nb_elem The number of values to read for the copy
+//	@return The newly allocated list or null in case of error.
+//	@WARNING	in case of failed allocation in the middle of the list is not
+//		specifically handled. if you want to check for that do it manually.
+t_list	*ft_ll_from_array(const void **e, size_t nb_elems);
+// TODO: ll_from [dl,cl]
+
+//	@brief Copies an array in a new circular doubly linked list;
+//	@param e The value to copy
+//	@param nb_elem The number of values to read for the copy
+//	@return The newly allocated list or null in case of error.
+//	@WARNING	in case of failed allocation in the middle of the list is not
+//		specifically handled. if you want to check for that do it manually.
+t_clist	*ft_cl_from_array(const void **e, size_t nb_elems);
+
+
 /* ************************************************************************** */
 /*							   CONVERTIONS - TO								  */
 /* ************************************************************************** */
+
+void	**ft_dl_to_array(t_dlist **head);
+// t_list	*ft_dl_to_ll(t_dlist **head);
+// t_clist	*ft_dl_to_cl(t_dlist **head);
+
+//	@brief Copies a list in a new array then free's said list;
+//	@param e The value to copy
+//	@param nb_elem The number of values to read for the copy
+//	@return The newly allocated list or null. In cases of error/alloc fail the
+//		list is not free'd.
+//	@warning In case of failed allocation in the middle of the list is not
+//		specifically handled. if you want to check for that do it manually.
+void	**ft_ll_to_array(t_list **head);
+//	@brief Copies a list's data in a new doubly linked list then free's list.
+//	@param head the head of th simple list to convert
+//	@return The newly allocated list or null.
+t_clist	*ft_ll_to_dl(t_list	**head);
+//	@brief Copies a list's data in a new doubly circular linked list then
+//	free's list.
+//	@param head the head of th simple list to convert
+//	@return The newly allocated list or null.
+t_clist	*ft_ll_to_cl(t_list	**head);
+
+void	**ft_cl_to_array(t_clist **head);
+
+/* ************************************************************************** */
+/*									 MERGE									  */
+/* ************************************************************************** */
+
+// @brief merge 2 lists. if head exist takes priority.
+// @param head	The head ot the list to merge the other to
+// @param to_append	The head of the other list to merge to head.
+// @warning No checks on to_append being 'healthy' are made before merging.
+t_dlist	*ft_dl_merge(t_dlist **head, t_dlist *to_append);
+// @brief merges 2 sorted lists. if head == to_merge, head takes priority.
+// @param head	The head of the list to add the elements to
+// @param to_merge	The list of sorted nodes to add
+// @param cmp	The comparaison function for the data
+// @param flag	The flags to know the sort order
+t_dlist	*ft_dl_merge_sorted(t_dlist **head, t_dlist *to_merge, t_data_cmp cmp,
+			int flags);
+
+// @brief merge 2 lists. if head exist takes priority.
+// @param head	The head ot the list to merge the other to
+// @param to_append	The head of the other list to merge to head.
+// @warning No checks on to_append being 'healthy' are made before merging.
+t_list	*ft_ll_merge(t_list **head, t_list *to_append);
+// @brief merges 2 sorted lists. if head == to_merge, head takes priority.
+// @param head	The head of the list to add the elements to
+// @param to_merge	The list of sorted nodes to add
+// @param cmp	The comparaison function for the data
+// @param flag	The flags to know the sort order
+t_list	*ft_ll_merge_sorted(t_list **head, t_list *to_merge, t_data_cmp cmp,
+			int flags);
+
+t_clist	*ft_cl_merge(t_clist **head, t_clist *to_append);
+t_clist	*ft_cl_merge_sorted(t_clist **head, t_clist *to_merge, t_data_cmp cmp,
+			int flags);
+// TODO:
+// ft_cl_merge()
+// ft_cl_merge_sorted()
 
 /* ************************************************************************** */
 /*                                  DELETE                                    */
