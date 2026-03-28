@@ -55,10 +55,9 @@ int	tmal_realloc(void);
 // test memory arena
 // tma -> test memory arena
 int	tma_arena(void);
-int	tma_narena_alloc(void);
-int	tma_narena_belong(void);
-int	tma_narena_calloc(void);
-int	tma_narena_free(void);
+int	tma_ar_scope(void);
+int	tma_ar_scend(void);
+int	tma_ar_scstart(void);
 
 // test algorithms
 // talg -> test algorithms

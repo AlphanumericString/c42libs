@@ -1,48 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tma_narena.c                                       :+:      :+:    :+:   */
+/*   tma_ar_scope.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antigravity <antigravity@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/29 13:42:22 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 13:52:55 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/28 15:52:29 by antigravity       #+#    #+#             */
+/*   Updated: 2026/03/28 15:52:29 by antigravity      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_arena.h"
-#include "ft_string.h"
+#include "ft_allocator__dev.h"
 #include "tests/str__mem_tests.h"
-#include "tests/fixtures.h"
+#include <stddef.h>
 
-static int	mt_narena_calloc(void)
+// check with valgrind for double-frees / leaks
+// -> leak on ptr1 ->
+//		scope-end leaks
+// -> double free on ptr2 ->
+//		extract fails to remove value
+// -> leak on ptr3 ->
+//		bad route if not in set
+// -> double free on ptr4 ->
+//		bad accumulation on ptr allocation
+int	tma_ar_scope(void)
 {
-	const int	fp = *talloc_get_failpoint();
-	char		*ptr;
+	void					*ptr1 __attribute__((unused));
+	void					*ptr2;
+	void					*ptr3 __attribute__((unused));
+	void					*ptr4 __attribute__((unused));
 
-	talloc_set_failpoint(0);
-	ptr = ft_narena_calloc(FT_NARENA_MAX / 3, 42, 1);
-	if (ptr)
-		return (1 + 10);
-	talloc_set_failpoint(fp);
-	return (EXIT_SUCCESS);
-}
-
-int	tma_narena_calloc(void)
-{
-	void	*ptr;
-
-	if (ft_narena_calloc(FT_NARENA_MAX + 1, 42, 1) != NULL
-		|| ft_narena_calloc(-1, 42, 1) != NULL)
-		return (1);
-	ptr = ft_narena_calloc(FT_NARENA_MAX / 2, 42, 1);
-	if (!ptr || ft_narena_belongs(FT_NARENA_MAX / 2, ptr) != true)
-		return (2);
-	ft_strlcpy(ptr, "toto", 42);
-	if (ft_strcmp(ptr, "toto"))
-		return (3);
-	ft_narena_free(FT_NARENA_MAX / 2);
-	return (mt_narena_calloc());
+	ptr3 = ft_malloc(32);
+	ptr4 = ft_malloc(32);
+	ft_ar_scope_start();
+	ptr1 = ft_malloc(128);
+	ft_ar_scope_start();
+	ptr2 = ft_malloc(256);
+	ft_ar_extract_ptr(ptr2);
+	ft_free(ptr3);
+	ft_ar_scope_end();
+	ft_free(ptr4);
+	ft_free(ptr2);
+	ft_ar_scope_end();
+	return (0);
 }
 /*
 GPL-3.0 License:

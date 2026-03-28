@@ -335,15 +335,15 @@ FT_ALG_SRC		=\
 			$(FT_ALG_DIR)/ft_binsrch.c				\
 
 FT_MEM_SRC		=\
-			$(FT_MEM_DIR)/ft_allocator/ft_al_arena.c	\
-			$(FT_MEM_DIR)/ft_allocator/ft_al_group.c	\
-			$(FT_MEM_DIR)/ft_allocator/ft_al_hooks.c	\
-			$(FT_MEM_DIR)/ft_allocator/ft_al_memimpl.c	\
-			$(FT_MEM_DIR)/ft_arena/ft_arena.c			\
-			$(FT_MEM_DIR)/ft_arena/ft_narena.c			\
-			$(FT_MEM_DIR)/ft_arena/ft_narena_utils.c	\
-			$(FT_MEM_DIR)/ft_arr/ft_aalloc.c			\
-			$(FT_MEM_DIR)/ft_arr/ft_aapply.c			\
+			$(FT_MEM_DIR)/ft_allocator/ft_al_arena.c		\
+			$(FT_MEM_DIR)/ft_allocator/ft_al_group.c		\
+			$(FT_MEM_DIR)/ft_allocator/ft_al_hooks.c		\
+			$(FT_MEM_DIR)/ft_allocator/ft_al_memimpl.c		\
+			$(FT_MEM_DIR)/ft_arena/ft_ar_scope.c			\
+			$(FT_MEM_DIR)/ft_arena/ft_ar_scope_alloc.c		\
+			$(FT_MEM_DIR)/ft_arena/ft_ar_scope_end_all.c	\
+			$(FT_MEM_DIR)/ft_arr/ft_aalloc.c				\
+			$(FT_MEM_DIR)/ft_arr/ft_aapply.c				\
 			$(FT_MEM_DIR)/ft_arr/ft_acat.c			\
 			$(FT_MEM_DIR)/ft_arr/ft_aclear.c		\
 			$(FT_MEM_DIR)/ft_arr/ft_acmp.c			\
@@ -677,11 +677,9 @@ TESTS_SRC	=\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_reallocarray.c	\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_allocator/tmal_realloc.c		\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/arena_tests.c			\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_arena.c				\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_alloc.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_belong.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_calloc.c		\
-			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_narena_free.c		\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_ar_scend.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_ar_scope.c			\
+			$(TESTS_DIR)/ft_string/ft_mem/ft_arena/tma_ar_scstart.c			\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/arr_tests.c				\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aaloc.c				\
 			$(TESTS_DIR)/ft_string/ft_mem/ft_arr/tca_aapply.c				\

@@ -1,37 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tma_narena.c                                       :+:      :+:    :+:   */
+/*   ft_ar_scope__dev.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antigravity <antigravity@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/29 13:42:22 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 13:52:55 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/28 15:52:29 by antigravity       #+#    #+#             */
+/*   Updated: 2026/03/28 15:52:29 by antigravity      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_arena.h"
-#include "ft_string.h"
-#include "tests/str__mem_tests.h"
+#ifndef FT_AR_SCOPE__DEV_H
+# define FT_AR_SCOPE__DEV_H
 
-// cant really check that free was ok -
-// check on valgrind i guess
-//
-// to annoying to modify test fixture just to prove that yes it frees
-int	tma_narena_free(void)
+# include <stddef.h>
+# include "types/ft_allocator_types.h"
+# include "types/ft_list_types.h"
+# include "ft_defs.h"
+
+# ifdef TEST
+# define FT_AR_SCOPE_INIT_CAP 5
+# else
+# define FT_AR_SCOPE_INIT_CAP FT_STD_BUF_SIZE
+# endif
+
+typedef struct s_ar_scope
 {
-	void	*ptr;
+	void	**allocations;
+	size_t	count;
+	size_t	capacity;
+}	t_ar_scope;
 
-	ft_narena_free(-1);
-	ft_narena_free(FT_NARENA_MAX + 1);
-	ft_narena_free(FT_NARENA_MAX / 2);
-	ft_narena_free(FT_NARENA_MAX / 2);
-	ft_narena_free(FT_NARENA_MAX / 2);
-	ptr = ft_narena_alloc(FT_NARENA_MAX / 2, 42);
-	ft_strlcpy(ptr, "test", 42);
-	ft_narena_free(FT_NARENA_MAX / 2);
-	return (EXIT_SUCCESS);
-}
+typedef struct s_ar_state
+{
+	t_dlist				*scopes;
+	t_allocator_group	underlying;
+}	t_ar_state;
+
+t_ar_state	*ft_get_ar_state(void);
+void		*ft_ar_alloc(size_t size);
+void		*ft_ar_calloc(size_t count, size_t size);
+void		ft_ar_free(void *ptr);
+
+#endif
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

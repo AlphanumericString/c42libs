@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tma_narena.c                                       :+:      :+:    :+:   */
+/*   ft_ar_scope_end_all.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/29 13:42:22 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 13:52:55 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/28 16:46:05 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/28 16:46:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_arena.h"
-#include "tests/str__mem_tests.h"
+#include "internal/ft_ar_scope__dev.h"
 
-int	tma_narena_belong(void)
+void	ft_ar_scope_endall(void)
 {
-	void		*ptr_1;
-	void		*ptr_2;
-	const void	*ptr_3 = (void *)0xDEADBEEF;
+	t_ar_state	*ar;
 
-	ptr_1 = ft_narena_alloc(FT_NARENA_MAX - 1, 42);
-	ptr_2 = ft_narena_alloc(FT_NARENA_MAX - 1, 42);
-	if (ft_narena_belongs(FT_NARENA_MAX - 1, ptr_1) != true
-		|| ft_narena_belongs(FT_NARENA_MAX - 1, ptr_2) != true
-		|| ft_narena_belongs(FT_NARENA_MAX - 1, ptr_3) != false)
-		return (ft_narena_free_all(), 1);
-	if (ft_narena_belongs(FT_NARENA_MAX - 1, NULL) != false
-		|| (ft_narena_belongs(0, ptr_2) != false && FT_NARENA_MAX > 0)
-		|| ft_narena_belongs(FT_NARENA_MAX + 1, ptr_2) != false
-		|| ft_narena_belongs(-1, ptr_2) != false)
-		return (ft_narena_free_all(), 2);
-	ft_narena_free_all();
-	return (EXIT_SUCCESS);
+	ar = ft_get_ar_state();
+	while (ar->scopes)
+		ft_ar_scope_end();
 }
 /*
 GPL-3.0 License:
