@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_arena.h"
-#include "ft_defs.h"
 
 void	*ft_arena_alloc(size_t size)
 {
@@ -27,12 +26,6 @@ void	ft_arena_free(void)
 {
 	ft_narena_free(FT_DEFAULT_ARENA);
 }
-
-// go see ft_narena_remove comments
-// void	ft_arena_remove(const void *ptr)
-// {
-// 	ft_narena_remove(FT_DEFAULT_ARENA, ptr);
-// }
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

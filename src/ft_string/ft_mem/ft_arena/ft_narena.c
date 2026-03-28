@@ -36,31 +36,6 @@ static t_dlist	**singleton_arena(int arena)
 	return (ret);
 }
 
-// anrena should be for group allocation
-//	- eg :
-//	you do step x needing y allocations and then extract result z
-//	then nuke the whole allocation y needed by step x
-//	you shouldn't 'NEED' to free just a single ptr from an arena
-//
-//	but i wanna change the ownership ! cant i have an 'unregister' function?
-//	No. Just use malloc directly to trnasmit the result then.
-//
-//	still... even after all that... i kinda play around in my head on with this
-//	stuff... might be usefull...
-// void	ft_narena_remove(int arena, const void *ptr)
-// {
-// 	t_dlist	**current_arena;
-// 	t_dlist	*node;
-//
-// 	current_arena = singleton_arena(arena);
-// 	if (!current_arena)
-// 		return ;
-// 	node = ft_dl_find(*current_arena, ptr, NULL);
-// 	if (!node)
-// 		return ;
-// 	ft_dl_delete_self(node, ft_free);
-// }
-
 bool	ft_narena_belongs(int ar_nb, const void *ptr)
 {
 	t_dlist	**current_arena;
