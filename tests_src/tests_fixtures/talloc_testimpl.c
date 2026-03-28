@@ -10,42 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_allocator__dev.h"
+#include "types/ft_allocator_types.h"
 #include "tests/fixtures.h"
-#include <stddef.h>
 
 void	*talloc_alloc(size_t s)
 {
 	if (talloc_is_ok())
-		return (((t_allocator_group *)talloc_prev_group())->ptr_alloc(s));
+		return (((t_allocator_group *)talloc_prev_group())->alloc_fn(s));
 	return (NULL);
 }
 
 void	*talloc_calloc(size_t a, size_t b)
 {
 	if (talloc_is_ok())
-		return (((t_allocator_group *)talloc_prev_group())->ptr_calloc(a, b));
+		return (((t_allocator_group *)talloc_prev_group())->calloc_fn(a, b));
 	return (NULL);
 }
 
 void	*talloc_realloc(void *p, size_t s)
 {
 	if (talloc_is_ok())
-		return (((t_allocator_group *)talloc_prev_group())->ptr_realloc(p, s));
+		return (((t_allocator_group *)talloc_prev_group())->realloc_fn(p, s));
 	return (NULL);
 }
 
 // no check on isok as we dont allocates here
 void	talloc_free(void *p)
 {
-	return (((t_allocator_group *)talloc_prev_group())->ptr_free(p));
+	return (((t_allocator_group *)talloc_prev_group())->free_fn(p));
 }
 
 void	*talloc_reallocarray(void *p, size_t a, size_t b)
 {
 	if (talloc_is_ok())
 		return (((t_allocator_group *)
-				talloc_prev_group())->ptr_reallocarray(p, a, b));
+				talloc_prev_group())->reallocarray_fn(p, a, b));
 	return (NULL);
 }
 

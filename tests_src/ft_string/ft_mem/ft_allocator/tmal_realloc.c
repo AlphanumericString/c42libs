@@ -20,8 +20,8 @@ int	tmal_realloc(void)
 
 	ft_set_ft_alloc();
 	group_test = ft_get_allocator(NULL);
-	if (group_test.ptr_realloc != &ft_memimpl_realloc)
-		return (1);
+	if (group_test.realloc_fn != &ft_memimpl_realloc)
+		return (ft_get_allocator(&prev), 1);
 	ft_get_allocator(&prev);
 	return (EXIT_SUCCESS);
 }

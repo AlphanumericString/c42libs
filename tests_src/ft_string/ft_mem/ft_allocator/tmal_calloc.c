@@ -21,8 +21,8 @@ int	tmal_calloc(void)
 
 	ft_set_ft_alloc();
 	group_test = ft_get_allocator(NULL);
-	if (group_test.ptr_calloc != &ft_memimpl_calloc)
-		return (1);
+	if (group_test.calloc_fn != &ft_memimpl_calloc)
+		return (ft_get_allocator(&prev), 1);
 	ft_get_allocator(&prev);
 	return (EXIT_SUCCESS);
 }
