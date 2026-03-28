@@ -13,28 +13,35 @@
 #ifndef FT_ARENA_H
 # define FT_ARENA_H
 
-# include "ft_defs.h"
-# include "types/ft_list_types.h"
+// scope based arena
 
-# define FT_NARENA_MAX		64 // 64 arenas contexts max
-# define FT_DEFAULT_ARENA	0
+/// @brief	starts a scope (also, will disable realloc + reallocarray)
+void	ft_ar_scope_start(void);
+/// @brief	removes a scope and free associated pointers
+void	ft_ar_scope_end(void);
+/// @brief	remove all scop in use and free internals
+void	ft_ar_scope_endall(void);
 
-// base
-void	*ft_arena_alloc(size_t size);
-void	*ft_arena_calloc(size_t count, size_t size);
-void	ft_arena_free(void);
-// n version
-void	*ft_narena_alloc(int arena, size_t request);
-void	*ft_narena_calloc(int arena, size_t count, size_t size);
-void	ft_narena_free(int arena);
-bool	ft_narena_belongs(int ar_nb, const void *ptr);
-
-void	ft_narena_free_all(void) __attribute__((destructor(200)));
-
-// todo: maybe add a 'decl_arena_space' type of stuff, that intercept
-// any call to ft_malloc and auto register them in an arena?
-//
-// later patch idk maybe
-// seems good on paper but idk, will play with the idea
+/// @brief	removes a pointer from the curent scope handler
+/// might be usefull in case of returning allocated values
+void	ft_ar_extract_ptr(void *ptr);
 
 #endif
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

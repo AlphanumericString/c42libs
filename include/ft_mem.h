@@ -115,11 +115,22 @@ void		*ft_memnrev(void *data, size_t nmemb, size_t n);
 /// @return pointer to the memory
 void		*ft_memrev(void *data, size_t n);
 
-// TODO: ft_memrevn -> reverse each chunk separately
-//  aka literally call ft_memrev nmemb times on each member
-//  -> usefull for :LE <=> BE, ARGB <=> BGRA,
-//		UTF-16 <=> UTF-16BE, md5, sha1, sha256, sha512 etc...
-
-// NOTE: maybe move to ft_algorithms.h ?
-
 #endif /* FT_MEM_H */
+/*
+GPL-3.0 License:
+c42libs - Library for c projects at 42.
+Copyright (C) 2025  baptiste GOULARD
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/

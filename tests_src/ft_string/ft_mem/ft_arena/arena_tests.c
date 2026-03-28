@@ -18,19 +18,22 @@
  * sorted list:
 
 {"arena", tma_arena},
+{"ar_scope", tma_ar_scope},
 {"narena_alloc", tma_narena_alloc},
 {"narena_belong", tma_narena_belong},
 {"narena_calloc", tma_narena_calloc},
 {"narena_free", tma_narena_free},
+{NULL, NULL}};
 
 */
 
 static const t_fnamed	*tma_tests(void)
 {
 	static const t_fnamed	tests[] = {
-	{"arena", tma_arena}, {"narena_alloc", tma_narena_alloc},
-	{"narena_belong", tma_narena_belong}, {"narena_calloc", tma_narena_calloc},
-	{"narena_free", tma_narena_free}, {NULL, NULL}};
+	{"ar_scope", tma_ar_scope},
+	{"ar_scope_end", tma_ar_scend},
+	{"ar_scope_start", tma_ar_scstart},
+	{NULL, NULL}};
 
 	return (tests);
 }

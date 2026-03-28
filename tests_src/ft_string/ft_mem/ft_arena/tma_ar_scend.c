@@ -1,48 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tma_narena.c                                       :+:      :+:    :+:   */
+/*   tma_ar_scend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/29 13:42:22 by bgoulard          #+#    #+#             */
-/*   Updated: 2025/06/29 13:52:55 by bgoulard         ###   ########.fr       */
+/*   Created: 2026/03/28 16:26:49 by bgoulard          #+#    #+#             */
+/*   Updated: 2026/03/28 16:26:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_arena.h"
-#include "ft_string.h"
+#include "ft_allocator__dev.h"
+#include "ft_defs.h"
+#include "internal/ft_ar_scope__dev.h"
 #include "tests/str__mem_tests.h"
-#include "tests/fixtures.h"
+#include "ft_arena.h"
 
-static int	mt_narena_alloc(void)
+int	tma_ar_scend(void)
 {
-	const int	fp = *talloc_get_failpoint();
-	char		*ptr;
+	const t_allocator_group	prev = ft_get_allocator(NULL);
 
-	talloc_set_failpoint(0);
-	ptr = ft_narena_alloc(FT_NARENA_MAX / 3, 42);
-	if (ptr)
-		return (1 + 10);
-	talloc_set_failpoint(fp);
-	return (EXIT_SUCCESS);
-}
-
-int	tma_narena_alloc(void)
-{
-	void	*ptr;
-
-	if (ft_narena_alloc(FT_NARENA_MAX + 1, 42) != NULL
-		|| ft_narena_alloc(-1, 42) != NULL)
+	if ((*ft_get_ar_state()).scopes != NULL)
 		return (1);
-	ptr = ft_narena_alloc(FT_NARENA_MAX / 2, 42);
-	if (!ptr || ft_narena_belongs(FT_NARENA_MAX / 2, ptr) != true)
+	(ft_ar_scope_end(), ft_ar_scope_end());
+	if ((*ft_get_ar_state()).scopes
+		|| ft_get_allocator(NULL).calloc_fn != prev.calloc_fn)
 		return (2);
-	ft_strlcpy(ptr, "toto", 42);
-	if (ft_strcmp(ptr, "toto"))
+	ft_ar_scope_endall();
+	if ((*ft_get_ar_state()).scopes)
 		return (3);
-	ft_narena_free(FT_NARENA_MAX / 2);
-	return (mt_narena_alloc());
+	(ft_ar_scope_start(), ft_ar_scope_start());
+	if ((*ft_get_ar_state()).scopes == NULL
+		|| ft_get_allocator(NULL).calloc_fn == prev.calloc_fn)
+		return (ft_ar_scope_endall(), 4);
+	ft_ar_scope_endall();
+	if ((*ft_get_ar_state()).scopes
+		|| ft_get_allocator(NULL).calloc_fn != prev.calloc_fn)
+		return (5);
+	(ft_ar_scope_start(), ft_ar_scope_start());
+	(ft_ar_scope_end(), ft_ar_scope_end());
+	if ((*ft_get_ar_state()).scopes
+		|| ft_get_allocator(NULL).calloc_fn != prev.calloc_fn)
+		return (ft_ar_scope_endall(), 6);
+	return (EXIT_SUCCESS);
 }
 /*
 GPL-3.0 License:
