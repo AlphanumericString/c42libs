@@ -19,12 +19,6 @@
 # define FT_NARENA_MAX		64 // 64 arenas contexts max
 # define FT_DEFAULT_ARENA	0
 
-// todo: typedef t_dlist **->t_arena
-// >> ft_get_arena -> obscure singleton + get benefits across multiple files
-//
-// todo: maybe rename [n]arena_free to [n]arena_destroy ? might be clearer
-// that you dont give the ptr to free it
-
 // base
 void	*ft_arena_alloc(size_t size);
 void	*ft_arena_calloc(size_t count, size_t size);
