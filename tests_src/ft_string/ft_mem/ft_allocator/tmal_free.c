@@ -20,8 +20,8 @@ int	tmal_free(void)
 
 	ft_set_ft_alloc();
 	group_test = ft_get_allocator(NULL);
-	if (group_test.ptr_free != &ft_memimpl_free)
-		return (1);
+	if (group_test.free_fn != &ft_memimpl_free)
+		return (ft_get_allocator(&prev), 1);
 	ft_get_allocator(&prev);
 	return (EXIT_SUCCESS);
 }

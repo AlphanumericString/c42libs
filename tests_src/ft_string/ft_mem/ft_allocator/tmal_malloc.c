@@ -20,8 +20,8 @@ int	tmal_malloc(void)
 
 	ft_set_ft_alloc();
 	group_test = ft_get_allocator(NULL);
-	if (group_test.ptr_alloc != &ft_memimpl_malloc)
-		return (1);
+	if (group_test.alloc_fn != &ft_memimpl_malloc)
+		return (ft_get_allocator(&prev), 1);
 	ft_get_allocator(&prev);
 	return (EXIT_SUCCESS);
 }

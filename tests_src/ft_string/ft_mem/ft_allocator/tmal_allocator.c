@@ -11,32 +11,33 @@
 /* ************************************************************************** */
 
 #include "ft_allocator__dev.h"
+#include "ft_mem.h"
 #include "types/ft_allocator_types.h"
 #include "tests/str__mem_tests.h"
 #include <malloc.h>
 
 int	tmal_allocator(void)
 {
-	const t_allocator_group	prev = ft_get_allocator(NULL);
 	t_allocator_group		curent;
+	const t_allocator_group	prev = ft_get_allocator(NULL);
+	const t_allocator_group	gnu_expect = (t_allocator_group){
+		.alloc_fn = malloc, .free_fn = free, .calloc_fn = calloc,
+		.realloc_fn = realloc, .reallocarray_fn = reallocarray
+	};
+	const t_allocator_group	ft_expect = (t_allocator_group){
+		.alloc_fn = ft_memimpl_malloc, .free_fn = ft_memimpl_free,
+		.calloc_fn = ft_memimpl_calloc, .realloc_fn = ft_memimpl_realloc,
+		.reallocarray_fn = ft_memimpl_reallocarray
+	};
 
 	curent = (ft_set_gnu_alloc(), ft_get_allocator(NULL));
-	if (curent.ptr_free != &free || curent.ptr_alloc != &malloc
-		|| curent.ptr_calloc != &calloc || curent.ptr_realloc != &realloc
-		|| curent.ptr_reallocarray != &reallocarray)
-		return (1);
+	if (ft_memcmp(&curent, &gnu_expect, sizeof(t_allocator_group)) != 0)
+		return (ft_get_allocator(&prev), 1);
 	curent = (ft_set_ft_alloc(), ft_get_allocator(NULL));
-	if (curent.ptr_free != &ft_memimpl_free
-		|| curent.ptr_alloc != &ft_memimpl_malloc
-		|| curent.ptr_calloc != &ft_memimpl_calloc
-		|| curent.ptr_realloc != &ft_memimpl_realloc
-		|| curent.ptr_reallocarray != &ft_memimpl_reallocarray)
-		return (2);
+	if (ft_memcmp(&curent, &ft_expect, sizeof(t_allocator_group)) != 0)
+		return (ft_get_allocator(&prev), 2);
 	curent = (ft_get_allocator(&prev));
-	if (curent.ptr_free != prev.ptr_free || curent.ptr_alloc != prev.ptr_alloc
-		|| curent.ptr_calloc != prev.ptr_calloc
-		|| curent.ptr_realloc != prev.ptr_realloc
-		|| curent.ptr_reallocarray != prev.ptr_reallocarray)
+	if (ft_memcmp(&curent, &prev, sizeof(t_allocator_group)) != 0)
 		return (3);
 	return (EXIT_SUCCESS);
 }

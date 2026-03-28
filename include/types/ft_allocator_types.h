@@ -18,11 +18,11 @@
 
 typedef struct s_allocator_group
 {
-	void			*(*ptr_alloc)(size_t);
-	void			(*ptr_free)(void *);
-	void			*(*ptr_calloc)(size_t, size_t);
-	void			*(*ptr_realloc)(void *, size_t);
-	void			*(*ptr_reallocarray)(void *, size_t, size_t);
+	void			*(*alloc_fn)(size_t);
+	void			(*free_fn)(void *);
+	void			*(*calloc_fn)(size_t, size_t);
+	void			*(*realloc_fn)(void *, size_t);
+	void			*(*reallocarray_fn)(void *, size_t, size_t);
 }					t_allocator_group;
 
 typedef struct s_memory_block

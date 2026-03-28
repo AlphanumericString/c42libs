@@ -20,8 +20,8 @@ int	tmal_reallocarray(void)
 
 	ft_set_ft_alloc();
 	group_test = ft_get_allocator(NULL);
-	if (group_test.ptr_reallocarray != &ft_memimpl_reallocarray)
-		return (1);
+	if (group_test.reallocarray_fn != &ft_memimpl_reallocarray)
+		return (ft_get_allocator(&prev), 1);
 	ft_get_allocator(&prev);
 	return (EXIT_SUCCESS);
 }

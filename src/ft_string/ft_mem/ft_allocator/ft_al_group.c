@@ -40,13 +40,14 @@ void	ft_set_allocator(void)
 
 void	ft_set_ft_alloc(void)
 {
-	t_allocator_group	alloc;
+	const t_allocator_group	alloc = (t_allocator_group){
+		.alloc_fn = ft_memimpl_malloc,
+		.calloc_fn = ft_memimpl_calloc,
+		.free_fn = ft_memimpl_free,
+		.realloc_fn = ft_memimpl_realloc,
+		.reallocarray_fn = ft_memimpl_reallocarray,
+	};
 
-	alloc.ptr_alloc = ft_memimpl_malloc;
-	alloc.ptr_calloc = ft_memimpl_calloc;
-	alloc.ptr_free = ft_memimpl_free;
-	alloc.ptr_realloc = ft_memimpl_realloc;
-	alloc.ptr_reallocarray = ft_memimpl_reallocarray;
 	ft_get_allocator(&alloc);
 }
 
@@ -58,13 +59,14 @@ void	ft_set_ft_alloc(void)
 
 void	ft_set_gnu_alloc(void)
 {
-	t_allocator_group	alloc;
+	const t_allocator_group	alloc = (t_allocator_group){
+		.alloc_fn = malloc,
+		.calloc_fn = calloc,
+		.free_fn = free,
+		.realloc_fn = realloc,
+		.reallocarray_fn = (void *(*)(void *, size_t, size_t))REALLOCARRAY,
+	};
 
-	alloc.ptr_alloc = malloc;
-	alloc.ptr_calloc = calloc;
-	alloc.ptr_free = free;
-	alloc.ptr_realloc = realloc;
-	alloc.ptr_reallocarray = (void *(*)(void *, size_t, size_t))REALLOCARRAY;
 	ft_get_allocator(&alloc);
 }
 
