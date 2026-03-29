@@ -52,6 +52,56 @@ void	ft_vec_filterout(t_vector *vec, t_data_is func, t_data_apply del)
 			ft_vec_nremove(vec, i, j, del);
 	}
 }
+
+void	ft_vec_nfilter(t_vector *v, size_t n, t_data_is fcmp, t_data_apply d)
+{
+	size_t	i;
+	size_t	j;
+
+	if (!v || !v->n_e || !v->s_e || !fcmp || !n)
+		return ;
+	if (n > v->n_e)
+		n = v->n_e;
+	i = 0;
+	while (i < n)
+	{
+		while (i < n && fcmp(ft_vec_at(v, i)) == true)
+			i++;
+		j = 0;
+		while ((i + j) < n && fcmp(ft_vec_at(v, i + j)) == false)
+			j++;
+		if (j)
+		{
+			ft_vec_nremove(v, i, j, d);
+			n -= j;
+		}
+	}
+}
+
+void	ft_vec_nfilterout(t_vector *v, size_t n, t_data_is fcmp, t_data_apply d)
+{
+	size_t	i;
+	size_t	j;
+
+	if (!v || !v->n_e || !v->s_e || !v->data || !fcmp || !n)
+		return ;
+	if (n > v->n_e)
+		n = v->n_e;
+	i = 0;
+	while (i < n)
+	{
+		while (i < n && fcmp(ft_vec_at(v, i)) == false)
+			i++;
+		j = 0;
+		while ((i + j) < n && fcmp(ft_vec_at(v, i + j)) == true)
+			j++;
+		if (j)
+		{
+			ft_vec_nremove(v, i, j, d);
+			n -= j;
+		}
+	}
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.

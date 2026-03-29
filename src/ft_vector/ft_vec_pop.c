@@ -12,6 +12,7 @@
 
 #include "types/ft_vector_types.h"
 #include "ft_vector.h"
+#include "ft_mem.h"
 
 void	*ft_vec_pop(t_vector *vec)
 {
@@ -22,6 +23,34 @@ void	*ft_vec_pop(t_vector *vec)
 	ret = ft_vec_at(vec, vec->n_e - 1);
 	vec->n_e--;
 	return (ret);
+}
+
+void	*ft_vec_popget(t_vector *vec, void *holder)
+{
+	const void	*ret;
+
+	if (!vec || !vec->n_e || !vec->s_e || !holder)
+		return (NULL);
+	ret = ft_vec_at(vec, vec->n_e - 1);
+	if (!ret)
+		return (NULL);
+	ft_memcpy(holder, ret, vec->s_e);
+	vec->n_e--;
+	return (holder);
+}
+
+void	*ft_vec_npopget(t_vector *vec, size_t n, void *holder)
+{
+	const void	*ret;
+
+	if (!vec || !vec->n_e || !vec->s_e || !holder || vec->n_e < n)
+		return (NULL);
+	ret = ft_vec_at(vec, vec->n_e - n);
+	if (!ret)
+		return (NULL);
+	ft_memcpy(holder, ret, vec->s_e * n);
+	vec->n_e -= n;
+	return (holder);
 }
 /*
 GPL-3.0 License:

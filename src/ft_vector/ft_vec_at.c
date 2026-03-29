@@ -45,6 +45,25 @@ void	*ft_vec_get(const t_vector *v, ssize_t n, void *e)
 		return (ft_memcpy(e, e_src, v->s_e));
 	return (NULL);
 }
+
+void	*ft_vec_nget(const t_vector *v, ssize_t pos, size_t n, void *holder)
+{
+	const void	*e_src;
+	size_t		pos_abs;
+
+	if (!v || !holder || !n)
+		return (NULL);
+	e_src = ft_vec_at(v, pos);
+	if (!e_src)
+		return (NULL);
+	if (pos < 0)
+		pos_abs = v->n_e + pos;
+	else
+		pos_abs = (size_t)pos;
+	if (pos_abs + n > v->n_e)
+		return (NULL);
+	return (ft_memcpy(holder, e_src, v->s_e * n));
+}
 /*
 GPL-3.0 License:
 c42libs - Library for c projects at 42.
